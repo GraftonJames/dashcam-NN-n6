@@ -1,0 +1,319 @@
+0x18003514 in ?? ()
+STM32 Successfully completed reset operation (System reset)
+Loading section .isr_vector, size 0x34c lma 0x34180400
+Loading section .text, size 0xa304 lma 0x34180750
+Loading section .rodata, size 0x2e40 lma 0x3418aa58
+Loading section .ARM, size 0x8 lma 0x3418d898
+Loading section .init_array, size 0x4 lma 0x3418d8a0
+Loading section .fini_array, size 0x4 lma 0x3418d8a4
+Loading section .gnu.sgstubs, size 0x20 lma 0x3418d8c0
+Loading section .data, size 0x170 lma 0x3418d8e0
+Start address 0x34188c00, load size 54832
+Transfer rate: 877 KB/sec, 5483 bytes/write.
+Hardware assisted breakpoint 1 at 0x34180ce4: file Src/main.c, line 64.
+Hardware assisted breakpoint 2 at 0x34185514: file ../Drivers/cmw_camera/cmw_utils.c, line 55.
+Hardware assisted breakpoint 3 at 0x34180e4c: file Src/camera.c, line 48.
+❌️ Function "CMX_IMX_PowerOn" not defined in "cmw_imx335.c".
+Make hw breakpoint pending on future shared library load? (y or [n]) [answered N; input not from terminal]
+Hardware assisted breakpoint 4 at 0x34182c08: file ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c, line 419.
+Continuing.
+
+Breakpoint 1, main () at Src/main.c:64
+64	{
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=1024, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=1, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=256, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+Continuing.
+
+Breakpoint 3, CAMERA_init () at Src/camera.c:48
+48	HAL_StatusTypeDef CAMERA_init() {
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56020000, GPIO_Pin=GPIO_Pin@entry=1, PinState=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+❌️ .gdbinit:27: Error in sourced command file:
+could not connect: Connection timed out.
+❌️ Undefined command: "y".  Try "help".
+0x1800598c in ?? ()
+STM32 Successfully completed reset operation (System reset)
+Loading section .isr_vector, size 0x34c lma 0x34180400
+Loading section .text, size 0xbe3c lma 0x34180750
+Loading section .rodata, size 0x2e40 lma 0x3418c590
+Loading section .ARM, size 0x8 lma 0x3418f3d0
+Loading section .init_array, size 0x4 lma 0x3418f3d8
+Loading section .fini_array, size 0x4 lma 0x3418f3dc
+Loading section .gnu.sgstubs, size 0x20 lma 0x3418f3e0
+Loading section .data, size 0x170 lma 0x3418f400
+Start address 0x3418a738, load size 61800
+Transfer rate: 874 KB/sec, 5618 bytes/write.
+Hardware assisted breakpoint 1 at 0x34180d30: file Src/main.c, line 37.
+Hardware assisted breakpoint 2 at 0x34187048: file ../Drivers/cmw_camera/cmw_utils.c, line 55.
+Hardware assisted breakpoint 3 at 0x34180e98: file Src/camera.c, line 48.
+❌️ Function "CMX_IMX_PowerOn" not defined in "cmw_imx335.c".
+Make hw breakpoint pending on future shared library load? (y or [n]) [answered N; input not from terminal]
+Hardware assisted breakpoint 4 at 0x34184740: file ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c, line 419.
+0x18003514 in ?? ()
+STM32 Successfully completed reset operation (System reset)
+Loading section .isr_vector, size 0x34c lma 0x34180400
+Loading section .text, size 0xbe3c lma 0x34180750
+Loading section .rodata, size 0x2e40 lma 0x3418c590
+Loading section .ARM, size 0x8 lma 0x3418f3d0
+Loading section .init_array, size 0x4 lma 0x3418f3d8
+Loading section .fini_array, size 0x4 lma 0x3418f3dc
+Loading section .gnu.sgstubs, size 0x20 lma 0x3418f3e0
+Loading section .data, size 0x170 lma 0x3418f400
+Start address 0x3418a738, load size 61800
+Transfer rate: 862 KB/sec, 5618 bytes/write.
+Hardware assisted breakpoint 1 at 0x34180d30: file Src/main.c, line 37.
+❌️ Function "MX_DCMIPP_CLockConfig" not defined.
+Make hw breakpoint pending on future shared library load? (y or [n]) [answered N; input not from terminal]
+Hardware assisted breakpoint 2 at 0x34180e98: file Src/camera.c, line 48.
+❌️ Function "CMX_IMX_PowerOn" not defined in "cmw_imx335.c".
+Make hw breakpoint pending on future shared library load? (y or [n]) [answered N; input not from terminal]
+Hardware assisted breakpoint 3 at 0x34184740: file ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c, line 419.
+❌️ Remote connection closed
+0x18003514 in ?? ()
+STM32 Successfully completed reset operation (System reset)
+Loading section .isr_vector, size 0x34c lma 0x34180400
+Loading section .text, size 0xbe3c lma 0x34180750
+Loading section .rodata, size 0x2e40 lma 0x3418c590
+Loading section .ARM, size 0x8 lma 0x3418f3d0
+Loading section .init_array, size 0x4 lma 0x3418f3d8
+Loading section .fini_array, size 0x4 lma 0x3418f3dc
+Loading section .gnu.sgstubs, size 0x20 lma 0x3418f3e0
+Loading section .data, size 0x170 lma 0x3418f400
+Start address 0x3418a738, load size 61800
+Transfer rate: 874 KB/sec, 5618 bytes/write.
+Hardware assisted breakpoint 1 at 0x34180d30: file Src/main.c, line 37.
+Hardware assisted breakpoint 2 at 0x34180bdc: file Src/main.c, line 275.
+Hardware assisted breakpoint 3 at 0x34180e98: file Src/camera.c, line 48.
+❌️ Function "CMX_IMX_PowerOn" not defined in "cmw_imx335.c".
+Make hw breakpoint pending on future shared library load? (y or [n]) [answered N; input not from terminal]
+Hardware assisted breakpoint 4 at 0x34184740: file ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c, line 419.
+Continuing.
+
+Breakpoint 1, main () at Src/main.c:37
+37	{
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=1024, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=1, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=256, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+Continuing.
+
+Breakpoint 3, CAMERA_init () at Src/camera.c:48
+48	HAL_StatusTypeDef CAMERA_init() {
+Continuing.
+
+Breakpoint 2, MX_DCMIPP_ClockConfig (hdcmipp=0x341c0d74 <hcamera_dcmipp>) at Src/main.c:275
+275	HAL_StatusTypeDef MX_DCMIPP_ClockConfig(DCMIPP_HandleTypeDef *hdcmipp) {
+276		RCC_PeriphCLKInitTypeDef RCC_PeriphCLKInitStruct = {0};
+memset (m=m@entry=0x341ffdd0, c=c@entry=0, n=n@entry=400) at ../../../../../../newlib-4.6.0.20260123/newlib/libc/string/memset.c:88
+⚠️ warning: 88	../../../../../../newlib-4.6.0.20260123/newlib/libc/string/memset.c: No such file or directory
+Run till exit from #0  memset (m=m@entry=0x341ffdd0, c=c@entry=0, n=n@entry=400) at ../../../../../../newlib-4.6.0.20260123/newlib/libc/string/memset.c:88
+MX_DCMIPP_ClockConfig (hdcmipp=<optimized out>) at Src/main.c:279
+279		RCC_PeriphCLKInitStruct.PeriphClockSelection = RCC_PERIPHCLK_DCMIPP;
+Value returned is $1 = (void *) 0x341ffdd0
+280		RCC_PeriphCLKInitStruct.DcmippClockSelection = RCC_DCMIPPCLKSOURCE_IC17;
+281		RCC_PeriphCLKInitStruct.ICSelection[RCC_IC17].ClockSelection = RCC_ICCLKSOURCE_PLL2;
+❌️ Remote connection closed
+0x18003514 in ?? ()
+STM32 Successfully completed reset operation (System reset)
+Loading section .isr_vector, size 0x34c lma 0x34180400
+Loading section .text, size 0xbd84 lma 0x34180750
+Loading section .rodata, size 0x2e40 lma 0x3418c4d8
+Loading section .ARM, size 0x8 lma 0x3418f318
+Loading section .init_array, size 0x4 lma 0x3418f320
+Loading section .fini_array, size 0x4 lma 0x3418f324
+Loading section .gnu.sgstubs, size 0x20 lma 0x3418f340
+Loading section .data, size 0x170 lma 0x3418f360
+Start address 0x3418a680, load size 61616
+Transfer rate: 872 KB/sec, 5601 bytes/write.
+Hardware assisted breakpoint 1 at 0x34180cd4: file Src/main.c, line 37.
+Hardware assisted breakpoint 2 at 0x34180dcc: file Src/main.c, line 220.
+Hardware assisted breakpoint 3 at 0x34180e88: file Src/camera.c, line 48.
+❌️ Function "CMX_IMX_PowerOn" not defined in "cmw_imx335.c".
+Make hw breakpoint pending on future shared library load? (y or [n]) [answered N; input not from terminal]
+Hardware assisted breakpoint 4 at 0x341846fc: file ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c, line 419.
+Continuing.
+
+Breakpoint 1, main () at Src/main.c:37
+37	{
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56020400, GPIO_Pin=GPIO_Pin@entry=4096, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=1024, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=1, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=256, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+Continuing.
+
+Breakpoint 3, CAMERA_init () at Src/camera.c:48
+48	HAL_StatusTypeDef CAMERA_init() {
+Continuing.
+
+Breakpoint 2, MX_DCMIPP_ClockConfig (hdcmipp=0x341c0d74 <hcamera_dcmipp>) at Src/main.c:220
+220	HAL_StatusTypeDef MX_DCMIPP_ClockConfig(DCMIPP_HandleTypeDef *hdcmipp) {
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56020000, GPIO_Pin=GPIO_Pin@entry=1, PinState=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+❌️ Remote connection closed
+❌️ .gdbinit:27: Error in sourced command file:
+could not connect: Connection timed out.
+0x1800350e in ?? ()
+STM32 Successfully completed reset operation (System reset)
+Loading section .isr_vector, size 0x34c lma 0x34180400
+Loading section .text, size 0xbd84 lma 0x34180750
+Loading section .rodata, size 0x2e40 lma 0x3418c4d8
+Loading section .ARM, size 0x8 lma 0x3418f318
+Loading section .init_array, size 0x4 lma 0x3418f320
+Loading section .fini_array, size 0x4 lma 0x3418f324
+Loading section .gnu.sgstubs, size 0x20 lma 0x3418f340
+Loading section .data, size 0x170 lma 0x3418f360
+Start address 0x3418a680, load size 61616
+Transfer rate: 872 KB/sec, 5601 bytes/write.
+Hardware assisted breakpoint 1 at 0x34180cd4: file Src/main.c, line 37.
+Hardware assisted breakpoint 2 at 0x34180dcc: file Src/main.c, line 220.
+Hardware assisted breakpoint 3 at 0x34180e88: file Src/camera.c, line 48.
+❌️ Function "CMX_IMX_PowerOn" not defined in "cmw_imx335.c".
+Make hw breakpoint pending on future shared library load? (y or [n]) [answered N; input not from terminal]
+Hardware assisted breakpoint 4 at 0x341846fc: file ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c, line 419.
+Continuing.
+
+Breakpoint 1, main () at Src/main.c:37
+37	{
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56020400, GPIO_Pin=GPIO_Pin@entry=4096, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+#0  HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56020400, GPIO_Pin=GPIO_Pin@entry=4096, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+#1  0x341812e4 in BSP_SMPS_Init (Voltage=Voltage@entry=SMPS_VOLTAGE_OVERDRIVE) at ../Drivers/stm32n6xx_nucleo.c:179
+#2  0x34180c0a in SystemClock_Config () at Src/main.c:130
+#3  0x34180d6a in main () at Src/main.c:47
+421	    GPIOx->BSRR = (uint32_t)GPIO_Pin;
+SystemClock_Config () at Src/main.c:132
+132		RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_NONE;
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=1024, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+#0  HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=1024, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+#1  0x34181304 in BSP_LED_Off (Led=Led@entry=LED2) at ../Drivers/stm32n6xx_nucleo.c:277
+#2  0x3418134e in BSP_LED_Init (Led=Led@entry=LED2) at ../Drivers/stm32n6xx_nucleo.c:222
+#3  0x34180d8e in main () at Src/main.c:62
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=1, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+#0  HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=1, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+#1  0x34181304 in BSP_LED_Off (Led=Led@entry=LED3) at ../Drivers/stm32n6xx_nucleo.c:277
+#2  0x3418134e in BSP_LED_Init (Led=Led@entry=LED3) at ../Drivers/stm32n6xx_nucleo.c:222
+#3  0x34180d94 in main () at Src/main.c:63
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=256, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+#0  HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=256, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+#1  0x34181304 in BSP_LED_Off (Led=Led@entry=LED1) at ../Drivers/stm32n6xx_nucleo.c:277
+#2  0x3418134e in BSP_LED_Init (Led=Led@entry=LED1) at ../Drivers/stm32n6xx_nucleo.c:222
+#3  0x34180d9a in main () at Src/main.c:64
+Continuing.
+
+Breakpoint 3, CAMERA_init () at Src/camera.c:48
+48	HAL_StatusTypeDef CAMERA_init() {
+#0  CAMERA_init () at Src/camera.c:48
+#1  0x34180d9e in main () at Src/main.c:66
+Continuing.
+
+Breakpoint 2, MX_DCMIPP_ClockConfig (hdcmipp=0x341c0d74 <hcamera_dcmipp>) at Src/main.c:220
+220	HAL_StatusTypeDef MX_DCMIPP_ClockConfig(DCMIPP_HandleTypeDef *hdcmipp) {
+#0  MX_DCMIPP_ClockConfig (hdcmipp=0x341c0d74 <hcamera_dcmipp>) at Src/main.c:220
+#1  0x34186c70 in CMW_CAMERA_Init (initConf=initConf@entry=0x341fffe0, advanced_config=advanced_config@entry=0x341fffd4) at ../Drivers/cmw_camera/cmw_camera.c:355
+#2  0x34180eac in CAMERA_init () at Src/camera.c:65
+#3  0x34180d9e in main () at Src/main.c:66
+❌️ Remote connection closed
+0x18003514 in ?? ()
+STM32 Successfully completed reset operation (System reset)
+Loading section .isr_vector, size 0x34c lma 0x34180400
+Loading section .text, size 0xbd84 lma 0x34180750
+Loading section .rodata, size 0x2e40 lma 0x3418c4d8
+Loading section .ARM, size 0x8 lma 0x3418f318
+Loading section .init_array, size 0x4 lma 0x3418f320
+Loading section .fini_array, size 0x4 lma 0x3418f324
+Loading section .gnu.sgstubs, size 0x20 lma 0x3418f340
+Loading section .data, size 0x170 lma 0x3418f360
+Start address 0x3418a680, load size 61616
+Transfer rate: 872 KB/sec, 5601 bytes/write.
+Hardware assisted breakpoint 1 at 0x34180cd4: file Src/main.c, line 37.
+Hardware assisted breakpoint 2 at 0x34180dcc: file Src/main.c, line 220.
+Hardware assisted breakpoint 3 at 0x34180e88: file Src/camera.c, line 48.
+❌️ Function "CMX_IMX_PowerOn" not defined in "cmw_imx335.c".
+Make hw breakpoint pending on future shared library load? (y or [n]) [answered N; input not from terminal]
+Hardware assisted breakpoint 4 at 0x341846fc: file ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c, line 419.
+Continuing.
+
+Breakpoint 1, main () at Src/main.c:37
+37	{
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56020400, GPIO_Pin=GPIO_Pin@entry=4096, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=1024, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=1, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56021800, GPIO_Pin=GPIO_Pin@entry=256, PinState=PinState@entry=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+Continuing.
+
+Breakpoint 3, CAMERA_init () at Src/camera.c:48
+48	HAL_StatusTypeDef CAMERA_init() {
+Continuing.
+
+Breakpoint 2, MX_DCMIPP_ClockConfig (hdcmipp=0x341c0d74 <hcamera_dcmipp>) at Src/main.c:220
+220	HAL_StatusTypeDef MX_DCMIPP_ClockConfig(DCMIPP_HandleTypeDef *hdcmipp) {
+Continuing.
+
+Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56020000, GPIO_Pin=GPIO_Pin@entry=1, PinState=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+419	  if (PinState != GPIO_PIN_RESET)
+#0  HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56020000, GPIO_Pin=GPIO_Pin@entry=1, PinState=GPIO_PIN_SET) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c:419
+#1  0x34186b08 in CMW_CAMERA_EnablePin (value=<optimized out>) at ../Drivers/cmw_camera/cmw_camera.c:1036
+#2  0x34189f22 in CMW_IMX335_PowerOn (io_ctx=io_ctx@entry=0x341c0bf8 <camera_bsp>) at ../Drivers/cmw_camera/sensors/cmw_imx335.c:299
+#3  0x3418a192 in CMW_IMX335_Probe (io_ctx=io_ctx@entry=0x341c0bf8 <camera_bsp>, imx335_if=imx335_if@entry=0x341c0d08 <Camera_Drv>) at ../Drivers/cmw_camera/sensors/cmw_imx335.c:341
+#4  0x341869e0 in CMW_CAMERA_IMX335_Init (initSensors_params=initSensors_params@entry=0x341fffac) at ../Drivers/cmw_camera/cmw_camera.c:1876
+#5  0x34186ae8 in CMW_CAMERA_Probe_Sensor (initValues=initValues@entry=0x341fffac, sensorName=sensorName@entry=0x341c0dc0 <connected_sensor>) at ../Drivers/cmw_camera/cmw_camera.c:307
+#6  0x34186c86 in CMW_CAMERA_Init (initConf=initConf@entry=0x341fffe0, advanced_config=advanced_config@entry=0x341fffd4) at ../Drivers/cmw_camera/cmw_camera.c:369
+#7  0x34180eac in CAMERA_init () at Src/camera.c:65
+#8  0x34180d9e in main () at Src/main.c:66

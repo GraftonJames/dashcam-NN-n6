@@ -1,0 +1,1428 @@
+ARM GAS  /tmp/ccNAGfvR.s 			page 1
+
+
+   1              		.arch armv8.1-m.main
+   2              		.fpu fpv5-d16
+   3              		.arch_extension dsp
+   4              		.arch_extension fp
+   5              		.arch_extension fp.dp
+   6              		.arch_extension mve
+   7              		.arch_extension mve.fp
+   8              		.eabi_attribute 5, "cortex-m55"
+   9              		.eabi_attribute 28, 1
+  10              		.eabi_attribute 20, 1
+  11              		.eabi_attribute 21, 1
+  12              		.eabi_attribute 23, 3
+  13              		.eabi_attribute 24, 1
+  14              		.eabi_attribute 25, 1
+  15              		.eabi_attribute 26, 1
+  16              		.eabi_attribute 30, 1
+  17              		.eabi_attribute 34, 1
+  18              		.eabi_attribute 38, 1
+  19              		.eabi_attribute 18, 4
+  20              		.file	"cmw_utils.c"
+  21              		.text
+  22              	.Ltext0:
+  23              		.cfi_sections	.debug_frame
+  24              		.file 1 "../Drivers/cmw_camera/cmw_utils.c"
+  25              		.section	.text.CMW_UTILS_get_crop_config_from_manual,"ax",%progbits
+  26              		.align	1
+  27              		.syntax unified
+  28              		.thumb
+  29              		.thumb_func
+  31              	CMW_UTILS_get_crop_config_from_manual:
+  32              	.LVL0:
+  33              	.LFB887:
+   1:../Drivers/cmw_camera/cmw_utils.c ****  /**
+   2:../Drivers/cmw_camera/cmw_utils.c ****  ******************************************************************************
+   3:../Drivers/cmw_camera/cmw_utils.c ****  * @file    cmw_utils.c
+   4:../Drivers/cmw_camera/cmw_utils.c ****  * @author  GPM Application Team
+   5:../Drivers/cmw_camera/cmw_utils.c ****  *
+   6:../Drivers/cmw_camera/cmw_utils.c ****  ******************************************************************************
+   7:../Drivers/cmw_camera/cmw_utils.c ****  * @attention
+   8:../Drivers/cmw_camera/cmw_utils.c ****  *
+   9:../Drivers/cmw_camera/cmw_utils.c ****  * Copyright (c) 2024 STMicroelectronics.
+  10:../Drivers/cmw_camera/cmw_utils.c ****  * All rights reserved.
+  11:../Drivers/cmw_camera/cmw_utils.c ****  *
+  12:../Drivers/cmw_camera/cmw_utils.c ****  * This software is licensed under terms that can be found in the LICENSE file
+  13:../Drivers/cmw_camera/cmw_utils.c ****  * in the root directory of this software component.
+  14:../Drivers/cmw_camera/cmw_utils.c ****  * If no LICENSE file comes with this software, it is provided AS-IS.
+  15:../Drivers/cmw_camera/cmw_utils.c ****  *
+  16:../Drivers/cmw_camera/cmw_utils.c ****  ******************************************************************************
+  17:../Drivers/cmw_camera/cmw_utils.c ****  */
+  18:../Drivers/cmw_camera/cmw_utils.c **** 
+  19:../Drivers/cmw_camera/cmw_utils.c **** #include "cmw_utils.h"
+  20:../Drivers/cmw_camera/cmw_utils.c **** 
+  21:../Drivers/cmw_camera/cmw_utils.c **** #include <assert.h>
+  22:../Drivers/cmw_camera/cmw_utils.c **** #include "stm32n6xx_hal_dcmipp.h"
+  23:../Drivers/cmw_camera/cmw_utils.c **** 
+  24:../Drivers/cmw_camera/cmw_utils.c **** #ifndef MIN
+  25:../Drivers/cmw_camera/cmw_utils.c **** #define MIN(a,b) ((a)<(b)?(a):(b))
+ARM GAS  /tmp/ccNAGfvR.s 			page 2
+
+
+  26:../Drivers/cmw_camera/cmw_utils.c **** #endif
+  27:../Drivers/cmw_camera/cmw_utils.c **** 
+  28:../Drivers/cmw_camera/cmw_utils.c **** #ifndef MAX
+  29:../Drivers/cmw_camera/cmw_utils.c **** #define MAX(a,b) ((a)>(b)?(a):(b))
+  30:../Drivers/cmw_camera/cmw_utils.c **** #endif
+  31:../Drivers/cmw_camera/cmw_utils.c **** 
+  32:../Drivers/cmw_camera/cmw_utils.c **** 
+  33:../Drivers/cmw_camera/cmw_utils.c **** 
+  34:../Drivers/cmw_camera/cmw_utils.c **** 
+  35:../Drivers/cmw_camera/cmw_utils.c **** 
+  36:../Drivers/cmw_camera/cmw_utils.c **** 
+  37:../Drivers/cmw_camera/cmw_utils.c **** static void CMW_UTILS_get_crop_config(uint32_t cam_width, uint32_t cam_height, uint32_t pipe_width,
+  38:../Drivers/cmw_camera/cmw_utils.c ****                                       uint32_t pipe_height, DCMIPP_CropConfTypeDef *crop);
+  39:../Drivers/cmw_camera/cmw_utils.c **** static void CMW_UTILS_get_crop_config_from_manual(CMW_Manual_roi_area_t *conf, DCMIPP_CropConfTypeD
+  40:../Drivers/cmw_camera/cmw_utils.c **** static void CMW_UTILS_get_down_config(float ratio_width, float ratio_height, int width, int height,
+  41:../Drivers/cmw_camera/cmw_utils.c ****                                       DCMIPP_DownsizeTypeDef *down);
+  42:../Drivers/cmw_camera/cmw_utils.c **** static uint32_t CMW_UTILS_get_dec_ratio_and_update(float *ratio, int is_vertical);
+  43:../Drivers/cmw_camera/cmw_utils.c **** static void CMW_UTILS_get_scale_configs(CMW_DCMIPP_Conf_t *p_conf, float ratio_width, float ratio_h
+  44:../Drivers/cmw_camera/cmw_utils.c ****                                        DCMIPP_DecimationConfTypeDef *dec, DCMIPP_DownsizeTypeDef *d
+  45:../Drivers/cmw_camera/cmw_utils.c **** 
+  46:../Drivers/cmw_camera/cmw_utils.c **** void CMW_UTILS_GetPipeConfig(uint32_t cam_width, uint32_t cam_height, CMW_DCMIPP_Conf_t *p_conf,
+  47:../Drivers/cmw_camera/cmw_utils.c ****                              DCMIPP_CropConfTypeDef *crop, DCMIPP_DecimationConfTypeDef *dec,
+  48:../Drivers/cmw_camera/cmw_utils.c ****                              DCMIPP_DownsizeTypeDef *down)
+  49:../Drivers/cmw_camera/cmw_utils.c **** {
+  50:../Drivers/cmw_camera/cmw_utils.c ****   float ratio_height = 0;
+  51:../Drivers/cmw_camera/cmw_utils.c ****   float ratio_width = 0;
+  52:../Drivers/cmw_camera/cmw_utils.c **** 
+  53:../Drivers/cmw_camera/cmw_utils.c ****   if (p_conf->mode == CMW_Aspect_ratio_crop)
+  54:../Drivers/cmw_camera/cmw_utils.c ****   {
+  55:../Drivers/cmw_camera/cmw_utils.c ****     CMW_UTILS_get_crop_config(cam_width, cam_height, p_conf->output_width, p_conf->output_height, c
+  56:../Drivers/cmw_camera/cmw_utils.c ****     ratio_width = (float)crop->HSize / p_conf->output_width;
+  57:../Drivers/cmw_camera/cmw_utils.c ****     ratio_height = (float)crop->VSize / p_conf->output_height;
+  58:../Drivers/cmw_camera/cmw_utils.c ****   }
+  59:../Drivers/cmw_camera/cmw_utils.c ****   else if (p_conf->mode == CMW_Aspect_ratio_fit)
+  60:../Drivers/cmw_camera/cmw_utils.c ****   {
+  61:../Drivers/cmw_camera/cmw_utils.c ****     ratio_width = (float)cam_width / p_conf->output_width;
+  62:../Drivers/cmw_camera/cmw_utils.c ****     ratio_height = (float)cam_height / p_conf->output_height;
+  63:../Drivers/cmw_camera/cmw_utils.c ****   }
+  64:../Drivers/cmw_camera/cmw_utils.c ****   else if (p_conf->mode == CMW_Aspect_ratio_fullscreen)
+  65:../Drivers/cmw_camera/cmw_utils.c ****   {
+  66:../Drivers/cmw_camera/cmw_utils.c ****     ratio_height = (float) cam_height / p_conf->output_height;
+  67:../Drivers/cmw_camera/cmw_utils.c ****     ratio_width = (float) ratio_height;
+  68:../Drivers/cmw_camera/cmw_utils.c ****   }
+  69:../Drivers/cmw_camera/cmw_utils.c ****   else
+  70:../Drivers/cmw_camera/cmw_utils.c ****   {
+  71:../Drivers/cmw_camera/cmw_utils.c ****     CMW_UTILS_get_crop_config_from_manual(&p_conf->manual_conf, crop);
+  72:../Drivers/cmw_camera/cmw_utils.c ****     ratio_width = (float)crop->HSize / p_conf->output_width;
+  73:../Drivers/cmw_camera/cmw_utils.c ****     ratio_height = (float)crop->VSize / p_conf->output_height;
+  74:../Drivers/cmw_camera/cmw_utils.c ****   }
+  75:../Drivers/cmw_camera/cmw_utils.c **** 
+  76:../Drivers/cmw_camera/cmw_utils.c ****   CMW_UTILS_get_scale_configs(p_conf, ratio_width, ratio_height, dec, down);
+  77:../Drivers/cmw_camera/cmw_utils.c **** }
+  78:../Drivers/cmw_camera/cmw_utils.c **** 
+  79:../Drivers/cmw_camera/cmw_utils.c **** int32_t CMW_UTILS_getClosest_HAL_PHYBitrate(uint32_t val)
+  80:../Drivers/cmw_camera/cmw_utils.c **** {
+  81:../Drivers/cmw_camera/cmw_utils.c ****   static const uint32_t PHYBitrate_in_mps[][2] =
+  82:../Drivers/cmw_camera/cmw_utils.c ****   {
+ARM GAS  /tmp/ccNAGfvR.s 			page 3
+
+
+  83:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_80 , 80000000},
+  84:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_90 , 90000000},
+  85:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_100, 100000000},
+  86:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_110, 110000000},
+  87:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_120, 120000000},
+  88:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_130, 130000000},
+  89:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_140, 140000000},
+  90:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_150, 150000000},
+  91:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_160, 160000000},
+  92:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_170, 170000000},
+  93:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_180, 180000000},
+  94:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_190, 190000000},
+  95:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_205, 205000000},
+  96:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_220, 220000000},
+  97:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_235, 235000000},
+  98:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_250, 250000000},
+  99:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_275, 275000000},
+ 100:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_300, 300000000},
+ 101:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_325, 325000000},
+ 102:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_350, 350000000},
+ 103:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_400, 400000000},
+ 104:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_450, 450000000},
+ 105:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_500, 500000000},
+ 106:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_550, 550000000},
+ 107:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_600, 600000000},
+ 108:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_650, 650000000},
+ 109:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_700, 700000000},
+ 110:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_750, 750000000},
+ 111:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_800, 800000000},
+ 112:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_850, 850000000},
+ 113:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_900, 900000000},
+ 114:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_950, 950000000},
+ 115:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1000, 1000000000},
+ 116:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1050, 1050000000},
+ 117:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1100, 1100000000},
+ 118:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1150, 1150000000},
+ 119:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1200, 1200000000},
+ 120:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1250, 1250000000},
+ 121:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1300, 1300000000},
+ 122:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1350, 1350000000},
+ 123:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1400, 1400000000},
+ 124:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1450, 1450000000},
+ 125:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1500, 1500000000},
+ 126:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1550, 1550000000},
+ 127:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1600, 1600000000},
+ 128:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1650, 1650000000},
+ 129:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1700, 1700000000},
+ 130:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1750, 1750000000},
+ 131:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1800, 1800000000},
+ 132:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1850, 1850000000},
+ 133:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1900, 1900000000},
+ 134:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_1950, 1950000000},
+ 135:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_2000, 2000000000},
+ 136:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_2050, 2050000000},
+ 137:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_2100, 2100000000},
+ 138:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_2150, 2150000000},
+ 139:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_2200, 2200000000},
+ARM GAS  /tmp/ccNAGfvR.s 			page 4
+
+
+ 140:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_2250, 2250000000},
+ 141:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_2300, 2300000000},
+ 142:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_2350, 2350000000},
+ 143:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_2400, 2400000000},
+ 144:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_2450, 2450000000},
+ 145:../Drivers/cmw_camera/cmw_utils.c ****     {DCMIPP_CSI_PHY_BT_2500, 2500000000}
+ 146:../Drivers/cmw_camera/cmw_utils.c ****   };
+ 147:../Drivers/cmw_camera/cmw_utils.c **** 
+ 148:../Drivers/cmw_camera/cmw_utils.c ****   uint32_t closest_i = PHYBitrate_in_mps[0][0];
+ 149:../Drivers/cmw_camera/cmw_utils.c ****   int32_t min_diff = abs((int32_t)val - (int32_t)PHYBitrate_in_mps[0][1]);
+ 150:../Drivers/cmw_camera/cmw_utils.c ****   size_t size = sizeof(PHYBitrate_in_mps) / sizeof(PHYBitrate_in_mps[0]);
+ 151:../Drivers/cmw_camera/cmw_utils.c **** 
+ 152:../Drivers/cmw_camera/cmw_utils.c ****   if (size == 0)
+ 153:../Drivers/cmw_camera/cmw_utils.c ****   {
+ 154:../Drivers/cmw_camera/cmw_utils.c ****       return -1;
+ 155:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 156:../Drivers/cmw_camera/cmw_utils.c ****   for (size_t i = 1; i < size; i++)
+ 157:../Drivers/cmw_camera/cmw_utils.c ****   {
+ 158:../Drivers/cmw_camera/cmw_utils.c ****       int32_t diff = abs((int32_t)val - (int32_t)PHYBitrate_in_mps[i][1]);
+ 159:../Drivers/cmw_camera/cmw_utils.c ****       if (diff < min_diff)
+ 160:../Drivers/cmw_camera/cmw_utils.c ****       {
+ 161:../Drivers/cmw_camera/cmw_utils.c ****           min_diff = diff;
+ 162:../Drivers/cmw_camera/cmw_utils.c ****           closest_i = PHYBitrate_in_mps[i][0];
+ 163:../Drivers/cmw_camera/cmw_utils.c ****       }
+ 164:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 165:../Drivers/cmw_camera/cmw_utils.c ****   return closest_i;
+ 166:../Drivers/cmw_camera/cmw_utils.c **** }
+ 167:../Drivers/cmw_camera/cmw_utils.c **** 
+ 168:../Drivers/cmw_camera/cmw_utils.c **** static void CMW_UTILS_get_crop_config(uint32_t cam_width, uint32_t cam_height, uint32_t pipe_width,
+ 169:../Drivers/cmw_camera/cmw_utils.c **** {
+ 170:../Drivers/cmw_camera/cmw_utils.c ****   const float ratio_width = (float)cam_width / pipe_width ;
+ 171:../Drivers/cmw_camera/cmw_utils.c ****   const float ratio_height = (float)cam_height / pipe_height;
+ 172:../Drivers/cmw_camera/cmw_utils.c ****   const float ratio = MIN(ratio_width, ratio_height);
+ 173:../Drivers/cmw_camera/cmw_utils.c **** 
+ 174:../Drivers/cmw_camera/cmw_utils.c ****   assert(ratio >= 1);
+ 175:../Drivers/cmw_camera/cmw_utils.c ****   assert(ratio < 64);
+ 176:../Drivers/cmw_camera/cmw_utils.c **** 
+ 177:../Drivers/cmw_camera/cmw_utils.c ****   crop->HSize = (uint32_t) MIN(pipe_width * ratio, cam_width);
+ 178:../Drivers/cmw_camera/cmw_utils.c ****   crop->VSize = (uint32_t) MIN(pipe_height * ratio, cam_height);
+ 179:../Drivers/cmw_camera/cmw_utils.c ****   crop->HStart = (cam_width - crop->HSize + 1) / 2;
+ 180:../Drivers/cmw_camera/cmw_utils.c ****   crop->VStart = (cam_height - crop->VSize + 1) / 2;
+ 181:../Drivers/cmw_camera/cmw_utils.c ****   crop->PipeArea = DCMIPP_POSITIVE_AREA;
+ 182:../Drivers/cmw_camera/cmw_utils.c **** }
+ 183:../Drivers/cmw_camera/cmw_utils.c **** 
+ 184:../Drivers/cmw_camera/cmw_utils.c **** static void CMW_UTILS_get_crop_config_from_manual(CMW_Manual_roi_area_t *roi, DCMIPP_CropConfTypeDe
+ 185:../Drivers/cmw_camera/cmw_utils.c **** {
+  34              		.loc 1 185 1 view -0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 0, uses_anonymous_args = 0
+  38              		@ link register save eliminated.
+ 186:../Drivers/cmw_camera/cmw_utils.c ****   crop->HSize = roi->width;
+  39              		.loc 1 186 3 view .LVU1
+  40              		.loc 1 186 20 is_stmt 0 view .LVU2
+  41 0000 0368     		ldr	r3, [r0]
+  42              		.loc 1 186 15 view .LVU3
+  43 0002 CB60     		str	r3, [r1, #12]
+ARM GAS  /tmp/ccNAGfvR.s 			page 5
+
+
+ 187:../Drivers/cmw_camera/cmw_utils.c ****   crop->VSize = roi->height;
+  44              		.loc 1 187 3 is_stmt 1 view .LVU4
+  45              		.loc 1 187 20 is_stmt 0 view .LVU5
+  46 0004 4368     		ldr	r3, [r0, #4]
+  47              		.loc 1 187 15 view .LVU6
+  48 0006 8B60     		str	r3, [r1, #8]
+ 188:../Drivers/cmw_camera/cmw_utils.c ****   crop->HStart = roi->offset_x;
+  49              		.loc 1 188 3 is_stmt 1 view .LVU7
+  50              		.loc 1 188 21 is_stmt 0 view .LVU8
+  51 0008 8368     		ldr	r3, [r0, #8]
+  52              		.loc 1 188 16 view .LVU9
+  53 000a 4B60     		str	r3, [r1, #4]
+ 189:../Drivers/cmw_camera/cmw_utils.c ****   crop->VStart = roi->offset_y;
+  54              		.loc 1 189 3 is_stmt 1 view .LVU10
+  55              		.loc 1 189 21 is_stmt 0 view .LVU11
+  56 000c C368     		ldr	r3, [r0, #12]
+  57              		.loc 1 189 16 view .LVU12
+  58 000e 0B60     		str	r3, [r1]
+ 190:../Drivers/cmw_camera/cmw_utils.c **** }
+  59              		.loc 1 190 1 view .LVU13
+  60 0010 7047     		bx	lr
+  61              		.cfi_endproc
+  62              	.LFE887:
+  64              		.section	.text.CMW_UTILS_get_down_config,"ax",%progbits
+  65              		.align	1
+  66              		.syntax unified
+  67              		.thumb
+  68              		.thumb_func
+  70              	CMW_UTILS_get_down_config:
+  71              	.LVL1:
+  72              	.LFB888:
+ 191:../Drivers/cmw_camera/cmw_utils.c **** 
+ 192:../Drivers/cmw_camera/cmw_utils.c **** static void CMW_UTILS_get_down_config(float ratio_width, float ratio_height, int width, int height,
+ 193:../Drivers/cmw_camera/cmw_utils.c **** {
+  73              		.loc 1 193 1 is_stmt 1 view -0
+  74              		.cfi_startproc
+  75              		@ args = 0, pretend = 0, frame = 0
+  76              		@ frame_needed = 0, uses_anonymous_args = 0
+  77              		.loc 1 193 1 is_stmt 0 view .LVU15
+  78 0000 00B5     		push	{lr}
+  79              	.LCFI0:
+  80              		.cfi_def_cfa_offset 4
+  81              		.cfi_offset 14, -4
+ 194:../Drivers/cmw_camera/cmw_utils.c ****   down->HRatio = (uint32_t) (8192 * ratio_width);
+  82              		.loc 1 194 3 is_stmt 1 view .LVU16
+  83              		.loc 1 194 35 is_stmt 0 view .LVU17
+  84 0002 DFED0E7A 		vldr.32	s15, .L4
+  85 0006 20EE270A 		vmul.f32	s0, s0, s15
+  86              	.LVL2:
+  87              		.loc 1 194 18 view .LVU18
+  88 000a BCEEC07A 		vcvt.u32.f32	s14, s0
+  89 000e 17EE103A 		vmov	r3, s14	@ int
+  90              		.loc 1 194 16 view .LVU19
+  91 0012 82ED037A 		vstr.32	s14, [r2, #12]	@ int
+ 195:../Drivers/cmw_camera/cmw_utils.c ****   down->VRatio = (uint32_t) (8192 * ratio_height);
+  92              		.loc 1 195 3 is_stmt 1 view .LVU20
+  93              		.loc 1 195 35 is_stmt 0 view .LVU21
+ARM GAS  /tmp/ccNAGfvR.s 			page 6
+
+
+  94 0016 60EEA70A 		vmul.f32	s1, s1, s15
+  95              	.LVL3:
+  96              		.loc 1 195 18 view .LVU22
+  97 001a FCEEE07A 		vcvt.u32.f32	s15, s1
+  98 001e 17EE90CA 		vmov	ip, s15	@ int
+  99              		.loc 1 195 16 view .LVU23
+ 100 0022 C2ED027A 		vstr.32	s15, [r2, #8]	@ int
+ 196:../Drivers/cmw_camera/cmw_utils.c ****   down->HDivFactor = (1024 * 8192 - 1) / down->HRatio;
+ 101              		.loc 1 196 3 is_stmt 1 view .LVU24
+ 102              		.loc 1 196 40 is_stmt 0 view .LVU25
+ 103 0026 DFF818E0 		ldr	lr, .L4+4
+ 104 002a BEFBF3F3 		udiv	r3, lr, r3
+ 105              		.loc 1 196 20 view .LVU26
+ 106 002e 5361     		str	r3, [r2, #20]
+ 197:../Drivers/cmw_camera/cmw_utils.c ****   down->VDivFactor = (1024 * 8192 - 1) / down->VRatio;
+ 107              		.loc 1 197 3 is_stmt 1 view .LVU27
+ 108              		.loc 1 197 40 is_stmt 0 view .LVU28
+ 109 0030 BEFBFCF3 		udiv	r3, lr, ip
+ 110              		.loc 1 197 20 view .LVU29
+ 111 0034 1361     		str	r3, [r2, #16]
+ 198:../Drivers/cmw_camera/cmw_utils.c ****   down->HSize = width;
+ 112              		.loc 1 198 3 is_stmt 1 view .LVU30
+ 113              		.loc 1 198 15 is_stmt 0 view .LVU31
+ 114 0036 5060     		str	r0, [r2, #4]
+ 199:../Drivers/cmw_camera/cmw_utils.c ****   down->VSize = height;
+ 115              		.loc 1 199 3 is_stmt 1 view .LVU32
+ 116              		.loc 1 199 15 is_stmt 0 view .LVU33
+ 117 0038 1160     		str	r1, [r2]
+ 200:../Drivers/cmw_camera/cmw_utils.c **** }
+ 118              		.loc 1 200 1 view .LVU34
+ 119 003a 00BD     		pop	{pc}
+ 120              	.L5:
+ 121              		.align	2
+ 122              	.L4:
+ 123 003c 00000046 		.word	1174405120
+ 124 0040 FFFF7F00 		.word	8388607
+ 125              		.cfi_endproc
+ 126              	.LFE888:
+ 128              		.section	.rodata.CMW_UTILS_get_crop_config.str1.4,"aMS",%progbits,1
+ 129              		.align	2
+ 130              	.LC0:
+ 131 0000 72617469 		.ascii	"ratio >= 1\000"
+ 131      6F203E3D 
+ 131      203100
+ 132 000b 00       		.align	2
+ 133              	.LC1:
+ 134 000c 2E2E2F44 		.ascii	"../Drivers/cmw_camera/cmw_utils.c\000"
+ 134      72697665 
+ 134      72732F63 
+ 134      6D775F63 
+ 134      616D6572 
+ 135 002e 0000     		.align	2
+ 136              	.LC2:
+ 137 0030 72617469 		.ascii	"ratio < 64\000"
+ 137      6F203C20 
+ 137      363400
+ 138              		.section	.text.CMW_UTILS_get_crop_config,"ax",%progbits
+ARM GAS  /tmp/ccNAGfvR.s 			page 7
+
+
+ 139              		.align	1
+ 140              		.syntax unified
+ 141              		.thumb
+ 142              		.thumb_func
+ 144              	CMW_UTILS_get_crop_config:
+ 145              	.LVL4:
+ 146              	.LFB886:
+ 169:../Drivers/cmw_camera/cmw_utils.c ****   const float ratio_width = (float)cam_width / pipe_width ;
+ 147              		.loc 1 169 1 is_stmt 1 view -0
+ 148              		.cfi_startproc
+ 149              		@ args = 4, pretend = 0, frame = 0
+ 150              		@ frame_needed = 0, uses_anonymous_args = 0
+ 169:../Drivers/cmw_camera/cmw_utils.c ****   const float ratio_width = (float)cam_width / pipe_width ;
+ 151              		.loc 1 169 1 is_stmt 0 view .LVU36
+ 152 0000 08B5     		push	{r3, lr}
+ 153              	.LCFI1:
+ 154              		.cfi_def_cfa_offset 8
+ 155              		.cfi_offset 3, -8
+ 156              		.cfi_offset 14, -4
+ 157 0002 07EE102A 		vmov	s14, r2	@ int
+ 158 0006 07EE903A 		vmov	s15, r3	@ int
+ 159 000a DDF808C0 		ldr	ip, [sp, #8]
+ 170:../Drivers/cmw_camera/cmw_utils.c ****   const float ratio_height = (float)cam_height / pipe_height;
+ 160              		.loc 1 170 3 is_stmt 1 view .LVU37
+ 170:../Drivers/cmw_camera/cmw_utils.c ****   const float ratio_height = (float)cam_height / pipe_height;
+ 161              		.loc 1 170 29 is_stmt 0 view .LVU38
+ 162 000e 06EE900A 		vmov	s13, r0	@ int
+ 163 0012 F8EE665A 		vcvt.f32.u32	s11, s13
+ 170:../Drivers/cmw_camera/cmw_utils.c ****   const float ratio_height = (float)cam_height / pipe_height;
+ 164              		.loc 1 170 46 view .LVU39
+ 165 0016 B8EE477A 		vcvt.f32.u32	s14, s14
+ 170:../Drivers/cmw_camera/cmw_utils.c ****   const float ratio_height = (float)cam_height / pipe_height;
+ 166              		.loc 1 170 15 view .LVU40
+ 167 001a 85EE875A 		vdiv.f32	s10, s11, s14
+ 168              	.LVL5:
+ 171:../Drivers/cmw_camera/cmw_utils.c ****   const float ratio = MIN(ratio_width, ratio_height);
+ 169              		.loc 1 171 3 is_stmt 1 view .LVU41
+ 171:../Drivers/cmw_camera/cmw_utils.c ****   const float ratio = MIN(ratio_width, ratio_height);
+ 170              		.loc 1 171 30 is_stmt 0 view .LVU42
+ 171 001e 06EE901A 		vmov	s13, r1	@ int
+ 172 0022 B8EE666A 		vcvt.f32.u32	s12, s13
+ 171:../Drivers/cmw_camera/cmw_utils.c ****   const float ratio = MIN(ratio_width, ratio_height);
+ 173              		.loc 1 171 48 view .LVU43
+ 174 0026 F8EE677A 		vcvt.f32.u32	s15, s15
+ 171:../Drivers/cmw_camera/cmw_utils.c ****   const float ratio = MIN(ratio_width, ratio_height);
+ 175              		.loc 1 171 15 view .LVU44
+ 176 002a C6EE276A 		vdiv.f32	s13, s12, s15
+ 177              	.LVL6:
+ 172:../Drivers/cmw_camera/cmw_utils.c **** 
+ 178              		.loc 1 172 3 is_stmt 1 view .LVU45
+ 172:../Drivers/cmw_camera/cmw_utils.c **** 
+ 179              		.loc 1 172 23 is_stmt 0 view .LVU46
+ 180 002e B4EEE65A 		vcmpe.f32	s10, s13
+ 181 0032 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 182 0036 01D5     		bpl	.L7
+ 172:../Drivers/cmw_camera/cmw_utils.c **** 
+ 183              		.loc 1 172 15 discriminator 1 view .LVU47
+ARM GAS  /tmp/ccNAGfvR.s 			page 8
+
+
+ 184 0038 F0EE456A 		vmov.f32	s13, s10
+ 185              	.LVL7:
+ 186              	.L7:
+ 174:../Drivers/cmw_camera/cmw_utils.c ****   assert(ratio < 64);
+ 187              		.loc 1 174 3 is_stmt 1 view .LVU48
+ 188 003c B7EE005A 		vmov.f32	s10, #1.0e+0
+ 189              	.LVL8:
+ 174:../Drivers/cmw_camera/cmw_utils.c ****   assert(ratio < 64);
+ 190              		.loc 1 174 3 is_stmt 0 view .LVU49
+ 191 0040 F4EEC56A 		vcmpe.f32	s13, s10
+ 192 0044 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 193 0048 2EDB     		blt	.L23
+ 175:../Drivers/cmw_camera/cmw_utils.c **** 
+ 194              		.loc 1 175 3 is_stmt 1 view .LVU50
+ 195 004a 9FED225A 		vldr.32	s10, .L25
+ 196 004e F4EEC56A 		vcmpe.f32	s13, s10
+ 197 0052 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 198 0056 2DD5     		bpl	.L24
+ 177:../Drivers/cmw_camera/cmw_utils.c ****   crop->VSize = (uint32_t) MIN(pipe_height * ratio, cam_height);
+ 199              		.loc 1 177 3 view .LVU51
+ 177:../Drivers/cmw_camera/cmw_utils.c ****   crop->VSize = (uint32_t) MIN(pipe_height * ratio, cam_height);
+ 200              		.loc 1 177 28 is_stmt 0 view .LVU52
+ 201 0058 27EE267A 		vmul.f32	s14, s14, s13
+ 202              	.LVL9:
+ 177:../Drivers/cmw_camera/cmw_utils.c ****   crop->VSize = (uint32_t) MIN(pipe_height * ratio, cam_height);
+ 203              		.loc 1 177 17 view .LVU53
+ 204 005c F4EEC75A 		vcmpe.f32	s11, s14
+ 205 0060 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 206 0064 2CDD     		ble	.L20
+ 177:../Drivers/cmw_camera/cmw_utils.c ****   crop->VSize = (uint32_t) MIN(pipe_height * ratio, cam_height);
+ 207              		.loc 1 177 17 discriminator 1 view .LVU54
+ 208 0066 BCEEC77A 		vcvt.u32.f32	s14, s14
+ 209 006a 17EE102A 		vmov	r2, s14	@ int
+ 210              	.LVL10:
+ 211              	.L13:
+ 177:../Drivers/cmw_camera/cmw_utils.c ****   crop->VSize = (uint32_t) MIN(pipe_height * ratio, cam_height);
+ 212              		.loc 1 177 15 discriminator 3 view .LVU55
+ 213 006e CCF80C20 		str	r2, [ip, #12]
+ 178:../Drivers/cmw_camera/cmw_utils.c ****   crop->HStart = (cam_width - crop->HSize + 1) / 2;
+ 214              		.loc 1 178 3 is_stmt 1 view .LVU56
+ 178:../Drivers/cmw_camera/cmw_utils.c ****   crop->HStart = (cam_width - crop->HSize + 1) / 2;
+ 215              		.loc 1 178 28 is_stmt 0 view .LVU57
+ 216 0072 67EEA67A 		vmul.f32	s15, s15, s13
+ 217              	.LVL11:
+ 178:../Drivers/cmw_camera/cmw_utils.c ****   crop->HStart = (cam_width - crop->HSize + 1) / 2;
+ 218              		.loc 1 178 17 view .LVU58
+ 219 0076 B4EEE76A 		vcmpe.f32	s12, s15
+ 220 007a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 221 007e 24DD     		ble	.L21
+ 178:../Drivers/cmw_camera/cmw_utils.c ****   crop->HStart = (cam_width - crop->HSize + 1) / 2;
+ 222              		.loc 1 178 17 discriminator 1 view .LVU59
+ 223 0080 FCEEE77A 		vcvt.u32.f32	s15, s15
+ 224 0084 17EE903A 		vmov	r3, s15	@ int
+ 225              	.LVL12:
+ 226              	.L16:
+ 178:../Drivers/cmw_camera/cmw_utils.c ****   crop->HStart = (cam_width - crop->HSize + 1) / 2;
+ 227              		.loc 1 178 15 discriminator 3 view .LVU60
+ARM GAS  /tmp/ccNAGfvR.s 			page 9
+
+
+ 228 0088 CCF80830 		str	r3, [ip, #8]
+ 179:../Drivers/cmw_camera/cmw_utils.c ****   crop->VStart = (cam_height - crop->VSize + 1) / 2;
+ 229              		.loc 1 179 3 is_stmt 1 view .LVU61
+ 179:../Drivers/cmw_camera/cmw_utils.c ****   crop->VStart = (cam_height - crop->VSize + 1) / 2;
+ 230              		.loc 1 179 29 is_stmt 0 view .LVU62
+ 231 008c 801A     		subs	r0, r0, r2
+ 232              	.LVL13:
+ 179:../Drivers/cmw_camera/cmw_utils.c ****   crop->VStart = (cam_height - crop->VSize + 1) / 2;
+ 233              		.loc 1 179 43 view .LVU63
+ 234 008e 0130     		adds	r0, r0, #1
+ 179:../Drivers/cmw_camera/cmw_utils.c ****   crop->VStart = (cam_height - crop->VSize + 1) / 2;
+ 235              		.loc 1 179 48 view .LVU64
+ 236 0090 4008     		lsrs	r0, r0, #1
+ 179:../Drivers/cmw_camera/cmw_utils.c ****   crop->VStart = (cam_height - crop->VSize + 1) / 2;
+ 237              		.loc 1 179 16 view .LVU65
+ 238 0092 CCF80400 		str	r0, [ip, #4]
+ 180:../Drivers/cmw_camera/cmw_utils.c ****   crop->PipeArea = DCMIPP_POSITIVE_AREA;
+ 239              		.loc 1 180 3 is_stmt 1 view .LVU66
+ 180:../Drivers/cmw_camera/cmw_utils.c ****   crop->PipeArea = DCMIPP_POSITIVE_AREA;
+ 240              		.loc 1 180 30 is_stmt 0 view .LVU67
+ 241 0096 C91A     		subs	r1, r1, r3
+ 242              	.LVL14:
+ 180:../Drivers/cmw_camera/cmw_utils.c ****   crop->PipeArea = DCMIPP_POSITIVE_AREA;
+ 243              		.loc 1 180 44 view .LVU68
+ 244 0098 0131     		adds	r1, r1, #1
+ 180:../Drivers/cmw_camera/cmw_utils.c ****   crop->PipeArea = DCMIPP_POSITIVE_AREA;
+ 245              		.loc 1 180 49 view .LVU69
+ 246 009a 4908     		lsrs	r1, r1, #1
+ 180:../Drivers/cmw_camera/cmw_utils.c ****   crop->PipeArea = DCMIPP_POSITIVE_AREA;
+ 247              		.loc 1 180 16 view .LVU70
+ 248 009c CCF80010 		str	r1, [ip]
+ 181:../Drivers/cmw_camera/cmw_utils.c **** }
+ 249              		.loc 1 181 3 is_stmt 1 view .LVU71
+ 181:../Drivers/cmw_camera/cmw_utils.c **** }
+ 250              		.loc 1 181 18 is_stmt 0 view .LVU72
+ 251 00a0 0023     		movs	r3, #0
+ 252 00a2 CCF81030 		str	r3, [ip, #16]
+ 182:../Drivers/cmw_camera/cmw_utils.c **** 
+ 253              		.loc 1 182 1 view .LVU73
+ 254 00a6 08BD     		pop	{r3, pc}
+ 255              	.LVL15:
+ 256              	.L23:
+ 174:../Drivers/cmw_camera/cmw_utils.c ****   assert(ratio < 64);
+ 257              		.loc 1 174 3 discriminator 1 view .LVU74
+ 258 00a8 0B4B     		ldr	r3, .L25+4
+ 259              	.LVL16:
+ 174:../Drivers/cmw_camera/cmw_utils.c ****   assert(ratio < 64);
+ 260              		.loc 1 174 3 discriminator 1 view .LVU75
+ 261 00aa 0C4A     		ldr	r2, .L25+8
+ 262              	.LVL17:
+ 174:../Drivers/cmw_camera/cmw_utils.c ****   assert(ratio < 64);
+ 263              		.loc 1 174 3 discriminator 1 view .LVU76
+ 264 00ac AE21     		movs	r1, #174
+ 265              	.LVL18:
+ 174:../Drivers/cmw_camera/cmw_utils.c ****   assert(ratio < 64);
+ 266              		.loc 1 174 3 discriminator 1 view .LVU77
+ 267 00ae 0C48     		ldr	r0, .L25+12
+ARM GAS  /tmp/ccNAGfvR.s 			page 10
+
+
+ 268              	.LVL19:
+ 174:../Drivers/cmw_camera/cmw_utils.c ****   assert(ratio < 64);
+ 269              		.loc 1 174 3 discriminator 1 view .LVU78
+ 270 00b0 FFF7FEFF 		bl	__assert_func
+ 271              	.LVL20:
+ 272              	.L24:
+ 175:../Drivers/cmw_camera/cmw_utils.c **** 
+ 273              		.loc 1 175 3 discriminator 1 view .LVU79
+ 274 00b4 0B4B     		ldr	r3, .L25+16
+ 275              	.LVL21:
+ 175:../Drivers/cmw_camera/cmw_utils.c **** 
+ 276              		.loc 1 175 3 discriminator 1 view .LVU80
+ 277 00b6 094A     		ldr	r2, .L25+8
+ 278              	.LVL22:
+ 175:../Drivers/cmw_camera/cmw_utils.c **** 
+ 279              		.loc 1 175 3 discriminator 1 view .LVU81
+ 280 00b8 AF21     		movs	r1, #175
+ 281              	.LVL23:
+ 175:../Drivers/cmw_camera/cmw_utils.c **** 
+ 282              		.loc 1 175 3 discriminator 1 view .LVU82
+ 283 00ba 0948     		ldr	r0, .L25+12
+ 284              	.LVL24:
+ 175:../Drivers/cmw_camera/cmw_utils.c **** 
+ 285              		.loc 1 175 3 discriminator 1 view .LVU83
+ 286 00bc FFF7FEFF 		bl	__assert_func
+ 287              	.LVL25:
+ 288              	.L20:
+ 177:../Drivers/cmw_camera/cmw_utils.c ****   crop->VSize = (uint32_t) MIN(pipe_height * ratio, cam_height);
+ 289              		.loc 1 177 17 discriminator 2 view .LVU84
+ 290 00c0 BCEEE57A 		vcvt.u32.f32	s14, s11
+ 291 00c4 17EE102A 		vmov	r2, s14	@ int
+ 292              	.LVL26:
+ 177:../Drivers/cmw_camera/cmw_utils.c ****   crop->VSize = (uint32_t) MIN(pipe_height * ratio, cam_height);
+ 293              		.loc 1 177 17 discriminator 2 view .LVU85
+ 294 00c8 D1E7     		b	.L13
+ 295              	.LVL27:
+ 296              	.L21:
+ 178:../Drivers/cmw_camera/cmw_utils.c ****   crop->HStart = (cam_width - crop->HSize + 1) / 2;
+ 297              		.loc 1 178 17 discriminator 2 view .LVU86
+ 298 00ca FCEEC67A 		vcvt.u32.f32	s15, s12
+ 299 00ce 17EE903A 		vmov	r3, s15	@ int
+ 300              	.LVL28:
+ 178:../Drivers/cmw_camera/cmw_utils.c ****   crop->HStart = (cam_width - crop->HSize + 1) / 2;
+ 301              		.loc 1 178 17 discriminator 2 view .LVU87
+ 302 00d2 D9E7     		b	.L16
+ 303              	.L26:
+ 304              		.align	2
+ 305              	.L25:
+ 306 00d4 00008042 		.word	1115684864
+ 307 00d8 00000000 		.word	.LC0
+ 308 00dc 00000000 		.word	__func__.2
+ 309 00e0 0C000000 		.word	.LC1
+ 310 00e4 30000000 		.word	.LC2
+ 311              		.cfi_endproc
+ 312              	.LFE886:
+ 314              		.section	.rodata.CMW_UTILS_get_dec_ratio_from_decimal_ratio.str1.4,"aMS",%progbits,1
+ 315              		.align	2
+ARM GAS  /tmp/ccNAGfvR.s 			page 11
+
+
+ 316              	.LC3:
+ 317 0000 3000     		.ascii	"0\000"
+ 318              		.section	.text.CMW_UTILS_get_dec_ratio_from_decimal_ratio,"ax",%progbits
+ 319              		.align	1
+ 320              		.syntax unified
+ 321              		.thumb
+ 322              		.thumb_func
+ 324              	CMW_UTILS_get_dec_ratio_from_decimal_ratio:
+ 325              	.LVL29:
+ 326              	.LFB889:
+ 201:../Drivers/cmw_camera/cmw_utils.c **** 
+ 202:../Drivers/cmw_camera/cmw_utils.c **** static uint32_t CMW_UTILS_get_dec_ratio_from_decimal_ratio(int dec_ratio, int is_vertical)
+ 203:../Drivers/cmw_camera/cmw_utils.c **** {
+ 327              		.loc 1 203 1 is_stmt 1 view -0
+ 328              		.cfi_startproc
+ 329              		@ args = 0, pretend = 0, frame = 0
+ 330              		@ frame_needed = 0, uses_anonymous_args = 0
+ 331              		.loc 1 203 1 is_stmt 0 view .LVU89
+ 332 0000 08B5     		push	{r3, lr}
+ 333              	.LCFI2:
+ 334              		.cfi_def_cfa_offset 8
+ 335              		.cfi_offset 3, -8
+ 336              		.cfi_offset 14, -4
+ 204:../Drivers/cmw_camera/cmw_utils.c ****   switch (dec_ratio) {
+ 337              		.loc 1 204 3 is_stmt 1 view .LVU90
+ 338 0002 0138     		subs	r0, r0, #1
+ 339              	.LVL30:
+ 340              		.loc 1 204 3 is_stmt 0 view .LVU91
+ 341 0004 0728     		cmp	r0, #7
+ 342 0006 0ED8     		bhi	.L28
+ 343 0008 DFE800F0 		tbb	[pc, r0]
+ 344              	.L30:
+ 345 000c 13       		.byte	(.L34-.L30)/2
+ 346 000d 04       		.byte	(.L32-.L30)/2
+ 347 000e 0D       		.byte	(.L28-.L30)/2
+ 348 000f 07       		.byte	(.L31-.L30)/2
+ 349 0010 0D       		.byte	(.L28-.L30)/2
+ 350 0011 0D       		.byte	(.L28-.L30)/2
+ 351 0012 0D       		.byte	(.L28-.L30)/2
+ 352 0013 0A       		.byte	(.L29-.L30)/2
+ 353              		.p2align 1
+ 354              	.L32:
+ 205:../Drivers/cmw_camera/cmw_utils.c ****   case 1:
+ 206:../Drivers/cmw_camera/cmw_utils.c ****     return is_vertical ? DCMIPP_VDEC_ALL : DCMIPP_HDEC_ALL;
+ 207:../Drivers/cmw_camera/cmw_utils.c ****   case 2:
+ 208:../Drivers/cmw_camera/cmw_utils.c ****     return is_vertical ? DCMIPP_VDEC_1_OUT_2 : DCMIPP_HDEC_1_OUT_2;
+ 355              		.loc 1 208 5 is_stmt 1 view .LVU92
+ 356              		.loc 1 208 46 is_stmt 0 view .LVU93
+ 357 0014 79B1     		cbz	r1, .L35
+ 358              		.loc 1 208 46 discriminator 1 view .LVU94
+ 359 0016 0820     		movs	r0, #8
+ 360              	.LVL31:
+ 361              		.loc 1 208 46 discriminator 1 view .LVU95
+ 362 0018 0CE0     		b	.L27
+ 363              	.L31:
+ 209:../Drivers/cmw_camera/cmw_utils.c ****   case 4:
+ 210:../Drivers/cmw_camera/cmw_utils.c ****     return is_vertical ? DCMIPP_VDEC_1_OUT_4 : DCMIPP_HDEC_1_OUT_4;
+ARM GAS  /tmp/ccNAGfvR.s 			page 12
+
+
+ 364              		.loc 1 210 5 is_stmt 1 view .LVU96
+ 365              		.loc 1 210 46 is_stmt 0 view .LVU97
+ 366 001a 71B1     		cbz	r1, .L36
+ 367              		.loc 1 210 46 discriminator 1 view .LVU98
+ 368 001c 1020     		movs	r0, #16
+ 369 001e 09E0     		b	.L27
+ 370              	.L29:
+ 211:../Drivers/cmw_camera/cmw_utils.c ****   case 8:
+ 212:../Drivers/cmw_camera/cmw_utils.c ****     return is_vertical ? DCMIPP_VDEC_1_OUT_8 : DCMIPP_HDEC_1_OUT_8;
+ 371              		.loc 1 212 5 is_stmt 1 view .LVU99
+ 372              		.loc 1 212 46 is_stmt 0 view .LVU100
+ 373 0020 69B1     		cbz	r1, .L37
+ 374              		.loc 1 212 46 discriminator 1 view .LVU101
+ 375 0022 1820     		movs	r0, #24
+ 376 0024 06E0     		b	.L27
+ 377              	.L28:
+ 213:../Drivers/cmw_camera/cmw_utils.c ****   default:
+ 214:../Drivers/cmw_camera/cmw_utils.c ****     assert(0);
+ 378              		.loc 1 214 5 is_stmt 1 view .LVU102
+ 379 0026 074B     		ldr	r3, .L39
+ 380 0028 074A     		ldr	r2, .L39+4
+ 381 002a D621     		movs	r1, #214
+ 382              	.LVL32:
+ 383              		.loc 1 214 5 is_stmt 0 view .LVU103
+ 384 002c 0748     		ldr	r0, .L39+8
+ 385 002e FFF7FEFF 		bl	__assert_func
+ 386              	.LVL33:
+ 387              	.L34:
+ 204:../Drivers/cmw_camera/cmw_utils.c ****   case 1:
+ 388              		.loc 1 204 3 view .LVU104
+ 389 0032 0020     		movs	r0, #0
+ 390              	.L27:
+ 215:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 216:../Drivers/cmw_camera/cmw_utils.c **** 
+ 217:../Drivers/cmw_camera/cmw_utils.c ****   return is_vertical ? DCMIPP_VDEC_ALL : DCMIPP_HDEC_ALL;
+ 218:../Drivers/cmw_camera/cmw_utils.c **** }
+ 391              		.loc 1 218 1 view .LVU105
+ 392 0034 08BD     		pop	{r3, pc}
+ 393              	.L35:
+ 208:../Drivers/cmw_camera/cmw_utils.c ****   case 4:
+ 394              		.loc 1 208 46 discriminator 2 view .LVU106
+ 395 0036 0220     		movs	r0, #2
+ 396 0038 FCE7     		b	.L27
+ 397              	.L36:
+ 210:../Drivers/cmw_camera/cmw_utils.c ****   case 8:
+ 398              		.loc 1 210 46 discriminator 2 view .LVU107
+ 399 003a 0420     		movs	r0, #4
+ 400 003c FAE7     		b	.L27
+ 401              	.L37:
+ 212:../Drivers/cmw_camera/cmw_utils.c ****   default:
+ 402              		.loc 1 212 46 discriminator 2 view .LVU108
+ 403 003e 0620     		movs	r0, #6
+ 404 0040 F8E7     		b	.L27
+ 405              	.L40:
+ 406 0042 00BF     		.align	2
+ 407              	.L39:
+ 408 0044 00000000 		.word	.LC3
+ARM GAS  /tmp/ccNAGfvR.s 			page 13
+
+
+ 409 0048 00000000 		.word	__func__.1
+ 410 004c 0C000000 		.word	.LC1
+ 411              		.cfi_endproc
+ 412              	.LFE889:
+ 414              		.section	.text.CMW_UTILS_get_dec_ratio_and_update,"ax",%progbits
+ 415              		.align	1
+ 416              		.syntax unified
+ 417              		.thumb
+ 418              		.thumb_func
+ 420              	CMW_UTILS_get_dec_ratio_and_update:
+ 421              	.LVL34:
+ 422              	.LFB890:
+ 219:../Drivers/cmw_camera/cmw_utils.c **** 
+ 220:../Drivers/cmw_camera/cmw_utils.c **** static uint32_t CMW_UTILS_get_dec_ratio_and_update(float *ratio, int is_vertical)
+ 221:../Drivers/cmw_camera/cmw_utils.c **** {
+ 423              		.loc 1 221 1 is_stmt 1 view -0
+ 424              		.cfi_startproc
+ 425              		@ args = 0, pretend = 0, frame = 0
+ 426              		@ frame_needed = 0, uses_anonymous_args = 0
+ 427              		.loc 1 221 1 is_stmt 0 view .LVU110
+ 428 0000 08B5     		push	{r3, lr}
+ 429              	.LCFI3:
+ 430              		.cfi_def_cfa_offset 8
+ 431              		.cfi_offset 3, -8
+ 432              		.cfi_offset 14, -4
+ 433 0002 0346     		mov	r3, r0
+ 222:../Drivers/cmw_camera/cmw_utils.c ****   int dec_ratio = 1;
+ 434              		.loc 1 222 3 is_stmt 1 view .LVU111
+ 435              	.LVL35:
+ 223:../Drivers/cmw_camera/cmw_utils.c **** 
+ 224:../Drivers/cmw_camera/cmw_utils.c ****   while (*ratio >= 8) {
+ 436              		.loc 1 224 3 view .LVU112
+ 222:../Drivers/cmw_camera/cmw_utils.c ****   int dec_ratio = 1;
+ 437              		.loc 1 222 7 is_stmt 0 view .LVU113
+ 438 0004 0120     		movs	r0, #1
+ 439              	.LVL36:
+ 440              		.loc 1 224 9 view .LVU114
+ 441 0006 06E0     		b	.L42
+ 442              	.LVL37:
+ 443              	.L43:
+ 225:../Drivers/cmw_camera/cmw_utils.c ****     dec_ratio *= 2;
+ 444              		.loc 1 225 5 is_stmt 1 view .LVU115
+ 445              		.loc 1 225 15 is_stmt 0 view .LVU116
+ 446 0008 4000     		lsls	r0, r0, #1
+ 447              	.LVL38:
+ 226:../Drivers/cmw_camera/cmw_utils.c ****     *ratio /= 2;
+ 448              		.loc 1 226 5 is_stmt 1 view .LVU117
+ 449              		.loc 1 226 12 is_stmt 0 view .LVU118
+ 450 000a B6EE007A 		vmov.f32	s14, #5.0e-1
+ 451 000e 67EE877A 		vmul.f32	s15, s15, s14
+ 452 0012 C3ED007A 		vstr.32	s15, [r3]
+ 453              	.LVL39:
+ 454              	.L42:
+ 224:../Drivers/cmw_camera/cmw_utils.c ****     dec_ratio *= 2;
+ 455              		.loc 1 224 17 is_stmt 1 discriminator 1 view .LVU119
+ 224:../Drivers/cmw_camera/cmw_utils.c ****     dec_ratio *= 2;
+ 456              		.loc 1 224 10 is_stmt 0 discriminator 1 view .LVU120
+ARM GAS  /tmp/ccNAGfvR.s 			page 14
+
+
+ 457 0016 D3ED007A 		vldr.32	s15, [r3]
+ 224:../Drivers/cmw_camera/cmw_utils.c ****     dec_ratio *= 2;
+ 458              		.loc 1 224 17 discriminator 1 view .LVU121
+ 459 001a B2EE007A 		vmov.f32	s14, #8.0e+0
+ 460 001e F4EEC77A 		vcmpe.f32	s15, s14
+ 461 0022 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 462 0026 EFDA     		bge	.L43
+ 227:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 228:../Drivers/cmw_camera/cmw_utils.c **** 
+ 229:../Drivers/cmw_camera/cmw_utils.c ****   return CMW_UTILS_get_dec_ratio_from_decimal_ratio(dec_ratio, is_vertical);
+ 463              		.loc 1 229 3 is_stmt 1 view .LVU122
+ 464              		.loc 1 229 10 is_stmt 0 view .LVU123
+ 465 0028 FFF7FEFF 		bl	CMW_UTILS_get_dec_ratio_from_decimal_ratio
+ 466              	.LVL40:
+ 230:../Drivers/cmw_camera/cmw_utils.c **** }
+ 467              		.loc 1 230 1 view .LVU124
+ 468 002c 08BD     		pop	{r3, pc}
+ 469              		.cfi_endproc
+ 470              	.LFE890:
+ 472              		.section	.text.CMW_UTILS_get_scale_configs,"ax",%progbits
+ 473              		.align	1
+ 474              		.syntax unified
+ 475              		.thumb
+ 476              		.thumb_func
+ 478              	CMW_UTILS_get_scale_configs:
+ 479              	.LVL41:
+ 480              	.LFB891:
+ 231:../Drivers/cmw_camera/cmw_utils.c **** 
+ 232:../Drivers/cmw_camera/cmw_utils.c **** static void CMW_UTILS_get_scale_configs(CMW_DCMIPP_Conf_t *p_conf, float ratio_width, float ratio_h
+ 233:../Drivers/cmw_camera/cmw_utils.c ****                                        DCMIPP_DecimationConfTypeDef *dec, DCMIPP_DownsizeTypeDef *d
+ 234:../Drivers/cmw_camera/cmw_utils.c **** {
+ 481              		.loc 1 234 1 is_stmt 1 view -0
+ 482              		.cfi_startproc
+ 483              		@ args = 0, pretend = 0, frame = 8
+ 484              		@ frame_needed = 0, uses_anonymous_args = 0
+ 485              		.loc 1 234 1 is_stmt 0 view .LVU126
+ 486 0000 70B5     		push	{r4, r5, r6, lr}
+ 487              	.LCFI4:
+ 488              		.cfi_def_cfa_offset 16
+ 489              		.cfi_offset 4, -16
+ 490              		.cfi_offset 5, -12
+ 491              		.cfi_offset 6, -8
+ 492              		.cfi_offset 14, -4
+ 493 0002 82B0     		sub	sp, sp, #8
+ 494              	.LCFI5:
+ 495              		.cfi_def_cfa_offset 24
+ 496 0004 0446     		mov	r4, r0
+ 497 0006 8DED010A 		vstr.32	s0, [sp, #4]
+ 498 000a CDED000A 		vstr.32	s1, [sp]
+ 499 000e 0D46     		mov	r5, r1
+ 500 0010 1646     		mov	r6, r2
+ 235:../Drivers/cmw_camera/cmw_utils.c ****   dec->HRatio = CMW_UTILS_get_dec_ratio_and_update(&ratio_width, 0);
+ 501              		.loc 1 235 3 is_stmt 1 view .LVU127
+ 502              		.loc 1 235 17 is_stmt 0 view .LVU128
+ 503 0012 0021     		movs	r1, #0
+ 504              	.LVL42:
+ 505              		.loc 1 235 17 view .LVU129
+ARM GAS  /tmp/ccNAGfvR.s 			page 15
+
+
+ 506 0014 01A8     		add	r0, sp, #4
+ 507              	.LVL43:
+ 508              		.loc 1 235 17 view .LVU130
+ 509 0016 FFF7FEFF 		bl	CMW_UTILS_get_dec_ratio_and_update
+ 510              	.LVL44:
+ 511              		.loc 1 235 15 discriminator 1 view .LVU131
+ 512 001a 6860     		str	r0, [r5, #4]
+ 236:../Drivers/cmw_camera/cmw_utils.c ****   dec->VRatio = CMW_UTILS_get_dec_ratio_and_update(&ratio_height, 1);
+ 513              		.loc 1 236 3 is_stmt 1 view .LVU132
+ 514              		.loc 1 236 17 is_stmt 0 view .LVU133
+ 515 001c 0121     		movs	r1, #1
+ 516 001e 6846     		mov	r0, sp
+ 517 0020 FFF7FEFF 		bl	CMW_UTILS_get_dec_ratio_and_update
+ 518              	.LVL45:
+ 519              		.loc 1 236 15 discriminator 1 view .LVU134
+ 520 0024 2860     		str	r0, [r5]
+ 237:../Drivers/cmw_camera/cmw_utils.c ****   CMW_UTILS_get_down_config(ratio_width, ratio_height, p_conf->output_width, p_conf->output_height,
+ 521              		.loc 1 237 3 is_stmt 1 view .LVU135
+ 522 0026 3246     		mov	r2, r6
+ 523 0028 6168     		ldr	r1, [r4, #4]
+ 524 002a 2068     		ldr	r0, [r4]
+ 525 002c DDED000A 		vldr.32	s1, [sp]
+ 526 0030 9DED010A 		vldr.32	s0, [sp, #4]
+ 527 0034 FFF7FEFF 		bl	CMW_UTILS_get_down_config
+ 528              	.LVL46:
+ 238:../Drivers/cmw_camera/cmw_utils.c **** }
+ 529              		.loc 1 238 1 is_stmt 0 view .LVU136
+ 530 0038 02B0     		add	sp, sp, #8
+ 531              	.LCFI6:
+ 532              		.cfi_def_cfa_offset 16
+ 533              		@ sp needed
+ 534 003a 70BD     		pop	{r4, r5, r6, pc}
+ 535              		.loc 1 238 1 view .LVU137
+ 536              		.cfi_endproc
+ 537              	.LFE891:
+ 539              		.section	.text.CMW_UTILS_GetPipeConfig,"ax",%progbits
+ 540              		.align	1
+ 541              		.global	CMW_UTILS_GetPipeConfig
+ 542              		.syntax unified
+ 543              		.thumb
+ 544              		.thumb_func
+ 546              	CMW_UTILS_GetPipeConfig:
+ 547              	.LVL47:
+ 548              	.LFB884:
+  49:../Drivers/cmw_camera/cmw_utils.c ****   float ratio_height = 0;
+ 549              		.loc 1 49 1 is_stmt 1 view -0
+ 550              		.cfi_startproc
+ 551              		@ args = 8, pretend = 0, frame = 0
+ 552              		@ frame_needed = 0, uses_anonymous_args = 0
+  49:../Drivers/cmw_camera/cmw_utils.c ****   float ratio_height = 0;
+ 553              		.loc 1 49 1 is_stmt 0 view .LVU139
+ 554 0000 30B5     		push	{r4, r5, lr}
+ 555              	.LCFI7:
+ 556              		.cfi_def_cfa_offset 12
+ 557              		.cfi_offset 4, -12
+ 558              		.cfi_offset 5, -8
+ 559              		.cfi_offset 14, -4
+ARM GAS  /tmp/ccNAGfvR.s 			page 16
+
+
+ 560 0002 83B0     		sub	sp, sp, #12
+ 561              	.LCFI8:
+ 562              		.cfi_def_cfa_offset 24
+ 563 0004 1446     		mov	r4, r2
+ 564 0006 1D46     		mov	r5, r3
+  50:../Drivers/cmw_camera/cmw_utils.c ****   float ratio_width = 0;
+ 565              		.loc 1 50 3 is_stmt 1 view .LVU140
+ 566              	.LVL48:
+  51:../Drivers/cmw_camera/cmw_utils.c **** 
+ 567              		.loc 1 51 3 view .LVU141
+  53:../Drivers/cmw_camera/cmw_utils.c ****   {
+ 568              		.loc 1 53 3 view .LVU142
+  53:../Drivers/cmw_camera/cmw_utils.c ****   {
+ 569              		.loc 1 53 13 is_stmt 0 view .LVU143
+ 570 0008 9369     		ldr	r3, [r2, #24]
+ 571              	.LVL49:
+  53:../Drivers/cmw_camera/cmw_utils.c ****   {
+ 572              		.loc 1 53 6 view .LVU144
+ 573 000a 83B1     		cbz	r3, .L53
+  59:../Drivers/cmw_camera/cmw_utils.c ****   {
+ 574              		.loc 1 59 8 is_stmt 1 view .LVU145
+  59:../Drivers/cmw_camera/cmw_utils.c ****   {
+ 575              		.loc 1 59 11 is_stmt 0 view .LVU146
+ 576 000c 012B     		cmp	r3, #1
+ 577 000e 2ED0     		beq	.L54
+  64:../Drivers/cmw_camera/cmw_utils.c ****   {
+ 578              		.loc 1 64 8 is_stmt 1 view .LVU147
+  64:../Drivers/cmw_camera/cmw_utils.c ****   {
+ 579              		.loc 1 64 11 is_stmt 0 view .LVU148
+ 580 0010 022B     		cmp	r3, #2
+ 581 0012 41D1     		bne	.L51
+  66:../Drivers/cmw_camera/cmw_utils.c ****     ratio_width = (float) ratio_height;
+ 582              		.loc 1 66 5 is_stmt 1 view .LVU149
+  66:../Drivers/cmw_camera/cmw_utils.c ****     ratio_width = (float) ratio_height;
+ 583              		.loc 1 66 20 is_stmt 0 view .LVU150
+ 584 0014 07EE901A 		vmov	s15, r1	@ int
+ 585 0018 F8EE677A 		vcvt.f32.u32	s15, s15
+  66:../Drivers/cmw_camera/cmw_utils.c ****     ratio_width = (float) ratio_height;
+ 586              		.loc 1 66 39 view .LVU151
+ 587 001c 92ED017A 		vldr.32	s14, [r2, #4]	@ int
+ 588 0020 B8EE477A 		vcvt.f32.u32	s14, s14
+  66:../Drivers/cmw_camera/cmw_utils.c ****     ratio_width = (float) ratio_height;
+ 589              		.loc 1 66 18 view .LVU152
+ 590 0024 C7EE870A 		vdiv.f32	s1, s15, s14
+ 591              	.LVL50:
+  67:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 592              		.loc 1 67 5 is_stmt 1 view .LVU153
+  67:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 593              		.loc 1 67 17 is_stmt 0 view .LVU154
+ 594 0028 B0EE600A 		vmov.f32	s0, s1
+ 595 002c 18E0     		b	.L49
+ 596              	.LVL51:
+ 597              	.L53:
+  55:../Drivers/cmw_camera/cmw_utils.c ****     ratio_width = (float)crop->HSize / p_conf->output_width;
+ 598              		.loc 1 55 5 is_stmt 1 view .LVU155
+ 599 002e 0095     		str	r5, [sp]
+ 600 0030 5368     		ldr	r3, [r2, #4]
+ARM GAS  /tmp/ccNAGfvR.s 			page 17
+
+
+ 601 0032 1268     		ldr	r2, [r2]
+ 602              	.LVL52:
+  55:../Drivers/cmw_camera/cmw_utils.c ****     ratio_width = (float)crop->HSize / p_conf->output_width;
+ 603              		.loc 1 55 5 is_stmt 0 view .LVU156
+ 604 0034 FFF7FEFF 		bl	CMW_UTILS_get_crop_config
+ 605              	.LVL53:
+  56:../Drivers/cmw_camera/cmw_utils.c ****     ratio_height = (float)crop->VSize / p_conf->output_height;
+ 606              		.loc 1 56 5 is_stmt 1 view .LVU157
+  56:../Drivers/cmw_camera/cmw_utils.c ****     ratio_height = (float)crop->VSize / p_conf->output_height;
+ 607              		.loc 1 56 19 is_stmt 0 view .LVU158
+ 608 0038 D5ED037A 		vldr.32	s15, [r5, #12]	@ int
+ 609 003c B8EE677A 		vcvt.f32.u32	s14, s15
+  56:../Drivers/cmw_camera/cmw_utils.c ****     ratio_height = (float)crop->VSize / p_conf->output_height;
+ 610              		.loc 1 56 38 view .LVU159
+ 611 0040 D4ED007A 		vldr.32	s15, [r4]	@ int
+ 612 0044 F8EE677A 		vcvt.f32.u32	s15, s15
+  56:../Drivers/cmw_camera/cmw_utils.c ****     ratio_height = (float)crop->VSize / p_conf->output_height;
+ 613              		.loc 1 56 17 view .LVU160
+ 614 0048 87EE270A 		vdiv.f32	s0, s14, s15
+ 615              	.LVL54:
+  57:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 616              		.loc 1 57 5 is_stmt 1 view .LVU161
+  57:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 617              		.loc 1 57 31 is_stmt 0 view .LVU162
+ 618 004c 95ED027A 		vldr.32	s14, [r5, #8]	@ int
+  57:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 619              		.loc 1 57 20 view .LVU163
+ 620 0050 B8EE477A 		vcvt.f32.u32	s14, s14
+  57:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 621              		.loc 1 57 39 view .LVU164
+ 622 0054 D4ED017A 		vldr.32	s15, [r4, #4]	@ int
+ 623 0058 F8EE677A 		vcvt.f32.u32	s15, s15
+  57:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 624              		.loc 1 57 18 view .LVU165
+ 625 005c C7EE270A 		vdiv.f32	s1, s14, s15
+ 626              	.LVL55:
+ 627              	.L49:
+  76:../Drivers/cmw_camera/cmw_utils.c **** }
+ 628              		.loc 1 76 3 is_stmt 1 view .LVU166
+ 629 0060 079A     		ldr	r2, [sp, #28]
+ 630 0062 0699     		ldr	r1, [sp, #24]
+ 631 0064 2046     		mov	r0, r4
+ 632 0066 FFF7FEFF 		bl	CMW_UTILS_get_scale_configs
+ 633              	.LVL56:
+  77:../Drivers/cmw_camera/cmw_utils.c **** 
+ 634              		.loc 1 77 1 is_stmt 0 view .LVU167
+ 635 006a 03B0     		add	sp, sp, #12
+ 636              	.LCFI9:
+ 637              		.cfi_remember_state
+ 638              		.cfi_def_cfa_offset 12
+ 639              		@ sp needed
+ 640 006c 30BD     		pop	{r4, r5, pc}
+ 641              	.LVL57:
+ 642              	.L54:
+ 643              	.LCFI10:
+ 644              		.cfi_restore_state
+  61:../Drivers/cmw_camera/cmw_utils.c ****     ratio_height = (float)cam_height / p_conf->output_height;
+ARM GAS  /tmp/ccNAGfvR.s 			page 18
+
+
+ 645              		.loc 1 61 5 is_stmt 1 view .LVU168
+  61:../Drivers/cmw_camera/cmw_utils.c ****     ratio_height = (float)cam_height / p_conf->output_height;
+ 646              		.loc 1 61 19 is_stmt 0 view .LVU169
+ 647 006e 07EE900A 		vmov	s15, r0	@ int
+ 648 0072 F8EE677A 		vcvt.f32.u32	s15, s15
+  61:../Drivers/cmw_camera/cmw_utils.c ****     ratio_height = (float)cam_height / p_conf->output_height;
+ 649              		.loc 1 61 36 view .LVU170
+ 650 0076 92ED007A 		vldr.32	s14, [r2]	@ int
+ 651 007a B8EE477A 		vcvt.f32.u32	s14, s14
+  61:../Drivers/cmw_camera/cmw_utils.c ****     ratio_height = (float)cam_height / p_conf->output_height;
+ 652              		.loc 1 61 17 view .LVU171
+ 653 007e 87EE870A 		vdiv.f32	s0, s15, s14
+ 654              	.LVL58:
+  62:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 655              		.loc 1 62 5 is_stmt 1 view .LVU172
+  62:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 656              		.loc 1 62 20 is_stmt 0 view .LVU173
+ 657 0082 07EE901A 		vmov	s15, r1	@ int
+ 658 0086 F8EE677A 		vcvt.f32.u32	s15, s15
+  62:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 659              		.loc 1 62 38 view .LVU174
+ 660 008a 92ED017A 		vldr.32	s14, [r2, #4]	@ int
+ 661 008e B8EE477A 		vcvt.f32.u32	s14, s14
+  62:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 662              		.loc 1 62 18 view .LVU175
+ 663 0092 C7EE870A 		vdiv.f32	s1, s15, s14
+ 664              	.LVL59:
+  62:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 665              		.loc 1 62 18 view .LVU176
+ 666 0096 E3E7     		b	.L49
+ 667              	.LVL60:
+ 668              	.L51:
+  71:../Drivers/cmw_camera/cmw_utils.c ****     ratio_width = (float)crop->HSize / p_conf->output_width;
+ 669              		.loc 1 71 5 is_stmt 1 view .LVU177
+ 670 0098 2946     		mov	r1, r5
+ 671              	.LVL61:
+  71:../Drivers/cmw_camera/cmw_utils.c ****     ratio_width = (float)crop->HSize / p_conf->output_width;
+ 672              		.loc 1 71 5 is_stmt 0 view .LVU178
+ 673 009a 02F11C00 		add	r0, r2, #28
+ 674              	.LVL62:
+  71:../Drivers/cmw_camera/cmw_utils.c ****     ratio_width = (float)crop->HSize / p_conf->output_width;
+ 675              		.loc 1 71 5 view .LVU179
+ 676 009e FFF7FEFF 		bl	CMW_UTILS_get_crop_config_from_manual
+ 677              	.LVL63:
+  72:../Drivers/cmw_camera/cmw_utils.c ****     ratio_height = (float)crop->VSize / p_conf->output_height;
+ 678              		.loc 1 72 5 is_stmt 1 view .LVU180
+  72:../Drivers/cmw_camera/cmw_utils.c ****     ratio_height = (float)crop->VSize / p_conf->output_height;
+ 679              		.loc 1 72 19 is_stmt 0 view .LVU181
+ 680 00a2 D5ED037A 		vldr.32	s15, [r5, #12]	@ int
+ 681 00a6 B8EE677A 		vcvt.f32.u32	s14, s15
+  72:../Drivers/cmw_camera/cmw_utils.c ****     ratio_height = (float)crop->VSize / p_conf->output_height;
+ 682              		.loc 1 72 38 view .LVU182
+ 683 00aa D4ED007A 		vldr.32	s15, [r4]	@ int
+ 684 00ae F8EE677A 		vcvt.f32.u32	s15, s15
+  72:../Drivers/cmw_camera/cmw_utils.c ****     ratio_height = (float)crop->VSize / p_conf->output_height;
+ 685              		.loc 1 72 17 view .LVU183
+ 686 00b2 87EE270A 		vdiv.f32	s0, s14, s15
+ARM GAS  /tmp/ccNAGfvR.s 			page 19
+
+
+ 687              	.LVL64:
+  73:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 688              		.loc 1 73 5 is_stmt 1 view .LVU184
+  73:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 689              		.loc 1 73 31 is_stmt 0 view .LVU185
+ 690 00b6 95ED027A 		vldr.32	s14, [r5, #8]	@ int
+  73:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 691              		.loc 1 73 20 view .LVU186
+ 692 00ba B8EE477A 		vcvt.f32.u32	s14, s14
+  73:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 693              		.loc 1 73 39 view .LVU187
+ 694 00be D4ED017A 		vldr.32	s15, [r4, #4]	@ int
+ 695 00c2 F8EE677A 		vcvt.f32.u32	s15, s15
+  73:../Drivers/cmw_camera/cmw_utils.c ****   }
+ 696              		.loc 1 73 18 view .LVU188
+ 697 00c6 C7EE270A 		vdiv.f32	s1, s14, s15
+ 698 00ca C9E7     		b	.L49
+ 699              		.cfi_endproc
+ 700              	.LFE884:
+ 702              		.section	.text.CMW_UTILS_getClosest_HAL_PHYBitrate,"ax",%progbits
+ 703              		.align	1
+ 704              		.global	CMW_UTILS_getClosest_HAL_PHYBitrate
+ 705              		.syntax unified
+ 706              		.thumb
+ 707              		.thumb_func
+ 709              	CMW_UTILS_getClosest_HAL_PHYBitrate:
+ 710              	.LVL65:
+ 711              	.LFB885:
+  80:../Drivers/cmw_camera/cmw_utils.c ****   static const uint32_t PHYBitrate_in_mps[][2] =
+ 712              		.loc 1 80 1 is_stmt 1 view -0
+ 713              		.cfi_startproc
+ 714              		@ args = 0, pretend = 0, frame = 0
+ 715              		@ frame_needed = 0, uses_anonymous_args = 0
+ 716              		@ link register save eliminated.
+  80:../Drivers/cmw_camera/cmw_utils.c ****   static const uint32_t PHYBitrate_in_mps[][2] =
+ 717              		.loc 1 80 1 is_stmt 0 view .LVU190
+ 718 0000 8446     		mov	ip, r0
+  81:../Drivers/cmw_camera/cmw_utils.c ****   {
+ 719              		.loc 1 81 3 is_stmt 1 view .LVU191
+ 148:../Drivers/cmw_camera/cmw_utils.c ****   int32_t min_diff = abs((int32_t)val - (int32_t)PHYBitrate_in_mps[0][1]);
+ 720              		.loc 1 148 3 view .LVU192
+ 721              	.LVL66:
+ 149:../Drivers/cmw_camera/cmw_utils.c ****   size_t size = sizeof(PHYBitrate_in_mps) / sizeof(PHYBitrate_in_mps[0]);
+ 722              		.loc 1 149 3 view .LVU193
+ 149:../Drivers/cmw_camera/cmw_utils.c ****   size_t size = sizeof(PHYBitrate_in_mps) / sizeof(PHYBitrate_in_mps[0]);
+ 723              		.loc 1 149 39 is_stmt 0 view .LVU194
+ 724 0002 0D49     		ldr	r1, .L60
+ 725 0004 0918     		adds	r1, r1, r0
+ 149:../Drivers/cmw_camera/cmw_utils.c ****   size_t size = sizeof(PHYBitrate_in_mps) / sizeof(PHYBitrate_in_mps[0]);
+ 726              		.loc 1 149 11 view .LVU195
+ 727 0006 48BF     		it	mi
+ 728 0008 4942     		rsbmi	r1, r1, #0
+ 729              	.LVL67:
+ 150:../Drivers/cmw_camera/cmw_utils.c **** 
+ 730              		.loc 1 150 3 is_stmt 1 view .LVU196
+ 152:../Drivers/cmw_camera/cmw_utils.c ****   {
+ 731              		.loc 1 152 3 view .LVU197
+ARM GAS  /tmp/ccNAGfvR.s 			page 20
+
+
+ 156:../Drivers/cmw_camera/cmw_utils.c ****   {
+ 732              		.loc 1 156 3 view .LVU198
+ 733              	.LBB2:
+ 156:../Drivers/cmw_camera/cmw_utils.c ****   {
+ 734              		.loc 1 156 8 view .LVU199
+ 156:../Drivers/cmw_camera/cmw_utils.c ****   {
+ 735              		.loc 1 156 15 is_stmt 0 view .LVU200
+ 736 000a 0122     		movs	r2, #1
+ 737              	.LBE2:
+ 148:../Drivers/cmw_camera/cmw_utils.c ****   int32_t min_diff = abs((int32_t)val - (int32_t)PHYBitrate_in_mps[0][1]);
+ 738              		.loc 1 148 12 view .LVU201
+ 739 000c 0020     		movs	r0, #0
+ 740              	.LVL68:
+ 741              	.LBB4:
+ 156:../Drivers/cmw_camera/cmw_utils.c ****   {
+ 742              		.loc 1 156 3 view .LVU202
+ 743 000e 00E0     		b	.L56
+ 744              	.LVL69:
+ 745              	.L57:
+ 156:../Drivers/cmw_camera/cmw_utils.c ****   {
+ 746              		.loc 1 156 33 is_stmt 1 discriminator 1 view .LVU203
+ 747 0010 0132     		adds	r2, r2, #1
+ 748              	.LVL70:
+ 749              	.L56:
+ 156:../Drivers/cmw_camera/cmw_utils.c ****   {
+ 750              		.loc 1 156 24 discriminator 2 view .LVU204
+ 751 0012 3E2A     		cmp	r2, #62
+ 752 0014 0ED8     		bhi	.L59
+ 753              	.LBB3:
+ 158:../Drivers/cmw_camera/cmw_utils.c ****       if (diff < min_diff)
+ 754              		.loc 1 158 7 view .LVU205
+ 158:../Drivers/cmw_camera/cmw_utils.c ****       if (diff < min_diff)
+ 755              		.loc 1 158 70 is_stmt 0 view .LVU206
+ 756 0016 094B     		ldr	r3, .L60+4
+ 757 0018 03EBC203 		add	r3, r3, r2, lsl #3
+ 758 001c 5B68     		ldr	r3, [r3, #4]
+ 158:../Drivers/cmw_camera/cmw_utils.c ****       if (diff < min_diff)
+ 759              		.loc 1 158 39 view .LVU207
+ 760 001e BCEB0303 		subs	r3, ip, r3
+ 158:../Drivers/cmw_camera/cmw_utils.c ****       if (diff < min_diff)
+ 761              		.loc 1 158 15 view .LVU208
+ 762 0022 48BF     		it	mi
+ 763 0024 5B42     		rsbmi	r3, r3, #0
+ 764              	.LVL71:
+ 159:../Drivers/cmw_camera/cmw_utils.c ****       {
+ 765              		.loc 1 159 7 is_stmt 1 view .LVU209
+ 159:../Drivers/cmw_camera/cmw_utils.c ****       {
+ 766              		.loc 1 159 10 is_stmt 0 view .LVU210
+ 767 0026 9942     		cmp	r1, r3
+ 768 0028 F2DD     		ble	.L57
+ 161:../Drivers/cmw_camera/cmw_utils.c ****           closest_i = PHYBitrate_in_mps[i][0];
+ 769              		.loc 1 161 11 is_stmt 1 view .LVU211
+ 770              	.LVL72:
+ 162:../Drivers/cmw_camera/cmw_utils.c ****       }
+ 771              		.loc 1 162 11 view .LVU212
+ 162:../Drivers/cmw_camera/cmw_utils.c ****       }
+ 772              		.loc 1 162 21 is_stmt 0 view .LVU213
+ARM GAS  /tmp/ccNAGfvR.s 			page 21
+
+
+ 773 002a 0449     		ldr	r1, .L60+4
+ 774 002c 51F83200 		ldr	r0, [r1, r2, lsl #3]
+ 775              	.LVL73:
+ 161:../Drivers/cmw_camera/cmw_utils.c ****           closest_i = PHYBitrate_in_mps[i][0];
+ 776              		.loc 1 161 20 view .LVU214
+ 777 0030 1946     		mov	r1, r3
+ 778 0032 EDE7     		b	.L57
+ 779              	.LVL74:
+ 780              	.L59:
+ 161:../Drivers/cmw_camera/cmw_utils.c ****           closest_i = PHYBitrate_in_mps[i][0];
+ 781              		.loc 1 161 20 view .LVU215
+ 782              	.LBE3:
+ 783              	.LBE4:
+ 165:../Drivers/cmw_camera/cmw_utils.c **** }
+ 784              		.loc 1 165 3 is_stmt 1 view .LVU216
+ 166:../Drivers/cmw_camera/cmw_utils.c **** 
+ 785              		.loc 1 166 1 is_stmt 0 view .LVU217
+ 786 0034 7047     		bx	lr
+ 787              	.L61:
+ 788 0036 00BF     		.align	2
+ 789              	.L60:
+ 790 0038 004C3BFB 		.word	-80000000
+ 791 003c 00000000 		.word	PHYBitrate_in_mps.0
+ 792              		.cfi_endproc
+ 793              	.LFE885:
+ 795              		.section	.rodata.PHYBitrate_in_mps.0,"a"
+ 796              		.align	2
+ 799              	PHYBitrate_in_mps.0:
+ 800 0000 00000000 		.word	0
+ 801 0004 00B4C404 		.word	80000000
+ 802 0008 01000000 		.word	1
+ 803 000c 804A5D05 		.word	90000000
+ 804 0010 02000000 		.word	2
+ 805 0014 00E1F505 		.word	100000000
+ 806 0018 03000000 		.word	3
+ 807 001c 80778E06 		.word	110000000
+ 808 0020 04000000 		.word	4
+ 809 0024 000E2707 		.word	120000000
+ 810 0028 05000000 		.word	5
+ 811 002c 80A4BF07 		.word	130000000
+ 812 0030 06000000 		.word	6
+ 813 0034 003B5808 		.word	140000000
+ 814 0038 07000000 		.word	7
+ 815 003c 80D1F008 		.word	150000000
+ 816 0040 08000000 		.word	8
+ 817 0044 00688909 		.word	160000000
+ 818 0048 09000000 		.word	9
+ 819 004c 80FE210A 		.word	170000000
+ 820 0050 0A000000 		.word	10
+ 821 0054 0095BA0A 		.word	180000000
+ 822 0058 0B000000 		.word	11
+ 823 005c 802B530B 		.word	190000000
+ 824 0060 0C000000 		.word	12
+ 825 0064 400D380C 		.word	205000000
+ 826 0068 0D000000 		.word	13
+ 827 006c 00EF1C0D 		.word	220000000
+ 828 0070 0E000000 		.word	14
+ARM GAS  /tmp/ccNAGfvR.s 			page 22
+
+
+ 829 0074 C0D0010E 		.word	235000000
+ 830 0078 0F000000 		.word	15
+ 831 007c 80B2E60E 		.word	250000000
+ 832 0080 10000000 		.word	16
+ 833 0084 C02A6410 		.word	275000000
+ 834 0088 11000000 		.word	17
+ 835 008c 00A3E111 		.word	300000000
+ 836 0090 12000000 		.word	18
+ 837 0094 401B5F13 		.word	325000000
+ 838 0098 13000000 		.word	19
+ 839 009c 8093DC14 		.word	350000000
+ 840 00a0 14000000 		.word	20
+ 841 00a4 0084D717 		.word	400000000
+ 842 00a8 15000000 		.word	21
+ 843 00ac 8074D21A 		.word	450000000
+ 844 00b0 16000000 		.word	22
+ 845 00b4 0065CD1D 		.word	500000000
+ 846 00b8 17000000 		.word	23
+ 847 00bc 8055C820 		.word	550000000
+ 848 00c0 18000000 		.word	24
+ 849 00c4 0046C323 		.word	600000000
+ 850 00c8 19000000 		.word	25
+ 851 00cc 8036BE26 		.word	650000000
+ 852 00d0 1A000000 		.word	26
+ 853 00d4 0027B929 		.word	700000000
+ 854 00d8 1B000000 		.word	27
+ 855 00dc 8017B42C 		.word	750000000
+ 856 00e0 1C000000 		.word	28
+ 857 00e4 0008AF2F 		.word	800000000
+ 858 00e8 1D000000 		.word	29
+ 859 00ec 80F8A932 		.word	850000000
+ 860 00f0 1E000000 		.word	30
+ 861 00f4 00E9A435 		.word	900000000
+ 862 00f8 1F000000 		.word	31
+ 863 00fc 80D99F38 		.word	950000000
+ 864 0100 20000000 		.word	32
+ 865 0104 00CA9A3B 		.word	1000000000
+ 866 0108 21000000 		.word	33
+ 867 010c 80BA953E 		.word	1050000000
+ 868 0110 22000000 		.word	34
+ 869 0114 00AB9041 		.word	1100000000
+ 870 0118 23000000 		.word	35
+ 871 011c 809B8B44 		.word	1150000000
+ 872 0120 24000000 		.word	36
+ 873 0124 008C8647 		.word	1200000000
+ 874 0128 25000000 		.word	37
+ 875 012c 807C814A 		.word	1250000000
+ 876 0130 26000000 		.word	38
+ 877 0134 006D7C4D 		.word	1300000000
+ 878 0138 27000000 		.word	39
+ 879 013c 805D7750 		.word	1350000000
+ 880 0140 28000000 		.word	40
+ 881 0144 004E7253 		.word	1400000000
+ 882 0148 29000000 		.word	41
+ 883 014c 803E6D56 		.word	1450000000
+ 884 0150 2A000000 		.word	42
+ 885 0154 002F6859 		.word	1500000000
+ARM GAS  /tmp/ccNAGfvR.s 			page 23
+
+
+ 886 0158 2B000000 		.word	43
+ 887 015c 801F635C 		.word	1550000000
+ 888 0160 2C000000 		.word	44
+ 889 0164 00105E5F 		.word	1600000000
+ 890 0168 2D000000 		.word	45
+ 891 016c 80005962 		.word	1650000000
+ 892 0170 2E000000 		.word	46
+ 893 0174 00F15365 		.word	1700000000
+ 894 0178 2F000000 		.word	47
+ 895 017c 80E14E68 		.word	1750000000
+ 896 0180 30000000 		.word	48
+ 897 0184 00D2496B 		.word	1800000000
+ 898 0188 31000000 		.word	49
+ 899 018c 80C2446E 		.word	1850000000
+ 900 0190 32000000 		.word	50
+ 901 0194 00B33F71 		.word	1900000000
+ 902 0198 33000000 		.word	51
+ 903 019c 80A33A74 		.word	1950000000
+ 904 01a0 34000000 		.word	52
+ 905 01a4 00943577 		.word	2000000000
+ 906 01a8 35000000 		.word	53
+ 907 01ac 8084307A 		.word	2050000000
+ 908 01b0 36000000 		.word	54
+ 909 01b4 00752B7D 		.word	2100000000
+ 910 01b8 37000000 		.word	55
+ 911 01bc 80652680 		.word	-2144967296
+ 912 01c0 38000000 		.word	56
+ 913 01c4 00562183 		.word	-2094967296
+ 914 01c8 39000000 		.word	57
+ 915 01cc 80461C86 		.word	-2044967296
+ 916 01d0 3A000000 		.word	58
+ 917 01d4 00371789 		.word	-1994967296
+ 918 01d8 3B000000 		.word	59
+ 919 01dc 8027128C 		.word	-1944967296
+ 920 01e0 3C000000 		.word	60
+ 921 01e4 00180D8F 		.word	-1894967296
+ 922 01e8 3D000000 		.word	61
+ 923 01ec 80080892 		.word	-1844967296
+ 924 01f0 3E000000 		.word	62
+ 925 01f4 00F90295 		.word	-1794967296
+ 926              		.section	.rodata.__func__.1,"a"
+ 927              		.align	2
+ 930              	__func__.1:
+ 931 0000 434D575F 		.ascii	"CMW_UTILS_get_dec_ratio_from_decimal_ratio\000"
+ 931      5554494C 
+ 931      535F6765 
+ 931      745F6465 
+ 931      635F7261 
+ 932              		.section	.rodata.__func__.2,"a"
+ 933              		.align	2
+ 936              	__func__.2:
+ 937 0000 434D575F 		.ascii	"CMW_UTILS_get_crop_config\000"
+ 937      5554494C 
+ 937      535F6765 
+ 937      745F6372 
+ 937      6F705F63 
+ 938              		.text
+ARM GAS  /tmp/ccNAGfvR.s 			page 24
+
+
+ 939              	.Letext0:
+ 940              		.file 2 "/usr/lib/gcc/arm-none-eabi/16.1.0/include/stddef.h"
+ 941              		.file 3 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 942              		.file 4 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 943              		.file 5 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dcmipp.h"
+ 944              		.file 6 "../Drivers/cmw_camera/cmw_camera.h"
+ 945              		.file 7 "/usr/arm-none-eabi/include/assert.h"
+ARM GAS  /tmp/ccNAGfvR.s 			page 25
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 cmw_utils.c
+     /tmp/ccNAGfvR.s:26     .text.CMW_UTILS_get_crop_config_from_manual:00000000 $t
+     /tmp/ccNAGfvR.s:31     .text.CMW_UTILS_get_crop_config_from_manual:00000000 CMW_UTILS_get_crop_config_from_manual
+     /tmp/ccNAGfvR.s:65     .text.CMW_UTILS_get_down_config:00000000 $t
+     /tmp/ccNAGfvR.s:70     .text.CMW_UTILS_get_down_config:00000000 CMW_UTILS_get_down_config
+     /tmp/ccNAGfvR.s:123    .text.CMW_UTILS_get_down_config:0000003c $d
+     /tmp/ccNAGfvR.s:129    .rodata.CMW_UTILS_get_crop_config.str1.4:00000000 $d
+     /tmp/ccNAGfvR.s:139    .text.CMW_UTILS_get_crop_config:00000000 $t
+     /tmp/ccNAGfvR.s:144    .text.CMW_UTILS_get_crop_config:00000000 CMW_UTILS_get_crop_config
+     /tmp/ccNAGfvR.s:306    .text.CMW_UTILS_get_crop_config:000000d4 $d
+     /tmp/ccNAGfvR.s:936    .rodata.__func__.2:00000000 __func__.2
+     /tmp/ccNAGfvR.s:315    .rodata.CMW_UTILS_get_dec_ratio_from_decimal_ratio.str1.4:00000000 $d
+     /tmp/ccNAGfvR.s:319    .text.CMW_UTILS_get_dec_ratio_from_decimal_ratio:00000000 $t
+     /tmp/ccNAGfvR.s:324    .text.CMW_UTILS_get_dec_ratio_from_decimal_ratio:00000000 CMW_UTILS_get_dec_ratio_from_decimal_ratio
+     /tmp/ccNAGfvR.s:345    .text.CMW_UTILS_get_dec_ratio_from_decimal_ratio:0000000c $d
+     /tmp/ccNAGfvR.s:353    .text.CMW_UTILS_get_dec_ratio_from_decimal_ratio:00000014 $t
+     /tmp/ccNAGfvR.s:408    .text.CMW_UTILS_get_dec_ratio_from_decimal_ratio:00000044 $d
+     /tmp/ccNAGfvR.s:930    .rodata.__func__.1:00000000 __func__.1
+     /tmp/ccNAGfvR.s:415    .text.CMW_UTILS_get_dec_ratio_and_update:00000000 $t
+     /tmp/ccNAGfvR.s:420    .text.CMW_UTILS_get_dec_ratio_and_update:00000000 CMW_UTILS_get_dec_ratio_and_update
+     /tmp/ccNAGfvR.s:473    .text.CMW_UTILS_get_scale_configs:00000000 $t
+     /tmp/ccNAGfvR.s:478    .text.CMW_UTILS_get_scale_configs:00000000 CMW_UTILS_get_scale_configs
+     /tmp/ccNAGfvR.s:540    .text.CMW_UTILS_GetPipeConfig:00000000 $t
+     /tmp/ccNAGfvR.s:546    .text.CMW_UTILS_GetPipeConfig:00000000 CMW_UTILS_GetPipeConfig
+     /tmp/ccNAGfvR.s:703    .text.CMW_UTILS_getClosest_HAL_PHYBitrate:00000000 $t
+     /tmp/ccNAGfvR.s:709    .text.CMW_UTILS_getClosest_HAL_PHYBitrate:00000000 CMW_UTILS_getClosest_HAL_PHYBitrate
+     /tmp/ccNAGfvR.s:790    .text.CMW_UTILS_getClosest_HAL_PHYBitrate:00000038 $d
+     /tmp/ccNAGfvR.s:799    .rodata.PHYBitrate_in_mps.0:00000000 PHYBitrate_in_mps.0
+     /tmp/ccNAGfvR.s:796    .rodata.PHYBitrate_in_mps.0:00000000 $d
+     /tmp/ccNAGfvR.s:927    .rodata.__func__.1:00000000 $d
+     /tmp/ccNAGfvR.s:933    .rodata.__func__.2:00000000 $d
+
+UNDEFINED SYMBOLS
+__assert_func

@@ -1,0 +1,2960 @@
+ARM GAS  /tmp/ccLNkJSa.s 			page 1
+
+
+   1              		.arch armv8.1-m.main
+   2              		.fpu fpv5-d16
+   3              		.arch_extension dsp
+   4              		.arch_extension fp
+   5              		.arch_extension fp.dp
+   6              		.arch_extension mve
+   7              		.arch_extension mve.fp
+   8              		.eabi_attribute 5, "cortex-m55"
+   9              		.eabi_attribute 28, 1
+  10              		.eabi_attribute 20, 1
+  11              		.eabi_attribute 21, 1
+  12              		.eabi_attribute 23, 3
+  13              		.eabi_attribute 24, 1
+  14              		.eabi_attribute 25, 1
+  15              		.eabi_attribute 26, 1
+  16              		.eabi_attribute 30, 1
+  17              		.eabi_attribute 34, 1
+  18              		.eabi_attribute 38, 1
+  19              		.eabi_attribute 18, 4
+  20              		.file	"isp_ae_algo.c"
+  21              		.text
+  22              	.Ltext0:
+  23              		.cfi_sections	.debug_frame
+  24              		.file 1 "../Drivers/ISP/isp/Src/isp_ae_algo.c"
+  25              		.section	.text.isp_ae_reverse_antiflicker,"ax",%progbits
+  26              		.align	1
+  27              		.syntax unified
+  28              		.thumb
+  29              		.thumb_func
+  31              	isp_ae_reverse_antiflicker:
+  32              	.LVL0:
+  33              	.LFB886:
+   1:../Drivers/ISP/isp/Src/isp_ae_algo.c **** /**
+   2:../Drivers/ISP/isp/Src/isp_ae_algo.c ****  ******************************************************************************
+   3:../Drivers/ISP/isp/Src/isp_ae_algo.c ****  * @file    isp_ae_algo.c
+   4:../Drivers/ISP/isp/Src/isp_ae_algo.c ****  * @author  AIS Application Team
+   5:../Drivers/ISP/isp/Src/isp_ae_algo.c ****  * @brief   ISP AWB algorithm
+   6:../Drivers/ISP/isp/Src/isp_ae_algo.c ****  ******************************************************************************
+   7:../Drivers/ISP/isp/Src/isp_ae_algo.c ****  * @attention
+   8:../Drivers/ISP/isp/Src/isp_ae_algo.c ****  *
+   9:../Drivers/ISP/isp/Src/isp_ae_algo.c ****  * Copyright (c) 2025 STMicroelectronics.
+  10:../Drivers/ISP/isp/Src/isp_ae_algo.c ****  * All rights reserved.
+  11:../Drivers/ISP/isp/Src/isp_ae_algo.c ****  *
+  12:../Drivers/ISP/isp/Src/isp_ae_algo.c ****  * This software is licensed under terms that can be found in the LICENSE file
+  13:../Drivers/ISP/isp/Src/isp_ae_algo.c ****  * in the root directory of this software component.
+  14:../Drivers/ISP/isp/Src/isp_ae_algo.c ****  * If no LICENSE file comes with this software, it is provided AS-IS.
+  15:../Drivers/ISP/isp/Src/isp_ae_algo.c ****  *
+  16:../Drivers/ISP/isp/Src/isp_ae_algo.c ****  ******************************************************************************
+  17:../Drivers/ISP/isp/Src/isp_ae_algo.c ****  */
+  18:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+  19:../Drivers/ISP/isp/Src/isp_ae_algo.c **** /* Includes ------------------------------------------------------------------*/
+  20:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #include "isp_core.h"
+  21:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #include "isp_services.h"
+  22:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+  23:../Drivers/ISP/isp/Src/isp_ae_algo.c **** /* Private types -------------------------------------------------------------*/
+  24:../Drivers/ISP/isp/Src/isp_ae_algo.c **** /* Private constants ---------------------------------------------------------*/
+  25:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define AE_FINE_TOLERANCE                   5
+ARM GAS  /tmp/ccLNkJSa.s 			page 2
+
+
+  26:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define AE_FINE_TOLERANCE_LOW_LUX(target)   ((target) < 15 ? 8 : 10)
+  27:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define AE_COARSE_TOLERANCE                 10
+  28:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define AE_COARSE_TOLERANCE_LOW_LUX(target) ((target) < 15 ? 10 : 15)
+  29:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define AE_TOLERANCE                        0.10f  /* % */
+  30:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define AE_TOLERANCE_LOW_LUX                0.15f  /* % */
+  31:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+  32:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define AE_LOW_LUX_LIMIT                    50    /* lux */
+  33:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+  34:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define AE_EXPOSURE_COARSE_INCREMENT        500   /* us */
+  35:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define AE_EXPOSURE_COARSE_DECREMENT        300   /* us */
+  36:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define AE_EXPOSURE_FINE_INCREMENT          150   /* us */
+  37:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define AE_EXPOSURE_FINE_DECREMENT          100   /* us */
+  38:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+  39:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define AE_GAIN_COARSE_INCREMENT            2000  /* mdB */
+  40:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define AE_GAIN_COARSE_DECREMENT            1500  /* mdB */
+  41:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define AE_GAIN_FINE_INCREMENT              500   /* mdB */
+  42:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define AE_GAIN_FINE_DECREMENT              300   /* mdB */
+  43:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+  44:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define AE_MAX_GAIN_INCREMENT               10000 /* mdB */
+  45:../Drivers/ISP/isp/Src/isp_ae_algo.c **** /* Private macro -------------------------------------------------------------*/
+  46:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #ifndef MIN
+  47:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define MIN(a,b) ((a)<(b)?(a):(b))
+  48:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #endif
+  49:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+  50:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #ifndef MAX
+  51:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #define MAX(a,b) ((a)>(b)?(a):(b))
+  52:../Drivers/ISP/isp/Src/isp_ae_algo.c **** #endif
+  53:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+  54:../Drivers/ISP/isp/Src/isp_ae_algo.c **** /* Private function prototypes -----------------------------------------------*/
+  55:../Drivers/ISP/isp/Src/isp_ae_algo.c **** /* Private variables ---------------------------------------------------------*/
+  56:../Drivers/ISP/isp/Src/isp_ae_algo.c **** static ISP_IQParamTypeDef *IQParamConfig;
+  57:../Drivers/ISP/isp/Src/isp_ae_algo.c **** static ISP_SensorInfoTypeDef *pSensorInfo;
+  58:../Drivers/ISP/isp/Src/isp_ae_algo.c **** static uint32_t previous_lux = 0;
+  59:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+  60:../Drivers/ISP/isp/Src/isp_ae_algo.c **** /* Global variables ----------------------------------------------------------*/
+  61:../Drivers/ISP/isp/Src/isp_ae_algo.c **** /* Private functions ---------------------------------------------------------*/
+  62:../Drivers/ISP/isp/Src/isp_ae_algo.c **** /**
+  63:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @brief  isp_ae_init
+  64:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         This function initializes ISP parameters and sensor info
+  65:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         that will be used to process AE algorithm
+  66:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @param  hIsp:  ISP device handle. To cast in (ISP_HandleTypeDef *)
+  67:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @retval None
+  68:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   */
+  69:../Drivers/ISP/isp/Src/isp_ae_algo.c **** void isp_ae_init(ISP_HandleTypeDef *hIsp)
+  70:../Drivers/ISP/isp/Src/isp_ae_algo.c **** {
+  71:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   IQParamConfig = ISP_SVC_IQParam_Get(hIsp);
+  72:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   pSensorInfo = &hIsp->sensorInfo;
+  73:../Drivers/ISP/isp/Src/isp_ae_algo.c **** }
+  74:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+  75:../Drivers/ISP/isp/Src/isp_ae_algo.c **** /**
+  76:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @brief  isp_ae_compute_antiflcker
+  77:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         ONLY USEFUL WHEN WHEN ANTI-FLICKER IS ACTIVATED
+  78:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         Otherwise exposure time and gain are unchanged
+  79:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         This function will compute an exposure time that eliminates the flickering effect
+  80:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         and compensates with gain to still achieve the desired brightness
+  81:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @param  gain             : current sensor gain value (mdB)
+  82:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @param  exposure         : current sensor exposure time value (us)
+ARM GAS  /tmp/ccLNkJSa.s 			page 3
+
+
+  83:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @param  adjusted_gain    : pointer to the new sensor gain value (mdB)
+  84:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @param  adjusted_exposure: pointer to the new exposure time value (us)
+  85:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @retval None
+  86:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   */
+  87:../Drivers/ISP/isp/Src/isp_ae_algo.c **** static void isp_ae_compute_antiflcker(uint32_t gain, uint32_t exposure,
+  88:../Drivers/ISP/isp/Src/isp_ae_algo.c ****                                       uint32_t *adjusted_gain, uint32_t *adjusted_exposure)
+  89:../Drivers/ISP/isp/Src/isp_ae_algo.c **** {
+  90:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   /* Get equivalent gain/exposure where exposure is a multiple of the flickering period */
+  91:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   float compensation_gain;
+  92:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   uint32_t compensation_gain_mdb, compat_period_us;
+  93:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   uint32_t up_equiv_exposure;
+  94:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+  95:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   if (IQParamConfig->AECAlgo.antiFlickerFreq == 0)
+  96:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+  97:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *adjusted_gain = gain;
+  98:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *adjusted_exposure = exposure;
+  99:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     return;
+ 100:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 101:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 102:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   compat_period_us = 1000U * 1000U / (2U * IQParamConfig->AECAlgo.antiFlickerFreq);
+ 103:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   up_equiv_exposure = (1 + exposure / compat_period_us) * compat_period_us;
+ 104:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   if ((exposure > compat_period_us) && (exposure < 0.95 * up_equiv_exposure))
+ 105:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 106:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     /* Make exposure a multiple of the flickering period in case exposure is higher than the
+ 107:../Drivers/ISP/isp/Src/isp_ae_algo.c ****        flickering period and we are 5% under a multiple value */
+ 108:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *adjusted_exposure = (exposure / compat_period_us) * compat_period_us;
+ 109:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 110:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     /* Increase the gain accordingly */
+ 111:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     compensation_gain = (float)exposure / (float)(*adjusted_exposure + 1);
+ 112:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     compensation_gain_mdb = (uint32_t)(20 * 1000 * log10(compensation_gain));
+ 113:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *adjusted_gain = gain + compensation_gain_mdb;
+ 114:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (*adjusted_gain > pSensorInfo->gain_max)
+ 115:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 116:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *adjusted_gain = pSensorInfo->gain_max;
+ 117:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 118:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 119:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   else
+ 120:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 121:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     /* Keep the initial values in case:
+ 122:../Drivers/ISP/isp/Src/isp_ae_algo.c ****        - We cannot update the exposure because the values are under the flickering period (will fli
+ 123:../Drivers/ISP/isp/Src/isp_ae_algo.c ****        - Or we are close to the upper multiple value (the acceptance criteria is set to 95% of the
+ 124:../Drivers/ISP/isp/Src/isp_ae_algo.c ****          multiple value to ensure no flickering effect will be visible) */
+ 125:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *adjusted_gain = gain;
+ 126:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *adjusted_exposure = exposure;
+ 127:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 128:../Drivers/ISP/isp/Src/isp_ae_algo.c **** }
+ 129:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 130:../Drivers/ISP/isp/Src/isp_ae_algo.c **** /**
+ 131:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @brief  isp_ae_reverse_antiflicker
+ 132:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         ONLY USEFUL WHEN ANTI-FLICKER IS ACTIVATED
+ 133:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         Otherwise exposure time and gain are unchanged
+ 134:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         This function computes the original exposure time and gain values
+ 135:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         from the adjusted values used to eliminate flickering and maintain brightness.
+ 136:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @param  gain             : current sensor gain value (mdB)
+ 137:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @param  exposure         : current sensor exposure time value (us)
+ 138:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @param  original_gain    : pointer to the new exposure time value (us)
+ 139:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @param  original_exposure: pointer to the new sensor gain value (mdB)
+ARM GAS  /tmp/ccLNkJSa.s 			page 4
+
+
+ 140:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @retval None
+ 141:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   */
+ 142:../Drivers/ISP/isp/Src/isp_ae_algo.c **** static void isp_ae_reverse_antiflicker(uint32_t gain, uint32_t exposure,
+ 143:../Drivers/ISP/isp/Src/isp_ae_algo.c ****                                        uint32_t *original_gain, uint32_t *original_exposure)
+ 144:../Drivers/ISP/isp/Src/isp_ae_algo.c **** {
+  34              		.loc 1 144 1 view -0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 0, uses_anonymous_args = 0
+  38              		.loc 1 144 1 is_stmt 0 view .LVU1
+  39 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+  40              	.LCFI0:
+  41              		.cfi_def_cfa_offset 24
+  42              		.cfi_offset 4, -24
+  43              		.cfi_offset 5, -20
+  44              		.cfi_offset 6, -16
+  45              		.cfi_offset 7, -12
+  46              		.cfi_offset 8, -8
+  47              		.cfi_offset 14, -4
+  48 0004 0E46     		mov	r6, r1
+  49 0006 1746     		mov	r7, r2
+  50 0008 9846     		mov	r8, r3
+ 145:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   /* Get equivalent gain/exposure where exposure has a maximum value (reverse processing of the abo
+ 146:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   float compensation_gain;
+  51              		.loc 1 146 3 is_stmt 1 view .LVU2
+ 147:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   uint32_t global_exposure;
+  52              		.loc 1 147 3 view .LVU3
+ 148:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 149:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   /* In case the exposure time is set to the maximum value, no antiflicker compensation is detected
+ 150:../Drivers/ISP/isp/Src/isp_ae_algo.c ****    * Return the same sensor settings */
+ 151:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   if (exposure == pSensorInfo->exposure_max)
+  53              		.loc 1 151 3 view .LVU4
+  54              		.loc 1 151 30 is_stmt 0 view .LVU5
+  55 000a 2D4B     		ldr	r3, .L9+16
+  56              	.LVL1:
+  57              		.loc 1 151 30 view .LVU6
+  58 000c 1D68     		ldr	r5, [r3]
+  59 000e EC6B     		ldr	r4, [r5, #60]
+  60              		.loc 1 151 6 view .LVU7
+  61 0010 8C42     		cmp	r4, r1
+  62 0012 30D0     		beq	.L8
+ 152:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 153:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *original_exposure = exposure;
+ 154:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *original_gain = gain;
+ 155:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     return;
+ 156:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 157:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 158:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   /* Otherwise, compute adjusted gain and exposure even if antiflicker is disabled
+ 159:../Drivers/ISP/isp/Src/isp_ae_algo.c ****    * This way, in case there is no light condition change, previous adjustment for antiflicker
+ 160:../Drivers/ISP/isp/Src/isp_ae_algo.c ****    * will be removed */
+ 161:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 162:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   global_exposure = (uint32_t)(exposure * pow(10, (float)gain / (20 * 1000)));
+  63              		.loc 1 162 3 is_stmt 1 view .LVU8
+  64              		.loc 1 162 51 is_stmt 0 view .LVU9
+  65 0014 07EE900A 		vmov	s15, r0	@ int
+  66 0018 F8EE677A 		vcvt.f32.u32	s15, s15
+  67              		.loc 1 162 63 view .LVU10
+ARM GAS  /tmp/ccLNkJSa.s 			page 5
+
+
+  68 001c 9FED297A 		vldr.32	s14, .L9+20
+  69 0020 87EE871A 		vdiv.f32	s2, s15, s14
+  70              		.loc 1 162 43 view .LVU11
+  71 0024 B7EEC11A 		vcvt.f64.f32	d1, s2
+  72 0028 B2EE040B 		vmov.f64	d0, #1.0e+1
+  73 002c FFF7FEFF 		bl	pow
+  74              	.LVL2:
+  75              		.loc 1 162 41 view .LVU12
+  76 0030 07EE906A 		vmov	s15, r6	@ int
+  77 0034 B8EE677B 		vcvt.f64.u32	d7, s15
+  78              		.loc 1 162 41 discriminator 1 view .LVU13
+  79 0038 27EE007B 		vmul.f64	d7, d7, d0
+  80              		.loc 1 162 19 discriminator 1 view .LVU14
+  81 003c BCEEC77B 		vcvt.u32.f64	s14, d7
+  82              	.LVL3:
+ 163:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   if (global_exposure < pSensorInfo->exposure_max)
+  83              		.loc 1 163 3 is_stmt 1 view .LVU15
+  84              		.loc 1 163 6 is_stmt 0 view .LVU16
+  85 0040 17EE103A 		vmov	r3, s14	@ int
+  86 0044 9C42     		cmp	r4, r3
+  87 0046 1BD9     		bls	.L4
+ 164:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 165:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *original_gain = 0;
+  88              		.loc 1 165 5 is_stmt 1 view .LVU17
+  89              		.loc 1 165 20 is_stmt 0 view .LVU18
+  90 0048 0023     		movs	r3, #0
+  91 004a 3B60     		str	r3, [r7]
+ 166:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *original_exposure = global_exposure;
+  92              		.loc 1 166 5 is_stmt 1 view .LVU19
+  93              		.loc 1 166 24 is_stmt 0 view .LVU20
+  94 004c 88ED007A 		vstr.32	s14, [r8]	@ int
+ 167:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     /* Fix rounding error when close to max value */
+ 168:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (*original_exposure > 0.98 * pSensorInfo->exposure_max)
+  95              		.loc 1 168 5 is_stmt 1 view .LVU21
+  96              		.loc 1 168 28 is_stmt 0 view .LVU22
+  97 0050 B8EE477B 		vcvt.f64.u32	d7, s14
+  98              	.LVL4:
+  99              		.loc 1 168 48 view .LVU23
+ 100 0054 EB6B     		ldr	r3, [r5, #60]
+ 101              		.loc 1 168 35 view .LVU24
+ 102 0056 06EE903A 		vmov	s13, r3	@ int
+ 103 005a B8EE666B 		vcvt.f64.u32	d6, s13
+ 104 005e 9FED145B 		vldr.64	d5, .L9
+ 105 0062 26EE056B 		vmul.f64	d6, d6, d5
+ 106              		.loc 1 168 8 view .LVU25
+ 107 0066 B4EEC67B 		vcmpe.f64	d7, d6
+ 108 006a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 109 006e 05DD     		ble	.L1
+ 169:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 170:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *original_exposure = pSensorInfo->exposure_max;
+ 110              		.loc 1 170 7 is_stmt 1 view .LVU26
+ 111              		.loc 1 170 26 is_stmt 0 view .LVU27
+ 112 0070 C8F80030 		str	r3, [r8]
+ 113              	.LVL5:
+ 114              		.loc 1 170 26 view .LVU28
+ 115 0074 02E0     		b	.L1
+ 116              	.LVL6:
+ARM GAS  /tmp/ccLNkJSa.s 			page 6
+
+
+ 117              	.L8:
+ 153:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *original_gain = gain;
+ 118              		.loc 1 153 5 is_stmt 1 view .LVU29
+ 153:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *original_gain = gain;
+ 119              		.loc 1 153 24 is_stmt 0 view .LVU30
+ 120 0076 C8F80010 		str	r1, [r8]
+ 154:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     return;
+ 121              		.loc 1 154 5 is_stmt 1 view .LVU31
+ 154:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     return;
+ 122              		.loc 1 154 20 is_stmt 0 view .LVU32
+ 123 007a 3860     		str	r0, [r7]
+ 155:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 124              		.loc 1 155 5 is_stmt 1 view .LVU33
+ 125              	.LVL7:
+ 126              	.L1:
+ 171:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 172:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 173:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   else
+ 174:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 175:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     /* Set exposure to max, and compute the compensation gain */
+ 176:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *original_exposure = pSensorInfo->exposure_max;
+ 177:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     /* Increase the gain accordingly */
+ 178:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     compensation_gain = (float)global_exposure / (float)*original_exposure;
+ 179:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *original_gain = (uint32_t)(20 * 1000 * log10(compensation_gain));
+ 180:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 181:../Drivers/ISP/isp/Src/isp_ae_algo.c **** }
+ 127              		.loc 1 181 1 is_stmt 0 view .LVU34
+ 128 007c BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 129              	.LVL8:
+ 130              	.L4:
+ 176:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     /* Increase the gain accordingly */
+ 131              		.loc 1 176 5 is_stmt 1 view .LVU35
+ 176:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     /* Increase the gain accordingly */
+ 132              		.loc 1 176 24 is_stmt 0 view .LVU36
+ 133 0080 C8F80040 		str	r4, [r8]
+ 178:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *original_gain = (uint32_t)(20 * 1000 * log10(compensation_gain));
+ 134              		.loc 1 178 5 is_stmt 1 view .LVU37
+ 178:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *original_gain = (uint32_t)(20 * 1000 * log10(compensation_gain));
+ 135              		.loc 1 178 25 is_stmt 0 view .LVU38
+ 136 0084 B8EE477A 		vcvt.f32.u32	s14, s14
+ 178:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *original_gain = (uint32_t)(20 * 1000 * log10(compensation_gain));
+ 137              		.loc 1 178 50 view .LVU39
+ 138 0088 07EE904A 		vmov	s15, r4	@ int
+ 139 008c F8EE677A 		vcvt.f32.u32	s15, s15
+ 178:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *original_gain = (uint32_t)(20 * 1000 * log10(compensation_gain));
+ 140              		.loc 1 178 23 view .LVU40
+ 141 0090 87EE270A 		vdiv.f32	s0, s14, s15
+ 142              	.LVL9:
+ 179:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 143              		.loc 1 179 5 is_stmt 1 view .LVU41
+ 179:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 144              		.loc 1 179 45 is_stmt 0 view .LVU42
+ 145 0094 B7EEC00A 		vcvt.f64.f32	d0, s0
+ 146              	.LVL10:
+ 179:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 147              		.loc 1 179 45 view .LVU43
+ 148 0098 FFF7FEFF 		bl	log10
+ARM GAS  /tmp/ccLNkJSa.s 			page 7
+
+
+ 149              	.LVL11:
+ 179:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 150              		.loc 1 179 43 discriminator 1 view .LVU44
+ 151 009c 9FED067B 		vldr.64	d7, .L9+8
+ 152 00a0 20EE070B 		vmul.f64	d0, d0, d7
+ 179:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 153              		.loc 1 179 22 discriminator 1 view .LVU45
+ 154 00a4 BCEEC00B 		vcvt.u32.f64	s0, d0
+ 179:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 155              		.loc 1 179 20 discriminator 1 view .LVU46
+ 156 00a8 87ED000A 		vstr.32	s0, [r7]	@ int
+ 157 00ac E6E7     		b	.L1
+ 158              	.L10:
+ 159 00ae 00BF     		.align	3
+ 160              	.L9:
+ 161 00b0 5C8FC2F5 		.word	-171798692
+ 162 00b4 285CEF3F 		.word	1072651304
+ 163 00b8 00000000 		.word	0
+ 164 00bc 0088D340 		.word	1087604736
+ 165 00c0 00000000 		.word	pSensorInfo
+ 166 00c4 00409C46 		.word	1184645120
+ 167              		.cfi_endproc
+ 168              	.LFE886:
+ 170              		.section	.text.isp_ae_compute_antiflcker,"ax",%progbits
+ 171              		.align	1
+ 172              		.syntax unified
+ 173              		.thumb
+ 174              		.thumb_func
+ 176              	isp_ae_compute_antiflcker:
+ 177              	.LVL12:
+ 178              	.LFB885:
+  89:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   /* Get equivalent gain/exposure where exposure is a multiple of the flickering period */
+ 179              		.loc 1 89 1 is_stmt 1 view -0
+ 180              		.cfi_startproc
+ 181              		@ args = 0, pretend = 0, frame = 0
+ 182              		@ frame_needed = 0, uses_anonymous_args = 0
+  89:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   /* Get equivalent gain/exposure where exposure is a multiple of the flickering period */
+ 183              		.loc 1 89 1 is_stmt 0 view .LVU48
+ 184 0000 38B5     		push	{r3, r4, r5, lr}
+ 185              	.LCFI1:
+ 186              		.cfi_def_cfa_offset 16
+ 187              		.cfi_offset 3, -16
+ 188              		.cfi_offset 4, -12
+ 189              		.cfi_offset 5, -8
+ 190              		.cfi_offset 14, -4
+ 191 0002 0446     		mov	r4, r0
+ 192 0004 1546     		mov	r5, r2
+  91:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   uint32_t compensation_gain_mdb, compat_period_us;
+ 193              		.loc 1 91 3 is_stmt 1 view .LVU49
+  92:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   uint32_t up_equiv_exposure;
+ 194              		.loc 1 92 3 view .LVU50
+  93:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 195              		.loc 1 93 3 view .LVU51
+  95:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 196              		.loc 1 95 3 view .LVU52
+  95:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 197              		.loc 1 95 20 is_stmt 0 view .LVU53
+ARM GAS  /tmp/ccLNkJSa.s 			page 8
+
+
+ 198 0006 284A     		ldr	r2, .L20+16
+ 199              	.LVL13:
+  95:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 200              		.loc 1 95 20 view .LVU54
+ 201 0008 1268     		ldr	r2, [r2]
+  95:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 202              		.loc 1 95 29 view .LVU55
+ 203 000a 92F87000 		ldrb	r0, [r2, #112]	@ zero_extendqisi2
+ 204              	.LVL14:
+  95:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 205              		.loc 1 95 6 view .LVU56
+ 206 000e E8B1     		cbz	r0, .L18
+ 102:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   up_equiv_exposure = (1 + exposure / compat_period_us) * compat_period_us;
+ 207              		.loc 1 102 3 is_stmt 1 view .LVU57
+ 102:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   up_equiv_exposure = (1 + exposure / compat_period_us) * compat_period_us;
+ 208              		.loc 1 102 42 is_stmt 0 view .LVU58
+ 209 0010 4000     		lsls	r0, r0, #1
+ 102:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   up_equiv_exposure = (1 + exposure / compat_period_us) * compat_period_us;
+ 210              		.loc 1 102 20 view .LVU59
+ 211 0012 264A     		ldr	r2, .L20+20
+ 212 0014 B2FBF0FC 		udiv	ip, r2, r0
+ 213              	.LVL15:
+ 103:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   if ((exposure > compat_period_us) && (exposure < 0.95 * up_equiv_exposure))
+ 214              		.loc 1 103 3 is_stmt 1 view .LVU60
+ 103:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   if ((exposure > compat_period_us) && (exposure < 0.95 * up_equiv_exposure))
+ 215              		.loc 1 103 37 is_stmt 0 view .LVU61
+ 216 0018 B1FBFCF0 		udiv	r0, r1, ip
+ 103:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   if ((exposure > compat_period_us) && (exposure < 0.95 * up_equiv_exposure))
+ 217              		.loc 1 103 21 view .LVU62
+ 218 001c 00FB0CC2 		mla	r2, r0, ip, ip
+ 219              	.LVL16:
+ 104:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 220              		.loc 1 104 3 is_stmt 1 view .LVU63
+ 104:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 221              		.loc 1 104 6 is_stmt 0 view .LVU64
+ 222 0020 8C45     		cmp	ip, r1
+ 223 0022 10D2     		bcs	.L14
+ 104:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 224              		.loc 1 104 50 discriminator 1 view .LVU65
+ 225 0024 07EE901A 		vmov	s15, r1	@ int
+ 226 0028 B8EE676B 		vcvt.f64.u32	d6, s15
+ 104:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 227              		.loc 1 104 57 discriminator 1 view .LVU66
+ 228 002c 07EE902A 		vmov	s15, r2	@ int
+ 229 0030 B8EE677B 		vcvt.f64.u32	d7, s15
+ 230 0034 9FED185B 		vldr.64	d5, .L20
+ 231 0038 27EE057B 		vmul.f64	d7, d7, d5
+ 104:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 232              		.loc 1 104 37 discriminator 1 view .LVU67
+ 233 003c B4EEC76B 		vcmpe.f64	d6, d7
+ 234 0040 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 235 0044 05D4     		bmi	.L19
+ 236              	.L14:
+ 125:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *adjusted_exposure = exposure;
+ 237              		.loc 1 125 5 is_stmt 1 view .LVU68
+ 125:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *adjusted_exposure = exposure;
+ 238              		.loc 1 125 20 is_stmt 0 view .LVU69
+ARM GAS  /tmp/ccLNkJSa.s 			page 9
+
+
+ 239 0046 2C60     		str	r4, [r5]
+ 126:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 240              		.loc 1 126 5 is_stmt 1 view .LVU70
+ 126:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 241              		.loc 1 126 24 is_stmt 0 view .LVU71
+ 242 0048 1960     		str	r1, [r3]
+ 243              	.LVL17:
+ 244              	.L11:
+ 128:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 245              		.loc 1 128 1 view .LVU72
+ 246 004a 38BD     		pop	{r3, r4, r5, pc}
+ 247              	.LVL18:
+ 248              	.L18:
+  97:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *adjusted_exposure = exposure;
+ 249              		.loc 1 97 5 is_stmt 1 view .LVU73
+  97:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *adjusted_exposure = exposure;
+ 250              		.loc 1 97 20 is_stmt 0 view .LVU74
+ 251 004c 2C60     		str	r4, [r5]
+  98:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     return;
+ 252              		.loc 1 98 5 is_stmt 1 view .LVU75
+  98:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     return;
+ 253              		.loc 1 98 24 is_stmt 0 view .LVU76
+ 254 004e 1960     		str	r1, [r3]
+  99:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 255              		.loc 1 99 5 is_stmt 1 view .LVU77
+ 256 0050 FBE7     		b	.L11
+ 257              	.LVL19:
+ 258              	.L19:
+ 108:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 259              		.loc 1 108 5 view .LVU78
+ 108:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 260              		.loc 1 108 56 is_stmt 0 view .LVU79
+ 261 0052 0CFB00F0 		mul	r0, ip, r0
+ 108:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 262              		.loc 1 108 24 view .LVU80
+ 263 0056 1860     		str	r0, [r3]
+ 111:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     compensation_gain_mdb = (uint32_t)(20 * 1000 * log10(compensation_gain));
+ 264              		.loc 1 111 5 is_stmt 1 view .LVU81
+ 111:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     compensation_gain_mdb = (uint32_t)(20 * 1000 * log10(compensation_gain));
+ 265              		.loc 1 111 25 is_stmt 0 view .LVU82
+ 266 0058 07EE901A 		vmov	s15, r1	@ int
+ 267 005c B8EE677A 		vcvt.f32.u32	s14, s15
+ 111:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     compensation_gain_mdb = (uint32_t)(20 * 1000 * log10(compensation_gain));
+ 268              		.loc 1 111 70 view .LVU83
+ 269 0060 0130     		adds	r0, r0, #1
+ 111:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     compensation_gain_mdb = (uint32_t)(20 * 1000 * log10(compensation_gain));
+ 270              		.loc 1 111 43 view .LVU84
+ 271 0062 07EE900A 		vmov	s15, r0	@ int
+ 272 0066 F8EE677A 		vcvt.f32.u32	s15, s15
+ 111:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     compensation_gain_mdb = (uint32_t)(20 * 1000 * log10(compensation_gain));
+ 273              		.loc 1 111 23 view .LVU85
+ 274 006a 87EE270A 		vdiv.f32	s0, s14, s15
+ 275              	.LVL20:
+ 112:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *adjusted_gain = gain + compensation_gain_mdb;
+ 276              		.loc 1 112 5 is_stmt 1 view .LVU86
+ 112:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *adjusted_gain = gain + compensation_gain_mdb;
+ 277              		.loc 1 112 52 is_stmt 0 view .LVU87
+ARM GAS  /tmp/ccLNkJSa.s 			page 10
+
+
+ 278 006e B7EEC00A 		vcvt.f64.f32	d0, s0
+ 279              	.LVL21:
+ 112:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *adjusted_gain = gain + compensation_gain_mdb;
+ 280              		.loc 1 112 52 view .LVU88
+ 281 0072 FFF7FEFF 		bl	log10
+ 282              	.LVL22:
+ 112:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *adjusted_gain = gain + compensation_gain_mdb;
+ 283              		.loc 1 112 50 discriminator 1 view .LVU89
+ 284 0076 9FED0A7B 		vldr.64	d7, .L20+8
+ 285 007a 20EE070B 		vmul.f64	d0, d0, d7
+ 112:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     *adjusted_gain = gain + compensation_gain_mdb;
+ 286              		.loc 1 112 27 discriminator 1 view .LVU90
+ 287 007e BCEEC00B 		vcvt.u32.f64	s0, d0
+ 288              	.LVL23:
+ 113:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (*adjusted_gain > pSensorInfo->gain_max)
+ 289              		.loc 1 113 5 is_stmt 1 view .LVU91
+ 113:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (*adjusted_gain > pSensorInfo->gain_max)
+ 290              		.loc 1 113 27 is_stmt 0 view .LVU92
+ 291 0082 10EE103A 		vmov	r3, s0	@ int
+ 292 0086 2344     		add	r3, r3, r4
+ 113:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (*adjusted_gain > pSensorInfo->gain_max)
+ 293              		.loc 1 113 20 view .LVU93
+ 294 0088 2B60     		str	r3, [r5]
+ 114:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 295              		.loc 1 114 5 is_stmt 1 view .LVU94
+ 114:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 296              		.loc 1 114 37 is_stmt 0 view .LVU95
+ 297 008a 094A     		ldr	r2, .L20+24
+ 298 008c 1268     		ldr	r2, [r2]
+ 299 008e 126B     		ldr	r2, [r2, #48]
+ 114:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 300              		.loc 1 114 8 view .LVU96
+ 301 0090 9342     		cmp	r3, r2
+ 302 0092 DAD9     		bls	.L11
+ 116:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 303              		.loc 1 116 7 is_stmt 1 view .LVU97
+ 116:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 304              		.loc 1 116 22 is_stmt 0 view .LVU98
+ 305 0094 2A60     		str	r2, [r5]
+ 306 0096 D8E7     		b	.L11
+ 307              	.L21:
+ 308              		.align	3
+ 309              	.L20:
+ 310 0098 66666666 		.word	1717986918
+ 311 009c 6666EE3F 		.word	1072588390
+ 312 00a0 00000000 		.word	0
+ 313 00a4 0088D340 		.word	1087604736
+ 314 00a8 00000000 		.word	IQParamConfig
+ 315 00ac 40420F00 		.word	1000000
+ 316 00b0 00000000 		.word	pSensorInfo
+ 317              		.cfi_endproc
+ 318              	.LFE885:
+ 320              		.section	.text.isp_ae_init,"ax",%progbits
+ 321              		.align	1
+ 322              		.global	isp_ae_init
+ 323              		.syntax unified
+ 324              		.thumb
+ARM GAS  /tmp/ccLNkJSa.s 			page 11
+
+
+ 325              		.thumb_func
+ 327              	isp_ae_init:
+ 328              	.LVL24:
+ 329              	.LFB884:
+  70:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   IQParamConfig = ISP_SVC_IQParam_Get(hIsp);
+ 330              		.loc 1 70 1 is_stmt 1 view -0
+ 331              		.cfi_startproc
+ 332              		@ args = 0, pretend = 0, frame = 0
+ 333              		@ frame_needed = 0, uses_anonymous_args = 0
+  70:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   IQParamConfig = ISP_SVC_IQParam_Get(hIsp);
+ 334              		.loc 1 70 1 is_stmt 0 view .LVU100
+ 335 0000 10B5     		push	{r4, lr}
+ 336              	.LCFI2:
+ 337              		.cfi_def_cfa_offset 8
+ 338              		.cfi_offset 4, -8
+ 339              		.cfi_offset 14, -4
+ 340 0002 0446     		mov	r4, r0
+  71:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   pSensorInfo = &hIsp->sensorInfo;
+ 341              		.loc 1 71 3 is_stmt 1 view .LVU101
+  71:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   pSensorInfo = &hIsp->sensorInfo;
+ 342              		.loc 1 71 19 is_stmt 0 view .LVU102
+ 343 0004 FFF7FEFF 		bl	ISP_SVC_IQParam_Get
+ 344              	.LVL25:
+  71:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   pSensorInfo = &hIsp->sensorInfo;
+ 345              		.loc 1 71 17 discriminator 1 view .LVU103
+ 346 0008 034B     		ldr	r3, .L24
+ 347 000a 1860     		str	r0, [r3]
+  72:../Drivers/ISP/isp/Src/isp_ae_algo.c **** }
+ 348              		.loc 1 72 3 is_stmt 1 view .LVU104
+  72:../Drivers/ISP/isp/Src/isp_ae_algo.c **** }
+ 349              		.loc 1 72 17 is_stmt 0 view .LVU105
+ 350 000c 2046     		mov	r0, r4
+ 351 000e 5030     		adds	r0, r0, #80
+  72:../Drivers/ISP/isp/Src/isp_ae_algo.c **** }
+ 352              		.loc 1 72 15 view .LVU106
+ 353 0010 024B     		ldr	r3, .L24+4
+ 354 0012 1860     		str	r0, [r3]
+  73:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 355              		.loc 1 73 1 view .LVU107
+ 356 0014 10BD     		pop	{r4, pc}
+ 357              	.LVL26:
+ 358              	.L25:
+  73:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 359              		.loc 1 73 1 view .LVU108
+ 360 0016 00BF     		.align	2
+ 361              	.L24:
+ 362 0018 00000000 		.word	IQParamConfig
+ 363 001c 00000000 		.word	pSensorInfo
+ 364              		.cfi_endproc
+ 365              	.LFE884:
+ 367              		.section	.text.isp_ae_get_new_exposure,"ax",%progbits
+ 368              		.align	1
+ 369              		.global	isp_ae_get_new_exposure
+ 370              		.syntax unified
+ 371              		.thumb
+ 372              		.thumb_func
+ 374              	isp_ae_get_new_exposure:
+ARM GAS  /tmp/ccLNkJSa.s 			page 12
+
+
+ 375              	.LVL27:
+ 376              	.LFB887:
+ 182:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 183:../Drivers/ISP/isp/Src/isp_ae_algo.c **** /**
+ 184:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @brief  isp_ae_get_new_exposure
+ 185:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         This function computes the new sensor exposure to be applied
+ 186:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         for a given lux and a given luminance target
+ 187:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         This function is implemented in accordance with the exposure estimation
+ 188:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         principles based on the estimated lux value of the current scene.
+ 189:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         There are 3 models of new sensor exposure estimation used in this AE algorithm:
+ 190:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         - Estimation 1 is used for values above 𝐿𝑢𝑥𝑅𝑒𝑓_𝐻𝐿
+ 191:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         - Estimation 2 is used for values below 𝐿𝑢𝑥𝑅𝑒𝑓_𝐻𝐿 and above �
+ 192:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         - Estimation 3 is used for values from 0 to 𝑐𝑢𝑠𝑡𝑜𝑚_𝑙𝑜𝑤_𝑙�
+ 193:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *           𝑐𝑢𝑠𝑡𝑜𝑚_𝑙𝑜𝑤_𝑙𝑢𝑥_𝑙𝑖𝑚𝑖𝑡 should be set
+ 194:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *           𝑎_𝐿𝐿×𝑙𝑢𝑚_𝑡𝑎𝑟𝑔𝑒𝑡×𝑐𝑎𝑙𝑖𝑏𝐹𝑎�
+ 195:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         Two types of convergence are targeted:
+ 196:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         - COARSE CONVERGENCE: in the 1st iteration, the exposure calculation brings
+ 197:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *           the luminance value close to the target
+ 198:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *         - FINE CONVERGENCE: in the following iteration,  if fine convergence has not been
+ 199:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *           achieved yet with the previous calculation, small increments are applied to
+ 200:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *           reach high accuracy.
+ 201:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @param  lux      : current lux value of the captured scene
+ 202:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @param  averageL : current average luminance statistic
+ 203:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @param  pExposure: pointer to the new exposure time value (us)
+ 204:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @param  pGain    : pointer to the new sensor gain value (mdB)
+ 205:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @param  exposure : current sensor exposure time value (us)
+ 206:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @param  gain     : current sensor gain value (mdB)
+ 207:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   * @retval None
+ 208:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   */
+ 209:../Drivers/ISP/isp/Src/isp_ae_algo.c **** void isp_ae_get_new_exposure(uint32_t lux, uint32_t averageL, uint32_t *pExposure, uint32_t *pGain,
+ 210:../Drivers/ISP/isp/Src/isp_ae_algo.c **** {
+ 377              		.loc 1 210 1 is_stmt 1 view -0
+ 378              		.cfi_startproc
+ 379              		@ args = 8, pretend = 0, frame = 8
+ 380              		@ frame_needed = 0, uses_anonymous_args = 0
+ 381              		.loc 1 210 1 is_stmt 0 view .LVU110
+ 382 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 383              	.LCFI3:
+ 384              		.cfi_def_cfa_offset 32
+ 385              		.cfi_offset 4, -32
+ 386              		.cfi_offset 5, -28
+ 387              		.cfi_offset 6, -24
+ 388              		.cfi_offset 7, -20
+ 389              		.cfi_offset 8, -16
+ 390              		.cfi_offset 9, -12
+ 391              		.cfi_offset 10, -8
+ 392              		.cfi_offset 14, -4
+ 393 0004 2DED088B 		vpush.64	{d8, d9, d10, d11}
+ 394              	.LCFI4:
+ 395              		.cfi_def_cfa_offset 64
+ 396              		.cfi_offset 80, -64
+ 397              		.cfi_offset 81, -60
+ 398              		.cfi_offset 82, -56
+ 399              		.cfi_offset 83, -52
+ 400              		.cfi_offset 84, -48
+ 401              		.cfi_offset 85, -44
+ 402              		.cfi_offset 86, -40
+ARM GAS  /tmp/ccLNkJSa.s 			page 13
+
+
+ 403              		.cfi_offset 87, -36
+ 404 0008 82B0     		sub	sp, sp, #8
+ 405              	.LCFI5:
+ 406              		.cfi_def_cfa_offset 72
+ 407 000a 0446     		mov	r4, r0
+ 408 000c 0E46     		mov	r6, r1
+ 409 000e 1746     		mov	r7, r2
+ 410 0010 1D46     		mov	r5, r3
+ 211:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   double a, b, c, d;
+ 411              		.loc 1 211 3 is_stmt 1 view .LVU111
+ 212:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   double cur_global_exposure = exposure * pow(10, (double)gain / 20000);
+ 412              		.loc 1 212 3 view .LVU112
+ 413              		.loc 1 212 41 is_stmt 0 view .LVU113
+ 414 0012 DDED127A 		vldr.32	s15, [sp, #72]	@ int
+ 415 0016 B8EE679B 		vcvt.f64.u32	d9, s15
+ 416              		.loc 1 212 51 view .LVU114
+ 417 001a DDED137A 		vldr.32	s15, [sp, #76]	@ int
+ 418 001e B8EE67AB 		vcvt.f64.u32	d10, s15
+ 419              		.loc 1 212 43 view .LVU115
+ 420 0022 9FED8D1B 		vldr.64	d1, .L149
+ 421 0026 8AEE011B 		vdiv.f64	d1, d10, d1
+ 422 002a B2EE040B 		vmov.f64	d0, #1.0e+1
+ 423 002e FFF7FEFF 		bl	pow
+ 424              	.LVL28:
+ 425              		.loc 1 212 10 discriminator 1 view .LVU116
+ 426 0032 29EE008B 		vmul.f64	d8, d9, d0
+ 427              	.LVL29:
+ 213:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   double new_global_exposure;
+ 428              		.loc 1 213 3 is_stmt 1 view .LVU117
+ 214:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   uint32_t custom_low_lux_limit = ((uint32_t)(((double)IQParamConfig->AECAlgo.exposureTarget * (dou
+ 429              		.loc 1 214 3 view .LVU118
+ 430              		.loc 1 214 69 is_stmt 0 view .LVU119
+ 431 0036 8E4B     		ldr	r3, .L149+24
+ 432 0038 1B68     		ldr	r3, [r3]
+ 433              		.loc 1 214 48 view .LVU120
+ 434 003a D3ED1B7A 		vldr.32	s15, [r3, #108]	@ int
+ 435 003e B8EE677B 		vcvt.f64.u32	d7, s15
+ 436              		.loc 1 214 125 view .LVU121
+ 437 0042 93EDA46A 		vldr.32	s12, [r3, #656]
+ 438              		.loc 1 214 96 view .LVU122
+ 439 0046 B7EEC66A 		vcvt.f64.f32	d6, s12
+ 440              		.loc 1 214 94 view .LVU123
+ 441 004a 27EE067B 		vmul.f64	d7, d7, d6
+ 215:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.LL_Expo1 / IQParamConfig->luxRef.LL_Lum1 -
+ 442              		.loc 1 215 12 view .LVU124
+ 443 004e D3EDA06A 		vldr.32	s13, [r3, #640]	@ int
+ 444 0052 B8EE666B 		vcvt.f64.u32	d6, s13
+ 445              		.loc 1 215 74 view .LVU125
+ 446 0056 93F88422 		ldrb	r2, [r3, #644]	@ zero_extendqisi2
+ 447 005a 05EE102A 		vmov	s10, r2	@ int
+ 448              		.loc 1 215 51 view .LVU126
+ 449 005e B8EEC55B 		vcvt.f64.s32	d5, s10
+ 450 0062 86EE053B 		vdiv.f64	d3, d6, d5
+ 216:../Drivers/ISP/isp/Src/isp_ae_algo.c ****            (double)IQParamConfig->luxRef.LL_Expo2 / IQParamConfig->luxRef.LL_Lum2) /
+ 451              		.loc 1 216 12 view .LVU127
+ 452 0066 D3EDA25A 		vldr.32	s11, [r3, #648]	@ int
+ 453 006a B8EE654B 		vcvt.f64.u32	d4, s11
+ARM GAS  /tmp/ccLNkJSa.s 			page 14
+
+
+ 454              		.loc 1 216 74 view .LVU128
+ 455 006e 93F88C22 		ldrb	r2, [r3, #652]	@ zero_extendqisi2
+ 456 0072 05EE102A 		vmov	s10, r2	@ int
+ 457              		.loc 1 216 51 view .LVU129
+ 458 0076 B8EEC55B 		vcvt.f64.s32	d5, s10
+ 459 007a 84EE052B 		vdiv.f64	d2, d4, d5
+ 215:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.LL_Expo1 / IQParamConfig->luxRef.LL_Lum1 -
+ 460              		.loc 1 215 83 view .LVU130
+ 461 007e 33EE423B 		vsub.f64	d3, d3, d2
+ 214:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   uint32_t custom_low_lux_limit = ((uint32_t)(((double)IQParamConfig->AECAlgo.exposureTarget * (dou
+ 462              		.loc 1 214 173 view .LVU131
+ 463 0082 D3ED9F5A 		vldr.32	s11, [r3, #636]	@ int
+ 464 0086 B8EE655B 		vcvt.f64.u32	d5, s11
+ 465 008a 25EE035B 		vmul.f64	d5, d5, d3
+ 217:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.LL_Expo1 - IQParamConfig->luxRef.LL_Expo2))) / AE_LOW_LUX_
+ 466              		.loc 1 217 51 view .LVU132
+ 467 008e 36EE446B 		vsub.f64	d6, d6, d4
+ 216:../Drivers/ISP/isp/Src/isp_ae_algo.c ****            (double)IQParamConfig->luxRef.LL_Expo2 / IQParamConfig->luxRef.LL_Lum2) /
+ 468              		.loc 1 216 84 view .LVU133
+ 469 0092 85EE064B 		vdiv.f64	d4, d5, d6
+ 214:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.LL_Expo1 / IQParamConfig->luxRef.LL_Lum1 -
+ 470              		.loc 1 214 138 view .LVU134
+ 471 0096 27EE045B 		vmul.f64	d5, d7, d4
+ 472              		.loc 1 217 87 view .LVU135
+ 473 009a 9FED714B 		vldr.64	d4, .L149+8
+ 474 009e 85EE046B 		vdiv.f64	d6, d5, d4
+ 214:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.LL_Expo1 / IQParamConfig->luxRef.LL_Lum1 -
+ 475              		.loc 1 214 36 view .LVU136
+ 476 00a2 BCEEC66B 		vcvt.u32.f64	s12, d6
+ 214:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.LL_Expo1 / IQParamConfig->luxRef.LL_Lum1 -
+ 477              		.loc 1 214 12 view .LVU137
+ 478 00a6 3221     		movs	r1, #50
+ 479 00a8 16EE102A 		vmov	r2, s12	@ int
+ 480 00ac 02FB0112 		mla	r2, r2, r1, r1
+ 481 00b0 9146     		mov	r9, r2
+ 482              	.LVL30:
+ 218:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   uint32_t custom_high_lux_limit = ((uint32_t)(((double)IQParamConfig->AECAlgo.exposureTarget * (do
+ 483              		.loc 1 218 3 is_stmt 1 view .LVU138
+ 484              		.loc 1 218 163 is_stmt 0 view .LVU139
+ 485 00b2 93ED9A5A 		vldr.32	s10, [r3, #616]	@ int
+ 219:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.HL_Expo1 / IQParamConfig->luxRef.HL_Lum1 -
+ 486              		.loc 1 219 12 view .LVU140
+ 487 00b6 D3ED9B6A 		vldr.32	s13, [r3, #620]	@ int
+ 488 00ba B8EE666B 		vcvt.f64.u32	d6, s13
+ 489              		.loc 1 219 74 view .LVU141
+ 490 00be 93F87022 		ldrb	r2, [r3, #624]	@ zero_extendqisi2
+ 491              	.LVL31:
+ 492              		.loc 1 219 74 view .LVU142
+ 493 00c2 03EE102A 		vmov	s6, r2	@ int
+ 494              		.loc 1 219 51 view .LVU143
+ 495 00c6 B8EEC33B 		vcvt.f64.s32	d3, s6
+ 496 00ca 86EE032B 		vdiv.f64	d2, d6, d3
+ 220:../Drivers/ISP/isp/Src/isp_ae_algo.c ****            (double)IQParamConfig->luxRef.HL_Expo2 / IQParamConfig->luxRef.HL_Lum2) /
+ 497              		.loc 1 220 12 view .LVU144
+ 498 00ce D3ED9D5A 		vldr.32	s11, [r3, #628]	@ int
+ 499 00d2 B8EE653B 		vcvt.f64.u32	d3, s11
+ 500              		.loc 1 220 74 view .LVU145
+ARM GAS  /tmp/ccLNkJSa.s 			page 15
+
+
+ 501 00d6 93F87832 		ldrb	r3, [r3, #632]	@ zero_extendqisi2
+ 502 00da 01EE103A 		vmov	s2, r3	@ int
+ 503              		.loc 1 220 51 view .LVU146
+ 504 00de B8EEC11B 		vcvt.f64.s32	d1, s2
+ 505 00e2 83EE010B 		vdiv.f64	d0, d3, d1
+ 219:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.HL_Expo1 / IQParamConfig->luxRef.HL_Lum1 -
+ 506              		.loc 1 219 83 view .LVU147
+ 507 00e6 32EE402B 		vsub.f64	d2, d2, d0
+ 218:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   uint32_t custom_high_lux_limit = ((uint32_t)(((double)IQParamConfig->AECAlgo.exposureTarget * (do
+ 508              		.loc 1 218 174 view .LVU148
+ 509 00ea B8EE455B 		vcvt.f64.u32	d5, s10
+ 510 00ee 25EE025B 		vmul.f64	d5, d5, d2
+ 221:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.HL_Expo1 - IQParamConfig->luxRef.HL_Expo2))) / AE_LOW_LUX_
+ 511              		.loc 1 221 51 view .LVU149
+ 512 00f2 36EE436B 		vsub.f64	d6, d6, d3
+ 220:../Drivers/ISP/isp/Src/isp_ae_algo.c ****            (double)IQParamConfig->luxRef.HL_Expo2 / IQParamConfig->luxRef.HL_Lum2) /
+ 513              		.loc 1 220 84 view .LVU150
+ 514 00f6 85EE063B 		vdiv.f64	d3, d5, d6
+ 218:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.HL_Expo1 / IQParamConfig->luxRef.HL_Lum1 -
+ 515              		.loc 1 218 139 view .LVU151
+ 516 00fa 27EE037B 		vmul.f64	d7, d7, d3
+ 517              		.loc 1 221 87 view .LVU152
+ 518 00fe 87EE046B 		vdiv.f64	d6, d7, d4
+ 218:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.HL_Expo1 / IQParamConfig->luxRef.HL_Lum1 -
+ 519              		.loc 1 218 37 view .LVU153
+ 520 0102 BCEEC66B 		vcvt.u32.f64	s12, d6
+ 218:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.HL_Expo1 / IQParamConfig->luxRef.HL_Lum1 -
+ 521              		.loc 1 218 12 view .LVU154
+ 522 0106 16EE103A 		vmov	r3, s12	@ int
+ 523 010a 03FB0113 		mla	r3, r3, r1, r1
+ 524 010e 9A46     		mov	r10, r3
+ 525              	.LVL32:
+ 222:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   uint32_t curExposure, curGain;
+ 526              		.loc 1 222 3 is_stmt 1 view .LVU155
+ 223:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 224:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   /**** Handle start conditions ****/
+ 225:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   /* This code aims to slightly deviate from the camera's minimum exposure settings
+ 226:../Drivers/ISP/isp/Src/isp_ae_algo.c ****    * in order to capture enough light and make a first non-zero estimate of lux */
+ 227:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   if (averageL <= 5 && exposure == pSensorInfo->exposure_min && gain == pSensorInfo->gain_min)
+ 527              		.loc 1 227 3 view .LVU156
+ 528              		.loc 1 227 6 is_stmt 0 view .LVU157
+ 529 0110 052E     		cmp	r6, #5
+ 530 0112 07D8     		bhi	.L27
+ 531              		.loc 1 227 47 discriminator 1 view .LVU158
+ 532 0114 574B     		ldr	r3, .L149+28
+ 533              	.LVL33:
+ 534              		.loc 1 227 47 discriminator 1 view .LVU159
+ 535 0116 D3F80080 		ldr	r8, [r3]
+ 536 011a D8F83830 		ldr	r3, [r8, #56]
+ 537              		.loc 1 227 21 discriminator 1 view .LVU160
+ 538 011e 129A     		ldr	r2, [sp, #72]
+ 539 0120 9342     		cmp	r3, r2
+ 540 0122 3AD0     		beq	.L146
+ 541              	.L27:
+ 228:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 229:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     new_global_exposure = gain ? exposure * pow(10, ((double)gain + 3000) / 20000) : exposure + 200
+ 230:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (new_global_exposure <= pSensorInfo->exposure_max)
+ARM GAS  /tmp/ccLNkJSa.s 			page 16
+
+
+ 231:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 232:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = 0;
+ 233:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pExposure = (new_global_exposure < pSensorInfo->exposure_min) ? pSensorInfo->exposure_min : 
+ 234:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 235:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     else
+ 236:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 237:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pExposure = pSensorInfo->exposure_max;
+ 238:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = (uint32_t)(20 * 1000 * log10((float)new_global_exposure / (float)(*pExposure)));
+ 239:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = (*pGain < pSensorInfo->gain_min) ? pSensorInfo->gain_min : (*pGain > pSensorInfo->ag
+ 240:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 241:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     return;
+ 242:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 243:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 244:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   /**** Get equivalent sensor gain/exposure where exposure is at its max possible value ****/
+ 245:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   /* ONLY USEFUL WHEN WHEN ANTI-FLICKER IS ACTIVATED
+ 246:../Drivers/ISP/isp/Src/isp_ae_algo.c ****    * In case, sensor exposure time has been compensated by sensor gain for anti-flicker,
+ 247:../Drivers/ISP/isp/Src/isp_ae_algo.c ****    * calculate the value that would be applied without anti-flicker activated */
+ 248:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   isp_ae_reverse_antiflicker(gain, exposure, &curGain, &curExposure);
+ 542              		.loc 1 248 3 is_stmt 1 view .LVU161
+ 543 0124 01AB     		add	r3, sp, #4
+ 544 0126 6A46     		mov	r2, sp
+ 545 0128 1299     		ldr	r1, [sp, #72]
+ 546 012a 1398     		ldr	r0, [sp, #76]
+ 547 012c FFF7FEFF 		bl	isp_ae_reverse_antiflicker
+ 548              	.LVL34:
+ 249:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 250:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   /**** Check if coarse convergence is reached ****/
+ 251:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   /* Tolerance for coarse convergence is different in case we are in very low lux conditions (sligh
+ 252:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   if (((lux > AE_LOW_LUX_LIMIT) && (abs((int32_t)averageL - (int32_t)IQParamConfig->AECAlgo.exposur
+ 549              		.loc 1 252 3 view .LVU162
+ 550              		.loc 1 252 6 is_stmt 0 view .LVU163
+ 551 0130 322C     		cmp	r4, #50
+ 552 0132 40F2A380 		bls	.L36
+ 553              		.loc 1 252 83 discriminator 1 view .LVU164
+ 554 0136 4E4B     		ldr	r3, .L149+24
+ 555 0138 1B68     		ldr	r3, [r3]
+ 556              		.loc 1 252 92 discriminator 1 view .LVU165
+ 557 013a DB6E     		ldr	r3, [r3, #108]
+ 558              		.loc 1 252 59 discriminator 1 view .LVU166
+ 559 013c F21A     		subs	r2, r6, r3
+ 560              		.loc 1 252 37 discriminator 1 view .LVU167
+ 561 013e 48BF     		it	mi
+ 562 0140 5242     		rsbmi	r2, r2, #0
+ 563              		.loc 1 252 109 discriminator 1 view .LVU168
+ 564 0142 07EE902A 		vmov	s15, r2	@ int
+ 565 0146 B8EEE77A 		vcvt.f32.s32	s14, s15
+ 566              		.loc 1 252 111 discriminator 1 view .LVU169
+ 567 014a 07EE903A 		vmov	s15, r3	@ int
+ 568 014e F8EE677A 		vcvt.f32.u32	s15, s15
+ 569 0152 DFED496A 		vldr.32	s13, .L149+32
+ 570 0156 67EEA67A 		vmul.f32	s15, s15, s13
+ 571 015a F2EE046A 		vmov.f32	s13, #1.0e+1
+ 572 015e F4EEE67A 		vcmpe.f32	s15, s13
+ 573 0162 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 574 0166 01DC     		bgt	.L37
+ 575              		.loc 1 252 111 discriminator 3 view .LVU170
+ 576 0168 F0EE667A 		vmov.f32	s15, s13
+ARM GAS  /tmp/ccLNkJSa.s 			page 17
+
+
+ 577              	.L37:
+ 578              		.loc 1 252 33 discriminator 4 view .LVU171
+ 579 016c B4EEE77A 		vcmpe.f32	s14, s15
+ 580 0170 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 581 0174 00F3A980 		bgt	.L38
+ 582              	.L39:
+ 253:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       ((lux <= AE_LOW_LUX_LIMIT) && (abs((int32_t)averageL - (int32_t)IQParamConfig->AECAlgo.exposu
+ 254:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 255:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     /**** COARSE CONVERGENCE not reached ****/
+ 256:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     /* The AE algorithm process intends to calculate the sensor exposure needed to approach the lum
+ 257:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 258:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     /**** Select the estimation model to apply according to the lux value ****/
+ 259:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if ((lux <= IQParamConfig->luxRef.HL_LuxRef) || (lux <= custom_high_lux_limit))
+ 260:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 261:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /**** Apply ESTIMATION 2 model below 𝐿𝑢𝑥𝑅𝑒𝑓_𝐻𝐿 ****/
+ 262:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /* Calculate a and b with the low lux references to improve precision when lux is under HL_Lu
+ 263:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       a = (IQParamConfig->luxRef.LL_LuxRef *
+ 264:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.LL_Expo1 / IQParamConfig->luxRef.LL_Lum1 -
+ 265:../Drivers/ISP/isp/Src/isp_ae_algo.c ****            (double)IQParamConfig->luxRef.LL_Expo2 / IQParamConfig->luxRef.LL_Lum2)) /
+ 266:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.LL_Expo1 - IQParamConfig->luxRef.LL_Expo2);
+ 267:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 268:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       b = (IQParamConfig->luxRef.LL_LuxRef * (double)IQParamConfig->luxRef.LL_Expo1 / IQParamConfig
+ 269:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           (a * IQParamConfig->luxRef.LL_Expo1);
+ 270:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 271:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     else
+ 272:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 273:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /**** Apply ESTIMATION 1 model above 𝐿𝑢𝑥𝑅𝑒𝑓_𝐻𝐿 ****/
+ 274:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /* Calculate a and b with the high lux references for higher lux conditions*/
+ 275:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       a = (IQParamConfig->luxRef.HL_LuxRef *
+ 276:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.HL_Expo1 / IQParamConfig->luxRef.HL_Lum1 -
+ 277:../Drivers/ISP/isp/Src/isp_ae_algo.c ****            (double)IQParamConfig->luxRef.HL_Expo2 / IQParamConfig->luxRef.HL_Lum2)) /
+ 278:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.HL_Expo1 - IQParamConfig->luxRef.HL_Expo2);
+ 279:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 280:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       b = (IQParamConfig->luxRef.HL_LuxRef * (double)IQParamConfig->luxRef.HL_Expo1 / IQParamConfig
+ 281:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           (a * IQParamConfig->luxRef.HL_Expo1);
+ 282:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 283:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 284:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (lux <= custom_low_lux_limit)
+ 285:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 286:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /**** Switch to ESTIMATION 3 model below 𝑐𝑢𝑠𝑡𝑜𝑚_𝑙𝑜𝑤_𝑙𝑢𝑥_�
+ 287:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /* Calculate coefficient for very low lux model as we reach the limit of the previous one */
+ 288:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       d = pSensorInfo->exposure_max * pow(10, (double)pSensorInfo->again_max / 20000);
+ 289:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       c = ((b / (((double)custom_low_lux_limit / ((double)IQParamConfig->AECAlgo.exposureTarget * (
+ 290:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 291:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /* Compute new global exposure to apply in ESTIMATION 3 model*/
+ 292:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       new_global_exposure = (c * (double)lux) + d;
+ 293:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 294:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     else
+ 295:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 296:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /**** Process ESTIMATION 1 or 2 model ****/
+ 297:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /* Compute new global exposure to apply in ESTIMATION 1 or 2 model*/
+ 298:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /* Else apply previous estimation model with a and b coefficients */
+ 299:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       new_global_exposure = b / (((double)lux / ((double)IQParamConfig->AECAlgo.exposureTarget * (d
+ 300:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 301:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 302:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     /**** Check validity of new global exposure ****/
+ 303:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     /* Check the different cases:
+ARM GAS  /tmp/ccLNkJSa.s 			page 18
+
+
+ 304:../Drivers/ISP/isp/Src/isp_ae_algo.c ****      * - CASE 1: when averageL is under the target, the exposure is supposed to be increased
+ 305:../Drivers/ISP/isp/Src/isp_ae_algo.c ****      * - CASE 2: when averageL is above the target, the exposure is supposed to be decreased
+ 306:../Drivers/ISP/isp/Src/isp_ae_algo.c ****      * If the new exposure is not valid, then we switch to a standard incremental method,
+ 307:../Drivers/ISP/isp/Src/isp_ae_algo.c ****      * using the averageL statistic as a parameter to calculate the new exposure.
+ 308:../Drivers/ISP/isp/Src/isp_ae_algo.c ****      * This will ensure that the target will be reach in any case.
+ 309:../Drivers/ISP/isp/Src/isp_ae_algo.c ****      * */
+ 310:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (averageL < IQParamConfig->AECAlgo.exposureTarget)
+ 311:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 312:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /**** CASE 1 ****/
+ 313:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /* Exposure should be increased */
+ 314:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       if (new_global_exposure <= cur_global_exposure)
+ 315:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 316:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         /* Wrong estimation, to be corrected */
+ 317:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         new_global_exposure = -1; // reset to -1
+ 318:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 319:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         /* Same lux estimation but previous setting did not allow convergence, so we need to change
+ 320:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         if ((abs((int32_t)lux - (int32_t)previous_lux) <= (float)lux * 0.05f) && (lux != 0))
+ 321:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 322:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           /* Use the luminance information for readjustment */
+ 323:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           new_global_exposure = cur_global_exposure * ((double)IQParamConfig->AECAlgo.exposureTarge
+ 324:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 325:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 326:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         if (new_global_exposure <= 0)
+ 327:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 328:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           /* Increase exposure with small increment to get closer to target */
+ 329:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           if (cur_global_exposure <= pSensorInfo->exposure_max)
+ 330:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           {
+ 331:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             new_global_exposure = averageL ? cur_global_exposure * (double)IQParamConfig->AECAlgo.e
+ 332:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 333:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           else
+ 334:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           {
+ 335:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             new_global_exposure = pSensorInfo->exposure_max * pow(10, ((double)curGain + AE_GAIN_CO
+ 336:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 337:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 338:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 339:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 340:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /**** Additional safeguards to ensure the proper behavior of the algorithm ****/
+ 341:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /* Check ratios are consistent when big or small changes are requested */
+ 342:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       if (cur_global_exposure != 0 && averageL != 0)
+ 343:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 344:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         /* Compare exposure ratio and luminance ratio, to check the consistency of the results */
+ 345:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         if ((((new_global_exposure / cur_global_exposure) < 1.10) && (((double)IQParamConfig->AECAl
+ 346:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 1.50) && (((double)IQParamConfig->AECAl
+ 347:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) > 1.65) && (((double)IQParamConfig->AECAl
+ 348:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) > 1.35) && (((double)IQParamConfig->AECAl
+ 349:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (new_global_exposure / cur_global_exposure) < 1.02) /* Or same exposure estimation but 
+ 350:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 351:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           /* Apply the same ratio */
+ 352:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           new_global_exposure = cur_global_exposure * ((double)IQParamConfig->AECAlgo.exposureTarge
+ 353:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 354:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 355:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 356:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     else
+ 357:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 358:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /**** CASE 2 ****/
+ 359:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /* Exposure should be decreased */
+ 360:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       if (new_global_exposure >= cur_global_exposure)
+ARM GAS  /tmp/ccLNkJSa.s 			page 19
+
+
+ 361:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 362:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         /* Wrong estimation, to be corrected */
+ 363:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         new_global_exposure = -1;
+ 364:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 365:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         /* Same lux estimation but previous setting did not allow convergence, so we need to change
+ 366:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         if ((abs((int32_t)lux - (int32_t)previous_lux) <= (float)lux * 0.05f) && (lux != 0))
+ 367:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 368:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           /* Use the luminance information for readjustment */
+ 369:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           new_global_exposure = cur_global_exposure * ((double)IQParamConfig->AECAlgo.exposureTarge
+ 370:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 371:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 372:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         if (new_global_exposure <= 0) //small step to get closer to target
+ 373:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 374:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           /* Decrease exposure with small decrement to get closer to target */
+ 375:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           if (cur_global_exposure <= pSensorInfo->exposure_max)
+ 376:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           {
+ 377:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             new_global_exposure = averageL ? cur_global_exposure * (double)IQParamConfig->AECAlgo.e
+ 378:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 379:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           else
+ 380:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           {
+ 381:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             new_global_exposure = pSensorInfo->exposure_max * pow(10, ((double)curGain - AE_GAIN_CO
+ 382:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 383:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 384:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 385:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 386:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /**** Additional safeguards to ensure the proper behavior of the algorithm ****/
+ 387:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /* Check ratios are consistent when big or small changes are requested */
+ 388:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       if (cur_global_exposure != 0 && averageL != 0)
+ 389:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 390:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           /* Compare exposure ratio and luminance ratio, to check the consistency of the results */
+ 391:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         if ((((new_global_exposure / cur_global_exposure) > 0.60) && (((double)IQParamConfig->AECAl
+ 392:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.45) && (((double)IQParamConfig->AECAl
+ 393:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.15) && (((double)IQParamConfig->AECAl
+ 394:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.60) && (((double)IQParamConfig->AECAl
+ 395:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (new_global_exposure / cur_global_exposure) > 0.98) /* Or same exposure estimation but 
+ 396:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 397:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           /* Apply the same ratio */
+ 398:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           new_global_exposure = cur_global_exposure * ((double)IQParamConfig->AECAlgo.exposureTarge
+ 399:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 400:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 401:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 402:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 403:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     /**** Clamp and split exposure into exposure value and gain ****/
+ 404:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (new_global_exposure <= pSensorInfo->exposure_max)
+ 405:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 406:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = 0;
+ 407:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pExposure = (new_global_exposure < pSensorInfo->exposure_min) ? pSensorInfo->exposure_min : 
+ 408:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 409:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     else
+ 410:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 411:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pExposure = pSensorInfo->exposure_max;
+ 412:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = (uint32_t)(20 * 1000 * log10(new_global_exposure / (double)(*pExposure)));
+ 413:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 414:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /* Limit digital gain (lux value is very low and the gain is already very high and we need to
+ 415:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       if ((*pGain > pSensorInfo->again_max) && (abs((int32_t)*pGain - (int32_t)curGain) > AE_MAX_GA
+ 416:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 417:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         *pGain = *pGain < curGain ? (curGain < AE_MAX_GAIN_INCREMENT ? 0 : curGain - AE_MAX_GAIN_IN
+ARM GAS  /tmp/ccLNkJSa.s 			page 20
+
+
+ 418:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 419:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = (*pGain < pSensorInfo->gain_min) ? pSensorInfo->gain_min : (*pGain > pSensorInfo->ga
+ 420:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 421:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 422:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   else
+ 423:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 424:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 425:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     /**** COARSE CONVERGENCE is reached ****/
+ 426:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     /* Check if fine convergence processing is required to reach high accuracy */
+ 427:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 428:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     /* Coarse convergence reached, refine convergence */
+ 429:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (((lux > AE_LOW_LUX_LIMIT) && (abs((int32_t)averageL - (int32_t)IQParamConfig->AECAlgo.expos
+ 583              		.loc 1 429 85 discriminator 1 view .LVU172
+ 584 0178 3D4B     		ldr	r3, .L149+24
+ 585 017a 1B68     		ldr	r3, [r3]
+ 586              		.loc 1 429 94 discriminator 1 view .LVU173
+ 587 017c DB6E     		ldr	r3, [r3, #108]
+ 588              		.loc 1 429 61 discriminator 1 view .LVU174
+ 589 017e F31A     		subs	r3, r6, r3
+ 590              		.loc 1 429 39 discriminator 1 view .LVU175
+ 591 0180 48BF     		it	mi
+ 592 0182 5B42     		rsbmi	r3, r3, #0
+ 593              		.loc 1 429 35 discriminator 1 view .LVU176
+ 594 0184 052B     		cmp	r3, #5
+ 595 0186 00F3E083 		bgt	.L100
+ 596              		.loc 1 429 133 discriminator 2 view .LVU177
+ 597 018a 322C     		cmp	r4, #50
+ 598 018c 40F2D183 		bls	.L99
+ 599              	.L101:
+ 430:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         ((lux <= AE_LOW_LUX_LIMIT) && (abs((int32_t)averageL - (int32_t)IQParamConfig->AECAlgo.expo
+ 431:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 432:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /**** FINE CONVERGENCE not reached ****/
+ 433:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 434:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       if (averageL < IQParamConfig->AECAlgo.exposureTarget)
+ 435:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 436:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         /* Slightly increase exposure */
+ 437:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         if (cur_global_exposure <= pSensorInfo->exposure_max)
+ 438:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 439:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           new_global_exposure = averageL ? cur_global_exposure * (double)IQParamConfig->AECAlgo.exp
+ 440:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 441:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         else
+ 442:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 443:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           new_global_exposure = pSensorInfo->exposure_max * pow(10, ((double)curGain + AE_GAIN_FINE
+ 444:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 445:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 446:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       else
+ 447:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 448:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         /* Slightly decrease exposure */
+ 449:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         if (cur_global_exposure <= pSensorInfo->exposure_max)
+ 450:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 451:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           new_global_exposure = averageL ? cur_global_exposure * (double)IQParamConfig->AECAlgo.exp
+ 452:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 453:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         else
+ 454:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 455:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           new_global_exposure = pSensorInfo->exposure_max * pow(10, ((double)curGain - AE_GAIN_FINE
+ 456:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 457:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ARM GAS  /tmp/ccLNkJSa.s 			page 21
+
+
+ 458:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 459:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /* Clamp and split exposure into exposure value and gain */
+ 460:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       if (new_global_exposure <= pSensorInfo->exposure_max)
+ 461:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 462:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         *pGain = 0;
+ 463:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         *pExposure = (new_global_exposure < pSensorInfo->exposure_min) ? pSensorInfo->exposure_min 
+ 464:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 465:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       else
+ 466:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 467:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         *pExposure = pSensorInfo->exposure_max;
+ 468:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         *pGain = (uint32_t)(20 * 1000 * log10((float)new_global_exposure / (float)(*pExposure)));
+ 469:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 470:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         *pGain = (*pGain < pSensorInfo->gain_min) ? pSensorInfo->gain_min : (*pGain > pSensorInfo->
+ 471:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 472:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 473:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     else
+ 474:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 475:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /**** FINE CONVERGENCE is reached ****/
+ 476:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       /* Converged */
+ 477:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pExposure = curExposure;
+ 600              		.loc 1 477 7 is_stmt 1 view .LVU178
+ 601              		.loc 1 477 18 is_stmt 0 view .LVU179
+ 602 0190 019B     		ldr	r3, [sp, #4]
+ 603 0192 3B60     		str	r3, [r7]
+ 478:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = curGain;
+ 604              		.loc 1 478 7 is_stmt 1 view .LVU180
+ 605              		.loc 1 478 14 is_stmt 0 view .LVU181
+ 606 0194 009B     		ldr	r3, [sp]
+ 607 0196 2B60     		str	r3, [r5]
+ 608 0198 C9E1     		b	.L94
+ 609              	.L146:
+ 227:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 610              		.loc 1 227 84 discriminator 2 view .LVU182
+ 611 019a D8F82C30 		ldr	r3, [r8, #44]
+ 227:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 612              		.loc 1 227 62 discriminator 2 view .LVU183
+ 613 019e 139A     		ldr	r2, [sp, #76]
+ 614 01a0 9342     		cmp	r3, r2
+ 615 01a2 BFD1     		bne	.L27
+ 229:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (new_global_exposure <= pSensorInfo->exposure_max)
+ 616              		.loc 1 229 5 is_stmt 1 view .LVU184
+ 229:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (new_global_exposure <= pSensorInfo->exposure_max)
+ 617              		.loc 1 229 84 is_stmt 0 view .LVU185
+ 618 01a4 22BB     		cbnz	r2, .L147
+ 229:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (new_global_exposure <= pSensorInfo->exposure_max)
+ 619              		.loc 1 229 95 discriminator 3 view .LVU186
+ 620 01a6 129B     		ldr	r3, [sp, #72]
+ 621 01a8 03F5FA63 		add	r3, r3, #2000
+ 622 01ac 09EE103A 		vmov	s18, r3	@ int
+ 229:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (new_global_exposure <= pSensorInfo->exposure_max)
+ 623              		.loc 1 229 25 discriminator 3 view .LVU187
+ 624 01b0 B8EE499B 		vcvt.f64.u32	d9, s18
+ 625              	.L29:
+ 626              	.LVL35:
+ 230:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 627              		.loc 1 230 5 is_stmt 1 view .LVU188
+ 230:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ARM GAS  /tmp/ccLNkJSa.s 			page 22
+
+
+ 628              		.loc 1 230 43 is_stmt 0 view .LVU189
+ 629 01b4 D8F83C30 		ldr	r3, [r8, #60]
+ 230:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 630              		.loc 1 230 29 view .LVU190
+ 631 01b8 07EE903A 		vmov	s15, r3	@ int
+ 632 01bc B8EE677B 		vcvt.f64.u32	d7, s15
+ 230:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 633              		.loc 1 230 8 view .LVU191
+ 634 01c0 B4EEC97B 		vcmpe.f64	d7, d9
+ 635 01c4 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 636 01c8 21DB     		blt	.L137
+ 232:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pExposure = (new_global_exposure < pSensorInfo->exposure_min) ? pSensorInfo->exposure_min : 
+ 637              		.loc 1 232 7 is_stmt 1 view .LVU192
+ 232:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pExposure = (new_global_exposure < pSensorInfo->exposure_min) ? pSensorInfo->exposure_min : 
+ 638              		.loc 1 232 14 is_stmt 0 view .LVU193
+ 639 01ca 0023     		movs	r3, #0
+ 640 01cc 2B60     		str	r3, [r5]
+ 233:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 641              		.loc 1 233 7 is_stmt 1 view .LVU194
+ 233:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 642              		.loc 1 233 54 is_stmt 0 view .LVU195
+ 643 01ce D8F83830 		ldr	r3, [r8, #56]
+ 233:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 644              		.loc 1 233 41 view .LVU196
+ 645 01d2 07EE903A 		vmov	s15, r3	@ int
+ 646 01d6 B8EE677B 		vcvt.f64.u32	d7, s15
+ 233:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 647              		.loc 1 233 98 view .LVU197
+ 648 01da B4EEC97B 		vcmpe.f64	d7, d9
+ 649 01de F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 650 01e2 03DC     		bgt	.L32
+ 233:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 651              		.loc 1 233 98 discriminator 2 view .LVU198
+ 652 01e4 FCEEC97B 		vcvt.u32.f64	s15, d9
+ 653 01e8 17EE903A 		vmov	r3, s15	@ int
+ 654              	.L32:
+ 233:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 655              		.loc 1 233 18 discriminator 3 view .LVU199
+ 656 01ec 3B60     		str	r3, [r7]
+ 657 01ee AAE1     		b	.L26
+ 658              	.LVL36:
+ 659              	.L147:
+ 229:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (new_global_exposure <= pSensorInfo->exposure_max)
+ 660              		.loc 1 229 67 discriminator 1 view .LVU200
+ 661 01f0 9FED1D7B 		vldr.64	d7, .L149+16
+ 662 01f4 3AEE07AB 		vadd.f64	d10, d10, d7
+ 229:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (new_global_exposure <= pSensorInfo->exposure_max)
+ 663              		.loc 1 229 45 discriminator 1 view .LVU201
+ 664 01f8 9FED171B 		vldr.64	d1, .L149
+ 665 01fc 8AEE011B 		vdiv.f64	d1, d10, d1
+ 666 0200 B2EE040B 		vmov.f64	d0, #1.0e+1
+ 667 0204 FFF7FEFF 		bl	pow
+ 668              	.LVL37:
+ 229:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (new_global_exposure <= pSensorInfo->exposure_max)
+ 669              		.loc 1 229 25 discriminator 2 view .LVU202
+ 670 0208 29EE009B 		vmul.f64	d9, d9, d0
+ 671              	.LVL38:
+ARM GAS  /tmp/ccLNkJSa.s 			page 23
+
+
+ 229:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     if (new_global_exposure <= pSensorInfo->exposure_max)
+ 672              		.loc 1 229 25 discriminator 2 view .LVU203
+ 673 020c D2E7     		b	.L29
+ 674              	.L137:
+ 237:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = (uint32_t)(20 * 1000 * log10((float)new_global_exposure / (float)(*pExposure)));
+ 675              		.loc 1 237 7 is_stmt 1 view .LVU204
+ 237:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = (uint32_t)(20 * 1000 * log10((float)new_global_exposure / (float)(*pExposure)));
+ 676              		.loc 1 237 18 is_stmt 0 view .LVU205
+ 677 020e 3B60     		str	r3, [r7]
+ 238:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = (*pGain < pSensorInfo->gain_min) ? pSensorInfo->gain_min : (*pGain > pSensorInfo->ag
+ 678              		.loc 1 238 7 is_stmt 1 view .LVU206
+ 238:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = (*pGain < pSensorInfo->gain_min) ? pSensorInfo->gain_min : (*pGain > pSensorInfo->ag
+ 679              		.loc 1 238 45 is_stmt 0 view .LVU207
+ 680 0210 B7EEC99B 		vcvt.f32.f64	s18, d9
+ 681              	.LVL39:
+ 238:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = (*pGain < pSensorInfo->gain_min) ? pSensorInfo->gain_min : (*pGain > pSensorInfo->ag
+ 682              		.loc 1 238 74 view .LVU208
+ 683 0214 07EE903A 		vmov	s15, r3	@ int
+ 684 0218 F8EE677A 		vcvt.f32.u32	s15, s15
+ 238:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = (*pGain < pSensorInfo->gain_min) ? pSensorInfo->gain_min : (*pGain > pSensorInfo->ag
+ 685              		.loc 1 238 72 view .LVU209
+ 686 021c 89EE270A 		vdiv.f32	s0, s18, s15
+ 238:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = (*pGain < pSensorInfo->gain_min) ? pSensorInfo->gain_min : (*pGain > pSensorInfo->ag
+ 687              		.loc 1 238 39 view .LVU210
+ 688 0220 B7EEC00A 		vcvt.f64.f32	d0, s0
+ 689 0224 FFF7FEFF 		bl	log10
+ 690              	.LVL40:
+ 238:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = (*pGain < pSensorInfo->gain_min) ? pSensorInfo->gain_min : (*pGain > pSensorInfo->ag
+ 691              		.loc 1 238 37 discriminator 1 view .LVU211
+ 692 0228 9FED0B7B 		vldr.64	d7, .L149
+ 693 022c 20EE077B 		vmul.f64	d7, d0, d7
+ 238:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = (*pGain < pSensorInfo->gain_min) ? pSensorInfo->gain_min : (*pGain > pSensorInfo->ag
+ 694              		.loc 1 238 16 discriminator 1 view .LVU212
+ 695 0230 FCEEC77B 		vcvt.u32.f64	s15, d7
+ 696 0234 17EE903A 		vmov	r3, s15	@ int
+ 238:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = (*pGain < pSensorInfo->gain_min) ? pSensorInfo->gain_min : (*pGain > pSensorInfo->ag
+ 697              		.loc 1 238 14 discriminator 1 view .LVU213
+ 698 0238 C5ED007A 		vstr.32	s15, [r5]	@ int
+ 239:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 699              		.loc 1 239 7 is_stmt 1 view .LVU214
+ 239:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 700              		.loc 1 239 37 is_stmt 0 view .LVU215
+ 701 023c D8F82C20 		ldr	r2, [r8, #44]
+ 239:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 702              		.loc 1 239 73 view .LVU216
+ 703 0240 9342     		cmp	r3, r2
+ 704 0242 04D3     		bcc	.L34
+ 239:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 705              		.loc 1 239 96 discriminator 2 view .LVU217
+ 706 0244 D8F83420 		ldr	r2, [r8, #52]
+ 239:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 707              		.loc 1 239 73 discriminator 2 view .LVU218
+ 708 0248 9A42     		cmp	r2, r3
+ 709 024a 28BF     		it	cs
+ 710 024c 1A46     		movcs	r2, r3
+ 711              	.L34:
+ 239:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ARM GAS  /tmp/ccLNkJSa.s 			page 24
+
+
+ 712              		.loc 1 239 14 discriminator 3 view .LVU219
+ 713 024e 2A60     		str	r2, [r5]
+ 241:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 714              		.loc 1 241 5 is_stmt 1 view .LVU220
+ 715 0250 79E1     		b	.L26
+ 716              	.L150:
+ 717 0252 00BFAFF3 		.align	3
+ 717      0080
+ 718              	.L149:
+ 719 0258 00000000 		.word	0
+ 720 025c 0088D340 		.word	1087604736
+ 721 0260 00000000 		.word	0
+ 722 0264 00004940 		.word	1078525952
+ 723 0268 00000000 		.word	0
+ 724 026c 0070A740 		.word	1084715008
+ 725 0270 00000000 		.word	IQParamConfig
+ 726 0274 00000000 		.word	pSensorInfo
+ 727 0278 CDCCCC3D 		.word	1036831949
+ 728              	.LVL41:
+ 729              	.L36:
+ 253:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 730              		.loc 1 253 84 is_stmt 0 view .LVU221
+ 731 027c C64B     		ldr	r3, .L151+56
+ 732 027e 1B68     		ldr	r3, [r3]
+ 253:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 733              		.loc 1 253 93 view .LVU222
+ 734 0280 DA6E     		ldr	r2, [r3, #108]
+ 253:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 735              		.loc 1 253 60 view .LVU223
+ 736 0282 B31A     		subs	r3, r6, r2
+ 253:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 737              		.loc 1 253 38 view .LVU224
+ 738 0284 48BF     		it	mi
+ 739 0286 5B42     		rsbmi	r3, r3, #0
+ 253:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 740              		.loc 1 253 110 view .LVU225
+ 741 0288 07EE903A 		vmov	s15, r3	@ int
+ 742 028c F8EEE77A 		vcvt.f32.s32	s15, s15
+ 253:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 743              		.loc 1 253 112 view .LVU226
+ 744 0290 07EE102A 		vmov	s14, r2	@ int
+ 745 0294 B8EE477A 		vcvt.f32.u32	s14, s14
+ 746 0298 DFEDC06A 		vldr.32	s13, .L151+60
+ 747 029c 27EE267A 		vmul.f32	s14, s14, s13
+ 748 02a0 0E2A     		cmp	r2, #14
+ 749 02a2 00F25581 		bhi	.L115
+ 253:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 750              		.loc 1 253 112 discriminator 1 view .LVU227
+ 751 02a6 F2EE046A 		vmov.f32	s13, #1.0e+1
+ 752              	.L40:
+ 253:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 753              		.loc 1 253 112 discriminator 3 view .LVU228
+ 754 02aa B4EEE67A 		vcmpe.f32	s14, s13
+ 755 02ae F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 756 02b2 04DC     		bgt	.L41
+ 253:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 757              		.loc 1 253 112 discriminator 5 view .LVU229
+ARM GAS  /tmp/ccLNkJSa.s 			page 25
+
+
+ 758 02b4 0E2A     		cmp	r2, #14
+ 759 02b6 00F24E81 		bhi	.L116
+ 253:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 760              		.loc 1 253 112 discriminator 6 view .LVU230
+ 761 02ba B2EE047A 		vmov.f32	s14, #1.0e+1
+ 762              	.L41:
+ 253:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 763              		.loc 1 253 34 discriminator 8 view .LVU231
+ 764 02be F4EEC77A 		vcmpe.f32	s15, s14
+ 765 02c2 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 766 02c6 40F33183 		ble	.L138
+ 767              	.L38:
+ 259:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 768              		.loc 1 259 5 is_stmt 1 view .LVU232
+ 259:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 769              		.loc 1 259 30 is_stmt 0 view .LVU233
+ 770 02ca B34B     		ldr	r3, .L151+56
+ 771 02cc D3F80080 		ldr	r8, [r3]
+ 259:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 772              		.loc 1 259 38 view .LVU234
+ 773 02d0 D8F86832 		ldr	r3, [r8, #616]
+ 259:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 774              		.loc 1 259 8 view .LVU235
+ 775 02d4 A342     		cmp	r3, r4
+ 776 02d6 02D2     		bcs	.L44
+ 259:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 777              		.loc 1 259 50 discriminator 1 view .LVU236
+ 778 02d8 A245     		cmp	r10, r4
+ 779 02da C0F06781 		bcc	.L45
+ 780              	.L44:
+ 263:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.LL_Expo1 / IQParamConfig->luxRef.LL_Lum1 -
+ 781              		.loc 1 263 7 is_stmt 1 view .LVU237
+ 263:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.LL_Expo1 / IQParamConfig->luxRef.LL_Lum1 -
+ 782              		.loc 1 263 44 is_stmt 0 view .LVU238
+ 783 02de D8ED9F7A 		vldr.32	s15, [r8, #636]	@ int
+ 784 02e2 B8EE676B 		vcvt.f64.u32	d6, s15
+ 264:../Drivers/ISP/isp/Src/isp_ae_algo.c ****            (double)IQParamConfig->luxRef.LL_Expo2 / IQParamConfig->luxRef.LL_Lum2)) /
+ 785              		.loc 1 264 12 view .LVU239
+ 786 02e6 D8EDA07A 		vldr.32	s15, [r8, #640]	@ int
+ 787 02ea B8EE677B 		vcvt.f64.u32	d7, s15
+ 264:../Drivers/ISP/isp/Src/isp_ae_algo.c ****            (double)IQParamConfig->luxRef.LL_Expo2 / IQParamConfig->luxRef.LL_Lum2)) /
+ 788              		.loc 1 264 74 view .LVU240
+ 789 02ee 98F88432 		ldrb	r3, [r8, #644]	@ zero_extendqisi2
+ 790 02f2 03EE103A 		vmov	s6, r3	@ int
+ 264:../Drivers/ISP/isp/Src/isp_ae_algo.c ****            (double)IQParamConfig->luxRef.LL_Expo2 / IQParamConfig->luxRef.LL_Lum2)) /
+ 791              		.loc 1 264 51 view .LVU241
+ 792 02f6 B8EEC33B 		vcvt.f64.s32	d3, s6
+ 793 02fa 87EE034B 		vdiv.f64	d4, d7, d3
+ 265:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.LL_Expo1 - IQParamConfig->luxRef.LL_Expo2);
+ 794              		.loc 1 265 12 view .LVU242
+ 795 02fe D8EDA25A 		vldr.32	s11, [r8, #648]	@ int
+ 796 0302 B8EE655B 		vcvt.f64.u32	d5, s11
+ 265:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.LL_Expo1 - IQParamConfig->luxRef.LL_Expo2);
+ 797              		.loc 1 265 74 view .LVU243
+ 798 0306 98F88C32 		ldrb	r3, [r8, #652]	@ zero_extendqisi2
+ 799 030a 02EE103A 		vmov	s4, r3	@ int
+ 265:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.LL_Expo1 - IQParamConfig->luxRef.LL_Expo2);
+ARM GAS  /tmp/ccLNkJSa.s 			page 26
+
+
+ 800              		.loc 1 265 51 view .LVU244
+ 801 030e B8EEC22B 		vcvt.f64.s32	d2, s4
+ 802 0312 85EE021B 		vdiv.f64	d1, d5, d2
+ 264:../Drivers/ISP/isp/Src/isp_ae_algo.c ****            (double)IQParamConfig->luxRef.LL_Expo2 / IQParamConfig->luxRef.LL_Lum2)) /
+ 803              		.loc 1 264 83 view .LVU245
+ 804 0316 34EE414B 		vsub.f64	d4, d4, d1
+ 263:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.LL_Expo1 / IQParamConfig->luxRef.LL_Lum1 -
+ 805              		.loc 1 263 44 view .LVU246
+ 806 031a 26EE044B 		vmul.f64	d4, d6, d4
+ 266:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 807              		.loc 1 266 51 view .LVU247
+ 808 031e 37EE455B 		vsub.f64	d5, d7, d5
+ 263:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.LL_Expo1 / IQParamConfig->luxRef.LL_Lum1 -
+ 809              		.loc 1 263 9 view .LVU248
+ 810 0322 84EE05AB 		vdiv.f64	d10, d4, d5
+ 811              	.LVL42:
+ 268:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           (a * IQParamConfig->luxRef.LL_Expo1);
+ 812              		.loc 1 268 7 is_stmt 1 view .LVU249
+ 268:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           (a * IQParamConfig->luxRef.LL_Expo1);
+ 813              		.loc 1 268 44 is_stmt 0 view .LVU250
+ 814 0326 26EE076B 		vmul.f64	d6, d6, d7
+ 268:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           (a * IQParamConfig->luxRef.LL_Expo1);
+ 815              		.loc 1 268 85 view .LVU251
+ 816 032a 86EE039B 		vdiv.f64	d9, d6, d3
+ 268:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           (a * IQParamConfig->luxRef.LL_Expo1);
+ 817              		.loc 1 268 9 view .LVU252
+ 818 032e 07EE4A9B 		vmls.f64	d9, d7, d10
+ 819              	.LVL43:
+ 820              	.L46:
+ 284:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 821              		.loc 1 284 5 is_stmt 1 view .LVU253
+ 284:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 822              		.loc 1 284 8 is_stmt 0 view .LVU254
+ 823 0332 A145     		cmp	r9, r4
+ 824 0334 80F06581 		bcs	.L148
+ 299:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 825              		.loc 1 299 7 is_stmt 1 view .LVU255
+ 299:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 826              		.loc 1 299 35 is_stmt 0 view .LVU256
+ 827 0338 07EE904A 		vmov	s15, r4	@ int
+ 828 033c B8EE675B 		vcvt.f64.u32	d5, s15
+ 299:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 829              		.loc 1 299 50 view .LVU257
+ 830 0340 D8ED1B7A 		vldr.32	s15, [r8, #108]	@ int
+ 831 0344 B8EE677B 		vcvt.f64.u32	d7, s15
+ 299:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 832              		.loc 1 299 127 view .LVU258
+ 833 0348 98EDA46A 		vldr.32	s12, [r8, #656]
+ 299:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 834              		.loc 1 299 98 view .LVU259
+ 835 034c B7EEC66A 		vcvt.f64.f32	d6, s12
+ 299:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 836              		.loc 1 299 96 view .LVU260
+ 837 0350 27EE067B 		vmul.f64	d7, d7, d6
+ 299:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 838              		.loc 1 299 47 view .LVU261
+ 839 0354 85EE076B 		vdiv.f64	d6, d5, d7
+ARM GAS  /tmp/ccLNkJSa.s 			page 27
+
+
+ 299:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 840              		.loc 1 299 142 view .LVU262
+ 841 0358 36EE4A6B 		vsub.f64	d6, d6, d10
+ 299:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 842              		.loc 1 299 27 view .LVU263
+ 843 035c 89EE060B 		vdiv.f64	d0, d9, d6
+ 844              	.L48:
+ 845              	.LVL44:
+ 310:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 846              		.loc 1 310 5 is_stmt 1 view .LVU264
+ 310:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 847              		.loc 1 310 42 is_stmt 0 view .LVU265
+ 848 0360 D8F86C80 		ldr	r8, [r8, #108]
+ 310:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 849              		.loc 1 310 8 view .LVU266
+ 850 0364 B045     		cmp	r8, r6
+ 851 0366 40F29781 		bls	.L49
+ 314:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 852              		.loc 1 314 7 is_stmt 1 view .LVU267
+ 314:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 853              		.loc 1 314 10 is_stmt 0 view .LVU268
+ 854 036a B4EEC80B 		vcmpe.f64	d0, d8
+ 855 036e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 856 0372 42D8     		bhi	.L50
+ 317:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 857              		.loc 1 317 9 is_stmt 1 view .LVU269
+ 858              	.LVL45:
+ 320:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 859              		.loc 1 320 9 view .LVU270
+ 320:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 860              		.loc 1 320 33 is_stmt 0 view .LVU271
+ 861 0374 8A4B     		ldr	r3, .L151+64
+ 862 0376 1B68     		ldr	r3, [r3]
+ 320:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 863              		.loc 1 320 31 view .LVU272
+ 864 0378 E31A     		subs	r3, r4, r3
+ 320:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 865              		.loc 1 320 14 view .LVU273
+ 866 037a 48BF     		it	mi
+ 867 037c 5B42     		rsbmi	r3, r3, #0
+ 320:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 868              		.loc 1 320 56 view .LVU274
+ 869 037e 07EE903A 		vmov	s15, r3	@ int
+ 870 0382 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 320:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 871              		.loc 1 320 59 view .LVU275
+ 872 0386 07EE104A 		vmov	s14, r4	@ int
+ 873 038a B8EE477A 		vcvt.f32.u32	s14, s14
+ 320:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 874              		.loc 1 320 70 view .LVU276
+ 875 038e DFED856A 		vldr.32	s13, .L151+68
+ 876 0392 27EE267A 		vmul.f32	s14, s14, s13
+ 320:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 877              		.loc 1 320 12 view .LVU277
+ 878 0396 F4EEC77A 		vcmpe.f32	s15, s14
+ 879 039a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 880 039e 11D8     		bhi	.L52
+ARM GAS  /tmp/ccLNkJSa.s 			page 28
+
+
+ 320:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 881              		.loc 1 320 79 discriminator 1 view .LVU278
+ 882 03a0 84B1     		cbz	r4, .L52
+ 323:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 883              		.loc 1 323 11 is_stmt 1 view .LVU279
+ 323:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 884              		.loc 1 323 56 is_stmt 0 view .LVU280
+ 885 03a2 07EE908A 		vmov	s15, r8	@ int
+ 886 03a6 B8EE677B 		vcvt.f64.u32	d7, s15
+ 323:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 887              		.loc 1 323 102 view .LVU281
+ 888 03aa 06EE906A 		vmov	s13, r6	@ int
+ 889 03ae B8EE666B 		vcvt.f64.u32	d6, s13
+ 890 03b2 87EE060B 		vdiv.f64	d0, d7, d6
+ 323:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 891              		.loc 1 323 31 view .LVU282
+ 892 03b6 20EE080B 		vmul.f64	d0, d0, d8
+ 893              	.LVL46:
+ 326:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 894              		.loc 1 326 9 is_stmt 1 view .LVU283
+ 326:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 895              		.loc 1 326 12 is_stmt 0 view .LVU284
+ 896 03ba B5EEC00B 		vcmpe.f64	d0, #0
+ 897 03be F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 898 03c2 1AD8     		bhi	.L50
+ 899              	.LVL47:
+ 900              	.L52:
+ 329:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           {
+ 901              		.loc 1 329 11 is_stmt 1 view .LVU285
+ 329:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           {
+ 902              		.loc 1 329 49 is_stmt 0 view .LVU286
+ 903 03c4 784B     		ldr	r3, .L151+72
+ 904 03c6 1B68     		ldr	r3, [r3]
+ 905 03c8 93ED0F9A 		vldr.32	s18, [r3, #60]	@ int
+ 906              	.LVL48:
+ 329:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           {
+ 907              		.loc 1 329 35 view .LVU287
+ 908 03cc B8EE499B 		vcvt.f64.u32	d9, s18
+ 329:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           {
+ 909              		.loc 1 329 14 view .LVU288
+ 910 03d0 B4EEC89B 		vcmpe.f64	d9, d8
+ 911 03d4 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 912 03d8 C0F24B81 		blt	.L139
+ 331:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 913              		.loc 1 331 13 is_stmt 1 view .LVU289
+ 331:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 914              		.loc 1 331 125 is_stmt 0 view .LVU290
+ 915 03dc 002E     		cmp	r6, #0
+ 916 03de 00F04381 		beq	.L57
+ 331:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 917              		.loc 1 331 68 discriminator 1 view .LVU291
+ 918 03e2 07EE908A 		vmov	s15, r8	@ int
+ 919 03e6 B8EE677B 		vcvt.f64.u32	d7, s15
+ 331:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 920              		.loc 1 331 66 discriminator 1 view .LVU292
+ 921 03ea 27EE087B 		vmul.f64	d7, d7, d8
+ 331:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ARM GAS  /tmp/ccLNkJSa.s 			page 29
+
+
+ 922              		.loc 1 331 114 discriminator 1 view .LVU293
+ 923 03ee 06EE906A 		vmov	s13, r6	@ int
+ 924 03f2 B8EE666B 		vcvt.f64.u32	d6, s13
+ 331:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 925              		.loc 1 331 33 discriminator 1 view .LVU294
+ 926 03f6 87EE060B 		vdiv.f64	d0, d7, d6
+ 927              	.LVL49:
+ 928              	.L50:
+ 342:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 929              		.loc 1 342 7 is_stmt 1 view .LVU295
+ 342:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 930              		.loc 1 342 10 is_stmt 0 view .LVU296
+ 931 03fa B5EE408B 		vcmp.f64	d8, #0
+ 932 03fe F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 933 0402 76D0     		beq	.L60
+ 342:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 934              		.loc 1 342 36 discriminator 1 view .LVU297
+ 935 0404 002E     		cmp	r6, #0
+ 936 0406 74D0     		beq	.L60
+ 345:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 1.50) && (((double)IQParamConfig->AECAl
+ 937              		.loc 1 345 9 is_stmt 1 view .LVU298
+ 345:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 1.50) && (((double)IQParamConfig->AECAl
+ 938              		.loc 1 345 36 is_stmt 0 view .LVU299
+ 939 0408 80EE087B 		vdiv.f64	d7, d0, d8
+ 345:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 1.50) && (((double)IQParamConfig->AECAl
+ 940              		.loc 1 345 12 view .LVU300
+ 941 040c 9FED546B 		vldr.64	d6, .L151
+ 942 0410 B4EEC67B 		vcmpe.f64	d7, d6
+ 943 0414 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 944 0418 10D5     		bpl	.L61
+ 345:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 1.50) && (((double)IQParamConfig->AECAl
+ 945              		.loc 1 345 72 discriminator 1 view .LVU301
+ 946 041a 06EE908A 		vmov	s13, r8	@ int
+ 947 041e B8EE666B 		vcvt.f64.u32	d6, s13
+ 345:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 1.50) && (((double)IQParamConfig->AECAl
+ 948              		.loc 1 345 118 discriminator 1 view .LVU302
+ 949 0422 05EE906A 		vmov	s11, r6	@ int
+ 950 0426 B8EE654B 		vcvt.f64.u32	d4, s11
+ 951 042a 86EE045B 		vdiv.f64	d5, d6, d4
+ 345:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 1.50) && (((double)IQParamConfig->AECAl
+ 952              		.loc 1 345 67 discriminator 1 view .LVU303
+ 953 042e 9FED4E6B 		vldr.64	d6, .L151+8
+ 954 0432 B4EEC65B 		vcmpe.f64	d5, d6
+ 955 0436 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 956 043a 4EDC     		bgt	.L63
+ 957              	.L61:
+ 345:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 1.50) && (((double)IQParamConfig->AECAl
+ 958              		.loc 1 345 139 discriminator 2 view .LVU304
+ 959 043c B7EE086B 		vmov.f64	d6, #1.5e+0
+ 960 0440 B4EEC67B 		vcmpe.f64	d7, d6
+ 961 0444 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 962 0448 10D5     		bpl	.L64
+ 346:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) > 1.65) && (((double)IQParamConfig->AECAl
+ 963              		.loc 1 346 72 discriminator 1 view .LVU305
+ 964 044a 06EE908A 		vmov	s13, r8	@ int
+ 965 044e B8EE666B 		vcvt.f64.u32	d6, s13
+ 346:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) > 1.65) && (((double)IQParamConfig->AECAl
+ARM GAS  /tmp/ccLNkJSa.s 			page 30
+
+
+ 966              		.loc 1 346 118 discriminator 1 view .LVU306
+ 967 0452 05EE906A 		vmov	s11, r6	@ int
+ 968 0456 B8EE654B 		vcvt.f64.u32	d4, s11
+ 969 045a 86EE045B 		vdiv.f64	d5, d6, d4
+ 346:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) > 1.65) && (((double)IQParamConfig->AECAl
+ 970              		.loc 1 346 67 discriminator 1 view .LVU307
+ 971 045e 9FED446B 		vldr.64	d6, .L151+16
+ 972 0462 B4EEC65B 		vcmpe.f64	d5, d6
+ 973 0466 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 974 046a 36DC     		bgt	.L63
+ 975              	.L64:
+ 346:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) > 1.65) && (((double)IQParamConfig->AECAl
+ 976              		.loc 1 346 139 discriminator 2 view .LVU308
+ 977 046c 9FED426B 		vldr.64	d6, .L151+24
+ 978 0470 B4EEC67B 		vcmpe.f64	d7, d6
+ 979 0474 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 980 0478 10DD     		ble	.L66
+ 347:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) > 1.35) && (((double)IQParamConfig->AECAl
+ 981              		.loc 1 347 72 discriminator 1 view .LVU309
+ 982 047a 06EE908A 		vmov	s13, r8	@ int
+ 983 047e B8EE666B 		vcvt.f64.u32	d6, s13
+ 347:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) > 1.35) && (((double)IQParamConfig->AECAl
+ 984              		.loc 1 347 118 discriminator 1 view .LVU310
+ 985 0482 05EE906A 		vmov	s11, r6	@ int
+ 986 0486 B8EE654B 		vcvt.f64.u32	d4, s11
+ 987 048a 86EE045B 		vdiv.f64	d5, d6, d4
+ 347:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) > 1.35) && (((double)IQParamConfig->AECAl
+ 988              		.loc 1 347 67 discriminator 1 view .LVU311
+ 989 048e 9FED3C6B 		vldr.64	d6, .L151+32
+ 990 0492 B4EEC65B 		vcmpe.f64	d5, d6
+ 991 0496 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 992 049a 1ED4     		bmi	.L63
+ 993              	.L66:
+ 347:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) > 1.35) && (((double)IQParamConfig->AECAl
+ 994              		.loc 1 347 139 discriminator 2 view .LVU312
+ 995 049c 9FED3A6B 		vldr.64	d6, .L151+40
+ 996 04a0 B4EEC67B 		vcmpe.f64	d7, d6
+ 997 04a4 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 998 04a8 10DD     		ble	.L68
+ 348:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (new_global_exposure / cur_global_exposure) < 1.02) /* Or same exposure estimation but 
+ 999              		.loc 1 348 72 discriminator 1 view .LVU313
+ 1000 04aa 06EE908A 		vmov	s13, r8	@ int
+ 1001 04ae B8EE666B 		vcvt.f64.u32	d6, s13
+ 348:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (new_global_exposure / cur_global_exposure) < 1.02) /* Or same exposure estimation but 
+ 1002              		.loc 1 348 118 discriminator 1 view .LVU314
+ 1003 04b2 05EE906A 		vmov	s11, r6	@ int
+ 1004 04b6 B8EE654B 		vcvt.f64.u32	d4, s11
+ 1005 04ba 86EE045B 		vdiv.f64	d5, d6, d4
+ 348:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (new_global_exposure / cur_global_exposure) < 1.02) /* Or same exposure estimation but 
+ 1006              		.loc 1 348 67 discriminator 1 view .LVU315
+ 1007 04be 9FED286B 		vldr.64	d6, .L151
+ 1008 04c2 B4EEC65B 		vcmpe.f64	d5, d6
+ 1009 04c6 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1010 04ca 06D4     		bmi	.L63
+ 1011              	.L68:
+ 348:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (new_global_exposure / cur_global_exposure) < 1.02) /* Or same exposure estimation but 
+ 1012              		.loc 1 348 139 discriminator 2 view .LVU316
+ARM GAS  /tmp/ccLNkJSa.s 			page 31
+
+
+ 1013 04cc 9FED306B 		vldr.64	d6, .L151+48
+ 1014 04d0 B4EEC67B 		vcmpe.f64	d7, d6
+ 1015 04d4 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1016 04d8 0BD5     		bpl	.L60
+ 1017              	.L63:
+ 352:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1018              		.loc 1 352 11 is_stmt 1 view .LVU317
+ 352:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1019              		.loc 1 352 56 is_stmt 0 view .LVU318
+ 1020 04da 07EE908A 		vmov	s15, r8	@ int
+ 1021 04de B8EE676B 		vcvt.f64.u32	d6, s15
+ 352:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1022              		.loc 1 352 102 view .LVU319
+ 1023 04e2 07EE906A 		vmov	s15, r6	@ int
+ 1024 04e6 B8EE677B 		vcvt.f64.u32	d7, s15
+ 1025 04ea 86EE070B 		vdiv.f64	d0, d6, d7
+ 1026              	.LVL50:
+ 352:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1027              		.loc 1 352 31 view .LVU320
+ 1028 04ee 20EE080B 		vmul.f64	d0, d0, d8
+ 1029              	.LVL51:
+ 1030              	.L60:
+ 404:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 1031              		.loc 1 404 5 is_stmt 1 view .LVU321
+ 404:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 1032              		.loc 1 404 43 is_stmt 0 view .LVU322
+ 1033 04f2 2D4B     		ldr	r3, .L151+72
+ 1034 04f4 1E68     		ldr	r6, [r3]
+ 1035              	.LVL52:
+ 404:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 1036              		.loc 1 404 43 view .LVU323
+ 1037 04f6 F36B     		ldr	r3, [r6, #60]
+ 404:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 1038              		.loc 1 404 29 view .LVU324
+ 1039 04f8 07EE903A 		vmov	s15, r3	@ int
+ 1040 04fc B8EE677B 		vcvt.f64.u32	d7, s15
+ 404:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 1041              		.loc 1 404 8 view .LVU325
+ 1042 0500 B4EEC07B 		vcmpe.f64	d7, d0
+ 1043 0504 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1044 0508 C0F2A681 		blt	.L141
+ 406:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pExposure = (new_global_exposure < pSensorInfo->exposure_min) ? pSensorInfo->exposure_min : 
+ 1045              		.loc 1 406 7 is_stmt 1 view .LVU326
+ 406:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pExposure = (new_global_exposure < pSensorInfo->exposure_min) ? pSensorInfo->exposure_min : 
+ 1046              		.loc 1 406 14 is_stmt 0 view .LVU327
+ 1047 050c 0023     		movs	r3, #0
+ 1048 050e 2B60     		str	r3, [r5]
+ 407:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 1049              		.loc 1 407 7 is_stmt 1 view .LVU328
+ 407:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 1050              		.loc 1 407 54 is_stmt 0 view .LVU329
+ 1051 0510 B36B     		ldr	r3, [r6, #56]
+ 407:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 1052              		.loc 1 407 41 view .LVU330
+ 1053 0512 07EE903A 		vmov	s15, r3	@ int
+ 1054 0516 B8EE677B 		vcvt.f64.u32	d7, s15
+ 407:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ARM GAS  /tmp/ccLNkJSa.s 			page 32
+
+
+ 1055              		.loc 1 407 98 view .LVU331
+ 1056 051a B4EEC07B 		vcmpe.f64	d7, d0
+ 1057 051e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1058 0522 03DC     		bgt	.L93
+ 407:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 1059              		.loc 1 407 98 discriminator 2 view .LVU332
+ 1060 0524 FCEEC07B 		vcvt.u32.f64	s15, d0
+ 1061 0528 17EE903A 		vmov	r3, s15	@ int
+ 1062              	.L93:
+ 407:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 1063              		.loc 1 407 18 discriminator 3 view .LVU333
+ 1064 052c 3B60     		str	r3, [r7]
+ 1065              	.LVL53:
+ 1066              	.L94:
+ 479:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 480:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   }
+ 481:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 482:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   /**** Consider flickering period constraint ****/
+ 483:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   /* ONLY USEFUL WHEN WHEN ANTI-FLICKER IS ACTIVATED */
+ 484:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   isp_ae_compute_antiflcker(*pGain, *pExposure, &curGain, &curExposure);
+ 1067              		.loc 1 484 3 is_stmt 1 view .LVU334
+ 1068 052e 01AB     		add	r3, sp, #4
+ 1069 0530 6A46     		mov	r2, sp
+ 1070 0532 3968     		ldr	r1, [r7]
+ 1071 0534 2868     		ldr	r0, [r5]
+ 1072 0536 FFF7FEFF 		bl	isp_ae_compute_antiflcker
+ 1073              	.LVL54:
+ 485:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 486:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   /* Return final value of sensor exposure time and gain */
+ 487:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *pExposure = curExposure;
+ 1074              		.loc 1 487 3 view .LVU335
+ 1075              		.loc 1 487 14 is_stmt 0 view .LVU336
+ 1076 053a 019B     		ldr	r3, [sp, #4]
+ 1077 053c 3B60     		str	r3, [r7]
+ 488:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   *pGain = curGain;
+ 1078              		.loc 1 488 3 is_stmt 1 view .LVU337
+ 1079              		.loc 1 488 10 is_stmt 0 view .LVU338
+ 1080 053e 009B     		ldr	r3, [sp]
+ 1081 0540 2B60     		str	r3, [r5]
+ 489:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 490:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   /* Store lux value to avoid making the same exposure estimation if it did not allow to reach conv
+ 491:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   previous_lux = lux;
+ 1082              		.loc 1 491 3 is_stmt 1 view .LVU339
+ 1083              		.loc 1 491 16 is_stmt 0 view .LVU340
+ 1084 0542 174B     		ldr	r3, .L151+64
+ 1085 0544 1C60     		str	r4, [r3]
+ 1086              	.L26:
+ 492:../Drivers/ISP/isp/Src/isp_ae_algo.c **** }
+ 1087              		.loc 1 492 1 view .LVU341
+ 1088 0546 02B0     		add	sp, sp, #8
+ 1089              	.LCFI6:
+ 1090              		.cfi_remember_state
+ 1091              		.cfi_def_cfa_offset 64
+ 1092              		@ sp needed
+ 1093 0548 BDEC088B 		vldm	sp!, {d8-d11}
+ 1094              	.LCFI7:
+ 1095              		.cfi_restore 86
+ARM GAS  /tmp/ccLNkJSa.s 			page 33
+
+
+ 1096              		.cfi_restore 87
+ 1097              		.cfi_restore 84
+ 1098              		.cfi_restore 85
+ 1099              		.cfi_restore 82
+ 1100              		.cfi_restore 83
+ 1101              		.cfi_restore 80
+ 1102              		.cfi_restore 81
+ 1103              		.cfi_def_cfa_offset 32
+ 1104 054c BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 1105              	.LVL55:
+ 1106              	.L115:
+ 1107              	.LCFI8:
+ 1108              		.cfi_restore_state
+ 253:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 1109              		.loc 1 253 112 discriminator 2 view .LVU342
+ 1110 0550 F2EE0E6A 		vmov.f32	s13, #1.5e+1
+ 1111 0554 A9E6     		b	.L40
+ 1112              	.L116:
+ 253:../Drivers/ISP/isp/Src/isp_ae_algo.c ****   {
+ 1113              		.loc 1 253 112 discriminator 7 view .LVU343
+ 1114 0556 B2EE0E7A 		vmov.f32	s14, #1.5e+1
+ 1115 055a B0E6     		b	.L41
+ 1116              	.L152:
+ 1117 055c AFF30080 		.align	3
+ 1118              	.L151:
+ 1119 0560 9A999999 		.word	-1717986918
+ 1120 0564 9999F13F 		.word	1072798105
+ 1121 0568 66666666 		.word	1717986918
+ 1122 056c 6666F63F 		.word	1073112678
+ 1123 0570 CDCCCCCC 		.word	-858993459
+ 1124 0574 CCCCFC3F 		.word	1073532108
+ 1125 0578 66666666 		.word	1717986918
+ 1126 057c 6666FA3F 		.word	1073374822
+ 1127 0580 CDCCCCCC 		.word	-858993459
+ 1128 0584 CCCCF43F 		.word	1073007820
+ 1129 0588 9A999999 		.word	-1717986918
+ 1130 058c 9999F53F 		.word	1073060249
+ 1131 0590 52B81E85 		.word	-2061584302
+ 1132 0594 EB51F03F 		.word	1072714219
+ 1133 0598 00000000 		.word	IQParamConfig
+ 1134 059c 9A99193E 		.word	1041865114
+ 1135 05a0 00000000 		.word	previous_lux
+ 1136 05a4 CDCC4C3D 		.word	1028443341
+ 1137 05a8 00000000 		.word	pSensorInfo
+ 1138              	.L45:
+ 275:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.HL_Expo1 / IQParamConfig->luxRef.HL_Lum1 -
+ 1139              		.loc 1 275 7 is_stmt 1 view .LVU344
+ 275:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.HL_Expo1 / IQParamConfig->luxRef.HL_Lum1 -
+ 1140              		.loc 1 275 44 is_stmt 0 view .LVU345
+ 1141 05ac 07EE903A 		vmov	s15, r3	@ int
+ 1142 05b0 B8EE677B 		vcvt.f64.u32	d7, s15
+ 276:../Drivers/ISP/isp/Src/isp_ae_algo.c ****            (double)IQParamConfig->luxRef.HL_Expo2 / IQParamConfig->luxRef.HL_Lum2)) /
+ 1143              		.loc 1 276 12 view .LVU346
+ 1144 05b4 D8ED9B6A 		vldr.32	s13, [r8, #620]	@ int
+ 1145 05b8 B8EE664B 		vcvt.f64.u32	d4, s13
+ 276:../Drivers/ISP/isp/Src/isp_ae_algo.c ****            (double)IQParamConfig->luxRef.HL_Expo2 / IQParamConfig->luxRef.HL_Lum2)) /
+ 1146              		.loc 1 276 74 view .LVU347
+ARM GAS  /tmp/ccLNkJSa.s 			page 34
+
+
+ 1147 05bc 98F87032 		ldrb	r3, [r8, #624]	@ zero_extendqisi2
+ 1148 05c0 03EE103A 		vmov	s6, r3	@ int
+ 276:../Drivers/ISP/isp/Src/isp_ae_algo.c ****            (double)IQParamConfig->luxRef.HL_Expo2 / IQParamConfig->luxRef.HL_Lum2)) /
+ 1149              		.loc 1 276 51 view .LVU348
+ 1150 05c4 B8EEC33B 		vcvt.f64.s32	d3, s6
+ 1151 05c8 84EE035B 		vdiv.f64	d5, d4, d3
+ 277:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.HL_Expo1 - IQParamConfig->luxRef.HL_Expo2);
+ 1152              		.loc 1 277 12 view .LVU349
+ 1153 05cc D8ED9D6A 		vldr.32	s13, [r8, #628]	@ int
+ 1154 05d0 B8EE666B 		vcvt.f64.u32	d6, s13
+ 277:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.HL_Expo1 - IQParamConfig->luxRef.HL_Expo2);
+ 1155              		.loc 1 277 74 view .LVU350
+ 1156 05d4 98F87832 		ldrb	r3, [r8, #632]	@ zero_extendqisi2
+ 1157 05d8 02EE103A 		vmov	s4, r3	@ int
+ 277:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.HL_Expo1 - IQParamConfig->luxRef.HL_Expo2);
+ 1158              		.loc 1 277 51 view .LVU351
+ 1159 05dc B8EEC22B 		vcvt.f64.s32	d2, s4
+ 1160 05e0 86EE021B 		vdiv.f64	d1, d6, d2
+ 276:../Drivers/ISP/isp/Src/isp_ae_algo.c ****            (double)IQParamConfig->luxRef.HL_Expo2 / IQParamConfig->luxRef.HL_Lum2)) /
+ 1161              		.loc 1 276 83 view .LVU352
+ 1162 05e4 35EE415B 		vsub.f64	d5, d5, d1
+ 275:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.HL_Expo1 / IQParamConfig->luxRef.HL_Lum1 -
+ 1163              		.loc 1 275 44 view .LVU353
+ 1164 05e8 27EE055B 		vmul.f64	d5, d7, d5
+ 278:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1165              		.loc 1 278 51 view .LVU354
+ 1166 05ec 34EE466B 		vsub.f64	d6, d4, d6
+ 275:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           ((double)IQParamConfig->luxRef.HL_Expo1 / IQParamConfig->luxRef.HL_Lum1 -
+ 1167              		.loc 1 275 9 view .LVU355
+ 1168 05f0 85EE06AB 		vdiv.f64	d10, d5, d6
+ 1169              	.LVL56:
+ 280:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           (a * IQParamConfig->luxRef.HL_Expo1);
+ 1170              		.loc 1 280 7 is_stmt 1 view .LVU356
+ 280:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           (a * IQParamConfig->luxRef.HL_Expo1);
+ 1171              		.loc 1 280 44 is_stmt 0 view .LVU357
+ 1172 05f4 27EE047B 		vmul.f64	d7, d7, d4
+ 280:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           (a * IQParamConfig->luxRef.HL_Expo1);
+ 1173              		.loc 1 280 85 view .LVU358
+ 1174 05f8 87EE039B 		vdiv.f64	d9, d7, d3
+ 280:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           (a * IQParamConfig->luxRef.HL_Expo1);
+ 1175              		.loc 1 280 9 view .LVU359
+ 1176 05fc 04EE4A9B 		vmls.f64	d9, d4, d10
+ 1177 0600 97E6     		b	.L46
+ 1178              	.LVL57:
+ 1179              	.L148:
+ 288:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       c = ((b / (((double)custom_low_lux_limit / ((double)IQParamConfig->AECAlgo.exposureTarget * (
+ 1180              		.loc 1 288 7 is_stmt 1 view .LVU360
+ 288:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       c = ((b / (((double)custom_low_lux_limit / ((double)IQParamConfig->AECAlgo.exposureTarget * (
+ 1181              		.loc 1 288 22 is_stmt 0 view .LVU361
+ 1182 0602 C74B     		ldr	r3, .L153+96
+ 1183 0604 1B68     		ldr	r3, [r3]
+ 288:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       c = ((b / (((double)custom_low_lux_limit / ((double)IQParamConfig->AECAlgo.exposureTarget * (
+ 1184              		.loc 1 288 37 view .LVU362
+ 1185 0606 D3ED0F7A 		vldr.32	s15, [r3, #60]	@ int
+ 1186 060a B8EE67BB 		vcvt.f64.u32	d11, s15
+ 288:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       c = ((b / (((double)custom_low_lux_limit / ((double)IQParamConfig->AECAlgo.exposureTarget * (
+ 1187              		.loc 1 288 66 view .LVU363
+ARM GAS  /tmp/ccLNkJSa.s 			page 35
+
+
+ 1188 060e 93ED0D1A 		vldr.32	s2, [r3, #52]	@ int
+ 288:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       c = ((b / (((double)custom_low_lux_limit / ((double)IQParamConfig->AECAlgo.exposureTarget * (
+ 1189              		.loc 1 288 47 view .LVU364
+ 1190 0612 B8EE411B 		vcvt.f64.u32	d1, s2
+ 288:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       c = ((b / (((double)custom_low_lux_limit / ((double)IQParamConfig->AECAlgo.exposureTarget * (
+ 1191              		.loc 1 288 39 view .LVU365
+ 1192 0616 9FEDAA7B 		vldr.64	d7, .L153
+ 1193 061a 81EE071B 		vdiv.f64	d1, d1, d7
+ 1194 061e B2EE040B 		vmov.f64	d0, #1.0e+1
+ 1195 0622 FFF7FEFF 		bl	pow
+ 1196              	.LVL58:
+ 288:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       c = ((b / (((double)custom_low_lux_limit / ((double)IQParamConfig->AECAlgo.exposureTarget * (
+ 1197              		.loc 1 288 9 discriminator 1 view .LVU366
+ 1198 0626 2BEE000B 		vmul.f64	d0, d11, d0
+ 1199              	.LVL59:
+ 289:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1200              		.loc 1 289 7 is_stmt 1 view .LVU367
+ 289:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1201              		.loc 1 289 19 is_stmt 0 view .LVU368
+ 1202 062a 07EE909A 		vmov	s15, r9	@ int
+ 1203 062e B8EE675B 		vcvt.f64.u32	d5, s15
+ 289:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1204              		.loc 1 289 51 view .LVU369
+ 1205 0632 D8ED1B7A 		vldr.32	s15, [r8, #108]	@ int
+ 1206 0636 B8EE677B 		vcvt.f64.u32	d7, s15
+ 289:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1207              		.loc 1 289 128 view .LVU370
+ 1208 063a 98EDA46A 		vldr.32	s12, [r8, #656]
+ 289:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1209              		.loc 1 289 99 view .LVU371
+ 1210 063e B7EEC66A 		vcvt.f64.f32	d6, s12
+ 289:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1211              		.loc 1 289 97 view .LVU372
+ 1212 0642 27EE067B 		vmul.f64	d7, d7, d6
+ 289:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1213              		.loc 1 289 48 view .LVU373
+ 1214 0646 85EE076B 		vdiv.f64	d6, d5, d7
+ 289:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1215              		.loc 1 289 143 view .LVU374
+ 1216 064a 36EE4A6B 		vsub.f64	d6, d6, d10
+ 289:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1217              		.loc 1 289 15 view .LVU375
+ 1218 064e 89EE067B 		vdiv.f64	d7, d9, d6
+ 289:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1219              		.loc 1 289 157 view .LVU376
+ 1220 0652 37EE407B 		vsub.f64	d7, d7, d0
+ 289:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1221              		.loc 1 289 9 view .LVU377
+ 1222 0656 87EE056B 		vdiv.f64	d6, d7, d5
+ 1223              	.LVL60:
+ 292:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 1224              		.loc 1 292 7 is_stmt 1 view .LVU378
+ 292:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 1225              		.loc 1 292 34 is_stmt 0 view .LVU379
+ 1226 065a 07EE904A 		vmov	s15, r4	@ int
+ 1227 065e B8EE677B 		vcvt.f64.u32	d7, s15
+ 292:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ARM GAS  /tmp/ccLNkJSa.s 			page 36
+
+
+ 1228              		.loc 1 292 27 view .LVU380
+ 1229 0662 07EE060B 		vmla.f64	d0, d7, d6
+ 1230              	.LVL61:
+ 292:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 1231              		.loc 1 292 27 view .LVU381
+ 1232 0666 7BE6     		b	.L48
+ 1233              	.LVL62:
+ 1234              	.L57:
+ 331:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1235              		.loc 1 331 33 discriminator 2 view .LVU382
+ 1236 0668 9FED970B 		vldr.64	d0, .L153+8
+ 1237 066c 38EE000B 		vadd.f64	d0, d8, d0
+ 1238              	.LVL63:
+ 331:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1239              		.loc 1 331 33 discriminator 2 view .LVU383
+ 1240 0670 C3E6     		b	.L50
+ 1241              	.LVL64:
+ 1242              	.L139:
+ 335:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1243              		.loc 1 335 13 is_stmt 1 view .LVU384
+ 335:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1244              		.loc 1 335 72 is_stmt 0 view .LVU385
+ 1245 0672 DDED007A 		vldr.32	s15, [sp]	@ int
+ 1246 0676 B8EE677B 		vcvt.f64.u32	d7, s15
+ 335:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1247              		.loc 1 335 88 view .LVU386
+ 1248 067a 9FED956B 		vldr.64	d6, .L153+16
+ 1249 067e 37EE067B 		vadd.f64	d7, d7, d6
+ 335:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1250              		.loc 1 335 63 view .LVU387
+ 1251 0682 9FED8F1B 		vldr.64	d1, .L153
+ 1252 0686 87EE011B 		vdiv.f64	d1, d7, d1
+ 1253 068a B2EE040B 		vmov.f64	d0, #1.0e+1
+ 1254 068e FFF7FEFF 		bl	pow
+ 1255              	.LVL65:
+ 335:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1256              		.loc 1 335 33 discriminator 1 view .LVU388
+ 1257 0692 29EE000B 		vmul.f64	d0, d9, d0
+ 1258 0696 B0E6     		b	.L50
+ 1259              	.LVL66:
+ 1260              	.L49:
+ 360:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1261              		.loc 1 360 7 is_stmt 1 view .LVU389
+ 360:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1262              		.loc 1 360 10 is_stmt 0 view .LVU390
+ 1263 0698 B4EEC80B 		vcmpe.f64	d0, d8
+ 1264 069c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1265 06a0 42DB     		blt	.L71
+ 363:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1266              		.loc 1 363 9 is_stmt 1 view .LVU391
+ 1267              	.LVL67:
+ 366:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1268              		.loc 1 366 9 view .LVU392
+ 366:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1269              		.loc 1 366 33 is_stmt 0 view .LVU393
+ 1270 06a2 A04B     		ldr	r3, .L153+100
+ 1271 06a4 1B68     		ldr	r3, [r3]
+ARM GAS  /tmp/ccLNkJSa.s 			page 37
+
+
+ 366:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1272              		.loc 1 366 31 view .LVU394
+ 1273 06a6 E31A     		subs	r3, r4, r3
+ 366:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1274              		.loc 1 366 14 view .LVU395
+ 1275 06a8 48BF     		it	mi
+ 1276 06aa 5B42     		rsbmi	r3, r3, #0
+ 366:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1277              		.loc 1 366 56 view .LVU396
+ 1278 06ac 07EE903A 		vmov	s15, r3	@ int
+ 1279 06b0 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 366:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1280              		.loc 1 366 59 view .LVU397
+ 1281 06b4 07EE104A 		vmov	s14, r4	@ int
+ 1282 06b8 B8EE477A 		vcvt.f32.u32	s14, s14
+ 366:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1283              		.loc 1 366 70 view .LVU398
+ 1284 06bc DFED9A6A 		vldr.32	s13, .L153+104
+ 1285 06c0 27EE267A 		vmul.f32	s14, s14, s13
+ 366:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1286              		.loc 1 366 12 view .LVU399
+ 1287 06c4 F4EEC77A 		vcmpe.f32	s15, s14
+ 1288 06c8 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1289 06cc 11D8     		bhi	.L73
+ 366:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1290              		.loc 1 366 79 discriminator 1 view .LVU400
+ 1291 06ce 84B1     		cbz	r4, .L73
+ 369:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1292              		.loc 1 369 11 is_stmt 1 view .LVU401
+ 369:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1293              		.loc 1 369 56 is_stmt 0 view .LVU402
+ 1294 06d0 07EE908A 		vmov	s15, r8	@ int
+ 1295 06d4 B8EE677B 		vcvt.f64.u32	d7, s15
+ 369:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1296              		.loc 1 369 102 view .LVU403
+ 1297 06d8 06EE906A 		vmov	s13, r6	@ int
+ 1298 06dc B8EE666B 		vcvt.f64.u32	d6, s13
+ 1299 06e0 87EE060B 		vdiv.f64	d0, d7, d6
+ 369:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1300              		.loc 1 369 31 view .LVU404
+ 1301 06e4 20EE080B 		vmul.f64	d0, d0, d8
+ 1302              	.LVL68:
+ 372:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1303              		.loc 1 372 9 is_stmt 1 view .LVU405
+ 372:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1304              		.loc 1 372 12 is_stmt 0 view .LVU406
+ 1305 06e8 B5EEC00B 		vcmpe.f64	d0, #0
+ 1306 06ec F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1307 06f0 1AD8     		bhi	.L71
+ 1308              	.LVL69:
+ 1309              	.L73:
+ 375:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           {
+ 1310              		.loc 1 375 11 is_stmt 1 view .LVU407
+ 375:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           {
+ 1311              		.loc 1 375 49 is_stmt 0 view .LVU408
+ 1312 06f2 8B4B     		ldr	r3, .L153+96
+ 1313 06f4 1B68     		ldr	r3, [r3]
+ARM GAS  /tmp/ccLNkJSa.s 			page 38
+
+
+ 1314 06f6 93ED0F9A 		vldr.32	s18, [r3, #60]	@ int
+ 1315              	.LVL70:
+ 375:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           {
+ 1316              		.loc 1 375 35 view .LVU409
+ 1317 06fa B8EE499B 		vcvt.f64.u32	d9, s18
+ 375:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           {
+ 1318              		.loc 1 375 14 view .LVU410
+ 1319 06fe B4EEC89B 		vcmpe.f64	d9, d8
+ 1320 0702 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1321 0706 C0F29480 		blt	.L140
+ 377:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1322              		.loc 1 377 13 is_stmt 1 view .LVU411
+ 377:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1323              		.loc 1 377 125 is_stmt 0 view .LVU412
+ 1324 070a 002E     		cmp	r6, #0
+ 1325 070c 00F08C80 		beq	.L78
+ 377:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1326              		.loc 1 377 68 discriminator 1 view .LVU413
+ 1327 0710 07EE908A 		vmov	s15, r8	@ int
+ 1328 0714 B8EE677B 		vcvt.f64.u32	d7, s15
+ 377:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1329              		.loc 1 377 66 discriminator 1 view .LVU414
+ 1330 0718 27EE087B 		vmul.f64	d7, d7, d8
+ 377:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1331              		.loc 1 377 114 discriminator 1 view .LVU415
+ 1332 071c 06EE906A 		vmov	s13, r6	@ int
+ 1333 0720 B8EE666B 		vcvt.f64.u32	d6, s13
+ 377:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1334              		.loc 1 377 33 discriminator 1 view .LVU416
+ 1335 0724 87EE060B 		vdiv.f64	d0, d7, d6
+ 1336              	.LVL71:
+ 1337              	.L71:
+ 388:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1338              		.loc 1 388 7 is_stmt 1 view .LVU417
+ 388:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1339              		.loc 1 388 10 is_stmt 0 view .LVU418
+ 1340 0728 B5EE408B 		vcmp.f64	d8, #0
+ 1341 072c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1342 0730 3FF4DFAE 		beq	.L60
+ 388:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1343              		.loc 1 388 36 discriminator 1 view .LVU419
+ 1344 0734 002E     		cmp	r6, #0
+ 1345 0736 3FF4DCAE 		beq	.L60
+ 391:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.45) && (((double)IQParamConfig->AECAl
+ 1346              		.loc 1 391 9 is_stmt 1 view .LVU420
+ 391:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.45) && (((double)IQParamConfig->AECAl
+ 1347              		.loc 1 391 36 is_stmt 0 view .LVU421
+ 1348 073a 80EE087B 		vdiv.f64	d7, d0, d8
+ 391:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.45) && (((double)IQParamConfig->AECAl
+ 1349              		.loc 1 391 12 view .LVU422
+ 1350 073e 9FED666B 		vldr.64	d6, .L153+24
+ 1351 0742 B4EEC67B 		vcmpe.f64	d7, d6
+ 1352 0746 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1353 074a 10DD     		ble	.L81
+ 391:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.45) && (((double)IQParamConfig->AECAl
+ 1354              		.loc 1 391 72 discriminator 1 view .LVU423
+ 1355 074c 06EE908A 		vmov	s13, r8	@ int
+ARM GAS  /tmp/ccLNkJSa.s 			page 39
+
+
+ 1356 0750 B8EE666B 		vcvt.f64.u32	d6, s13
+ 391:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.45) && (((double)IQParamConfig->AECAl
+ 1357              		.loc 1 391 118 discriminator 1 view .LVU424
+ 1358 0754 05EE906A 		vmov	s11, r6	@ int
+ 1359 0758 B8EE654B 		vcvt.f64.u32	d4, s11
+ 1360 075c 86EE045B 		vdiv.f64	d5, d6, d4
+ 391:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.45) && (((double)IQParamConfig->AECAl
+ 1361              		.loc 1 391 67 discriminator 1 view .LVU425
+ 1362 0760 9FED5F6B 		vldr.64	d6, .L153+32
+ 1363 0764 B4EEC65B 		vcmpe.f64	d5, d6
+ 1364 0768 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1365 076c 4FD4     		bmi	.L83
+ 1366              	.L81:
+ 391:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.45) && (((double)IQParamConfig->AECAl
+ 1367              		.loc 1 391 139 discriminator 2 view .LVU426
+ 1368 076e 9FED5E6B 		vldr.64	d6, .L153+40
+ 1369 0772 B4EEC67B 		vcmpe.f64	d7, d6
+ 1370 0776 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1371 077a 10D5     		bpl	.L84
+ 392:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.15) && (((double)IQParamConfig->AECAl
+ 1372              		.loc 1 392 72 discriminator 1 view .LVU427
+ 1373 077c 06EE908A 		vmov	s13, r8	@ int
+ 1374 0780 B8EE666B 		vcvt.f64.u32	d6, s13
+ 392:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.15) && (((double)IQParamConfig->AECAl
+ 1375              		.loc 1 392 118 discriminator 1 view .LVU428
+ 1376 0784 05EE906A 		vmov	s11, r6	@ int
+ 1377 0788 B8EE654B 		vcvt.f64.u32	d4, s11
+ 1378 078c 86EE045B 		vdiv.f64	d5, d6, d4
+ 392:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.15) && (((double)IQParamConfig->AECAl
+ 1379              		.loc 1 392 67 discriminator 1 view .LVU429
+ 1380 0790 9FED576B 		vldr.64	d6, .L153+48
+ 1381 0794 B4EEC65B 		vcmpe.f64	d5, d6
+ 1382 0798 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1383 079c 37DC     		bgt	.L83
+ 1384              	.L84:
+ 392:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.15) && (((double)IQParamConfig->AECAl
+ 1385              		.loc 1 392 139 discriminator 2 view .LVU430
+ 1386 079e 9FED566B 		vldr.64	d6, .L153+56
+ 1387 07a2 B4EEC67B 		vcmpe.f64	d7, d6
+ 1388 07a6 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1389 07aa 10D5     		bpl	.L86
+ 393:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.60) && (((double)IQParamConfig->AECAl
+ 1390              		.loc 1 393 72 discriminator 1 view .LVU431
+ 1391 07ac 06EE908A 		vmov	s13, r8	@ int
+ 1392 07b0 B8EE666B 		vcvt.f64.u32	d6, s13
+ 393:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.60) && (((double)IQParamConfig->AECAl
+ 1393              		.loc 1 393 118 discriminator 1 view .LVU432
+ 1394 07b4 05EE906A 		vmov	s11, r6	@ int
+ 1395 07b8 B8EE654B 		vcvt.f64.u32	d4, s11
+ 1396 07bc 86EE045B 		vdiv.f64	d5, d6, d4
+ 393:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.60) && (((double)IQParamConfig->AECAl
+ 1397              		.loc 1 393 67 discriminator 1 view .LVU433
+ 1398 07c0 B6EE006B 		vmov.f64	d6, #5.0e-1
+ 1399 07c4 B4EEC65B 		vcmpe.f64	d5, d6
+ 1400 07c8 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1401 07cc 1FDC     		bgt	.L83
+ 1402              	.L86:
+ARM GAS  /tmp/ccLNkJSa.s 			page 40
+
+
+ 393:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (((new_global_exposure / cur_global_exposure) < 0.60) && (((double)IQParamConfig->AECAl
+ 1403              		.loc 1 393 139 discriminator 2 view .LVU434
+ 1404 07ce 9FED426B 		vldr.64	d6, .L153+24
+ 1405 07d2 B4EEC67B 		vcmpe.f64	d7, d6
+ 1406 07d6 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1407 07da 10D5     		bpl	.L88
+ 394:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (new_global_exposure / cur_global_exposure) > 0.98) /* Or same exposure estimation but 
+ 1408              		.loc 1 394 72 discriminator 1 view .LVU435
+ 1409 07dc 06EE908A 		vmov	s13, r8	@ int
+ 1410 07e0 B8EE666B 		vcvt.f64.u32	d6, s13
+ 394:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (new_global_exposure / cur_global_exposure) > 0.98) /* Or same exposure estimation but 
+ 1411              		.loc 1 394 118 discriminator 1 view .LVU436
+ 1412 07e4 05EE906A 		vmov	s11, r6	@ int
+ 1413 07e8 B8EE654B 		vcvt.f64.u32	d4, s11
+ 1414 07ec 86EE045B 		vdiv.f64	d5, d6, d4
+ 394:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (new_global_exposure / cur_global_exposure) > 0.98) /* Or same exposure estimation but 
+ 1415              		.loc 1 394 67 discriminator 1 view .LVU437
+ 1416 07f0 9FED436B 		vldr.64	d6, .L153+64
+ 1417 07f4 B4EEC65B 		vcmpe.f64	d5, d6
+ 1418 07f8 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1419 07fc 07DC     		bgt	.L83
+ 1420              	.L88:
+ 394:../Drivers/ISP/isp/Src/isp_ae_algo.c ****             (new_global_exposure / cur_global_exposure) > 0.98) /* Or same exposure estimation but 
+ 1421              		.loc 1 394 139 discriminator 2 view .LVU438
+ 1422 07fe 9FED426B 		vldr.64	d6, .L153+72
+ 1423 0802 B4EEC67B 		vcmpe.f64	d7, d6
+ 1424 0806 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1425 080a 7FF772AE 		ble	.L60
+ 1426              	.L83:
+ 398:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1427              		.loc 1 398 11 is_stmt 1 view .LVU439
+ 398:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1428              		.loc 1 398 56 is_stmt 0 view .LVU440
+ 1429 080e 07EE908A 		vmov	s15, r8	@ int
+ 1430 0812 B8EE677B 		vcvt.f64.u32	d7, s15
+ 398:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1431              		.loc 1 398 102 view .LVU441
+ 1432 0816 06EE906A 		vmov	s13, r6	@ int
+ 1433 081a B8EE666B 		vcvt.f64.u32	d6, s13
+ 1434 081e 87EE060B 		vdiv.f64	d0, d7, d6
+ 1435              	.LVL72:
+ 398:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1436              		.loc 1 398 31 view .LVU442
+ 1437 0822 20EE080B 		vmul.f64	d0, d0, d8
+ 1438 0826 64E6     		b	.L60
+ 1439              	.LVL73:
+ 1440              	.L78:
+ 377:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1441              		.loc 1 377 33 discriminator 2 view .LVU443
+ 1442 0828 9FED390B 		vldr.64	d0, .L153+80
+ 1443 082c 38EE400B 		vsub.f64	d0, d8, d0
+ 1444              	.LVL74:
+ 377:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1445              		.loc 1 377 33 discriminator 2 view .LVU444
+ 1446 0830 7AE7     		b	.L71
+ 1447              	.LVL75:
+ 1448              	.L140:
+ARM GAS  /tmp/ccLNkJSa.s 			page 41
+
+
+ 381:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1449              		.loc 1 381 13 is_stmt 1 view .LVU445
+ 381:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1450              		.loc 1 381 72 is_stmt 0 view .LVU446
+ 1451 0832 DDED007A 		vldr.32	s15, [sp]	@ int
+ 1452 0836 B8EE677B 		vcvt.f64.u32	d7, s15
+ 381:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1453              		.loc 1 381 88 view .LVU447
+ 1454 083a 9FED376B 		vldr.64	d6, .L153+88
+ 1455 083e 37EE467B 		vsub.f64	d7, d7, d6
+ 381:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1456              		.loc 1 381 63 view .LVU448
+ 1457 0842 9FED1F1B 		vldr.64	d1, .L153
+ 1458 0846 87EE011B 		vdiv.f64	d1, d7, d1
+ 1459 084a B2EE040B 		vmov.f64	d0, #1.0e+1
+ 1460 084e FFF7FEFF 		bl	pow
+ 1461              	.LVL76:
+ 381:../Drivers/ISP/isp/Src/isp_ae_algo.c ****           }
+ 1462              		.loc 1 381 33 discriminator 1 view .LVU449
+ 1463 0852 29EE000B 		vmul.f64	d0, d9, d0
+ 1464 0856 67E7     		b	.L71
+ 1465              	.LVL77:
+ 1466              	.L141:
+ 411:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = (uint32_t)(20 * 1000 * log10(new_global_exposure / (double)(*pExposure)));
+ 1467              		.loc 1 411 7 is_stmt 1 view .LVU450
+ 411:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       *pGain = (uint32_t)(20 * 1000 * log10(new_global_exposure / (double)(*pExposure)));
+ 1468              		.loc 1 411 18 is_stmt 0 view .LVU451
+ 1469 0858 3B60     		str	r3, [r7]
+ 412:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1470              		.loc 1 412 7 is_stmt 1 view .LVU452
+ 412:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1471              		.loc 1 412 39 is_stmt 0 view .LVU453
+ 1472 085a 80EE070B 		vdiv.f64	d0, d0, d7
+ 1473              	.LVL78:
+ 412:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1474              		.loc 1 412 39 view .LVU454
+ 1475 085e FFF7FEFF 		bl	log10
+ 1476              	.LVL79:
+ 412:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1477              		.loc 1 412 37 discriminator 1 view .LVU455
+ 1478 0862 9FED177B 		vldr.64	d7, .L153
+ 1479 0866 20EE070B 		vmul.f64	d0, d0, d7
+ 412:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1480              		.loc 1 412 16 discriminator 1 view .LVU456
+ 1481 086a FCEEC07B 		vcvt.u32.f64	s15, d0
+ 1482 086e 17EE903A 		vmov	r3, s15	@ int
+ 412:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1483              		.loc 1 412 14 discriminator 1 view .LVU457
+ 1484 0872 C5ED007A 		vstr.32	s15, [r5]	@ int
+ 415:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1485              		.loc 1 415 7 is_stmt 1 view .LVU458
+ 415:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1486              		.loc 1 415 32 is_stmt 0 view .LVU459
+ 1487 0876 726B     		ldr	r2, [r6, #52]
+ 415:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1488              		.loc 1 415 10 view .LVU460
+ 1489 0878 9342     		cmp	r3, r2
+ARM GAS  /tmp/ccLNkJSa.s 			page 42
+
+
+ 1490 087a 11D9     		bls	.L95
+ 415:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1491              		.loc 1 415 71 discriminator 1 view .LVU461
+ 1492 087c 009A     		ldr	r2, [sp]
+ 415:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1493              		.loc 1 415 69 discriminator 1 view .LVU462
+ 1494 087e 991A     		subs	r1, r3, r2
+ 415:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1495              		.loc 1 415 49 discriminator 1 view .LVU463
+ 1496 0880 48BF     		it	mi
+ 1497 0882 4942     		rsbmi	r1, r1, #0
+ 415:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1498              		.loc 1 415 45 discriminator 1 view .LVU464
+ 1499 0884 42F21070 		movw	r0, #10000
+ 1500 0888 8142     		cmp	r1, r0
+ 1501 088a 09DD     		ble	.L95
+ 417:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 1502              		.loc 1 417 9 is_stmt 1 view .LVU465
+ 417:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 1503              		.loc 1 417 109 is_stmt 0 view .LVU466
+ 1504 088c 9342     		cmp	r3, r2
+ 1505 088e 11D2     		bcs	.L96
+ 417:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 1506              		.loc 1 417 74 discriminator 1 view .LVU467
+ 1507 0890 0346     		mov	r3, r0
+ 1508 0892 9042     		cmp	r0, r2
+ 1509 0894 38BF     		it	cc
+ 1510 0896 1346     		movcc	r3, r2
+ 417:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 1511              		.loc 1 417 109 discriminator 1 view .LVU468
+ 1512 0898 A3F51C52 		sub	r2, r3, #9984
+ 1513 089c 103A     		subs	r2, r2, #16
+ 1514              	.L97:
+ 417:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 1515              		.loc 1 417 16 discriminator 3 view .LVU469
+ 1516 089e 2A60     		str	r2, [r5]
+ 1517              	.L95:
+ 419:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 1518              		.loc 1 419 7 is_stmt 1 view .LVU470
+ 419:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 1519              		.loc 1 419 17 is_stmt 0 view .LVU471
+ 1520 08a0 2A68     		ldr	r2, [r5]
+ 419:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 1521              		.loc 1 419 37 view .LVU472
+ 1522 08a2 F36A     		ldr	r3, [r6, #44]
+ 419:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 1523              		.loc 1 419 73 view .LVU473
+ 1524 08a4 9A42     		cmp	r2, r3
+ 1525 08a6 03D3     		bcc	.L98
+ 419:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 1526              		.loc 1 419 96 discriminator 2 view .LVU474
+ 1527 08a8 336B     		ldr	r3, [r6, #48]
+ 419:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 1528              		.loc 1 419 73 discriminator 2 view .LVU475
+ 1529 08aa 9342     		cmp	r3, r2
+ 1530 08ac 28BF     		it	cs
+ 1531 08ae 1346     		movcs	r3, r2
+ARM GAS  /tmp/ccLNkJSa.s 			page 43
+
+
+ 1532              	.L98:
+ 419:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     }
+ 1533              		.loc 1 419 14 discriminator 3 view .LVU476
+ 1534 08b0 2B60     		str	r3, [r5]
+ 1535 08b2 3CE6     		b	.L94
+ 1536              	.L96:
+ 417:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 1537              		.loc 1 417 109 discriminator 2 view .LVU477
+ 1538 08b4 02F51C52 		add	r2, r2, #9984
+ 1539 08b8 1032     		adds	r2, r2, #16
+ 1540 08ba F0E7     		b	.L97
+ 1541              	.L154:
+ 1542 08bc AFF30080 		.align	3
+ 1543              	.L153:
+ 1544 08c0 00000000 		.word	0
+ 1545 08c4 0088D340 		.word	1087604736
+ 1546 08c8 00000000 		.word	0
+ 1547 08cc 00407F40 		.word	1082081280
+ 1548 08d0 00000000 		.word	0
+ 1549 08d4 00409F40 		.word	1084178432
+ 1550 08d8 33333333 		.word	858993459
+ 1551 08dc 3333E33F 		.word	1071854387
+ 1552 08e0 9A999999 		.word	-1717986918
+ 1553 08e4 9999D93F 		.word	1071225241
+ 1554 08e8 CDCCCCCC 		.word	-858993459
+ 1555 08ec CCCCDC3F 		.word	1071434956
+ 1556 08f0 CDCCCCCC 		.word	-858993459
+ 1557 08f4 CCCCE43F 		.word	1071959244
+ 1558 08f8 33333333 		.word	858993459
+ 1559 08fc 3333C33F 		.word	1069757235
+ 1560 0900 33333333 		.word	858993459
+ 1561 0904 3333EB3F 		.word	1072378675
+ 1562 0908 5C8FC2F5 		.word	-171798692
+ 1563 090c 285CEF3F 		.word	1072651304
+ 1564 0910 00000000 		.word	0
+ 1565 0914 00C07240 		.word	1081262080
+ 1566 0918 00000000 		.word	0
+ 1567 091c 00709740 		.word	1083666432
+ 1568 0920 00000000 		.word	pSensorInfo
+ 1569 0924 00000000 		.word	previous_lux
+ 1570 0928 CDCC4C3D 		.word	1028443341
+ 1571              	.LVL80:
+ 1572              	.L138:
+ 429:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         ((lux <= AE_LOW_LUX_LIMIT) && (abs((int32_t)averageL - (int32_t)IQParamConfig->AECAlgo.expo
+ 1573              		.loc 1 429 5 is_stmt 1 view .LVU478
+ 429:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         ((lux <= AE_LOW_LUX_LIMIT) && (abs((int32_t)averageL - (int32_t)IQParamConfig->AECAlgo.expo
+ 1574              		.loc 1 429 8 is_stmt 0 view .LVU479
+ 1575 092c 322C     		cmp	r4, #50
+ 1576 092e 3FF623AC 		bhi	.L39
+ 1577              	.L99:
+ 430:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 1578              		.loc 1 430 86 view .LVU480
+ 1579 0932 634B     		ldr	r3, .L155+40
+ 1580 0934 1B68     		ldr	r3, [r3]
+ 430:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 1581              		.loc 1 430 95 view .LVU481
+ 1582 0936 DA6E     		ldr	r2, [r3, #108]
+ARM GAS  /tmp/ccLNkJSa.s 			page 44
+
+
+ 430:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 1583              		.loc 1 430 62 view .LVU482
+ 1584 0938 B31A     		subs	r3, r6, r2
+ 430:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 1585              		.loc 1 430 40 view .LVU483
+ 1586 093a 48BF     		it	mi
+ 1587 093c 5B42     		rsbmi	r3, r3, #0
+ 430:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 1588              		.loc 1 430 114 view .LVU484
+ 1589 093e 0E2A     		cmp	r2, #14
+ 1590 0940 3ED8     		bhi	.L117
+ 430:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 1591              		.loc 1 430 114 discriminator 1 view .LVU485
+ 1592 0942 0822     		movs	r2, #8
+ 1593              	.L102:
+ 430:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 1594              		.loc 1 430 36 discriminator 3 view .LVU486
+ 1595 0944 9342     		cmp	r3, r2
+ 1596 0946 7FF723AC 		ble	.L101
+ 1597              	.L100:
+ 434:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1598              		.loc 1 434 7 is_stmt 1 view .LVU487
+ 434:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1599              		.loc 1 434 35 is_stmt 0 view .LVU488
+ 1600 094a 5D4B     		ldr	r3, .L155+40
+ 1601 094c 1B68     		ldr	r3, [r3]
+ 434:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1602              		.loc 1 434 44 view .LVU489
+ 1603 094e DB6E     		ldr	r3, [r3, #108]
+ 434:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1604              		.loc 1 434 10 view .LVU490
+ 1605 0950 B342     		cmp	r3, r6
+ 1606 0952 4FD9     		bls	.L103
+ 437:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1607              		.loc 1 437 9 is_stmt 1 view .LVU491
+ 437:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1608              		.loc 1 437 47 is_stmt 0 view .LVU492
+ 1609 0954 5B4A     		ldr	r2, .L155+44
+ 1610 0956 1268     		ldr	r2, [r2]
+ 1611 0958 92ED0F9A 		vldr.32	s18, [r2, #60]	@ int
+ 437:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1612              		.loc 1 437 33 view .LVU493
+ 1613 095c B8EE499B 		vcvt.f64.u32	d9, s18
+ 437:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1614              		.loc 1 437 12 view .LVU494
+ 1615 0960 B4EEC89B 		vcmpe.f64	d9, d8
+ 1616 0964 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1617 0968 31DB     		blt	.L142
+ 439:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1618              		.loc 1 439 11 is_stmt 1 view .LVU495
+ 439:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1619              		.loc 1 439 123 is_stmt 0 view .LVU496
+ 1620 096a 5EB3     		cbz	r6, .L106
+ 439:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1621              		.loc 1 439 66 discriminator 1 view .LVU497
+ 1622 096c 07EE903A 		vmov	s15, r3	@ int
+ 1623 0970 B8EE677B 		vcvt.f64.u32	d7, s15
+ARM GAS  /tmp/ccLNkJSa.s 			page 45
+
+
+ 439:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1624              		.loc 1 439 64 discriminator 1 view .LVU498
+ 1625 0974 27EE087B 		vmul.f64	d7, d7, d8
+ 439:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1626              		.loc 1 439 112 discriminator 1 view .LVU499
+ 1627 0978 06EE906A 		vmov	s13, r6	@ int
+ 1628 097c B8EE666B 		vcvt.f64.u32	d6, s13
+ 439:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1629              		.loc 1 439 31 discriminator 1 view .LVU500
+ 1630 0980 87EE068B 		vdiv.f64	d8, d7, d6
+ 1631              	.LVL81:
+ 1632              	.L107:
+ 460:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1633              		.loc 1 460 7 is_stmt 1 view .LVU501
+ 460:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1634              		.loc 1 460 45 is_stmt 0 view .LVU502
+ 1635 0984 4F4B     		ldr	r3, .L155+44
+ 1636 0986 1E68     		ldr	r6, [r3]
+ 1637              	.LVL82:
+ 460:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1638              		.loc 1 460 45 view .LVU503
+ 1639 0988 F36B     		ldr	r3, [r6, #60]
+ 460:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1640              		.loc 1 460 31 view .LVU504
+ 1641 098a 07EE903A 		vmov	s15, r3	@ int
+ 1642 098e B8EE677B 		vcvt.f64.u32	d7, s15
+ 460:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       {
+ 1643              		.loc 1 460 10 view .LVU505
+ 1644 0992 B4EEC87B 		vcmpe.f64	d7, d8
+ 1645 0996 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1646 099a 5CDB     		blt	.L144
+ 462:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         *pExposure = (new_global_exposure < pSensorInfo->exposure_min) ? pSensorInfo->exposure_min 
+ 1647              		.loc 1 462 9 is_stmt 1 view .LVU506
+ 462:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         *pExposure = (new_global_exposure < pSensorInfo->exposure_min) ? pSensorInfo->exposure_min 
+ 1648              		.loc 1 462 16 is_stmt 0 view .LVU507
+ 1649 099c 0023     		movs	r3, #0
+ 1650 099e 2B60     		str	r3, [r5]
+ 463:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 1651              		.loc 1 463 9 is_stmt 1 view .LVU508
+ 463:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 1652              		.loc 1 463 56 is_stmt 0 view .LVU509
+ 1653 09a0 B36B     		ldr	r3, [r6, #56]
+ 463:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 1654              		.loc 1 463 43 view .LVU510
+ 1655 09a2 07EE903A 		vmov	s15, r3	@ int
+ 1656 09a6 B8EE677B 		vcvt.f64.u32	d7, s15
+ 463:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 1657              		.loc 1 463 100 view .LVU511
+ 1658 09aa B4EEC87B 		vcmpe.f64	d7, d8
+ 1659 09ae F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1660 09b2 03DC     		bgt	.L113
+ 463:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 1661              		.loc 1 463 100 discriminator 2 view .LVU512
+ 1662 09b4 FCEEC87B 		vcvt.u32.f64	s15, d8
+ 1663 09b8 17EE903A 		vmov	r3, s15	@ int
+ 1664              	.L113:
+ 463:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ARM GAS  /tmp/ccLNkJSa.s 			page 46
+
+
+ 1665              		.loc 1 463 20 discriminator 3 view .LVU513
+ 1666 09bc 3B60     		str	r3, [r7]
+ 1667 09be B6E5     		b	.L94
+ 1668              	.LVL83:
+ 1669              	.L117:
+ 430:../Drivers/ISP/isp/Src/isp_ae_algo.c ****     {
+ 1670              		.loc 1 430 114 discriminator 2 view .LVU514
+ 1671 09c0 0A22     		movs	r2, #10
+ 1672 09c2 BFE7     		b	.L102
+ 1673              	.L106:
+ 439:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1674              		.loc 1 439 31 discriminator 2 view .LVU515
+ 1675 09c4 9FED347B 		vldr.64	d7, .L155
+ 1676 09c8 38EE078B 		vadd.f64	d8, d8, d7
+ 1677              	.LVL84:
+ 439:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1678              		.loc 1 439 31 discriminator 2 view .LVU516
+ 1679 09cc DAE7     		b	.L107
+ 1680              	.LVL85:
+ 1681              	.L142:
+ 443:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1682              		.loc 1 443 11 is_stmt 1 view .LVU517
+ 443:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1683              		.loc 1 443 70 is_stmt 0 view .LVU518
+ 1684 09ce DDED007A 		vldr.32	s15, [sp]	@ int
+ 1685 09d2 B8EE677B 		vcvt.f64.u32	d7, s15
+ 443:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1686              		.loc 1 443 86 view .LVU519
+ 1687 09d6 9FED326B 		vldr.64	d6, .L155+8
+ 1688 09da 37EE067B 		vadd.f64	d7, d7, d6
+ 443:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1689              		.loc 1 443 61 view .LVU520
+ 1690 09de 9FED321B 		vldr.64	d1, .L155+16
+ 1691 09e2 87EE011B 		vdiv.f64	d1, d7, d1
+ 1692 09e6 B2EE040B 		vmov.f64	d0, #1.0e+1
+ 1693 09ea FFF7FEFF 		bl	pow
+ 1694              	.LVL86:
+ 443:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1695              		.loc 1 443 31 discriminator 1 view .LVU521
+ 1696 09ee 29EE008B 		vmul.f64	d8, d9, d0
+ 1697              	.LVL87:
+ 443:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1698              		.loc 1 443 31 discriminator 1 view .LVU522
+ 1699 09f2 C7E7     		b	.L107
+ 1700              	.LVL88:
+ 1701              	.L103:
+ 449:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1702              		.loc 1 449 9 is_stmt 1 view .LVU523
+ 449:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1703              		.loc 1 449 47 is_stmt 0 view .LVU524
+ 1704 09f4 334A     		ldr	r2, .L155+44
+ 1705 09f6 1268     		ldr	r2, [r2]
+ 1706 09f8 92ED0F9A 		vldr.32	s18, [r2, #60]	@ int
+ 449:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ 1707              		.loc 1 449 33 view .LVU525
+ 1708 09fc B8EE499B 		vcvt.f64.u32	d9, s18
+ 449:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         {
+ARM GAS  /tmp/ccLNkJSa.s 			page 47
+
+
+ 1709              		.loc 1 449 12 view .LVU526
+ 1710 0a00 B4EEC89B 		vcmpe.f64	d9, d8
+ 1711 0a04 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1712 0a08 12DB     		blt	.L143
+ 451:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1713              		.loc 1 451 11 is_stmt 1 view .LVU527
+ 451:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1714              		.loc 1 451 123 is_stmt 0 view .LVU528
+ 1715 0a0a 66B1     		cbz	r6, .L110
+ 451:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1716              		.loc 1 451 66 discriminator 1 view .LVU529
+ 1717 0a0c 07EE903A 		vmov	s15, r3	@ int
+ 1718 0a10 B8EE676B 		vcvt.f64.u32	d6, s15
+ 451:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1719              		.loc 1 451 64 discriminator 1 view .LVU530
+ 1720 0a14 26EE086B 		vmul.f64	d6, d6, d8
+ 451:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1721              		.loc 1 451 112 discriminator 1 view .LVU531
+ 1722 0a18 07EE906A 		vmov	s15, r6	@ int
+ 1723 0a1c B8EE677B 		vcvt.f64.u32	d7, s15
+ 451:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1724              		.loc 1 451 31 discriminator 1 view .LVU532
+ 1725 0a20 86EE078B 		vdiv.f64	d8, d6, d7
+ 1726              	.LVL89:
+ 451:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1727              		.loc 1 451 31 discriminator 1 view .LVU533
+ 1728 0a24 AEE7     		b	.L107
+ 1729              	.LVL90:
+ 1730              	.L110:
+ 451:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1731              		.loc 1 451 31 discriminator 2 view .LVU534
+ 1732 0a26 9FED227B 		vldr.64	d7, .L155+24
+ 1733 0a2a 38EE478B 		vsub.f64	d8, d8, d7
+ 1734              	.LVL91:
+ 451:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1735              		.loc 1 451 31 discriminator 2 view .LVU535
+ 1736 0a2e A9E7     		b	.L107
+ 1737              	.LVL92:
+ 1738              	.L143:
+ 455:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1739              		.loc 1 455 11 is_stmt 1 view .LVU536
+ 455:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1740              		.loc 1 455 70 is_stmt 0 view .LVU537
+ 1741 0a30 DDED007A 		vldr.32	s15, [sp]	@ int
+ 1742 0a34 B8EE677B 		vcvt.f64.u32	d7, s15
+ 455:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1743              		.loc 1 455 86 view .LVU538
+ 1744 0a38 9FED1F6B 		vldr.64	d6, .L155+32
+ 1745 0a3c 37EE467B 		vsub.f64	d7, d7, d6
+ 455:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1746              		.loc 1 455 61 view .LVU539
+ 1747 0a40 9FED191B 		vldr.64	d1, .L155+16
+ 1748 0a44 87EE011B 		vdiv.f64	d1, d7, d1
+ 1749 0a48 B2EE040B 		vmov.f64	d0, #1.0e+1
+ 1750 0a4c FFF7FEFF 		bl	pow
+ 1751              	.LVL93:
+ 455:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ARM GAS  /tmp/ccLNkJSa.s 			page 48
+
+
+ 1752              		.loc 1 455 31 discriminator 1 view .LVU540
+ 1753 0a50 29EE008B 		vmul.f64	d8, d9, d0
+ 1754              	.LVL94:
+ 455:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         }
+ 1755              		.loc 1 455 31 discriminator 1 view .LVU541
+ 1756 0a54 96E7     		b	.L107
+ 1757              	.LVL95:
+ 1758              	.L144:
+ 467:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         *pGain = (uint32_t)(20 * 1000 * log10((float)new_global_exposure / (float)(*pExposure)));
+ 1759              		.loc 1 467 9 is_stmt 1 view .LVU542
+ 467:../Drivers/ISP/isp/Src/isp_ae_algo.c ****         *pGain = (uint32_t)(20 * 1000 * log10((float)new_global_exposure / (float)(*pExposure)));
+ 1760              		.loc 1 467 20 is_stmt 0 view .LVU543
+ 1761 0a56 3B60     		str	r3, [r7]
+ 468:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1762              		.loc 1 468 9 is_stmt 1 view .LVU544
+ 468:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1763              		.loc 1 468 47 is_stmt 0 view .LVU545
+ 1764 0a58 B7EEC88B 		vcvt.f32.f64	s16, d8
+ 1765              	.LVL96:
+ 468:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1766              		.loc 1 468 76 view .LVU546
+ 1767 0a5c 07EE903A 		vmov	s15, r3	@ int
+ 1768 0a60 F8EE677A 		vcvt.f32.u32	s15, s15
+ 468:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1769              		.loc 1 468 74 view .LVU547
+ 1770 0a64 88EE270A 		vdiv.f32	s0, s16, s15
+ 468:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1771              		.loc 1 468 41 view .LVU548
+ 1772 0a68 B7EEC00A 		vcvt.f64.f32	d0, s0
+ 1773 0a6c FFF7FEFF 		bl	log10
+ 1774              	.LVL97:
+ 468:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1775              		.loc 1 468 39 discriminator 1 view .LVU549
+ 1776 0a70 9FED0D7B 		vldr.64	d7, .L155+16
+ 1777 0a74 20EE070B 		vmul.f64	d0, d0, d7
+ 468:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1778              		.loc 1 468 18 discriminator 1 view .LVU550
+ 1779 0a78 FCEEC07B 		vcvt.u32.f64	s15, d0
+ 1780 0a7c 17EE903A 		vmov	r3, s15	@ int
+ 468:../Drivers/ISP/isp/Src/isp_ae_algo.c **** 
+ 1781              		.loc 1 468 16 discriminator 1 view .LVU551
+ 1782 0a80 C5ED007A 		vstr.32	s15, [r5]	@ int
+ 470:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 1783              		.loc 1 470 9 is_stmt 1 view .LVU552
+ 470:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 1784              		.loc 1 470 39 is_stmt 0 view .LVU553
+ 1785 0a84 F26A     		ldr	r2, [r6, #44]
+ 470:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 1786              		.loc 1 470 75 view .LVU554
+ 1787 0a86 9342     		cmp	r3, r2
+ 1788 0a88 03D3     		bcc	.L114
+ 470:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 1789              		.loc 1 470 98 discriminator 2 view .LVU555
+ 1790 0a8a 326B     		ldr	r2, [r6, #48]
+ 470:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 1791              		.loc 1 470 75 discriminator 2 view .LVU556
+ 1792 0a8c 9A42     		cmp	r2, r3
+ARM GAS  /tmp/ccLNkJSa.s 			page 49
+
+
+ 1793 0a8e 28BF     		it	cs
+ 1794 0a90 1A46     		movcs	r2, r3
+ 1795              	.L114:
+ 470:../Drivers/ISP/isp/Src/isp_ae_algo.c ****       }
+ 1796              		.loc 1 470 16 discriminator 3 view .LVU557
+ 1797 0a92 2A60     		str	r2, [r5]
+ 1798 0a94 4BE5     		b	.L94
+ 1799              	.L156:
+ 1800 0a96 00BF     		.align	3
+ 1801              	.L155:
+ 1802 0a98 00000000 		.word	0
+ 1803 0a9c 00C06240 		.word	1080213504
+ 1804 0aa0 00000000 		.word	0
+ 1805 0aa4 00407F40 		.word	1082081280
+ 1806 0aa8 00000000 		.word	0
+ 1807 0aac 0088D340 		.word	1087604736
+ 1808 0ab0 00000000 		.word	0
+ 1809 0ab4 00005940 		.word	1079574528
+ 1810 0ab8 00000000 		.word	0
+ 1811 0abc 00C07240 		.word	1081262080
+ 1812 0ac0 00000000 		.word	IQParamConfig
+ 1813 0ac4 00000000 		.word	pSensorInfo
+ 1814              		.cfi_endproc
+ 1815              	.LFE887:
+ 1817              		.section	.bss.previous_lux,"aw",%nobits
+ 1818              		.align	2
+ 1821              	previous_lux:
+ 1822 0000 00000000 		.space	4
+ 1823              		.section	.bss.pSensorInfo,"aw",%nobits
+ 1824              		.align	2
+ 1827              	pSensorInfo:
+ 1828 0000 00000000 		.space	4
+ 1829              		.section	.bss.IQParamConfig,"aw",%nobits
+ 1830              		.align	2
+ 1833              	IQParamConfig:
+ 1834 0000 00000000 		.space	4
+ 1835              		.text
+ 1836              	.Letext0:
+ 1837              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 1838              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 1839              		.file 4 "../Drivers/ISP/isp/Inc/isp_core.h"
+ 1840              		.file 5 "/usr/arm-none-eabi/include/math.h"
+ 1841              		.file 6 "../Drivers/ISP/isp/Inc/isp_services.h"
+ARM GAS  /tmp/ccLNkJSa.s 			page 50
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 isp_ae_algo.c
+     /tmp/ccLNkJSa.s:26     .text.isp_ae_reverse_antiflicker:00000000 $t
+     /tmp/ccLNkJSa.s:31     .text.isp_ae_reverse_antiflicker:00000000 isp_ae_reverse_antiflicker
+     /tmp/ccLNkJSa.s:161    .text.isp_ae_reverse_antiflicker:000000b0 $d
+     /tmp/ccLNkJSa.s:1827   .bss.pSensorInfo:00000000 pSensorInfo
+     /tmp/ccLNkJSa.s:171    .text.isp_ae_compute_antiflcker:00000000 $t
+     /tmp/ccLNkJSa.s:176    .text.isp_ae_compute_antiflcker:00000000 isp_ae_compute_antiflcker
+     /tmp/ccLNkJSa.s:310    .text.isp_ae_compute_antiflcker:00000098 $d
+     /tmp/ccLNkJSa.s:1833   .bss.IQParamConfig:00000000 IQParamConfig
+     /tmp/ccLNkJSa.s:321    .text.isp_ae_init:00000000 $t
+     /tmp/ccLNkJSa.s:327    .text.isp_ae_init:00000000 isp_ae_init
+     /tmp/ccLNkJSa.s:362    .text.isp_ae_init:00000018 $d
+     /tmp/ccLNkJSa.s:368    .text.isp_ae_get_new_exposure:00000000 $t
+     /tmp/ccLNkJSa.s:374    .text.isp_ae_get_new_exposure:00000000 isp_ae_get_new_exposure
+     /tmp/ccLNkJSa.s:719    .text.isp_ae_get_new_exposure:00000258 $d
+     /tmp/ccLNkJSa.s:731    .text.isp_ae_get_new_exposure:0000027c $t
+     /tmp/ccLNkJSa.s:1119   .text.isp_ae_get_new_exposure:00000560 $d
+     /tmp/ccLNkJSa.s:1821   .bss.previous_lux:00000000 previous_lux
+     /tmp/ccLNkJSa.s:1141   .text.isp_ae_get_new_exposure:000005ac $t
+     /tmp/ccLNkJSa.s:1544   .text.isp_ae_get_new_exposure:000008c0 $d
+     /tmp/ccLNkJSa.s:1575   .text.isp_ae_get_new_exposure:0000092c $t
+     /tmp/ccLNkJSa.s:1802   .text.isp_ae_get_new_exposure:00000a98 $d
+     /tmp/ccLNkJSa.s:1818   .bss.previous_lux:00000000 $d
+     /tmp/ccLNkJSa.s:1824   .bss.pSensorInfo:00000000 $d
+     /tmp/ccLNkJSa.s:1830   .bss.IQParamConfig:00000000 $d
+
+UNDEFINED SYMBOLS
+pow
+log10
+ISP_SVC_IQParam_Get

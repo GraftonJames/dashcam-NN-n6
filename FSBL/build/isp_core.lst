@@ -1,0 +1,3252 @@
+ARM GAS  /tmp/cc8NtyFF.s 			page 1
+
+
+   1              		.arch armv8.1-m.main
+   2              		.fpu fpv5-d16
+   3              		.arch_extension dsp
+   4              		.arch_extension fp
+   5              		.arch_extension fp.dp
+   6              		.arch_extension mve
+   7              		.arch_extension mve.fp
+   8              		.eabi_attribute 5, "cortex-m55"
+   9              		.eabi_attribute 28, 1
+  10              		.eabi_attribute 20, 1
+  11              		.eabi_attribute 21, 1
+  12              		.eabi_attribute 23, 3
+  13              		.eabi_attribute 24, 1
+  14              		.eabi_attribute 25, 1
+  15              		.eabi_attribute 26, 1
+  16              		.eabi_attribute 30, 1
+  17              		.eabi_attribute 34, 1
+  18              		.eabi_attribute 38, 1
+  19              		.eabi_attribute 18, 4
+  20              		.file	"isp_core.c"
+  21              		.text
+  22              	.Ltext0:
+  23              		.cfi_sections	.debug_frame
+  24              		.file 1 "../Drivers/ISP/isp/Src/isp_core.c"
+  25              		.section	.text._ISP_BackgroundProcess,"ax",%progbits
+  26              		.align	1
+  27              		.syntax unified
+  28              		.thumb
+  29              		.thumb_func
+  31              	_ISP_BackgroundProcess:
+  32              	.LVL0:
+  33              	.LFB887:
+   1:../Drivers/ISP/isp/Src/isp_core.c **** /**
+   2:../Drivers/ISP/isp/Src/isp_core.c ****  ******************************************************************************
+   3:../Drivers/ISP/isp/Src/isp_core.c ****  * @file    isp_core.c
+   4:../Drivers/ISP/isp/Src/isp_core.c ****  * @author  AIS Application Team
+   5:../Drivers/ISP/isp/Src/isp_core.c ****  * @brief   API and CORE parts of the ISP middleware
+   6:../Drivers/ISP/isp/Src/isp_core.c ****  ******************************************************************************
+   7:../Drivers/ISP/isp/Src/isp_core.c ****  * @attention
+   8:../Drivers/ISP/isp/Src/isp_core.c ****  *
+   9:../Drivers/ISP/isp/Src/isp_core.c ****  * Copyright (c) 2023 STMicroelectronics.
+  10:../Drivers/ISP/isp/Src/isp_core.c ****  * All rights reserved.
+  11:../Drivers/ISP/isp/Src/isp_core.c ****  *
+  12:../Drivers/ISP/isp/Src/isp_core.c ****  * This software is licensed under terms that can be found in the LICENSE file
+  13:../Drivers/ISP/isp/Src/isp_core.c ****  * in the root directory of this software component.
+  14:../Drivers/ISP/isp/Src/isp_core.c ****  * If no LICENSE file comes with this software, it is provided AS-IS.
+  15:../Drivers/ISP/isp/Src/isp_core.c ****  *
+  16:../Drivers/ISP/isp/Src/isp_core.c ****  ******************************************************************************
+  17:../Drivers/ISP/isp/Src/isp_core.c ****  */
+  18:../Drivers/ISP/isp/Src/isp_core.c **** 
+  19:../Drivers/ISP/isp/Src/isp_core.c **** /* Includes ------------------------------------------------------------------*/
+  20:../Drivers/ISP/isp/Src/isp_core.c **** #include "isp_core.h"
+  21:../Drivers/ISP/isp/Src/isp_core.c **** #include "isp_api.h"
+  22:../Drivers/ISP/isp/Src/isp_core.c **** #include "isp_services.h"
+  23:../Drivers/ISP/isp/Src/isp_core.c **** #include "isp_algo.h"
+  24:../Drivers/ISP/isp/Src/isp_core.c **** #ifdef ISP_MW_TUNING_TOOL_SUPPORT
+  25:../Drivers/ISP/isp/Src/isp_core.c **** #include "isp_tool_com.h"
+ARM GAS  /tmp/cc8NtyFF.s 			page 2
+
+
+  26:../Drivers/ISP/isp/Src/isp_core.c **** #include "isp_cmd_parser.h"
+  27:../Drivers/ISP/isp/Src/isp_core.c **** #endif
+  28:../Drivers/ISP/isp/Src/isp_core.c **** #include <math.h>
+  29:../Drivers/ISP/isp/Src/isp_core.c **** #include <inttypes.h>
+  30:../Drivers/ISP/isp/Src/isp_core.c **** 
+  31:../Drivers/ISP/isp/Src/isp_core.c **** /* Private types -------------------------------------------------------------*/
+  32:../Drivers/ISP/isp/Src/isp_core.c **** /* Private constants ---------------------------------------------------------*/
+  33:../Drivers/ISP/isp/Src/isp_core.c **** /* Private macro -------------------------------------------------------------*/
+  34:../Drivers/ISP/isp/Src/isp_core.c **** /* Private function prototypes -----------------------------------------------*/
+  35:../Drivers/ISP/isp/Src/isp_core.c **** /* Private variables ---------------------------------------------------------*/
+  36:../Drivers/ISP/isp/Src/isp_core.c **** /* Private functions ---------------------------------------------------------*/
+  37:../Drivers/ISP/isp/Src/isp_core.c **** /* Global variables ----------------------------------------------------------*/
+  38:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_Status = ISP_OK;
+  39:../Drivers/ISP/isp/Src/isp_core.c **** 
+  40:../Drivers/ISP/isp/Src/isp_core.c **** extern ISP_MetaTypeDef Meta;
+  41:../Drivers/ISP/isp/Src/isp_core.c **** /* Exported functions --------------------------------------------------------*/
+  42:../Drivers/ISP/isp/Src/isp_core.c **** /**
+  43:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_Init
+  44:../Drivers/ISP/isp/Src/isp_core.c ****   *         Initializes the ISP device
+  45:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+  46:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hDcmipp: HAL DCMIPP device handle
+  47:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  CameraInstance: BSP camera instance
+  48:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  pAppliHelpers: pointer to application helpers. The application helpers are used
+  49:../Drivers/ISP/isp/Src/isp_core.c ****   *         by the ISP to interact with the application. get/set sensor exp/gain/ and get sensor in
+  50:../Drivers/ISP/isp/Src/isp_core.c ****   *         while the other helpers are optional and can be set to NULL
+  51:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  ISP_IQParamCacheInit: pointer to ISP sensors specific params.
+  52:../Drivers/ISP/isp/Src/isp_core.c ****   *         If NULL, then the statistic area IQ static parameter is used.
+  53:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval ISP status
+  54:../Drivers/ISP/isp/Src/isp_core.c ****   */
+  55:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_Init(ISP_HandleTypeDef *hIsp,
+  56:../Drivers/ISP/isp/Src/isp_core.c ****                            void *hDcmipp,
+  57:../Drivers/ISP/isp/Src/isp_core.c ****                            uint32_t CameraInstance,
+  58:../Drivers/ISP/isp/Src/isp_core.c ****                            ISP_AppliHelpersTypeDef *pAppliHelpers,
+  59:../Drivers/ISP/isp/Src/isp_core.c ****                            const ISP_IQParamTypeDef *ISP_IQParamCacheInit)
+  60:../Drivers/ISP/isp/Src/isp_core.c **** {
+  61:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_StatusTypeDef ret;
+  62:../Drivers/ISP/isp/Src/isp_core.c **** 
+  63:../Drivers/ISP/isp/Src/isp_core.c ****   if ((hIsp == NULL) || (hDcmipp == NULL) || (pAppliHelpers == NULL))
+  64:../Drivers/ISP/isp/Src/isp_core.c ****   {
+  65:../Drivers/ISP/isp/Src/isp_core.c ****     return ISP_ERR_EINVAL;
+  66:../Drivers/ISP/isp/Src/isp_core.c ****   }
+  67:../Drivers/ISP/isp/Src/isp_core.c **** 
+  68:../Drivers/ISP/isp/Src/isp_core.c ****   memset(hIsp, 0, sizeof(*hIsp));
+  69:../Drivers/ISP/isp/Src/isp_core.c **** 
+  70:../Drivers/ISP/isp/Src/isp_core.c **** #ifdef ISP_MW_TUNING_TOOL_SUPPORT
+  71:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_ToolCom_Init();
+  72:../Drivers/ISP/isp/Src/isp_core.c **** #endif
+  73:../Drivers/ISP/isp/Src/isp_core.c **** 
+  74:../Drivers/ISP/isp/Src/isp_core.c ****   hIsp->hDcmipp = hDcmipp;
+  75:../Drivers/ISP/isp/Src/isp_core.c ****   hIsp->cameraInstance = CameraInstance;
+  76:../Drivers/ISP/isp/Src/isp_core.c ****   hIsp->MainPipe_FrameCount = 0;
+  77:../Drivers/ISP/isp/Src/isp_core.c ****   hIsp->AncillaryPipe_FrameCount = 0;
+  78:../Drivers/ISP/isp/Src/isp_core.c ****   hIsp->DumpPipe_FrameCount = 0;
+  79:../Drivers/ISP/isp/Src/isp_core.c **** 
+  80:../Drivers/ISP/isp/Src/isp_core.c ****   hIsp->appliHelpers = *pAppliHelpers;
+  81:../Drivers/ISP/isp/Src/isp_core.c ****   /* Appli CB is mandatory for the sensor get/set exp/gain function */
+  82:../Drivers/ISP/isp/Src/isp_core.c ****   if (hIsp->appliHelpers.GetSensorInfo == NULL)
+ARM GAS  /tmp/cc8NtyFF.s 			page 3
+
+
+  83:../Drivers/ISP/isp/Src/isp_core.c ****   {
+  84:../Drivers/ISP/isp/Src/isp_core.c ****      printf("INFO: GetSensorInfo helper function is not implemented\r\n");
+  85:../Drivers/ISP/isp/Src/isp_core.c ****      return ISP_ERR_APP_HELPER_UNDEFINED;
+  86:../Drivers/ISP/isp/Src/isp_core.c ****    }
+  87:../Drivers/ISP/isp/Src/isp_core.c ****   if (hIsp->appliHelpers.SetSensorGain == NULL)
+  88:../Drivers/ISP/isp/Src/isp_core.c ****   {
+  89:../Drivers/ISP/isp/Src/isp_core.c ****       printf("INFO: SetSensorGain helper function is not implemented\r\n");
+  90:../Drivers/ISP/isp/Src/isp_core.c ****       return ISP_ERR_APP_HELPER_UNDEFINED;
+  91:../Drivers/ISP/isp/Src/isp_core.c ****   }
+  92:../Drivers/ISP/isp/Src/isp_core.c ****   if (hIsp->appliHelpers.GetSensorGain == NULL)
+  93:../Drivers/ISP/isp/Src/isp_core.c ****   {
+  94:../Drivers/ISP/isp/Src/isp_core.c ****      printf("INFO: GetSensorGain helper function is not implemented\r\n");
+  95:../Drivers/ISP/isp/Src/isp_core.c ****      return ISP_ERR_APP_HELPER_UNDEFINED;
+  96:../Drivers/ISP/isp/Src/isp_core.c ****    }
+  97:../Drivers/ISP/isp/Src/isp_core.c ****   if (hIsp->appliHelpers.SetSensorExposure == NULL)
+  98:../Drivers/ISP/isp/Src/isp_core.c ****   {
+  99:../Drivers/ISP/isp/Src/isp_core.c ****       printf("INFO: SetSensorExposure helper function is not implemented\r\n");
+ 100:../Drivers/ISP/isp/Src/isp_core.c ****       return ISP_ERR_APP_HELPER_UNDEFINED;
+ 101:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 102:../Drivers/ISP/isp/Src/isp_core.c ****   if (hIsp->appliHelpers.GetSensorExposure == NULL)
+ 103:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 104:../Drivers/ISP/isp/Src/isp_core.c ****      printf("INFO: GetSensorExposure helper function is not implemented\r\n");
+ 105:../Drivers/ISP/isp/Src/isp_core.c ****      return ISP_ERR_APP_HELPER_UNDEFINED;
+ 106:../Drivers/ISP/isp/Src/isp_core.c ****    }
+ 107:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 108:../Drivers/ISP/isp/Src/isp_core.c ****   /* Initialize IQ param (read from non volatile memory) */
+ 109:../Drivers/ISP/isp/Src/isp_core.c ****   ret = ISP_SVC_IQParam_Init(hIsp, ISP_IQParamCacheInit);
+ 110:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 111:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 112:../Drivers/ISP/isp/Src/isp_core.c ****     return ret;
+ 113:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 114:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 115:../Drivers/ISP/isp/Src/isp_core.c ****   /* Set decimation configuration */
+ 116:../Drivers/ISP/isp/Src/isp_core.c ****   /* Get Sensor Info */
+ 117:../Drivers/ISP/isp/Src/isp_core.c ****   ret = ISP_SVC_Sensor_GetInfo(hIsp, &hIsp->sensorInfo);
+ 118:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 119:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 120:../Drivers/ISP/isp/Src/isp_core.c ****     return ret;
+ 121:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 122:../Drivers/ISP/isp/Src/isp_core.c ****   /* Compute the ISP decimation value according to the sensor resolution and the maximum ISP resolu
+ 123:../Drivers/ISP/isp/Src/isp_core.c ****   /* It is mandatory to ensure that RAW frame size does not exceed 2688 width prior to demosaicing 
+ 124:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_DecimationTypeDef decimation;
+ 125:../Drivers/ISP/isp/Src/isp_core.c ****   if ((hIsp->sensorInfo.width / ISP_DECIM_FACTOR_1) < ISP_RAW_MAX_WIDTH)
+ 126:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 127:../Drivers/ISP/isp/Src/isp_core.c ****     decimation.factor = ISP_DECIM_FACTOR_1;
+ 128:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 129:../Drivers/ISP/isp/Src/isp_core.c ****   else if ((hIsp->sensorInfo.width / ISP_DECIM_FACTOR_2) < ISP_RAW_MAX_WIDTH)
+ 130:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 131:../Drivers/ISP/isp/Src/isp_core.c ****     decimation.factor = ISP_DECIM_FACTOR_2;
+ 132:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 133:../Drivers/ISP/isp/Src/isp_core.c ****   else if ((hIsp->sensorInfo.width / ISP_DECIM_FACTOR_4) < ISP_RAW_MAX_WIDTH)
+ 134:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 135:../Drivers/ISP/isp/Src/isp_core.c ****     decimation.factor = ISP_DECIM_FACTOR_4;
+ 136:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 137:../Drivers/ISP/isp/Src/isp_core.c ****   else if ((hIsp->sensorInfo.width / ISP_DECIM_FACTOR_8) < ISP_RAW_MAX_WIDTH)
+ 138:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 139:../Drivers/ISP/isp/Src/isp_core.c ****     decimation.factor = ISP_DECIM_FACTOR_8;
+ARM GAS  /tmp/cc8NtyFF.s 			page 4
+
+
+ 140:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 141:../Drivers/ISP/isp/Src/isp_core.c ****   else
+ 142:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 143:../Drivers/ISP/isp/Src/isp_core.c ****     printf("ERROR: No possible decimation factor to target ISP RAW width constraint\r\n");
+ 144:../Drivers/ISP/isp/Src/isp_core.c ****     return ISP_ERR_DECIMATION_EINVAL;
+ 145:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 146:../Drivers/ISP/isp/Src/isp_core.c ****   ret = ISP_SVC_ISP_SetDecimation(hIsp, &decimation);
+ 147:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 148:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 149:../Drivers/ISP/isp/Src/isp_core.c ****     return ret;
+ 150:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 151:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 152:../Drivers/ISP/isp/Src/isp_core.c ****   /* Initialize algorithms */
+ 153:../Drivers/ISP/isp/Src/isp_core.c ****   ret = ISP_Algo_Init(hIsp);
+ 154:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 155:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 156:../Drivers/ISP/isp/Src/isp_core.c ****     return ret;
+ 157:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 158:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 159:../Drivers/ISP/isp/Src/isp_core.c ****   /* Initialize the statistic engine */
+ 160:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_SVC_Stats_Init(hIsp);
+ 161:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 162:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_OK;
+ 163:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 164:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 165:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 166:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_DeInit
+ 167:../Drivers/ISP/isp/Src/isp_core.c ****   *         Deinitializes the ISP device
+ 168:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 169:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval ISP status
+ 170:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 171:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_DeInit(ISP_HandleTypeDef *hIsp)
+ 172:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 173:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_StatusTypeDef ret;
+ 174:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 175:../Drivers/ISP/isp/Src/isp_core.c ****   if (hIsp == NULL)
+ 176:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 177:../Drivers/ISP/isp/Src/isp_core.c ****     return ISP_ERR_EINVAL;
+ 178:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 179:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 180:../Drivers/ISP/isp/Src/isp_core.c ****   /* DeInitialize algorithms */
+ 181:../Drivers/ISP/isp/Src/isp_core.c ****   ret = ISP_Algo_DeInit(hIsp);
+ 182:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 183:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 184:../Drivers/ISP/isp/Src/isp_core.c ****     return ret;
+ 185:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 186:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 187:../Drivers/ISP/isp/Src/isp_core.c ****   /* Re-initialized the hIsp structure */
+ 188:../Drivers/ISP/isp/Src/isp_core.c ****   memset(hIsp, 0, sizeof(*hIsp));
+ 189:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 190:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_OK;
+ 191:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 192:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 193:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 194:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_Start
+ 195:../Drivers/ISP/isp/Src/isp_core.c ****   *         Configures the ISP device
+ 196:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ARM GAS  /tmp/cc8NtyFF.s 			page 5
+
+
+ 197:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval ISP status
+ 198:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 199:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_Start(ISP_HandleTypeDef *hIsp)
+ 200:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 201:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_IQParamTypeDef *IQParamConfig;
+ 202:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_StatusTypeDef ret;
+ 203:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 204:../Drivers/ISP/isp/Src/isp_core.c ****   if (hIsp == NULL)
+ 205:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 206:../Drivers/ISP/isp/Src/isp_core.c ****     return ISP_ERR_EINVAL;
+ 207:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 208:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 209:../Drivers/ISP/isp/Src/isp_core.c ****   ret = ISP_SVC_Misc_IsDCMIPPReady(hIsp);
+ 210:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 211:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 212:../Drivers/ISP/isp/Src/isp_core.c ****     return ret;
+ 213:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 214:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 215:../Drivers/ISP/isp/Src/isp_core.c ****   /* Get IQ Param config */
+ 216:../Drivers/ISP/isp/Src/isp_core.c ****   IQParamConfig = ISP_SVC_IQParam_Get(hIsp);
+ 217:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 218:../Drivers/ISP/isp/Src/isp_core.c ****   /* Set static configurations */
+ 219:../Drivers/ISP/isp/Src/isp_core.c ****   ret = ISP_SVC_ISP_SetDemosaicing(hIsp, &IQParamConfig->demosaicing);
+ 220:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 221:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 222:../Drivers/ISP/isp/Src/isp_core.c ****     return ret;
+ 223:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 224:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 225:../Drivers/ISP/isp/Src/isp_core.c ****   ret = ISP_SVC_ISP_SetStatRemoval(hIsp, &IQParamConfig->statRemoval);
+ 226:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 227:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 228:../Drivers/ISP/isp/Src/isp_core.c ****     return ret;
+ 229:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 230:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 231:../Drivers/ISP/isp/Src/isp_core.c ****   ret = ISP_SVC_ISP_SetContrast(hIsp, &IQParamConfig->contrast);
+ 232:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 233:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 234:../Drivers/ISP/isp/Src/isp_core.c ****     return ret;
+ 235:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 236:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 237:../Drivers/ISP/isp/Src/isp_core.c ****   /* Set optional static configurations */
+ 238:../Drivers/ISP/isp/Src/isp_core.c ****   if ((IQParamConfig->sensorGainStatic.gain != 0) && (!IQParamConfig->AECAlgo.enable))
+ 239:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 240:../Drivers/ISP/isp/Src/isp_core.c ****     ret = ISP_SVC_Sensor_SetGain(hIsp, &IQParamConfig->sensorGainStatic);
+ 241:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 242:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 243:../Drivers/ISP/isp/Src/isp_core.c ****       return ret;
+ 244:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 245:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 246:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 247:../Drivers/ISP/isp/Src/isp_core.c ****   if ((IQParamConfig->sensorExposureStatic.exposure != 0) && (!IQParamConfig->AECAlgo.enable))
+ 248:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 249:../Drivers/ISP/isp/Src/isp_core.c ****     ret = ISP_SVC_Sensor_SetExposure(hIsp, &IQParamConfig->sensorExposureStatic);
+ 250:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 251:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 252:../Drivers/ISP/isp/Src/isp_core.c ****       return ret;
+ 253:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ARM GAS  /tmp/cc8NtyFF.s 			page 6
+
+
+ 254:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 255:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 256:../Drivers/ISP/isp/Src/isp_core.c ****   if (IQParamConfig->badPixelStatic.enable != 0)
+ 257:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 258:../Drivers/ISP/isp/Src/isp_core.c ****     ret = ISP_SVC_ISP_SetBadPixel(hIsp, &IQParamConfig->badPixelStatic);
+ 259:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 260:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 261:../Drivers/ISP/isp/Src/isp_core.c ****       return ret;
+ 262:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 263:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 264:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 265:../Drivers/ISP/isp/Src/isp_core.c ****   if (IQParamConfig->blackLevelStatic.enable != 0)
+ 266:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 267:../Drivers/ISP/isp/Src/isp_core.c ****     ret = ISP_SVC_ISP_SetBlackLevel(hIsp, &IQParamConfig->blackLevelStatic);
+ 268:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 269:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 270:../Drivers/ISP/isp/Src/isp_core.c ****       return ret;
+ 271:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 272:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 273:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 274:../Drivers/ISP/isp/Src/isp_core.c ****   if ((IQParamConfig->ispGainStatic.enable != 0) && (!IQParamConfig->AWBAlgo.enable))
+ 275:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 276:../Drivers/ISP/isp/Src/isp_core.c ****     ret = ISP_SVC_ISP_SetGain(hIsp, &IQParamConfig->ispGainStatic);
+ 277:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 278:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 279:../Drivers/ISP/isp/Src/isp_core.c ****       return ret;
+ 280:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 281:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 282:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 283:../Drivers/ISP/isp/Src/isp_core.c ****   if ((IQParamConfig->colorConvStatic.enable != 0) && (!IQParamConfig->AWBAlgo.enable))
+ 284:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 285:../Drivers/ISP/isp/Src/isp_core.c ****     ret = ISP_SVC_ISP_SetColorConv(hIsp, &IQParamConfig->colorConvStatic);
+ 286:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 287:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 288:../Drivers/ISP/isp/Src/isp_core.c ****       return ret;
+ 289:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 290:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 291:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 292:../Drivers/ISP/isp/Src/isp_core.c ****   /* Configure statistic area if not already configured by ISP_SetStatArea() */
+ 293:../Drivers/ISP/isp/Src/isp_core.c ****   if ((hIsp->statArea.XSize == 0) || (hIsp->statArea.YSize == 0))
+ 294:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 295:../Drivers/ISP/isp/Src/isp_core.c ****     if ((IQParamConfig->statAreaStatic.XSize == 0) || (IQParamConfig->statAreaStatic.XSize == ISP_S
+ 296:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 297:../Drivers/ISP/isp/Src/isp_core.c ****       /* Configure static area width to the maximum value */
+ 298:../Drivers/ISP/isp/Src/isp_core.c ****       IQParamConfig->statAreaStatic.XSize = hIsp->sensorInfo.width - IQParamConfig->statAreaStatic.
+ 299:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 300:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 301:../Drivers/ISP/isp/Src/isp_core.c ****     if ((IQParamConfig->statAreaStatic.YSize == 0) || (IQParamConfig->statAreaStatic.YSize == ISP_S
+ 302:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 303:../Drivers/ISP/isp/Src/isp_core.c ****       /* Configure static area height to the maximum value */
+ 304:../Drivers/ISP/isp/Src/isp_core.c ****       IQParamConfig->statAreaStatic.YSize = hIsp->sensorInfo.height - IQParamConfig->statAreaStatic
+ 305:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 306:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 307:../Drivers/ISP/isp/Src/isp_core.c ****     /* Configure statistic area from IQ params */
+ 308:../Drivers/ISP/isp/Src/isp_core.c ****     ret = ISP_SVC_ISP_SetStatArea(hIsp, &IQParamConfig->statAreaStatic);
+ 309:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 310:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ARM GAS  /tmp/cc8NtyFF.s 			page 7
+
+
+ 311:../Drivers/ISP/isp/Src/isp_core.c ****       return ret;
+ 312:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 313:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 314:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 315:../Drivers/ISP/isp/Src/isp_core.c ****   ret = ISP_SVC_ISP_SetGamma(hIsp, &IQParamConfig->gamma);
+ 316:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 317:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 318:../Drivers/ISP/isp/Src/isp_core.c ****     return ret;
+ 319:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 320:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 321:../Drivers/ISP/isp/Src/isp_core.c ****   /* Initialize the exposure target based on the selected exposure compensation */
+ 322:../Drivers/ISP/isp/Src/isp_core.c ****   IQParamConfig->AECAlgo.exposureTarget = (uint32_t) (ISP_IDEAL_TARGET_EXPOSURE * pow(2, (float)IQP
+ 323:../Drivers/ISP/isp/Src/isp_core.c ****   Meta.exposureTarget = IQParamConfig->AECAlgo.exposureTarget;
+ 324:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 325:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_OK;
+ 326:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 327:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 328:../Drivers/ISP/isp/Src/isp_core.c **** /* Wrapped by ISP_BackgroundProcess() */
+ 329:../Drivers/ISP/isp/Src/isp_core.c **** static ISP_StatusTypeDef _ISP_BackgroundProcess(ISP_HandleTypeDef *hIsp)
+ 330:../Drivers/ISP/isp/Src/isp_core.c **** {
+  34              		.loc 1 330 1 view -0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 0, uses_anonymous_args = 0
+  38              		.loc 1 330 1 is_stmt 0 view .LVU1
+  39 0000 38B5     		push	{r3, r4, r5, lr}
+  40              	.LCFI0:
+  41              		.cfi_def_cfa_offset 16
+  42              		.cfi_offset 3, -16
+  43              		.cfi_offset 4, -12
+  44              		.cfi_offset 5, -8
+  45              		.cfi_offset 14, -4
+ 331:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_StatusTypeDef retAlgo, retStats;
+  46              		.loc 1 331 3 is_stmt 1 view .LVU2
+ 332:../Drivers/ISP/isp/Src/isp_core.c **** #ifdef ISP_MW_TUNING_TOOL_SUPPORT
+ 333:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_StatusTypeDef retCmdParser = ISP_OK;
+ 334:../Drivers/ISP/isp/Src/isp_core.c ****   uint8_t *cmd;
+ 335:../Drivers/ISP/isp/Src/isp_core.c **** #endif
+ 336:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 337:../Drivers/ISP/isp/Src/isp_core.c ****   if (hIsp == NULL)
+  47              		.loc 1 337 3 view .LVU3
+  48              		.loc 1 337 6 is_stmt 0 view .LVU4
+  49 0002 50B1     		cbz	r0, .L3
+  50 0004 0446     		mov	r4, r0
+ 338:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 339:../Drivers/ISP/isp/Src/isp_core.c ****     return ISP_ERR_EINVAL;
+ 340:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 341:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 342:../Drivers/ISP/isp/Src/isp_core.c **** #ifdef ISP_MW_TUNING_TOOL_SUPPORT
+ 343:../Drivers/ISP/isp/Src/isp_core.c ****   if (ISP_ToolCom_CheckCommandReceived(&cmd) > 0)
+ 344:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 345:../Drivers/ISP/isp/Src/isp_core.c ****     retCmdParser = ISP_CmdParser_ProcessCommand(hIsp, cmd);
+ 346:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 347:../Drivers/ISP/isp/Src/isp_core.c **** #endif
+ 348:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 349:../Drivers/ISP/isp/Src/isp_core.c ****   /* Check if a statistics gathering cycle has been completed to call the statistic callbacks */
+ 350:../Drivers/ISP/isp/Src/isp_core.c ****   retStats = ISP_SVC_Stats_ProcessCallbacks(hIsp);
+ARM GAS  /tmp/cc8NtyFF.s 			page 8
+
+
+  51              		.loc 1 350 3 is_stmt 1 view .LVU5
+  52              		.loc 1 350 14 is_stmt 0 view .LVU6
+  53 0006 FFF7FEFF 		bl	ISP_SVC_Stats_ProcessCallbacks
+  54              	.LVL1:
+  55              		.loc 1 350 14 view .LVU7
+  56 000a 0546     		mov	r5, r0
+  57              	.LVL2:
+ 351:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 352:../Drivers/ISP/isp/Src/isp_core.c ****   /* Process the algorithms */
+ 353:../Drivers/ISP/isp/Src/isp_core.c ****   retAlgo = ISP_Algo_Process(hIsp);
+  58              		.loc 1 353 3 is_stmt 1 view .LVU8
+  59              		.loc 1 353 13 is_stmt 0 view .LVU9
+  60 000c 2046     		mov	r0, r4
+  61 000e FFF7FEFF 		bl	ISP_Algo_Process
+  62              	.LVL3:
+ 354:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 355:../Drivers/ISP/isp/Src/isp_core.c **** #ifdef ISP_MW_TUNING_TOOL_SUPPORT
+ 356:../Drivers/ISP/isp/Src/isp_core.c ****   if (retCmdParser != ISP_OK)
+ 357:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 358:../Drivers/ISP/isp/Src/isp_core.c ****     return retCmdParser;
+ 359:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 360:../Drivers/ISP/isp/Src/isp_core.c **** #endif
+ 361:../Drivers/ISP/isp/Src/isp_core.c ****   if (retStats != ISP_OK)
+  63              		.loc 1 361 3 is_stmt 1 view .LVU10
+  64              		.loc 1 361 6 is_stmt 0 view .LVU11
+  65 0012 05B9     		cbnz	r5, .L2
+ 362:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 363:../Drivers/ISP/isp/Src/isp_core.c ****     return retStats;
+ 364:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 365:../Drivers/ISP/isp/Src/isp_core.c ****   else if (retAlgo != ISP_OK)
+  66              		.loc 1 365 8 is_stmt 1 view .LVU12
+ 366:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 367:../Drivers/ISP/isp/Src/isp_core.c ****     return retAlgo;
+  67              		.loc 1 367 12 is_stmt 0 view .LVU13
+  68 0014 0546     		mov	r5, r0
+  69              	.LVL4:
+  70              	.L2:
+ 368:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 369:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 370:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_OK;
+ 371:../Drivers/ISP/isp/Src/isp_core.c **** }
+  71              		.loc 1 371 1 view .LVU14
+  72 0016 2846     		mov	r0, r5
+  73 0018 38BD     		pop	{r3, r4, r5, pc}
+  74              	.LVL5:
+  75              	.L3:
+ 339:../Drivers/ISP/isp/Src/isp_core.c ****   }
+  76              		.loc 1 339 12 view .LVU15
+  77 001a 0123     		movs	r3, #1
+  78 001c 1D46     		mov	r5, r3
+  79 001e FAE7     		b	.L2
+  80              		.cfi_endproc
+  81              	.LFE887:
+  83              		.section	.rodata.ISP_Init.str1.4,"aMS",%progbits,1
+  84              		.align	2
+  85              	.LC0:
+  86 0000 494E464F 		.ascii	"INFO: GetSensorInfo helper function is not implemen"
+ARM GAS  /tmp/cc8NtyFF.s 			page 9
+
+
+  86      3A204765 
+  86      7453656E 
+  86      736F7249 
+  86      6E666F20 
+  87 0033 7465640D 		.ascii	"ted\015\000"
+  87      00
+  88              		.align	2
+  89              	.LC1:
+  90 0038 494E464F 		.ascii	"INFO: SetSensorGain helper function is not implemen"
+  90      3A205365 
+  90      7453656E 
+  90      736F7247 
+  90      61696E20 
+  91 006b 7465640D 		.ascii	"ted\015\000"
+  91      00
+  92              		.align	2
+  93              	.LC2:
+  94 0070 494E464F 		.ascii	"INFO: GetSensorGain helper function is not implemen"
+  94      3A204765 
+  94      7453656E 
+  94      736F7247 
+  94      61696E20 
+  95 00a3 7465640D 		.ascii	"ted\015\000"
+  95      00
+  96              		.align	2
+  97              	.LC3:
+  98 00a8 494E464F 		.ascii	"INFO: SetSensorExposure helper function is not impl"
+  98      3A205365 
+  98      7453656E 
+  98      736F7245 
+  98      78706F73 
+  99 00db 656D656E 		.ascii	"emented\015\000"
+  99      7465640D 
+  99      00
+ 100              		.align	2
+ 101              	.LC4:
+ 102 00e4 494E464F 		.ascii	"INFO: GetSensorExposure helper function is not impl"
+ 102      3A204765 
+ 102      7453656E 
+ 102      736F7245 
+ 102      78706F73 
+ 103 0117 656D656E 		.ascii	"emented\015\000"
+ 103      7465640D 
+ 103      00
+ 104              		.align	2
+ 105              	.LC5:
+ 106 0120 4552524F 		.ascii	"ERROR: No possible decimation factor to target ISP "
+ 106      523A204E 
+ 106      6F20706F 
+ 106      73736962 
+ 106      6C652064 
+ 107 0153 52415720 		.ascii	"RAW width constraint\015\000"
+ 107      77696474 
+ 107      6820636F 
+ 107      6E737472 
+ 107      61696E74 
+ 108              		.section	.text.ISP_Init,"ax",%progbits
+ARM GAS  /tmp/cc8NtyFF.s 			page 10
+
+
+ 109              		.align	1
+ 110              		.global	ISP_Init
+ 111              		.syntax unified
+ 112              		.thumb
+ 113              		.thumb_func
+ 115              	ISP_Init:
+ 116              	.LVL6:
+ 117              	.LFB884:
+  60:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_StatusTypeDef ret;
+ 118              		.loc 1 60 1 is_stmt 1 view -0
+ 119              		.cfi_startproc
+ 120              		@ args = 4, pretend = 0, frame = 8
+ 121              		@ frame_needed = 0, uses_anonymous_args = 0
+  60:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_StatusTypeDef ret;
+ 122              		.loc 1 60 1 is_stmt 0 view .LVU17
+ 123 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 124              	.LCFI1:
+ 125              		.cfi_def_cfa_offset 20
+ 126              		.cfi_offset 4, -20
+ 127              		.cfi_offset 5, -16
+ 128              		.cfi_offset 6, -12
+ 129              		.cfi_offset 7, -8
+ 130              		.cfi_offset 14, -4
+ 131 0002 83B0     		sub	sp, sp, #12
+ 132              	.LCFI2:
+ 133              		.cfi_def_cfa_offset 32
+  61:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 134              		.loc 1 61 3 is_stmt 1 view .LVU18
+  63:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 135              		.loc 1 63 3 view .LVU19
+  63:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 136              		.loc 1 63 6 is_stmt 0 view .LVU20
+ 137 0004 0028     		cmp	r0, #0
+ 138 0006 49D0     		beq	.L6
+ 139 0008 0E46     		mov	r6, r1
+ 140 000a 1746     		mov	r7, r2
+ 141 000c 0446     		mov	r4, r0
+  63:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 142              		.loc 1 63 22 discriminator 1 view .LVU21
+ 143 000e 0029     		cmp	r1, #0
+ 144 0010 44D0     		beq	.L6
+  63:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 145              		.loc 1 63 43 discriminator 2 view .LVU22
+ 146 0012 1D46     		mov	r5, r3
+ 147 0014 002B     		cmp	r3, #0
+ 148 0016 41D0     		beq	.L6
+  68:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 149              		.loc 1 68 3 is_stmt 1 view .LVU23
+ 150 0018 9022     		movs	r2, #144
+ 151              	.LVL7:
+  68:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 152              		.loc 1 68 3 is_stmt 0 view .LVU24
+ 153 001a 0021     		movs	r1, #0
+ 154              	.LVL8:
+  68:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 155              		.loc 1 68 3 view .LVU25
+ 156 001c FFF7FEFF 		bl	memset
+ARM GAS  /tmp/cc8NtyFF.s 			page 11
+
+
+ 157              	.LVL9:
+  74:../Drivers/ISP/isp/Src/isp_core.c ****   hIsp->cameraInstance = CameraInstance;
+ 158              		.loc 1 74 3 is_stmt 1 view .LVU26
+  74:../Drivers/ISP/isp/Src/isp_core.c ****   hIsp->cameraInstance = CameraInstance;
+ 159              		.loc 1 74 17 is_stmt 0 view .LVU27
+ 160 0020 2660     		str	r6, [r4]
+  75:../Drivers/ISP/isp/Src/isp_core.c ****   hIsp->MainPipe_FrameCount = 0;
+ 161              		.loc 1 75 3 is_stmt 1 view .LVU28
+  75:../Drivers/ISP/isp/Src/isp_core.c ****   hIsp->MainPipe_FrameCount = 0;
+ 162              		.loc 1 75 24 is_stmt 0 view .LVU29
+ 163 0022 6760     		str	r7, [r4, #4]
+  76:../Drivers/ISP/isp/Src/isp_core.c ****   hIsp->AncillaryPipe_FrameCount = 0;
+ 164              		.loc 1 76 3 is_stmt 1 view .LVU30
+  77:../Drivers/ISP/isp/Src/isp_core.c ****   hIsp->DumpPipe_FrameCount = 0;
+ 165              		.loc 1 77 3 view .LVU31
+  78:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 166              		.loc 1 78 3 view .LVU32
+  80:../Drivers/ISP/isp/Src/isp_core.c ****   /* Appli CB is mandatory for the sensor get/set exp/gain function */
+ 167              		.loc 1 80 3 view .LVU33
+  80:../Drivers/ISP/isp/Src/isp_core.c ****   /* Appli CB is mandatory for the sensor get/set exp/gain function */
+ 168              		.loc 1 80 22 is_stmt 0 view .LVU34
+ 169 0024 04F11C0E 		add	lr, r4, #28
+ 170 0028 AC46     		mov	ip, r5
+ 171 002a BCE80F00 		ldmia	ip!, {r0, r1, r2, r3}
+ 172 002e AEE80F00 		stmia	lr!, {r0, r1, r2, r3}
+ 173 0032 BCE80F00 		ldmia	ip!, {r0, r1, r2, r3}
+ 174 0036 AEE80F00 		stmia	lr!, {r0, r1, r2, r3}
+ 175 003a 9CE80300 		ldm	ip, {r0, r1}
+ 176 003e 8EE80300 		stm	lr, {r0, r1}
+  82:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 177              		.loc 1 82 3 is_stmt 1 view .LVU35
+  82:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 178              		.loc 1 82 25 is_stmt 0 view .LVU36
+ 179 0042 A36A     		ldr	r3, [r4, #40]
+  82:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 180              		.loc 1 82 6 view .LVU37
+ 181 0044 7BB3     		cbz	r3, .L23
+  87:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 182              		.loc 1 87 3 is_stmt 1 view .LVU38
+  87:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 183              		.loc 1 87 25 is_stmt 0 view .LVU39
+ 184 0046 E36A     		ldr	r3, [r4, #44]
+  87:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 185              		.loc 1 87 6 view .LVU40
+ 186 0048 8BB3     		cbz	r3, .L24
+  92:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 187              		.loc 1 92 3 is_stmt 1 view .LVU41
+  92:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 188              		.loc 1 92 25 is_stmt 0 view .LVU42
+ 189 004a 236B     		ldr	r3, [r4, #48]
+  92:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 190              		.loc 1 92 6 view .LVU43
+ 191 004c 9BB3     		cbz	r3, .L25
+  97:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 192              		.loc 1 97 3 is_stmt 1 view .LVU44
+  97:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 193              		.loc 1 97 25 is_stmt 0 view .LVU45
+ARM GAS  /tmp/cc8NtyFF.s 			page 12
+
+
+ 194 004e 636B     		ldr	r3, [r4, #52]
+  97:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 195              		.loc 1 97 6 view .LVU46
+ 196 0050 ABB3     		cbz	r3, .L26
+ 102:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 197              		.loc 1 102 3 is_stmt 1 view .LVU47
+ 102:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 198              		.loc 1 102 25 is_stmt 0 view .LVU48
+ 199 0052 A36B     		ldr	r3, [r4, #56]
+ 102:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 200              		.loc 1 102 6 view .LVU49
+ 201 0054 BBB3     		cbz	r3, .L27
+ 109:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 202              		.loc 1 109 3 is_stmt 1 view .LVU50
+ 109:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 203              		.loc 1 109 9 is_stmt 0 view .LVU51
+ 204 0056 0899     		ldr	r1, [sp, #32]
+ 205 0058 2046     		mov	r0, r4
+ 206 005a FFF7FEFF 		bl	ISP_SVC_IQParam_Init
+ 207              	.LVL10:
+ 110:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 208              		.loc 1 110 3 is_stmt 1 view .LVU52
+ 110:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 209              		.loc 1 110 6 is_stmt 0 view .LVU53
+ 210 005e 0546     		mov	r5, r0
+ 211              	.LVL11:
+ 110:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 212              		.loc 1 110 6 view .LVU54
+ 213 0060 F0B9     		cbnz	r0, .L8
+ 117:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 214              		.loc 1 117 3 is_stmt 1 view .LVU55
+ 117:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 215              		.loc 1 117 9 is_stmt 0 view .LVU56
+ 216 0062 04F15001 		add	r1, r4, #80
+ 217 0066 2046     		mov	r0, r4
+ 218              	.LVL12:
+ 117:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 219              		.loc 1 117 9 view .LVU57
+ 220 0068 FFF7FEFF 		bl	ISP_SVC_Sensor_GetInfo
+ 221              	.LVL13:
+ 118:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 222              		.loc 1 118 3 is_stmt 1 view .LVU58
+ 118:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 223              		.loc 1 118 6 is_stmt 0 view .LVU59
+ 224 006c 0546     		mov	r5, r0
+ 225 006e B8B9     		cbnz	r0, .L8
+ 124:../Drivers/ISP/isp/Src/isp_core.c ****   if ((hIsp->sensorInfo.width / ISP_DECIM_FACTOR_1) < ISP_RAW_MAX_WIDTH)
+ 226              		.loc 1 124 3 is_stmt 1 view .LVU60
+ 125:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 227              		.loc 1 125 3 view .LVU61
+ 125:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 228              		.loc 1 125 24 is_stmt 0 view .LVU62
+ 229 0070 636F     		ldr	r3, [r4, #116]
+ 125:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 230              		.loc 1 125 6 view .LVU63
+ 231 0072 B3F5286F 		cmp	r3, #2688
+ 232 0076 2CD2     		bcs	.L15
+ARM GAS  /tmp/cc8NtyFF.s 			page 13
+
+
+ 127:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 233              		.loc 1 127 5 is_stmt 1 view .LVU64
+ 127:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 234              		.loc 1 127 23 is_stmt 0 view .LVU65
+ 235 0078 0123     		movs	r3, #1
+ 236 007a 8DF80430 		strb	r3, [sp, #4]
+ 237              	.L16:
+ 146:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 238              		.loc 1 146 3 is_stmt 1 view .LVU66
+ 146:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 239              		.loc 1 146 9 is_stmt 0 view .LVU67
+ 240 007e 01A9     		add	r1, sp, #4
+ 241 0080 2046     		mov	r0, r4
+ 242              	.LVL14:
+ 146:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 243              		.loc 1 146 9 view .LVU68
+ 244 0082 FFF7FEFF 		bl	ISP_SVC_ISP_SetDecimation
+ 245              	.LVL15:
+ 147:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 246              		.loc 1 147 3 is_stmt 1 view .LVU69
+ 147:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 247              		.loc 1 147 6 is_stmt 0 view .LVU70
+ 248 0086 0546     		mov	r5, r0
+ 249 0088 50B9     		cbnz	r0, .L8
+ 153:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 250              		.loc 1 153 3 is_stmt 1 view .LVU71
+ 153:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 251              		.loc 1 153 9 is_stmt 0 view .LVU72
+ 252 008a 2046     		mov	r0, r4
+ 253              	.LVL16:
+ 153:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 254              		.loc 1 153 9 view .LVU73
+ 255 008c FFF7FEFF 		bl	ISP_Algo_Init
+ 256              	.LVL17:
+ 154:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 257              		.loc 1 154 3 is_stmt 1 view .LVU74
+ 154:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 258              		.loc 1 154 6 is_stmt 0 view .LVU75
+ 259 0090 0546     		mov	r5, r0
+ 260 0092 28B9     		cbnz	r0, .L8
+ 160:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 261              		.loc 1 160 3 is_stmt 1 view .LVU76
+ 262 0094 2046     		mov	r0, r4
+ 263              	.LVL18:
+ 160:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 264              		.loc 1 160 3 is_stmt 0 view .LVU77
+ 265 0096 FFF7FEFF 		bl	ISP_SVC_Stats_Init
+ 266              	.LVL19:
+ 162:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 267              		.loc 1 162 3 is_stmt 1 view .LVU78
+ 162:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 268              		.loc 1 162 10 is_stmt 0 view .LVU79
+ 269 009a 01E0     		b	.L8
+ 270              	.LVL20:
+ 271              	.L6:
+  65:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 272              		.loc 1 65 12 view .LVU80
+ARM GAS  /tmp/cc8NtyFF.s 			page 14
+
+
+ 273 009c 0123     		movs	r3, #1
+ 274              	.LVL21:
+  65:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 275              		.loc 1 65 12 view .LVU81
+ 276 009e 1D46     		mov	r5, r3
+ 277              	.LVL22:
+ 278              	.L8:
+ 163:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 279              		.loc 1 163 1 view .LVU82
+ 280 00a0 2846     		mov	r0, r5
+ 281 00a2 03B0     		add	sp, sp, #12
+ 282              	.LCFI3:
+ 283              		.cfi_remember_state
+ 284              		.cfi_def_cfa_offset 20
+ 285              		@ sp needed
+ 286 00a4 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 287              	.LVL23:
+ 288              	.L23:
+ 289              	.LCFI4:
+ 290              		.cfi_restore_state
+  84:../Drivers/ISP/isp/Src/isp_core.c ****      return ISP_ERR_APP_HELPER_UNDEFINED;
+ 291              		.loc 1 84 6 is_stmt 1 view .LVU83
+ 292 00a6 1848     		ldr	r0, .L28
+ 293 00a8 FFF7FEFF 		bl	puts
+ 294              	.LVL24:
+  85:../Drivers/ISP/isp/Src/isp_core.c ****    }
+ 295              		.loc 1 85 6 view .LVU84
+  85:../Drivers/ISP/isp/Src/isp_core.c ****    }
+ 296              		.loc 1 85 13 is_stmt 0 view .LVU85
+ 297 00ac 0EE0     		b	.L11
+ 298              	.L24:
+  89:../Drivers/ISP/isp/Src/isp_core.c ****       return ISP_ERR_APP_HELPER_UNDEFINED;
+ 299              		.loc 1 89 7 is_stmt 1 view .LVU86
+ 300 00ae 1748     		ldr	r0, .L28+4
+ 301 00b0 FFF7FEFF 		bl	puts
+ 302              	.LVL25:
+  90:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 303              		.loc 1 90 7 view .LVU87
+  90:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 304              		.loc 1 90 14 is_stmt 0 view .LVU88
+ 305 00b4 0AE0     		b	.L11
+ 306              	.L25:
+  94:../Drivers/ISP/isp/Src/isp_core.c ****      return ISP_ERR_APP_HELPER_UNDEFINED;
+ 307              		.loc 1 94 6 is_stmt 1 view .LVU89
+ 308 00b6 1648     		ldr	r0, .L28+8
+ 309 00b8 FFF7FEFF 		bl	puts
+ 310              	.LVL26:
+  95:../Drivers/ISP/isp/Src/isp_core.c ****    }
+ 311              		.loc 1 95 6 view .LVU90
+  95:../Drivers/ISP/isp/Src/isp_core.c ****    }
+ 312              		.loc 1 95 13 is_stmt 0 view .LVU91
+ 313 00bc 06E0     		b	.L11
+ 314              	.L26:
+  99:../Drivers/ISP/isp/Src/isp_core.c ****       return ISP_ERR_APP_HELPER_UNDEFINED;
+ 315              		.loc 1 99 7 is_stmt 1 view .LVU92
+ 316 00be 1548     		ldr	r0, .L28+12
+ 317 00c0 FFF7FEFF 		bl	puts
+ARM GAS  /tmp/cc8NtyFF.s 			page 15
+
+
+ 318              	.LVL27:
+ 100:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 319              		.loc 1 100 7 view .LVU93
+ 100:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 320              		.loc 1 100 14 is_stmt 0 view .LVU94
+ 321 00c4 02E0     		b	.L11
+ 322              	.L27:
+ 104:../Drivers/ISP/isp/Src/isp_core.c ****      return ISP_ERR_APP_HELPER_UNDEFINED;
+ 323              		.loc 1 104 6 is_stmt 1 view .LVU95
+ 324 00c6 1448     		ldr	r0, .L28+16
+ 325 00c8 FFF7FEFF 		bl	puts
+ 326              	.LVL28:
+ 105:../Drivers/ISP/isp/Src/isp_core.c ****    }
+ 327              		.loc 1 105 6 view .LVU96
+ 328              	.L11:
+  85:../Drivers/ISP/isp/Src/isp_core.c ****    }
+ 329              		.loc 1 85 13 is_stmt 0 view .LVU97
+ 330 00cc B423     		movs	r3, #180
+ 331 00ce 1D46     		mov	r5, r3
+ 332              	.LVL29:
+  85:../Drivers/ISP/isp/Src/isp_core.c ****    }
+ 333              		.loc 1 85 13 view .LVU98
+ 334 00d0 E6E7     		b	.L8
+ 335              	.LVL30:
+ 336              	.L15:
+ 129:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 337              		.loc 1 129 8 is_stmt 1 view .LVU99
+ 129:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 338              		.loc 1 129 11 is_stmt 0 view .LVU100
+ 339 00d2 B3F5A85F 		cmp	r3, #5376
+ 340 00d6 03D2     		bcs	.L17
+ 131:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 341              		.loc 1 131 5 is_stmt 1 view .LVU101
+ 131:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 342              		.loc 1 131 23 is_stmt 0 view .LVU102
+ 343 00d8 0223     		movs	r3, #2
+ 344 00da 8DF80430 		strb	r3, [sp, #4]
+ 345 00de CEE7     		b	.L16
+ 346              	.L17:
+ 133:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 347              		.loc 1 133 8 is_stmt 1 view .LVU103
+ 133:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 348              		.loc 1 133 11 is_stmt 0 view .LVU104
+ 349 00e0 B3F5285F 		cmp	r3, #10752
+ 350 00e4 03D2     		bcs	.L18
+ 135:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 351              		.loc 1 135 5 is_stmt 1 view .LVU105
+ 135:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 352              		.loc 1 135 23 is_stmt 0 view .LVU106
+ 353 00e6 0423     		movs	r3, #4
+ 354 00e8 8DF80430 		strb	r3, [sp, #4]
+ 355 00ec C7E7     		b	.L16
+ 356              	.L18:
+ 137:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 357              		.loc 1 137 8 is_stmt 1 view .LVU107
+ 137:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 358              		.loc 1 137 11 is_stmt 0 view .LVU108
+ARM GAS  /tmp/cc8NtyFF.s 			page 16
+
+
+ 359 00ee B3F5A84F 		cmp	r3, #21504
+ 360 00f2 03D2     		bcs	.L19
+ 139:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 361              		.loc 1 139 5 is_stmt 1 view .LVU109
+ 139:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 362              		.loc 1 139 23 is_stmt 0 view .LVU110
+ 363 00f4 0823     		movs	r3, #8
+ 364 00f6 8DF80430 		strb	r3, [sp, #4]
+ 365 00fa C0E7     		b	.L16
+ 366              	.L19:
+ 143:../Drivers/ISP/isp/Src/isp_core.c ****     return ISP_ERR_DECIMATION_EINVAL;
+ 367              		.loc 1 143 5 is_stmt 1 view .LVU111
+ 368 00fc 0748     		ldr	r0, .L28+20
+ 369              	.LVL31:
+ 143:../Drivers/ISP/isp/Src/isp_core.c ****     return ISP_ERR_DECIMATION_EINVAL;
+ 370              		.loc 1 143 5 is_stmt 0 view .LVU112
+ 371 00fe FFF7FEFF 		bl	puts
+ 372              	.LVL32:
+ 144:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 373              		.loc 1 144 5 is_stmt 1 view .LVU113
+ 144:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 374              		.loc 1 144 12 is_stmt 0 view .LVU114
+ 375 0102 1E23     		movs	r3, #30
+ 376 0104 1D46     		mov	r5, r3
+ 377              	.LVL33:
+ 144:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 378              		.loc 1 144 12 view .LVU115
+ 379 0106 CBE7     		b	.L8
+ 380              	.L29:
+ 381              		.align	2
+ 382              	.L28:
+ 383 0108 00000000 		.word	.LC0
+ 384 010c 38000000 		.word	.LC1
+ 385 0110 70000000 		.word	.LC2
+ 386 0114 A8000000 		.word	.LC3
+ 387 0118 E4000000 		.word	.LC4
+ 388 011c 20010000 		.word	.LC5
+ 389              		.cfi_endproc
+ 390              	.LFE884:
+ 392              		.section	.text.ISP_DeInit,"ax",%progbits
+ 393              		.align	1
+ 394              		.global	ISP_DeInit
+ 395              		.syntax unified
+ 396              		.thumb
+ 397              		.thumb_func
+ 399              	ISP_DeInit:
+ 400              	.LVL34:
+ 401              	.LFB885:
+ 172:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_StatusTypeDef ret;
+ 402              		.loc 1 172 1 is_stmt 1 view -0
+ 403              		.cfi_startproc
+ 404              		@ args = 0, pretend = 0, frame = 0
+ 405              		@ frame_needed = 0, uses_anonymous_args = 0
+ 172:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_StatusTypeDef ret;
+ 406              		.loc 1 172 1 is_stmt 0 view .LVU117
+ 407 0000 38B5     		push	{r3, r4, r5, lr}
+ 408              	.LCFI5:
+ARM GAS  /tmp/cc8NtyFF.s 			page 17
+
+
+ 409              		.cfi_def_cfa_offset 16
+ 410              		.cfi_offset 3, -16
+ 411              		.cfi_offset 4, -12
+ 412              		.cfi_offset 5, -8
+ 413              		.cfi_offset 14, -4
+ 173:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 414              		.loc 1 173 3 is_stmt 1 view .LVU118
+ 175:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 415              		.loc 1 175 3 view .LVU119
+ 175:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 416              		.loc 1 175 6 is_stmt 0 view .LVU120
+ 417 0002 60B1     		cbz	r0, .L34
+ 418 0004 0446     		mov	r4, r0
+ 181:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 419              		.loc 1 181 3 is_stmt 1 view .LVU121
+ 181:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 420              		.loc 1 181 9 is_stmt 0 view .LVU122
+ 421 0006 FFF7FEFF 		bl	ISP_Algo_DeInit
+ 422              	.LVL35:
+ 182:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 423              		.loc 1 182 3 is_stmt 1 view .LVU123
+ 182:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 424              		.loc 1 182 6 is_stmt 0 view .LVU124
+ 425 000a 0546     		mov	r5, r0
+ 426 000c 08B1     		cbz	r0, .L36
+ 427              	.LVL36:
+ 428              	.L31:
+ 191:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 429              		.loc 1 191 1 view .LVU125
+ 430 000e 2846     		mov	r0, r5
+ 431 0010 38BD     		pop	{r3, r4, r5, pc}
+ 432              	.LVL37:
+ 433              	.L36:
+ 188:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 434              		.loc 1 188 3 is_stmt 1 view .LVU126
+ 435 0012 9022     		movs	r2, #144
+ 436 0014 0146     		mov	r1, r0
+ 437 0016 2046     		mov	r0, r4
+ 438              	.LVL38:
+ 188:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 439              		.loc 1 188 3 is_stmt 0 view .LVU127
+ 440 0018 FFF7FEFF 		bl	memset
+ 441              	.LVL39:
+ 190:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 442              		.loc 1 190 3 is_stmt 1 view .LVU128
+ 190:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 443              		.loc 1 190 10 is_stmt 0 view .LVU129
+ 444 001c F7E7     		b	.L31
+ 445              	.LVL40:
+ 446              	.L34:
+ 177:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 447              		.loc 1 177 12 view .LVU130
+ 448 001e 0123     		movs	r3, #1
+ 449 0020 1D46     		mov	r5, r3
+ 450 0022 F4E7     		b	.L31
+ 451              		.cfi_endproc
+ 452              	.LFE885:
+ARM GAS  /tmp/cc8NtyFF.s 			page 18
+
+
+ 454              		.section	.text.ISP_Start,"ax",%progbits
+ 455              		.align	1
+ 456              		.global	ISP_Start
+ 457              		.syntax unified
+ 458              		.thumb
+ 459              		.thumb_func
+ 461              	ISP_Start:
+ 462              	.LVL41:
+ 463              	.LFB886:
+ 200:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_IQParamTypeDef *IQParamConfig;
+ 464              		.loc 1 200 1 is_stmt 1 view -0
+ 465              		.cfi_startproc
+ 466              		@ args = 0, pretend = 0, frame = 0
+ 467              		@ frame_needed = 0, uses_anonymous_args = 0
+ 200:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_IQParamTypeDef *IQParamConfig;
+ 468              		.loc 1 200 1 is_stmt 0 view .LVU132
+ 469 0000 70B5     		push	{r4, r5, r6, lr}
+ 470              	.LCFI6:
+ 471              		.cfi_def_cfa_offset 16
+ 472              		.cfi_offset 4, -16
+ 473              		.cfi_offset 5, -12
+ 474              		.cfi_offset 6, -8
+ 475              		.cfi_offset 14, -4
+ 201:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_StatusTypeDef ret;
+ 476              		.loc 1 201 3 is_stmt 1 view .LVU133
+ 202:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 477              		.loc 1 202 3 view .LVU134
+ 204:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 478              		.loc 1 204 3 view .LVU135
+ 204:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 479              		.loc 1 204 6 is_stmt 0 view .LVU136
+ 480 0002 0028     		cmp	r0, #0
+ 481 0004 00F0BE80 		beq	.L53
+ 482 0008 0546     		mov	r5, r0
+ 209:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 483              		.loc 1 209 3 is_stmt 1 view .LVU137
+ 209:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 484              		.loc 1 209 9 is_stmt 0 view .LVU138
+ 485 000a FFF7FEFF 		bl	ISP_SVC_Misc_IsDCMIPPReady
+ 486              	.LVL42:
+ 210:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 487              		.loc 1 210 3 is_stmt 1 view .LVU139
+ 210:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 488              		.loc 1 210 6 is_stmt 0 view .LVU140
+ 489 000e 0646     		mov	r6, r0
+ 490 0010 08B1     		cbz	r0, .L55
+ 491              	.LVL43:
+ 492              	.L38:
+ 326:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 493              		.loc 1 326 1 view .LVU141
+ 494 0012 3046     		mov	r0, r6
+ 495 0014 70BD     		pop	{r4, r5, r6, pc}
+ 496              	.LVL44:
+ 497              	.L55:
+ 216:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 498              		.loc 1 216 3 is_stmt 1 view .LVU142
+ 216:../Drivers/ISP/isp/Src/isp_core.c **** 
+ARM GAS  /tmp/cc8NtyFF.s 			page 19
+
+
+ 499              		.loc 1 216 19 is_stmt 0 view .LVU143
+ 500 0016 2846     		mov	r0, r5
+ 501              	.LVL45:
+ 216:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 502              		.loc 1 216 19 view .LVU144
+ 503 0018 FFF7FEFF 		bl	ISP_SVC_IQParam_Get
+ 504              	.LVL46:
+ 505 001c 0446     		mov	r4, r0
+ 506              	.LVL47:
+ 219:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 507              		.loc 1 219 3 is_stmt 1 view .LVU145
+ 219:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 508              		.loc 1 219 9 is_stmt 0 view .LVU146
+ 509 001e 00F10C01 		add	r1, r0, #12
+ 510 0022 2846     		mov	r0, r5
+ 511              	.LVL48:
+ 219:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 512              		.loc 1 219 9 view .LVU147
+ 513 0024 FFF7FEFF 		bl	ISP_SVC_ISP_SetDemosaicing
+ 514              	.LVL49:
+ 220:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 515              		.loc 1 220 3 is_stmt 1 view .LVU148
+ 220:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 516              		.loc 1 220 6 is_stmt 0 view .LVU149
+ 517 0028 0646     		mov	r6, r0
+ 518 002a 0028     		cmp	r0, #0
+ 519 002c F1D1     		bne	.L38
+ 225:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 520              		.loc 1 225 3 is_stmt 1 view .LVU150
+ 225:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 521              		.loc 1 225 9 is_stmt 0 view .LVU151
+ 522 002e 2146     		mov	r1, r4
+ 523 0030 2846     		mov	r0, r5
+ 524              	.LVL50:
+ 225:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 525              		.loc 1 225 9 view .LVU152
+ 526 0032 FFF7FEFF 		bl	ISP_SVC_ISP_SetStatRemoval
+ 527              	.LVL51:
+ 226:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 528              		.loc 1 226 3 is_stmt 1 view .LVU153
+ 226:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 529              		.loc 1 226 6 is_stmt 0 view .LVU154
+ 530 0036 0646     		mov	r6, r0
+ 531 0038 0028     		cmp	r0, #0
+ 532 003a EAD1     		bne	.L38
+ 231:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 533              		.loc 1 231 3 is_stmt 1 view .LVU155
+ 231:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 534              		.loc 1 231 9 is_stmt 0 view .LVU156
+ 535 003c 04F11401 		add	r1, r4, #20
+ 536 0040 2846     		mov	r0, r5
+ 537              	.LVL52:
+ 231:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 538              		.loc 1 231 9 view .LVU157
+ 539 0042 FFF7FEFF 		bl	ISP_SVC_ISP_SetContrast
+ 540              	.LVL53:
+ 232:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ARM GAS  /tmp/cc8NtyFF.s 			page 20
+
+
+ 541              		.loc 1 232 3 is_stmt 1 view .LVU158
+ 232:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 542              		.loc 1 232 6 is_stmt 0 view .LVU159
+ 543 0046 0646     		mov	r6, r0
+ 544 0048 0028     		cmp	r0, #0
+ 545 004a E2D1     		bne	.L38
+ 238:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 546              		.loc 1 238 3 is_stmt 1 view .LVU160
+ 238:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 547              		.loc 1 238 39 is_stmt 0 view .LVU161
+ 548 004c E36C     		ldr	r3, [r4, #76]
+ 238:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 549              		.loc 1 238 6 view .LVU162
+ 550 004e 1BB1     		cbz	r3, .L39
+ 238:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 551              		.loc 1 238 78 discriminator 1 view .LVU163
+ 552 0050 94F86830 		ldrb	r3, [r4, #104]	@ zero_extendqisi2
+ 238:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 553              		.loc 1 238 51 discriminator 1 view .LVU164
+ 554 0054 002B     		cmp	r3, #0
+ 555 0056 5FD0     		beq	.L56
+ 556              	.L39:
+ 247:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 557              		.loc 1 247 3 is_stmt 1 view .LVU165
+ 247:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 558              		.loc 1 247 43 is_stmt 0 view .LVU166
+ 559 0058 236D     		ldr	r3, [r4, #80]
+ 247:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 560              		.loc 1 247 6 view .LVU167
+ 561 005a 1BB1     		cbz	r3, .L40
+ 247:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 562              		.loc 1 247 86 discriminator 1 view .LVU168
+ 563 005c 94F86830 		ldrb	r3, [r4, #104]	@ zero_extendqisi2
+ 247:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 564              		.loc 1 247 59 discriminator 1 view .LVU169
+ 565 0060 002B     		cmp	r3, #0
+ 566 0062 62D0     		beq	.L57
+ 567              	.L40:
+ 256:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 568              		.loc 1 256 3 is_stmt 1 view .LVU170
+ 256:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 569              		.loc 1 256 36 is_stmt 0 view .LVU171
+ 570 0064 94F85C30 		ldrb	r3, [r4, #92]	@ zero_extendqisi2
+ 256:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 571              		.loc 1 256 6 view .LVU172
+ 572 0068 002B     		cmp	r3, #0
+ 573 006a 67D1     		bne	.L58
+ 574              	.L41:
+ 265:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 575              		.loc 1 265 3 is_stmt 1 view .LVU173
+ 265:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 576              		.loc 1 265 38 is_stmt 0 view .LVU174
+ 577 006c 94F86430 		ldrb	r3, [r4, #100]	@ zero_extendqisi2
+ 265:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 578              		.loc 1 265 6 view .LVU175
+ 579 0070 002B     		cmp	r3, #0
+ 580 0072 6CD1     		bne	.L59
+ARM GAS  /tmp/cc8NtyFF.s 			page 21
+
+
+ 581              	.L42:
+ 274:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 582              		.loc 1 274 3 is_stmt 1 view .LVU176
+ 274:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 583              		.loc 1 274 36 is_stmt 0 view .LVU177
+ 584 0074 94F82C32 		ldrb	r3, [r4, #556]	@ zero_extendqisi2
+ 274:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 585              		.loc 1 274 6 view .LVU178
+ 586 0078 1BB1     		cbz	r3, .L43
+ 274:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 587              		.loc 1 274 77 discriminator 1 view .LVU179
+ 588 007a 94F87430 		ldrb	r3, [r4, #116]	@ zero_extendqisi2
+ 274:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 589              		.loc 1 274 50 discriminator 1 view .LVU180
+ 590 007e 002B     		cmp	r3, #0
+ 591 0080 6ED0     		beq	.L60
+ 592              	.L43:
+ 283:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 593              		.loc 1 283 3 is_stmt 1 view .LVU181
+ 283:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 594              		.loc 1 283 38 is_stmt 0 view .LVU182
+ 595 0082 94F83C32 		ldrb	r3, [r4, #572]	@ zero_extendqisi2
+ 283:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 596              		.loc 1 283 6 view .LVU183
+ 597 0086 1BB1     		cbz	r3, .L44
+ 283:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 598              		.loc 1 283 79 discriminator 1 view .LVU184
+ 599 0088 94F87430 		ldrb	r3, [r4, #116]	@ zero_extendqisi2
+ 283:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 600              		.loc 1 283 52 discriminator 1 view .LVU185
+ 601 008c 002B     		cmp	r3, #0
+ 602 008e 70D0     		beq	.L61
+ 603              	.L44:
+ 293:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 604              		.loc 1 293 3 is_stmt 1 view .LVU186
+ 293:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 605              		.loc 1 293 22 is_stmt 0 view .LVU187
+ 606 0090 2B69     		ldr	r3, [r5, #16]
+ 293:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 607              		.loc 1 293 6 view .LVU188
+ 608 0092 0BB1     		cbz	r3, .L45
+ 293:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 609              		.loc 1 293 53 discriminator 1 view .LVU189
+ 610 0094 6B69     		ldr	r3, [r5, #20]
+ 293:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 611              		.loc 1 293 35 discriminator 1 view .LVU190
+ 612 0096 DBB9     		cbnz	r3, .L46
+ 613              	.L45:
+ 295:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 614              		.loc 1 295 5 is_stmt 1 view .LVU191
+ 295:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 615              		.loc 1 295 39 is_stmt 0 view .LVU192
+ 616 0098 636C     		ldr	r3, [r4, #68]
+ 295:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 617              		.loc 1 295 8 view .LVU193
+ 618 009a 1BB1     		cbz	r3, .L47
+ 295:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ARM GAS  /tmp/cc8NtyFF.s 			page 22
+
+
+ 619              		.loc 1 295 52 discriminator 1 view .LVU194
+ 620 009c 40F6FE72 		movw	r2, #4094
+ 621 00a0 9342     		cmp	r3, r2
+ 622 00a2 03D1     		bne	.L48
+ 623              	.L47:
+ 298:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 624              		.loc 1 298 7 is_stmt 1 view .LVU195
+ 298:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 625              		.loc 1 298 61 is_stmt 0 view .LVU196
+ 626 00a4 6B6F     		ldr	r3, [r5, #116]
+ 298:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 627              		.loc 1 298 99 view .LVU197
+ 628 00a6 E26B     		ldr	r2, [r4, #60]
+ 298:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 629              		.loc 1 298 68 view .LVU198
+ 630 00a8 9B1A     		subs	r3, r3, r2
+ 298:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 631              		.loc 1 298 43 view .LVU199
+ 632 00aa 6364     		str	r3, [r4, #68]
+ 633              	.L48:
+ 301:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 634              		.loc 1 301 5 is_stmt 1 view .LVU200
+ 301:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 635              		.loc 1 301 39 is_stmt 0 view .LVU201
+ 636 00ac A36C     		ldr	r3, [r4, #72]
+ 301:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 637              		.loc 1 301 8 view .LVU202
+ 638 00ae 1BB1     		cbz	r3, .L49
+ 301:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 639              		.loc 1 301 52 discriminator 1 view .LVU203
+ 640 00b0 40F6FE72 		movw	r2, #4094
+ 641 00b4 9342     		cmp	r3, r2
+ 642 00b6 03D1     		bne	.L50
+ 643              	.L49:
+ 304:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 644              		.loc 1 304 7 is_stmt 1 view .LVU204
+ 304:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 645              		.loc 1 304 61 is_stmt 0 view .LVU205
+ 646 00b8 AB6F     		ldr	r3, [r5, #120]
+ 304:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 647              		.loc 1 304 100 view .LVU206
+ 648 00ba 226C     		ldr	r2, [r4, #64]
+ 304:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 649              		.loc 1 304 69 view .LVU207
+ 650 00bc 9B1A     		subs	r3, r3, r2
+ 304:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 651              		.loc 1 304 43 view .LVU208
+ 652 00be A364     		str	r3, [r4, #72]
+ 653              	.L50:
+ 308:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 654              		.loc 1 308 5 is_stmt 1 view .LVU209
+ 308:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 655              		.loc 1 308 11 is_stmt 0 view .LVU210
+ 656 00c0 04F13C01 		add	r1, r4, #60
+ 657 00c4 2846     		mov	r0, r5
+ 658              	.LVL54:
+ 308:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ARM GAS  /tmp/cc8NtyFF.s 			page 23
+
+
+ 659              		.loc 1 308 11 view .LVU211
+ 660 00c6 FFF7FEFF 		bl	ISP_SVC_ISP_SetStatArea
+ 661              	.LVL55:
+ 309:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 662              		.loc 1 309 5 is_stmt 1 view .LVU212
+ 309:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 663              		.loc 1 309 8 is_stmt 0 view .LVU213
+ 664 00ca 0646     		mov	r6, r0
+ 665 00cc 0028     		cmp	r0, #0
+ 666 00ce A0D1     		bne	.L38
+ 667              	.L46:
+ 315:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 668              		.loc 1 315 3 is_stmt 1 view .LVU214
+ 315:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 669              		.loc 1 315 9 is_stmt 0 view .LVU215
+ 670 00d0 04F51971 		add	r1, r4, #612
+ 671 00d4 2846     		mov	r0, r5
+ 672              	.LVL56:
+ 315:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 673              		.loc 1 315 9 view .LVU216
+ 674 00d6 FFF7FEFF 		bl	ISP_SVC_ISP_SetGamma
+ 675              	.LVL57:
+ 316:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 676              		.loc 1 316 3 is_stmt 1 view .LVU217
+ 316:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 677              		.loc 1 316 6 is_stmt 0 view .LVU218
+ 678 00da 0646     		mov	r6, r0
+ 679 00dc 0028     		cmp	r0, #0
+ 680 00de 98D1     		bne	.L38
+ 322:../Drivers/ISP/isp/Src/isp_core.c ****   Meta.exposureTarget = IQParamConfig->AECAlgo.exposureTarget;
+ 681              		.loc 1 322 3 is_stmt 1 view .LVU219
+ 322:../Drivers/ISP/isp/Src/isp_core.c ****   Meta.exposureTarget = IQParamConfig->AECAlgo.exposureTarget;
+ 682              		.loc 1 322 119 is_stmt 0 view .LVU220
+ 683 00e0 94F96930 		ldrsb	r3, [r4, #105]
+ 684 00e4 01EE103A 		vmov	s2, r3	@ int
+ 322:../Drivers/ISP/isp/Src/isp_core.c ****   Meta.exposureTarget = IQParamConfig->AECAlgo.exposureTarget;
+ 685              		.loc 1 322 90 view .LVU221
+ 686 00e8 B8EEC11A 		vcvt.f32.s32	s2, s2
+ 322:../Drivers/ISP/isp/Src/isp_core.c ****   Meta.exposureTarget = IQParamConfig->AECAlgo.exposureTarget;
+ 687              		.loc 1 322 141 view .LVU222
+ 688 00ec F6EE007A 		vmov.f32	s15, #5.0e-1
+ 689 00f0 21EE271A 		vmul.f32	s2, s2, s15
+ 322:../Drivers/ISP/isp/Src/isp_core.c ****   Meta.exposureTarget = IQParamConfig->AECAlgo.exposureTarget;
+ 690              		.loc 1 322 83 view .LVU223
+ 691 00f4 B7EEC11A 		vcvt.f64.f32	d1, s2
+ 692 00f8 B0EE000B 		vmov.f64	d0, #2.0e+0
+ 693 00fc FFF7FEFF 		bl	pow
+ 694              	.LVL58:
+ 322:../Drivers/ISP/isp/Src/isp_core.c ****   Meta.exposureTarget = IQParamConfig->AECAlgo.exposureTarget;
+ 695              		.loc 1 322 81 discriminator 1 view .LVU224
+ 696 0100 9FED237B 		vldr.64	d7, .L62
+ 697 0104 20EE077B 		vmul.f64	d7, d0, d7
+ 322:../Drivers/ISP/isp/Src/isp_core.c ****   Meta.exposureTarget = IQParamConfig->AECAlgo.exposureTarget;
+ 698              		.loc 1 322 43 discriminator 1 view .LVU225
+ 699 0108 FCEEC77B 		vcvt.u32.f64	s15, d7
+ 322:../Drivers/ISP/isp/Src/isp_core.c ****   Meta.exposureTarget = IQParamConfig->AECAlgo.exposureTarget;
+ 700              		.loc 1 322 41 discriminator 1 view .LVU226
+ARM GAS  /tmp/cc8NtyFF.s 			page 24
+
+
+ 701 010c C4ED1B7A 		vstr.32	s15, [r4, #108]	@ int
+ 323:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 702              		.loc 1 323 3 is_stmt 1 view .LVU227
+ 323:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 703              		.loc 1 323 23 is_stmt 0 view .LVU228
+ 704 0110 214A     		ldr	r2, .L62+8
+ 705 0112 C2ED017A 		vstr.32	s15, [r2, #4]	@ int
+ 325:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 706              		.loc 1 325 3 is_stmt 1 view .LVU229
+ 325:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 707              		.loc 1 325 10 is_stmt 0 view .LVU230
+ 708 0116 7CE7     		b	.L38
+ 709              	.LVL59:
+ 710              	.L56:
+ 240:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 711              		.loc 1 240 5 is_stmt 1 view .LVU231
+ 240:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 712              		.loc 1 240 11 is_stmt 0 view .LVU232
+ 713 0118 04F14C01 		add	r1, r4, #76
+ 714 011c 2846     		mov	r0, r5
+ 715              	.LVL60:
+ 240:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 716              		.loc 1 240 11 view .LVU233
+ 717 011e FFF7FEFF 		bl	ISP_SVC_Sensor_SetGain
+ 718              	.LVL61:
+ 241:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 719              		.loc 1 241 5 is_stmt 1 view .LVU234
+ 241:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 720              		.loc 1 241 8 is_stmt 0 view .LVU235
+ 721 0122 0646     		mov	r6, r0
+ 722 0124 0028     		cmp	r0, #0
+ 723 0126 97D0     		beq	.L39
+ 724 0128 73E7     		b	.L38
+ 725              	.L57:
+ 249:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 726              		.loc 1 249 5 is_stmt 1 view .LVU236
+ 249:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 727              		.loc 1 249 11 is_stmt 0 view .LVU237
+ 728 012a 04F15001 		add	r1, r4, #80
+ 729 012e 2846     		mov	r0, r5
+ 730              	.LVL62:
+ 249:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 731              		.loc 1 249 11 view .LVU238
+ 732 0130 FFF7FEFF 		bl	ISP_SVC_Sensor_SetExposure
+ 733              	.LVL63:
+ 250:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 734              		.loc 1 250 5 is_stmt 1 view .LVU239
+ 250:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 735              		.loc 1 250 8 is_stmt 0 view .LVU240
+ 736 0134 0646     		mov	r6, r0
+ 737 0136 0028     		cmp	r0, #0
+ 738 0138 94D0     		beq	.L40
+ 739 013a 6AE7     		b	.L38
+ 740              	.L58:
+ 258:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 741              		.loc 1 258 5 is_stmt 1 view .LVU241
+ 258:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ARM GAS  /tmp/cc8NtyFF.s 			page 25
+
+
+ 742              		.loc 1 258 11 is_stmt 0 view .LVU242
+ 743 013c 04F15C01 		add	r1, r4, #92
+ 744 0140 2846     		mov	r0, r5
+ 745              	.LVL64:
+ 258:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 746              		.loc 1 258 11 view .LVU243
+ 747 0142 FFF7FEFF 		bl	ISP_SVC_ISP_SetBadPixel
+ 748              	.LVL65:
+ 259:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 749              		.loc 1 259 5 is_stmt 1 view .LVU244
+ 259:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 750              		.loc 1 259 8 is_stmt 0 view .LVU245
+ 751 0146 0646     		mov	r6, r0
+ 752 0148 0028     		cmp	r0, #0
+ 753 014a 8FD0     		beq	.L41
+ 754 014c 61E7     		b	.L38
+ 755              	.L59:
+ 267:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 756              		.loc 1 267 5 is_stmt 1 view .LVU246
+ 267:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 757              		.loc 1 267 11 is_stmt 0 view .LVU247
+ 758 014e 04F16401 		add	r1, r4, #100
+ 759 0152 2846     		mov	r0, r5
+ 760              	.LVL66:
+ 267:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 761              		.loc 1 267 11 view .LVU248
+ 762 0154 FFF7FEFF 		bl	ISP_SVC_ISP_SetBlackLevel
+ 763              	.LVL67:
+ 268:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 764              		.loc 1 268 5 is_stmt 1 view .LVU249
+ 268:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 765              		.loc 1 268 8 is_stmt 0 view .LVU250
+ 766 0158 0646     		mov	r6, r0
+ 767 015a 0028     		cmp	r0, #0
+ 768 015c 8AD0     		beq	.L42
+ 769 015e 58E7     		b	.L38
+ 770              	.L60:
+ 276:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 771              		.loc 1 276 5 is_stmt 1 view .LVU251
+ 276:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 772              		.loc 1 276 11 is_stmt 0 view .LVU252
+ 773 0160 04F50B71 		add	r1, r4, #556
+ 774 0164 2846     		mov	r0, r5
+ 775              	.LVL68:
+ 276:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 776              		.loc 1 276 11 view .LVU253
+ 777 0166 FFF7FEFF 		bl	ISP_SVC_ISP_SetGain
+ 778              	.LVL69:
+ 277:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 779              		.loc 1 277 5 is_stmt 1 view .LVU254
+ 277:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 780              		.loc 1 277 8 is_stmt 0 view .LVU255
+ 781 016a 0646     		mov	r6, r0
+ 782 016c 0028     		cmp	r0, #0
+ 783 016e 88D0     		beq	.L43
+ 784 0170 4FE7     		b	.L38
+ 785              	.L61:
+ARM GAS  /tmp/cc8NtyFF.s 			page 26
+
+
+ 285:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 786              		.loc 1 285 5 is_stmt 1 view .LVU256
+ 285:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 787              		.loc 1 285 11 is_stmt 0 view .LVU257
+ 788 0172 04F50F71 		add	r1, r4, #572
+ 789 0176 2846     		mov	r0, r5
+ 790              	.LVL70:
+ 285:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 791              		.loc 1 285 11 view .LVU258
+ 792 0178 FFF7FEFF 		bl	ISP_SVC_ISP_SetColorConv
+ 793              	.LVL71:
+ 286:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 794              		.loc 1 286 5 is_stmt 1 view .LVU259
+ 286:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 795              		.loc 1 286 8 is_stmt 0 view .LVU260
+ 796 017c 0646     		mov	r6, r0
+ 797 017e 0028     		cmp	r0, #0
+ 798 0180 86D0     		beq	.L44
+ 799 0182 46E7     		b	.L38
+ 800              	.LVL72:
+ 801              	.L53:
+ 206:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 802              		.loc 1 206 12 view .LVU261
+ 803 0184 0123     		movs	r3, #1
+ 804 0186 1E46     		mov	r6, r3
+ 805 0188 43E7     		b	.L38
+ 806              	.L63:
+ 807 018a 00BFAFF3 		.align	3
+ 807      0080
+ 808              	.L62:
+ 809 0190 00000000 		.word	0
+ 810 0194 00004C40 		.word	1078722560
+ 811 0198 00000000 		.word	Meta
+ 812              		.cfi_endproc
+ 813              	.LFE886:
+ 815              		.section	.text.ISP_BackgroundProcess,"ax",%progbits
+ 816              		.align	1
+ 817              		.global	ISP_BackgroundProcess
+ 818              		.syntax unified
+ 819              		.thumb
+ 820              		.thumb_func
+ 822              	ISP_BackgroundProcess:
+ 823              	.LVL73:
+ 824              	.LFB888:
+ 372:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 373:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 374:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_BackgroundProcess
+ 375:../Drivers/ISP/isp/Src/isp_core.c ****   *         Run the background process of the ISP device
+ 376:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 377:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval ISP status
+ 378:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 379:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_BackgroundProcess(ISP_HandleTypeDef *hIsp)
+ 380:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 825              		.loc 1 380 1 is_stmt 1 view -0
+ 826              		.cfi_startproc
+ 827              		@ args = 0, pretend = 0, frame = 0
+ 828              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/cc8NtyFF.s 			page 27
+
+
+ 829              		.loc 1 380 1 is_stmt 0 view .LVU263
+ 830 0000 08B5     		push	{r3, lr}
+ 831              	.LCFI7:
+ 832              		.cfi_def_cfa_offset 8
+ 833              		.cfi_offset 3, -8
+ 834              		.cfi_offset 14, -4
+ 381:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_Status = _ISP_BackgroundProcess(hIsp);
+ 835              		.loc 1 381 3 is_stmt 1 view .LVU264
+ 836              		.loc 1 381 16 is_stmt 0 view .LVU265
+ 837 0002 FFF7FEFF 		bl	_ISP_BackgroundProcess
+ 838              	.LVL74:
+ 839              		.loc 1 381 14 discriminator 1 view .LVU266
+ 840 0006 014B     		ldr	r3, .L66
+ 841 0008 1870     		strb	r0, [r3]
+ 382:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_Status;
+ 842              		.loc 1 382 3 is_stmt 1 view .LVU267
+ 383:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 843              		.loc 1 383 1 is_stmt 0 view .LVU268
+ 844 000a 08BD     		pop	{r3, pc}
+ 845              	.L67:
+ 846              		.align	2
+ 847              	.L66:
+ 848 000c 00000000 		.word	ISP_Status
+ 849              		.cfi_endproc
+ 850              	.LFE888:
+ 852              		.section	.text.ISP_GetStatus,"ax",%progbits
+ 853              		.align	1
+ 854              		.global	ISP_GetStatus
+ 855              		.syntax unified
+ 856              		.thumb
+ 857              		.thumb_func
+ 859              	ISP_GetStatus:
+ 860              	.LVL75:
+ 861              	.LFB889:
+ 384:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 385:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 386:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_GetStatus
+ 387:../Drivers/ISP/isp/Src/isp_core.c ****   *         Get the overal ISP status (as returned by ISP_BackgroundProcess)
+ 388:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 389:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval ISP status
+ 390:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 391:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_GetStatus(ISP_HandleTypeDef *hIsp)
+ 392:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 862              		.loc 1 392 1 is_stmt 1 view -0
+ 863              		.cfi_startproc
+ 864              		@ args = 0, pretend = 0, frame = 0
+ 865              		@ frame_needed = 0, uses_anonymous_args = 0
+ 866              		@ link register save eliminated.
+ 393:../Drivers/ISP/isp/Src/isp_core.c ****   (void)hIsp; /* unused */
+ 867              		.loc 1 393 3 view .LVU270
+ 394:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_Status;
+ 868              		.loc 1 394 3 view .LVU271
+ 395:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 869              		.loc 1 395 1 is_stmt 0 view .LVU272
+ 870 0000 014B     		ldr	r3, .L69
+ 871 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 872              	.LVL76:
+ARM GAS  /tmp/cc8NtyFF.s 			page 28
+
+
+ 873              		.loc 1 395 1 view .LVU273
+ 874 0004 7047     		bx	lr
+ 875              	.L70:
+ 876 0006 00BF     		.align	2
+ 877              	.L69:
+ 878 0008 00000000 		.word	ISP_Status
+ 879              		.cfi_endproc
+ 880              	.LFE889:
+ 882              		.section	.text.ISP_SetExposureTarget,"ax",%progbits
+ 883              		.align	1
+ 884              		.global	ISP_SetExposureTarget
+ 885              		.syntax unified
+ 886              		.thumb
+ 887              		.thumb_func
+ 889              	ISP_SetExposureTarget:
+ 890              	.LVL77:
+ 891              	.LFB890:
+ 396:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 397:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 398:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_SetExposureTarget
+ 399:../Drivers/ISP/isp/Src/isp_core.c ****   *         Update the exposure target used by the AEC algorithm
+ 400:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 401:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  ExposureTarget: Exposure target
+ 402:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval Operation status
+ 403:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 404:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_SetExposureTarget(ISP_HandleTypeDef *hIsp, ISP_ExposureCompTypeDef ExposureCo
+ 405:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 892              		.loc 1 405 1 is_stmt 1 view -0
+ 893              		.cfi_startproc
+ 894              		@ args = 0, pretend = 0, frame = 0
+ 895              		@ frame_needed = 0, uses_anonymous_args = 0
+ 896              		.loc 1 405 1 is_stmt 0 view .LVU275
+ 897 0000 38B5     		push	{r3, r4, r5, lr}
+ 898              	.LCFI8:
+ 899              		.cfi_def_cfa_offset 16
+ 900              		.cfi_offset 3, -16
+ 901              		.cfi_offset 4, -12
+ 902              		.cfi_offset 5, -8
+ 903              		.cfi_offset 14, -4
+ 904 0002 0D46     		mov	r5, r1
+ 406:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_IQParamTypeDef *IQParamConfig;
+ 905              		.loc 1 406 3 is_stmt 1 view .LVU276
+ 407:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 408:../Drivers/ISP/isp/Src/isp_core.c ****   IQParamConfig = ISP_SVC_IQParam_Get(hIsp);
+ 906              		.loc 1 408 3 view .LVU277
+ 907              		.loc 1 408 19 is_stmt 0 view .LVU278
+ 908 0004 FFF7FEFF 		bl	ISP_SVC_IQParam_Get
+ 909              	.LVL78:
+ 910              		.loc 1 408 19 view .LVU279
+ 911 0008 0446     		mov	r4, r0
+ 912              	.LVL79:
+ 409:../Drivers/ISP/isp/Src/isp_core.c ****   IQParamConfig->AECAlgo.exposureCompensation = ExposureCompensation;
+ 913              		.loc 1 409 3 is_stmt 1 view .LVU280
+ 914              		.loc 1 409 47 is_stmt 0 view .LVU281
+ 915 000a 80F86950 		strb	r5, [r0, #105]
+ 410:../Drivers/ISP/isp/Src/isp_core.c ****   IQParamConfig->AECAlgo.exposureTarget = (uint32_t) (ISP_IDEAL_TARGET_EXPOSURE * pow(2, (float)Exp
+ 916              		.loc 1 410 3 is_stmt 1 view .LVU282
+ARM GAS  /tmp/cc8NtyFF.s 			page 29
+
+
+ 917              		.loc 1 410 90 is_stmt 0 view .LVU283
+ 918 000e 07EE905A 		vmov	s15, r5	@ int
+ 919 0012 B8EEE71A 		vcvt.f32.s32	s2, s15
+ 920              		.loc 1 410 118 view .LVU284
+ 921 0016 F6EE007A 		vmov.f32	s15, #5.0e-1
+ 922 001a 21EE271A 		vmul.f32	s2, s2, s15
+ 923              		.loc 1 410 83 view .LVU285
+ 924 001e B7EEC11A 		vcvt.f64.f32	d1, s2
+ 925 0022 B0EE000B 		vmov.f64	d0, #2.0e+0
+ 926 0026 FFF7FEFF 		bl	pow
+ 927              	.LVL80:
+ 928              		.loc 1 410 81 discriminator 1 view .LVU286
+ 929 002a 9FED077B 		vldr.64	d7, .L73
+ 930 002e 20EE070B 		vmul.f64	d0, d0, d7
+ 931              		.loc 1 410 43 discriminator 1 view .LVU287
+ 932 0032 FCEEC07B 		vcvt.u32.f64	s15, d0
+ 933              		.loc 1 410 41 discriminator 1 view .LVU288
+ 934 0036 C4ED1B7A 		vstr.32	s15, [r4, #108]	@ int
+ 411:../Drivers/ISP/isp/Src/isp_core.c ****   Meta.exposureTarget = IQParamConfig->AECAlgo.exposureTarget;
+ 935              		.loc 1 411 3 is_stmt 1 view .LVU289
+ 936              		.loc 1 411 23 is_stmt 0 view .LVU290
+ 937 003a 054A     		ldr	r2, .L73+8
+ 938 003c C2ED017A 		vstr.32	s15, [r2, #4]	@ int
+ 412:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 413:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_OK;
+ 939              		.loc 1 413 3 is_stmt 1 view .LVU291
+ 414:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 940              		.loc 1 414 1 is_stmt 0 view .LVU292
+ 941 0040 0020     		movs	r0, #0
+ 942 0042 38BD     		pop	{r3, r4, r5, pc}
+ 943              	.LVL81:
+ 944              	.L74:
+ 945              		.loc 1 414 1 view .LVU293
+ 946 0044 AFF30080 		.align	3
+ 947              	.L73:
+ 948 0048 00000000 		.word	0
+ 949 004c 00004C40 		.word	1078722560
+ 950 0050 00000000 		.word	Meta
+ 951              		.cfi_endproc
+ 952              	.LFE890:
+ 954              		.section	.text.ISP_GetExposureTarget,"ax",%progbits
+ 955              		.align	1
+ 956              		.global	ISP_GetExposureTarget
+ 957              		.syntax unified
+ 958              		.thumb
+ 959              		.thumb_func
+ 961              	ISP_GetExposureTarget:
+ 962              	.LVL82:
+ 963              	.LFB891:
+ 415:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 416:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 417:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_GetExposureTarget
+ 418:../Drivers/ISP/isp/Src/isp_core.c ****   *         Get the exposure target used by the AEC algorithm
+ 419:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 420:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  pExposureTarget: Pointer to exposure target
+ 421:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval Operation status
+ 422:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ARM GAS  /tmp/cc8NtyFF.s 			page 30
+
+
+ 423:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_GetExposureTarget(ISP_HandleTypeDef *hIsp, ISP_ExposureCompTypeDef *pExposure
+ 424:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 964              		.loc 1 424 1 is_stmt 1 view -0
+ 965              		.cfi_startproc
+ 966              		@ args = 0, pretend = 0, frame = 0
+ 967              		@ frame_needed = 0, uses_anonymous_args = 0
+ 968              		.loc 1 424 1 is_stmt 0 view .LVU295
+ 969 0000 38B5     		push	{r3, r4, r5, lr}
+ 970              	.LCFI9:
+ 971              		.cfi_def_cfa_offset 16
+ 972              		.cfi_offset 3, -16
+ 973              		.cfi_offset 4, -12
+ 974              		.cfi_offset 5, -8
+ 975              		.cfi_offset 14, -4
+ 976 0002 0D46     		mov	r5, r1
+ 977 0004 1446     		mov	r4, r2
+ 425:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_IQParamTypeDef *IQParamConfig;
+ 978              		.loc 1 425 3 is_stmt 1 view .LVU296
+ 426:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 427:../Drivers/ISP/isp/Src/isp_core.c ****   IQParamConfig = ISP_SVC_IQParam_Get(hIsp);
+ 979              		.loc 1 427 3 view .LVU297
+ 980              		.loc 1 427 19 is_stmt 0 view .LVU298
+ 981 0006 FFF7FEFF 		bl	ISP_SVC_IQParam_Get
+ 982              	.LVL83:
+ 428:../Drivers/ISP/isp/Src/isp_core.c ****   *pExposureTarget = IQParamConfig->AECAlgo.exposureTarget;
+ 983              		.loc 1 428 3 is_stmt 1 view .LVU299
+ 984              		.loc 1 428 44 is_stmt 0 view .LVU300
+ 985 000a C36E     		ldr	r3, [r0, #108]
+ 986              		.loc 1 428 20 view .LVU301
+ 987 000c 2360     		str	r3, [r4]
+ 429:../Drivers/ISP/isp/Src/isp_core.c ****   *pExposureCompensation = IQParamConfig->AECAlgo.exposureCompensation;
+ 988              		.loc 1 429 3 is_stmt 1 view .LVU302
+ 989              		.loc 1 429 50 is_stmt 0 view .LVU303
+ 990 000e 90F96930 		ldrsb	r3, [r0, #105]
+ 991              		.loc 1 429 26 view .LVU304
+ 992 0012 2B70     		strb	r3, [r5]
+ 430:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 431:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_OK;
+ 993              		.loc 1 431 3 is_stmt 1 view .LVU305
+ 432:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 994              		.loc 1 432 1 is_stmt 0 view .LVU306
+ 995 0014 0020     		movs	r0, #0
+ 996              	.LVL84:
+ 997              		.loc 1 432 1 view .LVU307
+ 998 0016 38BD     		pop	{r3, r4, r5, pc}
+ 999              		.loc 1 432 1 view .LVU308
+ 1000              		.cfi_endproc
+ 1001              	.LFE891:
+ 1003              		.section	.text.ISP_SetAECState,"ax",%progbits
+ 1004              		.align	1
+ 1005              		.global	ISP_SetAECState
+ 1006              		.syntax unified
+ 1007              		.thumb
+ 1008              		.thumb_func
+ 1010              	ISP_SetAECState:
+ 1011              	.LVL85:
+ 1012              	.LFB892:
+ARM GAS  /tmp/cc8NtyFF.s 			page 31
+
+
+ 433:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 434:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 435:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_SetAECState
+ 436:../Drivers/ISP/isp/Src/isp_core.c ****   *         Set AEC algorithm state
+ 437:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 438:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  enable: AEC algorithm state ('true' if algo is running, 'false' if algo is stopped)
+ 439:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval Operation status
+ 440:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 441:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_SetAECState(ISP_HandleTypeDef *hIsp, uint8_t enable)
+ 442:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1013              		.loc 1 442 1 is_stmt 1 view -0
+ 1014              		.cfi_startproc
+ 1015              		@ args = 0, pretend = 0, frame = 0
+ 1016              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1017              		.loc 1 442 1 is_stmt 0 view .LVU310
+ 1018 0000 10B5     		push	{r4, lr}
+ 1019              	.LCFI10:
+ 1020              		.cfi_def_cfa_offset 8
+ 1021              		.cfi_offset 4, -8
+ 1022              		.cfi_offset 14, -4
+ 1023 0002 0C46     		mov	r4, r1
+ 443:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_IQParamTypeDef *IQParamConfig;
+ 1024              		.loc 1 443 3 is_stmt 1 view .LVU311
+ 444:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 445:../Drivers/ISP/isp/Src/isp_core.c ****   IQParamConfig = ISP_SVC_IQParam_Get(hIsp);
+ 1025              		.loc 1 445 3 view .LVU312
+ 1026              		.loc 1 445 19 is_stmt 0 view .LVU313
+ 1027 0004 FFF7FEFF 		bl	ISP_SVC_IQParam_Get
+ 1028              	.LVL86:
+ 446:../Drivers/ISP/isp/Src/isp_core.c ****   IQParamConfig->AECAlgo.enable = enable;
+ 1029              		.loc 1 446 3 is_stmt 1 view .LVU314
+ 1030              		.loc 1 446 33 is_stmt 0 view .LVU315
+ 1031 0008 80F86840 		strb	r4, [r0, #104]
+ 447:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 448:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_OK;
+ 1032              		.loc 1 448 3 is_stmt 1 view .LVU316
+ 449:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1033              		.loc 1 449 1 is_stmt 0 view .LVU317
+ 1034 000c 0020     		movs	r0, #0
+ 1035              	.LVL87:
+ 1036              		.loc 1 449 1 view .LVU318
+ 1037 000e 10BD     		pop	{r4, pc}
+ 1038              		.loc 1 449 1 view .LVU319
+ 1039              		.cfi_endproc
+ 1040              	.LFE892:
+ 1042              		.section	.text.ISP_GetAECState,"ax",%progbits
+ 1043              		.align	1
+ 1044              		.global	ISP_GetAECState
+ 1045              		.syntax unified
+ 1046              		.thumb
+ 1047              		.thumb_func
+ 1049              	ISP_GetAECState:
+ 1050              	.LVL88:
+ 1051              	.LFB893:
+ 450:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 451:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 452:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_GetAECState
+ARM GAS  /tmp/cc8NtyFF.s 			page 32
+
+
+ 453:../Drivers/ISP/isp/Src/isp_core.c ****   *         Get AEC algorithm state
+ 454:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 455:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  pEnable: AEC algorithm pointer to current state ('true' if algo is running, 'false' if 
+ 456:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval Operation status
+ 457:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 458:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_GetAECState(ISP_HandleTypeDef *hIsp, uint8_t *pEnable)
+ 459:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1052              		.loc 1 459 1 is_stmt 1 view -0
+ 1053              		.cfi_startproc
+ 1054              		@ args = 0, pretend = 0, frame = 0
+ 1055              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1056              		.loc 1 459 1 is_stmt 0 view .LVU321
+ 1057 0000 10B5     		push	{r4, lr}
+ 1058              	.LCFI11:
+ 1059              		.cfi_def_cfa_offset 8
+ 1060              		.cfi_offset 4, -8
+ 1061              		.cfi_offset 14, -4
+ 1062 0002 0C46     		mov	r4, r1
+ 460:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_IQParamTypeDef *IQParamConfig;
+ 1063              		.loc 1 460 3 is_stmt 1 view .LVU322
+ 461:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 462:../Drivers/ISP/isp/Src/isp_core.c ****   IQParamConfig = ISP_SVC_IQParam_Get(hIsp);
+ 1064              		.loc 1 462 3 view .LVU323
+ 1065              		.loc 1 462 19 is_stmt 0 view .LVU324
+ 1066 0004 FFF7FEFF 		bl	ISP_SVC_IQParam_Get
+ 1067              	.LVL89:
+ 463:../Drivers/ISP/isp/Src/isp_core.c ****   *pEnable = IQParamConfig->AECAlgo.enable;
+ 1068              		.loc 1 463 3 is_stmt 1 view .LVU325
+ 1069              		.loc 1 463 36 is_stmt 0 view .LVU326
+ 1070 0008 90F86830 		ldrb	r3, [r0, #104]	@ zero_extendqisi2
+ 1071              		.loc 1 463 12 view .LVU327
+ 1072 000c 2370     		strb	r3, [r4]
+ 464:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 465:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_OK;
+ 1073              		.loc 1 465 3 is_stmt 1 view .LVU328
+ 466:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1074              		.loc 1 466 1 is_stmt 0 view .LVU329
+ 1075 000e 0020     		movs	r0, #0
+ 1076              	.LVL90:
+ 1077              		.loc 1 466 1 view .LVU330
+ 1078 0010 10BD     		pop	{r4, pc}
+ 1079              		.loc 1 466 1 view .LVU331
+ 1080              		.cfi_endproc
+ 1081              	.LFE893:
+ 1083              		.section	.text.ISP_ListWBRefModes,"ax",%progbits
+ 1084              		.align	1
+ 1085              		.global	ISP_ListWBRefModes
+ 1086              		.syntax unified
+ 1087              		.thumb
+ 1088              		.thumb_func
+ 1090              	ISP_ListWBRefModes:
+ 1091              	.LVL91:
+ 1092              	.LFB894:
+ 467:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 468:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 469:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_ListWBRefModes
+ 470:../Drivers/ISP/isp/Src/isp_core.c ****   *         List the reference modes (color temperature) that define a white balance configuration
+ARM GAS  /tmp/cc8NtyFF.s 			page 33
+
+
+ 471:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 472:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  RefColorTemp: Array of reference color temperatures
+ 473:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval Operation status
+ 474:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 475:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_ListWBRefModes(ISP_HandleTypeDef *hIsp, uint32_t RefColorTemp[])
+ 476:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1093              		.loc 1 476 1 is_stmt 1 view -0
+ 1094              		.cfi_startproc
+ 1095              		@ args = 0, pretend = 0, frame = 0
+ 1096              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1097              		.loc 1 476 1 is_stmt 0 view .LVU333
+ 1098 0000 10B5     		push	{r4, lr}
+ 1099              	.LCFI12:
+ 1100              		.cfi_def_cfa_offset 8
+ 1101              		.cfi_offset 4, -8
+ 1102              		.cfi_offset 14, -4
+ 1103 0002 0C46     		mov	r4, r1
+ 477:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_IQParamTypeDef *IQParamConfig;
+ 1104              		.loc 1 477 3 is_stmt 1 view .LVU334
+ 478:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 479:../Drivers/ISP/isp/Src/isp_core.c ****   IQParamConfig = ISP_SVC_IQParam_Get(hIsp);
+ 1105              		.loc 1 479 3 view .LVU335
+ 1106              		.loc 1 479 19 is_stmt 0 view .LVU336
+ 1107 0004 FFF7FEFF 		bl	ISP_SVC_IQParam_Get
+ 1108              	.LVL92:
+ 480:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 481:../Drivers/ISP/isp/Src/isp_core.c ****   memcpy(RefColorTemp, IQParamConfig->AWBAlgo.referenceColorTemp, sizeof(IQParamConfig->AWBAlgo.ref
+ 1109              		.loc 1 481 3 is_stmt 1 view .LVU337
+ 1110 0008 D0F81831 		ldr	r3, [r0, #280]	@ unaligned
+ 1111 000c D0F81CC1 		ldr	ip, [r0, #284]	@ unaligned
+ 1112 0010 D0F82011 		ldr	r1, [r0, #288]	@ unaligned
+ 1113 0014 D0F82421 		ldr	r2, [r0, #292]	@ unaligned
+ 1114 0018 2360     		str	r3, [r4]	@ unaligned
+ 1115 001a C4F804C0 		str	ip, [r4, #4]	@ unaligned
+ 1116 001e A160     		str	r1, [r4, #8]	@ unaligned
+ 1117 0020 E260     		str	r2, [r4, #12]	@ unaligned
+ 1118 0022 D0F82831 		ldr	r3, [r0, #296]	@ unaligned
+ 1119 0026 2361     		str	r3, [r4, #16]	@ unaligned
+ 482:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 483:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_OK;
+ 1120              		.loc 1 483 3 view .LVU338
+ 484:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1121              		.loc 1 484 1 is_stmt 0 view .LVU339
+ 1122 0028 0020     		movs	r0, #0
+ 1123              	.LVL93:
+ 1124              		.loc 1 484 1 view .LVU340
+ 1125 002a 10BD     		pop	{r4, pc}
+ 1126              		.loc 1 484 1 view .LVU341
+ 1127              		.cfi_endproc
+ 1128              	.LFE894:
+ 1130              		.section	.text.ISP_SetWBRefMode,"ax",%progbits
+ 1131              		.align	1
+ 1132              		.global	ISP_SetWBRefMode
+ 1133              		.syntax unified
+ 1134              		.thumb
+ 1135              		.thumb_func
+ 1137              	ISP_SetWBRefMode:
+ARM GAS  /tmp/cc8NtyFF.s 			page 34
+
+
+ 1138              	.LVL94:
+ 1139              	.LFB895:
+ 485:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 486:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 487:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_SetWBRefMode
+ 488:../Drivers/ISP/isp/Src/isp_core.c ****   *         Set the reference mode that define a white balance configuration.
+ 489:../Drivers/ISP/isp/Src/isp_core.c ****   *         Can be a manual mode specified by a color temperature, or 'Automatic' relying on the AW
+ 490:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 491:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  Automatic: 'true' if the AWB automatic mode is requested
+ 492:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  RefColorTemp: Reference color temperature (manual mode). Not significant if Automatic i
+ 493:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval Operation status
+ 494:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 495:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_SetWBRefMode(ISP_HandleTypeDef *hIsp, uint8_t Automatic, uint32_t RefColorTem
+ 496:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1140              		.loc 1 496 1 is_stmt 1 view -0
+ 1141              		.cfi_startproc
+ 1142              		@ args = 0, pretend = 0, frame = 56
+ 1143              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1144              		.loc 1 496 1 is_stmt 0 view .LVU343
+ 1145 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1146              	.LCFI13:
+ 1147              		.cfi_def_cfa_offset 20
+ 1148              		.cfi_offset 4, -20
+ 1149              		.cfi_offset 5, -16
+ 1150              		.cfi_offset 6, -12
+ 1151              		.cfi_offset 7, -8
+ 1152              		.cfi_offset 14, -4
+ 1153 0002 8FB0     		sub	sp, sp, #60
+ 1154              	.LCFI14:
+ 1155              		.cfi_def_cfa_offset 80
+ 1156 0004 0646     		mov	r6, r0
+ 1157 0006 0D46     		mov	r5, r1
+ 1158 0008 1446     		mov	r4, r2
+ 497:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_ISPGainTypeDef ISPGain;
+ 1159              		.loc 1 497 3 is_stmt 1 view .LVU344
+ 498:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_ColorConvTypeDef ColorConv;
+ 1160              		.loc 1 498 3 view .LVU345
+ 499:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_IQParamTypeDef *IQParamConfig;
+ 1161              		.loc 1 499 3 view .LVU346
+ 500:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_StatusTypeDef ret;
+ 1162              		.loc 1 500 3 view .LVU347
+ 501:../Drivers/ISP/isp/Src/isp_core.c ****   uint32_t index;
+ 1163              		.loc 1 501 3 view .LVU348
+ 502:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 503:../Drivers/ISP/isp/Src/isp_core.c ****   IQParamConfig = ISP_SVC_IQParam_Get(hIsp);
+ 1164              		.loc 1 503 3 view .LVU349
+ 1165              		.loc 1 503 19 is_stmt 0 view .LVU350
+ 1166 000a FFF7FEFF 		bl	ISP_SVC_IQParam_Get
+ 1167              	.LVL95:
+ 504:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 505:../Drivers/ISP/isp/Src/isp_core.c ****   if (Automatic)
+ 1168              		.loc 1 505 3 is_stmt 1 view .LVU351
+ 1169              		.loc 1 505 6 is_stmt 0 view .LVU352
+ 1170 000e 2B46     		mov	r3, r5
+ 1171 0010 2DB1     		cbz	r5, .L84
+ 506:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 507:../Drivers/ISP/isp/Src/isp_core.c ****     /* Start the AWB algorithm */
+ARM GAS  /tmp/cc8NtyFF.s 			page 35
+
+
+ 508:../Drivers/ISP/isp/Src/isp_core.c ****     IQParamConfig->AWBAlgo.enable = 1;
+ 1172              		.loc 1 508 5 is_stmt 1 view .LVU353
+ 1173              		.loc 1 508 35 is_stmt 0 view .LVU354
+ 1174 0012 0123     		movs	r3, #1
+ 1175 0014 80F87430 		strb	r3, [r0, #116]
+ 509:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 510:../Drivers/ISP/isp/Src/isp_core.c ****   else
+ 511:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 512:../Drivers/ISP/isp/Src/isp_core.c ****     /* Check the validity of RefColorTemp */
+ 513:../Drivers/ISP/isp/Src/isp_core.c ****     for (index = 0; index < ISP_AWB_COLORTEMP_REF; index++)
+ 514:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 515:../Drivers/ISP/isp/Src/isp_core.c ****       if (IQParamConfig->AWBAlgo.referenceColorTemp[index] == RefColorTemp)
+ 516:../Drivers/ISP/isp/Src/isp_core.c ****         break;
+ 517:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 518:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 519:../Drivers/ISP/isp/Src/isp_core.c ****     if (index >= ISP_AWB_COLORTEMP_REF)
+ 520:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 521:../Drivers/ISP/isp/Src/isp_core.c ****       /* Unknown reference color temperature */
+ 522:../Drivers/ISP/isp/Src/isp_core.c ****       return ISP_ERR_WB_COLORTEMP;
+ 523:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 524:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 525:../Drivers/ISP/isp/Src/isp_core.c ****     /* Stop the AWB algorithm */
+ 526:../Drivers/ISP/isp/Src/isp_core.c ****     IQParamConfig->AWBAlgo.enable = 0;
+ 527:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 528:../Drivers/ISP/isp/Src/isp_core.c ****     /* Apply ISP RGB gains and Color Conversion */
+ 529:../Drivers/ISP/isp/Src/isp_core.c ****     ISPGain.enable = 1;
+ 530:../Drivers/ISP/isp/Src/isp_core.c ****     ISPGain.ispGainR = IQParamConfig->AWBAlgo.ispGainR[index];
+ 531:../Drivers/ISP/isp/Src/isp_core.c ****     ISPGain.ispGainG = IQParamConfig->AWBAlgo.ispGainG[index];
+ 532:../Drivers/ISP/isp/Src/isp_core.c ****     ISPGain.ispGainB = IQParamConfig->AWBAlgo.ispGainB[index];
+ 533:../Drivers/ISP/isp/Src/isp_core.c ****     ColorConv.enable = 1;
+ 534:../Drivers/ISP/isp/Src/isp_core.c ****     memcpy(ColorConv.coeff, IQParamConfig->AWBAlgo.coeff[index], sizeof(ColorConv.coeff));
+ 535:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 536:../Drivers/ISP/isp/Src/isp_core.c ****     ret = ISP_SVC_ISP_SetGain(hIsp, &ISPGain);
+ 537:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 538:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 539:../Drivers/ISP/isp/Src/isp_core.c ****       return ret;
+ 540:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 541:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 542:../Drivers/ISP/isp/Src/isp_core.c ****     ret = ISP_SVC_ISP_SetColorConv(hIsp, &ColorConv);
+ 543:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 544:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 545:../Drivers/ISP/isp/Src/isp_core.c ****       return ret;
+ 546:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 547:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 548:../Drivers/ISP/isp/Src/isp_core.c ****     /* Store the selected mode */
+ 549:../Drivers/ISP/isp/Src/isp_core.c ****     ret = ISP_SVC_Misc_SetWBRefMode(hIsp, RefColorTemp);
+ 550:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 551:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 552:../Drivers/ISP/isp/Src/isp_core.c ****       return ret;
+ 553:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 554:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 555:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 556:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_OK;
+ 1176              		.loc 1 556 10 view .LVU355
+ 1177 0018 0020     		movs	r0, #0
+ 1178              	.LVL96:
+ 1179              	.L85:
+ARM GAS  /tmp/cc8NtyFF.s 			page 36
+
+
+ 557:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1180              		.loc 1 557 1 view .LVU356
+ 1181 001a 0FB0     		add	sp, sp, #60
+ 1182              	.LCFI15:
+ 1183              		.cfi_remember_state
+ 1184              		.cfi_def_cfa_offset 20
+ 1185              		@ sp needed
+ 1186 001c F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1187              	.LVL97:
+ 1188              	.L84:
+ 1189              	.LCFI16:
+ 1190              		.cfi_restore_state
+ 513:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 1191              		.loc 1 513 27 is_stmt 1 discriminator 2 view .LVU357
+ 1192 001e 042B     		cmp	r3, #4
+ 1193 0020 09D8     		bhi	.L86
+ 515:../Drivers/ISP/isp/Src/isp_core.c ****         break;
+ 1194              		.loc 1 515 7 view .LVU358
+ 515:../Drivers/ISP/isp/Src/isp_core.c ****         break;
+ 1195              		.loc 1 515 52 is_stmt 0 view .LVU359
+ 1196 0022 03F1440C 		add	ip, r3, #68
+ 1197 0026 00EB8C0C 		add	ip, r0, ip, lsl #2
+ 1198 002a DCF80820 		ldr	r2, [ip, #8]
+ 515:../Drivers/ISP/isp/Src/isp_core.c ****         break;
+ 1199              		.loc 1 515 10 view .LVU360
+ 1200 002e A242     		cmp	r2, r4
+ 1201 0030 01D0     		beq	.L86
+ 513:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 1202              		.loc 1 513 57 is_stmt 1 discriminator 1 view .LVU361
+ 1203 0032 0133     		adds	r3, r3, #1
+ 1204              	.LVL98:
+ 513:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 1205              		.loc 1 513 57 is_stmt 0 discriminator 1 view .LVU362
+ 1206 0034 F3E7     		b	.L84
+ 1207              	.L86:
+ 519:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 1208              		.loc 1 519 5 is_stmt 1 view .LVU363
+ 519:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 1209              		.loc 1 519 8 is_stmt 0 view .LVU364
+ 1210 0036 042B     		cmp	r3, #4
+ 1211 0038 4BD8     		bhi	.L90
+ 526:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 1212              		.loc 1 526 5 is_stmt 1 view .LVU365
+ 526:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 1213              		.loc 1 526 35 is_stmt 0 view .LVU366
+ 1214 003a 0022     		movs	r2, #0
+ 1215 003c 80F87420 		strb	r2, [r0, #116]
+ 529:../Drivers/ISP/isp/Src/isp_core.c ****     ISPGain.ispGainR = IQParamConfig->AWBAlgo.ispGainR[index];
+ 1216              		.loc 1 529 5 is_stmt 1 view .LVU367
+ 529:../Drivers/ISP/isp/Src/isp_core.c ****     ISPGain.ispGainR = IQParamConfig->AWBAlgo.ispGainR[index];
+ 1217              		.loc 1 529 20 is_stmt 0 view .LVU368
+ 1218 0040 0121     		movs	r1, #1
+ 1219 0042 8DF82810 		strb	r1, [sp, #40]
+ 530:../Drivers/ISP/isp/Src/isp_core.c ****     ISPGain.ispGainG = IQParamConfig->AWBAlgo.ispGainG[index];
+ 1220              		.loc 1 530 5 is_stmt 1 view .LVU369
+ 530:../Drivers/ISP/isp/Src/isp_core.c ****     ISPGain.ispGainG = IQParamConfig->AWBAlgo.ispGainG[index];
+ 1221              		.loc 1 530 55 is_stmt 0 view .LVU370
+ARM GAS  /tmp/cc8NtyFF.s 			page 37
+
+
+ 1222 0046 03F14A02 		add	r2, r3, #74
+ 1223 004a 00EB8202 		add	r2, r0, r2, lsl #2
+ 1224 004e 5268     		ldr	r2, [r2, #4]
+ 530:../Drivers/ISP/isp/Src/isp_core.c ****     ISPGain.ispGainG = IQParamConfig->AWBAlgo.ispGainG[index];
+ 1225              		.loc 1 530 22 view .LVU371
+ 1226 0050 0B92     		str	r2, [sp, #44]
+ 531:../Drivers/ISP/isp/Src/isp_core.c ****     ISPGain.ispGainB = IQParamConfig->AWBAlgo.ispGainB[index];
+ 1227              		.loc 1 531 5 is_stmt 1 view .LVU372
+ 531:../Drivers/ISP/isp/Src/isp_core.c ****     ISPGain.ispGainB = IQParamConfig->AWBAlgo.ispGainB[index];
+ 1228              		.loc 1 531 55 is_stmt 0 view .LVU373
+ 1229 0052 03F14E02 		add	r2, r3, #78
+ 1230 0056 00EB8202 		add	r2, r0, r2, lsl #2
+ 1231 005a 9268     		ldr	r2, [r2, #8]
+ 531:../Drivers/ISP/isp/Src/isp_core.c ****     ISPGain.ispGainB = IQParamConfig->AWBAlgo.ispGainB[index];
+ 1232              		.loc 1 531 22 view .LVU374
+ 1233 005c 0C92     		str	r2, [sp, #48]
+ 532:../Drivers/ISP/isp/Src/isp_core.c ****     ColorConv.enable = 1;
+ 1234              		.loc 1 532 5 is_stmt 1 view .LVU375
+ 532:../Drivers/ISP/isp/Src/isp_core.c ****     ColorConv.enable = 1;
+ 1235              		.loc 1 532 55 is_stmt 0 view .LVU376
+ 1236 005e 03F15402 		add	r2, r3, #84
+ 1237 0062 00EB8202 		add	r2, r0, r2, lsl #2
+ 1238 0066 5268     		ldr	r2, [r2, #4]
+ 532:../Drivers/ISP/isp/Src/isp_core.c ****     ColorConv.enable = 1;
+ 1239              		.loc 1 532 22 view .LVU377
+ 1240 0068 0D92     		str	r2, [sp, #52]
+ 533:../Drivers/ISP/isp/Src/isp_core.c ****     memcpy(ColorConv.coeff, IQParamConfig->AWBAlgo.coeff[index], sizeof(ColorConv.coeff));
+ 1241              		.loc 1 533 5 is_stmt 1 view .LVU378
+ 533:../Drivers/ISP/isp/Src/isp_core.c ****     memcpy(ColorConv.coeff, IQParamConfig->AWBAlgo.coeff[index], sizeof(ColorConv.coeff));
+ 1242              		.loc 1 533 22 is_stmt 0 view .LVU379
+ 1243 006a 8DF80010 		strb	r1, [sp]
+ 534:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 1244              		.loc 1 534 5 is_stmt 1 view .LVU380
+ 534:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 1245              		.loc 1 534 57 is_stmt 0 view .LVU381
+ 1246 006e 03EBC303 		add	r3, r3, r3, lsl #3
+ 1247              	.LVL99:
+ 534:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 1248              		.loc 1 534 57 view .LVU382
+ 1249 0072 9B00     		lsls	r3, r3, #2
+ 1250 0074 03F5B073 		add	r3, r3, #352
+ 1251 0078 1844     		add	r0, r0, r3
+ 1252              	.LVL100:
+ 534:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 1253              		.loc 1 534 5 view .LVU383
+ 1254 007a 00F1080E 		add	lr, r0, #8
+ 1255 007e 01AB     		add	r3, sp, #4
+ 1256 0080 1A46     		mov	r2, r3
+ 1257 0082 00F12803 		add	r3, r0, #40
+ 1258 0086 1F46     		mov	r7, r3
+ 1259              	.L88:
+ 1260 0088 9446     		mov	ip, r2
+ 1261 008a DEF80000 		ldr	r0, [lr]	@ unaligned
+ 1262 008e DEF80410 		ldr	r1, [lr, #4]	@ unaligned
+ 1263 0092 DEF80820 		ldr	r2, [lr, #8]	@ unaligned
+ 1264 0096 DEF80C30 		ldr	r3, [lr, #12]	@ unaligned
+ 1265 009a ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
+ARM GAS  /tmp/cc8NtyFF.s 			page 38
+
+
+ 1266 009e 0EF1100E 		add	lr, lr, #16
+ 1267 00a2 6246     		mov	r2, ip
+ 1268 00a4 BE45     		cmp	lr, r7
+ 1269 00a6 EFD1     		bne	.L88
+ 1270 00a8 DEF80000 		ldr	r0, [lr]	@ unaligned
+ 1271 00ac CCF80000 		str	r0, [ip]
+ 536:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 1272              		.loc 1 536 5 is_stmt 1 view .LVU384
+ 536:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 1273              		.loc 1 536 11 is_stmt 0 view .LVU385
+ 1274 00b0 0AA9     		add	r1, sp, #40
+ 1275 00b2 3046     		mov	r0, r6
+ 1276 00b4 FFF7FEFF 		bl	ISP_SVC_ISP_SetGain
+ 1277              	.LVL101:
+ 537:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 1278              		.loc 1 537 5 is_stmt 1 view .LVU386
+ 537:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 1279              		.loc 1 537 8 is_stmt 0 view .LVU387
+ 1280 00b8 0028     		cmp	r0, #0
+ 1281 00ba AED1     		bne	.L85
+ 542:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 1282              		.loc 1 542 5 is_stmt 1 view .LVU388
+ 542:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 1283              		.loc 1 542 11 is_stmt 0 view .LVU389
+ 1284 00bc 6946     		mov	r1, sp
+ 1285 00be 3046     		mov	r0, r6
+ 1286              	.LVL102:
+ 542:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 1287              		.loc 1 542 11 view .LVU390
+ 1288 00c0 FFF7FEFF 		bl	ISP_SVC_ISP_SetColorConv
+ 1289              	.LVL103:
+ 543:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 1290              		.loc 1 543 5 is_stmt 1 view .LVU391
+ 543:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 1291              		.loc 1 543 8 is_stmt 0 view .LVU392
+ 1292 00c4 0028     		cmp	r0, #0
+ 1293 00c6 A8D1     		bne	.L85
+ 549:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 1294              		.loc 1 549 5 is_stmt 1 view .LVU393
+ 549:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 1295              		.loc 1 549 11 is_stmt 0 view .LVU394
+ 1296 00c8 2146     		mov	r1, r4
+ 1297 00ca 3046     		mov	r0, r6
+ 1298              	.LVL104:
+ 549:../Drivers/ISP/isp/Src/isp_core.c ****     if (ret != ISP_OK)
+ 1299              		.loc 1 549 11 view .LVU395
+ 1300 00cc FFF7FEFF 		bl	ISP_SVC_Misc_SetWBRefMode
+ 1301              	.LVL105:
+ 550:../Drivers/ISP/isp/Src/isp_core.c ****     {
+ 1302              		.loc 1 550 5 is_stmt 1 view .LVU396
+ 1303 00d0 A3E7     		b	.L85
+ 1304              	.LVL106:
+ 1305              	.L90:
+ 522:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 1306              		.loc 1 522 14 is_stmt 0 view .LVU397
+ 1307 00d2 9620     		movs	r0, #150
+ 1308              	.LVL107:
+ARM GAS  /tmp/cc8NtyFF.s 			page 39
+
+
+ 522:../Drivers/ISP/isp/Src/isp_core.c ****     }
+ 1309              		.loc 1 522 14 view .LVU398
+ 1310 00d4 A1E7     		b	.L85
+ 1311              		.cfi_endproc
+ 1312              	.LFE895:
+ 1314              		.section	.text.ISP_GetWBRefMode,"ax",%progbits
+ 1315              		.align	1
+ 1316              		.global	ISP_GetWBRefMode
+ 1317              		.syntax unified
+ 1318              		.thumb
+ 1319              		.thumb_func
+ 1321              	ISP_GetWBRefMode:
+ 1322              	.LVL108:
+ 1323              	.LFB896:
+ 558:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 559:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 560:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_GetWBRefMode
+ 561:../Drivers/ISP/isp/Src/isp_core.c ****   *         Get the reference mode that define a white balance configuration.
+ 562:../Drivers/ISP/isp/Src/isp_core.c ****   *         Can be a manual mode specified by a color temperature, or 'Automatic' relying on the AW
+ 563:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 564:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  pAutomatic: Pointer to the mode. 'true' means that AWB automatic mode is running.
+ 565:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  pRefColorTemp: Pointer to reference color temperature (manual mode). Not significant if
+ 566:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval Operation status
+ 567:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 568:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_GetWBRefMode(ISP_HandleTypeDef *hIsp, uint8_t *pAutomatic, uint32_t *pRefColo
+ 569:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1324              		.loc 1 569 1 is_stmt 1 view -0
+ 1325              		.cfi_startproc
+ 1326              		@ args = 0, pretend = 0, frame = 0
+ 1327              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1328              		.loc 1 569 1 is_stmt 0 view .LVU400
+ 1329 0000 70B5     		push	{r4, r5, r6, lr}
+ 1330              	.LCFI17:
+ 1331              		.cfi_def_cfa_offset 16
+ 1332              		.cfi_offset 4, -16
+ 1333              		.cfi_offset 5, -12
+ 1334              		.cfi_offset 6, -8
+ 1335              		.cfi_offset 14, -4
+ 1336 0002 0546     		mov	r5, r0
+ 1337 0004 0C46     		mov	r4, r1
+ 1338 0006 1646     		mov	r6, r2
+ 570:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_IQParamTypeDef *IQParamConfig;
+ 1339              		.loc 1 570 3 is_stmt 1 view .LVU401
+ 571:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 572:../Drivers/ISP/isp/Src/isp_core.c ****   IQParamConfig = ISP_SVC_IQParam_Get(hIsp);
+ 1340              		.loc 1 572 3 view .LVU402
+ 1341              		.loc 1 572 19 is_stmt 0 view .LVU403
+ 1342 0008 FFF7FEFF 		bl	ISP_SVC_IQParam_Get
+ 1343              	.LVL109:
+ 573:../Drivers/ISP/isp/Src/isp_core.c ****   *pAutomatic = IQParamConfig->AWBAlgo.enable;
+ 1344              		.loc 1 573 3 is_stmt 1 view .LVU404
+ 1345              		.loc 1 573 39 is_stmt 0 view .LVU405
+ 1346 000c 90F87430 		ldrb	r3, [r0, #116]	@ zero_extendqisi2
+ 1347              		.loc 1 573 15 view .LVU406
+ 1348 0010 2370     		strb	r3, [r4]
+ 574:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 575:../Drivers/ISP/isp/Src/isp_core.c ****   if (!*pAutomatic)
+ARM GAS  /tmp/cc8NtyFF.s 			page 40
+
+
+ 1349              		.loc 1 575 3 is_stmt 1 view .LVU407
+ 1350              		.loc 1 575 6 is_stmt 0 view .LVU408
+ 1351 0012 0BB1     		cbz	r3, .L95
+ 1352              	.LVL110:
+ 1353              	.L93:
+ 576:../Drivers/ISP/isp/Src/isp_core.c ****     ISP_SVC_Misc_GetWBRefMode(hIsp, pRefColorTemp);
+ 577:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 578:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_OK;
+ 1354              		.loc 1 578 3 is_stmt 1 view .LVU409
+ 579:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1355              		.loc 1 579 1 is_stmt 0 view .LVU410
+ 1356 0014 0020     		movs	r0, #0
+ 1357 0016 70BD     		pop	{r4, r5, r6, pc}
+ 1358              	.LVL111:
+ 1359              	.L95:
+ 576:../Drivers/ISP/isp/Src/isp_core.c ****     ISP_SVC_Misc_GetWBRefMode(hIsp, pRefColorTemp);
+ 1360              		.loc 1 576 5 is_stmt 1 view .LVU411
+ 1361 0018 3146     		mov	r1, r6
+ 1362 001a 2846     		mov	r0, r5
+ 1363              	.LVL112:
+ 576:../Drivers/ISP/isp/Src/isp_core.c ****     ISP_SVC_Misc_GetWBRefMode(hIsp, pRefColorTemp);
+ 1364              		.loc 1 576 5 is_stmt 0 view .LVU412
+ 1365 001c FFF7FEFF 		bl	ISP_SVC_Misc_GetWBRefMode
+ 1366              	.LVL113:
+ 1367 0020 F8E7     		b	.L93
+ 1368              		.cfi_endproc
+ 1369              	.LFE896:
+ 1371              		.section	.text.ISP_GetDecimationFactor,"ax",%progbits
+ 1372              		.align	1
+ 1373              		.global	ISP_GetDecimationFactor
+ 1374              		.syntax unified
+ 1375              		.thumb
+ 1376              		.thumb_func
+ 1378              	ISP_GetDecimationFactor:
+ 1379              	.LVL114:
+ 1380              	.LFB897:
+ 580:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 581:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 582:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_GetDecimationFactor
+ 583:../Drivers/ISP/isp/Src/isp_core.c ****   *         Get the decimation factor applied in the ISP pipeline.
+ 584:../Drivers/ISP/isp/Src/isp_core.c ****   *         This decimation factor ensures that RAW frame size does not exceed 2688 width prior to 
+ 585:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 586:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  pDecimation: Pointer to the decimation factor
+ 587:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval Operation status
+ 588:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 589:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_GetDecimationFactor(ISP_HandleTypeDef *hIsp, ISP_DecimationTypeDef *pDecimati
+ 590:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1381              		.loc 1 590 1 is_stmt 1 view -0
+ 1382              		.cfi_startproc
+ 1383              		@ args = 0, pretend = 0, frame = 0
+ 1384              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1385              		.loc 1 590 1 is_stmt 0 view .LVU414
+ 1386 0000 08B5     		push	{r3, lr}
+ 1387              	.LCFI18:
+ 1388              		.cfi_def_cfa_offset 8
+ 1389              		.cfi_offset 3, -8
+ 1390              		.cfi_offset 14, -4
+ARM GAS  /tmp/cc8NtyFF.s 			page 41
+
+
+ 591:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_SVC_ISP_GetDecimation(hIsp, pDecimation);
+ 1391              		.loc 1 591 3 is_stmt 1 view .LVU415
+ 1392              		.loc 1 591 10 is_stmt 0 view .LVU416
+ 1393 0002 FFF7FEFF 		bl	ISP_SVC_ISP_GetDecimation
+ 1394              	.LVL115:
+ 592:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1395              		.loc 1 592 1 view .LVU417
+ 1396 0006 08BD     		pop	{r3, pc}
+ 1397              		.cfi_endproc
+ 1398              	.LFE897:
+ 1400              		.section	.text.ISP_SetStatArea,"ax",%progbits
+ 1401              		.align	1
+ 1402              		.global	ISP_SetStatArea
+ 1403              		.syntax unified
+ 1404              		.thumb
+ 1405              		.thumb_func
+ 1407              	ISP_SetStatArea:
+ 1408              	.LVL116:
+ 1409              	.LFB898:
+ 593:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 594:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 595:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_SetStatArea
+ 596:../Drivers/ISP/isp/Src/isp_core.c ****   *         Set statistic area (position and size) defined by the user
+ 597:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 598:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  pStatArea: Pointer to the statistic area
+ 599:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval Operation status
+ 600:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 601:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_SetStatArea(ISP_HandleTypeDef *hIsp, ISP_StatAreaTypeDef *pStatArea)
+ 602:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1410              		.loc 1 602 1 is_stmt 1 view -0
+ 1411              		.cfi_startproc
+ 1412              		@ args = 0, pretend = 0, frame = 0
+ 1413              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1414              		.loc 1 602 1 is_stmt 0 view .LVU419
+ 1415 0000 08B5     		push	{r3, lr}
+ 1416              	.LCFI19:
+ 1417              		.cfi_def_cfa_offset 8
+ 1418              		.cfi_offset 3, -8
+ 1419              		.cfi_offset 14, -4
+ 603:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_SVC_ISP_SetStatArea(hIsp, pStatArea);
+ 1420              		.loc 1 603 3 is_stmt 1 view .LVU420
+ 1421              		.loc 1 603 10 is_stmt 0 view .LVU421
+ 1422 0002 FFF7FEFF 		bl	ISP_SVC_ISP_SetStatArea
+ 1423              	.LVL117:
+ 604:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1424              		.loc 1 604 1 view .LVU422
+ 1425 0006 08BD     		pop	{r3, pc}
+ 1426              		.cfi_endproc
+ 1427              	.LFE898:
+ 1429              		.section	.text.ISP_GetStatArea,"ax",%progbits
+ 1430              		.align	1
+ 1431              		.global	ISP_GetStatArea
+ 1432              		.syntax unified
+ 1433              		.thumb
+ 1434              		.thumb_func
+ 1436              	ISP_GetStatArea:
+ 1437              	.LVL118:
+ARM GAS  /tmp/cc8NtyFF.s 			page 42
+
+
+ 1438              	.LFB899:
+ 605:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 606:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 607:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_GetStatArea
+ 608:../Drivers/ISP/isp/Src/isp_core.c ****   *         Get current statistic area
+ 609:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 610:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  pStatArea: Pointer to the statistic area
+ 611:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval Operation status
+ 612:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 613:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_GetStatArea(ISP_HandleTypeDef *hIsp, ISP_StatAreaTypeDef *pStatArea)
+ 614:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1439              		.loc 1 614 1 is_stmt 1 view -0
+ 1440              		.cfi_startproc
+ 1441              		@ args = 0, pretend = 0, frame = 0
+ 1442              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1443              		.loc 1 614 1 is_stmt 0 view .LVU424
+ 1444 0000 08B5     		push	{r3, lr}
+ 1445              	.LCFI20:
+ 1446              		.cfi_def_cfa_offset 8
+ 1447              		.cfi_offset 3, -8
+ 1448              		.cfi_offset 14, -4
+ 615:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_SVC_ISP_GetStatArea(hIsp, pStatArea);
+ 1449              		.loc 1 615 3 is_stmt 1 view .LVU425
+ 1450              		.loc 1 615 10 is_stmt 0 view .LVU426
+ 1451 0002 FFF7FEFF 		bl	ISP_SVC_ISP_GetStatArea
+ 1452              	.LVL119:
+ 616:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1453              		.loc 1 616 1 view .LVU427
+ 1454 0006 08BD     		pop	{r3, pc}
+ 1455              		.cfi_endproc
+ 1456              	.LFE899:
+ 1458              		.section	.text.ISP_EnableRestartState,"ax",%progbits
+ 1459              		.align	1
+ 1460              		.global	ISP_EnableRestartState
+ 1461              		.syntax unified
+ 1462              		.thumb
+ 1463              		.thumb_func
+ 1465              	ISP_EnableRestartState:
+ 1466              	.LVL120:
+ 1467              	.LFB900:
+ 617:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 618:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 619:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_EnableRestartState
+ 620:../Drivers/ISP/isp/Src/isp_core.c ****   *         Enable the Restart State mode. When enabled, when the system restarts the ISP middlewar
+ 621:../Drivers/ISP/isp/Src/isp_core.c ****   *         its configuration is set just as it was at its latest update.
+ 622:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 623:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  pRestartState: Pointer to the Restart State. To use this mode in a Low Power use case, 
+ 624:../Drivers/ISP/isp/Src/isp_core.c ****   *         the ISP state is applied at system wake up, this pointer must be in some retention memo
+ 625:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval Operation status
+ 626:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 627:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_EnableRestartState(ISP_HandleTypeDef *hIsp, ISP_RestartStateTypeDef *pRestart
+ 628:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1468              		.loc 1 628 1 is_stmt 1 view -0
+ 1469              		.cfi_startproc
+ 1470              		@ args = 0, pretend = 0, frame = 0
+ 1471              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1472              		.loc 1 628 1 is_stmt 0 view .LVU429
+ARM GAS  /tmp/cc8NtyFF.s 			page 43
+
+
+ 1473 0000 08B5     		push	{r3, lr}
+ 1474              	.LCFI21:
+ 1475              		.cfi_def_cfa_offset 8
+ 1476              		.cfi_offset 3, -8
+ 1477              		.cfi_offset 14, -4
+ 629:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_SVC_SetRestartState(hIsp, pRestartState);
+ 1478              		.loc 1 629 3 is_stmt 1 view .LVU430
+ 1479              		.loc 1 629 10 is_stmt 0 view .LVU431
+ 1480 0002 FFF7FEFF 		bl	ISP_SVC_SetRestartState
+ 1481              	.LVL121:
+ 630:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1482              		.loc 1 630 1 view .LVU432
+ 1483 0006 08BD     		pop	{r3, pc}
+ 1484              		.cfi_endproc
+ 1485              	.LFE900:
+ 1487              		.section	.text.ISP_DisableRestartState,"ax",%progbits
+ 1488              		.align	1
+ 1489              		.global	ISP_DisableRestartState
+ 1490              		.syntax unified
+ 1491              		.thumb
+ 1492              		.thumb_func
+ 1494              	ISP_DisableRestartState:
+ 1495              	.LVL122:
+ 1496              	.LFB901:
+ 631:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 632:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 633:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_DisableRestartState
+ 634:../Drivers/ISP/isp/Src/isp_core.c ****   *         Disable the Restart State mode.
+ 635:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 636:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval Operation status
+ 637:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 638:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_DisableRestartState(ISP_HandleTypeDef *hIsp)
+ 639:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1497              		.loc 1 639 1 is_stmt 1 view -0
+ 1498              		.cfi_startproc
+ 1499              		@ args = 0, pretend = 0, frame = 0
+ 1500              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1501              		.loc 1 639 1 is_stmt 0 view .LVU434
+ 1502 0000 08B5     		push	{r3, lr}
+ 1503              	.LCFI22:
+ 1504              		.cfi_def_cfa_offset 8
+ 1505              		.cfi_offset 3, -8
+ 1506              		.cfi_offset 14, -4
+ 640:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_SVC_SetRestartState(hIsp, NULL);
+ 1507              		.loc 1 640 3 is_stmt 1 view .LVU435
+ 1508              		.loc 1 640 10 is_stmt 0 view .LVU436
+ 1509 0002 0021     		movs	r1, #0
+ 1510 0004 FFF7FEFF 		bl	ISP_SVC_SetRestartState
+ 1511              	.LVL123:
+ 641:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1512              		.loc 1 641 1 view .LVU437
+ 1513 0008 08BD     		pop	{r3, pc}
+ 1514              		.cfi_endproc
+ 1515              	.LFE901:
+ 1517              		.section	.text.ISP_GatherStatistics,"ax",%progbits
+ 1518              		.align	1
+ 1519              		.global	ISP_GatherStatistics
+ARM GAS  /tmp/cc8NtyFF.s 			page 44
+
+
+ 1520              		.syntax unified
+ 1521              		.thumb
+ 1522              		.thumb_func
+ 1524              	ISP_GatherStatistics:
+ 1525              	.LVL124:
+ 1526              	.LFB902:
+ 642:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 643:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 644:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_GatherStatistics
+ 645:../Drivers/ISP/isp/Src/isp_core.c ****   *         Gather statistics
+ 646:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 647:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval None
+ 648:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 649:../Drivers/ISP/isp/Src/isp_core.c **** void ISP_GatherStatistics(ISP_HandleTypeDef *hIsp)
+ 650:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1527              		.loc 1 650 1 is_stmt 1 view -0
+ 1528              		.cfi_startproc
+ 1529              		@ args = 0, pretend = 0, frame = 0
+ 1530              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1531              		.loc 1 650 1 is_stmt 0 view .LVU439
+ 1532 0000 08B5     		push	{r3, lr}
+ 1533              	.LCFI23:
+ 1534              		.cfi_def_cfa_offset 8
+ 1535              		.cfi_offset 3, -8
+ 1536              		.cfi_offset 14, -4
+ 651:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_SVC_Stats_Gather(hIsp);
+ 1537              		.loc 1 651 3 is_stmt 1 view .LVU440
+ 1538 0002 FFF7FEFF 		bl	ISP_SVC_Stats_Gather
+ 1539              	.LVL125:
+ 652:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1540              		.loc 1 652 1 is_stmt 0 view .LVU441
+ 1541 0006 08BD     		pop	{r3, pc}
+ 1542              		.cfi_endproc
+ 1543              	.LFE902:
+ 1545              		.section	.text.ISP_IncMainFrameId,"ax",%progbits
+ 1546              		.align	1
+ 1547              		.global	ISP_IncMainFrameId
+ 1548              		.syntax unified
+ 1549              		.thumb
+ 1550              		.thumb_func
+ 1552              	ISP_IncMainFrameId:
+ 1553              	.LVL126:
+ 1554              	.LFB903:
+ 653:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 654:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 655:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_IncMainFrameId
+ 656:../Drivers/ISP/isp/Src/isp_core.c ****   *         Increment the frame ID of the frame output on the main pipe
+ 657:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 658:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval None
+ 659:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 660:../Drivers/ISP/isp/Src/isp_core.c **** void ISP_IncMainFrameId(ISP_HandleTypeDef *hIsp)
+ 661:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1555              		.loc 1 661 1 is_stmt 1 view -0
+ 1556              		.cfi_startproc
+ 1557              		@ args = 0, pretend = 0, frame = 0
+ 1558              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1559              		.loc 1 661 1 is_stmt 0 view .LVU443
+ARM GAS  /tmp/cc8NtyFF.s 			page 45
+
+
+ 1560 0000 08B5     		push	{r3, lr}
+ 1561              	.LCFI24:
+ 1562              		.cfi_def_cfa_offset 8
+ 1563              		.cfi_offset 3, -8
+ 1564              		.cfi_offset 14, -4
+ 662:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_SVC_Misc_IncMainFrameId(hIsp);
+ 1565              		.loc 1 662 3 is_stmt 1 view .LVU444
+ 1566 0002 FFF7FEFF 		bl	ISP_SVC_Misc_IncMainFrameId
+ 1567              	.LVL127:
+ 663:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1568              		.loc 1 663 1 is_stmt 0 view .LVU445
+ 1569 0006 08BD     		pop	{r3, pc}
+ 1570              		.cfi_endproc
+ 1571              	.LFE903:
+ 1573              		.section	.text.ISP_GetMainFrameId,"ax",%progbits
+ 1574              		.align	1
+ 1575              		.global	ISP_GetMainFrameId
+ 1576              		.syntax unified
+ 1577              		.thumb
+ 1578              		.thumb_func
+ 1580              	ISP_GetMainFrameId:
+ 1581              	.LVL128:
+ 1582              	.LFB904:
+ 664:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 665:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 666:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_GetMainFrameId
+ 667:../Drivers/ISP/isp/Src/isp_core.c ****   *         Return the frame ID of the last frame output on the main pipe
+ 668:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 669:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval Id of the last frame output on the main pipe
+ 670:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 671:../Drivers/ISP/isp/Src/isp_core.c **** uint32_t ISP_GetMainFrameId(ISP_HandleTypeDef *hIsp)
+ 672:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1583              		.loc 1 672 1 is_stmt 1 view -0
+ 1584              		.cfi_startproc
+ 1585              		@ args = 0, pretend = 0, frame = 0
+ 1586              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1587              		.loc 1 672 1 is_stmt 0 view .LVU447
+ 1588 0000 08B5     		push	{r3, lr}
+ 1589              	.LCFI25:
+ 1590              		.cfi_def_cfa_offset 8
+ 1591              		.cfi_offset 3, -8
+ 1592              		.cfi_offset 14, -4
+ 673:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_SVC_Misc_GetMainFrameId(hIsp);
+ 1593              		.loc 1 673 3 is_stmt 1 view .LVU448
+ 1594              		.loc 1 673 10 is_stmt 0 view .LVU449
+ 1595 0002 FFF7FEFF 		bl	ISP_SVC_Misc_GetMainFrameId
+ 1596              	.LVL129:
+ 674:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1597              		.loc 1 674 1 view .LVU450
+ 1598 0006 08BD     		pop	{r3, pc}
+ 1599              		.cfi_endproc
+ 1600              	.LFE904:
+ 1602              		.section	.text.ISP_IncAncillaryFrameId,"ax",%progbits
+ 1603              		.align	1
+ 1604              		.global	ISP_IncAncillaryFrameId
+ 1605              		.syntax unified
+ 1606              		.thumb
+ARM GAS  /tmp/cc8NtyFF.s 			page 46
+
+
+ 1607              		.thumb_func
+ 1609              	ISP_IncAncillaryFrameId:
+ 1610              	.LVL130:
+ 1611              	.LFB905:
+ 675:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 676:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 677:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_IncAncillaryFrameId
+ 678:../Drivers/ISP/isp/Src/isp_core.c ****   *         Increment the frame ID of the frame output on the ancillary pipe
+ 679:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 680:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval None
+ 681:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 682:../Drivers/ISP/isp/Src/isp_core.c **** void ISP_IncAncillaryFrameId(ISP_HandleTypeDef *hIsp)
+ 683:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1612              		.loc 1 683 1 is_stmt 1 view -0
+ 1613              		.cfi_startproc
+ 1614              		@ args = 0, pretend = 0, frame = 0
+ 1615              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1616              		.loc 1 683 1 is_stmt 0 view .LVU452
+ 1617 0000 08B5     		push	{r3, lr}
+ 1618              	.LCFI26:
+ 1619              		.cfi_def_cfa_offset 8
+ 1620              		.cfi_offset 3, -8
+ 1621              		.cfi_offset 14, -4
+ 684:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_SVC_Misc_IncAncillaryFrameId(hIsp);
+ 1622              		.loc 1 684 3 is_stmt 1 view .LVU453
+ 1623 0002 FFF7FEFF 		bl	ISP_SVC_Misc_IncAncillaryFrameId
+ 1624              	.LVL131:
+ 685:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1625              		.loc 1 685 1 is_stmt 0 view .LVU454
+ 1626 0006 08BD     		pop	{r3, pc}
+ 1627              		.cfi_endproc
+ 1628              	.LFE905:
+ 1630              		.section	.text.ISP_GetAncillaryFrameId,"ax",%progbits
+ 1631              		.align	1
+ 1632              		.global	ISP_GetAncillaryFrameId
+ 1633              		.syntax unified
+ 1634              		.thumb
+ 1635              		.thumb_func
+ 1637              	ISP_GetAncillaryFrameId:
+ 1638              	.LVL132:
+ 1639              	.LFB906:
+ 686:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 687:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 688:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_GetAncillaryFrameId
+ 689:../Drivers/ISP/isp/Src/isp_core.c ****   *         Return the frame ID of the last frame output on the ancillary pipe
+ 690:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 691:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval Id of the last frame output on the ancillary pipe
+ 692:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 693:../Drivers/ISP/isp/Src/isp_core.c **** uint32_t ISP_GetAncillaryFrameId(ISP_HandleTypeDef *hIsp)
+ 694:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1640              		.loc 1 694 1 is_stmt 1 view -0
+ 1641              		.cfi_startproc
+ 1642              		@ args = 0, pretend = 0, frame = 0
+ 1643              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1644              		.loc 1 694 1 is_stmt 0 view .LVU456
+ 1645 0000 08B5     		push	{r3, lr}
+ 1646              	.LCFI27:
+ARM GAS  /tmp/cc8NtyFF.s 			page 47
+
+
+ 1647              		.cfi_def_cfa_offset 8
+ 1648              		.cfi_offset 3, -8
+ 1649              		.cfi_offset 14, -4
+ 695:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_SVC_Misc_GetAncillaryFrameId(hIsp);
+ 1650              		.loc 1 695 3 is_stmt 1 view .LVU457
+ 1651              		.loc 1 695 10 is_stmt 0 view .LVU458
+ 1652 0002 FFF7FEFF 		bl	ISP_SVC_Misc_GetAncillaryFrameId
+ 1653              	.LVL133:
+ 696:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1654              		.loc 1 696 1 view .LVU459
+ 1655 0006 08BD     		pop	{r3, pc}
+ 1656              		.cfi_endproc
+ 1657              	.LFE906:
+ 1659              		.section	.text.ISP_IncDumpFrameId,"ax",%progbits
+ 1660              		.align	1
+ 1661              		.global	ISP_IncDumpFrameId
+ 1662              		.syntax unified
+ 1663              		.thumb
+ 1664              		.thumb_func
+ 1666              	ISP_IncDumpFrameId:
+ 1667              	.LVL134:
+ 1668              	.LFB907:
+ 697:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 698:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 699:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_IncDumpFrameId
+ 700:../Drivers/ISP/isp/Src/isp_core.c ****   *         Increment the frame ID of the frame output on the dump pipe
+ 701:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 702:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval None
+ 703:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 704:../Drivers/ISP/isp/Src/isp_core.c **** void ISP_IncDumpFrameId(ISP_HandleTypeDef *hIsp)
+ 705:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1669              		.loc 1 705 1 is_stmt 1 view -0
+ 1670              		.cfi_startproc
+ 1671              		@ args = 0, pretend = 0, frame = 0
+ 1672              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1673              		.loc 1 705 1 is_stmt 0 view .LVU461
+ 1674 0000 08B5     		push	{r3, lr}
+ 1675              	.LCFI28:
+ 1676              		.cfi_def_cfa_offset 8
+ 1677              		.cfi_offset 3, -8
+ 1678              		.cfi_offset 14, -4
+ 706:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_SVC_Misc_IncDumpFrameId(hIsp);
+ 1679              		.loc 1 706 3 is_stmt 1 view .LVU462
+ 1680 0002 FFF7FEFF 		bl	ISP_SVC_Misc_IncDumpFrameId
+ 1681              	.LVL135:
+ 707:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1682              		.loc 1 707 1 is_stmt 0 view .LVU463
+ 1683 0006 08BD     		pop	{r3, pc}
+ 1684              		.cfi_endproc
+ 1685              	.LFE907:
+ 1687              		.section	.text.ISP_GetDumpFrameId,"ax",%progbits
+ 1688              		.align	1
+ 1689              		.global	ISP_GetDumpFrameId
+ 1690              		.syntax unified
+ 1691              		.thumb
+ 1692              		.thumb_func
+ 1694              	ISP_GetDumpFrameId:
+ARM GAS  /tmp/cc8NtyFF.s 			page 48
+
+
+ 1695              	.LVL136:
+ 1696              	.LFB908:
+ 708:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 709:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 710:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_GetDumpFrameId
+ 711:../Drivers/ISP/isp/Src/isp_core.c ****   *         Return the frame ID of the last frame output on the dump pipe
+ 712:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 713:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval Id of the last frame output on the dump pipe
+ 714:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 715:../Drivers/ISP/isp/Src/isp_core.c **** uint32_t ISP_GetDumpFrameId(ISP_HandleTypeDef *hIsp)
+ 716:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1697              		.loc 1 716 1 is_stmt 1 view -0
+ 1698              		.cfi_startproc
+ 1699              		@ args = 0, pretend = 0, frame = 0
+ 1700              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1701              		.loc 1 716 1 is_stmt 0 view .LVU465
+ 1702 0000 08B5     		push	{r3, lr}
+ 1703              	.LCFI29:
+ 1704              		.cfi_def_cfa_offset 8
+ 1705              		.cfi_offset 3, -8
+ 1706              		.cfi_offset 14, -4
+ 717:../Drivers/ISP/isp/Src/isp_core.c ****   return ISP_SVC_Misc_GetDumpFrameId(hIsp);
+ 1707              		.loc 1 717 3 is_stmt 1 view .LVU466
+ 1708              		.loc 1 717 10 is_stmt 0 view .LVU467
+ 1709 0002 FFF7FEFF 		bl	ISP_SVC_Misc_GetDumpFrameId
+ 1710              	.LVL137:
+ 718:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1711              		.loc 1 718 1 view .LVU468
+ 1712 0006 08BD     		pop	{r3, pc}
+ 1713              		.cfi_endproc
+ 1714              	.LFE908:
+ 1716              		.section	.rodata.ISP_OutputMeta.str1.4,"aMS",%progbits,1
+ 1717              		.align	2
+ 1718              	.LC6:
+ 1719 0000 4D657461 		.ascii	"Meta[%lu]: L = %hu, TG = %lu, G = %lu, E = %lu, CT "
+ 1719      5B256C75 
+ 1719      5D3A204C 
+ 1719      203D2025 
+ 1719      68752C20 
+ 1720 0033 3D20256C 		.ascii	"= %lu, LUX = %lu\015\012\000"
+ 1720      752C204C 
+ 1720      5558203D 
+ 1720      20256C75 
+ 1720      0D0A00
+ 1721              		.section	.text.ISP_OutputMeta,"ax",%progbits
+ 1722              		.align	1
+ 1723              		.global	ISP_OutputMeta
+ 1724              		.syntax unified
+ 1725              		.thumb
+ 1726              		.thumb_func
+ 1728              	ISP_OutputMeta:
+ 1729              	.LVL138:
+ 1730              	.LFB909:
+ 719:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 720:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 721:../Drivers/ISP/isp/Src/isp_core.c ****   * @brief  ISP_OutputMeta
+ 722:../Drivers/ISP/isp/Src/isp_core.c ****   *         Print out ISP Meta data for test or debug purpose
+ARM GAS  /tmp/cc8NtyFF.s 			page 49
+
+
+ 723:../Drivers/ISP/isp/Src/isp_core.c ****   * @param  hIsp: ISP device handle
+ 724:../Drivers/ISP/isp/Src/isp_core.c ****   * @retval None
+ 725:../Drivers/ISP/isp/Src/isp_core.c ****   */
+ 726:../Drivers/ISP/isp/Src/isp_core.c **** void ISP_OutputMeta(ISP_HandleTypeDef *hIsp)
+ 727:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1731              		.loc 1 727 1 is_stmt 1 view -0
+ 1732              		.cfi_startproc
+ 1733              		@ args = 0, pretend = 0, frame = 0
+ 1734              		@ frame_needed = 0, uses_anonymous_args = 0
+ 728:../Drivers/ISP/isp/Src/isp_core.c ****   if (Meta.outputEnable)
+ 1735              		.loc 1 728 3 view .LVU470
+ 1736              		.loc 1 728 11 is_stmt 0 view .LVU471
+ 1737 0000 0B4B     		ldr	r3, .L127
+ 1738 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1739              		.loc 1 728 6 view .LVU472
+ 1740 0004 03B9     		cbnz	r3, .L126
+ 1741 0006 7047     		bx	lr
+ 1742              	.L126:
+ 727:../Drivers/ISP/isp/Src/isp_core.c ****   if (Meta.outputEnable)
+ 1743              		.loc 1 727 1 view .LVU473
+ 1744 0008 00B5     		push	{lr}
+ 1745              	.LCFI30:
+ 1746              		.cfi_def_cfa_offset 4
+ 1747              		.cfi_offset 14, -4
+ 1748 000a 85B0     		sub	sp, sp, #20
+ 1749              	.LCFI31:
+ 1750              		.cfi_def_cfa_offset 24
+ 729:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 730:../Drivers/ISP/isp/Src/isp_core.c ****     printf("Meta[%"PRIu32"]: L = %"PRIu16", TG = %"PRIu32", G = %"PRIu32", E = %"PRIu32", CT = %"PR
+ 1751              		.loc 1 730 5 is_stmt 1 view .LVU474
+ 731:../Drivers/ISP/isp/Src/isp_core.c ****            hIsp->MainPipe_FrameCount, Meta.averageL, Meta.exposureTarget, Meta.gain, Meta.exposure,
+ 1752              		.loc 1 731 43 is_stmt 0 view .LVU475
+ 1753 000c 084A     		ldr	r2, .L127
+ 730:../Drivers/ISP/isp/Src/isp_core.c ****            hIsp->MainPipe_FrameCount, Meta.averageL, Meta.exposureTarget, Meta.gain, Meta.exposure,
+ 1754              		.loc 1 730 5 view .LVU476
+ 1755 000e 5369     		ldr	r3, [r2, #20]
+ 1756 0010 0393     		str	r3, [sp, #12]
+ 1757 0012 1369     		ldr	r3, [r2, #16]
+ 1758 0014 0293     		str	r3, [sp, #8]
+ 1759 0016 D368     		ldr	r3, [r2, #12]
+ 1760 0018 0193     		str	r3, [sp, #4]
+ 1761 001a 9368     		ldr	r3, [r2, #8]
+ 1762 001c 0093     		str	r3, [sp]
+ 1763 001e 5368     		ldr	r3, [r2, #4]
+ 1764 0020 5278     		ldrb	r2, [r2, #1]	@ zero_extendqisi2
+ 1765 0022 416C     		ldr	r1, [r0, #68]
+ 1766 0024 0348     		ldr	r0, .L127+4
+ 1767              	.LVL139:
+ 730:../Drivers/ISP/isp/Src/isp_core.c ****            hIsp->MainPipe_FrameCount, Meta.averageL, Meta.exposureTarget, Meta.gain, Meta.exposure,
+ 1768              		.loc 1 730 5 view .LVU477
+ 1769 0026 FFF7FEFF 		bl	printf
+ 1770              	.LVL140:
+ 732:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 733:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1771              		.loc 1 733 1 view .LVU478
+ 1772 002a 05B0     		add	sp, sp, #20
+ 1773              	.LCFI32:
+ARM GAS  /tmp/cc8NtyFF.s 			page 50
+
+
+ 1774              		.cfi_def_cfa_offset 4
+ 1775              		@ sp needed
+ 1776 002c 00BD     		pop	{pc}
+ 1777              	.L128:
+ 1778 002e 00BF     		.align	2
+ 1779              	.L127:
+ 1780 0030 00000000 		.word	Meta
+ 1781 0034 00000000 		.word	.LC6
+ 1782              		.cfi_endproc
+ 1783              	.LFE909:
+ 1785              		.section	.text.ISP_GetLuxEstimation,"ax",%progbits
+ 1786              		.align	1
+ 1787              		.global	ISP_GetLuxEstimation
+ 1788              		.syntax unified
+ 1789              		.thumb
+ 1790              		.thumb_func
+ 1792              	ISP_GetLuxEstimation:
+ 1793              	.LVL141:
+ 1794              	.LFB910:
+ 734:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 735:../Drivers/ISP/isp/Src/isp_core.c **** /**
+ 736:../Drivers/ISP/isp/Src/isp_core.c ****  * @brief  ISP_GetLuxEstimation
+ 737:../Drivers/ISP/isp/Src/isp_core.c ****  *         Get estimated lux value of the current scene
+ 738:../Drivers/ISP/isp/Src/isp_core.c ****  * @param  hIsp: ISP device handle
+ 739:../Drivers/ISP/isp/Src/isp_core.c ****  * @param  pLux: Pointer to lux value
+ 740:../Drivers/ISP/isp/Src/isp_core.c ****  * @retval Operation status
+ 741:../Drivers/ISP/isp/Src/isp_core.c ****  */
+ 742:../Drivers/ISP/isp/Src/isp_core.c **** ISP_StatusTypeDef ISP_GetLuxEstimation(ISP_HandleTypeDef *hIsp, uint32_t *pLux)
+ 743:../Drivers/ISP/isp/Src/isp_core.c **** {
+ 1795              		.loc 1 743 1 is_stmt 1 view -0
+ 1796              		.cfi_startproc
+ 1797              		@ args = 0, pretend = 0, frame = 144
+ 1798              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1799              		.loc 1 743 1 is_stmt 0 view .LVU480
+ 1800 0000 70B5     		push	{r4, r5, r6, lr}
+ 1801              	.LCFI33:
+ 1802              		.cfi_def_cfa_offset 16
+ 1803              		.cfi_offset 4, -16
+ 1804              		.cfi_offset 5, -12
+ 1805              		.cfi_offset 6, -8
+ 1806              		.cfi_offset 14, -4
+ 1807 0002 A4B0     		sub	sp, sp, #144
+ 1808              	.LCFI34:
+ 1809              		.cfi_def_cfa_offset 160
+ 1810 0004 0446     		mov	r4, r0
+ 1811 0006 0E46     		mov	r6, r1
+ 744:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_StatusTypeDef ret = ISP_OK;
+ 1812              		.loc 1 744 3 is_stmt 1 view .LVU481
+ 1813              	.LVL142:
+ 745:../Drivers/ISP/isp/Src/isp_core.c ****   ISP_SVC_StatStateTypeDef stats;
+ 1814              		.loc 1 745 3 view .LVU482
+ 746:../Drivers/ISP/isp/Src/isp_core.c ****   int32_t lux;
+ 1815              		.loc 1 746 3 view .LVU483
+ 747:../Drivers/ISP/isp/Src/isp_core.c ****   uint8_t averageL;
+ 1816              		.loc 1 747 3 view .LVU484
+ 748:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 749:../Drivers/ISP/isp/Src/isp_core.c ****   ret = ISP_SVC_Stats_GetLatest(hIsp, &stats);
+ARM GAS  /tmp/cc8NtyFF.s 			page 51
+
+
+ 1817              		.loc 1 749 3 view .LVU485
+ 1818              		.loc 1 749 9 is_stmt 0 view .LVU486
+ 1819 0008 01A9     		add	r1, sp, #4
+ 1820              	.LVL143:
+ 1821              		.loc 1 749 9 view .LVU487
+ 1822 000a FFF7FEFF 		bl	ISP_SVC_Stats_GetLatest
+ 1823              	.LVL144:
+ 750:../Drivers/ISP/isp/Src/isp_core.c ****   if (ret != ISP_OK)
+ 1824              		.loc 1 750 3 is_stmt 1 view .LVU488
+ 1825              		.loc 1 750 6 is_stmt 0 view .LVU489
+ 1826 000e D8B9     		cbnz	r0, .L135
+ 1827 0010 0546     		mov	r5, r0
+ 751:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 752:../Drivers/ISP/isp/Src/isp_core.c ****      return ISP_ERR_STAT_EINVAL;
+ 753:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 754:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 755:../Drivers/ISP/isp/Src/isp_core.c ****   /* Use weighted averageL from external stats if available and callback is defined */
+ 756:../Drivers/ISP/isp/Src/isp_core.c ****   if (hIsp->appliHelpers.GetExternalStatistics != NULL &&
+ 1828              		.loc 1 756 3 is_stmt 1 view .LVU490
+ 1829              		.loc 1 756 25 is_stmt 0 view .LVU491
+ 1830 0012 236C     		ldr	r3, [r4, #64]
+ 1831              		.loc 1 756 6 view .LVU492
+ 1832 0014 4BB1     		cbz	r3, .L131
+ 757:../Drivers/ISP/isp/Src/isp_core.c ****       stats.extStats.nbAreas > 0 && stats.extStats.stats != NULL)
+ 1833              		.loc 1 757 21 view .LVU493
+ 1834 0016 9DF88430 		ldrb	r3, [sp, #132]	@ zero_extendqisi2
+ 756:../Drivers/ISP/isp/Src/isp_core.c ****       stats.extStats.nbAreas > 0 && stats.extStats.stats != NULL)
+ 1835              		.loc 1 756 56 discriminator 1 view .LVU494
+ 1836 001a 33B1     		cbz	r3, .L131
+ 1837              		.loc 1 757 51 discriminator 1 view .LVU495
+ 1838 001c 229B     		ldr	r3, [sp, #136]
+ 1839              		.loc 1 757 34 discriminator 1 view .LVU496
+ 1840 001e 23B1     		cbz	r3, .L131
+ 758:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 759:../Drivers/ISP/isp/Src/isp_core.c ****     averageL = ISP_SVC_Stats_WeightedAverageL(&stats.extStats);
+ 1841              		.loc 1 759 5 is_stmt 1 view .LVU497
+ 1842              		.loc 1 759 16 is_stmt 0 view .LVU498
+ 1843 0020 21A8     		add	r0, sp, #132
+ 1844              	.LVL145:
+ 1845              		.loc 1 759 16 view .LVU499
+ 1846 0022 FFF7FEFF 		bl	ISP_SVC_Stats_WeightedAverageL
+ 1847              	.LVL146:
+ 1848 0026 0146     		mov	r1, r0
+ 1849              	.LVL147:
+ 1850              		.loc 1 759 14 discriminator 1 view .LVU500
+ 1851 0028 01E0     		b	.L132
+ 1852              	.LVL148:
+ 1853              	.L131:
+ 760:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 761:../Drivers/ISP/isp/Src/isp_core.c ****   else
+ 762:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 763:../Drivers/ISP/isp/Src/isp_core.c ****     averageL = stats.down.averageL;
+ 1854              		.loc 1 763 5 is_stmt 1 view .LVU501
+ 1855              		.loc 1 763 14 is_stmt 0 view .LVU502
+ 1856 002a 9DF83F10 		ldrb	r1, [sp, #63]	@ zero_extendqisi2
+ 1857              	.LVL149:
+ 1858              	.L132:
+ARM GAS  /tmp/cc8NtyFF.s 			page 52
+
+
+ 764:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 765:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 766:../Drivers/ISP/isp/Src/isp_core.c ****   lux = ISP_SVC_Misc_GetEstimatedLux(hIsp, averageL);
+ 1859              		.loc 1 766 3 is_stmt 1 view .LVU503
+ 1860              		.loc 1 766 9 is_stmt 0 view .LVU504
+ 1861 002e 2046     		mov	r0, r4
+ 1862 0030 FFF7FEFF 		bl	ISP_SVC_Misc_GetEstimatedLux
+ 1863              	.LVL150:
+ 767:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 768:../Drivers/ISP/isp/Src/isp_core.c ****   if ((pLux == NULL) || (lux < 0))
+ 1864              		.loc 1 768 3 is_stmt 1 view .LVU505
+ 1865              		.loc 1 768 6 is_stmt 0 view .LVU506
+ 1866 0034 1EB1     		cbz	r6, .L133
+ 1867              		.loc 1 768 22 discriminator 1 view .LVU507
+ 1868 0036 0028     		cmp	r0, #0
+ 1869 0038 01DB     		blt	.L133
+ 769:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 770:../Drivers/ISP/isp/Src/isp_core.c ****     ret = ISP_ERR_EINVAL;
+ 771:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 772:../Drivers/ISP/isp/Src/isp_core.c ****   else
+ 773:../Drivers/ISP/isp/Src/isp_core.c ****   {
+ 774:../Drivers/ISP/isp/Src/isp_core.c ****     *pLux = (uint32_t)lux;
+ 1870              		.loc 1 774 5 is_stmt 1 view .LVU508
+ 1871              		.loc 1 774 11 is_stmt 0 view .LVU509
+ 1872 003a 3060     		str	r0, [r6]
+ 1873 003c 01E0     		b	.L130
+ 1874              	.L133:
+ 770:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 1875              		.loc 1 770 9 view .LVU510
+ 1876 003e 0123     		movs	r3, #1
+ 1877 0040 1D46     		mov	r5, r3
+ 1878              	.LVL151:
+ 1879              	.L130:
+ 775:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 776:../Drivers/ISP/isp/Src/isp_core.c **** 
+ 777:../Drivers/ISP/isp/Src/isp_core.c ****   return ret;
+ 778:../Drivers/ISP/isp/Src/isp_core.c **** }
+ 1880              		.loc 1 778 1 view .LVU511
+ 1881 0042 2846     		mov	r0, r5
+ 1882 0044 24B0     		add	sp, sp, #144
+ 1883              	.LCFI35:
+ 1884              		.cfi_remember_state
+ 1885              		.cfi_def_cfa_offset 16
+ 1886              		@ sp needed
+ 1887 0046 70BD     		pop	{r4, r5, r6, pc}
+ 1888              	.LVL152:
+ 1889              	.L135:
+ 1890              	.LCFI36:
+ 1891              		.cfi_restore_state
+ 752:../Drivers/ISP/isp/Src/isp_core.c ****   }
+ 1892              		.loc 1 752 13 view .LVU512
+ 1893 0048 AA23     		movs	r3, #170
+ 1894 004a 1D46     		mov	r5, r3
+ 1895 004c F9E7     		b	.L130
+ 1896              		.cfi_endproc
+ 1897              	.LFE910:
+ 1899              		.global	ISP_Status
+ARM GAS  /tmp/cc8NtyFF.s 			page 53
+
+
+ 1900              		.section	.bss.ISP_Status,"aw",%nobits
+ 1903              	ISP_Status:
+ 1904 0000 00       		.space	1
+ 1905              		.text
+ 1906              	.Letext0:
+ 1907              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 1908              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 1909              		.file 4 "../Drivers/ISP/isp/Inc/isp_core.h"
+ 1910              		.file 5 "../Drivers/ISP/isp/Inc/isp_services.h"
+ 1911              		.file 6 "/usr/arm-none-eabi/include/stdio.h"
+ 1912              		.file 7 "/usr/arm-none-eabi/include/string.h"
+ 1913              		.file 8 "../Drivers/ISP/isp/Inc/isp_algo.h"
+ 1914              		.file 9 "<built-in>"
+ 1915              		.file 10 "/usr/arm-none-eabi/include/math.h"
+ARM GAS  /tmp/cc8NtyFF.s 			page 54
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 isp_core.c
+     /tmp/cc8NtyFF.s:26     .text._ISP_BackgroundProcess:00000000 $t
+     /tmp/cc8NtyFF.s:31     .text._ISP_BackgroundProcess:00000000 _ISP_BackgroundProcess
+     /tmp/cc8NtyFF.s:84     .rodata.ISP_Init.str1.4:00000000 $d
+     /tmp/cc8NtyFF.s:109    .text.ISP_Init:00000000 $t
+     /tmp/cc8NtyFF.s:115    .text.ISP_Init:00000000 ISP_Init
+     /tmp/cc8NtyFF.s:383    .text.ISP_Init:00000108 $d
+     /tmp/cc8NtyFF.s:393    .text.ISP_DeInit:00000000 $t
+     /tmp/cc8NtyFF.s:399    .text.ISP_DeInit:00000000 ISP_DeInit
+     /tmp/cc8NtyFF.s:455    .text.ISP_Start:00000000 $t
+     /tmp/cc8NtyFF.s:461    .text.ISP_Start:00000000 ISP_Start
+     /tmp/cc8NtyFF.s:809    .text.ISP_Start:00000190 $d
+     /tmp/cc8NtyFF.s:816    .text.ISP_BackgroundProcess:00000000 $t
+     /tmp/cc8NtyFF.s:822    .text.ISP_BackgroundProcess:00000000 ISP_BackgroundProcess
+     /tmp/cc8NtyFF.s:848    .text.ISP_BackgroundProcess:0000000c $d
+     /tmp/cc8NtyFF.s:1903   .bss.ISP_Status:00000000 ISP_Status
+     /tmp/cc8NtyFF.s:853    .text.ISP_GetStatus:00000000 $t
+     /tmp/cc8NtyFF.s:859    .text.ISP_GetStatus:00000000 ISP_GetStatus
+     /tmp/cc8NtyFF.s:878    .text.ISP_GetStatus:00000008 $d
+     /tmp/cc8NtyFF.s:883    .text.ISP_SetExposureTarget:00000000 $t
+     /tmp/cc8NtyFF.s:889    .text.ISP_SetExposureTarget:00000000 ISP_SetExposureTarget
+     /tmp/cc8NtyFF.s:948    .text.ISP_SetExposureTarget:00000048 $d
+     /tmp/cc8NtyFF.s:955    .text.ISP_GetExposureTarget:00000000 $t
+     /tmp/cc8NtyFF.s:961    .text.ISP_GetExposureTarget:00000000 ISP_GetExposureTarget
+     /tmp/cc8NtyFF.s:1004   .text.ISP_SetAECState:00000000 $t
+     /tmp/cc8NtyFF.s:1010   .text.ISP_SetAECState:00000000 ISP_SetAECState
+     /tmp/cc8NtyFF.s:1043   .text.ISP_GetAECState:00000000 $t
+     /tmp/cc8NtyFF.s:1049   .text.ISP_GetAECState:00000000 ISP_GetAECState
+     /tmp/cc8NtyFF.s:1084   .text.ISP_ListWBRefModes:00000000 $t
+     /tmp/cc8NtyFF.s:1090   .text.ISP_ListWBRefModes:00000000 ISP_ListWBRefModes
+     /tmp/cc8NtyFF.s:1131   .text.ISP_SetWBRefMode:00000000 $t
+     /tmp/cc8NtyFF.s:1137   .text.ISP_SetWBRefMode:00000000 ISP_SetWBRefMode
+     /tmp/cc8NtyFF.s:1315   .text.ISP_GetWBRefMode:00000000 $t
+     /tmp/cc8NtyFF.s:1321   .text.ISP_GetWBRefMode:00000000 ISP_GetWBRefMode
+     /tmp/cc8NtyFF.s:1372   .text.ISP_GetDecimationFactor:00000000 $t
+     /tmp/cc8NtyFF.s:1378   .text.ISP_GetDecimationFactor:00000000 ISP_GetDecimationFactor
+     /tmp/cc8NtyFF.s:1401   .text.ISP_SetStatArea:00000000 $t
+     /tmp/cc8NtyFF.s:1407   .text.ISP_SetStatArea:00000000 ISP_SetStatArea
+     /tmp/cc8NtyFF.s:1430   .text.ISP_GetStatArea:00000000 $t
+     /tmp/cc8NtyFF.s:1436   .text.ISP_GetStatArea:00000000 ISP_GetStatArea
+     /tmp/cc8NtyFF.s:1459   .text.ISP_EnableRestartState:00000000 $t
+     /tmp/cc8NtyFF.s:1465   .text.ISP_EnableRestartState:00000000 ISP_EnableRestartState
+     /tmp/cc8NtyFF.s:1488   .text.ISP_DisableRestartState:00000000 $t
+     /tmp/cc8NtyFF.s:1494   .text.ISP_DisableRestartState:00000000 ISP_DisableRestartState
+     /tmp/cc8NtyFF.s:1518   .text.ISP_GatherStatistics:00000000 $t
+     /tmp/cc8NtyFF.s:1524   .text.ISP_GatherStatistics:00000000 ISP_GatherStatistics
+     /tmp/cc8NtyFF.s:1546   .text.ISP_IncMainFrameId:00000000 $t
+     /tmp/cc8NtyFF.s:1552   .text.ISP_IncMainFrameId:00000000 ISP_IncMainFrameId
+     /tmp/cc8NtyFF.s:1574   .text.ISP_GetMainFrameId:00000000 $t
+     /tmp/cc8NtyFF.s:1580   .text.ISP_GetMainFrameId:00000000 ISP_GetMainFrameId
+     /tmp/cc8NtyFF.s:1603   .text.ISP_IncAncillaryFrameId:00000000 $t
+     /tmp/cc8NtyFF.s:1609   .text.ISP_IncAncillaryFrameId:00000000 ISP_IncAncillaryFrameId
+     /tmp/cc8NtyFF.s:1631   .text.ISP_GetAncillaryFrameId:00000000 $t
+     /tmp/cc8NtyFF.s:1637   .text.ISP_GetAncillaryFrameId:00000000 ISP_GetAncillaryFrameId
+     /tmp/cc8NtyFF.s:1660   .text.ISP_IncDumpFrameId:00000000 $t
+     /tmp/cc8NtyFF.s:1666   .text.ISP_IncDumpFrameId:00000000 ISP_IncDumpFrameId
+ARM GAS  /tmp/cc8NtyFF.s 			page 55
+
+
+     /tmp/cc8NtyFF.s:1688   .text.ISP_GetDumpFrameId:00000000 $t
+     /tmp/cc8NtyFF.s:1694   .text.ISP_GetDumpFrameId:00000000 ISP_GetDumpFrameId
+     /tmp/cc8NtyFF.s:1717   .rodata.ISP_OutputMeta.str1.4:00000000 $d
+     /tmp/cc8NtyFF.s:1722   .text.ISP_OutputMeta:00000000 $t
+     /tmp/cc8NtyFF.s:1728   .text.ISP_OutputMeta:00000000 ISP_OutputMeta
+     /tmp/cc8NtyFF.s:1780   .text.ISP_OutputMeta:00000030 $d
+     /tmp/cc8NtyFF.s:1786   .text.ISP_GetLuxEstimation:00000000 $t
+     /tmp/cc8NtyFF.s:1792   .text.ISP_GetLuxEstimation:00000000 ISP_GetLuxEstimation
+     /tmp/cc8NtyFF.s:1904   .bss.ISP_Status:00000000 $d
+
+UNDEFINED SYMBOLS
+ISP_SVC_Stats_ProcessCallbacks
+ISP_Algo_Process
+memset
+ISP_SVC_IQParam_Init
+ISP_SVC_Sensor_GetInfo
+ISP_SVC_ISP_SetDecimation
+ISP_Algo_Init
+ISP_SVC_Stats_Init
+puts
+ISP_Algo_DeInit
+ISP_SVC_Misc_IsDCMIPPReady
+ISP_SVC_IQParam_Get
+ISP_SVC_ISP_SetDemosaicing
+ISP_SVC_ISP_SetStatRemoval
+ISP_SVC_ISP_SetContrast
+ISP_SVC_ISP_SetStatArea
+ISP_SVC_ISP_SetGamma
+pow
+ISP_SVC_Sensor_SetGain
+ISP_SVC_Sensor_SetExposure
+ISP_SVC_ISP_SetBadPixel
+ISP_SVC_ISP_SetBlackLevel
+ISP_SVC_ISP_SetGain
+ISP_SVC_ISP_SetColorConv
+Meta
+ISP_SVC_Misc_SetWBRefMode
+ISP_SVC_Misc_GetWBRefMode
+ISP_SVC_ISP_GetDecimation
+ISP_SVC_ISP_GetStatArea
+ISP_SVC_SetRestartState
+ISP_SVC_Stats_Gather
+ISP_SVC_Misc_IncMainFrameId
+ISP_SVC_Misc_GetMainFrameId
+ISP_SVC_Misc_IncAncillaryFrameId
+ISP_SVC_Misc_GetAncillaryFrameId
+ISP_SVC_Misc_IncDumpFrameId
+ISP_SVC_Misc_GetDumpFrameId
+printf
+ISP_SVC_Stats_GetLatest
+ISP_SVC_Stats_WeightedAverageL
+ISP_SVC_Misc_GetEstimatedLux

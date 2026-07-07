@@ -1,0 +1,2226 @@
+ARM GAS  /tmp/ccHXHETX.s 			page 1
+
+
+   1              		.arch armv8.1-m.main
+   2              		.fpu fpv5-d16
+   3              		.arch_extension dsp
+   4              		.arch_extension fp
+   5              		.arch_extension fp.dp
+   6              		.arch_extension mve
+   7              		.arch_extension mve.fp
+   8              		.eabi_attribute 5, "cortex-m55"
+   9              		.eabi_attribute 28, 1
+  10              		.eabi_attribute 20, 1
+  11              		.eabi_attribute 21, 1
+  12              		.eabi_attribute 23, 3
+  13              		.eabi_attribute 24, 1
+  14              		.eabi_attribute 25, 1
+  15              		.eabi_attribute 26, 1
+  16              		.eabi_attribute 30, 1
+  17              		.eabi_attribute 34, 1
+  18              		.eabi_attribute 38, 1
+  19              		.eabi_attribute 18, 4
+  20              		.file	"stm32n6xx_hal_ramcfg.c"
+  21              		.text
+  22              	.Ltext0:
+  23              		.cfi_sections	.debug_frame
+  24              		.file 1 "../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c"
+  25              		.section	.text.HAL_RAMCFG_MspInit,"ax",%progbits
+  26              		.align	1
+  27              		.weak	HAL_RAMCFG_MspInit
+  28              		.syntax unified
+  29              		.thumb
+  30              		.thumb_func
+  32              	HAL_RAMCFG_MspInit:
+  33              	.LVL0:
+  34              	.LFB883:
+   1:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+   2:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   ******************************************************************************
+   3:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @file    stm32n6xx_hal_ramcfg.c
+   4:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @author  GPM Application Team
+   5:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief   RAMCFG HAL module driver.
+   6:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *          This file provides firmware functions to manage the following
+   7:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *          functionalities of the RAMs configuration controller peripheral:
+   8:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *           + RAMCFG Initialization and De-initialization Functions.
+   9:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *           + RAMCFG ECC Operation Functions.
+  10:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *           + RAMCFG Erase Operation Functions.
+  11:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *           + RAMCFG Handle Interrupt and Callbacks Functions.
+  12:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *           + RAMCFG State and Error Functions.
+  13:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   ******************************************************************************
+  14:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @attention
+  15:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *
+  16:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * Copyright (c) 2023 STMicroelectronics.
+  17:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * All rights reserved.
+  18:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *
+  19:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  20:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * in the root directory of this software component.
+  21:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  22:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *
+  23:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   ******************************************************************************
+  24:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   @verbatim
+ARM GAS  /tmp/ccHXHETX.s 			page 2
+
+
+  25:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   ==============================================================================
+  26:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****                     ##### RAMCFG Peripheral features #####
+  27:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   ==============================================================================
+  28:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   [..]
+  29:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     (+) Each SRAM is managed by a RAMCFG instance (AHBSRAM1/2, AXISRAM1 to 6,
+  30:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         BKPSRAM, FLEXRAM, and VENCRAM).
+  31:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  32:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     (+) Each SRAM can be erased independently through its RAMCFG instance.
+  33:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  34:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     (+) AXISRAM 1 to 6 are the main SRAMs. AHBSRAM1/2 are preferably for DMA-controlled
+  35:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         peripheral-to-memory data flow.
+  36:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         AXISRAM 2 to 6 can be shut down when the application is in Run mode.
+  37:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  38:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     (+) FLEXMEM can be either allocated as Cortex-M55 TCM, or as system RAM
+  39:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         (FLEXRAM).
+  40:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         80 Kbytes of the FLEXMEM are retained in Standby mode, either allocated as
+  41:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         extended ITCM (64 +16-Kbyte ECC), or allocated as FLEXRAM.
+  42:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  43:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     (+) The BKPSRAM content is retained in low-power modes, even when VDD is off
+  44:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         in VBAT mode. On a tamper event detection, the BKPSRAM content is erased.
+  45:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  46:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     (+) The VENCRAM implements hardware and software erases.
+  47:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  48:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     (+) FLEXRAM and BKPRAM support ECC correction feature:
+  49:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****              (++) Single error detection and correction with interrupt generation.
+  50:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****              (++) Double error detection with interrupt generation.
+  51:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****              (++) Status with failing address
+  52:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   ==============================================================================
+  53:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****                         ##### How to use this driver #####
+  54:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   ==============================================================================
+  55:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   [..]
+  56:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     (#) Call HAL_RAMCFG_Init() to initialize the RAMCFG peripheral before using
+  57:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****        any feature. Call HAL_RAMCFG_DeInit() to de-initialize the RAMCFG when
+  58:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****        using this peripheral is no more needed or a hardware issue has occurred.
+  59:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****           (+) HAL_RAMCFG_Init() and HAL_RAMCFG_DeInit() APIs do not change the
+  60:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****               activation status of ECC feature. It is managed by
+  61:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****               HAL_RAMCFG_StartECC(), HAL_RAMCFG_StopECC() or option bytes (When
+  62:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****               available on the device).
+  63:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  64:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****      *** ECC feature ***
+  65:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****      ===================
+  66:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     [..]
+  67:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****           (+) Call HAL_RAMCFG_StartECC() and HAL_RAMCFG_StopECC() to enable and
+  68:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****               disable ECC hardware mechanism.
+  69:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****                     (++) When ECC feature is previously enabled (case of option
+  70:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****                          byte activation), calling HAL_RAMCFG_StartECC() is
+  71:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****                          recommended to enable the ECC address latching feature.
+  72:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  73:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****           (+) Call HAL_RAMCFG_EnableNotification() and HAL_RAMCFG_DisableNotification()
+  74:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****               to enable and disable ECC interrupts. Interrupts can be:
+  75:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****                     (++) Single error interrupt.
+  76:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****                     (++) Double error interrupt.
+  77:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****                     (++) Double error interrupt redirected to Non maskable
+  78:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****                           interrupt (NMI).
+  79:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  80:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****           (+) Call HAL_RAMCFG_GetSingleErrorAddress() to get the address of the
+  81:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****               last fail RAM word detected (only for single error) and
+ARM GAS  /tmp/ccHXHETX.s 			page 3
+
+
+  82:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****               call HAL_RAMCFG_GetDoubleErrorAddress() to get the address of the
+  83:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****               last fail RAM word detected (only for double error).
+  84:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  85:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****           (+) Call HAL_RAMCFG_IsECCSingleErrorDetected() to check if an ECC single
+  86:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****               error was detected.
+  87:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****               Call HAL_RAMCFG_IsECCDoubleErrorDetected() to check if an ECC double
+  88:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****               error was detected.
+  89:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****               These APIs are used in silent mode (No ECC interrupt
+  90:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****               is enabled).
+  91:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  92:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****      *** Erase feature ***
+  93:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****      =====================
+  94:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     [..]
+  95:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****           (+) Call HAL_RAMCFG_Erase() to launch a hardware erase for the given
+  96:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****               SRAM.
+  97:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  98:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****           (+) The erase value is equal to 0 when launching erase hardware through
+  99:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****               RAMCFG.
+ 100:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 101:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****           (+) SRAM2 write protected pages are erased when performing an erase
+ 102:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****               through RAMCFG.
+ 103:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 104:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****      *** RAMCFG HAL driver macros list ***
+ 105:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****      =====================================
+ 106:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****      [..]
+ 107:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****        Below the list of used macros in RAMCFG HAL driver.
+ 108:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 109:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       (+) __HAL_RAMCFG_ENABLE_IT     : Enable the specified RAMCFG interrupts.
+ 110:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       (+) __HAL_RAMCFG_DISABLE_IT    : Disable the specified RAMCFG interrupts.
+ 111:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       (+) __HAL_RAMCFG_GET_FLAG      : Get the RAMCFG pending flags.
+ 112:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       (+) __HAL_RAMCFG_CLEAR_FLAG    : Clear the RAMCFG pending flags.
+ 113:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       (+) __HAL_RAMCFG_GET_IT_SOURCE : Check whether the specified RAMCFG
+ 114:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****                                        interrupt source is enabled or not.
+ 115:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   @endverbatim
+ 116:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 117:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 118:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /* Includes ------------------------------------------------------------------*/
+ 119:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #include "stm32n6xx_hal.h"
+ 120:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 121:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /** @addtogroup STM32N6xx_HAL_Driver
+ 122:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @{
+ 123:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 124:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 125:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /** @defgroup RAMCFG RAMCFG
+ 126:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief RAMCFG HAL module driver
+ 127:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @{
+ 128:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 129:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 130:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #ifdef HAL_RAMCFG_MODULE_ENABLED
+ 131:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 132:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /* Private types -------------------------------------------------------------*/
+ 133:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /* Private variables ---------------------------------------------------------*/
+ 134:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /* Private constants ---------------------------------------------------------*/
+ 135:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 136:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /** @addtogroup RAMCFG_Private_Constants
+ 137:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @{
+ 138:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ARM GAS  /tmp/ccHXHETX.s 			page 4
+
+
+ 139:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #define RAMCFG_TIMEOUT_VALUE 50000U
+ 140:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 141:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @}
+ 142:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 143:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 144:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /* Private macros ------------------------------------------------------------*/
+ 145:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /* Private functions ---------------------------------------------------------*/
+ 146:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /* Exported functions --------------------------------------------------------*/
+ 147:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 148:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /** @addtogroup RAMCFG_Exported_Functions
+ 149:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @{
+ 150:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 151:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 152:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /** @addtogroup RAMCFG_Exported_Functions_Group1
+ 153:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *
+ 154:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** @verbatim
+ 155:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****  ===============================================================================
+ 156:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****              ##### Initialization and de-initialization Functions  #####
+ 157:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****  ===============================================================================
+ 158:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     [..]
+ 159:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       This section provides functions allowing to initialize and de-initialize the
+ 160:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       RAMCFG instance.
+ 161:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     [..]
+ 162:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_Init() function follows the RAMCFG instance configuration
+ 163:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       procedures as described in the reference manual.
+ 164:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_DeInit() function allows to deinitialize the RAMCFG instance.
+ 165:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       HAL_RAMCFG_Init() and HAL_RAMCFG_DeInit() APIs do not change the activation
+ 166:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       status of ECC feature. It is managed by HAL_RAMCFG_StartECC(),
+ 167:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       HAL_RAMCFG_StopECC() or option bytes (When available on the device).
+ 168:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 169:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** @endverbatim
+ 170:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @{
+ 171:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 172:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 173:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 174:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  Initialize the RAMCFG by clearing flags and disabling interrupts.
+ 175:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg : Pointer to a RAMCFG_HandleTypeDef structure that contains
+ 176:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                   the configuration information for the specified RAMCFG
+ 177:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                   instance.
+ 178:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval HAL status.
+ 179:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 180:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** HAL_StatusTypeDef HAL_RAMCFG_Init(RAMCFG_HandleTypeDef *hramcfg)
+ 181:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 182:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the RAMCFG peripheral handle */
+ 183:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   if (hramcfg == NULL)
+ 184:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 185:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     return HAL_ERROR;
+ 186:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 187:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 188:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 189:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_ALL_INSTANCE(hramcfg->Instance));
+ 190:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 191:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Update RAMCFG peripheral state */
+ 192:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   hramcfg->State = HAL_RAMCFG_STATE_BUSY;
+ 193:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 194:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #if (USE_HAL_RAMCFG_REGISTER_CALLBACKS == 1)
+ 195:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check if a valid MSP API was registered */
+ARM GAS  /tmp/ccHXHETX.s 			page 5
+
+
+ 196:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   if (hramcfg->MspInitCallback == NULL)
+ 197:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 198:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Init the low level hardware */
+ 199:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->MspInitCallback = HAL_RAMCFG_MspInit;
+ 200:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 201:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 202:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Init the low level hardware */
+ 203:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   hramcfg->MspInitCallback(hramcfg);
+ 204:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #else
+ 205:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   HAL_RAMCFG_MspInit(hramcfg);
+ 206:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #endif /* USE_HAL_RAMCFG_REGISTER_CALLBACKS */
+ 207:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 208:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Disable the ECC Address latch */
+ 209:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   hramcfg->Instance->CR &= ~(RAMCFG_CR_ALE);
+ 210:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 211:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Disable all RAMCFG interrupts */
+ 212:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   __HAL_RAMCFG_DISABLE_IT(hramcfg, RAMCFG_IT_ALL);
+ 213:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 214:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Clear RAMCFG monitor flags */
+ 215:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   __HAL_RAMCFG_CLEAR_FLAG(hramcfg, RAMCFG_FLAGS_ALL);
+ 216:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 217:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Initialize the RAMCFG error code */
+ 218:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   hramcfg->ErrorCode = HAL_RAMCFG_ERROR_NONE;
+ 219:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 220:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Initialize the RAMCFG state */
+ 221:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   hramcfg->State = HAL_RAMCFG_STATE_READY;
+ 222:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 223:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   return HAL_OK;
+ 224:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 225:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 226:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 227:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  DeInitialize the RAMCFG peripheral.
+ 228:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg : Pointer to a RAMCFG_HandleTypeDef structure that contains
+ 229:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                   the configuration information for the specified RAMCFG
+ 230:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                   instance.
+ 231:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval HAL status.
+ 232:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 233:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** HAL_StatusTypeDef HAL_RAMCFG_DeInit(RAMCFG_HandleTypeDef *hramcfg)
+ 234:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 235:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the RAMCFG peripheral handle */
+ 236:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   if (hramcfg == NULL)
+ 237:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 238:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     return HAL_ERROR;
+ 239:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 240:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 241:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 242:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_ALL_INSTANCE(hramcfg->Instance));
+ 243:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 244:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Disable the ECC Address latch */
+ 245:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   hramcfg->Instance->CR &= ~(RAMCFG_CR_ALE);
+ 246:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 247:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Disable all RAMCFG interrupts */
+ 248:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   __HAL_RAMCFG_DISABLE_IT(hramcfg, RAMCFG_IT_ALL);
+ 249:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 250:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Clear RAMCFG monitor flags */
+ 251:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   __HAL_RAMCFG_CLEAR_FLAG(hramcfg, RAMCFG_FLAGS_ALL);
+ 252:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ARM GAS  /tmp/ccHXHETX.s 			page 6
+
+
+ 253:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #if (USE_HAL_RAMCFG_REGISTER_CALLBACKS == 1)
+ 254:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check if a valid MSP API was registered */
+ 255:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   if (hramcfg->MspDeInitCallback != NULL)
+ 256:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 257:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Init the low level hardware */
+ 258:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->MspDeInitCallback(hramcfg);
+ 259:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 260:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 261:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Clean callbacks */
+ 262:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   hramcfg->DetectSingleErrorCallback = NULL;
+ 263:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   hramcfg->DetectDoubleErrorCallback = NULL;
+ 264:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #else
+ 265:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   HAL_RAMCFG_MspDeInit(hramcfg);
+ 266:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #endif /* USE_HAL_RAMCFG_REGISTER_CALLBACKS */
+ 267:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 268:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Reset the RAMCFG error code */
+ 269:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   hramcfg->ErrorCode = HAL_RAMCFG_ERROR_NONE;
+ 270:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 271:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Reset the RAMCFG state */
+ 272:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   hramcfg->State = HAL_RAMCFG_STATE_RESET;
+ 273:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 274:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   return HAL_OK;
+ 275:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 276:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 277:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 278:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief Initialize the RAMCFG MSP.
+ 279:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param hramcfg : Pointer to a RAMCFG_HandleTypeDef structure that contains
+ 280:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                  the configuration information for the specified RAMCFG.
+ 281:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval None.
+ 282:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 283:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** __weak void HAL_RAMCFG_MspInit(RAMCFG_HandleTypeDef *hramcfg)
+ 284:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+  35              		.loc 1 284 1 view -0
+  36              		.cfi_startproc
+  37              		@ args = 0, pretend = 0, frame = 0
+  38              		@ frame_needed = 0, uses_anonymous_args = 0
+  39              		@ link register save eliminated.
+ 285:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Prevent unused argument(s) compilation warning */
+ 286:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   UNUSED(hramcfg);
+  40              		.loc 1 286 3 view .LVU1
+ 287:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 288:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* NOTE : This function should not be modified, when the callback is needed,
+ 289:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****             the HAL_RAMCFG_MspInit can be implemented in the user file      */
+ 290:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+  41              		.loc 1 290 1 is_stmt 0 view .LVU2
+  42 0000 7047     		bx	lr
+  43              		.cfi_endproc
+  44              	.LFE883:
+  46              		.section	.text.HAL_RAMCFG_Init,"ax",%progbits
+  47              		.align	1
+  48              		.global	HAL_RAMCFG_Init
+  49              		.syntax unified
+  50              		.thumb
+  51              		.thumb_func
+  53              	HAL_RAMCFG_Init:
+  54              	.LVL1:
+  55              	.LFB881:
+ARM GAS  /tmp/ccHXHETX.s 			page 7
+
+
+ 181:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the RAMCFG peripheral handle */
+  56              		.loc 1 181 1 is_stmt 1 view -0
+  57              		.cfi_startproc
+  58              		@ args = 0, pretend = 0, frame = 0
+  59              		@ frame_needed = 0, uses_anonymous_args = 0
+ 183:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+  60              		.loc 1 183 3 view .LVU4
+ 183:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+  61              		.loc 1 183 6 is_stmt 0 view .LVU5
+  62 0000 D8B1     		cbz	r0, .L4
+ 181:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the RAMCFG peripheral handle */
+  63              		.loc 1 181 1 view .LVU6
+  64 0002 10B5     		push	{r4, lr}
+  65              	.LCFI0:
+  66              		.cfi_def_cfa_offset 8
+  67              		.cfi_offset 4, -8
+  68              		.cfi_offset 14, -4
+  69 0004 0446     		mov	r4, r0
+ 189:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  70              		.loc 1 189 3 is_stmt 1 view .LVU7
+ 192:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  71              		.loc 1 192 3 view .LVU8
+ 192:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  72              		.loc 1 192 18 is_stmt 0 view .LVU9
+  73 0006 0223     		movs	r3, #2
+  74 0008 0371     		strb	r3, [r0, #4]
+ 205:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #endif /* USE_HAL_RAMCFG_REGISTER_CALLBACKS */
+  75              		.loc 1 205 3 is_stmt 1 view .LVU10
+  76 000a FFF7FEFF 		bl	HAL_RAMCFG_MspInit
+  77              	.LVL2:
+ 209:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  78              		.loc 1 209 3 view .LVU11
+ 209:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  79              		.loc 1 209 10 is_stmt 0 view .LVU12
+  80 000e 2268     		ldr	r2, [r4]
+ 209:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  81              		.loc 1 209 20 view .LVU13
+  82 0010 1368     		ldr	r3, [r2]
+ 209:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  83              		.loc 1 209 25 view .LVU14
+  84 0012 23F01003 		bic	r3, r3, #16
+  85 0016 1360     		str	r3, [r2]
+ 212:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  86              		.loc 1 212 3 is_stmt 1 view .LVU15
+  87 0018 2268     		ldr	r2, [r4]
+  88 001a 5368     		ldr	r3, [r2, #4]
+  89 001c 23F00303 		bic	r3, r3, #3
+  90 0020 5360     		str	r3, [r2, #4]
+ 215:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  91              		.loc 1 215 3 view .LVU16
+  92 0022 2268     		ldr	r2, [r4]
+  93 0024 5369     		ldr	r3, [r2, #20]
+  94 0026 43F48173 		orr	r3, r3, #258
+  95 002a 43F00103 		orr	r3, r3, #1
+  96 002e 5361     		str	r3, [r2, #20]
+ 218:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  97              		.loc 1 218 3 view .LVU17
+ARM GAS  /tmp/ccHXHETX.s 			page 8
+
+
+ 218:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+  98              		.loc 1 218 22 is_stmt 0 view .LVU18
+  99 0030 0020     		movs	r0, #0
+ 100 0032 A060     		str	r0, [r4, #8]
+ 221:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 101              		.loc 1 221 3 is_stmt 1 view .LVU19
+ 221:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 102              		.loc 1 221 18 is_stmt 0 view .LVU20
+ 103 0034 0123     		movs	r3, #1
+ 104 0036 2371     		strb	r3, [r4, #4]
+ 223:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 105              		.loc 1 223 3 is_stmt 1 view .LVU21
+ 224:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 106              		.loc 1 224 1 is_stmt 0 view .LVU22
+ 107 0038 10BD     		pop	{r4, pc}
+ 108              	.LVL3:
+ 109              	.L4:
+ 110              	.LCFI1:
+ 111              		.cfi_def_cfa_offset 0
+ 112              		.cfi_restore 4
+ 113              		.cfi_restore 14
+ 185:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 114              		.loc 1 185 12 view .LVU23
+ 115 003a 0120     		movs	r0, #1
+ 116              	.LVL4:
+ 224:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 117              		.loc 1 224 1 view .LVU24
+ 118 003c 7047     		bx	lr
+ 119              		.cfi_endproc
+ 120              	.LFE881:
+ 122              		.section	.text.HAL_RAMCFG_MspDeInit,"ax",%progbits
+ 123              		.align	1
+ 124              		.weak	HAL_RAMCFG_MspDeInit
+ 125              		.syntax unified
+ 126              		.thumb
+ 127              		.thumb_func
+ 129              	HAL_RAMCFG_MspDeInit:
+ 130              	.LVL5:
+ 131              	.LFB884:
+ 291:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 292:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 293:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief DeInitialize the RAMCFG MSP.
+ 294:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param hramcfg : Pointer to a RAMCFG_HandleTypeDef structure that contains
+ 295:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                  the configuration information for the specified RAMCFG.
+ 296:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval None.
+ 297:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 298:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** __weak void HAL_RAMCFG_MspDeInit(RAMCFG_HandleTypeDef *hramcfg)
+ 299:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 132              		.loc 1 299 1 is_stmt 1 view -0
+ 133              		.cfi_startproc
+ 134              		@ args = 0, pretend = 0, frame = 0
+ 135              		@ frame_needed = 0, uses_anonymous_args = 0
+ 136              		@ link register save eliminated.
+ 300:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Prevent unused argument(s) compilation warning */
+ 301:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   UNUSED(hramcfg);
+ 137              		.loc 1 301 3 view .LVU26
+ 302:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ARM GAS  /tmp/ccHXHETX.s 			page 9
+
+
+ 303:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* NOTE : This function should not be modified, when the callback is needed,
+ 304:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****             the HAL_RAMCFG_MspDeInit can be implemented in the user file    */
+ 305:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 138              		.loc 1 305 1 is_stmt 0 view .LVU27
+ 139 0000 7047     		bx	lr
+ 140              		.cfi_endproc
+ 141              	.LFE884:
+ 143              		.section	.text.HAL_RAMCFG_DeInit,"ax",%progbits
+ 144              		.align	1
+ 145              		.global	HAL_RAMCFG_DeInit
+ 146              		.syntax unified
+ 147              		.thumb
+ 148              		.thumb_func
+ 150              	HAL_RAMCFG_DeInit:
+ 151              	.LVL6:
+ 152              	.LFB882:
+ 234:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the RAMCFG peripheral handle */
+ 153              		.loc 1 234 1 is_stmt 1 view -0
+ 154              		.cfi_startproc
+ 155              		@ args = 0, pretend = 0, frame = 0
+ 156              		@ frame_needed = 0, uses_anonymous_args = 0
+ 236:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 157              		.loc 1 236 3 view .LVU29
+ 236:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 158              		.loc 1 236 6 is_stmt 0 view .LVU30
+ 159 0000 C0B1     		cbz	r0, .L12
+ 234:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the RAMCFG peripheral handle */
+ 160              		.loc 1 234 1 view .LVU31
+ 161 0002 10B5     		push	{r4, lr}
+ 162              	.LCFI2:
+ 163              		.cfi_def_cfa_offset 8
+ 164              		.cfi_offset 4, -8
+ 165              		.cfi_offset 14, -4
+ 166 0004 0446     		mov	r4, r0
+ 242:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 167              		.loc 1 242 3 is_stmt 1 view .LVU32
+ 245:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 168              		.loc 1 245 3 view .LVU33
+ 245:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 169              		.loc 1 245 10 is_stmt 0 view .LVU34
+ 170 0006 0268     		ldr	r2, [r0]
+ 245:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 171              		.loc 1 245 20 view .LVU35
+ 172 0008 1368     		ldr	r3, [r2]
+ 245:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 173              		.loc 1 245 25 view .LVU36
+ 174 000a 23F01003 		bic	r3, r3, #16
+ 175 000e 1360     		str	r3, [r2]
+ 248:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 176              		.loc 1 248 3 is_stmt 1 view .LVU37
+ 177 0010 0268     		ldr	r2, [r0]
+ 178 0012 5368     		ldr	r3, [r2, #4]
+ 179 0014 23F00303 		bic	r3, r3, #3
+ 180 0018 5360     		str	r3, [r2, #4]
+ 251:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 181              		.loc 1 251 3 view .LVU38
+ 182 001a 0268     		ldr	r2, [r0]
+ARM GAS  /tmp/ccHXHETX.s 			page 10
+
+
+ 183 001c 5369     		ldr	r3, [r2, #20]
+ 184 001e 43F48173 		orr	r3, r3, #258
+ 185 0022 43F00103 		orr	r3, r3, #1
+ 186 0026 5361     		str	r3, [r2, #20]
+ 265:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #endif /* USE_HAL_RAMCFG_REGISTER_CALLBACKS */
+ 187              		.loc 1 265 3 view .LVU39
+ 188 0028 FFF7FEFF 		bl	HAL_RAMCFG_MspDeInit
+ 189              	.LVL7:
+ 269:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 190              		.loc 1 269 3 view .LVU40
+ 269:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 191              		.loc 1 269 22 is_stmt 0 view .LVU41
+ 192 002c 0020     		movs	r0, #0
+ 193 002e A060     		str	r0, [r4, #8]
+ 272:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 194              		.loc 1 272 3 is_stmt 1 view .LVU42
+ 272:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 195              		.loc 1 272 18 is_stmt 0 view .LVU43
+ 196 0030 2071     		strb	r0, [r4, #4]
+ 274:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 197              		.loc 1 274 3 is_stmt 1 view .LVU44
+ 275:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 198              		.loc 1 275 1 is_stmt 0 view .LVU45
+ 199 0032 10BD     		pop	{r4, pc}
+ 200              	.LVL8:
+ 201              	.L12:
+ 202              	.LCFI3:
+ 203              		.cfi_def_cfa_offset 0
+ 204              		.cfi_restore 4
+ 205              		.cfi_restore 14
+ 238:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 206              		.loc 1 238 12 view .LVU46
+ 207 0034 0120     		movs	r0, #1
+ 208              	.LVL9:
+ 275:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 209              		.loc 1 275 1 view .LVU47
+ 210 0036 7047     		bx	lr
+ 211              		.cfi_endproc
+ 212              	.LFE882:
+ 214              		.section	.text.HAL_RAMCFG_StartECC,"ax",%progbits
+ 215              		.align	1
+ 216              		.global	HAL_RAMCFG_StartECC
+ 217              		.syntax unified
+ 218              		.thumb
+ 219              		.thumb_func
+ 221              	HAL_RAMCFG_StartECC:
+ 222              	.LVL10:
+ 223              	.LFB885:
+ 306:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 307:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @}
+ 308:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 309:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 310:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /** @addtogroup RAMCFG_Exported_Functions_Group2
+ 311:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *
+ 312:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** @verbatim
+ 313:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****  ===============================================================================
+ 314:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****                       ##### ECC Operations Functions  #####
+ARM GAS  /tmp/ccHXHETX.s 			page 11
+
+
+ 315:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****  ===============================================================================
+ 316:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     [..]
+ 317:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       This section provides functions allowing to manage ECC feature provided by
+ 318:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       the RAMCFG peripheral.
+ 319:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     [..]
+ 320:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_StartECC() function allows starting the ECC mechanism and
+ 321:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       enabling ECC address latching for the selected RAMCFG instance.
+ 322:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_StopECC() function allows stopping the ECC mechanism and
+ 323:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       disabling ECC address latching for the selected RAMCFG instance.
+ 324:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_EnableNotification() function allows enabling interrupts
+ 325:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       for single ECC error, double ECC error and NMI error.
+ 326:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_DisableNotification() function allows disabling interrupts
+ 327:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       for single ECC error, double ECC error. When NMI interrupt is enabled it
+ 328:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       can only be disabled by a global peripheral reset or by a system reset.
+ 329:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_IsECCSingleErrorDetected() function allows to check if an
+ 330:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       single ECC error has occurred.
+ 331:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_IsECCDoubleErrorDetected() function allows to check if an
+ 332:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       double ECC error has occurred.
+ 333:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_GetSingleErrorAddress() function allows to get the address of
+ 334:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       the last single ECC error detected.
+ 335:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_GetDoubleErrorAddress() function allows to get the address of
+ 336:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       the last double ECC error detected.
+ 337:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 338:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** @endverbatim
+ 339:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @{
+ 340:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 341:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 342:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 343:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  Start ECC mechanism for the given SRAM.
+ 344:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg : Pointer to a RAMCFG_HandleTypeDef structure that contains
+ 345:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                   the configuration information for the specified RAMCFG
+ 346:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                   instance.
+ 347:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval HAL status.
+ 348:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 349:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** HAL_StatusTypeDef HAL_RAMCFG_StartECC(RAMCFG_HandleTypeDef *hramcfg)
+ 350:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 224              		.loc 1 350 1 is_stmt 1 view -0
+ 225              		.cfi_startproc
+ 226              		@ args = 0, pretend = 0, frame = 0
+ 227              		@ frame_needed = 0, uses_anonymous_args = 0
+ 228              		@ link register save eliminated.
+ 351:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 229              		.loc 1 351 3 view .LVU49
+ 352:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 353:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_ECC_INSTANCE(hramcfg->Instance));
+ 230              		.loc 1 353 3 view .LVU50
+ 354:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 355:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check RAMCFG state */
+ 356:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   if (hramcfg->State == HAL_RAMCFG_STATE_READY)
+ 231              		.loc 1 356 3 view .LVU51
+ 232              		.loc 1 356 14 is_stmt 0 view .LVU52
+ 233 0000 0379     		ldrb	r3, [r0, #4]	@ zero_extendqisi2
+ 234              		.loc 1 356 6 view .LVU53
+ 235 0002 012B     		cmp	r3, #1
+ 236 0004 03D0     		beq	.L22
+ 357:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 358:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Update RAMCFG peripheral state */
+ARM GAS  /tmp/ccHXHETX.s 			page 12
+
+
+ 359:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->State = HAL_RAMCFG_STATE_BUSY;
+ 360:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 361:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Check if ECC mechanism is non active */
+ 362:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     if ((hramcfg->Instance->CR & RAMCFG_CR_ECCE) != RAMCFG_CR_ECCE)
+ 363:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 364:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       /* Start the SRAM ECC mechanism and latching the error address */
+ 365:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       hramcfg->Instance->CR |= (RAMCFG_CR_ECCE | RAMCFG_CR_ALE);
+ 366:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 367:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     else
+ 368:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 369:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       /* Start latching the error address */
+ 370:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       hramcfg->Instance->CR |= RAMCFG_CR_ALE;
+ 371:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 372:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 373:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Update the RAMCFG state */
+ 374:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->State = HAL_RAMCFG_STATE_READY;
+ 375:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 376:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   else
+ 377:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 378:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Update the RAMCFG error code and return error  */
+ 379:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->ErrorCode = HAL_RAMCFG_ERROR_BUSY;
+ 237              		.loc 1 379 5 is_stmt 1 view .LVU54
+ 238              		.loc 1 379 24 is_stmt 0 view .LVU55
+ 239 0006 0223     		movs	r3, #2
+ 240 0008 8360     		str	r3, [r0, #8]
+ 380:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     status = HAL_ERROR;
+ 241              		.loc 1 380 5 is_stmt 1 view .LVU56
+ 242              	.LVL11:
+ 243              		.loc 1 380 12 is_stmt 0 view .LVU57
+ 244 000a 0120     		movs	r0, #1
+ 245              	.LVL12:
+ 381:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 382:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 383:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   return status;
+ 246              		.loc 1 383 3 is_stmt 1 view .LVU58
+ 384:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 247              		.loc 1 384 1 is_stmt 0 view .LVU59
+ 248 000c 7047     		bx	lr
+ 249              	.LVL13:
+ 250              	.L22:
+ 359:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 251              		.loc 1 359 5 is_stmt 1 view .LVU60
+ 359:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 252              		.loc 1 359 20 is_stmt 0 view .LVU61
+ 253 000e 0223     		movs	r3, #2
+ 254 0010 0371     		strb	r3, [r0, #4]
+ 362:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 255              		.loc 1 362 5 is_stmt 1 view .LVU62
+ 362:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 256              		.loc 1 362 17 is_stmt 0 view .LVU63
+ 257 0012 0368     		ldr	r3, [r0]
+ 362:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 258              		.loc 1 362 27 view .LVU64
+ 259 0014 1A68     		ldr	r2, [r3]
+ 362:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 260              		.loc 1 362 8 view .LVU65
+ 261 0016 12F0010F 		tst	r2, #1
+ARM GAS  /tmp/ccHXHETX.s 			page 13
+
+
+ 262 001a 07D1     		bne	.L19
+ 365:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 263              		.loc 1 365 7 is_stmt 1 view .LVU66
+ 365:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 264              		.loc 1 365 24 is_stmt 0 view .LVU67
+ 265 001c 1A68     		ldr	r2, [r3]
+ 365:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 266              		.loc 1 365 29 view .LVU68
+ 267 001e 42F01102 		orr	r2, r2, #17
+ 268 0022 1A60     		str	r2, [r3]
+ 269              	.L20:
+ 374:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 270              		.loc 1 374 5 is_stmt 1 view .LVU69
+ 374:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 271              		.loc 1 374 20 is_stmt 0 view .LVU70
+ 272 0024 0123     		movs	r3, #1
+ 273 0026 0371     		strb	r3, [r0, #4]
+ 351:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 274              		.loc 1 351 21 view .LVU71
+ 275 0028 0020     		movs	r0, #0
+ 276              	.LVL14:
+ 351:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 277              		.loc 1 351 21 view .LVU72
+ 278 002a 7047     		bx	lr
+ 279              	.LVL15:
+ 280              	.L19:
+ 370:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 281              		.loc 1 370 7 is_stmt 1 view .LVU73
+ 370:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 282              		.loc 1 370 24 is_stmt 0 view .LVU74
+ 283 002c 1A68     		ldr	r2, [r3]
+ 370:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 284              		.loc 1 370 29 view .LVU75
+ 285 002e 42F01002 		orr	r2, r2, #16
+ 286 0032 1A60     		str	r2, [r3]
+ 287 0034 F6E7     		b	.L20
+ 288              		.cfi_endproc
+ 289              	.LFE885:
+ 291              		.section	.text.HAL_RAMCFG_StopECC,"ax",%progbits
+ 292              		.align	1
+ 293              		.global	HAL_RAMCFG_StopECC
+ 294              		.syntax unified
+ 295              		.thumb
+ 296              		.thumb_func
+ 298              	HAL_RAMCFG_StopECC:
+ 299              	.LVL16:
+ 300              	.LFB886:
+ 385:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 386:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 387:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  Stop ECC mechanism for the given SRAM.
+ 388:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg : Pointer to a RAMCFG_HandleTypeDef structure that contains
+ 389:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                   the configuration information for the specified RAMCFG
+ 390:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                   instance.
+ 391:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval HAL status.
+ 392:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 393:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** HAL_StatusTypeDef HAL_RAMCFG_StopECC(RAMCFG_HandleTypeDef *hramcfg)
+ 394:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ARM GAS  /tmp/ccHXHETX.s 			page 14
+
+
+ 301              		.loc 1 394 1 is_stmt 1 view -0
+ 302              		.cfi_startproc
+ 303              		@ args = 0, pretend = 0, frame = 0
+ 304              		@ frame_needed = 0, uses_anonymous_args = 0
+ 305              		@ link register save eliminated.
+ 395:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 306              		.loc 1 395 3 view .LVU77
+ 396:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 397:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_ECC_INSTANCE(hramcfg->Instance));
+ 307              		.loc 1 397 3 view .LVU78
+ 398:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 399:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check RAMCFG state */
+ 400:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   if (hramcfg->State == HAL_RAMCFG_STATE_READY)
+ 308              		.loc 1 400 3 view .LVU79
+ 309              		.loc 1 400 14 is_stmt 0 view .LVU80
+ 310 0000 0379     		ldrb	r3, [r0, #4]	@ zero_extendqisi2
+ 311              		.loc 1 400 6 view .LVU81
+ 312 0002 012B     		cmp	r3, #1
+ 313 0004 03D0     		beq	.L27
+ 401:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 402:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Update RAMCFG peripheral state */
+ 403:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->State = HAL_RAMCFG_STATE_BUSY;
+ 404:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 405:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Check if ECC mechanism is active */
+ 406:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     if ((hramcfg->Instance->CR & RAMCFG_CR_ECCE) == RAMCFG_CR_ECCE)
+ 407:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 408:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       /* Unlock the SRAM ECC bit */
+ 409:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       WRITE_REG(hramcfg->Instance->ECCKEYR, RAMCFG_ECC_KEY1);
+ 410:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       WRITE_REG(hramcfg->Instance->ECCKEYR, RAMCFG_ECC_KEY2);
+ 411:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 412:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       /* Stop the SRAM ECC mechanism and latching the error address */
+ 413:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       hramcfg->Instance->CR &= ~(RAMCFG_CR_ECCE | RAMCFG_CR_ALE);
+ 414:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 415:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Update the RAMCFG state */
+ 416:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->State = HAL_RAMCFG_STATE_READY;
+ 417:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 418:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   else
+ 419:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 420:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Update the RAMCFG error code and return error  */
+ 421:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->ErrorCode = HAL_RAMCFG_ERROR_BUSY;
+ 314              		.loc 1 421 5 is_stmt 1 view .LVU82
+ 315              		.loc 1 421 24 is_stmt 0 view .LVU83
+ 316 0006 0223     		movs	r3, #2
+ 317 0008 8360     		str	r3, [r0, #8]
+ 422:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     status = HAL_ERROR;
+ 318              		.loc 1 422 5 is_stmt 1 view .LVU84
+ 319              	.LVL17:
+ 320              		.loc 1 422 12 is_stmt 0 view .LVU85
+ 321 000a 0120     		movs	r0, #1
+ 322              	.LVL18:
+ 423:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 424:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 425:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   return status;
+ 323              		.loc 1 425 3 is_stmt 1 view .LVU86
+ 426:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 324              		.loc 1 426 1 is_stmt 0 view .LVU87
+ 325 000c 7047     		bx	lr
+ARM GAS  /tmp/ccHXHETX.s 			page 15
+
+
+ 326              	.LVL19:
+ 327              	.L27:
+ 403:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 328              		.loc 1 403 5 is_stmt 1 view .LVU88
+ 403:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 329              		.loc 1 403 20 is_stmt 0 view .LVU89
+ 330 000e 0223     		movs	r3, #2
+ 331 0010 0371     		strb	r3, [r0, #4]
+ 406:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 332              		.loc 1 406 5 is_stmt 1 view .LVU90
+ 406:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 333              		.loc 1 406 17 is_stmt 0 view .LVU91
+ 334 0012 0368     		ldr	r3, [r0]
+ 406:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 335              		.loc 1 406 27 view .LVU92
+ 336 0014 1A68     		ldr	r2, [r3]
+ 406:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 337              		.loc 1 406 8 view .LVU93
+ 338 0016 12F0010F 		tst	r2, #1
+ 339 001a 09D0     		beq	.L25
+ 409:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       WRITE_REG(hramcfg->Instance->ECCKEYR, RAMCFG_ECC_KEY2);
+ 340              		.loc 1 409 7 is_stmt 1 view .LVU94
+ 341 001c AE22     		movs	r2, #174
+ 342 001e 5A62     		str	r2, [r3, #36]
+ 410:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 343              		.loc 1 410 7 view .LVU95
+ 344 0020 0368     		ldr	r3, [r0]
+ 345 0022 7522     		movs	r2, #117
+ 346 0024 5A62     		str	r2, [r3, #36]
+ 413:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 347              		.loc 1 413 7 view .LVU96
+ 413:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 348              		.loc 1 413 14 is_stmt 0 view .LVU97
+ 349 0026 0268     		ldr	r2, [r0]
+ 413:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 350              		.loc 1 413 24 view .LVU98
+ 351 0028 1368     		ldr	r3, [r2]
+ 413:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 352              		.loc 1 413 29 view .LVU99
+ 353 002a 23F01103 		bic	r3, r3, #17
+ 354 002e 1360     		str	r3, [r2]
+ 355              	.L25:
+ 416:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 356              		.loc 1 416 5 is_stmt 1 view .LVU100
+ 416:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 357              		.loc 1 416 20 is_stmt 0 view .LVU101
+ 358 0030 0123     		movs	r3, #1
+ 359 0032 0371     		strb	r3, [r0, #4]
+ 395:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 360              		.loc 1 395 21 view .LVU102
+ 361 0034 0020     		movs	r0, #0
+ 362              	.LVL20:
+ 395:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 363              		.loc 1 395 21 view .LVU103
+ 364 0036 7047     		bx	lr
+ 365              		.cfi_endproc
+ 366              	.LFE886:
+ARM GAS  /tmp/ccHXHETX.s 			page 16
+
+
+ 368              		.section	.text.HAL_RAMCFG_EnableNotification,"ax",%progbits
+ 369              		.align	1
+ 370              		.global	HAL_RAMCFG_EnableNotification
+ 371              		.syntax unified
+ 372              		.thumb
+ 373              		.thumb_func
+ 375              	HAL_RAMCFG_EnableNotification:
+ 376              	.LVL21:
+ 377              	.LFB887:
+ 427:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 428:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 429:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  Enable the RAMCFG error interrupts.
+ 430:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg       : Pointer to a RAMCFG_HandleTypeDef structure that
+ 431:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         contains the configuration information for the
+ 432:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         specified RAMCFG instance.
+ 433:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  Notifications : Select the notification to be enabled.
+ 434:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         This parameter can be any value of @ref
+ 435:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         RAMCFG_Interrupt group.
+ 436:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval HAL status.
+ 437:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 438:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** HAL_StatusTypeDef HAL_RAMCFG_EnableNotification(RAMCFG_HandleTypeDef *hramcfg, uint32_t Notificatio
+ 439:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 378              		.loc 1 439 1 is_stmt 1 view -0
+ 379              		.cfi_startproc
+ 380              		@ args = 0, pretend = 0, frame = 0
+ 381              		@ frame_needed = 0, uses_anonymous_args = 0
+ 382              		@ link register save eliminated.
+ 440:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 383              		.loc 1 440 3 view .LVU105
+ 441:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 442:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_ECC_INSTANCE(hramcfg->Instance));
+ 384              		.loc 1 442 3 view .LVU106
+ 443:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_INTERRUPT(Notifications));
+ 385              		.loc 1 443 3 view .LVU107
+ 444:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 445:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check RAMCFG state */
+ 446:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   if (hramcfg->State == HAL_RAMCFG_STATE_READY)
+ 386              		.loc 1 446 3 view .LVU108
+ 387              		.loc 1 446 14 is_stmt 0 view .LVU109
+ 388 0000 0379     		ldrb	r3, [r0, #4]	@ zero_extendqisi2
+ 389              		.loc 1 446 6 view .LVU110
+ 390 0002 012B     		cmp	r3, #1
+ 391 0004 03D0     		beq	.L31
+ 447:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 448:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Update RAMCFG peripheral state */
+ 449:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->State = HAL_RAMCFG_STATE_BUSY;
+ 450:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 451:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Enable RAMCFG interrupts */
+ 452:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     __HAL_RAMCFG_ENABLE_IT(hramcfg, Notifications);
+ 453:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 454:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Update the RAMCFG state */
+ 455:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->State = HAL_RAMCFG_STATE_READY;
+ 456:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 457:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 458:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   else
+ 459:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 460:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Update the RAMCFG error code and return error */
+ARM GAS  /tmp/ccHXHETX.s 			page 17
+
+
+ 461:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->ErrorCode = HAL_RAMCFG_ERROR_BUSY;
+ 392              		.loc 1 461 5 is_stmt 1 view .LVU111
+ 393              		.loc 1 461 24 is_stmt 0 view .LVU112
+ 394 0006 0223     		movs	r3, #2
+ 395 0008 8360     		str	r3, [r0, #8]
+ 462:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     status = HAL_ERROR;
+ 396              		.loc 1 462 5 is_stmt 1 view .LVU113
+ 397              	.LVL22:
+ 398              		.loc 1 462 12 is_stmt 0 view .LVU114
+ 399 000a 0120     		movs	r0, #1
+ 400              	.LVL23:
+ 463:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 464:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 465:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   return status;
+ 401              		.loc 1 465 3 is_stmt 1 view .LVU115
+ 466:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 402              		.loc 1 466 1 is_stmt 0 view .LVU116
+ 403 000c 7047     		bx	lr
+ 404              	.LVL24:
+ 405              	.L31:
+ 449:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 406              		.loc 1 449 5 is_stmt 1 view .LVU117
+ 449:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 407              		.loc 1 449 20 is_stmt 0 view .LVU118
+ 408 000e 0223     		movs	r3, #2
+ 409 0010 0371     		strb	r3, [r0, #4]
+ 452:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 410              		.loc 1 452 5 is_stmt 1 view .LVU119
+ 411 0012 0268     		ldr	r2, [r0]
+ 412 0014 5368     		ldr	r3, [r2, #4]
+ 413 0016 0B43     		orrs	r3, r3, r1
+ 414 0018 5360     		str	r3, [r2, #4]
+ 455:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 415              		.loc 1 455 5 view .LVU120
+ 455:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 416              		.loc 1 455 20 is_stmt 0 view .LVU121
+ 417 001a 0123     		movs	r3, #1
+ 418 001c 0371     		strb	r3, [r0, #4]
+ 440:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 419              		.loc 1 440 21 view .LVU122
+ 420 001e 0020     		movs	r0, #0
+ 421              	.LVL25:
+ 440:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 422              		.loc 1 440 21 view .LVU123
+ 423 0020 7047     		bx	lr
+ 424              		.cfi_endproc
+ 425              	.LFE887:
+ 427              		.section	.text.HAL_RAMCFG_DisableNotification,"ax",%progbits
+ 428              		.align	1
+ 429              		.global	HAL_RAMCFG_DisableNotification
+ 430              		.syntax unified
+ 431              		.thumb
+ 432              		.thumb_func
+ 434              	HAL_RAMCFG_DisableNotification:
+ 435              	.LVL26:
+ 436              	.LFB888:
+ 467:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ARM GAS  /tmp/ccHXHETX.s 			page 18
+
+
+ 468:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 469:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  Disable the RAMCFG error interrupts.
+ 470:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg       : Pointer to a RAMCFG_HandleTypeDef structure that
+ 471:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         contains the configuration information for the
+ 472:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         specified RAMCFG instance.
+ 473:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  Notifications : Select the notification to be disabled.
+ 474:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         This parameter can be :
+ 475:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         RAMCFG_IT_SINGLEERR : Single Error Interrupt.
+ 476:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         RAMCFG_IT_DOUBLEERR : Double Error Interrupt.
+ 477:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval HAL status.
+ 478:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 479:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** HAL_StatusTypeDef HAL_RAMCFG_DisableNotification(RAMCFG_HandleTypeDef *hramcfg, uint32_t Notificati
+ 480:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 437              		.loc 1 480 1 is_stmt 1 view -0
+ 438              		.cfi_startproc
+ 439              		@ args = 0, pretend = 0, frame = 0
+ 440              		@ frame_needed = 0, uses_anonymous_args = 0
+ 441              		@ link register save eliminated.
+ 481:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 442              		.loc 1 481 3 view .LVU125
+ 482:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 483:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_ECC_INSTANCE(hramcfg->Instance));
+ 443              		.loc 1 483 3 view .LVU126
+ 484:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_INTERRUPT(Notifications));
+ 444              		.loc 1 484 3 view .LVU127
+ 485:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 486:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check RAMCFG state */
+ 487:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   if (hramcfg->State == HAL_RAMCFG_STATE_READY)
+ 445              		.loc 1 487 3 view .LVU128
+ 446              		.loc 1 487 14 is_stmt 0 view .LVU129
+ 447 0000 0379     		ldrb	r3, [r0, #4]	@ zero_extendqisi2
+ 448              		.loc 1 487 6 view .LVU130
+ 449 0002 012B     		cmp	r3, #1
+ 450 0004 03D0     		beq	.L35
+ 488:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 489:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Update RAMCFG peripheral state */
+ 490:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->State = HAL_RAMCFG_STATE_BUSY;
+ 491:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 492:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Disable RAMCFG interrupts */
+ 493:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     __HAL_RAMCFG_DISABLE_IT(hramcfg, Notifications);
+ 494:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 495:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Update the RAMCFG state */
+ 496:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->State = HAL_RAMCFG_STATE_READY;
+ 497:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 498:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   else
+ 499:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 500:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Update the RAMCFG error code and return error */
+ 501:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->ErrorCode = HAL_RAMCFG_ERROR_BUSY;
+ 451              		.loc 1 501 5 is_stmt 1 view .LVU131
+ 452              		.loc 1 501 24 is_stmt 0 view .LVU132
+ 453 0006 0223     		movs	r3, #2
+ 454 0008 8360     		str	r3, [r0, #8]
+ 502:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     status = HAL_ERROR;
+ 455              		.loc 1 502 5 is_stmt 1 view .LVU133
+ 456              	.LVL27:
+ 457              		.loc 1 502 12 is_stmt 0 view .LVU134
+ 458 000a 0120     		movs	r0, #1
+ARM GAS  /tmp/ccHXHETX.s 			page 19
+
+
+ 459              	.LVL28:
+ 503:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 504:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 505:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   return status;
+ 460              		.loc 1 505 3 is_stmt 1 view .LVU135
+ 506:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 461              		.loc 1 506 1 is_stmt 0 view .LVU136
+ 462 000c 7047     		bx	lr
+ 463              	.LVL29:
+ 464              	.L35:
+ 490:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 465              		.loc 1 490 5 is_stmt 1 view .LVU137
+ 490:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 466              		.loc 1 490 20 is_stmt 0 view .LVU138
+ 467 000e 0223     		movs	r3, #2
+ 468 0010 0371     		strb	r3, [r0, #4]
+ 493:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 469              		.loc 1 493 5 is_stmt 1 view .LVU139
+ 470 0012 0268     		ldr	r2, [r0]
+ 471 0014 5368     		ldr	r3, [r2, #4]
+ 472 0016 23EA0103 		bic	r3, r3, r1
+ 473 001a 5360     		str	r3, [r2, #4]
+ 496:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 474              		.loc 1 496 5 view .LVU140
+ 496:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 475              		.loc 1 496 20 is_stmt 0 view .LVU141
+ 476 001c 0123     		movs	r3, #1
+ 477 001e 0371     		strb	r3, [r0, #4]
+ 481:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 478              		.loc 1 481 21 view .LVU142
+ 479 0020 0020     		movs	r0, #0
+ 480              	.LVL30:
+ 481:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 481              		.loc 1 481 21 view .LVU143
+ 482 0022 7047     		bx	lr
+ 483              		.cfi_endproc
+ 484              	.LFE888:
+ 486              		.section	.text.HAL_RAMCFG_IsECCSingleErrorDetected,"ax",%progbits
+ 487              		.align	1
+ 488              		.global	HAL_RAMCFG_IsECCSingleErrorDetected
+ 489              		.syntax unified
+ 490              		.thumb
+ 491              		.thumb_func
+ 493              	HAL_RAMCFG_IsECCSingleErrorDetected:
+ 494              	.LVL31:
+ 495              	.LFB889:
+ 507:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 508:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 509:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  Check if an ECC single error has occurred.
+ 510:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg       : Pointer to a RAMCFG_HandleTypeDef structure that
+ 511:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         contains the configuration information for the
+ 512:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         specified RAMCFG instance.
+ 513:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval State of bit (1 or 0).
+ 514:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 515:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** uint32_t HAL_RAMCFG_IsECCSingleErrorDetected(const RAMCFG_HandleTypeDef *hramcfg)
+ 516:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 496              		.loc 1 516 1 is_stmt 1 view -0
+ARM GAS  /tmp/ccHXHETX.s 			page 20
+
+
+ 497              		.cfi_startproc
+ 498              		@ args = 0, pretend = 0, frame = 0
+ 499              		@ frame_needed = 0, uses_anonymous_args = 0
+ 500              		@ link register save eliminated.
+ 517:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 518:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_ECC_INSTANCE(hramcfg->Instance));
+ 501              		.loc 1 518 3 view .LVU145
+ 519:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 520:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Return the state of SEDC flag */
+ 521:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   return ((READ_BIT(hramcfg->Instance->ISR, RAMCFG_FLAG_SINGLEERR) == (RAMCFG_FLAG_SINGLEERR)) ? 1U
+ 502              		.loc 1 521 3 view .LVU146
+ 503              		.loc 1 521 12 is_stmt 0 view .LVU147
+ 504 0000 0368     		ldr	r3, [r0]
+ 505 0002 9868     		ldr	r0, [r3, #8]
+ 506              	.LVL32:
+ 522:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 507              		.loc 1 522 1 view .LVU148
+ 508 0004 00F00100 		and	r0, r0, #1
+ 509 0008 7047     		bx	lr
+ 510              		.cfi_endproc
+ 511              	.LFE889:
+ 513              		.section	.text.HAL_RAMCFG_IsECCDoubleErrorDetected,"ax",%progbits
+ 514              		.align	1
+ 515              		.global	HAL_RAMCFG_IsECCDoubleErrorDetected
+ 516              		.syntax unified
+ 517              		.thumb
+ 518              		.thumb_func
+ 520              	HAL_RAMCFG_IsECCDoubleErrorDetected:
+ 521              	.LVL33:
+ 522              	.LFB890:
+ 523:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 524:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 525:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  Check if an ECC double error was occurred.
+ 526:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg       : Pointer to a RAMCFG_HandleTypeDef structure that
+ 527:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         contains the configuration information for the
+ 528:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         specified RAMCFG instance.
+ 529:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval State of bit (1 or 0).
+ 530:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 531:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** uint32_t HAL_RAMCFG_IsECCDoubleErrorDetected(const RAMCFG_HandleTypeDef *hramcfg)
+ 532:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 523              		.loc 1 532 1 is_stmt 1 view -0
+ 524              		.cfi_startproc
+ 525              		@ args = 0, pretend = 0, frame = 0
+ 526              		@ frame_needed = 0, uses_anonymous_args = 0
+ 527              		@ link register save eliminated.
+ 533:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 534:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_ECC_INSTANCE(hramcfg->Instance));
+ 528              		.loc 1 534 3 view .LVU150
+ 535:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 536:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Return the state of DED flag */
+ 537:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   return ((READ_BIT(hramcfg->Instance->ISR, RAMCFG_FLAG_DOUBLEERR) == (RAMCFG_FLAG_DOUBLEERR)) ? 1U
+ 529              		.loc 1 537 3 view .LVU151
+ 530              		.loc 1 537 12 is_stmt 0 view .LVU152
+ 531 0000 0368     		ldr	r3, [r0]
+ 532 0002 9868     		ldr	r0, [r3, #8]
+ 533              	.LVL34:
+ 534              		.loc 1 537 102 view .LVU153
+ARM GAS  /tmp/ccHXHETX.s 			page 21
+
+
+ 535 0004 10F00200 		ands	r0, r0, #2
+ 536 0008 00D0     		beq	.L37
+ 537              		.loc 1 537 102 discriminator 1 view .LVU154
+ 538 000a 0120     		movs	r0, #1
+ 539              	.L37:
+ 538:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 540              		.loc 1 538 1 view .LVU155
+ 541 000c 7047     		bx	lr
+ 542              		.cfi_endproc
+ 543              	.LFE890:
+ 545              		.section	.text.HAL_RAMCFG_GetSingleErrorAddress,"ax",%progbits
+ 546              		.align	1
+ 547              		.global	HAL_RAMCFG_GetSingleErrorAddress
+ 548              		.syntax unified
+ 549              		.thumb
+ 550              		.thumb_func
+ 552              	HAL_RAMCFG_GetSingleErrorAddress:
+ 553              	.LVL35:
+ 554              	.LFB891:
+ 539:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 540:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 541:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  Get the RAMCFG single error address.
+ 542:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg       : Pointer to a RAMCFG_HandleTypeDef structure that
+ 543:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         contains the configuration information for the
+ 544:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         specified RAMCFG instance.
+ 545:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval Single error address offset.
+ 546:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 547:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** uint32_t HAL_RAMCFG_GetSingleErrorAddress(const RAMCFG_HandleTypeDef *hramcfg)
+ 548:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 555              		.loc 1 548 1 is_stmt 1 view -0
+ 556              		.cfi_startproc
+ 557              		@ args = 0, pretend = 0, frame = 0
+ 558              		@ frame_needed = 0, uses_anonymous_args = 0
+ 559              		@ link register save eliminated.
+ 549:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 550:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_ECC_INSTANCE(hramcfg->Instance));
+ 560              		.loc 1 550 3 view .LVU157
+ 551:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 552:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   return hramcfg->Instance->ESEAR;
+ 561              		.loc 1 552 3 view .LVU158
+ 562              		.loc 1 552 17 is_stmt 0 view .LVU159
+ 563 0000 0368     		ldr	r3, [r0]
+ 553:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 564              		.loc 1 553 1 view .LVU160
+ 565 0002 D868     		ldr	r0, [r3, #12]
+ 566              	.LVL36:
+ 567              		.loc 1 553 1 view .LVU161
+ 568 0004 7047     		bx	lr
+ 569              		.cfi_endproc
+ 570              	.LFE891:
+ 572              		.section	.text.HAL_RAMCFG_GetDoubleErrorAddress,"ax",%progbits
+ 573              		.align	1
+ 574              		.global	HAL_RAMCFG_GetDoubleErrorAddress
+ 575              		.syntax unified
+ 576              		.thumb
+ 577              		.thumb_func
+ 579              	HAL_RAMCFG_GetDoubleErrorAddress:
+ARM GAS  /tmp/ccHXHETX.s 			page 22
+
+
+ 580              	.LVL37:
+ 581              	.LFB892:
+ 554:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 555:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 556:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  Get the RAMCFG double error address.
+ 557:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg       : Pointer to a RAMCFG_HandleTypeDef structure that
+ 558:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         contains the configuration information for the
+ 559:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         specified RAMCFG instance.
+ 560:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval Double error address offset.
+ 561:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 562:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** uint32_t HAL_RAMCFG_GetDoubleErrorAddress(const RAMCFG_HandleTypeDef *hramcfg)
+ 563:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 582              		.loc 1 563 1 is_stmt 1 view -0
+ 583              		.cfi_startproc
+ 584              		@ args = 0, pretend = 0, frame = 0
+ 585              		@ frame_needed = 0, uses_anonymous_args = 0
+ 586              		@ link register save eliminated.
+ 564:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 565:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_ECC_INSTANCE(hramcfg->Instance));
+ 587              		.loc 1 565 3 view .LVU163
+ 566:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 567:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   return hramcfg->Instance->EDEAR;
+ 588              		.loc 1 567 3 view .LVU164
+ 589              		.loc 1 567 17 is_stmt 0 view .LVU165
+ 590 0000 0368     		ldr	r3, [r0]
+ 568:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 591              		.loc 1 568 1 view .LVU166
+ 592 0002 1869     		ldr	r0, [r3, #16]
+ 593              	.LVL38:
+ 594              		.loc 1 568 1 view .LVU167
+ 595 0004 7047     		bx	lr
+ 596              		.cfi_endproc
+ 597              	.LFE892:
+ 599              		.section	.text.HAL_RAMCFG_Erase,"ax",%progbits
+ 600              		.align	1
+ 601              		.global	HAL_RAMCFG_Erase
+ 602              		.syntax unified
+ 603              		.thumb
+ 604              		.thumb_func
+ 606              	HAL_RAMCFG_Erase:
+ 607              	.LVL39:
+ 608              	.LFB893:
+ 569:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 570:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 571:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @}
+ 572:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 573:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 574:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /** @addtogroup RAMCFG_Exported_Functions_Group5
+ 575:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *
+ 576:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** @verbatim
+ 577:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****  ===============================================================================
+ 578:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****                       ##### Erase Operation Functions  #####
+ 579:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****  ===============================================================================
+ 580:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     [..]
+ 581:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       This section provides functions allowing a hardware erase for the given SRAM.
+ 582:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     [..]
+ 583:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_Erase() function allows a hardware mass erase for the given
+ARM GAS  /tmp/ccHXHETX.s 			page 23
+
+
+ 584:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       SRAM. The erase value for all SRAMs is 0.
+ 585:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 586:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** @endverbatim
+ 587:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @{
+ 588:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 589:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 590:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 591:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  Launch a Mass Erase for the given SRAM.
+ 592:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg       : Pointer to a RAMCFG_HandleTypeDef structure that
+ 593:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         contains the configuration information for the
+ 594:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         specified RAMCFG instance.
+ 595:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 596:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval HAL status.
+ 597:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 598:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** HAL_StatusTypeDef HAL_RAMCFG_Erase(RAMCFG_HandleTypeDef *hramcfg)
+ 599:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 609              		.loc 1 599 1 is_stmt 1 view -0
+ 610              		.cfi_startproc
+ 611              		@ args = 0, pretend = 0, frame = 0
+ 612              		@ frame_needed = 0, uses_anonymous_args = 0
+ 613              		.loc 1 599 1 is_stmt 0 view .LVU169
+ 614 0000 70B5     		push	{r4, r5, r6, lr}
+ 615              	.LCFI4:
+ 616              		.cfi_def_cfa_offset 16
+ 617              		.cfi_offset 4, -16
+ 618              		.cfi_offset 5, -12
+ 619              		.cfi_offset 6, -8
+ 620              		.cfi_offset 14, -4
+ 621 0002 0446     		mov	r4, r0
+ 600:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   uint32_t tickstart = HAL_GetTick();
+ 622              		.loc 1 600 3 is_stmt 1 view .LVU170
+ 623              		.loc 1 600 24 is_stmt 0 view .LVU171
+ 624 0004 FFF7FEFF 		bl	HAL_GetTick
+ 625              	.LVL40:
+ 601:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 602:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 603:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_ALL_INSTANCE(hramcfg->Instance));
+ 626              		.loc 1 603 3 is_stmt 1 view .LVU172
+ 604:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 605:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check RAMCFG state */
+ 606:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   if (hramcfg->State == HAL_RAMCFG_STATE_READY)
+ 627              		.loc 1 606 3 view .LVU173
+ 628              		.loc 1 606 14 is_stmt 0 view .LVU174
+ 629 0008 2679     		ldrb	r6, [r4, #4]	@ zero_extendqisi2
+ 630              		.loc 1 606 6 view .LVU175
+ 631 000a 012E     		cmp	r6, #1
+ 632 000c 22D1     		bne	.L42
+ 633 000e 0546     		mov	r5, r0
+ 607:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 608:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Update RAMCFG peripheral state */
+ 609:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->State = HAL_RAMCFG_STATE_BUSY;
+ 634              		.loc 1 609 5 is_stmt 1 view .LVU176
+ 635              		.loc 1 609 20 is_stmt 0 view .LVU177
+ 636 0010 0223     		movs	r3, #2
+ 637 0012 2371     		strb	r3, [r4, #4]
+ 610:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 611:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Unlock the RAMCFG erase bit */
+ARM GAS  /tmp/ccHXHETX.s 			page 24
+
+
+ 612:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     WRITE_REG(hramcfg->Instance->ERKEYR, RAMCFG_ERASE_KEY1);
+ 638              		.loc 1 612 5 is_stmt 1 view .LVU178
+ 639 0014 2368     		ldr	r3, [r4]
+ 640 0016 CA22     		movs	r2, #202
+ 641 0018 9A62     		str	r2, [r3, #40]
+ 613:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     WRITE_REG(hramcfg->Instance->ERKEYR, RAMCFG_ERASE_KEY2);
+ 642              		.loc 1 613 5 view .LVU179
+ 643 001a 2368     		ldr	r3, [r4]
+ 644 001c 5322     		movs	r2, #83
+ 645 001e 9A62     		str	r2, [r3, #40]
+ 614:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 615:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Start the SRAM erase operation */
+ 616:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->Instance->CR |= RAMCFG_CR_SRAMER;
+ 646              		.loc 1 616 5 view .LVU180
+ 647              		.loc 1 616 12 is_stmt 0 view .LVU181
+ 648 0020 2268     		ldr	r2, [r4]
+ 649              		.loc 1 616 22 view .LVU182
+ 650 0022 1368     		ldr	r3, [r2]
+ 651              		.loc 1 616 27 view .LVU183
+ 652 0024 43F48073 		orr	r3, r3, #256
+ 653 0028 1360     		str	r3, [r2]
+ 617:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 618:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /*
+ 619:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****        Wait for the SRAM hardware erase operation to complete by polling on
+ 620:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****        SRAMBUSY flag to be reset.
+ 621:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     */
+ 622:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     while (__HAL_RAMCFG_GET_FLAG(hramcfg, RAMCFG_FLAG_SRAMBUSY) != 0U)
+ 654              		.loc 1 622 5 is_stmt 1 view .LVU184
+ 655              	.LVL41:
+ 656              	.L43:
+ 657              		.loc 1 622 65 discriminator 1 view .LVU185
+ 658              		.loc 1 622 12 is_stmt 0 discriminator 1 view .LVU186
+ 659 002a 2368     		ldr	r3, [r4]
+ 660 002c 9B68     		ldr	r3, [r3, #8]
+ 661              		.loc 1 622 65 discriminator 1 view .LVU187
+ 662 002e 13F4807F 		tst	r3, #256
+ 663 0032 0BD0     		beq	.L45
+ 623:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 624:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       if ((HAL_GetTick() - tickstart) > RAMCFG_TIMEOUT_VALUE)
+ 664              		.loc 1 624 7 is_stmt 1 view .LVU188
+ 665              		.loc 1 624 12 is_stmt 0 view .LVU189
+ 666 0034 FFF7FEFF 		bl	HAL_GetTick
+ 667              	.LVL42:
+ 668              		.loc 1 624 26 discriminator 1 view .LVU190
+ 669 0038 431B     		subs	r3, r0, r5
+ 670              		.loc 1 624 10 discriminator 1 view .LVU191
+ 671 003a 4CF25032 		movw	r2, #50000
+ 672 003e 9342     		cmp	r3, r2
+ 673 0040 F3D9     		bls	.L43
+ 625:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       {
+ 626:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* Update the RAMCFG error code */
+ 627:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->ErrorCode = HAL_RAMCFG_ERROR_TIMEOUT;
+ 674              		.loc 1 627 9 is_stmt 1 view .LVU192
+ 675              		.loc 1 627 28 is_stmt 0 view .LVU193
+ 676 0042 0123     		movs	r3, #1
+ 677 0044 A360     		str	r3, [r4, #8]
+ 628:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ARM GAS  /tmp/ccHXHETX.s 			page 25
+
+
+ 629:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* Update the RAMCFG state and return error status */
+ 630:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->State = HAL_RAMCFG_STATE_ERROR;
+ 678              		.loc 1 630 9 is_stmt 1 view .LVU194
+ 679              		.loc 1 630 24 is_stmt 0 view .LVU195
+ 680 0046 0323     		movs	r3, #3
+ 681 0048 2371     		strb	r3, [r4, #4]
+ 631:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         return HAL_ERROR;
+ 682              		.loc 1 631 9 is_stmt 1 view .LVU196
+ 683              		.loc 1 631 16 is_stmt 0 view .LVU197
+ 684 004a 06E0     		b	.L44
+ 685              	.L45:
+ 632:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       }
+ 633:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 634:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 635:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   else
+ 636:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 637:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Update the error code and return error status */
+ 638:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->ErrorCode = HAL_RAMCFG_ERROR_BUSY;
+ 639:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     return HAL_ERROR;
+ 640:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 641:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 642:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Update the RAMCFG state */
+ 643:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   hramcfg->State = HAL_RAMCFG_STATE_READY;
+ 686              		.loc 1 643 3 is_stmt 1 view .LVU198
+ 687              		.loc 1 643 18 is_stmt 0 view .LVU199
+ 688 004c 0123     		movs	r3, #1
+ 689 004e 2371     		strb	r3, [r4, #4]
+ 644:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 645:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   return HAL_OK;
+ 690              		.loc 1 645 3 is_stmt 1 view .LVU200
+ 691              		.loc 1 645 10 is_stmt 0 view .LVU201
+ 692 0050 0026     		movs	r6, #0
+ 693 0052 02E0     		b	.L44
+ 694              	.LVL43:
+ 695              	.L42:
+ 638:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     return HAL_ERROR;
+ 696              		.loc 1 638 5 is_stmt 1 view .LVU202
+ 638:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     return HAL_ERROR;
+ 697              		.loc 1 638 24 is_stmt 0 view .LVU203
+ 698 0054 0223     		movs	r3, #2
+ 699 0056 A360     		str	r3, [r4, #8]
+ 639:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 700              		.loc 1 639 5 is_stmt 1 view .LVU204
+ 639:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 701              		.loc 1 639 12 is_stmt 0 view .LVU205
+ 702 0058 0126     		movs	r6, #1
+ 703              	.LVL44:
+ 704              	.L44:
+ 646:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 705              		.loc 1 646 1 view .LVU206
+ 706 005a 3046     		mov	r0, r6
+ 707 005c 70BD     		pop	{r4, r5, r6, pc}
+ 708              		.loc 1 646 1 view .LVU207
+ 709              		.cfi_endproc
+ 710              	.LFE893:
+ 712              		.section	.text.HAL_RAMCFG_DetectSingleErrorCallback,"ax",%progbits
+ 713              		.align	1
+ARM GAS  /tmp/ccHXHETX.s 			page 26
+
+
+ 714              		.weak	HAL_RAMCFG_DetectSingleErrorCallback
+ 715              		.syntax unified
+ 716              		.thumb
+ 717              		.thumb_func
+ 719              	HAL_RAMCFG_DetectSingleErrorCallback:
+ 720              	.LVL45:
+ 721              	.LFB895:
+ 647:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 648:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 649:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @}
+ 650:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 651:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 652:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /** @addtogroup RAMCFG_Exported_Functions_Group6
+ 653:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *
+ 654:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** @verbatim
+ 655:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****  ===============================================================================
+ 656:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****                ##### Handle Interrupt and Callbacks Functions  #####
+ 657:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****  ===============================================================================
+ 658:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     [..]
+ 659:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       This section provides functions to handle RAMCFG interrupts and
+ 660:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       Register / UnRegister the different callbacks.
+ 661:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     [..]
+ 662:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_IRQHandler() function allows the user to handle the active RAMCFG
+ 663:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       interrupt request.
+ 664:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_RegisterCallback() function allows the user to register the selected
+ 665:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       RAMCFG callbacks.
+ 666:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_UnRegisterCallback() function allows the user to unregister the
+ 667:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       selected RAMCFG callbacks.
+ 668:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** @endverbatim
+ 669:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @{
+ 670:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 671:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 672:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 673:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  Handles RAMCFG interrupt request.
+ 674:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg       : Pointer to a RAMCFG_HandleTypeDef structure that
+ 675:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         contains the configuration information for the
+ 676:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         specified RAMCFG instance.
+ 677:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval None.
+ 678:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 679:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** void HAL_RAMCFG_IRQHandler(RAMCFG_HandleTypeDef *hramcfg)
+ 680:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 681:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Single Error Interrupt Management ****************************************/
+ 682:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   if (__HAL_RAMCFG_GET_IT_SOURCE(hramcfg, RAMCFG_IT_SINGLEERR) != 0U)
+ 683:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 684:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     if (__HAL_RAMCFG_GET_FLAG(hramcfg, RAMCFG_FLAG_SINGLEERR) != 0U)
+ 685:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 686:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       /* Clear active flags */
+ 687:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       __HAL_RAMCFG_CLEAR_FLAG(hramcfg, RAMCFG_FLAG_SINGLEERR);
+ 688:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 689:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #if (USE_HAL_RAMCFG_REGISTER_CALLBACKS == 1)
+ 690:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       /* Check if a valid single error callback is registered */
+ 691:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       if (hramcfg->DetectSingleErrorCallback != NULL)
+ 692:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       {
+ 693:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* Single error detection callback */
+ 694:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->DetectSingleErrorCallback(hramcfg);
+ 695:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       }
+ 696:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #else
+ARM GAS  /tmp/ccHXHETX.s 			page 27
+
+
+ 697:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       HAL_RAMCFG_DetectSingleErrorCallback(hramcfg);
+ 698:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #endif /* USE_HAL_RAMCFG_REGISTER_CALLBACKS */
+ 699:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 700:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 701:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 702:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Double Error Interrupt Management ****************************************/
+ 703:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   if (__HAL_RAMCFG_GET_IT_SOURCE(hramcfg, RAMCFG_IT_DOUBLEERR) != 0U)
+ 704:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 705:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     if (__HAL_RAMCFG_GET_FLAG(hramcfg, RAMCFG_FLAG_DOUBLEERR) != 0U)
+ 706:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 707:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       /* Clear active flags */
+ 708:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       __HAL_RAMCFG_CLEAR_FLAG(hramcfg, RAMCFG_FLAG_DOUBLEERR);
+ 709:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 710:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #if (USE_HAL_RAMCFG_REGISTER_CALLBACKS == 1)
+ 711:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       /* Check if a valid double error callback is registered */
+ 712:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       if (hramcfg->DetectDoubleErrorCallback != NULL)
+ 713:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       {
+ 714:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* Double error detection callback */
+ 715:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->DetectDoubleErrorCallback(hramcfg);
+ 716:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       }
+ 717:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #else
+ 718:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       HAL_RAMCFG_DetectDoubleErrorCallback(hramcfg);
+ 719:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #endif /* USE_HAL_RAMCFG_REGISTER_CALLBACKS */
+ 720:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 721:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 722:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 723:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 724:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 725:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  RAMCFG single error detection callback.
+ 726:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg : Pointer to a RAMCFG_HandleTypeDef structure that contains
+ 727:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                   the configuration information for the specified RAMCFG.
+ 728:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval None.
+ 729:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 730:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** __weak void HAL_RAMCFG_DetectSingleErrorCallback(RAMCFG_HandleTypeDef *hramcfg)
+ 731:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 722              		.loc 1 731 1 is_stmt 1 view -0
+ 723              		.cfi_startproc
+ 724              		@ args = 0, pretend = 0, frame = 0
+ 725              		@ frame_needed = 0, uses_anonymous_args = 0
+ 726              		@ link register save eliminated.
+ 732:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Prevent unused argument(s) compilation warning */
+ 733:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   UNUSED(hramcfg);
+ 727              		.loc 1 733 3 view .LVU209
+ 734:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 735:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* NOTE : This function should not be modified, when the callback is needed,
+ 736:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****             the HAL_RAMCFG_DetectSingleErrorCallback can be implemented in
+ 737:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****             the user file.                                                    */
+ 738:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 728              		.loc 1 738 1 is_stmt 0 view .LVU210
+ 729 0000 7047     		bx	lr
+ 730              		.cfi_endproc
+ 731              	.LFE895:
+ 733              		.section	.text.HAL_RAMCFG_DetectDoubleErrorCallback,"ax",%progbits
+ 734              		.align	1
+ 735              		.weak	HAL_RAMCFG_DetectDoubleErrorCallback
+ 736              		.syntax unified
+ 737              		.thumb
+ARM GAS  /tmp/ccHXHETX.s 			page 28
+
+
+ 738              		.thumb_func
+ 740              	HAL_RAMCFG_DetectDoubleErrorCallback:
+ 741              	.LVL46:
+ 742              	.LFB896:
+ 739:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 740:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 741:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  RAMCFG double error detection callback.
+ 742:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg : Pointer to a RAMCFG_HandleTypeDef structure that contains
+ 743:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                   the configuration information for the specified RAMCFG.
+ 744:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval None.
+ 745:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 746:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** __weak void HAL_RAMCFG_DetectDoubleErrorCallback(RAMCFG_HandleTypeDef *hramcfg)
+ 747:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 743              		.loc 1 747 1 is_stmt 1 view -0
+ 744              		.cfi_startproc
+ 745              		@ args = 0, pretend = 0, frame = 0
+ 746              		@ frame_needed = 0, uses_anonymous_args = 0
+ 747              		@ link register save eliminated.
+ 748:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Prevent unused argument(s) compilation warning */
+ 749:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   UNUSED(hramcfg);
+ 748              		.loc 1 749 3 view .LVU212
+ 750:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 751:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* NOTE : This function should not be modified, when the callback is needed,
+ 752:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****             the HAL_RAMCFG_DetectDoubleErrorCallback can be implemented in
+ 753:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****             the user file.                                                    */
+ 754:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 749              		.loc 1 754 1 is_stmt 0 view .LVU213
+ 750 0000 7047     		bx	lr
+ 751              		.cfi_endproc
+ 752              	.LFE896:
+ 754              		.section	.text.HAL_RAMCFG_IRQHandler,"ax",%progbits
+ 755              		.align	1
+ 756              		.global	HAL_RAMCFG_IRQHandler
+ 757              		.syntax unified
+ 758              		.thumb
+ 759              		.thumb_func
+ 761              	HAL_RAMCFG_IRQHandler:
+ 762              	.LVL47:
+ 763              	.LFB894:
+ 680:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Single Error Interrupt Management ****************************************/
+ 764              		.loc 1 680 1 is_stmt 1 view -0
+ 765              		.cfi_startproc
+ 766              		@ args = 0, pretend = 0, frame = 0
+ 767              		@ frame_needed = 0, uses_anonymous_args = 0
+ 680:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Single Error Interrupt Management ****************************************/
+ 768              		.loc 1 680 1 is_stmt 0 view .LVU215
+ 769 0000 10B5     		push	{r4, lr}
+ 770              	.LCFI5:
+ 771              		.cfi_def_cfa_offset 8
+ 772              		.cfi_offset 4, -8
+ 773              		.cfi_offset 14, -4
+ 774 0002 0446     		mov	r4, r0
+ 682:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 775              		.loc 1 682 3 is_stmt 1 view .LVU216
+ 682:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 776              		.loc 1 682 7 is_stmt 0 view .LVU217
+ 777 0004 0368     		ldr	r3, [r0]
+ARM GAS  /tmp/ccHXHETX.s 			page 29
+
+
+ 778 0006 5A68     		ldr	r2, [r3, #4]
+ 682:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 779              		.loc 1 682 6 view .LVU218
+ 780 0008 12F0010F 		tst	r2, #1
+ 781 000c 03D0     		beq	.L51
+ 684:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 782              		.loc 1 684 5 is_stmt 1 view .LVU219
+ 684:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 783              		.loc 1 684 9 is_stmt 0 view .LVU220
+ 784 000e 9A68     		ldr	r2, [r3, #8]
+ 684:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 785              		.loc 1 684 63 view .LVU221
+ 786 0010 12F0010F 		tst	r2, #1
+ 787 0014 09D1     		bne	.L54
+ 788              	.LVL48:
+ 789              	.L51:
+ 703:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 790              		.loc 1 703 3 is_stmt 1 view .LVU222
+ 703:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 791              		.loc 1 703 7 is_stmt 0 view .LVU223
+ 792 0016 2368     		ldr	r3, [r4]
+ 793 0018 5A68     		ldr	r2, [r3, #4]
+ 703:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 794              		.loc 1 703 6 view .LVU224
+ 795 001a 12F0020F 		tst	r2, #2
+ 796 001e 03D0     		beq	.L50
+ 705:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 797              		.loc 1 705 5 is_stmt 1 view .LVU225
+ 705:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 798              		.loc 1 705 9 is_stmt 0 view .LVU226
+ 799 0020 9A68     		ldr	r2, [r3, #8]
+ 705:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 800              		.loc 1 705 63 view .LVU227
+ 801 0022 12F0020F 		tst	r2, #2
+ 802 0026 07D1     		bne	.L55
+ 803              	.L50:
+ 722:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 804              		.loc 1 722 1 view .LVU228
+ 805 0028 10BD     		pop	{r4, pc}
+ 806              	.LVL49:
+ 807              	.L54:
+ 687:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 808              		.loc 1 687 7 is_stmt 1 view .LVU229
+ 809 002a 5A69     		ldr	r2, [r3, #20]
+ 810 002c 42F00102 		orr	r2, r2, #1
+ 811 0030 5A61     		str	r2, [r3, #20]
+ 697:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #endif /* USE_HAL_RAMCFG_REGISTER_CALLBACKS */
+ 812              		.loc 1 697 7 view .LVU230
+ 813 0032 FFF7FEFF 		bl	HAL_RAMCFG_DetectSingleErrorCallback
+ 814              	.LVL50:
+ 697:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #endif /* USE_HAL_RAMCFG_REGISTER_CALLBACKS */
+ 815              		.loc 1 697 7 is_stmt 0 view .LVU231
+ 816 0036 EEE7     		b	.L51
+ 817              	.L55:
+ 708:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 818              		.loc 1 708 7 is_stmt 1 view .LVU232
+ 819 0038 5A69     		ldr	r2, [r3, #20]
+ARM GAS  /tmp/ccHXHETX.s 			page 30
+
+
+ 820 003a 42F00202 		orr	r2, r2, #2
+ 821 003e 5A61     		str	r2, [r3, #20]
+ 718:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #endif /* USE_HAL_RAMCFG_REGISTER_CALLBACKS */
+ 822              		.loc 1 718 7 view .LVU233
+ 823 0040 2046     		mov	r0, r4
+ 824 0042 FFF7FEFF 		bl	HAL_RAMCFG_DetectDoubleErrorCallback
+ 825              	.LVL51:
+ 722:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 826              		.loc 1 722 1 is_stmt 0 view .LVU234
+ 827 0046 EFE7     		b	.L50
+ 828              		.cfi_endproc
+ 829              	.LFE894:
+ 831              		.section	.text.HAL_RAMCFG_GetState,"ax",%progbits
+ 832              		.align	1
+ 833              		.global	HAL_RAMCFG_GetState
+ 834              		.syntax unified
+ 835              		.thumb
+ 836              		.thumb_func
+ 838              	HAL_RAMCFG_GetState:
+ 839              	.LVL52:
+ 840              	.LFB897:
+ 755:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 756:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #if (USE_HAL_RAMCFG_REGISTER_CALLBACKS == 1)
+ 757:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 758:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  Register RAMCFG callbacks.
+ 759:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg       : Pointer to a RAMCFG_HandleTypeDef structure that
+ 760:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         contains the configuration information for the
+ 761:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         specified RAMCFG instance.
+ 762:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  CallbackID    : User Callback identifier a HAL_RAMCFG_CallbackIDTypeDef
+ 763:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         ENUM as parameter.
+ 764:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  pCallback     : Pointer to private callback function.
+ 765:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval HAL status.
+ 766:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 767:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** HAL_StatusTypeDef HAL_RAMCFG_RegisterCallback(RAMCFG_HandleTypeDef *hramcfg,
+ 768:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****                                               HAL_RAMCFG_CallbackIDTypeDef CallbackID,
+ 769:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****                                               void (* pCallback)(RAMCFG_HandleTypeDef *_hramcfg))
+ 770:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 771:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 772:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 773:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 774:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_ALL_INSTANCE(hramcfg->Instance));
+ 775:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 776:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   if (pCallback == NULL)
+ 777:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 778:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Update the error code and return error */
+ 779:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->ErrorCode |= HAL_RAMCFG_ERROR_INVALID_CALLBACK;
+ 780:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     return HAL_ERROR;
+ 781:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 782:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 783:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check RAMCFG state */
+ 784:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   if (hramcfg->State == HAL_RAMCFG_STATE_READY)
+ 785:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 786:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     switch (CallbackID)
+ 787:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 788:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       case  HAL_RAMCFG_SE_DETECT_CB_ID:
+ 789:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* Register single error callback */
+ 790:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->DetectSingleErrorCallback = pCallback;
+ARM GAS  /tmp/ccHXHETX.s 			page 31
+
+
+ 791:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 792:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 793:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       case  HAL_RAMCFG_DE_DETECT_CB_ID:
+ 794:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* Register double error callback */
+ 795:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->DetectDoubleErrorCallback = pCallback;
+ 796:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 797:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 798:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       case HAL_RAMCFG_MSPINIT_CB_ID :
+ 799:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* Register msp init callback */
+ 800:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->MspInitCallback = pCallback;
+ 801:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 802:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 803:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       case HAL_RAMCFG_MSPDEINIT_CB_ID :
+ 804:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* Register msp de-init callback */
+ 805:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->MspDeInitCallback = pCallback;
+ 806:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 807:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 808:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       default:
+ 809:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* Update the error code and return error */
+ 810:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->ErrorCode |= HAL_RAMCFG_ERROR_INVALID_CALLBACK;
+ 811:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         status = HAL_ERROR;
+ 812:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 813:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 814:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 815:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   else if (hramcfg->State == HAL_RAMCFG_STATE_RESET)
+ 816:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 817:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     switch (CallbackID)
+ 818:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 819:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       case HAL_RAMCFG_MSPINIT_CB_ID :
+ 820:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* Register msp init callback */
+ 821:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->MspInitCallback = pCallback;
+ 822:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 823:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 824:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       case HAL_RAMCFG_MSPDEINIT_CB_ID :
+ 825:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* Register msp de-init callback */
+ 826:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->MspDeInitCallback = pCallback;
+ 827:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 828:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 829:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       default :
+ 830:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* Update the error code and return error */
+ 831:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->ErrorCode |= HAL_RAMCFG_ERROR_INVALID_CALLBACK;
+ 832:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         status =  HAL_ERROR;
+ 833:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 834:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 835:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 836:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   else
+ 837:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 838:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Update the error code and return error  */
+ 839:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->ErrorCode = HAL_RAMCFG_ERROR_INVALID_CALLBACK;
+ 840:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     status = HAL_ERROR;
+ 841:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 842:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 843:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   return status;
+ 844:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 845:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 846:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 847:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  UnRegister RAMCFG callbacks.
+ARM GAS  /tmp/ccHXHETX.s 			page 32
+
+
+ 848:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg       : Pointer to a RAMCFG_HandleTypeDef structure that
+ 849:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         contains the configuration information for the
+ 850:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         specified RAMCFG instance.
+ 851:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  CallbackID    : User Callback identifier a HAL_RAMCFG_CallbackIDTypeDef
+ 852:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         ENUM as parameter.
+ 853:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval HAL status.
+ 854:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 855:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** HAL_StatusTypeDef HAL_RAMCFG_UnRegisterCallback(RAMCFG_HandleTypeDef *hramcfg, HAL_RAMCFG_CallbackI
+ 856:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 857:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 858:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 859:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 860:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_ALL_INSTANCE(hramcfg->Instance));
+ 861:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 862:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check RAMCFG state */
+ 863:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   if (hramcfg->State == HAL_RAMCFG_STATE_READY)
+ 864:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 865:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     switch (CallbackID)
+ 866:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ 867:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       case  HAL_RAMCFG_SE_DETECT_CB_ID:
+ 868:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* UnRegister single error callback */
+ 869:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->DetectSingleErrorCallback = NULL;
+ 870:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 871:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 872:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       case  HAL_RAMCFG_DE_DETECT_CB_ID:
+ 873:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* UnRegister double error callback */
+ 874:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->DetectDoubleErrorCallback = NULL;
+ 875:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 876:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 877:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       case HAL_RAMCFG_MSPINIT_CB_ID :
+ 878:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* UnRegister msp init callback */
+ 879:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->MspInitCallback = NULL;
+ 880:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 881:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 882:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       case HAL_RAMCFG_MSPDEINIT_CB_ID :
+ 883:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* UnRegister msp de-init callback */
+ 884:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->MspDeInitCallback = NULL;
+ 885:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 886:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 887:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       case  HAL_RAMCFG_ALL_CB_ID:
+ 888:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* UnRegister all available callbacks */
+ 889:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->DetectSingleErrorCallback = NULL;
+ 890:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->DetectDoubleErrorCallback = NULL;
+ 891:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->MspDeInitCallback         = NULL;
+ 892:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->MspInitCallback           = NULL;
+ 893:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 894:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 895:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       default:
+ 896:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* Return error status */
+ 897:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         status = HAL_ERROR;
+ 898:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 899:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 900:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 901:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   else if (hramcfg->State == HAL_RAMCFG_STATE_RESET)
+ 902:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 903:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     switch (CallbackID)
+ 904:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     {
+ARM GAS  /tmp/ccHXHETX.s 			page 33
+
+
+ 905:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       case HAL_RAMCFG_MSPINIT_CB_ID :
+ 906:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* UnRegister msp init callback */
+ 907:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->MspInitCallback = NULL;
+ 908:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 909:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 910:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       case HAL_RAMCFG_MSPDEINIT_CB_ID :
+ 911:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* UnRegister msp de-init callback */
+ 912:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->MspDeInitCallback = NULL;
+ 913:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 914:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 915:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       case  HAL_RAMCFG_ALL_CB_ID:
+ 916:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* UnRegister all available callbacks */
+ 917:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->MspDeInitCallback = NULL;
+ 918:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->MspInitCallback   = NULL;
+ 919:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 920:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 921:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       default :
+ 922:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* Update the error code */
+ 923:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         hramcfg->ErrorCode |= HAL_RAMCFG_ERROR_INVALID_CALLBACK;
+ 924:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 925:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         /* Update return status */
+ 926:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         status =  HAL_ERROR;
+ 927:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****         break;
+ 928:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     }
+ 929:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 930:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   else
+ 931:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   {
+ 932:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     /* Update the error code and return error */
+ 933:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     hramcfg->ErrorCode = HAL_RAMCFG_ERROR_INVALID_CALLBACK;
+ 934:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     status = HAL_ERROR;
+ 935:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   }
+ 936:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 937:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   return status;
+ 938:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 939:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 940:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 941:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @}
+ 942:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 943:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** #endif /* USE_HAL_RAMCFG_REGISTER_CALLBACKS */
+ 944:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 945:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /** @addtogroup RAMCFG_Exported_Functions_Group7
+ 946:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *
+ 947:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** @verbatim
+ 948:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****  ===============================================================================
+ 949:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****                     ##### State and Error Functions  #####
+ 950:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****  ===============================================================================
+ 951:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     [..]
+ 952:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       This section provides functions to check and get the RAMCFG state
+ 953:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       and the error code.
+ 954:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     [..]
+ 955:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_GetState() function allows the user to get the RAMCFG peripheral
+ 956:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       state.
+ 957:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_GetError() function allows the user to get the RAMCFG peripheral error
+ 958:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       code.
+ 959:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 960:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** @endverbatim
+ 961:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @{
+ARM GAS  /tmp/ccHXHETX.s 			page 34
+
+
+ 962:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 963:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 964:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 965:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  Get the RAMCFG peripheral state.
+ 966:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg       : Pointer to a RAMCFG_HandleTypeDef structure that
+ 967:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         contains the configuration information for the
+ 968:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         specified RAMCFG instance.
+ 969:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval RAMCFG state.
+ 970:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 971:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** HAL_RAMCFG_StateTypeDef HAL_RAMCFG_GetState(const RAMCFG_HandleTypeDef *hramcfg)
+ 972:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 841              		.loc 1 972 1 is_stmt 1 view -0
+ 842              		.cfi_startproc
+ 843              		@ args = 0, pretend = 0, frame = 0
+ 844              		@ frame_needed = 0, uses_anonymous_args = 0
+ 845              		@ link register save eliminated.
+ 973:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 974:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_ALL_INSTANCE(hramcfg->Instance));
+ 846              		.loc 1 974 3 view .LVU236
+ 975:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 976:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Return the RAMCFG state */
+ 977:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   return hramcfg->State;
+ 847              		.loc 1 977 3 view .LVU237
+ 978:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 848              		.loc 1 978 1 is_stmt 0 view .LVU238
+ 849 0000 0079     		ldrb	r0, [r0, #4]	@ zero_extendqisi2
+ 850              	.LVL53:
+ 851              		.loc 1 978 1 view .LVU239
+ 852 0002 7047     		bx	lr
+ 853              		.cfi_endproc
+ 854              	.LFE897:
+ 856              		.section	.text.HAL_RAMCFG_GetError,"ax",%progbits
+ 857              		.align	1
+ 858              		.global	HAL_RAMCFG_GetError
+ 859              		.syntax unified
+ 860              		.thumb
+ 861              		.thumb_func
+ 863              	HAL_RAMCFG_GetError:
+ 864              	.LVL54:
+ 865              	.LFB898:
+ 979:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 980:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 981:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  Get the RAMCFG peripheral error code.
+ 982:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg       : Pointer to a RAMCFG_HandleTypeDef structure that
+ 983:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         contains the configuration information for the
+ 984:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                         specified RAMCFG instance.
+ 985:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval RAMCFG error code.
+ 986:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 987:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** uint32_t HAL_RAMCFG_GetError(const RAMCFG_HandleTypeDef *hramcfg)
+ 988:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 866              		.loc 1 988 1 is_stmt 1 view -0
+ 867              		.cfi_startproc
+ 868              		@ args = 0, pretend = 0, frame = 0
+ 869              		@ frame_needed = 0, uses_anonymous_args = 0
+ 870              		@ link register save eliminated.
+ 989:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+ 990:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_ALL_INSTANCE(hramcfg->Instance));
+ARM GAS  /tmp/ccHXHETX.s 			page 35
+
+
+ 871              		.loc 1 990 3 view .LVU241
+ 991:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 992:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Return the RAMCFG error code */
+ 993:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   return hramcfg->ErrorCode;
+ 872              		.loc 1 993 3 view .LVU242
+ 994:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 873              		.loc 1 994 1 is_stmt 0 view .LVU243
+ 874 0000 8068     		ldr	r0, [r0, #8]
+ 875              	.LVL55:
+ 876              		.loc 1 994 1 view .LVU244
+ 877 0002 7047     		bx	lr
+ 878              		.cfi_endproc
+ 879              	.LFE898:
+ 881              		.section	.text.HAL_RAMCFG_EnableAXISRAM,"ax",%progbits
+ 882              		.align	1
+ 883              		.global	HAL_RAMCFG_EnableAXISRAM
+ 884              		.syntax unified
+ 885              		.thumb
+ 886              		.thumb_func
+ 888              	HAL_RAMCFG_EnableAXISRAM:
+ 889              	.LVL56:
+ 890              	.LFB899:
+ 995:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+ 996:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+ 997:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @}
+ 998:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+ 999:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+1000:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+1001:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+1002:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /** @addtogroup RAMCFG_Exported_Functions_Group9
+1003:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *
+1004:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** @verbatim
+1005:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****  ===============================================================================
+1006:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****                       ##### AXISRAM Powerdown Functions  #####
+1007:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****  ===============================================================================
+1008:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     [..]
+1009:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       This section provides functions allowing to shutdown some AXISRAM memories
+1010:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       reduce the consumption.
+1011:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     [..]
+1012:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_EnableAXISRAM() function allows to power on the selected AXISRAM.
+1013:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****     [..]
+1014:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       The HAL_RAMCFG_DisableAXISRAM() function allows to power off the selected AXISRAM.
+1015:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****       AXISRAMi memory is in shutdown, and its content is not retained.
+1016:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** @endverbatim
+1017:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @{
+1018:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+1019:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+1020:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+1021:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  Enable AXISRAM power on.
+1022:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @note   Only AXISRAM2 to AXISRAM6 are available for this feature.
+1023:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg : Pointer to a RAMCFG_HandleTypeDef structure that
+1024:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                   contains the configuration information for the
+1025:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                   specified RAMCFG instance.
+1026:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval None.
+1027:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+1028:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** void HAL_RAMCFG_EnableAXISRAM(const RAMCFG_HandleTypeDef *hramcfg)
+1029:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ARM GAS  /tmp/ccHXHETX.s 			page 36
+
+
+ 891              		.loc 1 1029 1 is_stmt 1 view -0
+ 892              		.cfi_startproc
+ 893              		@ args = 0, pretend = 0, frame = 0
+ 894              		@ frame_needed = 0, uses_anonymous_args = 0
+ 895              		@ link register save eliminated.
+1030:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+1031:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_AXISRAM_POWERDOWN_INSTANCE(hramcfg->Instance));
+ 896              		.loc 1 1031 3 view .LVU246
+1032:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+1033:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* AXISRAMi power on */
+1034:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   CLEAR_BIT(hramcfg->Instance->CR, RAMCFG_AXISRAM_POWERDOWN);
+ 897              		.loc 1 1034 3 view .LVU247
+ 898 0000 0268     		ldr	r2, [r0]
+ 899 0002 1368     		ldr	r3, [r2]
+ 900 0004 23F48013 		bic	r3, r3, #1048576
+ 901 0008 1360     		str	r3, [r2]
+1035:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 902              		.loc 1 1035 1 is_stmt 0 view .LVU248
+ 903 000a 7047     		bx	lr
+ 904              		.cfi_endproc
+ 905              	.LFE899:
+ 907              		.section	.text.HAL_RAMCFG_DisableAXISRAM,"ax",%progbits
+ 908              		.align	1
+ 909              		.global	HAL_RAMCFG_DisableAXISRAM
+ 910              		.syntax unified
+ 911              		.thumb
+ 912              		.thumb_func
+ 914              	HAL_RAMCFG_DisableAXISRAM:
+ 915              	.LVL57:
+ 916              	.LFB900:
+1036:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+1037:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** /**
+1038:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @brief  Disable AXISRAM power on.
+1039:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @note   Only AXISRAM2 to AXISRAM6 are available for this feature.
+1040:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @note   AXISRAMi memory is in shutdown, and its content is not retained.
+1041:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @note   This bit is used to reduce the consumption by powering off the AXISRAMi.
+1042:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @param  hramcfg : Pointer to a RAMCFG_HandleTypeDef structure that
+1043:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                   contains the configuration information for the
+1044:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   *                   specified RAMCFG instance.
+1045:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   * @retval None.
+1046:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   */
+1047:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** void HAL_RAMCFG_DisableAXISRAM(const RAMCFG_HandleTypeDef *hramcfg)
+1048:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** {
+ 917              		.loc 1 1048 1 is_stmt 1 view -0
+ 918              		.cfi_startproc
+ 919              		@ args = 0, pretend = 0, frame = 0
+ 920              		@ frame_needed = 0, uses_anonymous_args = 0
+ 921              		@ link register save eliminated.
+1049:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* Check the parameters */
+1050:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   assert_param(IS_RAMCFG_AXISRAM_POWERDOWN_INSTANCE(hramcfg->Instance));
+ 922              		.loc 1 1050 3 view .LVU250
+1051:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** 
+1052:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   /* AXISRAMi powered off */
+1053:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c ****   SET_BIT(hramcfg->Instance->CR, RAMCFG_AXISRAM_POWERDOWN);
+ 923              		.loc 1 1053 3 view .LVU251
+ 924 0000 0268     		ldr	r2, [r0]
+ 925 0002 1368     		ldr	r3, [r2]
+ARM GAS  /tmp/ccHXHETX.s 			page 37
+
+
+ 926 0004 43F48013 		orr	r3, r3, #1048576
+ 927 0008 1360     		str	r3, [r2]
+1054:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_ramcfg.c **** }
+ 928              		.loc 1 1054 1 is_stmt 0 view .LVU252
+ 929 000a 7047     		bx	lr
+ 930              		.cfi_endproc
+ 931              	.LFE900:
+ 933              		.text
+ 934              	.Letext0:
+ 935              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 936              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 937              		.file 4 "../Drivers/CMSIS/Device/ST/STM32N6xx/Include/stm32n657xx.h"
+ 938              		.file 5 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_def.h"
+ 939              		.file 6 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_ramcfg.h"
+ 940              		.file 7 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal.h"
+ARM GAS  /tmp/ccHXHETX.s 			page 38
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32n6xx_hal_ramcfg.c
+     /tmp/ccHXHETX.s:26     .text.HAL_RAMCFG_MspInit:00000000 $t
+     /tmp/ccHXHETX.s:32     .text.HAL_RAMCFG_MspInit:00000000 HAL_RAMCFG_MspInit
+     /tmp/ccHXHETX.s:47     .text.HAL_RAMCFG_Init:00000000 $t
+     /tmp/ccHXHETX.s:53     .text.HAL_RAMCFG_Init:00000000 HAL_RAMCFG_Init
+     /tmp/ccHXHETX.s:123    .text.HAL_RAMCFG_MspDeInit:00000000 $t
+     /tmp/ccHXHETX.s:129    .text.HAL_RAMCFG_MspDeInit:00000000 HAL_RAMCFG_MspDeInit
+     /tmp/ccHXHETX.s:144    .text.HAL_RAMCFG_DeInit:00000000 $t
+     /tmp/ccHXHETX.s:150    .text.HAL_RAMCFG_DeInit:00000000 HAL_RAMCFG_DeInit
+     /tmp/ccHXHETX.s:215    .text.HAL_RAMCFG_StartECC:00000000 $t
+     /tmp/ccHXHETX.s:221    .text.HAL_RAMCFG_StartECC:00000000 HAL_RAMCFG_StartECC
+     /tmp/ccHXHETX.s:292    .text.HAL_RAMCFG_StopECC:00000000 $t
+     /tmp/ccHXHETX.s:298    .text.HAL_RAMCFG_StopECC:00000000 HAL_RAMCFG_StopECC
+     /tmp/ccHXHETX.s:369    .text.HAL_RAMCFG_EnableNotification:00000000 $t
+     /tmp/ccHXHETX.s:375    .text.HAL_RAMCFG_EnableNotification:00000000 HAL_RAMCFG_EnableNotification
+     /tmp/ccHXHETX.s:428    .text.HAL_RAMCFG_DisableNotification:00000000 $t
+     /tmp/ccHXHETX.s:434    .text.HAL_RAMCFG_DisableNotification:00000000 HAL_RAMCFG_DisableNotification
+     /tmp/ccHXHETX.s:487    .text.HAL_RAMCFG_IsECCSingleErrorDetected:00000000 $t
+     /tmp/ccHXHETX.s:493    .text.HAL_RAMCFG_IsECCSingleErrorDetected:00000000 HAL_RAMCFG_IsECCSingleErrorDetected
+     /tmp/ccHXHETX.s:514    .text.HAL_RAMCFG_IsECCDoubleErrorDetected:00000000 $t
+     /tmp/ccHXHETX.s:520    .text.HAL_RAMCFG_IsECCDoubleErrorDetected:00000000 HAL_RAMCFG_IsECCDoubleErrorDetected
+     /tmp/ccHXHETX.s:546    .text.HAL_RAMCFG_GetSingleErrorAddress:00000000 $t
+     /tmp/ccHXHETX.s:552    .text.HAL_RAMCFG_GetSingleErrorAddress:00000000 HAL_RAMCFG_GetSingleErrorAddress
+     /tmp/ccHXHETX.s:573    .text.HAL_RAMCFG_GetDoubleErrorAddress:00000000 $t
+     /tmp/ccHXHETX.s:579    .text.HAL_RAMCFG_GetDoubleErrorAddress:00000000 HAL_RAMCFG_GetDoubleErrorAddress
+     /tmp/ccHXHETX.s:600    .text.HAL_RAMCFG_Erase:00000000 $t
+     /tmp/ccHXHETX.s:606    .text.HAL_RAMCFG_Erase:00000000 HAL_RAMCFG_Erase
+     /tmp/ccHXHETX.s:713    .text.HAL_RAMCFG_DetectSingleErrorCallback:00000000 $t
+     /tmp/ccHXHETX.s:719    .text.HAL_RAMCFG_DetectSingleErrorCallback:00000000 HAL_RAMCFG_DetectSingleErrorCallback
+     /tmp/ccHXHETX.s:734    .text.HAL_RAMCFG_DetectDoubleErrorCallback:00000000 $t
+     /tmp/ccHXHETX.s:740    .text.HAL_RAMCFG_DetectDoubleErrorCallback:00000000 HAL_RAMCFG_DetectDoubleErrorCallback
+     /tmp/ccHXHETX.s:755    .text.HAL_RAMCFG_IRQHandler:00000000 $t
+     /tmp/ccHXHETX.s:761    .text.HAL_RAMCFG_IRQHandler:00000000 HAL_RAMCFG_IRQHandler
+     /tmp/ccHXHETX.s:832    .text.HAL_RAMCFG_GetState:00000000 $t
+     /tmp/ccHXHETX.s:838    .text.HAL_RAMCFG_GetState:00000000 HAL_RAMCFG_GetState
+     /tmp/ccHXHETX.s:857    .text.HAL_RAMCFG_GetError:00000000 $t
+     /tmp/ccHXHETX.s:863    .text.HAL_RAMCFG_GetError:00000000 HAL_RAMCFG_GetError
+     /tmp/ccHXHETX.s:882    .text.HAL_RAMCFG_EnableAXISRAM:00000000 $t
+     /tmp/ccHXHETX.s:888    .text.HAL_RAMCFG_EnableAXISRAM:00000000 HAL_RAMCFG_EnableAXISRAM
+     /tmp/ccHXHETX.s:908    .text.HAL_RAMCFG_DisableAXISRAM:00000000 $t
+     /tmp/ccHXHETX.s:914    .text.HAL_RAMCFG_DisableAXISRAM:00000000 HAL_RAMCFG_DisableAXISRAM
+
+UNDEFINED SYMBOLS
+HAL_GetTick
