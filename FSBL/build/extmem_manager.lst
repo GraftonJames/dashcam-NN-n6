@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccrQ1STE.s 			page 1
+ARM GAS  /tmp/ccH4lDtf.s 			page 1
 
 
    1              		.arch armv8.1-m.main
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccrQ1STE.s 			page 1
   23:Src/extmem_manager.c **** #include <string.h>
   24:Src/extmem_manager.c **** 
   25:Src/extmem_manager.c **** /* USER CODE BEGIN Includes */
-ARM GAS  /tmp/ccrQ1STE.s 			page 2
+ARM GAS  /tmp/ccH4lDtf.s 			page 2
 
 
   26:Src/extmem_manager.c **** 
@@ -111,14 +111,14 @@ ARM GAS  /tmp/ccrQ1STE.s 			page 1
   64:Src/extmem_manager.c ****   /* Initialization of the memory parameters */
   65:Src/extmem_manager.c ****   memset(extmem_list_config, 0x0, sizeof(extmem_list_config));
   43              		.loc 1 65 3 view .LVU1
-  44 0002 094C     		ldr	r4, .L3
+  44 0002 0A4C     		ldr	r4, .L3
   45 0004 AC22     		movs	r2, #172
   46 0006 0021     		movs	r1, #0
   47 0008 2046     		mov	r0, r4
   48 000a FFF7FEFF 		bl	memset
   49              	.LVL0:
   66:Src/extmem_manager.c **** 
-ARM GAS  /tmp/ccrQ1STE.s 			page 3
+ARM GAS  /tmp/ccH4lDtf.s 			page 3
 
 
   67:Src/extmem_manager.c ****   /* EXTMEMORY_1 */
@@ -127,61 +127,64 @@ ARM GAS  /tmp/ccrQ1STE.s 			page 1
   69:Src/extmem_manager.c ****   extmem_list_config[0].Handle = (void*)&hxspi2;
   51              		.loc 1 69 3 view .LVU3
   52              		.loc 1 69 32 is_stmt 0 view .LVU4
-  53 000e 074B     		ldr	r3, .L3+4
+  53 000e 084B     		ldr	r3, .L3+4
   54 0010 6360     		str	r3, [r4, #4]
-  70:Src/extmem_manager.c ****   extmem_list_config[0].ConfigType = EXTMEM_LINK_CONFIG_1LINE;
+  70:Src/extmem_manager.c ****   extmem_list_config[0].ConfigType = EXTMEM_LINK_CONFIG_8LINES;
   55              		.loc 1 70 3 is_stmt 1 view .LVU5
+  56              		.loc 1 70 36 is_stmt 0 view .LVU6
+  57 0012 0323     		movs	r3, #3
+  58 0014 2372     		strb	r3, [r4, #8]
   71:Src/extmem_manager.c **** 
   72:Src/extmem_manager.c ****   EXTMEM_Init(EXTMEMORY_1, HAL_RCCEx_GetPeriphCLKFreq(RCC_PERIPHCLK_XSPI2));
-  56              		.loc 1 72 3 view .LVU6
-  57 0012 0020     		movs	r0, #0
-  58 0014 4FF40001 		mov	r1, #8388608
-  59 0018 FFF7FEFF 		bl	HAL_RCCEx_GetPeriphCLKFreq
-  60              	.LVL1:
-  61 001c 0146     		mov	r1, r0
-  62              		.loc 1 72 3 is_stmt 0 discriminator 1 view .LVU7
-  63 001e 0020     		movs	r0, #0
-  64 0020 FFF7FEFF 		bl	EXTMEM_Init
-  65              	.LVL2:
+  59              		.loc 1 72 3 is_stmt 1 view .LVU7
+  60 0016 0020     		movs	r0, #0
+  61 0018 4FF40001 		mov	r1, #8388608
+  62 001c FFF7FEFF 		bl	HAL_RCCEx_GetPeriphCLKFreq
+  63              	.LVL1:
+  64 0020 0146     		mov	r1, r0
+  65              		.loc 1 72 3 is_stmt 0 discriminator 1 view .LVU8
+  66 0022 0020     		movs	r0, #0
+  67 0024 FFF7FEFF 		bl	EXTMEM_Init
+  68              	.LVL2:
   73:Src/extmem_manager.c **** 
   74:Src/extmem_manager.c ****   /* USER CODE BEGIN MX_EXTMEM_Init_PostTreatment */
   75:Src/extmem_manager.c **** 
   76:Src/extmem_manager.c ****   /* USER CODE END MX_EXTMEM_Init_PostTreatment */
   77:Src/extmem_manager.c **** }
-  66              		.loc 1 77 1 view .LVU8
-  67 0024 10BD     		pop	{r4, pc}
-  68              	.L4:
-  69 0026 00BF     		.align	2
-  70              	.L3:
-  71 0028 00000000 		.word	extmem_list_config
-  72 002c 00000000 		.word	hxspi2
-  73              		.cfi_endproc
-  74              	.LFE881:
-  76              		.text
-  77              	.Letext0:
-  78              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
-  79              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
-  80              		.file 4 "../Drivers/CMSIS/Device/ST/STM32N6xx/Include/stm32n657xx.h"
-  81              		.file 5 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_def.h"
-  82              		.file 6 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dma.h"
-  83              		.file 7 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dma_ex.h"
-  84              		.file 8 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_xspi.h"
-  85              		.file 9 "../Drivers/STM32_ExtMem_Manager/stm32_extmem.h"
-  86              		.file 10 "../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi_type.h"
-  87              		.file 11 "../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver_type.h"
-  88              		.file 12 "../Drivers/STM32_ExtMem_Manager/stm32_extmem_type.h"
-  89              		.file 13 "Inc/stm32_extmem_conf.h"
-  90              		.file 14 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_rcc_ex.h"
-  91              		.file 15 "/usr/arm-none-eabi/include/string.h"
-  92              		.file 16 "<built-in>"
-ARM GAS  /tmp/ccrQ1STE.s 			page 4
+  69              		.loc 1 77 1 view .LVU9
+  70 0028 10BD     		pop	{r4, pc}
+  71              	.L4:
+  72 002a 00BF     		.align	2
+  73              	.L3:
+  74 002c 00000000 		.word	extmem_list_config
+  75 0030 00000000 		.word	hxspi2
+  76              		.cfi_endproc
+  77              	.LFE881:
+  79              		.text
+  80              	.Letext0:
+  81              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+  82              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+  83              		.file 4 "../Drivers/CMSIS/Device/ST/STM32N6xx/Include/stm32n657xx.h"
+  84              		.file 5 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_def.h"
+  85              		.file 6 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dma.h"
+  86              		.file 7 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dma_ex.h"
+  87              		.file 8 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_xspi.h"
+  88              		.file 9 "../Drivers/STM32_ExtMem_Manager/stm32_extmem.h"
+  89              		.file 10 "../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi_type.h"
+  90              		.file 11 "../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver_type.h"
+  91              		.file 12 "../Drivers/STM32_ExtMem_Manager/stm32_extmem_type.h"
+  92              		.file 13 "Inc/stm32_extmem_conf.h"
+  93              		.file 14 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_rcc_ex.h"
+  94              		.file 15 "/usr/arm-none-eabi/include/string.h"
+  95              		.file 16 "<built-in>"
+ARM GAS  /tmp/ccH4lDtf.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 extmem_manager.c
-     /tmp/ccrQ1STE.s:26     .text.MX_EXTMEM_MANAGER_Init:00000000 $t
-     /tmp/ccrQ1STE.s:32     .text.MX_EXTMEM_MANAGER_Init:00000000 MX_EXTMEM_MANAGER_Init
-     /tmp/ccrQ1STE.s:71     .text.MX_EXTMEM_MANAGER_Init:00000028 $d
+     /tmp/ccH4lDtf.s:26     .text.MX_EXTMEM_MANAGER_Init:00000000 $t
+     /tmp/ccH4lDtf.s:32     .text.MX_EXTMEM_MANAGER_Init:00000000 MX_EXTMEM_MANAGER_Init
+     /tmp/ccH4lDtf.s:74     .text.MX_EXTMEM_MANAGER_Init:0000002c $d
 
 UNDEFINED SYMBOLS
 memset

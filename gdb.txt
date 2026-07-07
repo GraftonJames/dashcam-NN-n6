@@ -526,3 +526,5 @@ $5 = (uint8_t *) 0x24050000 "STM2"
 ❌️ Only values in memory can be extended with '@'.
 ❌️ Cannot access memory at address 0x70100000
 ❌️ Quit
+0x18003514 in ?? ()
+❌️ Remote connection closed

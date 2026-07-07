@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccGKXWMZ.s 			page 1
+ARM GAS  /tmp/cc7XxhG3.s 			page 1
 
 
    1              		.arch armv8.1-m.main
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
   23:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   * @{
   24:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   */
   25:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
-ARM GAS  /tmp/ccGKXWMZ.s 			page 2
+ARM GAS  /tmp/cc7XxhG3.s 			page 2
 
 
   26:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** /** @defgroup BOOT_LRUN
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
   80:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   */
   81:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
   82:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** /**
-ARM GAS  /tmp/ccGKXWMZ.s 			page 3
+ARM GAS  /tmp/cc7XxhG3.s 			page 3
 
 
   83:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   *  @defgroup BOOT_LRUN_Private_Functions Boot LRUN private functions
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
   70 0010 2046     		mov	r0, r4
   71 0012 FFF7FEFF 		bl	EXTMEM_GetMapAddress
   72              	.LVL3:
-ARM GAS  /tmp/ccGKXWMZ.s 			page 4
+ARM GAS  /tmp/cc7XxhG3.s 			page 4
 
 
   73              		.loc 1 99 5 discriminator 1 view .LVU11
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  107              	.LBE49:
  117:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****         break;
  118:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       }
-ARM GAS  /tmp/ccGKXWMZ.s 			page 5
+ARM GAS  /tmp/cc7XxhG3.s 			page 5
 
 
  119:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****     }
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  153:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       source = (uint8_t *)(MapAddress + EXTMEM_LRUN_SOURCE_ADDRESS);
  154:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       img_size = BOOT_GetApplicationSize((uint32_t) source);
  155:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       /* Copy from source to destination in mapped mode */
-ARM GAS  /tmp/ccGKXWMZ.s 			page 6
+ARM GAS  /tmp/cc7XxhG3.s 			page 6
 
 
  156:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       for (uint32_t index = 0; index < img_size; index++)
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  210:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   typedef  void (*pFunction)(void);
  211:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   static pFunction JumpToApp;
  212:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   uint32_t Application_vector;
-ARM GAS  /tmp/ccGKXWMZ.s 			page 7
+ARM GAS  /tmp/cc7XxhG3.s 			page 7
 
 
  213:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   /* Suspend SysTick */
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  267:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** __weak uint32_t BOOT_GetApplicationSize(uint32_t img_addr)
  268:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** {
  130              		.loc 1 268 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccGKXWMZ.s 			page 8
+ARM GAS  /tmp/cc7XxhG3.s 			page 8
 
 
  131              		.cfi_startproc
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  148:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   {
  177              		.loc 1 148 3 view .LVU36
  148:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   {
-ARM GAS  /tmp/ccGKXWMZ.s 			page 9
+ARM GAS  /tmp/cc7XxhG3.s 			page 9
 
 
  178              		.loc 1 148 11 is_stmt 0 view .LVU37
@@ -489,8 +489,8 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  148:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   {
  183              		.loc 1 148 3 discriminator 1 view .LVU38
  184 000c B0F1FF3F 		cmp	r0, #-1
- 185 0010 14D0     		beq	.L12
- 186 0012 10BB     		cbnz	r0, .L16
+ 185 0010 12D0     		beq	.L12
+ 186 0012 08BB     		cbnz	r0, .L16
  153:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       img_size = BOOT_GetApplicationSize((uint32_t) source);
  187              		.loc 1 153 7 is_stmt 1 view .LVU39
  153:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       img_size = BOOT_GetApplicationSize((uint32_t) source);
@@ -515,105 +515,100 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  201 0020 0023     		movs	r3, #0
  156:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       {
  202              		.loc 1 156 7 view .LVU46
- 203 0022 06E0     		b	.L14
+ 203 0022 04E0     		b	.L14
  204              	.LVL16:
  205              	.L15:
  158:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       }
  206              		.loc 1 158 9 is_stmt 1 view .LVU47
  158:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       }
  207              		.loc 1 158 20 is_stmt 0 view .LVU48
- 208 0024 03F11052 		add	r2, r3, #603979776
- 209 0028 02F5A022 		add	r2, r2, #327680
+ 208 0024 03F15052 		add	r2, r3, #872415232
  158:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       }
- 210              		.loc 1 158 36 view .LVU49
- 211 002c E15C     		ldrb	r1, [r4, r3]	@ zero_extendqisi2
+ 209              		.loc 1 158 36 view .LVU49
+ 210 0028 E15C     		ldrb	r1, [r4, r3]	@ zero_extendqisi2
  158:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       }
- 212              		.loc 1 158 28 view .LVU50
- 213 002e 1170     		strb	r1, [r2]
+ 211              		.loc 1 158 28 view .LVU50
+ 212 002a 1170     		strb	r1, [r2]
  156:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       {
- 214              		.loc 1 156 55 is_stmt 1 discriminator 1 view .LVU51
- 215 0030 0133     		adds	r3, r3, #1
- 216              	.LVL17:
- 217              	.L14:
+ 213              		.loc 1 156 55 is_stmt 1 discriminator 1 view .LVU51
+ 214 002c 0133     		adds	r3, r3, #1
+ 215              	.LVL17:
+ 216              	.L14:
  156:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       {
- 218              		.loc 1 156 38 discriminator 2 view .LVU52
- 219 0032 8342     		cmp	r3, r0
-ARM GAS  /tmp/ccGKXWMZ.s 			page 10
+ 217              		.loc 1 156 38 discriminator 2 view .LVU52
+ 218 002e 8342     		cmp	r3, r0
+ 219 0030 F8D3     		bcc	.L15
+ARM GAS  /tmp/cc7XxhG3.s 			page 10
 
 
- 220 0034 F6D3     		bcc	.L15
- 221              	.LBE50:
+ 220              	.LBE50:
  130:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   uint8_t *source;
- 222              		.loc 1 130 22 is_stmt 0 view .LVU53
- 223 0036 0020     		movs	r0, #0
- 224              	.LVL18:
- 225              	.L13:
+ 221              		.loc 1 130 22 is_stmt 0 view .LVU53
+ 222 0032 0020     		movs	r0, #0
+ 223              	.LVL18:
+ 224              	.L13:
  200:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** }
- 226              		.loc 1 200 3 is_stmt 1 view .LVU54
+ 225              		.loc 1 200 3 is_stmt 1 view .LVU54
  201:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
- 227              		.loc 1 201 1 is_stmt 0 view .LVU55
- 228 0038 02B0     		add	sp, sp, #8
- 229              	.LCFI5:
- 230              		.cfi_remember_state
- 231              		.cfi_def_cfa_offset 8
- 232              		@ sp needed
- 233 003a 10BD     		pop	{r4, pc}
- 234              	.LVL19:
- 235              	.L12:
- 236              	.LCFI6:
- 237              		.cfi_restore_state
+ 226              		.loc 1 201 1 is_stmt 0 view .LVU55
+ 227 0034 02B0     		add	sp, sp, #8
+ 228              	.LCFI5:
+ 229              		.cfi_remember_state
+ 230              		.cfi_def_cfa_offset 8
+ 231              		@ sp needed
+ 232 0036 10BD     		pop	{r4, pc}
+ 233              	.LVL19:
+ 234              	.L12:
+ 235              	.LCFI6:
+ 236              		.cfi_restore_state
  175:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       /* Manage the copy using EXTMEM_Read */
- 238              		.loc 1 175 7 is_stmt 1 view .LVU56
+ 237              		.loc 1 175 7 is_stmt 1 view .LVU56
  175:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       /* Manage the copy using EXTMEM_Read */
- 239              		.loc 1 175 18 is_stmt 0 view .LVU57
- 240 003c 4FF48010 		mov	r0, #1048576
- 241 0040 FFF7FEFF 		bl	BOOT_GetApplicationSize
- 242              	.LVL20:
- 243 0044 0346     		mov	r3, r0
- 244              	.LVL21:
+ 238              		.loc 1 175 18 is_stmt 0 view .LVU57
+ 239 0038 4FF48010 		mov	r0, #1048576
+ 240 003c FFF7FEFF 		bl	BOOT_GetApplicationSize
+ 241              	.LVL20:
+ 242 0040 0346     		mov	r3, r0
+ 243              	.LVL21:
  177:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       {
- 245              		.loc 1 177 7 is_stmt 1 view .LVU58
+ 244              		.loc 1 177 7 is_stmt 1 view .LVU58
  177:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       {
- 246              		.loc 1 177 24 is_stmt 0 view .LVU59
- 247 0046 064A     		ldr	r2, .L19
- 248 0048 4FF48011 		mov	r1, #1048576
- 249 004c 0020     		movs	r0, #0
- 250              	.LVL22:
+ 245              		.loc 1 177 24 is_stmt 0 view .LVU59
+ 246 0042 4FF05052 		mov	r2, #872415232
+ 247 0046 4FF48011 		mov	r1, #1048576
+ 248 004a 0020     		movs	r0, #0
+ 249              	.LVL22:
  177:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       {
- 251              		.loc 1 177 24 view .LVU60
- 252 004e FFF7FEFF 		bl	EXTMEM_Read
- 253              	.LVL23:
+ 250              		.loc 1 177 24 view .LVU60
+ 251 004c FFF7FEFF 		bl	EXTMEM_Read
+ 252              	.LVL23:
  177:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       {
- 254              		.loc 1 177 10 discriminator 1 view .LVU61
- 255 0052 0028     		cmp	r0, #0
- 256 0054 F0D0     		beq	.L13
+ 253              		.loc 1 177 10 discriminator 1 view .LVU61
+ 254 0050 0028     		cmp	r0, #0
+ 255 0052 EFD0     		beq	.L13
  179:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****       }
- 257              		.loc 1 179 14 view .LVU62
- 258 0056 0420     		movs	r0, #4
- 259 0058 EEE7     		b	.L13
- 260              	.LVL24:
- 261              	.L16:
+ 256              		.loc 1 179 14 view .LVU62
+ 257 0054 0420     		movs	r0, #4
+ 258 0056 EDE7     		b	.L13
+ 259              	.LVL24:
+ 260              	.L16:
  148:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   {
- 262              		.loc 1 148 3 discriminator 1 view .LVU63
- 263 005a 0320     		movs	r0, #3
- 264 005c ECE7     		b	.L13
- 265              	.L20:
-ARM GAS  /tmp/ccGKXWMZ.s 			page 11
+ 261              		.loc 1 148 3 discriminator 1 view .LVU63
+ 262 0058 0320     		movs	r0, #3
+ 263 005a EBE7     		b	.L13
+ 264              		.cfi_endproc
+ 265              	.LFE883:
+ARM GAS  /tmp/cc7XxhG3.s 			page 11
 
 
- 266 005e 00BF     		.align	2
- 267              	.L19:
- 268 0060 00000524 		.word	604307456
- 269              		.cfi_endproc
- 270              	.LFE883:
- 272              		.section	.text.BOOT_GetApplicationVectorTable,"ax",%progbits
- 273              		.align	1
- 274              		.weak	BOOT_GetApplicationVectorTable
- 275              		.syntax unified
- 276              		.thumb
- 277              		.thumb_func
- 279              	BOOT_GetApplicationVectorTable:
- 280              	.LFB886:
+ 267              		.section	.text.BOOT_GetApplicationVectorTable,"ax",%progbits
+ 268              		.align	1
+ 269              		.weak	BOOT_GetApplicationVectorTable
+ 270              		.syntax unified
+ 271              		.thumb
+ 272              		.thumb_func
+ 274              	BOOT_GetApplicationVectorTable:
+ 275              	.LFB886:
  272:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
  273:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** /**
  274:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   * @brief Gets the address of the application's vector table.
@@ -621,16 +616,16 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  276:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   */
  277:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** __weak uint32_t BOOT_GetApplicationVectorTable(void)
  278:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** {
- 281              		.loc 1 278 1 is_stmt 1 view -0
- 282              		.cfi_startproc
- 283              		@ args = 0, pretend = 0, frame = 0
- 284              		@ frame_needed = 0, uses_anonymous_args = 0
- 285              		@ link register save eliminated.
+ 276              		.loc 1 278 1 is_stmt 1 view -0
+ 277              		.cfi_startproc
+ 278              		@ args = 0, pretend = 0, frame = 0
+ 279              		@ frame_needed = 0, uses_anonymous_args = 0
+ 280              		@ link register save eliminated.
  279:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   uint32_t vector_table;
- 286              		.loc 1 279 3 view .LVU65
+ 281              		.loc 1 279 3 view .LVU65
  280:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** #if defined(EXTMEM_LRUN_DESTINATION_INTERNAL)
  281:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   vector_table = EXTMEM_LRUN_DESTINATION_ADDRESS;
- 287              		.loc 1 281 3 view .LVU66
+ 282              		.loc 1 281 3 view .LVU66
  282:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** #else
  283:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   if (EXTMEM_OK != EXTMEM_GetMapAddress(EXTMEM_LRUN_DESTINATION, &vector_table))
  284:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   {
@@ -639,72 +634,72 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  287:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   vector_table += EXTMEM_LRUN_DESTINATION_ADDRESS;
  288:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** #endif /* EXTMEM_LRUN_DESTINATION_INTERNAL */
  289:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   vector_table += EXTMEM_HEADER_OFFSET;
- 288              		.loc 1 289 3 view .LVU67
- 289              	.LVL25:
+ 283              		.loc 1 289 3 view .LVU67
+ 284              	.LVL25:
  290:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   return vector_table;
- 290              		.loc 1 290 3 view .LVU68
+ 285              		.loc 1 290 3 view .LVU68
  291:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** }
- 291              		.loc 1 291 1 is_stmt 0 view .LVU69
- 292 0000 0048     		ldr	r0, .L22
- 293 0002 7047     		bx	lr
- 294              	.L23:
- 295              		.align	2
- 296              	.L22:
- 297 0004 00040524 		.word	604308480
- 298              		.cfi_endproc
- 299              	.LFE886:
- 301              		.section	.text.JumpToApplication,"ax",%progbits
- 302              		.align	1
- 303              		.global	JumpToApplication
- 304              		.syntax unified
- 305              		.thumb
-ARM GAS  /tmp/ccGKXWMZ.s 			page 12
-
-
- 306              		.thumb_func
- 308              	JumpToApplication:
- 309              	.LFB884:
+ 286              		.loc 1 291 1 is_stmt 0 view .LVU69
+ 287 0000 0048     		ldr	r0, .L20
+ 288 0002 7047     		bx	lr
+ 289              	.L21:
+ 290              		.align	2
+ 291              	.L20:
+ 292 0004 00040034 		.word	872416256
+ 293              		.cfi_endproc
+ 294              	.LFE886:
+ 296              		.section	.text.JumpToApplication,"ax",%progbits
+ 297              		.align	1
+ 298              		.global	JumpToApplication
+ 299              		.syntax unified
+ 300              		.thumb
+ 301              		.thumb_func
+ 303              	JumpToApplication:
+ 304              	.LFB884:
  208:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   uint32_t primask_bit;
- 310              		.loc 1 208 1 is_stmt 1 view -0
- 311              		.cfi_startproc
- 312              		@ args = 0, pretend = 0, frame = 16
- 313              		@ frame_needed = 0, uses_anonymous_args = 0
- 314 0000 30B5     		push	{r4, r5, lr}
- 315              	.LCFI7:
- 316              		.cfi_def_cfa_offset 12
- 317              		.cfi_offset 4, -12
- 318              		.cfi_offset 5, -8
- 319              		.cfi_offset 14, -4
- 320 0002 85B0     		sub	sp, sp, #20
- 321              	.LCFI8:
- 322              		.cfi_def_cfa_offset 32
+ 305              		.loc 1 208 1 is_stmt 1 view -0
+ARM GAS  /tmp/cc7XxhG3.s 			page 12
+
+
+ 306              		.cfi_startproc
+ 307              		@ args = 0, pretend = 0, frame = 16
+ 308              		@ frame_needed = 0, uses_anonymous_args = 0
+ 309 0000 30B5     		push	{r4, r5, lr}
+ 310              	.LCFI7:
+ 311              		.cfi_def_cfa_offset 12
+ 312              		.cfi_offset 4, -12
+ 313              		.cfi_offset 5, -8
+ 314              		.cfi_offset 14, -4
+ 315 0002 85B0     		sub	sp, sp, #20
+ 316              	.LCFI8:
+ 317              		.cfi_def_cfa_offset 32
  209:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   typedef  void (*pFunction)(void);
- 323              		.loc 1 209 3 view .LVU71
+ 318              		.loc 1 209 3 view .LVU71
  210:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   static pFunction JumpToApp;
- 324              		.loc 1 210 3 view .LVU72
+ 319              		.loc 1 210 3 view .LVU72
  211:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   uint32_t Application_vector;
- 325              		.loc 1 211 3 view .LVU73
+ 320              		.loc 1 211 3 view .LVU73
  212:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   /* Suspend SysTick */
- 326              		.loc 1 212 3 view .LVU74
+ 321              		.loc 1 212 3 view .LVU74
  214:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
- 327              		.loc 1 214 3 view .LVU75
- 328 0004 FFF7FEFF 		bl	HAL_SuspendTick
- 329              	.LVL26:
+ 322              		.loc 1 214 3 view .LVU75
+ 323 0004 FFF7FEFF 		bl	HAL_SuspendTick
+ 324              	.LVL26:
  218:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   {
- 330              		.loc 1 218 3 view .LVU76
+ 325              		.loc 1 218 3 view .LVU76
  218:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   {
- 331              		.loc 1 218 10 is_stmt 0 view .LVU77
- 332 0008 2E4B     		ldr	r3, .L30
- 333 000a 5B69     		ldr	r3, [r3, #20]
+ 326              		.loc 1 218 10 is_stmt 0 view .LVU77
+ 327 0008 2E4B     		ldr	r3, .L28
+ 328 000a 5B69     		ldr	r3, [r3, #20]
  218:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   {
- 334              		.loc 1 218 6 view .LVU78
- 335 000c 13F4003F 		tst	r3, #131072
- 336 0010 0FD0     		beq	.L25
+ 329              		.loc 1 218 6 view .LVU78
+ 330 000c 13F4003F 		tst	r3, #131072
+ 331 0010 0FD0     		beq	.L23
  220:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   }
- 337              		.loc 1 220 5 is_stmt 1 view .LVU79
- 338              	.LBB51:
- 339              	.LBI51:
- 340              		.file 2 "../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h"
+ 332              		.loc 1 220 5 is_stmt 1 view .LVU79
+ 333              	.LBB51:
+ 334              	.LBI51:
+ 335              		.file 2 "../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h"
    1:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** /*
    2:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****  * Copyright (c) 2020-2021 Arm Limited. All rights reserved.
    3:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****  *
@@ -718,14 +713,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
   11:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****  *
   12:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****  * Unless required by applicable law or agreed to in writing, software
   13:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
-ARM GAS  /tmp/ccGKXWMZ.s 			page 13
-
-
   14:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   15:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****  * See the License for the specific language governing permissions and
   16:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****  * limitations under the License.
   17:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****  */
   18:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** 
+ARM GAS  /tmp/cc7XxhG3.s 			page 13
+
+
   19:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** /*
   20:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****  * CMSIS-Core(M) Level 1 Cache API for Armv7-M and later
   21:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****  */
@@ -778,24 +773,24 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
   68:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****   #endif
   69:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** }
   70:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** 
-ARM GAS  /tmp/ccGKXWMZ.s 			page 14
-
-
   71:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** 
   72:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** /**
   73:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****   \brief   Disable I-Cache
   74:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****   \details Turns off I-Cache
   75:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****   */
+ARM GAS  /tmp/cc7XxhG3.s 			page 14
+
+
   76:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** __STATIC_FORCEINLINE void SCB_DisableICache (void)
- 341              		.loc 2 76 27 view .LVU80
- 342              	.LBB52:
+ 336              		.loc 2 76 27 view .LVU80
+ 337              	.LBB52:
   77:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** {
   78:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****   #if defined (__ICACHE_PRESENT) && (__ICACHE_PRESENT == 1U)
   79:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     __DSB();
- 343              		.loc 2 79 5 view .LVU81
- 344              	.LBB53:
- 345              	.LBI53:
- 346              		.file 3 "../Drivers/CMSIS/Include/cmsis_gcc.h"
+ 338              		.loc 2 79 5 view .LVU81
+ 339              	.LBB53:
+ 340              	.LBI53:
+ 341              		.file 3 "../Drivers/CMSIS/Include/cmsis_gcc.h"
    1:../Drivers/CMSIS/Include/cmsis_gcc.h **** /**************************************************************************//**
    2:../Drivers/CMSIS/Include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
    3:../Drivers/CMSIS/Include/cmsis_gcc.h ****  * @brief    CMSIS compiler GCC header file
@@ -838,14 +833,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
   40:../Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   41:../Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __INLINE
   42:../Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __INLINE                               inline
-ARM GAS  /tmp/ccGKXWMZ.s 			page 15
-
-
   43:../Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   44:../Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __STATIC_INLINE
   45:../Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __STATIC_INLINE                        static inline
   46:../Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   47:../Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __STATIC_FORCEINLINE
+ARM GAS  /tmp/cc7XxhG3.s 			page 15
+
+
   48:../Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __STATIC_FORCEINLINE                   __attribute__((always_inline)) static inline
   49:../Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   50:../Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __NO_RETURN
@@ -898,14 +893,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
   97:../Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
   98:../Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
   99:../Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_READ { uint32_t v; };
-ARM GAS  /tmp/ccGKXWMZ.s 			page 16
-
-
  100:../Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
  101:../Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_READ(addr)          (((const struct T_UINT32_READ *)(const void *)(add
  102:../Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  103:../Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ALIGNED
  104:../Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ALIGNED(x)                           __attribute__((aligned(x)))
+ARM GAS  /tmp/cc7XxhG3.s 			page 16
+
+
  105:../Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  106:../Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __RESTRICT
  107:../Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __RESTRICT                             __restrict
@@ -958,14 +953,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  154:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Wait For Event is a hint instruction that permits the processor to enter
  155:../Drivers/CMSIS/Include/cmsis_gcc.h ****            a low-power state until one of a number of events occurs.
  156:../Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /tmp/ccGKXWMZ.s 			page 17
-
-
  157:../Drivers/CMSIS/Include/cmsis_gcc.h **** #define __WFE()         __ASM volatile ("wfe":::"memory")
  158:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
  159:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
  160:../Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  161:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Send Event
+ARM GAS  /tmp/cc7XxhG3.s 			page 17
+
+
  162:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Send Event is a hint instruction. It causes an event to be signaled to the CPU.
  163:../Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  164:../Drivers/CMSIS/Include/cmsis_gcc.h **** #define __SEV()         __ASM volatile ("sev")
@@ -989,105 +984,105 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  182:../Drivers/CMSIS/Include/cmsis_gcc.h ****            It completes when all explicit memory accesses before this instruction complete.
  183:../Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  184:../Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __DSB(void)
- 347              		.loc 3 184 27 view .LVU82
- 348              	.LBB54:
+ 342              		.loc 3 184 27 view .LVU82
+ 343              	.LBB54:
  185:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
  186:../Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("dsb 0xF":::"memory");
- 349              		.loc 3 186 3 view .LVU83
+ 344              		.loc 3 186 3 view .LVU83
+ 345              		.syntax unified
+ 346              	@ 186 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 347 0012 BFF34F8F 		dsb 0xF
+ 348              	@ 0 "" 2
+ 349              		.thumb
  350              		.syntax unified
- 351              	@ 186 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 352 0012 BFF34F8F 		dsb 0xF
- 353              	@ 0 "" 2
- 354              		.thumb
- 355              		.syntax unified
- 356              	.LBE54:
- 357              	.LBE53:
+ 351              	.LBE54:
+ 352              	.LBE53:
   80:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     __ISB();
- 358              		.loc 2 80 5 view .LVU84
- 359              	.LBB55:
- 360              	.LBI55:
+ 353              		.loc 2 80 5 view .LVU84
+ 354              	.LBB55:
+ 355              	.LBI55:
  173:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
- 361              		.loc 3 173 27 view .LVU85
- 362              	.LBB56:
+ 356              		.loc 3 173 27 view .LVU85
+ 357              	.LBB56:
  175:../Drivers/CMSIS/Include/cmsis_gcc.h **** }
- 363              		.loc 3 175 3 view .LVU86
+ 358              		.loc 3 175 3 view .LVU86
+ 359              		.syntax unified
+ 360              	@ 175 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 361 0016 BFF36F8F 		isb 0xF
+ 362              	@ 0 "" 2
+ 363              		.thumb
  364              		.syntax unified
- 365              	@ 175 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 366 0016 BFF36F8F 		isb 0xF
- 367              	@ 0 "" 2
- 368              		.thumb
- 369              		.syntax unified
- 370              	.LBE56:
-ARM GAS  /tmp/ccGKXWMZ.s 			page 18
-
-
- 371              	.LBE55:
+ 365              	.LBE56:
+ 366              	.LBE55:
   81:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     SCB->CCR &= ~(uint32_t)SCB_CCR_IC_Msk;  /* disable I-Cache */
- 372              		.loc 2 81 5 view .LVU87
- 373              		.loc 2 81 8 is_stmt 0 view .LVU88
- 374 001a 2A4B     		ldr	r3, .L30
- 375 001c 5A69     		ldr	r2, [r3, #20]
- 376              		.loc 2 81 14 view .LVU89
- 377 001e 22F40032 		bic	r2, r2, #131072
- 378 0022 5A61     		str	r2, [r3, #20]
+ 367              		.loc 2 81 5 view .LVU87
+ 368              		.loc 2 81 8 is_stmt 0 view .LVU88
+ 369 001a 2A4B     		ldr	r3, .L28
+ARM GAS  /tmp/cc7XxhG3.s 			page 18
+
+
+ 370 001c 5A69     		ldr	r2, [r3, #20]
+ 371              		.loc 2 81 14 view .LVU89
+ 372 001e 22F40032 		bic	r2, r2, #131072
+ 373 0022 5A61     		str	r2, [r3, #20]
   82:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     SCB->ICIALLU = 0UL;                     /* invalidate I-Cache */
- 379              		.loc 2 82 5 is_stmt 1 view .LVU90
- 380              		.loc 2 82 18 is_stmt 0 view .LVU91
- 381 0024 0022     		movs	r2, #0
- 382 0026 C3F85022 		str	r2, [r3, #592]
+ 374              		.loc 2 82 5 is_stmt 1 view .LVU90
+ 375              		.loc 2 82 18 is_stmt 0 view .LVU91
+ 376 0024 0022     		movs	r2, #0
+ 377 0026 C3F85022 		str	r2, [r3, #592]
   83:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     __DSB();
- 383              		.loc 2 83 5 is_stmt 1 view .LVU92
- 384              	.LBB57:
- 385              	.LBI57:
+ 378              		.loc 2 83 5 is_stmt 1 view .LVU92
+ 379              	.LBB57:
+ 380              	.LBI57:
  184:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
- 386              		.loc 3 184 27 view .LVU93
- 387              	.LBB58:
- 388              		.loc 3 186 3 view .LVU94
+ 381              		.loc 3 184 27 view .LVU93
+ 382              	.LBB58:
+ 383              		.loc 3 186 3 view .LVU94
+ 384              		.syntax unified
+ 385              	@ 186 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 386 002a BFF34F8F 		dsb 0xF
+ 387              	@ 0 "" 2
+ 388              		.thumb
  389              		.syntax unified
- 390              	@ 186 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 391 002a BFF34F8F 		dsb 0xF
- 392              	@ 0 "" 2
- 393              		.thumb
- 394              		.syntax unified
- 395              	.LBE58:
- 396              	.LBE57:
+ 390              	.LBE58:
+ 391              	.LBE57:
   84:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     __ISB();
- 397              		.loc 2 84 5 view .LVU95
- 398              	.LBB59:
- 399              	.LBI59:
+ 392              		.loc 2 84 5 view .LVU95
+ 393              	.LBB59:
+ 394              	.LBI59:
  173:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
- 400              		.loc 3 173 27 view .LVU96
- 401              	.LBB60:
+ 395              		.loc 3 173 27 view .LVU96
+ 396              	.LBB60:
  175:../Drivers/CMSIS/Include/cmsis_gcc.h **** }
- 402              		.loc 3 175 3 view .LVU97
+ 397              		.loc 3 175 3 view .LVU97
+ 398              		.syntax unified
+ 399              	@ 175 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 400 002e BFF36F8F 		isb 0xF
+ 401              	@ 0 "" 2
+ 402              		.thumb
  403              		.syntax unified
- 404              	@ 175 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 405 002e BFF36F8F 		isb 0xF
- 406              	@ 0 "" 2
- 407              		.thumb
- 408              		.syntax unified
- 409              	.L25:
- 410              	.LBE60:
- 411              	.LBE59:
- 412              	.LBE52:
- 413              	.LBE51:
+ 404              	.L23:
+ 405              	.LBE60:
+ 406              	.LBE59:
+ 407              	.LBE52:
+ 408              	.LBE51:
  226:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   {
- 414              		.loc 1 226 3 view .LVU98
+ 409              		.loc 1 226 3 view .LVU98
  226:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   {
- 415              		.loc 1 226 10 is_stmt 0 view .LVU99
- 416 0032 244B     		ldr	r3, .L30
- 417 0034 5B69     		ldr	r3, [r3, #20]
+ 410              		.loc 1 226 10 is_stmt 0 view .LVU99
+ 411 0032 244B     		ldr	r3, .L28
+ 412 0034 5B69     		ldr	r3, [r3, #20]
  226:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   {
-ARM GAS  /tmp/ccGKXWMZ.s 			page 19
-
-
- 418              		.loc 1 226 6 view .LVU100
- 419 0036 13F4803F 		tst	r3, #65536
- 420 003a 2BD0     		beq	.L26
+ 413              		.loc 1 226 6 view .LVU100
+ 414 0036 13F4803F 		tst	r3, #65536
+ 415 003a 2BD0     		beq	.L24
  228:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   }
- 421              		.loc 1 228 5 is_stmt 1 view .LVU101
- 422              	.LBB61:
- 423              	.LBI61:
+ 416              		.loc 1 228 5 is_stmt 1 view .LVU101
+ARM GAS  /tmp/cc7XxhG3.s 			page 19
+
+
+ 417              	.LBB61:
+ 418              	.LBI61:
   85:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****   #endif
   86:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** }
   87:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** 
@@ -1138,14 +1133,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  132:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** }
  133:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** 
  134:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** 
-ARM GAS  /tmp/ccGKXWMZ.s 			page 20
-
-
  135:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** /**
  136:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****   \brief   Enable D-Cache
  137:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****   \details Turns on D-Cache
  138:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****   */
  139:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** __STATIC_FORCEINLINE void SCB_EnableDCache (void)
+ARM GAS  /tmp/cc7XxhG3.s 			page 20
+
+
  140:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** {
  141:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****   #if defined (__DCACHE_PRESENT) && (__DCACHE_PRESENT == 1U)
  142:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     uint32_t ccsidr;
@@ -1186,70 +1181,70 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  177:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****   \details Turns off D-Cache
  178:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****   */
  179:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** __STATIC_FORCEINLINE void SCB_DisableDCache (void)
- 424              		.loc 2 179 27 view .LVU102
- 425              	.LBB62:
+ 419              		.loc 2 179 27 view .LVU102
+ 420              	.LBB62:
  180:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** {
  181:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****   #if defined (__DCACHE_PRESENT) && (__DCACHE_PRESENT == 1U)
  182:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     struct {
- 426              		.loc 2 182 5 view .LVU103
+ 421              		.loc 2 182 5 view .LVU103
  183:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****       uint32_t ccsidr;
  184:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****       uint32_t sets;
  185:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****       uint32_t ways;
  186:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     } locals
  187:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     #if ((defined(__GNUC__) || defined(__clang__)) && !defined(__OPTIMIZE__))
  188:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****        __ALIGNED(__SCB_DCACHE_LINE_SIZE)
-ARM GAS  /tmp/ccGKXWMZ.s 			page 21
-
-
  189:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     #endif
  190:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     ;
  191:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** 
  192:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     SCB->CSSELR = 0U;                       /* select Level 1 data cache */
- 427              		.loc 2 192 5 view .LVU104
- 428              		.loc 2 192 17 is_stmt 0 view .LVU105
- 429 003c 214B     		ldr	r3, .L30
- 430 003e 0022     		movs	r2, #0
- 431 0040 C3F88420 		str	r2, [r3, #132]
+ 422              		.loc 2 192 5 view .LVU104
+ARM GAS  /tmp/cc7XxhG3.s 			page 21
+
+
+ 423              		.loc 2 192 17 is_stmt 0 view .LVU105
+ 424 003c 214B     		ldr	r3, .L28
+ 425 003e 0022     		movs	r2, #0
+ 426 0040 C3F88420 		str	r2, [r3, #132]
  193:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     __DSB();
- 432              		.loc 2 193 5 is_stmt 1 view .LVU106
- 433              	.LBB63:
- 434              	.LBI63:
+ 427              		.loc 2 193 5 is_stmt 1 view .LVU106
+ 428              	.LBB63:
+ 429              	.LBI63:
  184:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
- 435              		.loc 3 184 27 view .LVU107
- 436              	.LBB64:
- 437              		.loc 3 186 3 view .LVU108
+ 430              		.loc 3 184 27 view .LVU107
+ 431              	.LBB64:
+ 432              		.loc 3 186 3 view .LVU108
+ 433              		.syntax unified
+ 434              	@ 186 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 435 0044 BFF34F8F 		dsb 0xF
+ 436              	@ 0 "" 2
+ 437              		.thumb
  438              		.syntax unified
- 439              	@ 186 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 440 0044 BFF34F8F 		dsb 0xF
- 441              	@ 0 "" 2
- 442              		.thumb
- 443              		.syntax unified
- 444              	.LBE64:
- 445              	.LBE63:
+ 439              	.LBE64:
+ 440              	.LBE63:
  194:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** 
  195:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     SCB->CCR &= ~(uint32_t)SCB_CCR_DC_Msk;  /* disable D-Cache */
- 446              		.loc 2 195 5 view .LVU109
- 447              		.loc 2 195 8 is_stmt 0 view .LVU110
- 448 0048 5A69     		ldr	r2, [r3, #20]
- 449              		.loc 2 195 14 view .LVU111
- 450 004a 22F48032 		bic	r2, r2, #65536
- 451 004e 5A61     		str	r2, [r3, #20]
+ 441              		.loc 2 195 5 view .LVU109
+ 442              		.loc 2 195 8 is_stmt 0 view .LVU110
+ 443 0048 5A69     		ldr	r2, [r3, #20]
+ 444              		.loc 2 195 14 view .LVU111
+ 445 004a 22F48032 		bic	r2, r2, #65536
+ 446 004e 5A61     		str	r2, [r3, #20]
  196:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     __DSB();
- 452              		.loc 2 196 5 is_stmt 1 view .LVU112
- 453              	.LBB65:
- 454              	.LBI65:
+ 447              		.loc 2 196 5 is_stmt 1 view .LVU112
+ 448              	.LBB65:
+ 449              	.LBI65:
  184:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
- 455              		.loc 3 184 27 view .LVU113
- 456              	.LBB66:
- 457              		.loc 3 186 3 view .LVU114
+ 450              		.loc 3 184 27 view .LVU113
+ 451              	.LBB66:
+ 452              		.loc 3 186 3 view .LVU114
+ 453              		.syntax unified
+ 454              	@ 186 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 455 0050 BFF34F8F 		dsb 0xF
+ 456              	@ 0 "" 2
+ 457              		.thumb
  458              		.syntax unified
- 459              	@ 186 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 460 0050 BFF34F8F 		dsb 0xF
- 461              	@ 0 "" 2
- 462              		.thumb
- 463              		.syntax unified
- 464              	.LBE66:
- 465              	.LBE65:
+ 459              	.LBE66:
+ 460              	.LBE65:
  197:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** 
  198:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     #if !defined(__OPTIMIZE__)
  199:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****       /*
@@ -1258,14 +1253,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  202:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****        *
  203:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****        * The issue only happens when local variables are in stack. If
  204:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****        * local variables are saved in general purpose register, then the function
-ARM GAS  /tmp/ccGKXWMZ.s 			page 22
-
-
  205:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****        * is OK.
  206:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****        *
  207:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****        * When local variables are in stack, after disabling the cache, flush the
  208:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****        * local variables cache line for data consistency.
  209:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****        */
+ARM GAS  /tmp/cc7XxhG3.s 			page 22
+
+
  210:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****       /* Clean and invalidate the local variable cache. */
  211:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     #if defined(__ICCARM__)
  212:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     /* As we can't align the stack to the cache line size, invalidate each of the variables */
@@ -1280,114 +1275,114 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  221:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     #endif
  222:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** 
  223:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     locals.ccsidr = SCB->CCSIDR;
- 466              		.loc 2 223 5 view .LVU115
- 467              		.loc 2 223 24 is_stmt 0 view .LVU116
- 468 0054 D3F88040 		ldr	r4, [r3, #128]
- 469              		.loc 2 223 19 view .LVU117
- 470 0058 0194     		str	r4, [sp, #4]
+ 461              		.loc 2 223 5 view .LVU115
+ 462              		.loc 2 223 24 is_stmt 0 view .LVU116
+ 463 0054 D3F88040 		ldr	r4, [r3, #128]
+ 464              		.loc 2 223 19 view .LVU117
+ 465 0058 0194     		str	r4, [sp, #4]
  224:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****                                             /* clean & invalidate D-Cache */
  225:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     locals.sets = (uint32_t)(CCSIDR_SETS(locals.ccsidr));
- 471              		.loc 2 225 5 is_stmt 1 view .LVU118
- 472              		.loc 2 225 19 is_stmt 0 view .LVU119
- 473 005a C4F34E33 		ubfx	r3, r4, #13, #15
- 474              		.loc 2 225 17 view .LVU120
- 475 005e 0293     		str	r3, [sp, #8]
- 476              	.L28:
+ 466              		.loc 2 225 5 is_stmt 1 view .LVU118
+ 467              		.loc 2 225 19 is_stmt 0 view .LVU119
+ 468 005a C4F34E33 		ubfx	r3, r4, #13, #15
+ 469              		.loc 2 225 17 view .LVU120
+ 470 005e 0293     		str	r3, [sp, #8]
+ 471              	.L26:
  226:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     do {
- 477              		.loc 2 226 5 is_stmt 1 view .LVU121
+ 472              		.loc 2 226 5 is_stmt 1 view .LVU121
  227:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****       locals.ways = (uint32_t)(CCSIDR_WAYS(locals.ccsidr));
- 478              		.loc 2 227 7 view .LVU122
- 479              		.loc 2 227 21 is_stmt 0 view .LVU123
- 480 0060 C4F3C903 		ubfx	r3, r4, #3, #10
- 481              		.loc 2 227 19 view .LVU124
- 482 0064 0393     		str	r3, [sp, #12]
- 483              	.L27:
+ 473              		.loc 2 227 7 view .LVU122
+ 474              		.loc 2 227 21 is_stmt 0 view .LVU123
+ 475 0060 C4F3C903 		ubfx	r3, r4, #3, #10
+ 476              		.loc 2 227 19 view .LVU124
+ 477 0064 0393     		str	r3, [sp, #12]
+ 478              	.L25:
  228:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****       do {
- 484              		.loc 2 228 7 is_stmt 1 view .LVU125
+ 479              		.loc 2 228 7 is_stmt 1 view .LVU125
  229:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****         SCB->DCCISW = (((locals.sets << SCB_DCCISW_SET_Pos) & SCB_DCCISW_SET_Msk) |
- 485              		.loc 2 229 9 view .LVU126
- 486              		.loc 2 229 32 is_stmt 0 view .LVU127
- 487 0066 0299     		ldr	r1, [sp, #8]
- 488              		.loc 2 229 61 view .LVU128
- 489 0068 43F6E073 		movw	r3, #16352
- 490 006c 03EA4113 		and	r3, r3, r1, lsl #5
+ 480              		.loc 2 229 9 view .LVU126
+ 481              		.loc 2 229 32 is_stmt 0 view .LVU127
+ 482 0066 0299     		ldr	r1, [sp, #8]
+ 483              		.loc 2 229 61 view .LVU128
+ 484 0068 43F6E073 		movw	r3, #16352
+ 485 006c 03EA4113 		and	r3, r3, r1, lsl #5
  230:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****                        ((locals.ways << SCB_DCCISW_WAY_Pos) & SCB_DCCISW_WAY_Msk)  );
- 491              		.loc 2 230 32 view .LVU129
- 492 0070 039A     		ldr	r2, [sp, #12]
+ 486              		.loc 2 230 32 view .LVU129
+ 487 0070 039A     		ldr	r2, [sp, #12]
  229:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****         SCB->DCCISW = (((locals.sets << SCB_DCCISW_SET_Pos) & SCB_DCCISW_SET_Msk) |
- 493              		.loc 2 229 83 view .LVU130
- 494 0072 43EA8273 		orr	r3, r3, r2, lsl #30
+ 488              		.loc 2 229 83 view .LVU130
+ 489 0072 43EA8273 		orr	r3, r3, r2, lsl #30
  229:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****         SCB->DCCISW = (((locals.sets << SCB_DCCISW_SET_Pos) & SCB_DCCISW_SET_Msk) |
-ARM GAS  /tmp/ccGKXWMZ.s 			page 23
-
-
- 495              		.loc 2 229 21 view .LVU131
- 496 0076 1348     		ldr	r0, .L30
- 497 0078 C0F87432 		str	r3, [r0, #628]
+ 490              		.loc 2 229 21 view .LVU131
+ 491 0076 1348     		ldr	r0, .L28
+ 492 0078 C0F87432 		str	r3, [r0, #628]
  231:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****         #if defined ( __CC_ARM )
  232:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****           __schedule_barrier();
+ARM GAS  /tmp/cc7XxhG3.s 			page 23
+
+
  233:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****         #endif
  234:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****       } while (locals.ways-- != 0U);
- 498              		.loc 2 234 30 is_stmt 1 view .LVU132
- 499              		.loc 2 234 27 is_stmt 0 view .LVU133
- 500 007c 531E     		subs	r3, r2, #1
- 501 007e 0393     		str	r3, [sp, #12]
- 502              		.loc 2 234 30 view .LVU134
- 503 0080 002A     		cmp	r2, #0
- 504 0082 F0D1     		bne	.L27
+ 493              		.loc 2 234 30 is_stmt 1 view .LVU132
+ 494              		.loc 2 234 27 is_stmt 0 view .LVU133
+ 495 007c 531E     		subs	r3, r2, #1
+ 496 007e 0393     		str	r3, [sp, #12]
+ 497              		.loc 2 234 30 view .LVU134
+ 498 0080 002A     		cmp	r2, #0
+ 499 0082 F0D1     		bne	.L25
  235:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     } while(locals.sets-- != 0U);
- 505              		.loc 2 235 27 is_stmt 1 view .LVU135
- 506              		.loc 2 235 24 is_stmt 0 view .LVU136
- 507 0084 4B1E     		subs	r3, r1, #1
- 508 0086 0293     		str	r3, [sp, #8]
- 509              		.loc 2 235 27 view .LVU137
- 510 0088 0029     		cmp	r1, #0
- 511 008a E9D1     		bne	.L28
+ 500              		.loc 2 235 27 is_stmt 1 view .LVU135
+ 501              		.loc 2 235 24 is_stmt 0 view .LVU136
+ 502 0084 4B1E     		subs	r3, r1, #1
+ 503 0086 0293     		str	r3, [sp, #8]
+ 504              		.loc 2 235 27 view .LVU137
+ 505 0088 0029     		cmp	r1, #0
+ 506 008a E9D1     		bne	.L26
  236:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** 
  237:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     __DSB();
- 512              		.loc 2 237 5 is_stmt 1 view .LVU138
- 513              	.LBB67:
- 514              	.LBI67:
+ 507              		.loc 2 237 5 is_stmt 1 view .LVU138
+ 508              	.LBB67:
+ 509              	.LBI67:
  184:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
- 515              		.loc 3 184 27 view .LVU139
- 516              	.LBB68:
- 517              		.loc 3 186 3 view .LVU140
+ 510              		.loc 3 184 27 view .LVU139
+ 511              	.LBB68:
+ 512              		.loc 3 186 3 view .LVU140
+ 513              		.syntax unified
+ 514              	@ 186 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 515 008c BFF34F8F 		dsb 0xF
+ 516              	@ 0 "" 2
+ 517              		.thumb
  518              		.syntax unified
- 519              	@ 186 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 520 008c BFF34F8F 		dsb 0xF
- 521              	@ 0 "" 2
- 522              		.thumb
- 523              		.syntax unified
- 524              	.LBE68:
- 525              	.LBE67:
+ 519              	.LBE68:
+ 520              	.LBE67:
  238:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     __ISB();
- 526              		.loc 2 238 5 view .LVU141
- 527              	.LBB69:
- 528              	.LBI69:
+ 521              		.loc 2 238 5 view .LVU141
+ 522              	.LBB69:
+ 523              	.LBI69:
  173:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
- 529              		.loc 3 173 27 view .LVU142
- 530              	.LBB70:
+ 524              		.loc 3 173 27 view .LVU142
+ 525              	.LBB70:
  175:../Drivers/CMSIS/Include/cmsis_gcc.h **** }
- 531              		.loc 3 175 3 view .LVU143
+ 526              		.loc 3 175 3 view .LVU143
+ 527              		.syntax unified
+ 528              	@ 175 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 529 0090 BFF36F8F 		isb 0xF
+ 530              	@ 0 "" 2
+ 531              		.thumb
  532              		.syntax unified
- 533              	@ 175 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 534 0090 BFF36F8F 		isb 0xF
- 535              	@ 0 "" 2
- 536              		.thumb
- 537              		.syntax unified
- 538              	.L26:
- 539              	.LBE70:
- 540              	.LBE69:
-ARM GAS  /tmp/ccGKXWMZ.s 			page 24
-
-
- 541              	.LBE62:
- 542              	.LBE61:
+ 533              	.L24:
+ 534              	.LBE70:
+ 535              	.LBE69:
+ 536              	.LBE62:
+ 537              	.LBE61:
  233:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   __disable_irq();
- 543              		.loc 1 233 3 view .LVU144
- 544              	.LBB71:
- 545              	.LBI71:
- 546              		.file 4 "../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h"
+ 538              		.loc 1 233 3 view .LVU144
+ 539              	.LBB71:
+ARM GAS  /tmp/cc7XxhG3.s 			page 24
+
+
+ 540              	.LBI71:
+ 541              		.file 4 "../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h"
    1:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** /*
    2:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****  * Copyright (c) 2009-2023 Arm Limited. All rights reserved.
    3:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****  *
@@ -1438,14 +1433,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
   48:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****     uint32_t* dest;
   49:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****     uint32_t  wlen;
   50:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   } __copy_table_t;
-ARM GAS  /tmp/ccGKXWMZ.s 			page 25
-
-
   51:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
   52:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   typedef struct __zero_table {
   53:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****     uint32_t* dest;
   54:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****     uint32_t  wlen;
   55:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   } __zero_table_t;
+ARM GAS  /tmp/cc7XxhG3.s 			page 25
+
+
   56:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
   57:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   extern const __copy_table_t __copy_table_start__;
   58:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   extern const __copy_table_t __copy_table_end__;
@@ -1498,14 +1493,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  105:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** #ifndef __TZ_STACK_SEAL_VALUE
  106:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** #define __TZ_STACK_SEAL_VALUE     0xFEF5EDA5FEF5EDA5ULL
  107:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** #endif
-ARM GAS  /tmp/ccGKXWMZ.s 			page 26
-
-
  108:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
  109:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** __STATIC_FORCEINLINE void __TZ_set_STACKSEAL_S (uint32_t* stackTop)
  110:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** {
  111:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   *((uint64_t *)stackTop) = __TZ_STACK_SEAL_VALUE;
  112:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** }
+ARM GAS  /tmp/cc7XxhG3.s 			page 26
+
+
  113:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** #endif
  114:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
  115:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
@@ -1558,14 +1553,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  162:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
  163:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
  164:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** #if defined (__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3)
-ARM GAS  /tmp/ccGKXWMZ.s 			page 27
-
-
  165:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** /**
  166:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \brief   Set Control Register (non-secure)
  167:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \details Writes the given value to the non-secure Control Register when in secure state.
  168:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \param [in]    control  Control Register value to set
  169:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****  */
+ARM GAS  /tmp/cc7XxhG3.s 			page 27
+
+
  170:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** __STATIC_FORCEINLINE void __TZ_set_CONTROL_NS(uint32_t control)
  171:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** {
  172:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   __ASM volatile ("MSR control_ns, %0" : : "r" (control) : "memory");
@@ -1618,14 +1613,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  219:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
  220:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** /**
  221:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \brief   Get Process Stack Pointer
-ARM GAS  /tmp/ccGKXWMZ.s 			page 28
-
-
  222:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \details Returns the current value of the Process Stack Pointer (PSP).
  223:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \return               PSP Register value
  224:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****  */
  225:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** __STATIC_FORCEINLINE uint32_t __get_PSP(void)
  226:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** {
+ARM GAS  /tmp/cc7XxhG3.s 			page 28
+
+
  227:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   uint32_t result;
  228:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
  229:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   __ASM volatile ("MRS %0, psp"  : "=r" (result) );
@@ -1678,14 +1673,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  276:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \details Returns the current value of the Main Stack Pointer (MSP).
  277:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \return               MSP Register value
  278:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****  */
-ARM GAS  /tmp/ccGKXWMZ.s 			page 29
-
-
  279:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** __STATIC_FORCEINLINE uint32_t __get_MSP(void)
  280:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** {
  281:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   uint32_t result;
  282:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
  283:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   __ASM volatile ("MRS %0, msp" : "=r" (result) );
+ARM GAS  /tmp/cc7XxhG3.s 			page 29
+
+
  284:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   return (result);
  285:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** }
  286:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
@@ -1738,14 +1733,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  333:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****  */
  334:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** __STATIC_FORCEINLINE uint32_t __TZ_get_SP_NS(void)
  335:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** {
-ARM GAS  /tmp/ccGKXWMZ.s 			page 30
-
-
  336:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   uint32_t result;
  337:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
  338:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   __ASM volatile ("MRS %0, sp_ns" : "=r" (result) );
  339:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   return (result);
  340:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** }
+ARM GAS  /tmp/cc7XxhG3.s 			page 30
+
+
  341:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
  342:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
  343:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** /**
@@ -1766,30 +1761,30 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  358:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \return               Priority Mask value
  359:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****  */
  360:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** __STATIC_FORCEINLINE uint32_t __get_PRIMASK(void)
- 547              		.loc 4 360 31 view .LVU145
- 548              	.LBB72:
+ 542              		.loc 4 360 31 view .LVU145
+ 543              	.LBB72:
  361:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** {
  362:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   uint32_t result;
- 549              		.loc 4 362 3 view .LVU146
+ 544              		.loc 4 362 3 view .LVU146
  363:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
  364:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   __ASM volatile ("MRS %0, primask" : "=r" (result) );
- 550              		.loc 4 364 3 view .LVU147
- 551              		.syntax unified
- 552              	@ 364 "../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h" 1
- 553 0094 EFF31085 		MRS r5, primask
- 554              	@ 0 "" 2
+ 545              		.loc 4 364 3 view .LVU147
+ 546              		.syntax unified
+ 547              	@ 364 "../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h" 1
+ 548 0094 EFF31085 		MRS r5, primask
+ 549              	@ 0 "" 2
  365:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   return (result);
- 555              		.loc 4 365 3 view .LVU148
- 556              	.LVL27:
- 557              		.loc 4 365 3 is_stmt 0 view .LVU149
- 558              		.thumb
- 559              		.syntax unified
- 560              	.LBE72:
- 561              	.LBE71:
+ 550              		.loc 4 365 3 view .LVU148
+ 551              	.LVL27:
+ 552              		.loc 4 365 3 is_stmt 0 view .LVU149
+ 553              		.thumb
+ 554              		.syntax unified
+ 555              	.LBE72:
+ 556              	.LBE71:
  234:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
- 562              		.loc 1 234 3 is_stmt 1 view .LVU150
- 563              	.LBB73:
- 564              	.LBI73:
+ 557              		.loc 1 234 3 is_stmt 1 view .LVU150
+ 558              	.LBB73:
+ 559              	.LBI73:
  187:../Drivers/CMSIS/Include/cmsis_gcc.h **** }
  188:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
  189:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1798,14 +1793,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  192:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Ensures the apparent order of the explicit memory operations before
  193:../Drivers/CMSIS/Include/cmsis_gcc.h ****            and after the instruction, without ensuring their completion.
  194:../Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /tmp/ccGKXWMZ.s 			page 31
-
-
  195:../Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __DMB(void)
  196:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
  197:../Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("dmb 0xF":::"memory");
  198:../Drivers/CMSIS/Include/cmsis_gcc.h **** }
  199:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ARM GAS  /tmp/cc7XxhG3.s 			page 31
+
+
  200:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
  201:../Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  202:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Reverse byte order (32 bit)
@@ -1858,14 +1853,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  249:../Drivers/CMSIS/Include/cmsis_gcc.h ****   op2 %= 32U;
  250:../Drivers/CMSIS/Include/cmsis_gcc.h ****   if (op2 == 0U)
  251:../Drivers/CMSIS/Include/cmsis_gcc.h ****   {
-ARM GAS  /tmp/ccGKXWMZ.s 			page 32
-
-
  252:../Drivers/CMSIS/Include/cmsis_gcc.h ****     return op1;
  253:../Drivers/CMSIS/Include/cmsis_gcc.h ****   }
  254:../Drivers/CMSIS/Include/cmsis_gcc.h ****   return (op1 >> op2) | (op1 << (32U - op2));
  255:../Drivers/CMSIS/Include/cmsis_gcc.h **** }
  256:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ARM GAS  /tmp/cc7XxhG3.s 			page 32
+
+
  257:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
  258:../Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  259:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Breakpoint
@@ -1918,14 +1913,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  306:../Drivers/CMSIS/Include/cmsis_gcc.h ****      This guarantees ARM-compatible results if happening to compile on a non-ARM
  307:../Drivers/CMSIS/Include/cmsis_gcc.h ****      target, and ensures the compiler doesn't decide to activate any
  308:../Drivers/CMSIS/Include/cmsis_gcc.h ****      optimisations using the logic "value was passed to __builtin_clz, so it
-ARM GAS  /tmp/ccGKXWMZ.s 			page 33
-
-
  309:../Drivers/CMSIS/Include/cmsis_gcc.h ****      is non-zero".
  310:../Drivers/CMSIS/Include/cmsis_gcc.h ****      ARM GCC 7.3 and possibly earlier will optimise this test away, leaving a
  311:../Drivers/CMSIS/Include/cmsis_gcc.h ****      single CLZ instruction.
  312:../Drivers/CMSIS/Include/cmsis_gcc.h ****    */
  313:../Drivers/CMSIS/Include/cmsis_gcc.h ****   if (value == 0U)
+ARM GAS  /tmp/cc7XxhG3.s 			page 33
+
+
  314:../Drivers/CMSIS/Include/cmsis_gcc.h ****   {
  315:../Drivers/CMSIS/Include/cmsis_gcc.h ****     return 32U;
  316:../Drivers/CMSIS/Include/cmsis_gcc.h ****   }
@@ -1978,14 +1973,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  363:../Drivers/CMSIS/Include/cmsis_gcc.h ****   }
  364:../Drivers/CMSIS/Include/cmsis_gcc.h ****   return (val);
  365:../Drivers/CMSIS/Include/cmsis_gcc.h **** }
-ARM GAS  /tmp/ccGKXWMZ.s 			page 34
-
-
  366:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
  367:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
  368:../Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  369:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Unsigned Saturate
  370:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Saturates an unsigned value.
+ARM GAS  /tmp/cc7XxhG3.s 			page 34
+
+
  371:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  value  Value to be saturated
  372:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    sat  Bit position to saturate to (0..31)
  373:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \return             Saturated value
@@ -2038,14 +2033,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  420:../Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  421:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   STR Exclusive (8 bit)
  422:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a exclusive STR instruction for 8 bit values.
-ARM GAS  /tmp/ccGKXWMZ.s 			page 35
-
-
  423:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  value  Value to store
  424:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to location
  425:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \return          0  Function succeeded
  426:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \return          1  Function failed
  427:../Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ARM GAS  /tmp/cc7XxhG3.s 			page 35
+
+
  428:../Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __STREXB(uint8_t value, volatile uint8_t *addr)
  429:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
  430:../Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
@@ -2098,14 +2093,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  477:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \return        value of type uint32_t at (*ptr)
  478:../Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  479:../Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __LDREXW(volatile uint32_t *addr)
-ARM GAS  /tmp/ccGKXWMZ.s 			page 36
-
-
  480:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
  481:../Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
  482:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
  483:../Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("ldrex %0, %1" : "=r" (result) : "Q" (*addr) );
  484:../Drivers/CMSIS/Include/cmsis_gcc.h ****   return (result);
+ARM GAS  /tmp/cc7XxhG3.s 			page 36
+
+
  485:../Drivers/CMSIS/Include/cmsis_gcc.h **** }
  486:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
  487:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -2158,14 +2153,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  534:../Drivers/CMSIS/Include/cmsis_gcc.h ****   return ((uint8_t)result);    /* Add explicit type cast here */
  535:../Drivers/CMSIS/Include/cmsis_gcc.h **** }
  536:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /tmp/ccGKXWMZ.s 			page 37
-
-
  537:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
  538:../Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  539:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   LDRT Unprivileged (16 bit)
  540:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a Unprivileged LDRT instruction for 16 bit values.
  541:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to data
+ARM GAS  /tmp/cc7XxhG3.s 			page 37
+
+
  542:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \return        value of type uint16_t at (*ptr)
  543:../Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  544:../Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint16_t __LDRHT(volatile uint16_t *ptr)
@@ -2218,14 +2213,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  591:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
  592:../Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  593:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   STRT Unprivileged (32 bit)
-ARM GAS  /tmp/ccGKXWMZ.s 			page 38
-
-
  594:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a Unprivileged STRT instruction for 32 bit values.
  595:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  value  Value to store
  596:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to location
  597:../Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  598:../Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __STRT(uint32_t value, volatile uint32_t *ptr)
+ARM GAS  /tmp/cc7XxhG3.s 			page 38
+
+
  599:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
  600:../Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("strt %1, %0" : "=Q" (*ptr) : "r" (value) );
  601:../Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -2278,14 +2273,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  648:../Drivers/CMSIS/Include/cmsis_gcc.h **** }
  649:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
  650:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /tmp/ccGKXWMZ.s 			page 39
-
-
  651:../Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  652:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Store-Release (8 bit)
  653:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a STLB instruction for 8 bit values.
  654:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  value  Value to store
  655:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to location
+ARM GAS  /tmp/cc7XxhG3.s 			page 39
+
+
  656:../Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  657:../Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __STLB(uint8_t value, volatile uint8_t *ptr)
  658:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -2338,14 +2333,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  705:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to data
  706:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \return        value of type uint16_t at (*ptr)
  707:../Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /tmp/ccGKXWMZ.s 			page 40
-
-
  708:../Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint16_t __LDAEXH(volatile uint16_t *ptr)
  709:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
  710:../Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
  711:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
  712:../Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("ldaexh %0, %1" : "=r" (result) : "Q" (*ptr) : "memory" );
+ARM GAS  /tmp/cc7XxhG3.s 			page 40
+
+
  713:../Drivers/CMSIS/Include/cmsis_gcc.h ****   return ((uint16_t)result);    /* Add explicit type cast here */
  714:../Drivers/CMSIS/Include/cmsis_gcc.h **** }
  715:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -2398,14 +2393,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  762:../Drivers/CMSIS/Include/cmsis_gcc.h ****   return (result);
  763:../Drivers/CMSIS/Include/cmsis_gcc.h **** }
  764:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /tmp/ccGKXWMZ.s 			page 41
-
-
  765:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
  766:../Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  767:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Store-Release Exclusive (32 bit)
  768:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a STL exclusive instruction for 32 bit values.
  769:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  value  Value to store
+ARM GAS  /tmp/cc7XxhG3.s 			page 41
+
+
  770:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to location
  771:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \return          0  Function succeeded
  772:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \return          1  Function failed
@@ -2446,48 +2441,48 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  807:../Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
  808:../Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  809:../Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __disable_irq(void)
- 565              		.loc 3 809 27 view .LVU151
- 566              	.LBB74:
+ 560              		.loc 3 809 27 view .LVU151
+ 561              	.LBB74:
  810:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
  811:../Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsid i" : : : "memory");
- 567              		.loc 3 811 3 view .LVU152
+ 562              		.loc 3 811 3 view .LVU152
+ 563              		.syntax unified
+ 564              	@ 811 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 565 0098 72B6     		cpsid i
+ 566              	@ 0 "" 2
+ 567              		.thumb
  568              		.syntax unified
- 569              	@ 811 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 570 0098 72B6     		cpsid i
- 571              	@ 0 "" 2
- 572              		.thumb
- 573              		.syntax unified
- 574              	.LBE74:
-ARM GAS  /tmp/ccGKXWMZ.s 			page 42
+ 569              	.LBE74:
+ 570              	.LBE73:
+ 236:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
+ 571              		.loc 1 236 3 view .LVU153
+ 236:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
+ 572              		.loc 1 236 24 is_stmt 0 view .LVU154
+ARM GAS  /tmp/cc7XxhG3.s 			page 42
 
 
- 575              	.LBE73:
- 236:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
- 576              		.loc 1 236 3 view .LVU153
- 236:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
- 577              		.loc 1 236 24 is_stmt 0 view .LVU154
- 578 009a FFF7FEFF 		bl	BOOT_GetApplicationVectorTable
- 579              	.LVL28:
+ 573 009a FFF7FEFF 		bl	BOOT_GetApplicationVectorTable
+ 574              	.LVL28:
  238:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   JumpToApp = (pFunction)(*(__IO uint32_t *)(Application_vector + 4));
- 580              		.loc 1 238 3 is_stmt 1 view .LVU155
+ 575              		.loc 1 238 3 is_stmt 1 view .LVU155
  238:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   JumpToApp = (pFunction)(*(__IO uint32_t *)(Application_vector + 4));
- 581              		.loc 1 238 13 is_stmt 0 view .LVU156
- 582 009e 094B     		ldr	r3, .L30
- 583 00a0 9860     		str	r0, [r3, #8]
+ 576              		.loc 1 238 13 is_stmt 0 view .LVU156
+ 577 009e 094B     		ldr	r3, .L28
+ 578 00a0 9860     		str	r0, [r3, #8]
  239:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
- 584              		.loc 1 239 3 is_stmt 1 view .LVU157
+ 579              		.loc 1 239 3 is_stmt 1 view .LVU157
  239:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
- 585              		.loc 1 239 27 is_stmt 0 view .LVU158
- 586 00a2 4268     		ldr	r2, [r0, #4]
+ 580              		.loc 1 239 27 is_stmt 0 view .LVU158
+ 581 00a2 4268     		ldr	r2, [r0, #4]
  239:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
- 587              		.loc 1 239 13 view .LVU159
- 588 00a4 084B     		ldr	r3, .L30+4
- 589 00a6 1A60     		str	r2, [r3]
+ 582              		.loc 1 239 13 view .LVU159
+ 583 00a4 084B     		ldr	r3, .L28+4
+ 584 00a6 1A60     		str	r2, [r3]
  243:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** #elif (defined(__ARM_ARCH_8_1M_MAIN__ ) && (__ARM_ARCH_8_1M_MAIN__ == 1))
- 590              		.loc 1 243 3 is_stmt 1 view .LVU160
- 591              	.LVL29:
- 592              	.LBB75:
- 593              	.LBI75:
+ 585              		.loc 1 243 3 is_stmt 1 view .LVU160
+ 586              	.LVL29:
+ 587              	.LBB75:
+ 588              	.LBI75:
  366:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** }
  367:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
  368:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
@@ -2518,14 +2513,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  393:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** }
  394:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
  395:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
-ARM GAS  /tmp/ccGKXWMZ.s 			page 43
-
-
  396:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** #if defined (__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3)
  397:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** /**
  398:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \brief   Set Priority Mask (non-secure)
  399:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \details Assigns the given value to the non-secure Priority Mask Register when in secure state.
  400:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \param [in]    priMask  Priority Mask
+ARM GAS  /tmp/cc7XxhG3.s 			page 43
+
+
  401:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****  */
  402:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** __STATIC_FORCEINLINE void __TZ_set_PRIMASK_NS(uint32_t priMask)
  403:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** {
@@ -2578,14 +2573,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  450:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
  451:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** #if defined (__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3)
  452:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** /**
-ARM GAS  /tmp/ccGKXWMZ.s 			page 44
-
-
  453:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \brief   Set Base Priority (non-secure)
  454:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \details Assigns the given value to the non-secure Base Priority register when in secure state.
  455:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \param [in]    basePri  Base Priority value to set
  456:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****  */
  457:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** __STATIC_FORCEINLINE void __TZ_set_BASEPRI_NS(uint32_t basePri)
+ARM GAS  /tmp/cc7XxhG3.s 			page 44
+
+
  458:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** {
  459:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   __ASM volatile ("MSR basepri_ns, %0" : : "r" (basePri) : "memory");
  460:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** }
@@ -2638,14 +2633,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  507:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \brief   Set Fault Mask
  508:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \details Assigns the given value to the Fault Mask register.
  509:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \param [in]    faultMask  Fault Mask value to set
-ARM GAS  /tmp/ccGKXWMZ.s 			page 45
-
-
  510:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****  */
  511:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** __STATIC_FORCEINLINE void __set_FAULTMASK(uint32_t faultMask)
  512:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** {
  513:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   __ASM volatile ("MSR faultmask, %0" : : "r" (faultMask) : "memory");
  514:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** }
+ARM GAS  /tmp/cc7XxhG3.s 			page 45
+
+
  515:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
  516:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
  517:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** #if defined (__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3)
@@ -2698,14 +2693,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  564:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****  */
  565:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** __STATIC_FORCEINLINE uint32_t __TZ_get_PSPLIM_NS(void)
  566:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** {
-ARM GAS  /tmp/ccGKXWMZ.s 			page 46
-
-
  567:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** #if (!(defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1)) && \
  568:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****      !(defined (__ARM_ARCH_8_1M_MAIN__ ) && (__ARM_ARCH_8_1M_MAIN__ == 1)))
  569:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   /* without main extensions, the non-secure PSPLIM is RAZ/WI */
  570:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   return (0U);
  571:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** #else
+ARM GAS  /tmp/cc7XxhG3.s 			page 46
+
+
  572:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   uint32_t result;
  573:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   __ASM volatile ("MRS %0, psplim_ns"  : "=r" (result) );
  574:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   return (result);
@@ -2758,14 +2753,14 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  621:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** #endif
  622:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
  623:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
-ARM GAS  /tmp/ccGKXWMZ.s 			page 47
-
-
  624:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** /**
  625:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \brief   Get Main Stack Pointer Limit
  626:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   Devices without ARMv8-M Main Extensions (i.e. Cortex-M23) lack the non-secure
  627:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   Stack Pointer Limit register hence zero is returned always.
  628:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** 
+ARM GAS  /tmp/cc7XxhG3.s 			page 47
+
+
  629:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \details Returns the current value of the Main Stack Pointer Limit (MSPLIM).
  630:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \return               MSPLIM Register value
  631:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****  */
@@ -2817,203 +2812,202 @@ ARM GAS  /tmp/ccGKXWMZ.s 			page 1
  677:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   \param [in]    MainStackPtrLimit  Main Stack Pointer Limit value to set
  678:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****  */
  679:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** __STATIC_FORCEINLINE void __set_MSPLIM(uint32_t MainStackPtrLimit)
- 594              		.loc 4 679 27 view .LVU161
-ARM GAS  /tmp/ccGKXWMZ.s 			page 48
-
-
- 595              	.LBB76:
+ 589              		.loc 4 679 27 view .LVU161
+ 590              	.LBB76:
  680:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** {
  681:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** #if (!(defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1)) && \
  682:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****      !(defined (__ARM_ARCH_8_1M_MAIN__ ) && (__ARM_ARCH_8_1M_MAIN__ == 1)) && \
  683:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****      (!defined (__ARM_FEATURE_CMSE  ) || (__ARM_FEATURE_CMSE   < 3)))
+ARM GAS  /tmp/cc7XxhG3.s 			page 48
+
+
  684:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   /* without main extensions, the non-secure MSPLIM is RAZ/WI */
  685:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   (void)MainStackPtrLimit;
  686:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** #else
  687:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h ****   __ASM volatile ("MSR msplim, %0" : : "r" (MainStackPtrLimit));
- 596              		.loc 4 687 3 view .LVU162
- 597 00a8 0024     		movs	r4, #0
- 598              		.syntax unified
- 599              	@ 687 "../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h" 1
- 600 00aa 84F30A88 		MSR msplim, r4
- 601              	@ 0 "" 2
- 602              	.LVL30:
- 603              		.loc 4 687 3 is_stmt 0 view .LVU163
- 604              		.thumb
- 605              		.syntax unified
- 606              	.LBE76:
- 607              	.LBE75:
+ 591              		.loc 4 687 3 view .LVU162
+ 592 00a8 0024     		movs	r4, #0
+ 593              		.syntax unified
+ 594              	@ 687 "../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h" 1
+ 595 00aa 84F30A88 		MSR msplim, r4
+ 596              	@ 0 "" 2
+ 597              	.LVL30:
+ 598              		.loc 4 687 3 is_stmt 0 view .LVU163
+ 599              		.thumb
+ 600              		.syntax unified
+ 601              	.LBE76:
+ 602              	.LBE75:
  252:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
- 608              		.loc 1 252 3 is_stmt 1 view .LVU164
- 609 00ae 0268     		ldr	r2, [r0]
- 610              	.LVL31:
- 611              	.LBB77:
- 612              	.LBI77:
+ 603              		.loc 1 252 3 is_stmt 1 view .LVU164
+ 604 00ae 0268     		ldr	r2, [r0]
+ 605              	.LVL31:
+ 606              	.LBB77:
+ 607              	.LBI77:
  309:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** {
- 613              		.loc 4 309 27 view .LVU165
- 614              	.LBB78:
+ 608              		.loc 4 309 27 view .LVU165
+ 609              	.LBB78:
  311:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** }
- 615              		.loc 4 311 3 view .LVU166
- 616              		.syntax unified
- 617              	@ 311 "../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h" 1
- 618 00b0 82F30888 		MSR msp, r2
- 619              	@ 0 "" 2
- 620              	.LVL32:
+ 610              		.loc 4 311 3 view .LVU166
+ 611              		.syntax unified
+ 612              	@ 311 "../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h" 1
+ 613 00b0 82F30888 		MSR msp, r2
+ 614              	@ 0 "" 2
+ 615              	.LVL32:
  311:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** }
- 621              		.loc 4 311 3 is_stmt 0 view .LVU167
- 622              		.thumb
- 623              		.syntax unified
- 624              	.LBE78:
- 625              	.LBE77:
+ 616              		.loc 4 311 3 is_stmt 0 view .LVU167
+ 617              		.thumb
+ 618              		.syntax unified
+ 619              	.LBE78:
+ 620              	.LBE77:
  255:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
- 626              		.loc 1 255 3 is_stmt 1 view .LVU168
- 627              	.LBB79:
- 628              	.LBI79:
+ 621              		.loc 1 255 3 is_stmt 1 view .LVU168
+ 622              	.LBB79:
+ 623              	.LBI79:
  390:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** {
- 629              		.loc 4 390 27 view .LVU169
- 630              	.LBB80:
+ 624              		.loc 4 390 27 view .LVU169
+ 625              	.LBB80:
  392:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** }
- 631              		.loc 4 392 3 view .LVU170
- 632              		.syntax unified
- 633              	@ 392 "../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h" 1
- 634 00b4 85F31088 		MSR primask, r5
- 635              	@ 0 "" 2
- 636              	.LVL33:
-ARM GAS  /tmp/ccGKXWMZ.s 			page 49
+ 626              		.loc 4 392 3 view .LVU170
+ 627              		.syntax unified
+ 628              	@ 392 "../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h" 1
+ 629 00b4 85F31088 		MSR primask, r5
+ 630              	@ 0 "" 2
+ 631              	.LVL33:
+ 392:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** }
+ 632              		.loc 4 392 3 is_stmt 0 view .LVU171
+ 633              		.thumb
+ 634              		.syntax unified
+ 635              	.LBE80:
+ARM GAS  /tmp/cc7XxhG3.s 			page 49
 
 
- 392:../Drivers/CMSIS/Include/m-profile/cmsis_gcc_m.h **** }
- 637              		.loc 4 392 3 is_stmt 0 view .LVU171
- 638              		.thumb
- 639              		.syntax unified
- 640              	.LBE80:
- 641              	.LBE79:
+ 636              	.LBE79:
  257:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   return BOOT_OK;
- 642              		.loc 1 257 3 is_stmt 1 view .LVU172
- 643 00b8 1B68     		ldr	r3, [r3]
- 644 00ba 9847     		blx	r3
- 645              	.LVL34:
+ 637              		.loc 1 257 3 is_stmt 1 view .LVU172
+ 638 00b8 1B68     		ldr	r3, [r3]
+ 639 00ba 9847     		blx	r3
+ 640              	.LVL34:
  258:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** }
- 646              		.loc 1 258 3 view .LVU173
+ 641              		.loc 1 258 3 view .LVU173
  259:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
- 647              		.loc 1 259 1 is_stmt 0 view .LVU174
- 648 00bc 2046     		mov	r0, r4
- 649 00be 05B0     		add	sp, sp, #20
- 650              	.LCFI9:
- 651              		.cfi_def_cfa_offset 12
- 652              		@ sp needed
- 653 00c0 30BD     		pop	{r4, r5, pc}
- 654              	.LVL35:
- 655              	.L31:
+ 642              		.loc 1 259 1 is_stmt 0 view .LVU174
+ 643 00bc 2046     		mov	r0, r4
+ 644 00be 05B0     		add	sp, sp, #20
+ 645              	.LCFI9:
+ 646              		.cfi_def_cfa_offset 12
+ 647              		@ sp needed
+ 648 00c0 30BD     		pop	{r4, r5, pc}
+ 649              	.LVL35:
+ 650              	.L29:
  259:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
- 656              		.loc 1 259 1 view .LVU175
- 657 00c2 00BF     		.align	2
- 658              	.L30:
- 659 00c4 00ED00E0 		.word	-536810240
- 660 00c8 00000000 		.word	JumpToApp.0
- 661              		.cfi_endproc
- 662              	.LFE884:
- 664              		.section	.text.BOOT_Application,"ax",%progbits
- 665              		.align	1
- 666              		.global	BOOT_Application
- 667              		.syntax unified
- 668              		.thumb
- 669              		.thumb_func
- 671              	BOOT_Application:
- 672              	.LFB881:
+ 651              		.loc 1 259 1 view .LVU175
+ 652 00c2 00BF     		.align	2
+ 653              	.L28:
+ 654 00c4 00ED00E0 		.word	-536810240
+ 655 00c8 00000000 		.word	JumpToApp.0
+ 656              		.cfi_endproc
+ 657              	.LFE884:
+ 659              		.section	.text.BOOT_Application,"ax",%progbits
+ 660              		.align	1
+ 661              		.global	BOOT_Application
+ 662              		.syntax unified
+ 663              		.thumb
+ 664              		.thumb_func
+ 666              	BOOT_Application:
+ 667              	.LFB881:
   61:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   BOOTStatus_TypeDef retr;
- 673              		.loc 1 61 1 is_stmt 1 view -0
- 674              		.cfi_startproc
- 675              		@ args = 0, pretend = 0, frame = 0
- 676              		@ frame_needed = 0, uses_anonymous_args = 0
- 677 0000 08B5     		push	{r3, lr}
- 678              	.LCFI10:
- 679              		.cfi_def_cfa_offset 8
- 680              		.cfi_offset 3, -8
- 681              		.cfi_offset 14, -4
+ 668              		.loc 1 61 1 is_stmt 1 view -0
+ 669              		.cfi_startproc
+ 670              		@ args = 0, pretend = 0, frame = 0
+ 671              		@ frame_needed = 0, uses_anonymous_args = 0
+ 672 0000 08B5     		push	{r3, lr}
+ 673              	.LCFI10:
+ 674              		.cfi_def_cfa_offset 8
+ 675              		.cfi_offset 3, -8
+ 676              		.cfi_offset 14, -4
   62:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
- 682              		.loc 1 62 3 view .LVU177
+ 677              		.loc 1 62 3 view .LVU177
   65:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   if (BOOT_OK == retr)
- 683              		.loc 1 65 3 view .LVU178
+ 678              		.loc 1 65 3 view .LVU178
   65:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   if (BOOT_OK == retr)
- 684              		.loc 1 65 10 is_stmt 0 view .LVU179
- 685 0002 FFF7FEFF 		bl	MapMemory
- 686              	.LVL36:
-ARM GAS  /tmp/ccGKXWMZ.s 			page 50
+ 679              		.loc 1 65 10 is_stmt 0 view .LVU179
+ 680 0002 FFF7FEFF 		bl	MapMemory
+ 681              	.LVL36:
+  66:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   {
+ 682              		.loc 1 66 3 is_stmt 1 view .LVU180
+  66:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   {
+ 683              		.loc 1 66 6 is_stmt 0 view .LVU181
+ 684 0006 00B1     		cbz	r0, .L33
+ARM GAS  /tmp/cc7XxhG3.s 			page 50
 
 
-  66:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   {
- 687              		.loc 1 66 3 is_stmt 1 view .LVU180
-  66:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****   {
- 688              		.loc 1 66 6 is_stmt 0 view .LVU181
- 689 0006 00B1     		cbz	r0, .L35
- 690              	.LVL37:
- 691              	.L33:
+ 685              	.LVL37:
+ 686              	.L31:
   75:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** }
- 692              		.loc 1 75 3 is_stmt 1 view .LVU182
+ 687              		.loc 1 75 3 is_stmt 1 view .LVU182
   76:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c **** 
- 693              		.loc 1 76 1 is_stmt 0 view .LVU183
- 694 0008 08BD     		pop	{r3, pc}
- 695              	.LVL38:
- 696              	.L35:
+ 688              		.loc 1 76 1 is_stmt 0 view .LVU183
+ 689 0008 08BD     		pop	{r3, pc}
+ 690              	.LVL38:
+ 691              	.L33:
   68:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****     if (BOOT_OK == retr)
- 697              		.loc 1 68 5 is_stmt 1 view .LVU184
+ 692              		.loc 1 68 5 is_stmt 1 view .LVU184
   68:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****     if (BOOT_OK == retr)
- 698              		.loc 1 68 12 is_stmt 0 view .LVU185
- 699 000a FFF7FEFF 		bl	CopyApplication
- 700              	.LVL39:
+ 693              		.loc 1 68 12 is_stmt 0 view .LVU185
+ 694 000a FFF7FEFF 		bl	CopyApplication
+ 695              	.LVL39:
   69:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****     {
- 701              		.loc 1 69 5 is_stmt 1 view .LVU186
+ 696              		.loc 1 69 5 is_stmt 1 view .LVU186
   69:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****     {
- 702              		.loc 1 69 8 is_stmt 0 view .LVU187
- 703 000e 0028     		cmp	r0, #0
- 704 0010 FAD1     		bne	.L33
+ 697              		.loc 1 69 8 is_stmt 0 view .LVU187
+ 698 000e 0028     		cmp	r0, #0
+ 699 0010 FAD1     		bne	.L31
   72:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****     }
- 705              		.loc 1 72 7 is_stmt 1 view .LVU188
+ 700              		.loc 1 72 7 is_stmt 1 view .LVU188
   72:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****     }
- 706              		.loc 1 72 14 is_stmt 0 view .LVU189
- 707 0012 FFF7FEFF 		bl	JumpToApplication
- 708              	.LVL40:
+ 701              		.loc 1 72 14 is_stmt 0 view .LVU189
+ 702 0012 FFF7FEFF 		bl	JumpToApplication
+ 703              	.LVL40:
   72:../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c ****     }
- 709              		.loc 1 72 14 view .LVU190
- 710 0016 F7E7     		b	.L33
- 711              		.cfi_endproc
- 712              	.LFE881:
- 714              		.section	.bss.JumpToApp.0,"aw",%nobits
- 715              		.align	2
- 718              	JumpToApp.0:
- 719 0000 00000000 		.space	4
- 720              		.text
- 721              	.Letext0:
- 722              		.file 5 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 723              		.file 6 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 724              		.file 7 "../Drivers/CMSIS/Include/core_cm55.h"
- 725              		.file 8 "../Drivers/STM32_ExtMem_Manager/stm32_extmem.h"
- 726              		.file 9 "Inc/stm32_extmem_conf.h"
- 727              		.file 10 "../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.h"
- 728              		.file 11 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal.h"
-ARM GAS  /tmp/ccGKXWMZ.s 			page 51
+ 704              		.loc 1 72 14 view .LVU190
+ 705 0016 F7E7     		b	.L31
+ 706              		.cfi_endproc
+ 707              	.LFE881:
+ 709              		.section	.bss.JumpToApp.0,"aw",%nobits
+ 710              		.align	2
+ 713              	JumpToApp.0:
+ 714 0000 00000000 		.space	4
+ 715              		.text
+ 716              	.Letext0:
+ 717              		.file 5 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 718              		.file 6 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 719              		.file 7 "../Drivers/CMSIS/Include/core_cm55.h"
+ 720              		.file 8 "../Drivers/STM32_ExtMem_Manager/stm32_extmem.h"
+ 721              		.file 9 "Inc/stm32_extmem_conf.h"
+ 722              		.file 10 "../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.h"
+ 723              		.file 11 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal.h"
+ARM GAS  /tmp/cc7XxhG3.s 			page 51
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32_boot_lrun.c
-     /tmp/ccGKXWMZ.s:26     .text.MapMemory:00000000 $t
-     /tmp/ccGKXWMZ.s:32     .text.MapMemory:00000000 MapMemory
-     /tmp/ccGKXWMZ.s:121    .text.BOOT_GetApplicationSize:00000000 $t
-     /tmp/ccGKXWMZ.s:127    .text.BOOT_GetApplicationSize:00000000 BOOT_GetApplicationSize
-     /tmp/ccGKXWMZ.s:145    .text.BOOT_GetApplicationSize:00000004 $d
-     /tmp/ccGKXWMZ.s:150    .text.CopyApplication:00000000 $t
-     /tmp/ccGKXWMZ.s:156    .text.CopyApplication:00000000 CopyApplication
-     /tmp/ccGKXWMZ.s:268    .text.CopyApplication:00000060 $d
-     /tmp/ccGKXWMZ.s:273    .text.BOOT_GetApplicationVectorTable:00000000 $t
-     /tmp/ccGKXWMZ.s:279    .text.BOOT_GetApplicationVectorTable:00000000 BOOT_GetApplicationVectorTable
-     /tmp/ccGKXWMZ.s:297    .text.BOOT_GetApplicationVectorTable:00000004 $d
-     /tmp/ccGKXWMZ.s:302    .text.JumpToApplication:00000000 $t
-     /tmp/ccGKXWMZ.s:308    .text.JumpToApplication:00000000 JumpToApplication
-     /tmp/ccGKXWMZ.s:659    .text.JumpToApplication:000000c4 $d
-     /tmp/ccGKXWMZ.s:718    .bss.JumpToApp.0:00000000 JumpToApp.0
-     /tmp/ccGKXWMZ.s:665    .text.BOOT_Application:00000000 $t
-     /tmp/ccGKXWMZ.s:671    .text.BOOT_Application:00000000 BOOT_Application
-     /tmp/ccGKXWMZ.s:715    .bss.JumpToApp.0:00000000 $d
+     /tmp/cc7XxhG3.s:26     .text.MapMemory:00000000 $t
+     /tmp/cc7XxhG3.s:32     .text.MapMemory:00000000 MapMemory
+     /tmp/cc7XxhG3.s:121    .text.BOOT_GetApplicationSize:00000000 $t
+     /tmp/cc7XxhG3.s:127    .text.BOOT_GetApplicationSize:00000000 BOOT_GetApplicationSize
+     /tmp/cc7XxhG3.s:145    .text.BOOT_GetApplicationSize:00000004 $d
+     /tmp/cc7XxhG3.s:150    .text.CopyApplication:00000000 $t
+     /tmp/cc7XxhG3.s:156    .text.CopyApplication:00000000 CopyApplication
+     /tmp/cc7XxhG3.s:268    .text.BOOT_GetApplicationVectorTable:00000000 $t
+     /tmp/cc7XxhG3.s:274    .text.BOOT_GetApplicationVectorTable:00000000 BOOT_GetApplicationVectorTable
+     /tmp/cc7XxhG3.s:292    .text.BOOT_GetApplicationVectorTable:00000004 $d
+     /tmp/cc7XxhG3.s:297    .text.JumpToApplication:00000000 $t
+     /tmp/cc7XxhG3.s:303    .text.JumpToApplication:00000000 JumpToApplication
+     /tmp/cc7XxhG3.s:654    .text.JumpToApplication:000000c4 $d
+     /tmp/cc7XxhG3.s:713    .bss.JumpToApp.0:00000000 JumpToApp.0
+     /tmp/cc7XxhG3.s:660    .text.BOOT_Application:00000000 $t
+     /tmp/cc7XxhG3.s:666    .text.BOOT_Application:00000000 BOOT_Application
+     /tmp/cc7XxhG3.s:710    .bss.JumpToApp.0:00000000 $d
 
 UNDEFINED SYMBOLS
 EXTMEM_GetMapAddress

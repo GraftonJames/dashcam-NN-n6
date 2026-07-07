@@ -115,7 +115,7 @@ int main(void)
     Error_Handler();
   }
 
-  printf("COM OPEN");
+	  printf("COM OPEN\r\n");
   /* USER CODE END 2 */
 
   BSP_LED_Toggle(LED_GREEN);
@@ -125,6 +125,7 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
+	  printf("COM OPEN\r\n");
 	 BSP_LED_Toggle(LED_RED);
 	 HAL_Delay(200);
     /* USER CODE BEGIN 3 */

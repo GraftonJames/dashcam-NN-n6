@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cckkZ7Oo.s 			page 1
+ARM GAS  /tmp/cchoCFne.s 			page 1
 
 
    1              		.arch armv8.1-m.main
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
   23:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c **** #include "stm32_sfdp_driver_type.h"
   24:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c **** #include "stm32_sfdp_driver_api.h"
   25:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c **** #include "stm32_sfdp_data.h"
-ARM GAS  /tmp/cckkZ7Oo.s 			page 2
+ARM GAS  /tmp/cchoCFne.s 			page 2
 
 
   26:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c **** #if EXTMEM_DRIVER_NOR_SFDP_DEBUG_LEVEL != 0 && defined(EXTMEM_MACRO_DEBUG)
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
   80:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   }
   81:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c **** #else
   82:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c **** #define DEBUG_DRIVER(_STR_)
-ARM GAS  /tmp/cckkZ7Oo.s 			page 3
+ARM GAS  /tmp/cchoCFne.s 			page 3
 
 
   83:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c **** #endif /* EXTMEM_DRIVER_NOR_SFDP_DEBUG_LEVEL > 2 */
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  137:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   * @param SFDPObject Pointer to memory object.
  138:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   * @retval EXTMEM_DRIVER_NOR_SFDP_StatusTypeDef Status of the operation.
  139:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   */
-ARM GAS  /tmp/cckkZ7Oo.s 			page 4
+ARM GAS  /tmp/cchoCFne.s 			page 4
 
 
  140:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c **** EXTMEM_DRIVER_NOR_SFDP_StatusTypeDef EXTMEM_DRIVER_NOR_SFDP_Init(void *Peripheral, EXTMEM_LinkConfi
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  194:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   {
  195:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****     /* SFDP header reading is considered unsuccessful.
  196:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****        Abort Initialisation procedure. */
-ARM GAS  /tmp/cckkZ7Oo.s 			page 5
+ARM GAS  /tmp/cchoCFne.s 			page 5
 
 
  197:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****     SFDP_DEBUG_STR("ERROR::EXTMEM_DRIVER_NOR_SFDP_ERROR_SFDP")
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  251:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   /* Read again SFDP header to confirm memory access is properly setup */
  252:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   SFDP_DEBUG_STR("11 - read again the SFDP header to adjust memory type if necessary")
  253:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   if (EXTMEM_SFDP_OK != SFDP_ReadHeader(SFDPObject, &JEDEC_SFDP_Header))
-ARM GAS  /tmp/cckkZ7Oo.s 			page 6
+ARM GAS  /tmp/cchoCFne.s 			page 6
 
 
  254:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   {
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  308:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c **** EXTMEM_DRIVER_NOR_SFDP_StatusTypeDef EXTMEM_DRIVER_NOR_SFDP_Read(EXTMEM_DRIVER_NOR_SFDP_ObjectTypeD
  309:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****                                                                  uint32_t Address, uint8_t *Data, u
  310:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c **** {
-ARM GAS  /tmp/cckkZ7Oo.s 			page 7
+ARM GAS  /tmp/cchoCFne.s 			page 7
 
 
  311:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   EXTMEM_DRIVER_NOR_SFDP_StatusTypeDef retr;
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  365:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****     }
  366:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****     else
  367:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****     {
-ARM GAS  /tmp/cckkZ7Oo.s 			page 8
+ARM GAS  /tmp/cchoCFne.s 			page 8
 
 
  368:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****       size_write = MIN(local_size, SFDPObject->sfdp_private.PageSize);
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  422:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   * @return @ref EXTMEM_DRIVER_NOR_SFDP_StatusTypeDef
  423:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   **/
  424:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c **** EXTMEM_DRIVER_NOR_SFDP_StatusTypeDef EXTMEM_DRIVER_NOR_SFDP_WriteInMappedMode(EXTMEM_DRIVER_NOR_SFD
-ARM GAS  /tmp/cckkZ7Oo.s 			page 9
+ARM GAS  /tmp/cchoCFne.s 			page 9
 
 
  425:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****                                                                               *SFDPObject, uint32_t
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  479:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****         size_write = SFDPObject->sfdp_private.PageSize;
  480:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****       }
  481:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****       else
-ARM GAS  /tmp/cckkZ7Oo.s 			page 10
+ARM GAS  /tmp/cchoCFne.s 			page 10
 
 
  482:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****       {
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  536:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****     }
  537:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****     else
  538:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****     {
-ARM GAS  /tmp/cckkZ7Oo.s 			page 11
+ARM GAS  /tmp/cchoCFne.s 			page 11
 
 
  539:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****       local_size = 0;
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  593:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****     retr = EXTMEM_DRIVER_NOR_SFDP_ERROR_ERASE_TIMEOUT;
  594:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****     goto error;
  595:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   }
-ARM GAS  /tmp/cckkZ7Oo.s 			page 12
+ARM GAS  /tmp/cchoCFne.s 			page 12
 
 
  596:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c **** 
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  650:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   if (0x0u == command)
  651:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   {
  652:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****     retr = EXTMEM_DRIVER_NOR_SFDP_ERROR_SECTORTYPE_UNAVAILABLE;
-ARM GAS  /tmp/cckkZ7Oo.s 			page 13
+ARM GAS  /tmp/cchoCFne.s 			page 13
 
 
  653:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****     goto error;
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  707:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****                                        (uint8_t)SFDPObject->sfdp_private.SALObject.Commandbase.Dumm
  708:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****                                        SFDPObject->sfdp_private.DriverInfo.PageProgramInstruction, 
  709:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   {
-ARM GAS  /tmp/cckkZ7Oo.s 			page 14
+ARM GAS  /tmp/cchoCFne.s 			page 14
 
 
  710:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****     retr = EXTMEM_DRIVER_NOR_SFDP_ERROR_MAP_ENABLE;
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
   34              		.loc 1 763 1 view -0
   35              		.cfi_startproc
   36              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/cckkZ7Oo.s 			page 15
+ARM GAS  /tmp/cchoCFne.s 			page 15
 
 
   37              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
   76              		.loc 1 778 114 view .LVU13
   77 0028 A3B9     		cbnz	r3, .L5
   78              		.loc 1 778 114 discriminator 1 view .LVU14
-ARM GAS  /tmp/cckkZ7Oo.s 			page 16
+ARM GAS  /tmp/cchoCFne.s 			page 16
 
 
   79 002a 0123     		movs	r3, #1
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  120              	.L8:
  764:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   DEBUG_DRIVER((uint8_t *)__func__)
  121              		.loc 1 764 40 view .LVU24
-ARM GAS  /tmp/cckkZ7Oo.s 			page 17
+ARM GAS  /tmp/cchoCFne.s 			page 17
 
 
  122 0058 6FF00500 		mvn	r0, #5
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  170              		.loc 1 146 11 view .LVU32
  171 0010 8DF80F10 		strb	r1, [sp, #15]
  147:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   uint32_t ClockOut;
-ARM GAS  /tmp/cckkZ7Oo.s 			page 18
+ARM GAS  /tmp/cchoCFne.s 			page 18
 
 
  172              		.loc 1 147 3 is_stmt 1 view .LVU33
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  167:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c **** 
  210              		.loc 1 167 3 is_stmt 1 view .LVU50
  167:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c **** 
-ARM GAS  /tmp/cckkZ7Oo.s 			page 19
+ARM GAS  /tmp/cchoCFne.s 			page 19
 
 
  211              		.loc 1 167 9 is_stmt 0 view .LVU51
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  250 0070 84F89C30 		strb	r3, [r4, #156]
  251              	.L14:
  212:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c **** 
-ARM GAS  /tmp/cckkZ7Oo.s 			page 20
+ARM GAS  /tmp/cchoCFne.s 			page 20
 
 
  252              		.loc 1 212 3 is_stmt 1 view .LVU67
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  289 00a6 0BB9     		cbnz	r3, .L15
  244:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   {
  290              		.loc 1 244 53 discriminator 1 view .LVU85
-ARM GAS  /tmp/cckkZ7Oo.s 			page 21
+ARM GAS  /tmp/cchoCFne.s 			page 21
 
 
  291 00a8 2268     		ldr	r2, [r4]
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  333              	.LVL30:
  334 00d2 EBE7     		b	.L15
  335              	.L16:
-ARM GAS  /tmp/cckkZ7Oo.s 			page 22
+ARM GAS  /tmp/cchoCFne.s 			page 22
 
 
  238:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****     goto error;
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  384              		.thumb_func
  386              	EXTMEM_DRIVER_NOR_SFDP_GetFlashInfo:
  387              	.LVL33:
-ARM GAS  /tmp/cckkZ7Oo.s 			page 23
+ARM GAS  /tmp/cchoCFne.s 			page 23
 
 
  388              	.LFB883:
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  425 0020 CB60     		str	r3, [r1, #12]
  293:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****                               ((uint32_t)1u << SFDPObject->sfdp_private.DriverInfo.EraseType3Size);
  426              		.loc 1 293 3 is_stmt 1 view .LVU124
-ARM GAS  /tmp/cckkZ7Oo.s 			page 24
+ARM GAS  /tmp/cchoCFne.s 			page 24
 
 
  293:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****                               ((uint32_t)1u << SFDPObject->sfdp_private.DriverInfo.EraseType3Size);
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  467              	.LFE883:
  469              		.section	.text.EXTMEM_DRIVER_NOR_SFDP_Read,"ax",%progbits
  470              		.align	1
-ARM GAS  /tmp/cckkZ7Oo.s 			page 25
+ARM GAS  /tmp/cchoCFne.s 			page 25
 
 
  471              		.global	EXTMEM_DRIVER_NOR_SFDP_Read
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  516 001a 4046     		mov	r0, r8
  517 001c 02B0     		add	sp, sp, #8
  518              	.LCFI10:
-ARM GAS  /tmp/cckkZ7Oo.s 			page 26
+ARM GAS  /tmp/cchoCFne.s 			page 26
 
 
  519              		.cfi_remember_state
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  567              	.LCFI12:
  568              		.cfi_def_cfa_offset 28
  569              		.cfi_offset 4, -28
-ARM GAS  /tmp/cckkZ7Oo.s 			page 27
+ARM GAS  /tmp/cchoCFne.s 			page 27
 
 
  570              		.cfi_offset 5, -24
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  362:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****       size_write = MIN(local_size, size_write);
  610              		.loc 1 362 71 view .LVU171
  611 0026 B7FBF4F3 		udiv	r3, r7, r4
-ARM GAS  /tmp/cckkZ7Oo.s 			page 28
+ARM GAS  /tmp/cchoCFne.s 			page 28
 
 
  612 002a 04FB1373 		mls	r3, r4, r3, r7
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  650 0054 D8B9     		cbnz	r0, .L42
  388:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****                                  SFDPObject->sfdp_private.DriverInfo.PageProgramInstruction,
  651              		.loc 1 388 5 is_stmt 1 view .LVU188
-ARM GAS  /tmp/cckkZ7Oo.s 			page 29
+ARM GAS  /tmp/cchoCFne.s 			page 29
 
 
  388:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****                                  SFDPObject->sfdp_private.DriverInfo.PageProgramInstruction,
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  691              	.L48:
  403:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c **** #if EXTMEM_MACRO_DEBUG
  692              		.loc 1 403 3 is_stmt 1 view .LVU204
-ARM GAS  /tmp/cckkZ7Oo.s 			page 30
+ARM GAS  /tmp/cchoCFne.s 			page 30
 
 
  403:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c **** #if EXTMEM_MACRO_DEBUG
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  568:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   if (EXTMEM_DRIVER_NOR_SFDP_OK != retr)
  742              		.loc 1 568 3 view .LVU212
  568:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   if (EXTMEM_DRIVER_NOR_SFDP_OK != retr)
-ARM GAS  /tmp/cckkZ7Oo.s 			page 31
+ARM GAS  /tmp/cchoCFne.s 			page 31
 
 
  743              		.loc 1 568 10 is_stmt 0 view .LVU213
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  783 0030 FFF7FEFF 		bl	driver_check_FlagBUSY
  784              	.LVL70:
  590:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   {
-ARM GAS  /tmp/cckkZ7Oo.s 			page 32
+ARM GAS  /tmp/cchoCFne.s 			page 32
 
 
  785              		.loc 1 590 3 is_stmt 1 view .LVU228
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  831              		.loc 1 616 3 view .LVU238
  617:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   DEBUG_DRIVER((uint8_t *)__func__)
  832              		.loc 1 617 3 view .LVU239
-ARM GAS  /tmp/cckkZ7Oo.s 			page 33
+ARM GAS  /tmp/cchoCFne.s 			page 33
 
 
  621:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   {
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  872 002a 31EA0303 		bics	r3, r1, r3
  873 002e 3AD1     		bne	.L66
  664:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   if (EXTMEM_DRIVER_NOR_SFDP_OK != retr)
-ARM GAS  /tmp/cckkZ7Oo.s 			page 34
+ARM GAS  /tmp/cchoCFne.s 			page 34
 
 
  874              		.loc 1 664 3 is_stmt 1 view .LVU255
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  913              		.loc 1 634 7 view .LVU270
  634:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****       size = SFDPObject->sfdp_private.DriverInfo.EraseType3Size;
  914              		.loc 1 634 15 is_stmt 0 view .LVU271
-ARM GAS  /tmp/cckkZ7Oo.s 			page 35
+ARM GAS  /tmp/cchoCFne.s 			page 35
 
 
  915 0052 90F87C50 		ldrb	r5, [r0, #124]	@ zero_extendqisi2
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  954              	.LVL97:
  672:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   {
  955              		.loc 1 672 3 is_stmt 1 view .LVU287
-ARM GAS  /tmp/cckkZ7Oo.s 			page 36
+ARM GAS  /tmp/cchoCFne.s 			page 36
 
 
  672:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   {
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  997              		.cfi_endproc
  998              	.LFE888:
  1000              		.section	.text.EXTMEM_DRIVER_NOR_SFDP_Enable_MemoryMappedMode,"ax",%progbits
-ARM GAS  /tmp/cckkZ7Oo.s 			page 37
+ARM GAS  /tmp/cchoCFne.s 			page 37
 
 
  1001              		.align	1
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  1047 001e 00BD     		pop	{pc}
  1048              	.LVL110:
  1049              	.L73:
-ARM GAS  /tmp/cckkZ7Oo.s 			page 38
+ARM GAS  /tmp/cchoCFne.s 			page 38
 
 
  1050              	.LCFI21:
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  730:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   }
  1096              		.loc 1 730 10 view .LVU320
  1097 000c 6FF00C00 		mvn	r0, #12
-ARM GAS  /tmp/cckkZ7Oo.s 			page 39
+ARM GAS  /tmp/cchoCFne.s 			page 39
 
 
  1098 0010 FBE7     		b	.L75
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  1137 000a 11F80C30 		ldrb	r3, [r1, ip]	@ zero_extendqisi2
  1138              		.loc 1 803 69 view .LVU330
  1139 000e 0CF1010E 		add	lr, ip, #1
-ARM GAS  /tmp/cckkZ7Oo.s 			page 40
+ARM GAS  /tmp/cchoCFne.s 			page 40
 
 
  1140              		.loc 1 803 62 view .LVU331
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  1188              	.LFB886:
  427:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   EXTMEM_DRIVER_NOR_SFDP_StatusTypeDef retr = EXTMEM_DRIVER_NOR_SFDP_OK;
  1189              		.loc 1 427 1 is_stmt 1 view -0
-ARM GAS  /tmp/cckkZ7Oo.s 			page 41
+ARM GAS  /tmp/cchoCFne.s 			page 41
 
 
  1190              		.cfi_startproc
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  1230              		.loc 1 448 54 is_stmt 0 view .LVU359
  1231 0018 036E     		ldr	r3, [r0, #96]
  448:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****   {
-ARM GAS  /tmp/cckkZ7Oo.s 			page 42
+ARM GAS  /tmp/cchoCFne.s 			page 42
 
 
  1232              		.loc 1 448 28 view .LVU360
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
   25:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** 
   26:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** #if   defined ( __ICCARM__ )
   27:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****   #pragma system_include         /* treat file as system include file for MISRA check */
-ARM GAS  /tmp/cckkZ7Oo.s 			page 43
+ARM GAS  /tmp/cchoCFne.s 			page 43
 
 
   28:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** #elif defined (__clang__)
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
   82:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     SCB->ICIALLU = 0UL;                     /* invalidate I-Cache */
   83:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     __DSB();
   84:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     __ISB();
-ARM GAS  /tmp/cckkZ7Oo.s 			page 44
+ARM GAS  /tmp/cchoCFne.s 			page 44
 
 
   85:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****   #endif
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  139:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** __STATIC_FORCEINLINE void SCB_EnableDCache (void)
  1255              		.loc 2 139 27 view .LVU368
  1256              	.LBB57:
-ARM GAS  /tmp/cckkZ7Oo.s 			page 45
+ARM GAS  /tmp/cchoCFne.s 			page 45
 
 
  140:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** {
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
   24:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
   25:../Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __CMSIS_GCC_H
   26:../Drivers/CMSIS/Include/cmsis_gcc.h **** #define __CMSIS_GCC_H
-ARM GAS  /tmp/cckkZ7Oo.s 			page 46
+ARM GAS  /tmp/cchoCFne.s 			page 46
 
 
   27:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
   81:../Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
   82:../Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
   83:../Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT16_READ { uint16_t v; };
-ARM GAS  /tmp/cckkZ7Oo.s 			page 47
+ARM GAS  /tmp/cchoCFne.s 			page 47
 
 
   84:../Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  138:../Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  139:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   No Operation
  140:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \details No Operation does nothing. This instruction can be used for code alignment purposes.
-ARM GAS  /tmp/cckkZ7Oo.s 			page 48
+ARM GAS  /tmp/cchoCFne.s 			page 48
 
 
  141:../Drivers/CMSIS/Include/cmsis_gcc.h ****  */
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  1286              		.syntax unified
  1287              	.LBE59:
  1288              	.LBE58:
-ARM GAS  /tmp/cckkZ7Oo.s 			page 49
+ARM GAS  /tmp/cchoCFne.s 			page 49
 
 
  150:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** 
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  1320 006c C1F86032 		str	r3, [r1, #608]
  163:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     } while(sets-- != 0U);
  1321              		.loc 2 163 23 is_stmt 1 view .LVU395
-ARM GAS  /tmp/cckkZ7Oo.s 			page 50
+ARM GAS  /tmp/cchoCFne.s 			page 50
 
 
  163:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     } while(sets-- != 0U);
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  1367              		.syntax unified
  1368              	.LBE63:
  1369              	.LBE62:
-ARM GAS  /tmp/cckkZ7Oo.s 			page 51
+ARM GAS  /tmp/cchoCFne.s 			page 51
 
 
  170:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     __ISB();
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  1412 00ae A146     		movcs	r9, r4
  1413              	.LVL141:
  472:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****       misalignment = 0u;
-ARM GAS  /tmp/cckkZ7Oo.s 			page 52
+ARM GAS  /tmp/cchoCFne.s 			page 52
 
 
  1414              		.loc 1 472 47 is_stmt 1 view .LVU422
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  1453              		.loc 1 512 5 is_stmt 1 view .LVU437
  1454              	.LBB66:
  1455              	.LBI66:
-ARM GAS  /tmp/cckkZ7Oo.s 			page 53
+ARM GAS  /tmp/cchoCFne.s 			page 53
 
 
  171:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****   #endif
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  225:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     locals.sets = (uint32_t)(CCSIDR_SETS(locals.ccsidr));
  226:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     do {
  227:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****       locals.ways = (uint32_t)(CCSIDR_WAYS(locals.ccsidr));
-ARM GAS  /tmp/cckkZ7Oo.s 			page 54
+ARM GAS  /tmp/cchoCFne.s 			page 54
 
 
  228:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****       do {
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  282:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** __STATIC_FORCEINLINE void SCB_CleanDCache (void)
  283:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** {
  284:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****   #if defined (__DCACHE_PRESENT) && (__DCACHE_PRESENT == 1U)
-ARM GAS  /tmp/cckkZ7Oo.s 			page 55
+ARM GAS  /tmp/cchoCFne.s 			page 55
 
 
  285:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     uint32_t ccsidr;
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  339:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****       } while (ways-- != 0U);
  340:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     } while(sets-- != 0U);
  341:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h **** 
-ARM GAS  /tmp/cckkZ7Oo.s 			page 56
+ARM GAS  /tmp/cchoCFne.s 			page 56
 
 
  342:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****     __DSB();
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  1462              	.LBB68:
  390:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****        int32_t op_size = dsize + (((uint32_t)addr) & (__SCB_DCACHE_LINE_SIZE - 1U));
  1463              		.loc 2 390 8 is_stmt 1 view .LVU441
-ARM GAS  /tmp/cckkZ7Oo.s 			page 57
+ARM GAS  /tmp/cchoCFne.s 			page 57
 
 
  1464              		.loc 2 390 52 is_stmt 0 view .LVU442
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  1505              	.LBB71:
  1506              	.LBI71:
  184:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  /tmp/cckkZ7Oo.s 			page 58
+ARM GAS  /tmp/cchoCFne.s 			page 58
 
 
  1507              		.loc 3 184 27 view .LVU458
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  1551              	.LVL155:
  523:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****     if (EXTMEM_DRIVER_NOR_SFDP_OK != retr)
  1552              		.loc 1 523 12 view .LVU470
-ARM GAS  /tmp/cckkZ7Oo.s 			page 59
+ARM GAS  /tmp/cchoCFne.s 			page 59
 
 
  1553 0110 FFF7FEFF 		bl	driver_check_FlagBUSY
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  484:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****         {
  1590              		.loc 1 484 9 view .LVU488
  484:../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c ****         {
-ARM GAS  /tmp/cckkZ7Oo.s 			page 60
+ARM GAS  /tmp/cchoCFne.s 			page 60
 
 
  1591              		.loc 1 484 12 is_stmt 0 view .LVU489
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  1631              	.LBB77:
  1632              	.LBI77:
  184:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  /tmp/cckkZ7Oo.s 			page 61
+ARM GAS  /tmp/cchoCFne.s 			page 61
 
 
  1633              		.loc 3 184 27 view .LVU504
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  1675              		.loc 2 226 5 is_stmt 1 view .LVU518
  227:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****       do {
  1676              		.loc 2 227 7 view .LVU519
-ARM GAS  /tmp/cckkZ7Oo.s 			page 62
+ARM GAS  /tmp/cchoCFne.s 			page 62
 
 
  227:../Drivers/CMSIS/Include/m-profile/armv7m_cachel1.h ****       do {
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  1714              	.LBB82:
  1715              		.loc 3 186 3 view .LVU537
  1716              		.syntax unified
-ARM GAS  /tmp/cckkZ7Oo.s 			page 63
+ARM GAS  /tmp/cchoCFne.s 			page 63
 
 
  1717              	@ 186 "../Drivers/CMSIS/Include/cmsis_gcc.h" 1
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  1764              	.LFE886:
  1766              		.text
  1767              	.Letext0:
-ARM GAS  /tmp/cckkZ7Oo.s 			page 64
+ARM GAS  /tmp/cchoCFne.s 			page 64
 
 
  1768              		.file 4 "/usr/arm-none-eabi/include/machine/_default_types.h"
@@ -3798,39 +3798,39 @@ ARM GAS  /tmp/cckkZ7Oo.s 			page 1
  1782              		.file 18 "/usr/arm-none-eabi/include/string.h"
  1783              		.file 19 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal.h"
  1784              		.file 20 "<built-in>"
-ARM GAS  /tmp/cckkZ7Oo.s 			page 65
+ARM GAS  /tmp/cchoCFne.s 			page 65
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32_sfdp_driver.c
-     /tmp/cckkZ7Oo.s:26     .text.driver_set_FlagWEL:00000000 $t
-     /tmp/cckkZ7Oo.s:31     .text.driver_set_FlagWEL:00000000 driver_set_FlagWEL
-     /tmp/cckkZ7Oo.s:133    .text.EXTMEM_DRIVER_NOR_SFDP_Init:00000000 $t
-     /tmp/cckkZ7Oo.s:139    .text.EXTMEM_DRIVER_NOR_SFDP_Init:00000000 EXTMEM_DRIVER_NOR_SFDP_Init
-     /tmp/cckkZ7Oo.s:346    .text.EXTMEM_DRIVER_NOR_SFDP_Init:000000e0 $d
-     /tmp/cckkZ7Oo.s:351    .text.EXTMEM_DRIVER_NOR_SFDP_DeInit:00000000 $t
-     /tmp/cckkZ7Oo.s:357    .text.EXTMEM_DRIVER_NOR_SFDP_DeInit:00000000 EXTMEM_DRIVER_NOR_SFDP_DeInit
-     /tmp/cckkZ7Oo.s:380    .text.EXTMEM_DRIVER_NOR_SFDP_GetFlashInfo:00000000 $t
-     /tmp/cckkZ7Oo.s:386    .text.EXTMEM_DRIVER_NOR_SFDP_GetFlashInfo:00000000 EXTMEM_DRIVER_NOR_SFDP_GetFlashInfo
-     /tmp/cckkZ7Oo.s:470    .text.EXTMEM_DRIVER_NOR_SFDP_Read:00000000 $t
-     /tmp/cckkZ7Oo.s:476    .text.EXTMEM_DRIVER_NOR_SFDP_Read:00000000 EXTMEM_DRIVER_NOR_SFDP_Read
-     /tmp/cckkZ7Oo.s:552    .text.EXTMEM_DRIVER_NOR_SFDP_Write:00000000 $t
-     /tmp/cckkZ7Oo.s:558    .text.EXTMEM_DRIVER_NOR_SFDP_Write:00000000 EXTMEM_DRIVER_NOR_SFDP_Write
-     /tmp/cckkZ7Oo.s:721    .text.EXTMEM_DRIVER_NOR_SFDP_MassErase:00000000 $t
-     /tmp/cckkZ7Oo.s:727    .text.EXTMEM_DRIVER_NOR_SFDP_MassErase:00000000 EXTMEM_DRIVER_NOR_SFDP_MassErase
-     /tmp/cckkZ7Oo.s:805    .text.EXTMEM_DRIVER_NOR_SFDP_SectorErase:00000000 $t
-     /tmp/cckkZ7Oo.s:811    .text.EXTMEM_DRIVER_NOR_SFDP_SectorErase:00000000 EXTMEM_DRIVER_NOR_SFDP_SectorErase
-     /tmp/cckkZ7Oo.s:838    .text.EXTMEM_DRIVER_NOR_SFDP_SectorErase:0000000c $d
-     /tmp/cckkZ7Oo.s:842    .text.EXTMEM_DRIVER_NOR_SFDP_SectorErase:00000010 $t
-     /tmp/cckkZ7Oo.s:1001   .text.EXTMEM_DRIVER_NOR_SFDP_Enable_MemoryMappedMode:00000000 $t
-     /tmp/cckkZ7Oo.s:1007   .text.EXTMEM_DRIVER_NOR_SFDP_Enable_MemoryMappedMode:00000000 EXTMEM_DRIVER_NOR_SFDP_Enable_MemoryMappedMode
-     /tmp/cckkZ7Oo.s:1059   .text.EXTMEM_DRIVER_NOR_SFDP_Disable_MemoryMappedMode:00000000 $t
-     /tmp/cckkZ7Oo.s:1065   .text.EXTMEM_DRIVER_NOR_SFDP_Disable_MemoryMappedMode:00000000 EXTMEM_DRIVER_NOR_SFDP_Disable_MemoryMappedMode
-     /tmp/cckkZ7Oo.s:1103   .text.EXTMEM_MemCopy:00000000 $t
-     /tmp/cckkZ7Oo.s:1109   .text.EXTMEM_MemCopy:00000000 EXTMEM_MemCopy
-     /tmp/cckkZ7Oo.s:1180   .text.EXTMEM_DRIVER_NOR_SFDP_WriteInMappedMode:00000000 $t
-     /tmp/cckkZ7Oo.s:1186   .text.EXTMEM_DRIVER_NOR_SFDP_WriteInMappedMode:00000000 EXTMEM_DRIVER_NOR_SFDP_WriteInMappedMode
-     /tmp/cckkZ7Oo.s:1762   .text.EXTMEM_DRIVER_NOR_SFDP_WriteInMappedMode:000001b8 $d
+     /tmp/cchoCFne.s:26     .text.driver_set_FlagWEL:00000000 $t
+     /tmp/cchoCFne.s:31     .text.driver_set_FlagWEL:00000000 driver_set_FlagWEL
+     /tmp/cchoCFne.s:133    .text.EXTMEM_DRIVER_NOR_SFDP_Init:00000000 $t
+     /tmp/cchoCFne.s:139    .text.EXTMEM_DRIVER_NOR_SFDP_Init:00000000 EXTMEM_DRIVER_NOR_SFDP_Init
+     /tmp/cchoCFne.s:346    .text.EXTMEM_DRIVER_NOR_SFDP_Init:000000e0 $d
+     /tmp/cchoCFne.s:351    .text.EXTMEM_DRIVER_NOR_SFDP_DeInit:00000000 $t
+     /tmp/cchoCFne.s:357    .text.EXTMEM_DRIVER_NOR_SFDP_DeInit:00000000 EXTMEM_DRIVER_NOR_SFDP_DeInit
+     /tmp/cchoCFne.s:380    .text.EXTMEM_DRIVER_NOR_SFDP_GetFlashInfo:00000000 $t
+     /tmp/cchoCFne.s:386    .text.EXTMEM_DRIVER_NOR_SFDP_GetFlashInfo:00000000 EXTMEM_DRIVER_NOR_SFDP_GetFlashInfo
+     /tmp/cchoCFne.s:470    .text.EXTMEM_DRIVER_NOR_SFDP_Read:00000000 $t
+     /tmp/cchoCFne.s:476    .text.EXTMEM_DRIVER_NOR_SFDP_Read:00000000 EXTMEM_DRIVER_NOR_SFDP_Read
+     /tmp/cchoCFne.s:552    .text.EXTMEM_DRIVER_NOR_SFDP_Write:00000000 $t
+     /tmp/cchoCFne.s:558    .text.EXTMEM_DRIVER_NOR_SFDP_Write:00000000 EXTMEM_DRIVER_NOR_SFDP_Write
+     /tmp/cchoCFne.s:721    .text.EXTMEM_DRIVER_NOR_SFDP_MassErase:00000000 $t
+     /tmp/cchoCFne.s:727    .text.EXTMEM_DRIVER_NOR_SFDP_MassErase:00000000 EXTMEM_DRIVER_NOR_SFDP_MassErase
+     /tmp/cchoCFne.s:805    .text.EXTMEM_DRIVER_NOR_SFDP_SectorErase:00000000 $t
+     /tmp/cchoCFne.s:811    .text.EXTMEM_DRIVER_NOR_SFDP_SectorErase:00000000 EXTMEM_DRIVER_NOR_SFDP_SectorErase
+     /tmp/cchoCFne.s:838    .text.EXTMEM_DRIVER_NOR_SFDP_SectorErase:0000000c $d
+     /tmp/cchoCFne.s:842    .text.EXTMEM_DRIVER_NOR_SFDP_SectorErase:00000010 $t
+     /tmp/cchoCFne.s:1001   .text.EXTMEM_DRIVER_NOR_SFDP_Enable_MemoryMappedMode:00000000 $t
+     /tmp/cchoCFne.s:1007   .text.EXTMEM_DRIVER_NOR_SFDP_Enable_MemoryMappedMode:00000000 EXTMEM_DRIVER_NOR_SFDP_Enable_MemoryMappedMode
+     /tmp/cchoCFne.s:1059   .text.EXTMEM_DRIVER_NOR_SFDP_Disable_MemoryMappedMode:00000000 $t
+     /tmp/cchoCFne.s:1065   .text.EXTMEM_DRIVER_NOR_SFDP_Disable_MemoryMappedMode:00000000 EXTMEM_DRIVER_NOR_SFDP_Disable_MemoryMappedMode
+     /tmp/cchoCFne.s:1103   .text.EXTMEM_MemCopy:00000000 $t
+     /tmp/cchoCFne.s:1109   .text.EXTMEM_MemCopy:00000000 EXTMEM_MemCopy
+     /tmp/cchoCFne.s:1180   .text.EXTMEM_DRIVER_NOR_SFDP_WriteInMappedMode:00000000 $t
+     /tmp/cchoCFne.s:1186   .text.EXTMEM_DRIVER_NOR_SFDP_WriteInMappedMode:00000000 EXTMEM_DRIVER_NOR_SFDP_WriteInMappedMode
+     /tmp/cchoCFne.s:1762   .text.EXTMEM_DRIVER_NOR_SFDP_WriteInMappedMode:000001b8 $d
 
 UNDEFINED SYMBOLS
 SAL_XSPI_CommandSendData
