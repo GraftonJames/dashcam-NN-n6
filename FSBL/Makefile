@@ -37,6 +37,7 @@ HAL_C_SOURCE_PREF = ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal
 C_SOURCES =  \
 Src/main.c \
 Src/camera.c \
+Src/extmem_manager.c \
 Src/stm32n6xx_it.c \
 Src/stm32n6xx_hal_msp.c \
 Src/system_stm32n6xx_fsbl.c \
@@ -57,6 +58,7 @@ $(HAL_C_SOURCE_PREF)_xspi.c \
 $(HAL_C_SOURCE_PREF)_bsec.c \
 $(HAL_C_SOURCE_PREF)_exti.c \
 $(HAL_C_SOURCE_PREF)_uart.c \
+$(HAL_C_SOURCE_PREF)_dma.c \
 ../Drivers/stm32n6xx_nucleo_bus.c \
 ../Drivers/cmw_camera/cmw_camera.c \
 ../Drivers/cmw_camera/cmw_utils.c \
@@ -65,6 +67,11 @@ $(HAL_C_SOURCE_PREF)_uart.c \
 ../Drivers/ISP/isp/Src/isp_algo.c \
 ../Drivers/ISP/isp/Src/isp_ae_algo.c \
 ../Drivers/ISP/isp/Src/isp_awb_algo.c \
+../Drivers/STM32_ExtMem_Manager/stm32_extmem.c \
+../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c \
+../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_data.c \
+../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c \
+../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c \
 ../Drivers/cmw_camera/sensors/cmw_imx335.c \
 ../Drivers/cmw_camera/sensors/imx335/imx335.c \
 ../Drivers/cmw_camera/sensors/imx335/imx335_reg.c 
@@ -119,7 +126,8 @@ AS_DEFS =
 # C defines
 C_DEFS =  \
 -DUSE_HAL_DRIVER \
--DSTM32N657xx
+-DSTM32N657xx \
+-DUSE_NUCLEO_54 \
 
 
 # AS includes
@@ -129,6 +137,7 @@ AS_INCLUDES =
 C_INCLUDES =  \
 -IInc \
 -I../Drivers/BSP/STM32N6xx_Nucleo \
+-I../Drivers/STM32_ExtMem_Manager \
 -I../Drivers/STM32N6xx_HAL_Driver/Inc \
 -I../Drivers/CMSIS/Device/ST/STM32N6xx/Include \
 -I../Drivers/STM32N6xx_HAL_Driver/Inc/Legacy \

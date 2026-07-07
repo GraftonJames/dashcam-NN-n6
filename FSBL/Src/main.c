@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "extmem_manager.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -94,6 +95,7 @@ int main(void)
   MX_GPIO_Init();
   MX_BSEC_Init();
   MX_XSPI2_Init();
+  MX_EXTMEM_MANAGER_Init();
   /* USER CODE BEGIN 2 */
 	BSP_LED_Init(LED_BLUE);
 	BSP_LED_Init(LED_RED);
@@ -116,6 +118,11 @@ int main(void)
     Error_Handler();
   }
 
+  if (BOOT_OK != BOOT_Application())
+  {
+    Error_Handler();
+  }
+	BSP_LED_On(LED_GREEN);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)

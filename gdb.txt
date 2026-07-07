@@ -317,3 +317,212 @@ Breakpoint 4, HAL_GPIO_WritePin (GPIOx=GPIOx@entry=0x56020000, GPIO_Pin=GPIO_Pin
 #6  0x34186c86 in CMW_CAMERA_Init (initConf=initConf@entry=0x341fffe0, advanced_config=advanced_config@entry=0x341fffd4) at ../Drivers/cmw_camera/cmw_camera.c:369
 #7  0x34180eac in CAMERA_init () at Src/camera.c:65
 #8  0x34180d9e in main () at Src/main.c:66
+0x18003514 in ?? ()
+❌️ .gdbinit:26: Error in sourced command file:
+/home/james/proj/dashcan-NN-n6/FSBL/build/FSBL.elf: No such file or directory.
+0x18003514 in ?? ()
+Loading section .isr_vector, size 0x34c lma 0x34180400
+Loading section .text, size 0x7354 lma 0x3418074c
+Loading section .rodata, size 0x2c lma 0x34187aa0
+Loading section .ARM, size 0x8 lma 0x34187acc
+Loading section .init_array, size 0x4 lma 0x34187ad4
+Loading section .fini_array, size 0x4 lma 0x34187ad8
+Loading section .gnu.sgstubs, size 0x20 lma 0x34187ae0
+Loading section .data, size 0x14 lma 0x34187b00
+Start address 0x34187714, load size 30480
+Transfer rate: 875 KB/sec, 3386 bytes/write.
+Hardware assisted breakpoint 1 at 0x34180a8c: file Src/main.c, line 127.
+
+Breakpoint 1, main () at Src/main.c:121
+⚠️ warning: Source file is more recent than executable.
+121	  /* USER CODE BEGIN WHILE */
+add symbol table from file "/home/james/proj/dashcam-NN-n6/Appli/build/Appli.elf"
+Breakpoint 2 at 0x34000ac4: file Src/main.c, line 81.
+
+Program received signal SIGINT, Interrupt.
+main () at Src/main.c:121
+121	  /* USER CODE BEGIN WHILE */
+❌️ Remote connection closed
+0x1800350e in ?? ()
+Loading section .isr_vector, size 0x34c lma 0x34180400
+Loading section .text, size 0x7354 lma 0x3418074c
+Loading section .rodata, size 0x2c lma 0x34187aa0
+Loading section .ARM, size 0x8 lma 0x34187acc
+Loading section .init_array, size 0x4 lma 0x34187ad4
+Loading section .fini_array, size 0x4 lma 0x34187ad8
+Loading section .gnu.sgstubs, size 0x20 lma 0x34187ae0
+Loading section .data, size 0x14 lma 0x34187b00
+Start address 0x34187714, load size 30480
+Transfer rate: 783 KB/sec, 3386 bytes/write.
+Hardware assisted breakpoint 1 at 0x34180a8c: file Src/main.c, line 127.
+
+Breakpoint 1, main () at Src/main.c:121
+⚠️ warning: Source file is more recent than executable.
+121	  /* USER CODE BEGIN WHILE */
+Continuing.
+
+Breakpoint 1, main () at Src/main.c:121
+121	  /* USER CODE BEGIN WHILE */
+Continuing.
+
+Breakpoint 1, main () at Src/main.c:121
+121	  /* USER CODE BEGIN WHILE */
+Continuing.
+
+Breakpoint 1, main () at Src/main.c:121
+121	  /* USER CODE BEGIN WHILE */
+
+Breakpoint 1, main () at Src/main.c:121
+121	  /* USER CODE BEGIN WHILE */
+
+Breakpoint 1, main () at Src/main.c:121
+121	  /* USER CODE BEGIN WHILE */
+
+Breakpoint 1, main () at Src/main.c:121
+121	  /* USER CODE BEGIN WHILE */
+
+Breakpoint 1, main () at Src/main.c:121
+121	  /* USER CODE BEGIN WHILE */
+
+Breakpoint 1, main () at Src/main.c:121
+121	  /* USER CODE BEGIN WHILE */
+
+Breakpoint 1, main () at Src/main.c:121
+121	  /* USER CODE BEGIN WHILE */
+add symbol table from file "/home/james/proj/dashcam-NN-n6/Appli/build/Appli.elf"
+Breakpoint 2 at 0x34000ac4: file Src/main.c, line 81.
+
+Program received signal SIGINT, Interrupt.
+main () at Src/main.c:121
+121	  /* USER CODE BEGIN WHILE */
+0x18003a1a in ?? ()
+Loading section .isr_vector, size 0x34c lma 0x34180400
+Loading section .text, size 0x7354 lma 0x3418074c
+Loading section .rodata, size 0x2c lma 0x34187aa0
+Loading section .ARM, size 0x8 lma 0x34187acc
+Loading section .init_array, size 0x4 lma 0x34187ad4
+Loading section .fini_array, size 0x4 lma 0x34187ad8
+Loading section .gnu.sgstubs, size 0x20 lma 0x34187ae0
+Loading section .data, size 0x14 lma 0x34187b00
+Start address 0x34187714, load size 30480
+Transfer rate: 875 KB/sec, 3386 bytes/write.
+Hardware assisted breakpoint 1 at 0x34180a8c: file Src/main.c, line 122.
+
+Breakpoint 1, main () at Src/main.c:122
+122	  while (1)
+add symbol table from file "/home/james/proj/dashcam-NN-n6/Appli/build/Appli.elf"
+Breakpoint 2 at 0x34000ac4: file Src/main.c, line 81.
+
+Breakpoint 1, main () at Src/main.c:122
+122	  while (1)
+
+Breakpoint 1, main () at Src/main.c:122
+122	  while (1)
+
+Breakpoint 1, main () at Src/main.c:122
+122	  while (1)
+
+Breakpoint 1, main () at Src/main.c:122
+122	  while (1)
+
+Breakpoint 1, main () at Src/main.c:122
+122	  while (1)
+
+Breakpoint 1, main () at Src/main.c:122
+122	  while (1)
+Continuing.
+
+Breakpoint 1, main () at Src/main.c:122
+122	  while (1)
+Continuing.
+
+Breakpoint 1, main () at Src/main.c:122
+122	  while (1)
+Continuing.
+
+Breakpoint 1, main () at Src/main.c:122
+122	  while (1)
+0x18003514 in ?? ()
+Loading section .isr_vector, size 0x34c lma 0x34180400
+Loading section .text, size 0x979c lma 0x3418074c
+Loading section .rodata, size 0x70 lma 0x34189ee8
+Loading section .ARM, size 0x8 lma 0x34189f58
+Loading section .init_array, size 0x4 lma 0x34189f60
+Loading section .fini_array, size 0x4 lma 0x34189f64
+Loading section .gnu.sgstubs, size 0x20 lma 0x34189f80
+Loading section .data, size 0x14 lma 0x34189fa0
+Start address 0x34189b44, load size 39836
+Transfer rate: 864 KB/sec, 3983 bytes/write.
+Hardware assisted breakpoint 1 at 0x34180a9a: file Src/main.c, line 123.
+
+Program received signal SIGINT, Interrupt.
+HardFault_Handler () at Src/stm32n6xx_it.c:89
+89	  while (1)
+HardFault_Handler () at Src/stm32n6xx_it.c:89
+89	  while (1)
+Loading section .isr_vector, size 0x34c lma 0x34180400
+Loading section .text, size 0x979c lma 0x3418074c
+Loading section .rodata, size 0x70 lma 0x34189ee8
+Loading section .ARM, size 0x8 lma 0x34189f58
+Loading section .init_array, size 0x4 lma 0x34189f60
+Loading section .fini_array, size 0x4 lma 0x34189f64
+Loading section .gnu.sgstubs, size 0x20 lma 0x34189f80
+Loading section .data, size 0x14 lma 0x34189fa0
+Start address 0x34189b44, load size 39836
+Transfer rate: 884 KB/sec, 3983 bytes/write.
+Hardware assisted breakpoint 1 at 0x34180a9a: file Src/main.c, line 123.
+❌️ Function "BOOT_Application()" not defined.
+Make hw breakpoint pending on future shared library load? (y or [n]) [answered N; input not from terminal]
+
+Program received signal SIGINT, Interrupt.
+0x34181336 in HAL_Delay (Delay=Delay@entry=1) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c:389
+389	  while ((HAL_GetTick() - tickstart) < wait)
+❌️ Bad breakpoint number 'tui'
+0x1800350e in ?? ()
+0x1800350e in ?? ()
+0x18003514 in ?? ()
+HardFault_Handler () at Src/stm32n6xx_it.c:89
+89	  while (1)
+HAL_Delay (Delay=Delay@entry=1) at ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c:389
+389	  while ((HAL_GetTick() - tickstart) < wait)
+0x18003514 in ?? ()
+❌️ .gdbinit:30: Error in sourced command file:
+could not connect: Connection refused.
+❌️ Quit
+HardFault_Handler () at Src/stm32n6xx_it.c:89
+89	  while (1)
+0x1800350e in ?? ()
+0x1800350e in ?? ()
+HardFault_Handler () at Src/stm32n6xx_it.c:89
+89	  while (1)
+0x18003514 in ?? ()
+0x18003514 in ?? ()
+❌️ Remote connection closed
+0x1800350e in ?? ()
+0x18003514 in ?? ()
+❌️ Remote connection closed
+0x1800350e in ?? ()
+0x1800350e in ?? ()
+$2 = 0x3c400000
+158	        destination[index] = source[index];
+⚠️ warning: Could not fetch required FPCCR content.  Further unwinding is impossible.
+Cannot remove breakpoints because program is no longer writable.
+Further execution is probably impossible.
+SysTick_Handler () at Src/stm32n6xx_it.c:199
+199	{
+⚠️ warning: Remote failure reply: E31
+Ignoring packet error, continuing...
+❌️ Remote 'g' packet reply is of odd length: E31
+❌️ Quit
+❌️ Can't kill process
+0x18003514 in ?? ()
+$1 = 0x8200
+$2 = 0x70100000
+#2  0x34189a20 in CopyApplication () at ../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.c:158
+158	        destination[index] = source[index];
+$3 = 0
+$4 = (uint8_t *) 0x70100000 <error: Cannot access memory at address 0x70100000>
+$5 = (uint8_t *) 0x24050000 "STM2"
+❌️ Only values in memory can be extended with '@'.
+❌️ Cannot access memory at address 0x70100000
+❌️ Quit

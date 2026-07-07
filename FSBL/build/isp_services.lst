@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccAu1Zkx.s 			page 1
+ARM GAS  /tmp/cc8BPqUY.s 			page 1
 
 
    1              		.arch armv8.1-m.main
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
   23:../Drivers/ISP/isp/Src/isp_services.c **** #include "isp_cmd_parser.h"
   24:../Drivers/ISP/isp/Src/isp_services.c **** #endif
   25:../Drivers/ISP/isp/Src/isp_services.c **** 
-ARM GAS  /tmp/ccAu1Zkx.s 			page 2
+ARM GAS  /tmp/cc8BPqUY.s 			page 2
 
 
   26:../Drivers/ISP/isp/Src/isp_services.c **** /* Private types -------------------------------------------------------------*/
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
   80:../Drivers/ISP/isp/Src/isp_services.c **** static void To_Shift_Multiplier(uint32_t Factor, uint8_t *pShift, uint8_t *pMultiplier);
   81:../Drivers/ISP/isp/Src/isp_services.c **** static uint32_t From_Shift_Multiplier(uint8_t Shift, uint8_t Multiplier);
   82:../Drivers/ISP/isp/Src/isp_services.c **** static int16_t To_CConv_Reg(int32_t Coeff);
-ARM GAS  /tmp/ccAu1Zkx.s 			page 3
+ARM GAS  /tmp/cc8BPqUY.s 			page 3
 
 
   83:../Drivers/ISP/isp/Src/isp_services.c **** static int32_t From_CConv_Reg(int16_t Reg);
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  137:../Drivers/ISP/isp/Src/isp_services.c **** static const DCMIPP_StatisticExtractionConfTypeDef statConfDownBins_6_8 = {
  138:../Drivers/ISP/isp/Src/isp_services.c ****     .Mode = DCMIPP_STAT_EXT_MODE_BINS,
  139:../Drivers/ISP/isp/Src/isp_services.c ****     .Source = DCMIPP_STAT_EXT_SOURCE_POST_DEMOS_L,
-ARM GAS  /tmp/ccAu1Zkx.s 			page 4
+ARM GAS  /tmp/cc8BPqUY.s 			page 4
 
 
  140:../Drivers/ISP/isp/Src/isp_services.c ****     .Bins = DCMIPP_STAT_EXT_BINS_MODE_UPMID_BINS
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
   67              		.loc 1 160 11 is_stmt 0 view .LVU9
   68 001a 0021     		movs	r1, #0
   69 001c 2170     		strb	r1, [r4]
-ARM GAS  /tmp/ccAu1Zkx.s 			page 5
+ARM GAS  /tmp/cc8BPqUY.s 			page 5
 
 
  161:../Drivers/ISP/isp/Src/isp_services.c ****   while (Val >= 256)
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  114              		.cfi_startproc
  115              		@ args = 0, pretend = 0, frame = 0
  116              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccAu1Zkx.s 			page 6
+ARM GAS  /tmp/cc8BPqUY.s 			page 6
 
 
  117              		@ link register save eliminated.
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  165 0000 08B5     		push	{r3, lr}
  166              	.LCFI1:
  167              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/ccAu1Zkx.s 			page 7
+ARM GAS  /tmp/cc8BPqUY.s 			page 7
 
 
  168              		.cfi_offset 3, -8
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  208              		.loc 1 195 3 view .LVU45
  196:../Drivers/ISP/isp/Src/isp_services.c **** }
  209              		.loc 1 196 1 is_stmt 0 view .LVU46
-ARM GAS  /tmp/ccAu1Zkx.s 			page 8
+ARM GAS  /tmp/cc8BPqUY.s 			page 8
 
 
  210 0000 014B     		ldr	r3, .L15
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  205:../Drivers/ISP/isp/Src/isp_services.c **** 
  206:../Drivers/ISP/isp/Src/isp_services.c ****   if (location == ISP_STAT_LOC_DOWN)
  258              		.loc 1 206 3 is_stmt 1 view .LVU59
-ARM GAS  /tmp/ccAu1Zkx.s 			page 9
+ARM GAS  /tmp/cc8BPqUY.s 			page 9
 
 
  259              		.loc 1 206 6 is_stmt 0 view .LVU60
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  291 003c 0222     		movs	r2, #2
  292              	.LVL28:
  215:../Drivers/ISP/isp/Src/isp_services.c ****   }
-ARM GAS  /tmp/ccAu1Zkx.s 			page 10
+ARM GAS  /tmp/cc8BPqUY.s 			page 10
 
 
  293              		.loc 1 215 18 discriminator 1 view .LVU74
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  334 0002 0446     		mov	r4, r0
  335 0004 8E46     		mov	lr, r1
  240:../Drivers/ISP/isp/Src/isp_services.c ****   for (int i = 0; i < 3; i++)
-ARM GAS  /tmp/ccAu1Zkx.s 			page 11
+ARM GAS  /tmp/cc8BPqUY.s 			page 11
 
 
  336              		.loc 1 240 3 is_stmt 1 view .LVU81
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  248:../Drivers/ISP/isp/Src/isp_services.c ****   ISP_SVC_StatEngineStage next = ISP_STAT_CFG_LAST;
  383              		.loc 1 248 3 is_stmt 1 view .LVU94
  384              	.LVL37:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 12
+ARM GAS  /tmp/cc8BPqUY.s 			page 12
 
 
  249:../Drivers/ISP/isp/Src/isp_services.c **** 
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  419 002c 082B     		cmp	r3, #8
  420 002e 46D8     		bhi	.L46
  254:../Drivers/ISP/isp/Src/isp_services.c ****     return next;
-ARM GAS  /tmp/ccAu1Zkx.s 			page 13
+ARM GAS  /tmp/cc8BPqUY.s 			page 13
 
 
  421              		.loc 1 254 10 discriminator 1 view .LVU104
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  289:../Drivers/ISP/isp/Src/isp_services.c ****   case ISP_STAT_CFG_UP_BINS_9_11:
  290:../Drivers/ISP/isp/Src/isp_services.c ****     /* Try Down Avg */
  291:../Drivers/ISP/isp/Src/isp_services.c ****     if (ISP_SVC_StatEngine.downRequest & ISP_STAT_TYPE_AVG)
-ARM GAS  /tmp/ccAu1Zkx.s 			page 14
+ARM GAS  /tmp/cc8BPqUY.s 			page 14
 
 
  292:../Drivers/ISP/isp/Src/isp_services.c ****     {
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  346:../Drivers/ISP/isp/Src/isp_services.c ****     /* Skip Up Bins : try Down Avg */
  347:../Drivers/ISP/isp/Src/isp_services.c ****     else if (ISP_SVC_StatEngine.downRequest & ISP_STAT_TYPE_AVG)
  348:../Drivers/ISP/isp/Src/isp_services.c ****     {
-ARM GAS  /tmp/ccAu1Zkx.s 			page 15
+ARM GAS  /tmp/cc8BPqUY.s 			page 15
 
 
  349:../Drivers/ISP/isp/Src/isp_services.c ****       next = ISP_STAT_CFG_DOWN_AVG;
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  469              		.loc 1 301 10 is_stmt 1 view .LVU122
  301:../Drivers/ISP/isp/Src/isp_services.c ****     {
  470              		.loc 1 301 13 is_stmt 0 view .LVU123
-ARM GAS  /tmp/ccAu1Zkx.s 			page 16
+ARM GAS  /tmp/cc8BPqUY.s 			page 16
 
 
  471 0064 11F0010F 		tst	r1, #1
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  510              		.loc 1 248 27 view .LVU138
  511 0098 0920     		movs	r0, #9
  512 009a 7047     		bx	lr
-ARM GAS  /tmp/ccAu1Zkx.s 			page 17
+ARM GAS  /tmp/cc8BPqUY.s 			page 17
 
 
  513              	.L36:
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  552              	.L49:
  331:../Drivers/ISP/isp/Src/isp_services.c ****     }
  553              		.loc 1 331 12 view .LVU154
-ARM GAS  /tmp/ccAu1Zkx.s 			page 18
+ARM GAS  /tmp/cc8BPqUY.s 			page 18
 
 
  554 00c6 1846     		mov	r0, r3
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  397:../Drivers/ISP/isp/Src/isp_services.c ****     if ((ISP_SVC_StatEngine.downRequest & ISP_STAT_TYPE_AVG) ||
  588              		.loc 1 397 5 is_stmt 1 view .LVU161
  589              		.loc 1 397 28 is_stmt 0 view .LVU162
-ARM GAS  /tmp/ccAu1Zkx.s 			page 19
+ARM GAS  /tmp/cc8BPqUY.s 			page 19
 
 
  590 0006 0E4B     		ldr	r3, .L63
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  633              	.LVL53:
  634              	.L61:
  402:../Drivers/ISP/isp/Src/isp_services.c ****     }
-ARM GAS  /tmp/ccAu1Zkx.s 			page 20
+ARM GAS  /tmp/cc8BPqUY.s 			page 20
 
 
  403:../Drivers/ISP/isp/Src/isp_services.c ****     else
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  427:../Drivers/ISP/isp/Src/isp_services.c ****       stage = ISP_STAT_CFG_UP_AVG;
  428:../Drivers/ISP/isp/Src/isp_services.c ****     }
  429:../Drivers/ISP/isp/Src/isp_services.c ****   }
-ARM GAS  /tmp/ccAu1Zkx.s 			page 21
+ARM GAS  /tmp/cc8BPqUY.s 			page 21
 
 
  430:../Drivers/ISP/isp/Src/isp_services.c ****   else
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  709              	.L70:
  437:../Drivers/ISP/isp/Src/isp_services.c ****     }
  438:../Drivers/ISP/isp/Src/isp_services.c ****     else
-ARM GAS  /tmp/ccAu1Zkx.s 			page 22
+ARM GAS  /tmp/cc8BPqUY.s 			page 22
 
 
  439:../Drivers/ISP/isp/Src/isp_services.c ****     {
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  753              		.loc 1 232 3 view .LVU204
  754 0008 0BE0     		b	.L75
  755              	.LVL65:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 23
+ARM GAS  /tmp/cc8BPqUY.s 			page 23
 
 
  756              	.L76:
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  801 0000 82B0     		sub	sp, sp, #8
  802              	.LCFI4:
  803              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/ccAu1Zkx.s 			page 24
+ARM GAS  /tmp/cc8BPqUY.s 			page 24
 
 
  804 0002 05EE100A 		vmov	s10, r0	@ int
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  452:../Drivers/ISP/isp/Src/isp_services.c **** 
  453:../Drivers/ISP/isp/Src/isp_services.c **** uint8_t LuminanceFromRGBMono(uint8_t r, uint8_t g, uint8_t b)
  454:../Drivers/ISP/isp/Src/isp_services.c **** {
-ARM GAS  /tmp/ccAu1Zkx.s 			page 25
+ARM GAS  /tmp/cc8BPqUY.s 			page 25
 
 
  856              		.loc 1 454 1 is_stmt 1 view -0
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  470:../Drivers/ISP/isp/Src/isp_services.c **** {
  897              		.loc 1 470 1 is_stmt 1 view -0
  898              		.cfi_startproc
-ARM GAS  /tmp/ccAu1Zkx.s 			page 26
+ARM GAS  /tmp/cc8BPqUY.s 			page 26
 
 
  899              		@ args = 0, pretend = 0, frame = 24
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  482:../Drivers/ISP/isp/Src/isp_services.c ****   if ((pConfig->enable == 0) || (pConfig->type == ISP_DEMOS_TYPE_MONO))
  939              		.loc 1 482 3 is_stmt 1 view .LVU249
  940              		.loc 1 482 15 is_stmt 0 view .LVU250
-ARM GAS  /tmp/ccAu1Zkx.s 			page 27
+ARM GAS  /tmp/cc8BPqUY.s 			page 27
 
 
  941 0024 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  512:../Drivers/ISP/isp/Src/isp_services.c ****     rawBayerCfg.HLineStrength = (uint32_t) pConfig->lineH;
  513:../Drivers/ISP/isp/Src/isp_services.c ****     rawBayerCfg.EdgeStrength = (uint32_t) pConfig->edge;
  514:../Drivers/ISP/isp/Src/isp_services.c ****     halStatus = HAL_DCMIPP_PIPE_SetISPRawBayer2RGBConfig(hIsp->hDcmipp, DCMIPP_PIPE1, &rawBayerCfg)
-ARM GAS  /tmp/ccAu1Zkx.s 			page 28
+ARM GAS  /tmp/cc8BPqUY.s 			page 28
 
 
  515:../Drivers/ISP/isp/Src/isp_services.c **** 
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  997              	.L98:
  491:../Drivers/ISP/isp/Src/isp_services.c ****         break;
  998              		.loc 1 491 9 is_stmt 1 view .LVU265
-ARM GAS  /tmp/ccAu1Zkx.s 			page 29
+ARM GAS  /tmp/cc8BPqUY.s 			page 29
 
 
  491:../Drivers/ISP/isp/Src/isp_services.c ****         break;
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  516:../Drivers/ISP/isp/Src/isp_services.c ****     {
  1035              		.loc 1 516 5 is_stmt 1 view .LVU284
  516:../Drivers/ISP/isp/Src/isp_services.c ****     {
-ARM GAS  /tmp/ccAu1Zkx.s 			page 30
+ARM GAS  /tmp/cc8BPqUY.s 			page 30
 
 
  1036              		.loc 1 516 8 is_stmt 0 view .LVU285
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  1075 0092 E0E7     		b	.L93
  1076              	.LVL91:
  1077              	.L99:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 31
+ARM GAS  /tmp/cc8BPqUY.s 			page 31
 
 
  524:../Drivers/ISP/isp/Src/isp_services.c ****   }
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  1117              	.LCFI11:
  1118              		.cfi_def_cfa_offset 8
  1119              		.cfi_offset 4, -8
-ARM GAS  /tmp/ccAu1Zkx.s 			page 32
+ARM GAS  /tmp/cc8BPqUY.s 			page 32
 
 
  1120              		.cfi_offset 14, -4
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  562:../Drivers/ISP/isp/Src/isp_services.c ****   {
  563:../Drivers/ISP/isp/Src/isp_services.c ****     return ISP_ERR_STATREMOVAL_HAL;
  1153              		.loc 1 563 12 view .LVU323
-ARM GAS  /tmp/ccAu1Zkx.s 			page 33
+ARM GAS  /tmp/cc8BPqUY.s 			page 33
 
 
  1154 0026 1520     		movs	r0, #21
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  1194              	.L115:
  1195              	.LCFI12:
  1196              		.cfi_def_cfa_offset 0
-ARM GAS  /tmp/ccAu1Zkx.s 			page 34
+ARM GAS  /tmp/cc8BPqUY.s 			page 34
 
 
  1197              		.cfi_restore 4
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  1236              		.cfi_def_cfa_offset 24
  1237 0008 0C46     		mov	r4, r1
  1238 000a 0546     		mov	r5, r0
-ARM GAS  /tmp/ccAu1Zkx.s 			page 35
+ARM GAS  /tmp/cc8BPqUY.s 			page 35
 
 
  1239              		.loc 1 582 22 discriminator 1 view .LVU344
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  611:../Drivers/ISP/isp/Src/isp_services.c ****   }
  612:../Drivers/ISP/isp/Src/isp_services.c **** 
  613:../Drivers/ISP/isp/Src/isp_services.c ****   if (HAL_DCMIPP_PIPE_SetISPDecimationConfig(hIsp->hDcmipp, DCMIPP_PIPE1, &decimationCfg) != HAL_OK
-ARM GAS  /tmp/ccAu1Zkx.s 			page 36
+ARM GAS  /tmp/cc8BPqUY.s 			page 36
 
 
  614:../Drivers/ISP/isp/Src/isp_services.c ****   {
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  613:../Drivers/ISP/isp/Src/isp_services.c ****   {
  1295              		.loc 1 613 6 discriminator 1 view .LVU359
  1296 0038 B8B9     		cbnz	r0, .L129
-ARM GAS  /tmp/ccAu1Zkx.s 			page 37
+ARM GAS  /tmp/cc8BPqUY.s 			page 37
 
 
  618:../Drivers/ISP/isp/Src/isp_services.c ****   {
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  1334 005c 0193     		str	r3, [sp, #4]
  602:../Drivers/ISP/isp/Src/isp_services.c **** 
  1335              		.loc 1 602 5 is_stmt 1 view .LVU377
-ARM GAS  /tmp/ccAu1Zkx.s 			page 38
+ARM GAS  /tmp/cc8BPqUY.s 			page 38
 
 
  1336 005e E6E7     		b	.L127
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  631:../Drivers/ISP/isp/Src/isp_services.c ****   *         Get the ISP Decimation configuration
  632:../Drivers/ISP/isp/Src/isp_services.c ****   * @param  hIsp: ISP device handle
  633:../Drivers/ISP/isp/Src/isp_services.c ****   * @param  pConfig: Pointer to the decimation configuration
-ARM GAS  /tmp/ccAu1Zkx.s 			page 39
+ARM GAS  /tmp/cc8BPqUY.s 			page 39
 
 
  634:../Drivers/ISP/isp/Src/isp_services.c ****   * @retval operation result
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  1419              		@ args = 0, pretend = 0, frame = 16
  1420              		@ frame_needed = 0, uses_anonymous_args = 0
  653:../Drivers/ISP/isp/Src/isp_services.c ****   HAL_StatusTypeDef halStatus;
-ARM GAS  /tmp/ccAu1Zkx.s 			page 40
+ARM GAS  /tmp/cc8BPqUY.s 			page 40
 
 
  1421              		.loc 1 653 3 view .LVU395
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  1466 0032 D1F814E0 		ldr	lr, [r1, #20]
  658:../Drivers/ISP/isp/Src/isp_services.c ****       (pConfig->coeff.LUM_64 > ISP_CONTRAST_LUMCOEFF_MAX) || (pConfig->coeff.LUM_96 > ISP_CONTRAST_
  1467              		.loc 1 658 114 discriminator 2 view .LVU410
-ARM GAS  /tmp/ccAu1Zkx.s 			page 41
+ARM GAS  /tmp/cc8BPqUY.s 			page 41
 
 
  1468 0036 BEF5C57F 		cmp	lr, #394
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  673:../Drivers/ISP/isp/Src/isp_services.c ****     contrast.LUM_0 = (uint8_t)((pConfig->coeff.LUM_0 * 16) / 100);
  674:../Drivers/ISP/isp/Src/isp_services.c ****     contrast.LUM_32 = (uint8_t)((pConfig->coeff.LUM_32 * 16) / 100);
  675:../Drivers/ISP/isp/Src/isp_services.c ****     contrast.LUM_64 = (uint8_t)((pConfig->coeff.LUM_64 * 16) / 100);
-ARM GAS  /tmp/ccAu1Zkx.s 			page 42
+ARM GAS  /tmp/cc8BPqUY.s 			page 42
 
 
  676:../Drivers/ISP/isp/Src/isp_services.c ****     contrast.LUM_96 = (uint8_t)((pConfig->coeff.LUM_96 * 16) / 100);
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  1536 0080 2849     		ldr	r1, .L152
  1537 0082 A1FB0343 		umull	r4, r3, r1, r3
  673:../Drivers/ISP/isp/Src/isp_services.c ****     contrast.LUM_32 = (uint8_t)((pConfig->coeff.LUM_32 * 16) / 100);
-ARM GAS  /tmp/ccAu1Zkx.s 			page 43
+ARM GAS  /tmp/cc8BPqUY.s 			page 43
 
 
  1538              		.loc 1 673 22 view .LVU433
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  1573 00be A1FB0323 		umull	r2, r3, r1, r3
  677:../Drivers/ISP/isp/Src/isp_services.c ****     contrast.LUM_160 = (uint8_t)((pConfig->coeff.LUM_160 * 16) / 100);
  1574              		.loc 1 677 24 view .LVU453
-ARM GAS  /tmp/ccAu1Zkx.s 			page 44
+ARM GAS  /tmp/cc8BPqUY.s 			page 44
 
 
  1575 00c2 C3F34713 		ubfx	r3, r3, #5, #8
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  1610              		.loc 1 681 64 view .LVU472
  1611 00fa A1FB0313 		umull	r1, r3, r1, r3
  681:../Drivers/ISP/isp/Src/isp_services.c ****     halStatus = HAL_DCMIPP_PIPE_SetISPCtrlContrastConfig(hIsp->hDcmipp, DCMIPP_PIPE1, &contrast);
-ARM GAS  /tmp/ccAu1Zkx.s 			page 45
+ARM GAS  /tmp/cc8BPqUY.s 			page 45
 
 
  1612              		.loc 1 681 24 view .LVU473
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  1655              	.LVL137:
  1656              		.loc 1 696 1 view .LVU485
  1657 0122 7047     		bx	lr
-ARM GAS  /tmp/ccAu1Zkx.s 			page 46
+ARM GAS  /tmp/cc8BPqUY.s 			page 46
 
 
  1658              	.L153:
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  1698 000a 0546     		mov	r5, r0
  1699              		.loc 1 711 22 discriminator 1 view .LVU493
  1700 000c 0029     		cmp	r1, #0
-ARM GAS  /tmp/ccAu1Zkx.s 			page 47
+ARM GAS  /tmp/cc8BPqUY.s 			page 47
 
 
  1701 000e 41D0     		beq	.L155
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  1741              		.loc 1 719 20 view .LVU508
  1742 0046 0144     		add	r1, r1, r0
  1743              		.loc 1 719 55 view .LVU509
-ARM GAS  /tmp/ccAu1Zkx.s 			page 48
+ARM GAS  /tmp/cc8BPqUY.s 			page 48
 
 
  1744 0048 A86F     		ldr	r0, [r5, #120]
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  733:../Drivers/ISP/isp/Src/isp_services.c ****     return ISP_ERR_STATAREA_HAL;
  734:../Drivers/ISP/isp/Src/isp_services.c ****   }
  735:../Drivers/ISP/isp/Src/isp_services.c ****   else
-ARM GAS  /tmp/ccAu1Zkx.s 			page 49
+ARM GAS  /tmp/cc8BPqUY.s 			page 49
 
 
  736:../Drivers/ISP/isp/Src/isp_services.c ****   {
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  1822 009e 4FF0330C 		mov	ip, #51
  1823 00a2 F9E7     		b	.L157
  1824              	.LVL146:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 50
+ARM GAS  /tmp/cc8BPqUY.s 			page 50
 
 
  1825              	.L161:
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  1865 0002 30B5     		push	{r4, r5, lr}
  1866              	.LCFI28:
  1867              		.cfi_def_cfa_offset 12
-ARM GAS  /tmp/ccAu1Zkx.s 			page 51
+ARM GAS  /tmp/cc8BPqUY.s 			page 51
 
 
  1868              		.cfi_offset 4, -12
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  783:../Drivers/ISP/isp/Src/isp_services.c ****     pConfig->XSize = currentStatAreaCfg.HSize * ISP_DecimationValue.factor;
  784:../Drivers/ISP/isp/Src/isp_services.c ****     pConfig->YSize = currentStatAreaCfg.VSize * ISP_DecimationValue.factor;
  785:../Drivers/ISP/isp/Src/isp_services.c ****   }
-ARM GAS  /tmp/ccAu1Zkx.s 			page 52
+ARM GAS  /tmp/cc8BPqUY.s 			page 52
 
 
  786:../Drivers/ISP/isp/Src/isp_services.c **** 
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  782:../Drivers/ISP/isp/Src/isp_services.c ****     pConfig->XSize = currentStatAreaCfg.HSize * ISP_DecimationValue.factor;
  1944              		.loc 1 782 17 view .LVU575
  1945 0044 6260     		str	r2, [r4, #4]
-ARM GAS  /tmp/ccAu1Zkx.s 			page 53
+ARM GAS  /tmp/cc8BPqUY.s 			page 53
 
 
  783:../Drivers/ISP/isp/Src/isp_services.c ****     pConfig->YSize = currentStatAreaCfg.VSize * ISP_DecimationValue.factor;
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  792:../Drivers/ISP/isp/Src/isp_services.c ****   *         Set the ISP Bad pixel control configuration
  793:../Drivers/ISP/isp/Src/isp_services.c ****   * @param  hIsp: ISP device handle
  794:../Drivers/ISP/isp/Src/isp_services.c ****   * @param  pConfig: Pointer to the bad pixel configuration
-ARM GAS  /tmp/ccAu1Zkx.s 			page 54
+ARM GAS  /tmp/cc8BPqUY.s 			page 54
 
 
  795:../Drivers/ISP/isp/Src/isp_services.c ****   * @retval operation result
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  810:../Drivers/ISP/isp/Src/isp_services.c ****   else
  811:../Drivers/ISP/isp/Src/isp_services.c ****   {
  812:../Drivers/ISP/isp/Src/isp_services.c ****     halStatus = HAL_DCMIPP_PIPE_SetISPBadPixelRemovalConfig(hIsp->hDcmipp, DCMIPP_PIPE1, pConfig->s
-ARM GAS  /tmp/ccAu1Zkx.s 			page 55
+ARM GAS  /tmp/cc8BPqUY.s 			page 55
 
 
  813:../Drivers/ISP/isp/Src/isp_services.c **** 
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  2057              		.loc 1 819 5 is_stmt 1 view .LVU612
  819:../Drivers/ISP/isp/Src/isp_services.c ****   }
  2058              		.loc 1 819 17 is_stmt 0 view .LVU613
-ARM GAS  /tmp/ccAu1Zkx.s 			page 56
+ARM GAS  /tmp/cc8BPqUY.s 			page 56
 
 
  2059 002c 0121     		movs	r1, #1
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  834:../Drivers/ISP/isp/Src/isp_services.c ****   * @param  pConfig: Pointer to the bad pixel configuration
  835:../Drivers/ISP/isp/Src/isp_services.c ****   * @retval operation result
  836:../Drivers/ISP/isp/Src/isp_services.c ****   */
-ARM GAS  /tmp/ccAu1Zkx.s 			page 57
+ARM GAS  /tmp/cc8BPqUY.s 			page 57
 
 
  837:../Drivers/ISP/isp/Src/isp_services.c **** ISP_StatusTypeDef ISP_SVC_ISP_GetBadPixel(ISP_HandleTypeDef *hIsp, ISP_BadPixelTypeDef *pConfig)
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  850:../Drivers/ISP/isp/Src/isp_services.c ****   halStatus = HAL_DCMIPP_PIPE_GetISPRemovedBadPixelCounter(hIsp->hDcmipp, DCMIPP_PIPE1, &pConfig->c
  2144              		.loc 1 850 3 is_stmt 1 view .LVU635
  2145              		.loc 1 850 15 is_stmt 0 view .LVU636
-ARM GAS  /tmp/ccAu1Zkx.s 			page 58
+ARM GAS  /tmp/cc8BPqUY.s 			page 58
 
 
  2146 001e 221D     		adds	r2, r4, #4
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  2188              		.section	.text.ISP_SVC_ISP_SetBlackLevel,"ax",%progbits
  2189              		.align	1
  2190              		.global	ISP_SVC_ISP_SetBlackLevel
-ARM GAS  /tmp/ccAu1Zkx.s 			page 59
+ARM GAS  /tmp/cc8BPqUY.s 			page 59
 
 
  2191              		.syntax unified
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  880:../Drivers/ISP/isp/Src/isp_services.c ****     halStatus = HAL_DCMIPP_PIPE_DisableISPBlackLevelCalibration(hIsp->hDcmipp, DCMIPP_PIPE1);
  2224              		.loc 1 880 5 is_stmt 1 view .LVU656
  2225              		.loc 1 880 17 is_stmt 0 view .LVU657
-ARM GAS  /tmp/ccAu1Zkx.s 			page 60
+ARM GAS  /tmp/cc8BPqUY.s 			page 60
 
 
  2226 000e 0121     		movs	r1, #1
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  2257              	.L207:
  884:../Drivers/ISP/isp/Src/isp_services.c ****     blackLevelConfig.GreenCompBlackLevel = pConfig->BLCG;
  2258              		.loc 1 884 5 is_stmt 1 view .LVU665
-ARM GAS  /tmp/ccAu1Zkx.s 			page 61
+ARM GAS  /tmp/cc8BPqUY.s 			page 61
 
 
  884:../Drivers/ISP/isp/Src/isp_services.c ****     blackLevelConfig.GreenCompBlackLevel = pConfig->BLCG;
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  2296              	.LVL203:
  2297              	.L209:
  897:../Drivers/ISP/isp/Src/isp_services.c ****   }
-ARM GAS  /tmp/ccAu1Zkx.s 			page 62
+ARM GAS  /tmp/cc8BPqUY.s 			page 62
 
 
  2298              		.loc 1 897 12 view .LVU683
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  913:../Drivers/ISP/isp/Src/isp_services.c **** 
  914:../Drivers/ISP/isp/Src/isp_services.c ****   /* Check handle validity */
  915:../Drivers/ISP/isp/Src/isp_services.c ****   if ((hIsp == NULL) || (pConfig == NULL))
-ARM GAS  /tmp/ccAu1Zkx.s 			page 63
+ARM GAS  /tmp/cc8BPqUY.s 			page 63
 
 
  2339              		.loc 1 915 3 view .LVU691
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  2382              		.loc 1 925 17 view .LVU706
  2383 002a A370     		strb	r3, [r4, #2]
  926:../Drivers/ISP/isp/Src/isp_services.c ****   pConfig->BLCB = blackLevelConfig.BlueCompBlackLevel;
-ARM GAS  /tmp/ccAu1Zkx.s 			page 64
+ARM GAS  /tmp/cc8BPqUY.s 			page 64
 
 
  2384              		.loc 1 926 3 is_stmt 1 view .LVU707
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  2434              	.LFB907:
  930:../Drivers/ISP/isp/Src/isp_services.c **** 
  931:../Drivers/ISP/isp/Src/isp_services.c **** /**
-ARM GAS  /tmp/ccAu1Zkx.s 			page 65
+ARM GAS  /tmp/cc8BPqUY.s 			page 65
 
 
  932:../Drivers/ISP/isp/Src/isp_services.c ****   * @brief  ISP_SVC_ISP_SetGain
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  2474 001e 9A42     		cmp	r2, r3
  2475 0020 08D8     		bhi	.L227
  945:../Drivers/ISP/isp/Src/isp_services.c ****   {
-ARM GAS  /tmp/ccAu1Zkx.s 			page 66
+ARM GAS  /tmp/cc8BPqUY.s 			page 66
 
 
  946:../Drivers/ISP/isp/Src/isp_services.c ****     return ISP_ERR_ISPGAIN_EINVAL;
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  971:../Drivers/ISP/isp/Src/isp_services.c ****   return ISP_OK;
  972:../Drivers/ISP/isp/Src/isp_services.c **** }
  2504              		.loc 1 972 1 view .LVU741
-ARM GAS  /tmp/ccAu1Zkx.s 			page 67
+ARM GAS  /tmp/cc8BPqUY.s 			page 67
 
 
  2505 0036 03B0     		add	sp, sp, #12
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  962:../Drivers/ISP/isp/Src/isp_services.c ****     }
  2549              		.loc 1 962 19 view .LVU752
  2550 006e FFF7FEFF 		bl	HAL_DCMIPP_PIPE_EnableISPExposure
-ARM GAS  /tmp/ccAu1Zkx.s 			page 68
+ARM GAS  /tmp/cc8BPqUY.s 			page 68
 
 
  2551              	.LVL233:
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  2593              		.loc 1 983 3 view .LVU758
  984:../Drivers/ISP/isp/Src/isp_services.c **** 
  985:../Drivers/ISP/isp/Src/isp_services.c ****   /* Check handle validity */
-ARM GAS  /tmp/ccAu1Zkx.s 			page 69
+ARM GAS  /tmp/cc8BPqUY.s 			page 69
 
 
  986:../Drivers/ISP/isp/Src/isp_services.c ****   if ((hIsp == NULL) || (pConfig == NULL))
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  2637              		.loc 1 995 3 is_stmt 1 view .LVU772
  2638              		.loc 1 995 23 is_stmt 0 view .LVU773
  2639 002e 9DF80310 		ldrb	r1, [sp, #3]	@ zero_extendqisi2
-ARM GAS  /tmp/ccAu1Zkx.s 			page 70
+ARM GAS  /tmp/cc8BPqUY.s 			page 70
 
 
  2640 0032 9DF80200 		ldrb	r0, [sp, #2]	@ zero_extendqisi2
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  2687              	.LFE908:
  2689              		.section	.text.ISP_SVC_ISP_SetColorConv,"ax",%progbits
  2690              		.align	1
-ARM GAS  /tmp/ccAu1Zkx.s 			page 71
+ARM GAS  /tmp/cc8BPqUY.s 			page 71
 
 
  2691              		.global	ISP_SVC_ISP_SetColorConv
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  2728 0018 0C46     		mov	r4, r1
  2729 001a 0546     		mov	r5, r0
  2730              		.loc 1 1017 22 discriminator 1 view .LVU793
-ARM GAS  /tmp/ccAu1Zkx.s 			page 72
+ARM GAS  /tmp/cc8BPqUY.s 			page 72
 
 
  2731 001c 09B1     		cbz	r1, .L250
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1060:../Drivers/ISP/isp/Src/isp_services.c **** 
 1061:../Drivers/ISP/isp/Src/isp_services.c ****   return ISP_OK;
 1062:../Drivers/ISP/isp/Src/isp_services.c **** }
-ARM GAS  /tmp/ccAu1Zkx.s 			page 73
+ARM GAS  /tmp/cc8BPqUY.s 			page 73
 
 
  2742              		.loc 1 1062 1 view .LVU797
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  2786              	.L262:
 1033:../Drivers/ISP/isp/Src/isp_services.c ****   {
  2787              		.loc 1 1033 3 is_stmt 1 view .LVU808
-ARM GAS  /tmp/ccAu1Zkx.s 			page 74
+ARM GAS  /tmp/cc8BPqUY.s 			page 74
 
 
 1033:../Drivers/ISP/isp/Src/isp_services.c ****   {
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  2826              		.loc 1 1040 24 discriminator 1 view .LVU824
  2827 0072 ADF80800 		strh	r0, [sp, #8]	@ movhi
 1041:../Drivers/ISP/isp/Src/isp_services.c ****     colorConvConfig.GR = To_CConv_Reg(pConfig->coeff[1][0]);
-ARM GAS  /tmp/ccAu1Zkx.s 			page 75
+ARM GAS  /tmp/cc8BPqUY.s 			page 75
 
 
  2828              		.loc 1 1041 5 is_stmt 1 view .LVU825
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  2866 00aa FFF7FEFF 		bl	To_CConv_Reg
  2867              	.LVL271:
 1046:../Drivers/ISP/isp/Src/isp_services.c ****     colorConvConfig.BB = To_CConv_Reg(pConfig->coeff[2][2]);
-ARM GAS  /tmp/ccAu1Zkx.s 			page 76
+ARM GAS  /tmp/cc8BPqUY.s 			page 76
 
 
  2868              		.loc 1 1046 24 discriminator 1 view .LVU842
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  2911              		.section	.text.ISP_SVC_ISP_GetColorConv,"ax",%progbits
  2912              		.align	1
  2913              		.global	ISP_SVC_ISP_GetColorConv
-ARM GAS  /tmp/ccAu1Zkx.s 			page 77
+ARM GAS  /tmp/cc8BPqUY.s 			page 77
 
 
  2914              		.syntax unified
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  2949 0010 0546     		mov	r5, r0
  2950 0012 0068     		ldr	r0, [r0]
  2951              	.LVL280:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 78
+ARM GAS  /tmp/cc8BPqUY.s 			page 78
 
 
  2952              		.loc 1 1081 31 view .LVU864
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1090:../Drivers/ISP/isp/Src/isp_services.c ****   pConfig->coeff[1][2] = From_CConv_Reg(colorConvConfig.GB);
  2998              		.loc 1 1090 3 is_stmt 1 view .LVU882
  2999              		.loc 1 1090 26 is_stmt 0 view .LVU883
-ARM GAS  /tmp/ccAu1Zkx.s 			page 79
+ARM GAS  /tmp/cc8BPqUY.s 			page 79
 
 
  3000 0056 BDF91200 		ldrsh	r0, [sp, #18]
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  3046 0086 FBE7     		b	.L269
  3047              	.LVL295:
  3048              	.L271:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 80
+ARM GAS  /tmp/cc8BPqUY.s 			page 80
 
 
  3049              	.LCFI65:
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1113:../Drivers/ISP/isp/Src/isp_services.c ****   if (hIsp->appliHelpers.GetSensorInfo != NULL)
  3087              		.loc 1 1113 3 is_stmt 1 view .LVU906
  3088              		.loc 1 1113 25 is_stmt 0 view .LVU907
-ARM GAS  /tmp/ccAu1Zkx.s 			page 81
+ARM GAS  /tmp/cc8BPqUY.s 			page 81
 
 
  3089 0006 826A     		ldr	r2, [r0, #40]
@@ -4858,7 +4858,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1110:../Drivers/ISP/isp/Src/isp_services.c ****   }
  3129              		.loc 1 1110 12 view .LVU919
  3130 001e 6E20     		movs	r0, #110
-ARM GAS  /tmp/ccAu1Zkx.s 			page 82
+ARM GAS  /tmp/cc8BPqUY.s 			page 82
 
 
  3131              	.LVL306:
@@ -4918,7 +4918,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1141:../Drivers/ISP/isp/Src/isp_services.c ****     if (hIsp->appliHelpers.SetSensorGain(hIsp->cameraInstance, (int32_t)pConfig->gain) != 0)
  3168              		.loc 1 1141 5 is_stmt 1 view .LVU929
  3169              		.loc 1 1141 9 is_stmt 0 view .LVU930
-ARM GAS  /tmp/ccAu1Zkx.s 			page 83
+ARM GAS  /tmp/cc8BPqUY.s 			page 83
 
 
  3170 000c 0968     		ldr	r1, [r1]
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  3211              		.loc 1 1136 12 view .LVU943
  3212 0026 7820     		movs	r0, #120
  3213              	.LVL315:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 84
+ARM GAS  /tmp/cc8BPqUY.s 			page 84
 
 
  3214              		.loc 1 1150 1 view .LVU944
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  3252 0008 2AB1     		cbz	r2, .L304
 1168:../Drivers/ISP/isp/Src/isp_services.c ****   {
 1169:../Drivers/ISP/isp/Src/isp_services.c ****     if (hIsp->appliHelpers.GetSensorGain(hIsp->cameraInstance, (int32_t *)&pConfig->gain) != 0)
-ARM GAS  /tmp/ccAu1Zkx.s 			page 85
+ARM GAS  /tmp/cc8BPqUY.s 			page 85
 
 
  3253              		.loc 1 1169 5 is_stmt 1 view .LVU953
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  3294 0020 7047     		bx	lr
  3295              		.cfi_endproc
  3296              	.LFE913:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 86
+ARM GAS  /tmp/cc8BPqUY.s 			page 86
 
 
  3298              		.section	.text.ISP_SVC_Sensor_SetExposure,"ax",%progbits
@@ -5158,7 +5158,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  3333              		.loc 1 1195 9 view .LVU975
  3334 000e 4068     		ldr	r0, [r0, #4]
  3335              	.LVL328:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 87
+ARM GAS  /tmp/cc8BPqUY.s 			page 87
 
 
  3336              		.loc 1 1195 9 view .LVU976
@@ -5218,7 +5218,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  3377              	.L324:
  3378 002a 00BF     		.align	2
  3379              	.L323:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 88
+ARM GAS  /tmp/cc8BPqUY.s 			page 88
 
 
  3380 002c 00000000 		.word	Meta
@@ -5278,7 +5278,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  3416 000a 4068     		ldr	r0, [r0, #4]
  3417              	.LVL336:
  3418              		.loc 1 1223 9 view .LVU999
-ARM GAS  /tmp/ccAu1Zkx.s 			page 89
+ARM GAS  /tmp/cc8BPqUY.s 			page 89
 
 
  3419 000c 9047     		blx	r2
@@ -5338,7 +5338,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  3461              		.global	ISP_SVC_Sensor_SetTestPattern
  3462              		.syntax unified
  3463              		.thumb
-ARM GAS  /tmp/ccAu1Zkx.s 			page 90
+ARM GAS  /tmp/cc8BPqUY.s 			page 90
 
 
  3464              		.thumb_func
@@ -5398,7 +5398,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  3496              		.loc 1 1252 7 view .LVU1020
  3497 000e 9047     		blx	r2
  3498              	.LVL348:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 91
+ARM GAS  /tmp/cc8BPqUY.s 			page 91
 
 
  3499              		.loc 1 1252 6 discriminator 1 view .LVU1021
@@ -5458,7 +5458,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  3542              		.thumb_func
  3544              	ISP_SVC_Misc_GetDCMIPPVersion:
  3545              	.LVL356:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 92
+ARM GAS  /tmp/cc8BPqUY.s 			page 92
 
 
  3546              	.LFB917:
@@ -5518,7 +5518,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  3580 001e 1360     		str	r3, [r2]
 1279:../Drivers/ISP/isp/Src/isp_services.c **** 
 1280:../Drivers/ISP/isp/Src/isp_services.c ****   return ISP_OK;
-ARM GAS  /tmp/ccAu1Zkx.s 			page 93
+ARM GAS  /tmp/cc8BPqUY.s 			page 93
 
 
  3581              		.loc 1 1280 3 is_stmt 1 view .LVU1047
@@ -5578,7 +5578,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1295:../Drivers/ISP/isp/Src/isp_services.c ****   }
 1296:../Drivers/ISP/isp/Src/isp_services.c **** 
 1297:../Drivers/ISP/isp/Src/isp_services.c ****   if (HAL_DCMIPP_GetState(hIsp->hDcmipp) != HAL_DCMIPP_STATE_READY)
-ARM GAS  /tmp/ccAu1Zkx.s 			page 94
+ARM GAS  /tmp/cc8BPqUY.s 			page 94
 
 
  3620              		.loc 1 1297 3 is_stmt 1 view .LVU1056
@@ -5638,7 +5638,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1305:../Drivers/ISP/isp/Src/isp_services.c **** /**
 1306:../Drivers/ISP/isp/Src/isp_services.c ****   * @brief  ISP_SVC_Misc_GetFirmwareConfig
 1307:../Drivers/ISP/isp/Src/isp_services.c ****   *         Return the firmware config
-ARM GAS  /tmp/ccAu1Zkx.s 			page 95
+ARM GAS  /tmp/cc8BPqUY.s 			page 95
 
 
 1308:../Drivers/ISP/isp/Src/isp_services.c ****   * @param  pConfig: Pointer to the firmware config
@@ -5698,7 +5698,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  3703              	.LVL367:
  3704              		.loc 1 1325 3 discriminator 1 view .LVU1082
  3705 001a B0F5C04F 		cmp	r0, #24576
-ARM GAS  /tmp/ccAu1Zkx.s 			page 96
+ARM GAS  /tmp/cc8BPqUY.s 			page 96
 
 
  3706 001e 09D0     		beq	.L365
@@ -5758,7 +5758,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  3743 004c 6362     		str	r3, [r4, #36]
 1343:../Drivers/ISP/isp/Src/isp_services.c ****   /* UVC streaming support */
 1344:../Drivers/ISP/isp/Src/isp_services.c **** #ifdef ISP_ENABLE_UVC
-ARM GAS  /tmp/ccAu1Zkx.s 			page 97
+ARM GAS  /tmp/cc8BPqUY.s 			page 97
 
 
 1345:../Drivers/ISP/isp/Src/isp_services.c ****   pConfig->hasUVC = 1;
@@ -5818,7 +5818,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1360:../Drivers/ISP/isp/Src/isp_services.c **** void ISP_SVC_Misc_IncMainFrameId(ISP_HandleTypeDef *hIsp)
 1361:../Drivers/ISP/isp/Src/isp_services.c **** {
  3782              		.loc 1 1361 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccAu1Zkx.s 			page 98
+ARM GAS  /tmp/cc8BPqUY.s 			page 98
 
 
  3783              		.cfi_startproc
@@ -5878,7 +5878,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  3827              		.thumb_func
  3829              	ISP_SVC_Misc_IncAncillaryFrameId:
  3830              	.LVL376:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 99
+ARM GAS  /tmp/cc8BPqUY.s 			page 99
 
 
  3831              	.LFB922:
@@ -5938,7 +5938,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  3865 0000 806C     		ldr	r0, [r0, #72]
  3866              	.LVL378:
  3867              		.loc 1 1396 1 view .LVU1123
-ARM GAS  /tmp/ccAu1Zkx.s 			page 100
+ARM GAS  /tmp/cc8BPqUY.s 			page 100
 
 
  3868 0002 7047     		bx	lr
@@ -5998,7 +5998,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1415:../Drivers/ISP/isp/Src/isp_services.c **** uint32_t ISP_SVC_Misc_GetDumpFrameId(ISP_HandleTypeDef *hIsp)
 1416:../Drivers/ISP/isp/Src/isp_services.c **** {
  3908              		.loc 1 1416 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccAu1Zkx.s 			page 101
+ARM GAS  /tmp/cc8BPqUY.s 			page 101
 
 
  3909              		.cfi_startproc
@@ -6058,7 +6058,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  3947 0006 7047     		bx	lr
  3948              	.L379:
  3949              		.align	2
-ARM GAS  /tmp/ccAu1Zkx.s 			page 102
+ARM GAS  /tmp/cc8BPqUY.s 			page 102
 
 
  3950              	.L378:
@@ -6118,7 +6118,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  3991              		.global	ISP_SVC_Misc_SensorDelayMeasureStart
  3992              		.syntax unified
  3993              		.thumb
-ARM GAS  /tmp/ccAu1Zkx.s 			page 103
+ARM GAS  /tmp/cc8BPqUY.s 			page 103
 
 
  3994              		.thumb_func
@@ -6178,7 +6178,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1471:../Drivers/ISP/isp/Src/isp_services.c ****   ISP_SensorDelayMeasureRun = false;
  4031              		.loc 1 1471 3 view .LVU1152
  4032              		.loc 1 1471 29 is_stmt 0 view .LVU1153
-ARM GAS  /tmp/ccAu1Zkx.s 			page 104
+ARM GAS  /tmp/cc8BPqUY.s 			page 104
 
 
  4033 0000 014B     		ldr	r3, .L387
@@ -6238,7 +6238,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  4079              	.LVL386:
  4080              	.LFB931:
 1484:../Drivers/ISP/isp/Src/isp_services.c **** 
-ARM GAS  /tmp/ccAu1Zkx.s 			page 105
+ARM GAS  /tmp/cc8BPqUY.s 			page 105
 
 
 1485:../Drivers/ISP/isp/Src/isp_services.c **** /**
@@ -6298,7 +6298,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1511:../Drivers/ISP/isp/Src/isp_services.c ****   /* Check handle validity */
 1512:../Drivers/ISP/isp/Src/isp_services.c ****   if (hIsp == NULL)
  4111              		.loc 1 1512 3 view .LVU1165
-ARM GAS  /tmp/ccAu1Zkx.s 			page 106
+ARM GAS  /tmp/cc8BPqUY.s 			page 106
 
 
  4112              		.loc 1 1512 6 is_stmt 0 view .LVU1166
@@ -6358,7 +6358,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  4152              		.loc 1 1519 12 view .LVU1177
  4153 0012 B420     		movs	r0, #180
  4154              	.LVL394:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 107
+ARM GAS  /tmp/cc8BPqUY.s 			page 107
 
 
 1519:../Drivers/ISP/isp/Src/isp_services.c ****   }
@@ -6418,7 +6418,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  4188              		.loc 1 1544 3 is_stmt 1 view .LVU1186
  4189              		.loc 1 1544 10 is_stmt 0 view .LVU1187
  4190 0008 0068     		ldr	r0, [r0]
-ARM GAS  /tmp/ccAu1Zkx.s 			page 108
+ARM GAS  /tmp/cc8BPqUY.s 			page 108
 
 
  4191              	.LVL396:
@@ -6478,7 +6478,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  4233              		.loc 1 1555 1 is_stmt 1 view -0
  4234              		.cfi_startproc
  4235              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccAu1Zkx.s 			page 109
+ARM GAS  /tmp/cc8BPqUY.s 			page 109
 
 
  4236              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -6538,7 +6538,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1567:../Drivers/ISP/isp/Src/isp_services.c ****     break;
  4264              		.loc 1 1567 18 view .LVU1204
  4265 0012 0068     		ldr	r0, [r0]
-ARM GAS  /tmp/ccAu1Zkx.s 			page 110
+ARM GAS  /tmp/cc8BPqUY.s 			page 110
 
 
  4266              	.LVL406:
@@ -6598,7 +6598,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  4311              		.align	1
  4312              		.global	ISP_SVC_ISP_SetGamma
  4313              		.syntax unified
-ARM GAS  /tmp/ccAu1Zkx.s 			page 111
+ARM GAS  /tmp/cc8BPqUY.s 			page 111
 
 
  4314              		.thumb
@@ -6658,7 +6658,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  4350              	.LVL419:
  4351              		.loc 1 1595 8 discriminator 1 view .LVU1228
  4352 0014 30B9     		cbnz	r0, .L420
-ARM GAS  /tmp/ccAu1Zkx.s 			page 112
+ARM GAS  /tmp/cc8BPqUY.s 			page 112
 
 
 1596:../Drivers/ISP/isp/Src/isp_services.c ****     {
@@ -6718,7 +6718,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  4380              		.loc 1 1606 9 view .LVU1238
  4381 002e FFF7FEFF 		bl	HAL_DCMIPP_PIPE_EnableGammaConversion
  4382              	.LVL424:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 113
+ARM GAS  /tmp/cc8BPqUY.s 			page 113
 
 
 1606:../Drivers/ISP/isp/Src/isp_services.c ****     {
@@ -6778,7 +6778,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1629:../Drivers/ISP/isp/Src/isp_services.c **** {
  4422              		.loc 1 1629 1 is_stmt 1 view -0
  4423              		.cfi_startproc
-ARM GAS  /tmp/ccAu1Zkx.s 			page 114
+ARM GAS  /tmp/cc8BPqUY.s 			page 114
 
 
  4424              		@ args = 0, pretend = 0, frame = 0
@@ -6838,7 +6838,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  4456              		.loc 1 1650 14 view .LVU1259
  4457 0016 0220     		movs	r0, #2
  4458              	.L433:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 115
+ARM GAS  /tmp/cc8BPqUY.s 			page 115
 
 
  4459              	.LVL430:
@@ -6898,7 +6898,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1640:../Drivers/ISP/isp/Src/isp_services.c ****   }
  4502              		.loc 1 1640 12 view .LVU1269
  4503 0030 B420     		movs	r0, #180
-ARM GAS  /tmp/ccAu1Zkx.s 			page 116
+ARM GAS  /tmp/cc8BPqUY.s 			page 116
 
 
  4504 0032 F7E7     		b	.L432
@@ -6958,7 +6958,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  4546              	.LFE937:
  4548              		.section	.text.ISP_SVC_IQParam_Get,"ax",%progbits
  4549              		.align	1
-ARM GAS  /tmp/ccAu1Zkx.s 			page 117
+ARM GAS  /tmp/cc8BPqUY.s 			page 117
 
 
  4550              		.global	ISP_SVC_IQParam_Get
@@ -7018,7 +7018,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1694:../Drivers/ISP/isp/Src/isp_services.c **** ISP_RestartStateTypeDef *ISP_SVC_GetRestartState(ISP_HandleTypeDef *hIsp)
 1695:../Drivers/ISP/isp/Src/isp_services.c **** {
  4587              		.loc 1 1695 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccAu1Zkx.s 			page 118
+ARM GAS  /tmp/cc8BPqUY.s 			page 118
 
 
  4588              		.cfi_startproc
@@ -7078,7 +7078,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1713:../Drivers/ISP/isp/Src/isp_services.c ****   return ISP_OK;
  4627              		.loc 1 1713 3 is_stmt 1 view .LVU1292
 1714:../Drivers/ISP/isp/Src/isp_services.c **** }
-ARM GAS  /tmp/ccAu1Zkx.s 			page 119
+ARM GAS  /tmp/cc8BPqUY.s 			page 119
 
 
  4628              		.loc 1 1714 1 is_stmt 0 view .LVU1293
@@ -7138,7 +7138,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  4672              		.align	2
  4673              	.L456:
  4674 0010 00000000 		.word	ISP_SVC_StatEngine
-ARM GAS  /tmp/ccAu1Zkx.s 			page 120
+ARM GAS  /tmp/cc8BPqUY.s 			page 120
 
 
  4675              		.cfi_endproc
@@ -7198,7 +7198,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1733:../Drivers/ISP/isp/Src/isp_services.c ****   */
 1734:../Drivers/ISP/isp/Src/isp_services.c **** void ISP_SVC_Stats_Gather(ISP_HandleTypeDef *hIsp)
 1735:../Drivers/ISP/isp/Src/isp_services.c **** {
-ARM GAS  /tmp/ccAu1Zkx.s 			page 121
+ARM GAS  /tmp/cc8BPqUY.s 			page 121
 
 
  4705              		.loc 1 1735 1 is_stmt 1 view -0
@@ -7258,7 +7258,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1756:../Drivers/ISP/isp/Src/isp_services.c ****   }
 1757:../Drivers/ISP/isp/Src/isp_services.c **** 
 1758:../Drivers/ISP/isp/Src/isp_services.c ****   /* Read the stats according to the configuration applied 2 VSYNC (shadow register + stat computat
-ARM GAS  /tmp/ccAu1Zkx.s 			page 122
+ARM GAS  /tmp/cc8BPqUY.s 			page 122
 
 
 1759:../Drivers/ISP/isp/Src/isp_services.c ****    * stages earlier.
@@ -7318,7 +7318,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  4782 0042 FFF7FEFF 		bl	HAL_DCMIPP_PIPE_GetISPAccumulatedStatisticsCounter
  4783              	.LVL458:
 1767:../Drivers/ISP/isp/Src/isp_services.c ****     HAL_DCMIPP_PIPE_GetISPAccumulatedStatisticsCounter(hIsp->hDcmipp, DCMIPP_PIPE1, DCMIPP_STATEXT_
-ARM GAS  /tmp/ccAu1Zkx.s 			page 123
+ARM GAS  /tmp/cc8BPqUY.s 			page 123
 
 
  4784              		.loc 1 1767 5 view .LVU1321
@@ -7378,7 +7378,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  4833 009a 84F89300 		strb	r0, [r4, #147]
 1773:../Drivers/ISP/isp/Src/isp_services.c ****     break;
  4834              		.loc 1 1773 5 is_stmt 1 view .LVU1334
-ARM GAS  /tmp/ccAu1Zkx.s 			page 124
+ARM GAS  /tmp/cc8BPqUY.s 			page 124
 
 
  4835              	.L461:
@@ -7438,7 +7438,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1827:../Drivers/ISP/isp/Src/isp_services.c ****     /* Shall not happen, just add this case to silence a Wswitch-enum warning */
 1828:../Drivers/ISP/isp/Src/isp_services.c ****     break;
 1829:../Drivers/ISP/isp/Src/isp_services.c **** 
-ARM GAS  /tmp/ccAu1Zkx.s 			page 125
+ARM GAS  /tmp/cc8BPqUY.s 			page 125
 
 
 1830:../Drivers/ISP/isp/Src/isp_services.c ****   default:
@@ -7498,7 +7498,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1785:../Drivers/ISP/isp/Src/isp_services.c **** 
  4878              		.loc 1 1785 5 view .LVU1343
  4879 00dc DFE7     		b	.L461
-ARM GAS  /tmp/ccAu1Zkx.s 			page 126
+ARM GAS  /tmp/cc8BPqUY.s 			page 126
 
 
  4880              	.L468:
@@ -7558,7 +7558,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  4924 0122 019B     		ldr	r3, [sp, #4]
  4925 0124 0122     		movs	r2, #1
  4926 0126 0221     		movs	r1, #2
-ARM GAS  /tmp/ccAu1Zkx.s 			page 127
+ARM GAS  /tmp/cc8BPqUY.s 			page 127
 
 
  4927 0128 04F5CC70 		add	r0, r4, #408
@@ -7618,7 +7618,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  4967 0162 FFF7FEFF 		bl	LuminanceFromRGBMono
  4968              	.LVL476:
 1802:../Drivers/ISP/isp/Src/isp_services.c ****     }
-ARM GAS  /tmp/ccAu1Zkx.s 			page 128
+ARM GAS  /tmp/cc8BPqUY.s 			page 128
 
 
  4969              		.loc 1 1802 30 discriminator 1 view .LVU1368
@@ -7678,7 +7678,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1816:../Drivers/ISP/isp/Src/isp_services.c **** 
  5012              		.loc 1 1816 5 view .LVU1380
  5013 019c 7FE7     		b	.L461
-ARM GAS  /tmp/ccAu1Zkx.s 			page 129
+ARM GAS  /tmp/cc8BPqUY.s 			page 129
 
 
  5014              	.L464:
@@ -7738,7 +7738,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  5056              	.LVL486:
 1839:../Drivers/ISP/isp/Src/isp_services.c ****     {
  5057              		.loc 1 1839 25 is_stmt 0 discriminator 1 view .LVU1394
-ARM GAS  /tmp/ccAu1Zkx.s 			page 130
+ARM GAS  /tmp/cc8BPqUY.s 			page 130
 
 
  5058 01e0 DBB2     		uxtb	r3, r3
@@ -7798,7 +7798,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1868:../Drivers/ISP/isp/Src/isp_services.c **** 
 1869:../Drivers/ISP/isp/Src/isp_services.c ****   case ISP_STAT_CFG_DOWN_AVG:
 1870:../Drivers/ISP/isp/Src/isp_services.c ****     for (i = 0; i < 3; i++)
-ARM GAS  /tmp/ccAu1Zkx.s 			page 131
+ARM GAS  /tmp/cc8BPqUY.s 			page 131
 
 
 1871:../Drivers/ISP/isp/Src/isp_services.c ****     {
@@ -7858,7 +7858,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  5099 0208 03EB4303 		add	r3, r3, r3, lsl #1
  5100              		.loc 1 1912 9 view .LVU1409
  5101 020c 03AA     		add	r2, sp, #12
-ARM GAS  /tmp/ccAu1Zkx.s 			page 132
+ARM GAS  /tmp/cc8BPqUY.s 			page 132
 
 
  5102 020e 02EB8303 		add	r3, r2, r3, lsl #2
@@ -7918,7 +7918,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1863:../Drivers/ISP/isp/Src/isp_services.c **** 
  5144              		.loc 1 1863 5 view .LVU1420
  5145 0246 DAE7     		b	.L476
-ARM GAS  /tmp/ccAu1Zkx.s 			page 133
+ARM GAS  /tmp/cc8BPqUY.s 			page 133
 
 
  5146              	.L483:
@@ -7978,7 +7978,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1870:../Drivers/ISP/isp/Src/isp_services.c ****     {
  5187              		.loc 1 1870 25 discriminator 1 view .LVU1434
  5188 0284 E6E7     		b	.L482
-ARM GAS  /tmp/ccAu1Zkx.s 			page 134
+ARM GAS  /tmp/cc8BPqUY.s 			page 134
 
 
  5189              	.L512:
@@ -8038,7 +8038,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  5231              		.loc 1 1897 5 view .LVU1446
  5232 02b8 1F49     		ldr	r1, .L517+100
  5233 02ba 03A8     		add	r0, sp, #12
-ARM GAS  /tmp/ccAu1Zkx.s 			page 135
+ARM GAS  /tmp/cc8BPqUY.s 			page 135
 
 
  5234 02bc FFF7FEFF 		bl	SetStatConfig
@@ -8098,7 +8098,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  5282 033c 60000000 		.word	.LC3
  5283 0340 90000000 		.word	.LC4
  5284              	.L509:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 136
+ARM GAS  /tmp/cc8BPqUY.s 			page 136
 
 
 1922:../Drivers/ISP/isp/Src/isp_services.c ****     }
@@ -8158,7 +8158,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  5322              		.loc 1 1938 3 is_stmt 1 view .LVU1468
  5323              		.loc 1 1938 25 is_stmt 0 view .LVU1469
  5324 036c 0120     		movs	r0, #1
-ARM GAS  /tmp/ccAu1Zkx.s 			page 137
+ARM GAS  /tmp/cc8BPqUY.s 			page 137
 
 
  5325 036e FFF7FEFF 		bl	GetStatCycleStart
@@ -8218,7 +8218,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  5357              	.LVL523:
  5358              		.loc 1 1960 6 discriminator 1 view .LVU1480
  5359 0394 8542     		cmp	r5, r0
-ARM GAS  /tmp/ccAu1Zkx.s 			page 138
+ARM GAS  /tmp/cc8BPqUY.s 			page 138
 
 
  5360 0396 59D0     		beq	.L516
@@ -8278,7 +8278,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1979:../Drivers/ISP/isp/Src/isp_services.c ****   }
 1980:../Drivers/ISP/isp/Src/isp_services.c **** 
 1981:../Drivers/ISP/isp/Src/isp_services.c ****   /* Save the two last processed stages and go to next stage */
-ARM GAS  /tmp/ccAu1Zkx.s 			page 139
+ARM GAS  /tmp/cc8BPqUY.s 			page 139
 
 
 1982:../Drivers/ISP/isp/Src/isp_services.c ****   stagePrevious2 = stagePrevious1;
@@ -8338,7 +8338,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  5439              		.loc 1 1948 71 discriminator 2 view .LVU1507
  5440 03fa 284B     		ldr	r3, .L519
  5441 03fc D3F80031 		ldr	r3, [r3, #256]
-ARM GAS  /tmp/ccAu1Zkx.s 			page 140
+ARM GAS  /tmp/cc8BPqUY.s 			page 140
 
 
  5442 0400 1F46     		mov	r7, r3
@@ -8398,7 +8398,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 1960:../Drivers/ISP/isp/Src/isp_services.c ****   {
  5483              		.loc 1 1960 62 discriminator 2 view .LVU1521
  5484 0452 BEF1000F 		cmp	lr, #0
-ARM GAS  /tmp/ccAu1Zkx.s 			page 141
+ARM GAS  /tmp/cc8BPqUY.s 			page 141
 
 
  5485 0456 9FD0     		beq	.L498
@@ -8458,7 +8458,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  5529              		.align	1
  5530              		.global	ISP_SVC_Stats_ProcessCallbacks
  5531              		.syntax unified
-ARM GAS  /tmp/ccAu1Zkx.s 			page 142
+ARM GAS  /tmp/cc8BPqUY.s 			page 142
 
 
  5532              		.thumb
@@ -8518,7 +8518,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 2003:../Drivers/ISP/isp/Src/isp_services.c ****   {
 2004:../Drivers/ISP/isp/Src/isp_services.c ****     client = &ISP_SVC_StatEngine.client[i];
 2005:../Drivers/ISP/isp/Src/isp_services.c **** 
-ARM GAS  /tmp/ccAu1Zkx.s 			page 143
+ARM GAS  /tmp/cc8BPqUY.s 			page 143
 
 
 2006:../Drivers/ISP/isp/Src/isp_services.c ****     if (client->callback == NULL)
@@ -8578,7 +8578,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 2025:../Drivers/ISP/isp/Src/isp_services.c ****       /* Remove the client from the registered list */
 2026:../Drivers/ISP/isp/Src/isp_services.c ****       client->callback = NULL;
  5604              		.loc 1 2026 7 is_stmt 1 view .LVU1557
-ARM GAS  /tmp/ccAu1Zkx.s 			page 144
+ARM GAS  /tmp/cc8BPqUY.s 			page 144
 
 
  5605              		.loc 1 2026 24 is_stmt 0 view .LVU1558
@@ -8638,7 +8638,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 2012:../Drivers/ISP/isp/Src/isp_services.c ****         ((client->location == ISP_STAT_LOC_EXT) && (client->refFrameId <= pLastStat->extFrameId)))
  5648              		.loc 1 2012 166 discriminator 3 view .LVU1570
  5649 007a 062B     		cmp	r3, #6
-ARM GAS  /tmp/ccAu1Zkx.s 			page 145
+ARM GAS  /tmp/cc8BPqUY.s 			page 145
 
 
  5650 007c E6D1     		bne	.L524
@@ -8698,7 +8698,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  5693              	.L534:
 2012:../Drivers/ISP/isp/Src/isp_services.c ****         ((client->location == ISP_STAT_LOC_EXT) && (client->refFrameId <= pLastStat->extFrameId)))
  5694              		.loc 1 2012 110 discriminator 2 view .LVU1582
-ARM GAS  /tmp/ccAu1Zkx.s 			page 146
+ARM GAS  /tmp/cc8BPqUY.s 			page 146
 
 
  5695              	.LBE5:
@@ -8758,7 +8758,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  5733              		.loc 1 2043 22 discriminator 1 view .LVU1590
  5734 0006 31B1     		cbz	r1, .L548
 2044:../Drivers/ISP/isp/Src/isp_services.c ****   {
-ARM GAS  /tmp/ccAu1Zkx.s 			page 147
+ARM GAS  /tmp/cc8BPqUY.s 			page 147
 
 
 2045:../Drivers/ISP/isp/Src/isp_services.c ****     return ISP_ERR_EINVAL;
@@ -8818,7 +8818,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  5780              		.syntax unified
  5781              		.thumb
  5782              		.thumb_func
-ARM GAS  /tmp/ccAu1Zkx.s 			page 148
+ARM GAS  /tmp/cc8BPqUY.s 			page 148
 
 
  5784              	ISP_SVC_Stats_GetNext:
@@ -8878,7 +8878,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 2073:../Drivers/ISP/isp/Src/isp_services.c ****   {
 2074:../Drivers/ISP/isp/Src/isp_services.c ****     return ISP_ERR_EINVAL;
 2075:../Drivers/ISP/isp/Src/isp_services.c ****   }
-ARM GAS  /tmp/ccAu1Zkx.s 			page 149
+ARM GAS  /tmp/cc8BPqUY.s 			page 149
 
 
 2076:../Drivers/ISP/isp/Src/isp_services.c **** 
@@ -8938,7 +8938,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 2086:../Drivers/ISP/isp/Src/isp_services.c ****   if (i == ISP_SVC_STAT_MAX_CB)
  5859              		.loc 1 2086 3 is_stmt 1 view .LVU1622
  5860              		.loc 1 2086 6 is_stmt 0 view .LVU1623
-ARM GAS  /tmp/ccAu1Zkx.s 			page 150
+ARM GAS  /tmp/cc8BPqUY.s 			page 150
 
 
  5861 0044 052C     		cmp	r4, #5
@@ -8998,7 +8998,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  5895              		.loc 1 2106 5 is_stmt 1 view .LVU1638
  5896              		.loc 1 2106 28 is_stmt 0 view .LVU1639
  5897 007c C6F88430 		str	r3, [r6, #132]
-ARM GAS  /tmp/ccAu1Zkx.s 			page 151
+ARM GAS  /tmp/cc8BPqUY.s 			page 151
 
 
  5898              	.L560:
@@ -9058,7 +9058,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 2112:../Drivers/ISP/isp/Src/isp_services.c ****   }
  5934              		.loc 1 2112 5 is_stmt 1 view .LVU1657
 2112:../Drivers/ISP/isp/Src/isp_services.c ****   }
-ARM GAS  /tmp/ccAu1Zkx.s 			page 152
+ARM GAS  /tmp/cc8BPqUY.s 			page 152
 
 
  5935              		.loc 1 2112 44 is_stmt 0 view .LVU1658
@@ -9118,7 +9118,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  5977              	.LBE6:
 2134:../Drivers/ISP/isp/Src/isp_services.c ****   float sum = 0, wsum = 0;
  5978              		.loc 1 2134 18 view .LVU1667
-ARM GAS  /tmp/ccAu1Zkx.s 			page 153
+ARM GAS  /tmp/cc8BPqUY.s 			page 153
 
 
  5979 0002 DFED176A 		vldr.32	s13, .L580
@@ -9178,7 +9178,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  6023              		.loc 1 2139 45 is_stmt 0 view .LVU1685
  6024 003a F5EEC06A 		vcmpe.f32	s13, #0
  6025 003e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
-ARM GAS  /tmp/ccAu1Zkx.s 			page 154
+ARM GAS  /tmp/cc8BPqUY.s 			page 154
 
 
  6026 0042 0ADD     		ble	.L575
@@ -9238,7 +9238,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  6069              		.cfi_startproc
  6070              		@ args = 0, pretend = 0, frame = 32
  6071              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccAu1Zkx.s 			page 155
+ARM GAS  /tmp/cc8BPqUY.s 			page 155
 
 
  6072              		.loc 1 2150 1 is_stmt 0 view .LVU1693
@@ -9298,7 +9298,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  6117              		.loc 1 2159 3 is_stmt 1 view .LVU1706
  6118              		.loc 1 2159 8 is_stmt 0 view .LVU1707
  6119 002a 04A9     		add	r1, sp, #16
-ARM GAS  /tmp/ccAu1Zkx.s 			page 156
+ARM GAS  /tmp/cc8BPqUY.s 			page 156
 
 
  6120              	.LVL572:
@@ -9358,7 +9358,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  6166 0074 03A9     		add	r1, sp, #12
  6167 0076 2846     		mov	r0, r5
  6168 0078 FFF7FEFF 		bl	ISP_SVC_ISP_GetBlackLevel
-ARM GAS  /tmp/ccAu1Zkx.s 			page 157
+ARM GAS  /tmp/cc8BPqUY.s 			page 157
 
 
  6169              	.LVL577:
@@ -9418,7 +9418,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  6214              		.loc 1 2176 3 is_stmt 1 view .LVU1743
  6215              		.loc 1 2176 24 is_stmt 0 view .LVU1744
  6216 00d0 9FED157B 		vldr.64	d7, .L596+8
-ARM GAS  /tmp/ccAu1Zkx.s 			page 158
+ARM GAS  /tmp/cc8BPqUY.s 			page 158
 
 
  6217 00d4 B4EEC79B 		vcmpe.f64	d9, d7
@@ -9478,7 +9478,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  6266 0114 DBE7     		b	.L589
  6267              	.L593:
 2176:../Drivers/ISP/isp/Src/isp_services.c ****   pUpStats->averageB = (uint8_t)(upB > 255 ? 255 : upB);
-ARM GAS  /tmp/ccAu1Zkx.s 			page 159
+ARM GAS  /tmp/cc8BPqUY.s 			page 159
 
 
  6268              		.loc 1 2176 24 discriminator 1 view .LVU1755
@@ -9538,7 +9538,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  6313              		.cfi_offset 82, -44
  6314              		.cfi_offset 83, -40
  6315              		.cfi_offset 84, -36
-ARM GAS  /tmp/ccAu1Zkx.s 			page 160
+ARM GAS  /tmp/cc8BPqUY.s 			page 160
 
 
  6316              		.cfi_offset 85, -32
@@ -9598,7 +9598,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  6355              		.loc 1 2205 9 view .LVU1775
  6356 0024 FFF7FEFF 		bl	ISP_SVC_Sensor_GetGain
  6357              	.LVL590:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 161
+ARM GAS  /tmp/cc8BPqUY.s 			page 161
 
 
 2206:../Drivers/ISP/isp/Src/isp_services.c ****   if (ret != ISP_OK)
@@ -9658,7 +9658,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
 2227:../Drivers/ISP/isp/Src/isp_services.c ****   a = (IQParamConfig->luxRef.HL_LuxRef *
  6388              		.loc 1 2227 3 is_stmt 1 view .LVU1789
  6389              		.loc 1 2227 40 is_stmt 0 view .LVU1790
-ARM GAS  /tmp/ccAu1Zkx.s 			page 162
+ARM GAS  /tmp/cc8BPqUY.s 			page 162
 
 
  6390 005e D4ED9A7A 		vldr.32	s15, [r4, #616]	@ int
@@ -9718,7 +9718,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  6433              		.loc 1 2235 46 view .LVU1807
  6434 00c2 9FED371B 		vldr.64	d1, .L607
  6435 00c6 87EE011B 		vdiv.f64	d1, d7, d1
-ARM GAS  /tmp/ccAu1Zkx.s 			page 163
+ARM GAS  /tmp/cc8BPqUY.s 			page 163
 
 
  6436 00ca B2EE040B 		vmov.f64	d0, #1.0e+1
@@ -9778,7 +9778,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  6478 011e D4ED9F7A 		vldr.32	s15, [r4, #636]	@ int
  6479 0122 B8EE672B 		vcvt.f64.u32	d2, s15
 2248:../Drivers/ISP/isp/Src/isp_services.c ****          ((double)IQParamConfig->luxRef.LL_Expo1 / IQParamConfig->luxRef.LL_Lum1 -
-ARM GAS  /tmp/ccAu1Zkx.s 			page 164
+ARM GAS  /tmp/cc8BPqUY.s 			page 164
 
 
  6480              		.loc 1 2248 11 view .LVU1825
@@ -9838,7 +9838,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  6524 017a 84EE007B 		vdiv.f64	d7, d4, d0
  6525              	.LVL602:
  6526              		.loc 1 2255 9 view .LVU1843
-ARM GAS  /tmp/ccAu1Zkx.s 			page 165
+ARM GAS  /tmp/cc8BPqUY.s 			page 165
 
 
  6527 017e BDEEC77B 		vcvt.s32.f64	s14, d7
@@ -9898,7 +9898,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  6572              	.L608:
  6573              		.align	3
  6574              	.L607:
-ARM GAS  /tmp/ccAu1Zkx.s 			page 166
+ARM GAS  /tmp/cc8BPqUY.s 			page 166
 
 
  6575 01a0 00000000 		.word	0
@@ -9958,7 +9958,7 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  6648 0008 04000000 		.word	4
  6649              		.section	.rodata.statConfUpBins_0_2,"a"
  6650              		.align	2
-ARM GAS  /tmp/ccAu1Zkx.s 			page 167
+ARM GAS  /tmp/cc8BPqUY.s 			page 167
 
 
  6653              	statConfUpBins_0_2:
@@ -10018,241 +10018,241 @@ ARM GAS  /tmp/ccAu1Zkx.s 			page 1
  6715              		.file 7 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dcmipp.h"
  6716              		.file 8 "../Drivers/ISP/isp/Inc/isp_core.h"
  6717              		.file 9 "../Drivers/ISP/isp/Inc/isp_services.h"
-ARM GAS  /tmp/ccAu1Zkx.s 			page 168
+ARM GAS  /tmp/cc8BPqUY.s 			page 168
 
 
  6718              		.file 10 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal.h"
  6719              		.file 11 "/usr/arm-none-eabi/include/string.h"
  6720              		.file 12 "<built-in>"
  6721              		.file 13 "/usr/arm-none-eabi/include/math.h"
-ARM GAS  /tmp/ccAu1Zkx.s 			page 169
+ARM GAS  /tmp/cc8BPqUY.s 			page 169
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 isp_services.c
-     /tmp/ccAu1Zkx.s:26     .text.To_Shift_Multiplier:00000000 $t
-     /tmp/ccAu1Zkx.s:31     .text.To_Shift_Multiplier:00000000 To_Shift_Multiplier
-     /tmp/ccAu1Zkx.s:99     .text.To_Shift_Multiplier:00000038 $d
-     /tmp/ccAu1Zkx.s:105    .text.From_Shift_Multiplier:00000000 $t
-     /tmp/ccAu1Zkx.s:110    .text.From_Shift_Multiplier:00000000 From_Shift_Multiplier
-     /tmp/ccAu1Zkx.s:147    .text.From_Shift_Multiplier:00000024 $d
-     /tmp/ccAu1Zkx.s:152    .text.To_CConv_Reg:00000000 $t
-     /tmp/ccAu1Zkx.s:157    .text.To_CConv_Reg:00000000 To_CConv_Reg
-     /tmp/ccAu1Zkx.s:188    .text.To_CConv_Reg:00000010 $d
-     /tmp/ccAu1Zkx.s:193    .text.From_CConv_Reg:00000000 $t
-     /tmp/ccAu1Zkx.s:198    .text.From_CConv_Reg:00000000 From_CConv_Reg
-     /tmp/ccAu1Zkx.s:218    .text.From_CConv_Reg:00000008 $d
-     /tmp/ccAu1Zkx.s:223    .text.GetAvgStats:00000000 $t
-     /tmp/ccAu1Zkx.s:228    .text.GetAvgStats:00000000 GetAvgStats
-     /tmp/ccAu1Zkx.s:311    .text.GetAvgStats:00000048 $d
-     /tmp/ccAu1Zkx.s:6700   .data.ISP_DecimationValue:00000000 ISP_DecimationValue
-     /tmp/ccAu1Zkx.s:316    .text.SetStatConfig:00000000 $t
-     /tmp/ccAu1Zkx.s:321    .text.SetStatConfig:00000000 SetStatConfig
-     /tmp/ccAu1Zkx.s:368    .text.GetNextStatStage:00000000 $t
-     /tmp/ccAu1Zkx.s:373    .text.GetNextStatStage:00000000 GetNextStatStage
-     /tmp/ccAu1Zkx.s:404    .text.GetNextStatStage:00000020 $d
-     /tmp/ccAu1Zkx.s:563    .text.GetNextStatStage:000000d0 $d
-     /tmp/ccAu1Zkx.s:6688   .bss.ISP_SVC_StatEngine:00000000 ISP_SVC_StatEngine
-     /tmp/ccAu1Zkx.s:568    .text.GetStatCycleStart:00000000 $t
-     /tmp/ccAu1Zkx.s:573    .text.GetStatCycleStart:00000000 GetStatCycleStart
-     /tmp/ccAu1Zkx.s:644    .text.GetStatCycleStart:00000040 $d
-     /tmp/ccAu1Zkx.s:649    .text.GetStatCycleEnd:00000000 $t
-     /tmp/ccAu1Zkx.s:654    .text.GetStatCycleEnd:00000000 GetStatCycleEnd
-     /tmp/ccAu1Zkx.s:720    .text.GetStatCycleEnd:0000003c $d
-     /tmp/ccAu1Zkx.s:725    .text.ReadStatHistogram:00000000 $t
-     /tmp/ccAu1Zkx.s:730    .text.ReadStatHistogram:00000000 ReadStatHistogram
-     /tmp/ccAu1Zkx.s:786    .text.LuminanceFromRGB:00000000 $t
-     /tmp/ccAu1Zkx.s:792    .text.LuminanceFromRGB:00000000 LuminanceFromRGB
-     /tmp/ccAu1Zkx.s:837    .text.LuminanceFromRGB:00000048 $d
-     /tmp/ccAu1Zkx.s:847    .text.LuminanceFromRGBMono:00000000 $t
-     /tmp/ccAu1Zkx.s:853    .text.LuminanceFromRGBMono:00000000 LuminanceFromRGBMono
-     /tmp/ccAu1Zkx.s:888    .text.ISP_SVC_ISP_SetDemosaicing:00000000 $t
-     /tmp/ccAu1Zkx.s:894    .text.ISP_SVC_ISP_SetDemosaicing:00000000 ISP_SVC_ISP_SetDemosaicing
-     /tmp/ccAu1Zkx.s:954    .text.ISP_SVC_ISP_SetDemosaicing:00000036 $d
-     /tmp/ccAu1Zkx.s:1098   .text.ISP_SVC_ISP_SetStatRemoval:00000000 $t
-     /tmp/ccAu1Zkx.s:1104   .text.ISP_SVC_ISP_SetStatRemoval:00000000 ISP_SVC_ISP_SetStatRemoval
-     /tmp/ccAu1Zkx.s:1208   .text.ISP_SVC_ISP_SetDecimation:00000000 $t
-     /tmp/ccAu1Zkx.s:1214   .text.ISP_SVC_ISP_SetDecimation:00000000 ISP_SVC_ISP_SetDecimation
-     /tmp/ccAu1Zkx.s:1250   .text.ISP_SVC_ISP_SetDecimation:0000001a $d
-     /tmp/ccAu1Zkx.s:1258   .text.ISP_SVC_ISP_SetDecimation:00000022 $t
-     /tmp/ccAu1Zkx.s:1368   .text.ISP_SVC_ISP_SetDecimation:00000074 $d
-     /tmp/ccAu1Zkx.s:1373   .text.ISP_SVC_ISP_GetDecimation:00000000 $t
-     /tmp/ccAu1Zkx.s:1379   .text.ISP_SVC_ISP_GetDecimation:00000000 ISP_SVC_ISP_GetDecimation
-     /tmp/ccAu1Zkx.s:1403   .text.ISP_SVC_ISP_GetDecimation:0000000c $d
-     /tmp/ccAu1Zkx.s:1408   .text.ISP_SVC_ISP_SetContrast:00000000 $t
-     /tmp/ccAu1Zkx.s:1414   .text.ISP_SVC_ISP_SetContrast:00000000 ISP_SVC_ISP_SetContrast
-     /tmp/ccAu1Zkx.s:1661   .text.ISP_SVC_ISP_SetContrast:00000124 $d
-     /tmp/ccAu1Zkx.s:1666   .text.ISP_SVC_ISP_SetStatArea:00000000 $t
-     /tmp/ccAu1Zkx.s:1672   .text.ISP_SVC_ISP_SetStatArea:00000000 ISP_SVC_ISP_SetStatArea
-     /tmp/ccAu1Zkx.s:1842   .text.ISP_SVC_ISP_SetStatArea:000000ac $d
-ARM GAS  /tmp/ccAu1Zkx.s 			page 170
+     /tmp/cc8BPqUY.s:26     .text.To_Shift_Multiplier:00000000 $t
+     /tmp/cc8BPqUY.s:31     .text.To_Shift_Multiplier:00000000 To_Shift_Multiplier
+     /tmp/cc8BPqUY.s:99     .text.To_Shift_Multiplier:00000038 $d
+     /tmp/cc8BPqUY.s:105    .text.From_Shift_Multiplier:00000000 $t
+     /tmp/cc8BPqUY.s:110    .text.From_Shift_Multiplier:00000000 From_Shift_Multiplier
+     /tmp/cc8BPqUY.s:147    .text.From_Shift_Multiplier:00000024 $d
+     /tmp/cc8BPqUY.s:152    .text.To_CConv_Reg:00000000 $t
+     /tmp/cc8BPqUY.s:157    .text.To_CConv_Reg:00000000 To_CConv_Reg
+     /tmp/cc8BPqUY.s:188    .text.To_CConv_Reg:00000010 $d
+     /tmp/cc8BPqUY.s:193    .text.From_CConv_Reg:00000000 $t
+     /tmp/cc8BPqUY.s:198    .text.From_CConv_Reg:00000000 From_CConv_Reg
+     /tmp/cc8BPqUY.s:218    .text.From_CConv_Reg:00000008 $d
+     /tmp/cc8BPqUY.s:223    .text.GetAvgStats:00000000 $t
+     /tmp/cc8BPqUY.s:228    .text.GetAvgStats:00000000 GetAvgStats
+     /tmp/cc8BPqUY.s:311    .text.GetAvgStats:00000048 $d
+     /tmp/cc8BPqUY.s:6700   .data.ISP_DecimationValue:00000000 ISP_DecimationValue
+     /tmp/cc8BPqUY.s:316    .text.SetStatConfig:00000000 $t
+     /tmp/cc8BPqUY.s:321    .text.SetStatConfig:00000000 SetStatConfig
+     /tmp/cc8BPqUY.s:368    .text.GetNextStatStage:00000000 $t
+     /tmp/cc8BPqUY.s:373    .text.GetNextStatStage:00000000 GetNextStatStage
+     /tmp/cc8BPqUY.s:404    .text.GetNextStatStage:00000020 $d
+     /tmp/cc8BPqUY.s:563    .text.GetNextStatStage:000000d0 $d
+     /tmp/cc8BPqUY.s:6688   .bss.ISP_SVC_StatEngine:00000000 ISP_SVC_StatEngine
+     /tmp/cc8BPqUY.s:568    .text.GetStatCycleStart:00000000 $t
+     /tmp/cc8BPqUY.s:573    .text.GetStatCycleStart:00000000 GetStatCycleStart
+     /tmp/cc8BPqUY.s:644    .text.GetStatCycleStart:00000040 $d
+     /tmp/cc8BPqUY.s:649    .text.GetStatCycleEnd:00000000 $t
+     /tmp/cc8BPqUY.s:654    .text.GetStatCycleEnd:00000000 GetStatCycleEnd
+     /tmp/cc8BPqUY.s:720    .text.GetStatCycleEnd:0000003c $d
+     /tmp/cc8BPqUY.s:725    .text.ReadStatHistogram:00000000 $t
+     /tmp/cc8BPqUY.s:730    .text.ReadStatHistogram:00000000 ReadStatHistogram
+     /tmp/cc8BPqUY.s:786    .text.LuminanceFromRGB:00000000 $t
+     /tmp/cc8BPqUY.s:792    .text.LuminanceFromRGB:00000000 LuminanceFromRGB
+     /tmp/cc8BPqUY.s:837    .text.LuminanceFromRGB:00000048 $d
+     /tmp/cc8BPqUY.s:847    .text.LuminanceFromRGBMono:00000000 $t
+     /tmp/cc8BPqUY.s:853    .text.LuminanceFromRGBMono:00000000 LuminanceFromRGBMono
+     /tmp/cc8BPqUY.s:888    .text.ISP_SVC_ISP_SetDemosaicing:00000000 $t
+     /tmp/cc8BPqUY.s:894    .text.ISP_SVC_ISP_SetDemosaicing:00000000 ISP_SVC_ISP_SetDemosaicing
+     /tmp/cc8BPqUY.s:954    .text.ISP_SVC_ISP_SetDemosaicing:00000036 $d
+     /tmp/cc8BPqUY.s:1098   .text.ISP_SVC_ISP_SetStatRemoval:00000000 $t
+     /tmp/cc8BPqUY.s:1104   .text.ISP_SVC_ISP_SetStatRemoval:00000000 ISP_SVC_ISP_SetStatRemoval
+     /tmp/cc8BPqUY.s:1208   .text.ISP_SVC_ISP_SetDecimation:00000000 $t
+     /tmp/cc8BPqUY.s:1214   .text.ISP_SVC_ISP_SetDecimation:00000000 ISP_SVC_ISP_SetDecimation
+     /tmp/cc8BPqUY.s:1250   .text.ISP_SVC_ISP_SetDecimation:0000001a $d
+     /tmp/cc8BPqUY.s:1258   .text.ISP_SVC_ISP_SetDecimation:00000022 $t
+     /tmp/cc8BPqUY.s:1368   .text.ISP_SVC_ISP_SetDecimation:00000074 $d
+     /tmp/cc8BPqUY.s:1373   .text.ISP_SVC_ISP_GetDecimation:00000000 $t
+     /tmp/cc8BPqUY.s:1379   .text.ISP_SVC_ISP_GetDecimation:00000000 ISP_SVC_ISP_GetDecimation
+     /tmp/cc8BPqUY.s:1403   .text.ISP_SVC_ISP_GetDecimation:0000000c $d
+     /tmp/cc8BPqUY.s:1408   .text.ISP_SVC_ISP_SetContrast:00000000 $t
+     /tmp/cc8BPqUY.s:1414   .text.ISP_SVC_ISP_SetContrast:00000000 ISP_SVC_ISP_SetContrast
+     /tmp/cc8BPqUY.s:1661   .text.ISP_SVC_ISP_SetContrast:00000124 $d
+     /tmp/cc8BPqUY.s:1666   .text.ISP_SVC_ISP_SetStatArea:00000000 $t
+     /tmp/cc8BPqUY.s:1672   .text.ISP_SVC_ISP_SetStatArea:00000000 ISP_SVC_ISP_SetStatArea
+     /tmp/cc8BPqUY.s:1842   .text.ISP_SVC_ISP_SetStatArea:000000ac $d
+ARM GAS  /tmp/cc8BPqUY.s 			page 170
 
 
-     /tmp/ccAu1Zkx.s:1847   .text.ISP_SVC_ISP_GetStatArea:00000000 $t
-     /tmp/ccAu1Zkx.s:1853   .text.ISP_SVC_ISP_GetStatArea:00000000 ISP_SVC_ISP_GetStatArea
-     /tmp/ccAu1Zkx.s:1976   .text.ISP_SVC_ISP_GetStatArea:0000005c $d
-     /tmp/ccAu1Zkx.s:1981   .text.ISP_SVC_ISP_SetBadPixel:00000000 $t
-     /tmp/ccAu1Zkx.s:1987   .text.ISP_SVC_ISP_SetBadPixel:00000000 ISP_SVC_ISP_SetBadPixel
-     /tmp/ccAu1Zkx.s:2095   .text.ISP_SVC_ISP_GetBadPixel:00000000 $t
-     /tmp/ccAu1Zkx.s:2101   .text.ISP_SVC_ISP_GetBadPixel:00000000 ISP_SVC_ISP_GetBadPixel
-     /tmp/ccAu1Zkx.s:2189   .text.ISP_SVC_ISP_SetBlackLevel:00000000 $t
-     /tmp/ccAu1Zkx.s:2195   .text.ISP_SVC_ISP_SetBlackLevel:00000000 ISP_SVC_ISP_SetBlackLevel
-     /tmp/ccAu1Zkx.s:2325   .text.ISP_SVC_ISP_GetBlackLevel:00000000 $t
-     /tmp/ccAu1Zkx.s:2331   .text.ISP_SVC_ISP_GetBlackLevel:00000000 ISP_SVC_ISP_GetBlackLevel
-     /tmp/ccAu1Zkx.s:2426   .text.ISP_SVC_ISP_SetGain:00000000 $t
-     /tmp/ccAu1Zkx.s:2432   .text.ISP_SVC_ISP_SetGain:00000000 ISP_SVC_ISP_SetGain
-     /tmp/ccAu1Zkx.s:2575   .text.ISP_SVC_ISP_SetGain:0000007c $d
-     /tmp/ccAu1Zkx.s:2580   .text.ISP_SVC_ISP_GetGain:00000000 $t
-     /tmp/ccAu1Zkx.s:2586   .text.ISP_SVC_ISP_GetGain:00000000 ISP_SVC_ISP_GetGain
-     /tmp/ccAu1Zkx.s:2690   .text.ISP_SVC_ISP_SetColorConv:00000000 $t
-     /tmp/ccAu1Zkx.s:2696   .text.ISP_SVC_ISP_SetColorConv:00000000 ISP_SVC_ISP_SetColorConv
-     /tmp/ccAu1Zkx.s:2906   .text.ISP_SVC_ISP_SetColorConv:000000d8 $d
-     /tmp/ccAu1Zkx.s:2912   .text.ISP_SVC_ISP_GetColorConv:00000000 $t
-     /tmp/ccAu1Zkx.s:2918   .text.ISP_SVC_ISP_GetColorConv:00000000 ISP_SVC_ISP_GetColorConv
-     /tmp/ccAu1Zkx.s:3063   .text.ISP_SVC_Sensor_GetInfo:00000000 $t
-     /tmp/ccAu1Zkx.s:3069   .text.ISP_SVC_Sensor_GetInfo:00000000 ISP_SVC_Sensor_GetInfo
-     /tmp/ccAu1Zkx.s:3138   .text.ISP_SVC_Sensor_SetGain:00000000 $t
-     /tmp/ccAu1Zkx.s:3144   .text.ISP_SVC_Sensor_SetGain:00000000 ISP_SVC_Sensor_SetGain
-     /tmp/ccAu1Zkx.s:3219   .text.ISP_SVC_Sensor_SetGain:0000002c $d
-     /tmp/ccAu1Zkx.s:3224   .text.ISP_SVC_Sensor_GetGain:00000000 $t
-     /tmp/ccAu1Zkx.s:3230   .text.ISP_SVC_Sensor_GetGain:00000000 ISP_SVC_Sensor_GetGain
-     /tmp/ccAu1Zkx.s:3299   .text.ISP_SVC_Sensor_SetExposure:00000000 $t
-     /tmp/ccAu1Zkx.s:3305   .text.ISP_SVC_Sensor_SetExposure:00000000 ISP_SVC_Sensor_SetExposure
-     /tmp/ccAu1Zkx.s:3380   .text.ISP_SVC_Sensor_SetExposure:0000002c $d
-     /tmp/ccAu1Zkx.s:3385   .text.ISP_SVC_Sensor_GetExposure:00000000 $t
-     /tmp/ccAu1Zkx.s:3391   .text.ISP_SVC_Sensor_GetExposure:00000000 ISP_SVC_Sensor_GetExposure
-     /tmp/ccAu1Zkx.s:3460   .text.ISP_SVC_Sensor_SetTestPattern:00000000 $t
-     /tmp/ccAu1Zkx.s:3466   .text.ISP_SVC_Sensor_SetTestPattern:00000000 ISP_SVC_Sensor_SetTestPattern
-     /tmp/ccAu1Zkx.s:3538   .text.ISP_SVC_Misc_GetDCMIPPVersion:00000000 $t
-     /tmp/ccAu1Zkx.s:3544   .text.ISP_SVC_Misc_GetDCMIPPVersion:00000000 ISP_SVC_Misc_GetDCMIPPVersion
-     /tmp/ccAu1Zkx.s:3598   .text.ISP_SVC_Misc_IsDCMIPPReady:00000000 $t
-     /tmp/ccAu1Zkx.s:3604   .text.ISP_SVC_Misc_IsDCMIPPReady:00000000 ISP_SVC_Misc_IsDCMIPPReady
-     /tmp/ccAu1Zkx.s:3658   .text.ISP_SVC_Misc_GetFirmwareConfig:00000000 $t
-     /tmp/ccAu1Zkx.s:3664   .text.ISP_SVC_Misc_GetFirmwareConfig:00000000 ISP_SVC_Misc_GetFirmwareConfig
-     /tmp/ccAu1Zkx.s:3773   .text.ISP_SVC_Misc_IncMainFrameId:00000000 $t
-     /tmp/ccAu1Zkx.s:3779   .text.ISP_SVC_Misc_IncMainFrameId:00000000 ISP_SVC_Misc_IncMainFrameId
-     /tmp/ccAu1Zkx.s:3799   .text.ISP_SVC_Misc_GetMainFrameId:00000000 $t
-     /tmp/ccAu1Zkx.s:3805   .text.ISP_SVC_Misc_GetMainFrameId:00000000 ISP_SVC_Misc_GetMainFrameId
-     /tmp/ccAu1Zkx.s:3823   .text.ISP_SVC_Misc_IncAncillaryFrameId:00000000 $t
-     /tmp/ccAu1Zkx.s:3829   .text.ISP_SVC_Misc_IncAncillaryFrameId:00000000 ISP_SVC_Misc_IncAncillaryFrameId
-     /tmp/ccAu1Zkx.s:3849   .text.ISP_SVC_Misc_GetAncillaryFrameId:00000000 $t
-     /tmp/ccAu1Zkx.s:3855   .text.ISP_SVC_Misc_GetAncillaryFrameId:00000000 ISP_SVC_Misc_GetAncillaryFrameId
-     /tmp/ccAu1Zkx.s:3873   .text.ISP_SVC_Misc_IncDumpFrameId:00000000 $t
-     /tmp/ccAu1Zkx.s:3879   .text.ISP_SVC_Misc_IncDumpFrameId:00000000 ISP_SVC_Misc_IncDumpFrameId
-     /tmp/ccAu1Zkx.s:3899   .text.ISP_SVC_Misc_GetDumpFrameId:00000000 $t
-     /tmp/ccAu1Zkx.s:3905   .text.ISP_SVC_Misc_GetDumpFrameId:00000000 ISP_SVC_Misc_GetDumpFrameId
-     /tmp/ccAu1Zkx.s:3923   .text.ISP_SVC_Misc_SetWBRefMode:00000000 $t
-     /tmp/ccAu1Zkx.s:3929   .text.ISP_SVC_Misc_SetWBRefMode:00000000 ISP_SVC_Misc_SetWBRefMode
-     /tmp/ccAu1Zkx.s:3951   .text.ISP_SVC_Misc_SetWBRefMode:00000008 $d
-     /tmp/ccAu1Zkx.s:6706   .bss.ISP_ManualWBRefColorTemp:00000000 ISP_ManualWBRefColorTemp
-ARM GAS  /tmp/ccAu1Zkx.s 			page 171
+     /tmp/cc8BPqUY.s:1847   .text.ISP_SVC_ISP_GetStatArea:00000000 $t
+     /tmp/cc8BPqUY.s:1853   .text.ISP_SVC_ISP_GetStatArea:00000000 ISP_SVC_ISP_GetStatArea
+     /tmp/cc8BPqUY.s:1976   .text.ISP_SVC_ISP_GetStatArea:0000005c $d
+     /tmp/cc8BPqUY.s:1981   .text.ISP_SVC_ISP_SetBadPixel:00000000 $t
+     /tmp/cc8BPqUY.s:1987   .text.ISP_SVC_ISP_SetBadPixel:00000000 ISP_SVC_ISP_SetBadPixel
+     /tmp/cc8BPqUY.s:2095   .text.ISP_SVC_ISP_GetBadPixel:00000000 $t
+     /tmp/cc8BPqUY.s:2101   .text.ISP_SVC_ISP_GetBadPixel:00000000 ISP_SVC_ISP_GetBadPixel
+     /tmp/cc8BPqUY.s:2189   .text.ISP_SVC_ISP_SetBlackLevel:00000000 $t
+     /tmp/cc8BPqUY.s:2195   .text.ISP_SVC_ISP_SetBlackLevel:00000000 ISP_SVC_ISP_SetBlackLevel
+     /tmp/cc8BPqUY.s:2325   .text.ISP_SVC_ISP_GetBlackLevel:00000000 $t
+     /tmp/cc8BPqUY.s:2331   .text.ISP_SVC_ISP_GetBlackLevel:00000000 ISP_SVC_ISP_GetBlackLevel
+     /tmp/cc8BPqUY.s:2426   .text.ISP_SVC_ISP_SetGain:00000000 $t
+     /tmp/cc8BPqUY.s:2432   .text.ISP_SVC_ISP_SetGain:00000000 ISP_SVC_ISP_SetGain
+     /tmp/cc8BPqUY.s:2575   .text.ISP_SVC_ISP_SetGain:0000007c $d
+     /tmp/cc8BPqUY.s:2580   .text.ISP_SVC_ISP_GetGain:00000000 $t
+     /tmp/cc8BPqUY.s:2586   .text.ISP_SVC_ISP_GetGain:00000000 ISP_SVC_ISP_GetGain
+     /tmp/cc8BPqUY.s:2690   .text.ISP_SVC_ISP_SetColorConv:00000000 $t
+     /tmp/cc8BPqUY.s:2696   .text.ISP_SVC_ISP_SetColorConv:00000000 ISP_SVC_ISP_SetColorConv
+     /tmp/cc8BPqUY.s:2906   .text.ISP_SVC_ISP_SetColorConv:000000d8 $d
+     /tmp/cc8BPqUY.s:2912   .text.ISP_SVC_ISP_GetColorConv:00000000 $t
+     /tmp/cc8BPqUY.s:2918   .text.ISP_SVC_ISP_GetColorConv:00000000 ISP_SVC_ISP_GetColorConv
+     /tmp/cc8BPqUY.s:3063   .text.ISP_SVC_Sensor_GetInfo:00000000 $t
+     /tmp/cc8BPqUY.s:3069   .text.ISP_SVC_Sensor_GetInfo:00000000 ISP_SVC_Sensor_GetInfo
+     /tmp/cc8BPqUY.s:3138   .text.ISP_SVC_Sensor_SetGain:00000000 $t
+     /tmp/cc8BPqUY.s:3144   .text.ISP_SVC_Sensor_SetGain:00000000 ISP_SVC_Sensor_SetGain
+     /tmp/cc8BPqUY.s:3219   .text.ISP_SVC_Sensor_SetGain:0000002c $d
+     /tmp/cc8BPqUY.s:3224   .text.ISP_SVC_Sensor_GetGain:00000000 $t
+     /tmp/cc8BPqUY.s:3230   .text.ISP_SVC_Sensor_GetGain:00000000 ISP_SVC_Sensor_GetGain
+     /tmp/cc8BPqUY.s:3299   .text.ISP_SVC_Sensor_SetExposure:00000000 $t
+     /tmp/cc8BPqUY.s:3305   .text.ISP_SVC_Sensor_SetExposure:00000000 ISP_SVC_Sensor_SetExposure
+     /tmp/cc8BPqUY.s:3380   .text.ISP_SVC_Sensor_SetExposure:0000002c $d
+     /tmp/cc8BPqUY.s:3385   .text.ISP_SVC_Sensor_GetExposure:00000000 $t
+     /tmp/cc8BPqUY.s:3391   .text.ISP_SVC_Sensor_GetExposure:00000000 ISP_SVC_Sensor_GetExposure
+     /tmp/cc8BPqUY.s:3460   .text.ISP_SVC_Sensor_SetTestPattern:00000000 $t
+     /tmp/cc8BPqUY.s:3466   .text.ISP_SVC_Sensor_SetTestPattern:00000000 ISP_SVC_Sensor_SetTestPattern
+     /tmp/cc8BPqUY.s:3538   .text.ISP_SVC_Misc_GetDCMIPPVersion:00000000 $t
+     /tmp/cc8BPqUY.s:3544   .text.ISP_SVC_Misc_GetDCMIPPVersion:00000000 ISP_SVC_Misc_GetDCMIPPVersion
+     /tmp/cc8BPqUY.s:3598   .text.ISP_SVC_Misc_IsDCMIPPReady:00000000 $t
+     /tmp/cc8BPqUY.s:3604   .text.ISP_SVC_Misc_IsDCMIPPReady:00000000 ISP_SVC_Misc_IsDCMIPPReady
+     /tmp/cc8BPqUY.s:3658   .text.ISP_SVC_Misc_GetFirmwareConfig:00000000 $t
+     /tmp/cc8BPqUY.s:3664   .text.ISP_SVC_Misc_GetFirmwareConfig:00000000 ISP_SVC_Misc_GetFirmwareConfig
+     /tmp/cc8BPqUY.s:3773   .text.ISP_SVC_Misc_IncMainFrameId:00000000 $t
+     /tmp/cc8BPqUY.s:3779   .text.ISP_SVC_Misc_IncMainFrameId:00000000 ISP_SVC_Misc_IncMainFrameId
+     /tmp/cc8BPqUY.s:3799   .text.ISP_SVC_Misc_GetMainFrameId:00000000 $t
+     /tmp/cc8BPqUY.s:3805   .text.ISP_SVC_Misc_GetMainFrameId:00000000 ISP_SVC_Misc_GetMainFrameId
+     /tmp/cc8BPqUY.s:3823   .text.ISP_SVC_Misc_IncAncillaryFrameId:00000000 $t
+     /tmp/cc8BPqUY.s:3829   .text.ISP_SVC_Misc_IncAncillaryFrameId:00000000 ISP_SVC_Misc_IncAncillaryFrameId
+     /tmp/cc8BPqUY.s:3849   .text.ISP_SVC_Misc_GetAncillaryFrameId:00000000 $t
+     /tmp/cc8BPqUY.s:3855   .text.ISP_SVC_Misc_GetAncillaryFrameId:00000000 ISP_SVC_Misc_GetAncillaryFrameId
+     /tmp/cc8BPqUY.s:3873   .text.ISP_SVC_Misc_IncDumpFrameId:00000000 $t
+     /tmp/cc8BPqUY.s:3879   .text.ISP_SVC_Misc_IncDumpFrameId:00000000 ISP_SVC_Misc_IncDumpFrameId
+     /tmp/cc8BPqUY.s:3899   .text.ISP_SVC_Misc_GetDumpFrameId:00000000 $t
+     /tmp/cc8BPqUY.s:3905   .text.ISP_SVC_Misc_GetDumpFrameId:00000000 ISP_SVC_Misc_GetDumpFrameId
+     /tmp/cc8BPqUY.s:3923   .text.ISP_SVC_Misc_SetWBRefMode:00000000 $t
+     /tmp/cc8BPqUY.s:3929   .text.ISP_SVC_Misc_SetWBRefMode:00000000 ISP_SVC_Misc_SetWBRefMode
+     /tmp/cc8BPqUY.s:3951   .text.ISP_SVC_Misc_SetWBRefMode:00000008 $d
+     /tmp/cc8BPqUY.s:6706   .bss.ISP_ManualWBRefColorTemp:00000000 ISP_ManualWBRefColorTemp
+ARM GAS  /tmp/cc8BPqUY.s 			page 171
 
 
-     /tmp/ccAu1Zkx.s:3956   .text.ISP_SVC_Misc_GetWBRefMode:00000000 $t
-     /tmp/ccAu1Zkx.s:3962   .text.ISP_SVC_Misc_GetWBRefMode:00000000 ISP_SVC_Misc_GetWBRefMode
-     /tmp/ccAu1Zkx.s:3985   .text.ISP_SVC_Misc_GetWBRefMode:0000000c $d
-     /tmp/ccAu1Zkx.s:3990   .text.ISP_SVC_Misc_SensorDelayMeasureStart:00000000 $t
-     /tmp/ccAu1Zkx.s:3996   .text.ISP_SVC_Misc_SensorDelayMeasureStart:00000000 ISP_SVC_Misc_SensorDelayMeasureStart
-     /tmp/ccAu1Zkx.s:4013   .text.ISP_SVC_Misc_SensorDelayMeasureStart:00000008 $d
-     /tmp/ccAu1Zkx.s:6682   .bss.ISP_SensorDelayMeasureRun:00000000 ISP_SensorDelayMeasureRun
-     /tmp/ccAu1Zkx.s:4018   .text.ISP_SVC_Misc_SensorDelayMeasureStop:00000000 $t
-     /tmp/ccAu1Zkx.s:4024   .text.ISP_SVC_Misc_SensorDelayMeasureStop:00000000 ISP_SVC_Misc_SensorDelayMeasureStop
-     /tmp/ccAu1Zkx.s:4041   .text.ISP_SVC_Misc_SensorDelayMeasureStop:00000008 $d
-     /tmp/ccAu1Zkx.s:4046   .text.ISP_SVC_Misc_SensorDelayMeasureIsRunning:00000000 $t
-     /tmp/ccAu1Zkx.s:4052   .text.ISP_SVC_Misc_SensorDelayMeasureIsRunning:00000000 ISP_SVC_Misc_SensorDelayMeasureIsRunning
-     /tmp/ccAu1Zkx.s:4067   .text.ISP_SVC_Misc_SensorDelayMeasureIsRunning:00000008 $d
-     /tmp/ccAu1Zkx.s:4072   .text.ISP_SVC_Misc_SendSensorDelayMeasure:00000000 $t
-     /tmp/ccAu1Zkx.s:4078   .text.ISP_SVC_Misc_SendSensorDelayMeasure:00000000 ISP_SVC_Misc_SendSensorDelayMeasure
-     /tmp/ccAu1Zkx.s:4098   .text.ISP_SVC_Misc_StopPreview:00000000 $t
-     /tmp/ccAu1Zkx.s:4104   .text.ISP_SVC_Misc_StopPreview:00000000 ISP_SVC_Misc_StopPreview
-     /tmp/ccAu1Zkx.s:4161   .text.ISP_SVC_Misc_StartPreview:00000000 $t
-     /tmp/ccAu1Zkx.s:4167   .text.ISP_SVC_Misc_StartPreview:00000000 ISP_SVC_Misc_StartPreview
-     /tmp/ccAu1Zkx.s:4224   .text.ISP_SVC_Misc_IsGammaEnabled:00000000 $t
-     /tmp/ccAu1Zkx.s:4230   .text.ISP_SVC_Misc_IsGammaEnabled:00000000 ISP_SVC_Misc_IsGammaEnabled
-     /tmp/ccAu1Zkx.s:4311   .text.ISP_SVC_ISP_SetGamma:00000000 $t
-     /tmp/ccAu1Zkx.s:4317   .text.ISP_SVC_ISP_SetGamma:00000000 ISP_SVC_ISP_SetGamma
-     /tmp/ccAu1Zkx.s:4413   .text.ISP_SVC_Dump_GetFrame:00000000 $t
-     /tmp/ccAu1Zkx.s:4419   .text.ISP_SVC_Dump_GetFrame:00000000 ISP_SVC_Dump_GetFrame
-     /tmp/ccAu1Zkx.s:4509   .text.ISP_SVC_IQParam_Init:00000000 $t
-     /tmp/ccAu1Zkx.s:4515   .text.ISP_SVC_IQParam_Init:00000000 ISP_SVC_IQParam_Init
-     /tmp/ccAu1Zkx.s:4544   .text.ISP_SVC_IQParam_Init:00000010 $d
-     /tmp/ccAu1Zkx.s:6694   .bss.ISP_IQParamCache:00000000 ISP_IQParamCache
-     /tmp/ccAu1Zkx.s:4549   .text.ISP_SVC_IQParam_Get:00000000 $t
-     /tmp/ccAu1Zkx.s:4555   .text.ISP_SVC_IQParam_Get:00000000 ISP_SVC_IQParam_Get
-     /tmp/ccAu1Zkx.s:4573   .text.ISP_SVC_IQParam_Get:00000004 $d
-     /tmp/ccAu1Zkx.s:4578   .text.ISP_SVC_GetRestartState:00000000 $t
-     /tmp/ccAu1Zkx.s:4584   .text.ISP_SVC_GetRestartState:00000000 ISP_SVC_GetRestartState
-     /tmp/ccAu1Zkx.s:4603   .text.ISP_SVC_GetRestartState:00000008 $d
-     /tmp/ccAu1Zkx.s:6677   .bss.pISP_RestartState:00000000 pISP_RestartState
-     /tmp/ccAu1Zkx.s:4608   .text.ISP_SVC_SetRestartState:00000000 $t
-     /tmp/ccAu1Zkx.s:4614   .text.ISP_SVC_SetRestartState:00000000 ISP_SVC_SetRestartState
-     /tmp/ccAu1Zkx.s:4636   .text.ISP_SVC_SetRestartState:00000008 $d
-     /tmp/ccAu1Zkx.s:4641   .text.ISP_SVC_Stats_Init:00000000 $t
-     /tmp/ccAu1Zkx.s:4647   .text.ISP_SVC_Stats_Init:00000000 ISP_SVC_Stats_Init
-     /tmp/ccAu1Zkx.s:4674   .text.ISP_SVC_Stats_Init:00000010 $d
-     /tmp/ccAu1Zkx.s:4679   .rodata.ISP_SVC_Stats_Gather.str1.4:00000000 $d
-     /tmp/ccAu1Zkx.s:4696   .text.ISP_SVC_Stats_Gather:00000000 $t
-     /tmp/ccAu1Zkx.s:4702   .text.ISP_SVC_Stats_Gather:00000000 ISP_SVC_Stats_Gather
-     /tmp/ccAu1Zkx.s:4748   .text.ISP_SVC_Stats_Gather:0000001e $d
-     /tmp/ccAu1Zkx.s:4759   .text.ISP_SVC_Stats_Gather:00000028 $t
-     /tmp/ccAu1Zkx.s:4845   .text.ISP_SVC_Stats_Gather:000000ac $d
-     /tmp/ccAu1Zkx.s:4855   .text.ISP_SVC_Stats_Gather:000000c0 $t
-     /tmp/ccAu1Zkx.s:5256   .text.ISP_SVC_Stats_Gather:000002d4 $d
-     /tmp/ccAu1Zkx.s:6591   .data.stagePrevious2.1:00000000 stagePrevious2.1
-     /tmp/ccAu1Zkx.s:6669   .rodata.avgRGBUp:00000000 avgRGBUp
-     /tmp/ccAu1Zkx.s:6653   .rodata.statConfUpBins_0_2:00000000 statConfUpBins_0_2
-     /tmp/ccAu1Zkx.s:6645   .rodata.statConfUpBins_3_5:00000000 statConfUpBins_3_5
-     /tmp/ccAu1Zkx.s:6637   .rodata.statConfUpBins_6_8:00000000 statConfUpBins_6_8
-     /tmp/ccAu1Zkx.s:6629   .rodata.statConfUpBins_9_11:00000000 statConfUpBins_9_11
-     /tmp/ccAu1Zkx.s:6661   .rodata.avgRGBDown:00000000 avgRGBDown
-ARM GAS  /tmp/ccAu1Zkx.s 			page 172
+     /tmp/cc8BPqUY.s:3956   .text.ISP_SVC_Misc_GetWBRefMode:00000000 $t
+     /tmp/cc8BPqUY.s:3962   .text.ISP_SVC_Misc_GetWBRefMode:00000000 ISP_SVC_Misc_GetWBRefMode
+     /tmp/cc8BPqUY.s:3985   .text.ISP_SVC_Misc_GetWBRefMode:0000000c $d
+     /tmp/cc8BPqUY.s:3990   .text.ISP_SVC_Misc_SensorDelayMeasureStart:00000000 $t
+     /tmp/cc8BPqUY.s:3996   .text.ISP_SVC_Misc_SensorDelayMeasureStart:00000000 ISP_SVC_Misc_SensorDelayMeasureStart
+     /tmp/cc8BPqUY.s:4013   .text.ISP_SVC_Misc_SensorDelayMeasureStart:00000008 $d
+     /tmp/cc8BPqUY.s:6682   .bss.ISP_SensorDelayMeasureRun:00000000 ISP_SensorDelayMeasureRun
+     /tmp/cc8BPqUY.s:4018   .text.ISP_SVC_Misc_SensorDelayMeasureStop:00000000 $t
+     /tmp/cc8BPqUY.s:4024   .text.ISP_SVC_Misc_SensorDelayMeasureStop:00000000 ISP_SVC_Misc_SensorDelayMeasureStop
+     /tmp/cc8BPqUY.s:4041   .text.ISP_SVC_Misc_SensorDelayMeasureStop:00000008 $d
+     /tmp/cc8BPqUY.s:4046   .text.ISP_SVC_Misc_SensorDelayMeasureIsRunning:00000000 $t
+     /tmp/cc8BPqUY.s:4052   .text.ISP_SVC_Misc_SensorDelayMeasureIsRunning:00000000 ISP_SVC_Misc_SensorDelayMeasureIsRunning
+     /tmp/cc8BPqUY.s:4067   .text.ISP_SVC_Misc_SensorDelayMeasureIsRunning:00000008 $d
+     /tmp/cc8BPqUY.s:4072   .text.ISP_SVC_Misc_SendSensorDelayMeasure:00000000 $t
+     /tmp/cc8BPqUY.s:4078   .text.ISP_SVC_Misc_SendSensorDelayMeasure:00000000 ISP_SVC_Misc_SendSensorDelayMeasure
+     /tmp/cc8BPqUY.s:4098   .text.ISP_SVC_Misc_StopPreview:00000000 $t
+     /tmp/cc8BPqUY.s:4104   .text.ISP_SVC_Misc_StopPreview:00000000 ISP_SVC_Misc_StopPreview
+     /tmp/cc8BPqUY.s:4161   .text.ISP_SVC_Misc_StartPreview:00000000 $t
+     /tmp/cc8BPqUY.s:4167   .text.ISP_SVC_Misc_StartPreview:00000000 ISP_SVC_Misc_StartPreview
+     /tmp/cc8BPqUY.s:4224   .text.ISP_SVC_Misc_IsGammaEnabled:00000000 $t
+     /tmp/cc8BPqUY.s:4230   .text.ISP_SVC_Misc_IsGammaEnabled:00000000 ISP_SVC_Misc_IsGammaEnabled
+     /tmp/cc8BPqUY.s:4311   .text.ISP_SVC_ISP_SetGamma:00000000 $t
+     /tmp/cc8BPqUY.s:4317   .text.ISP_SVC_ISP_SetGamma:00000000 ISP_SVC_ISP_SetGamma
+     /tmp/cc8BPqUY.s:4413   .text.ISP_SVC_Dump_GetFrame:00000000 $t
+     /tmp/cc8BPqUY.s:4419   .text.ISP_SVC_Dump_GetFrame:00000000 ISP_SVC_Dump_GetFrame
+     /tmp/cc8BPqUY.s:4509   .text.ISP_SVC_IQParam_Init:00000000 $t
+     /tmp/cc8BPqUY.s:4515   .text.ISP_SVC_IQParam_Init:00000000 ISP_SVC_IQParam_Init
+     /tmp/cc8BPqUY.s:4544   .text.ISP_SVC_IQParam_Init:00000010 $d
+     /tmp/cc8BPqUY.s:6694   .bss.ISP_IQParamCache:00000000 ISP_IQParamCache
+     /tmp/cc8BPqUY.s:4549   .text.ISP_SVC_IQParam_Get:00000000 $t
+     /tmp/cc8BPqUY.s:4555   .text.ISP_SVC_IQParam_Get:00000000 ISP_SVC_IQParam_Get
+     /tmp/cc8BPqUY.s:4573   .text.ISP_SVC_IQParam_Get:00000004 $d
+     /tmp/cc8BPqUY.s:4578   .text.ISP_SVC_GetRestartState:00000000 $t
+     /tmp/cc8BPqUY.s:4584   .text.ISP_SVC_GetRestartState:00000000 ISP_SVC_GetRestartState
+     /tmp/cc8BPqUY.s:4603   .text.ISP_SVC_GetRestartState:00000008 $d
+     /tmp/cc8BPqUY.s:6677   .bss.pISP_RestartState:00000000 pISP_RestartState
+     /tmp/cc8BPqUY.s:4608   .text.ISP_SVC_SetRestartState:00000000 $t
+     /tmp/cc8BPqUY.s:4614   .text.ISP_SVC_SetRestartState:00000000 ISP_SVC_SetRestartState
+     /tmp/cc8BPqUY.s:4636   .text.ISP_SVC_SetRestartState:00000008 $d
+     /tmp/cc8BPqUY.s:4641   .text.ISP_SVC_Stats_Init:00000000 $t
+     /tmp/cc8BPqUY.s:4647   .text.ISP_SVC_Stats_Init:00000000 ISP_SVC_Stats_Init
+     /tmp/cc8BPqUY.s:4674   .text.ISP_SVC_Stats_Init:00000010 $d
+     /tmp/cc8BPqUY.s:4679   .rodata.ISP_SVC_Stats_Gather.str1.4:00000000 $d
+     /tmp/cc8BPqUY.s:4696   .text.ISP_SVC_Stats_Gather:00000000 $t
+     /tmp/cc8BPqUY.s:4702   .text.ISP_SVC_Stats_Gather:00000000 ISP_SVC_Stats_Gather
+     /tmp/cc8BPqUY.s:4748   .text.ISP_SVC_Stats_Gather:0000001e $d
+     /tmp/cc8BPqUY.s:4759   .text.ISP_SVC_Stats_Gather:00000028 $t
+     /tmp/cc8BPqUY.s:4845   .text.ISP_SVC_Stats_Gather:000000ac $d
+     /tmp/cc8BPqUY.s:4855   .text.ISP_SVC_Stats_Gather:000000c0 $t
+     /tmp/cc8BPqUY.s:5256   .text.ISP_SVC_Stats_Gather:000002d4 $d
+     /tmp/cc8BPqUY.s:6591   .data.stagePrevious2.1:00000000 stagePrevious2.1
+     /tmp/cc8BPqUY.s:6669   .rodata.avgRGBUp:00000000 avgRGBUp
+     /tmp/cc8BPqUY.s:6653   .rodata.statConfUpBins_0_2:00000000 statConfUpBins_0_2
+     /tmp/cc8BPqUY.s:6645   .rodata.statConfUpBins_3_5:00000000 statConfUpBins_3_5
+     /tmp/cc8BPqUY.s:6637   .rodata.statConfUpBins_6_8:00000000 statConfUpBins_6_8
+     /tmp/cc8BPqUY.s:6629   .rodata.statConfUpBins_9_11:00000000 statConfUpBins_9_11
+     /tmp/cc8BPqUY.s:6661   .rodata.avgRGBDown:00000000 avgRGBDown
+ARM GAS  /tmp/cc8BPqUY.s 			page 172
 
 
-     /tmp/ccAu1Zkx.s:6621   .rodata.statConfDownBins_0_2:00000000 statConfDownBins_0_2
-     /tmp/ccAu1Zkx.s:6613   .rodata.statConfDownBins_3_5:00000000 statConfDownBins_3_5
-     /tmp/ccAu1Zkx.s:6605   .rodata.statConfDownBins_6_8:00000000 statConfDownBins_6_8
-     /tmp/ccAu1Zkx.s:6597   .rodata.statConfDownBins_9_11:00000000 statConfDownBins_9_11
-     /tmp/ccAu1Zkx.s:5287   .text.ISP_SVC_Stats_Gather:00000344 $t
-     /tmp/ccAu1Zkx.s:5522   .text.ISP_SVC_Stats_Gather:0000049c $d
-     /tmp/ccAu1Zkx.s:6586   .data.stagePrevious1.0:00000000 stagePrevious1.0
-     /tmp/ccAu1Zkx.s:5529   .text.ISP_SVC_Stats_ProcessCallbacks:00000000 $t
-     /tmp/ccAu1Zkx.s:5535   .text.ISP_SVC_Stats_ProcessCallbacks:00000000 ISP_SVC_Stats_ProcessCallbacks
-     /tmp/ccAu1Zkx.s:5705   .text.ISP_SVC_Stats_ProcessCallbacks:000000d0 $d
-     /tmp/ccAu1Zkx.s:5710   .text.ISP_SVC_Stats_GetLatest:00000000 $t
-     /tmp/ccAu1Zkx.s:5716   .text.ISP_SVC_Stats_GetLatest:00000000 ISP_SVC_Stats_GetLatest
-     /tmp/ccAu1Zkx.s:5773   .text.ISP_SVC_Stats_GetLatest:00000020 $d
-     /tmp/ccAu1Zkx.s:5778   .text.ISP_SVC_Stats_GetNext:00000000 $t
-     /tmp/ccAu1Zkx.s:5784   .text.ISP_SVC_Stats_GetNext:00000000 ISP_SVC_Stats_GetNext
-     /tmp/ccAu1Zkx.s:5952   .text.ISP_SVC_Stats_GetNext:000000c4 $d
-     /tmp/ccAu1Zkx.s:5957   .text.ISP_SVC_Stats_WeightedAverageL:00000000 $t
-     /tmp/ccAu1Zkx.s:5963   .text.ISP_SVC_Stats_WeightedAverageL:00000000 ISP_SVC_Stats_WeightedAverageL
-     /tmp/ccAu1Zkx.s:6054   .text.ISP_SVC_Stats_WeightedAverageL:00000060 $d
-     /tmp/ccAu1Zkx.s:6059   .text.ISP_SVC_Stats_EvaluateUp:00000000 $t
-     /tmp/ccAu1Zkx.s:6065   .text.ISP_SVC_Stats_EvaluateUp:00000000 ISP_SVC_Stats_EvaluateUp
-     /tmp/ccAu1Zkx.s:6278   .text.ISP_SVC_Stats_EvaluateUp:00000120 $d
-     /tmp/ccAu1Zkx.s:6286   .text.ISP_SVC_Misc_GetEstimatedLux:00000000 $t
-     /tmp/ccAu1Zkx.s:6292   .text.ISP_SVC_Misc_GetEstimatedLux:00000000 ISP_SVC_Misc_GetEstimatedLux
-     /tmp/ccAu1Zkx.s:6575   .text.ISP_SVC_Misc_GetEstimatedLux:000001a0 $d
-     /tmp/ccAu1Zkx.s:6594   .rodata.statConfDownBins_9_11:00000000 $d
-     /tmp/ccAu1Zkx.s:6602   .rodata.statConfDownBins_6_8:00000000 $d
-     /tmp/ccAu1Zkx.s:6610   .rodata.statConfDownBins_3_5:00000000 $d
-     /tmp/ccAu1Zkx.s:6618   .rodata.statConfDownBins_0_2:00000000 $d
-     /tmp/ccAu1Zkx.s:6626   .rodata.statConfUpBins_9_11:00000000 $d
-     /tmp/ccAu1Zkx.s:6634   .rodata.statConfUpBins_6_8:00000000 $d
-     /tmp/ccAu1Zkx.s:6642   .rodata.statConfUpBins_3_5:00000000 $d
-     /tmp/ccAu1Zkx.s:6650   .rodata.statConfUpBins_0_2:00000000 $d
-     /tmp/ccAu1Zkx.s:6658   .rodata.avgRGBDown:00000000 $d
-     /tmp/ccAu1Zkx.s:6666   .rodata.avgRGBUp:00000000 $d
-     /tmp/ccAu1Zkx.s:6674   .bss.pISP_RestartState:00000000 $d
-     /tmp/ccAu1Zkx.s:6683   .bss.ISP_SensorDelayMeasureRun:00000000 $d
-     /tmp/ccAu1Zkx.s:6685   .bss.ISP_SVC_StatEngine:00000000 $d
-     /tmp/ccAu1Zkx.s:6691   .bss.ISP_IQParamCache:00000000 $d
-     /tmp/ccAu1Zkx.s:6697   .data.ISP_DecimationValue:00000000 $d
-     /tmp/ccAu1Zkx.s:6703   .bss.ISP_ManualWBRefColorTemp:00000000 $d
-     /tmp/ccAu1Zkx.s:415    .text.GetNextStatStage:0000002b $d
-     /tmp/ccAu1Zkx.s:415    .text.GetNextStatStage:0000002c $t
-     /tmp/ccAu1Zkx.s:959    .text.ISP_SVC_ISP_SetDemosaicing:0000003b $d
-     /tmp/ccAu1Zkx.s:959    .text.ISP_SVC_ISP_SetDemosaicing:0000003c $t
+     /tmp/cc8BPqUY.s:6621   .rodata.statConfDownBins_0_2:00000000 statConfDownBins_0_2
+     /tmp/cc8BPqUY.s:6613   .rodata.statConfDownBins_3_5:00000000 statConfDownBins_3_5
+     /tmp/cc8BPqUY.s:6605   .rodata.statConfDownBins_6_8:00000000 statConfDownBins_6_8
+     /tmp/cc8BPqUY.s:6597   .rodata.statConfDownBins_9_11:00000000 statConfDownBins_9_11
+     /tmp/cc8BPqUY.s:5287   .text.ISP_SVC_Stats_Gather:00000344 $t
+     /tmp/cc8BPqUY.s:5522   .text.ISP_SVC_Stats_Gather:0000049c $d
+     /tmp/cc8BPqUY.s:6586   .data.stagePrevious1.0:00000000 stagePrevious1.0
+     /tmp/cc8BPqUY.s:5529   .text.ISP_SVC_Stats_ProcessCallbacks:00000000 $t
+     /tmp/cc8BPqUY.s:5535   .text.ISP_SVC_Stats_ProcessCallbacks:00000000 ISP_SVC_Stats_ProcessCallbacks
+     /tmp/cc8BPqUY.s:5705   .text.ISP_SVC_Stats_ProcessCallbacks:000000d0 $d
+     /tmp/cc8BPqUY.s:5710   .text.ISP_SVC_Stats_GetLatest:00000000 $t
+     /tmp/cc8BPqUY.s:5716   .text.ISP_SVC_Stats_GetLatest:00000000 ISP_SVC_Stats_GetLatest
+     /tmp/cc8BPqUY.s:5773   .text.ISP_SVC_Stats_GetLatest:00000020 $d
+     /tmp/cc8BPqUY.s:5778   .text.ISP_SVC_Stats_GetNext:00000000 $t
+     /tmp/cc8BPqUY.s:5784   .text.ISP_SVC_Stats_GetNext:00000000 ISP_SVC_Stats_GetNext
+     /tmp/cc8BPqUY.s:5952   .text.ISP_SVC_Stats_GetNext:000000c4 $d
+     /tmp/cc8BPqUY.s:5957   .text.ISP_SVC_Stats_WeightedAverageL:00000000 $t
+     /tmp/cc8BPqUY.s:5963   .text.ISP_SVC_Stats_WeightedAverageL:00000000 ISP_SVC_Stats_WeightedAverageL
+     /tmp/cc8BPqUY.s:6054   .text.ISP_SVC_Stats_WeightedAverageL:00000060 $d
+     /tmp/cc8BPqUY.s:6059   .text.ISP_SVC_Stats_EvaluateUp:00000000 $t
+     /tmp/cc8BPqUY.s:6065   .text.ISP_SVC_Stats_EvaluateUp:00000000 ISP_SVC_Stats_EvaluateUp
+     /tmp/cc8BPqUY.s:6278   .text.ISP_SVC_Stats_EvaluateUp:00000120 $d
+     /tmp/cc8BPqUY.s:6286   .text.ISP_SVC_Misc_GetEstimatedLux:00000000 $t
+     /tmp/cc8BPqUY.s:6292   .text.ISP_SVC_Misc_GetEstimatedLux:00000000 ISP_SVC_Misc_GetEstimatedLux
+     /tmp/cc8BPqUY.s:6575   .text.ISP_SVC_Misc_GetEstimatedLux:000001a0 $d
+     /tmp/cc8BPqUY.s:6594   .rodata.statConfDownBins_9_11:00000000 $d
+     /tmp/cc8BPqUY.s:6602   .rodata.statConfDownBins_6_8:00000000 $d
+     /tmp/cc8BPqUY.s:6610   .rodata.statConfDownBins_3_5:00000000 $d
+     /tmp/cc8BPqUY.s:6618   .rodata.statConfDownBins_0_2:00000000 $d
+     /tmp/cc8BPqUY.s:6626   .rodata.statConfUpBins_9_11:00000000 $d
+     /tmp/cc8BPqUY.s:6634   .rodata.statConfUpBins_6_8:00000000 $d
+     /tmp/cc8BPqUY.s:6642   .rodata.statConfUpBins_3_5:00000000 $d
+     /tmp/cc8BPqUY.s:6650   .rodata.statConfUpBins_0_2:00000000 $d
+     /tmp/cc8BPqUY.s:6658   .rodata.avgRGBDown:00000000 $d
+     /tmp/cc8BPqUY.s:6666   .rodata.avgRGBUp:00000000 $d
+     /tmp/cc8BPqUY.s:6674   .bss.pISP_RestartState:00000000 $d
+     /tmp/cc8BPqUY.s:6683   .bss.ISP_SensorDelayMeasureRun:00000000 $d
+     /tmp/cc8BPqUY.s:6685   .bss.ISP_SVC_StatEngine:00000000 $d
+     /tmp/cc8BPqUY.s:6691   .bss.ISP_IQParamCache:00000000 $d
+     /tmp/cc8BPqUY.s:6697   .data.ISP_DecimationValue:00000000 $d
+     /tmp/cc8BPqUY.s:6703   .bss.ISP_ManualWBRefColorTemp:00000000 $d
+     /tmp/cc8BPqUY.s:415    .text.GetNextStatStage:0000002b $d
+     /tmp/cc8BPqUY.s:415    .text.GetNextStatStage:0000002c $t
+     /tmp/cc8BPqUY.s:959    .text.ISP_SVC_ISP_SetDemosaicing:0000003b $d
+     /tmp/cc8BPqUY.s:959    .text.ISP_SVC_ISP_SetDemosaicing:0000003c $t
 
 UNDEFINED SYMBOLS
 __aeabi_uldivmod
@@ -10265,7 +10265,7 @@ HAL_DCMIPP_PIPE_DisableISPRemovalStatistic
 HAL_DCMIPP_PIPE_SetISPRemovalStatisticConfig
 HAL_DCMIPP_PIPE_EnableISPRemovalStatistic
 HAL_DCMIPP_PIPE_SetISPDecimationConfig
-ARM GAS  /tmp/ccAu1Zkx.s 			page 173
+ARM GAS  /tmp/cc8BPqUY.s 			page 173
 
 
 HAL_DCMIPP_PIPE_EnableISPDecimation

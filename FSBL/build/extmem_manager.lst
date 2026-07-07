@@ -1,0 +1,191 @@
+ARM GAS  /tmp/ccrQ1STE.s 			page 1
+
+
+   1              		.arch armv8.1-m.main
+   2              		.fpu fpv5-d16
+   3              		.arch_extension dsp
+   4              		.arch_extension fp
+   5              		.arch_extension fp.dp
+   6              		.arch_extension mve
+   7              		.arch_extension mve.fp
+   8              		.eabi_attribute 5, "cortex-m55"
+   9              		.eabi_attribute 28, 1
+  10              		.eabi_attribute 20, 1
+  11              		.eabi_attribute 21, 1
+  12              		.eabi_attribute 23, 3
+  13              		.eabi_attribute 24, 1
+  14              		.eabi_attribute 25, 1
+  15              		.eabi_attribute 26, 1
+  16              		.eabi_attribute 30, 1
+  17              		.eabi_attribute 34, 1
+  18              		.eabi_attribute 38, 1
+  19              		.eabi_attribute 18, 4
+  20              		.file	"extmem_manager.c"
+  21              		.text
+  22              	.Ltext0:
+  23              		.cfi_sections	.debug_frame
+  24              		.file 1 "Src/extmem_manager.c"
+  25              		.section	.text.MX_EXTMEM_MANAGER_Init,"ax",%progbits
+  26              		.align	1
+  27              		.global	MX_EXTMEM_MANAGER_Init
+  28              		.syntax unified
+  29              		.thumb
+  30              		.thumb_func
+  32              	MX_EXTMEM_MANAGER_Init:
+  33              	.LFB881:
+   1:Src/extmem_manager.c **** /* USER CODE BEGIN Header */
+   2:Src/extmem_manager.c **** /**
+   3:Src/extmem_manager.c ****   ******************************************************************************
+   4:Src/extmem_manager.c ****   * @file           : extmem_manager.c
+   5:Src/extmem_manager.c ****   * @version        : 1.0.0
+   6:Src/extmem_manager.c ****   * @brief          : This file implements the extmem configuration
+   7:Src/extmem_manager.c ****   ******************************************************************************
+   8:Src/extmem_manager.c ****   * @attention
+   9:Src/extmem_manager.c ****   *
+  10:Src/extmem_manager.c ****   * Copyright (c) 2026 STMicroelectronics.
+  11:Src/extmem_manager.c ****   * All rights reserved.
+  12:Src/extmem_manager.c ****   *
+  13:Src/extmem_manager.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  14:Src/extmem_manager.c ****   * in the root directory of this software component.
+  15:Src/extmem_manager.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  16:Src/extmem_manager.c ****   *
+  17:Src/extmem_manager.c ****   ******************************************************************************
+  18:Src/extmem_manager.c ****   */
+  19:Src/extmem_manager.c **** /* USER CODE END Header */
+  20:Src/extmem_manager.c **** 
+  21:Src/extmem_manager.c **** /* Includes ------------------------------------------------------------------*/
+  22:Src/extmem_manager.c **** #include "extmem_manager.h"
+  23:Src/extmem_manager.c **** #include <string.h>
+  24:Src/extmem_manager.c **** 
+  25:Src/extmem_manager.c **** /* USER CODE BEGIN Includes */
+ARM GAS  /tmp/ccrQ1STE.s 			page 2
+
+
+  26:Src/extmem_manager.c **** 
+  27:Src/extmem_manager.c **** /* USER CODE END Includes */
+  28:Src/extmem_manager.c **** 
+  29:Src/extmem_manager.c **** /* USER CODE BEGIN PV */
+  30:Src/extmem_manager.c **** /* Private variables ---------------------------------------------------------*/
+  31:Src/extmem_manager.c **** 
+  32:Src/extmem_manager.c **** /* USER CODE END PV */
+  33:Src/extmem_manager.c **** 
+  34:Src/extmem_manager.c **** /* USER CODE BEGIN PFP */
+  35:Src/extmem_manager.c **** /* Private function prototypes -----------------------------------------------*/
+  36:Src/extmem_manager.c **** 
+  37:Src/extmem_manager.c **** /* USER CODE END PFP */
+  38:Src/extmem_manager.c **** 
+  39:Src/extmem_manager.c **** /*
+  40:Src/extmem_manager.c ****  * -- Insert your variables declaration here --
+  41:Src/extmem_manager.c ****  */
+  42:Src/extmem_manager.c **** /* USER CODE BEGIN 0 */
+  43:Src/extmem_manager.c **** 
+  44:Src/extmem_manager.c **** /* USER CODE END 0 */
+  45:Src/extmem_manager.c **** 
+  46:Src/extmem_manager.c **** /*
+  47:Src/extmem_manager.c ****  * -- Insert your external function declaration here --
+  48:Src/extmem_manager.c ****  */
+  49:Src/extmem_manager.c **** /* USER CODE BEGIN 1 */
+  50:Src/extmem_manager.c **** 
+  51:Src/extmem_manager.c **** /* USER CODE END 1 */
+  52:Src/extmem_manager.c **** 
+  53:Src/extmem_manager.c **** /**
+  54:Src/extmem_manager.c ****   * Init External memory manager
+  55:Src/extmem_manager.c ****   * @retval None
+  56:Src/extmem_manager.c ****   */
+  57:Src/extmem_manager.c **** void MX_EXTMEM_MANAGER_Init(void)
+  58:Src/extmem_manager.c **** {
+  34              		.loc 1 58 1 view -0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 0, uses_anonymous_args = 0
+  38 0000 10B5     		push	{r4, lr}
+  39              	.LCFI0:
+  40              		.cfi_def_cfa_offset 8
+  41              		.cfi_offset 4, -8
+  42              		.cfi_offset 14, -4
+  59:Src/extmem_manager.c **** 
+  60:Src/extmem_manager.c ****   /* USER CODE BEGIN MX_EXTMEM_Init_PreTreatment */
+  61:Src/extmem_manager.c **** 
+  62:Src/extmem_manager.c ****   /* USER CODE END MX_EXTMEM_Init_PreTreatment */
+  63:Src/extmem_manager.c **** 
+  64:Src/extmem_manager.c ****   /* Initialization of the memory parameters */
+  65:Src/extmem_manager.c ****   memset(extmem_list_config, 0x0, sizeof(extmem_list_config));
+  43              		.loc 1 65 3 view .LVU1
+  44 0002 094C     		ldr	r4, .L3
+  45 0004 AC22     		movs	r2, #172
+  46 0006 0021     		movs	r1, #0
+  47 0008 2046     		mov	r0, r4
+  48 000a FFF7FEFF 		bl	memset
+  49              	.LVL0:
+  66:Src/extmem_manager.c **** 
+ARM GAS  /tmp/ccrQ1STE.s 			page 3
+
+
+  67:Src/extmem_manager.c ****   /* EXTMEMORY_1 */
+  68:Src/extmem_manager.c ****   extmem_list_config[0].MemType = EXTMEM_NOR_SFDP;
+  50              		.loc 1 68 3 view .LVU2
+  69:Src/extmem_manager.c ****   extmem_list_config[0].Handle = (void*)&hxspi2;
+  51              		.loc 1 69 3 view .LVU3
+  52              		.loc 1 69 32 is_stmt 0 view .LVU4
+  53 000e 074B     		ldr	r3, .L3+4
+  54 0010 6360     		str	r3, [r4, #4]
+  70:Src/extmem_manager.c ****   extmem_list_config[0].ConfigType = EXTMEM_LINK_CONFIG_1LINE;
+  55              		.loc 1 70 3 is_stmt 1 view .LVU5
+  71:Src/extmem_manager.c **** 
+  72:Src/extmem_manager.c ****   EXTMEM_Init(EXTMEMORY_1, HAL_RCCEx_GetPeriphCLKFreq(RCC_PERIPHCLK_XSPI2));
+  56              		.loc 1 72 3 view .LVU6
+  57 0012 0020     		movs	r0, #0
+  58 0014 4FF40001 		mov	r1, #8388608
+  59 0018 FFF7FEFF 		bl	HAL_RCCEx_GetPeriphCLKFreq
+  60              	.LVL1:
+  61 001c 0146     		mov	r1, r0
+  62              		.loc 1 72 3 is_stmt 0 discriminator 1 view .LVU7
+  63 001e 0020     		movs	r0, #0
+  64 0020 FFF7FEFF 		bl	EXTMEM_Init
+  65              	.LVL2:
+  73:Src/extmem_manager.c **** 
+  74:Src/extmem_manager.c ****   /* USER CODE BEGIN MX_EXTMEM_Init_PostTreatment */
+  75:Src/extmem_manager.c **** 
+  76:Src/extmem_manager.c ****   /* USER CODE END MX_EXTMEM_Init_PostTreatment */
+  77:Src/extmem_manager.c **** }
+  66              		.loc 1 77 1 view .LVU8
+  67 0024 10BD     		pop	{r4, pc}
+  68              	.L4:
+  69 0026 00BF     		.align	2
+  70              	.L3:
+  71 0028 00000000 		.word	extmem_list_config
+  72 002c 00000000 		.word	hxspi2
+  73              		.cfi_endproc
+  74              	.LFE881:
+  76              		.text
+  77              	.Letext0:
+  78              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+  79              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+  80              		.file 4 "../Drivers/CMSIS/Device/ST/STM32N6xx/Include/stm32n657xx.h"
+  81              		.file 5 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_def.h"
+  82              		.file 6 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dma.h"
+  83              		.file 7 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dma_ex.h"
+  84              		.file 8 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_xspi.h"
+  85              		.file 9 "../Drivers/STM32_ExtMem_Manager/stm32_extmem.h"
+  86              		.file 10 "../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi_type.h"
+  87              		.file 11 "../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver_type.h"
+  88              		.file 12 "../Drivers/STM32_ExtMem_Manager/stm32_extmem_type.h"
+  89              		.file 13 "Inc/stm32_extmem_conf.h"
+  90              		.file 14 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_rcc_ex.h"
+  91              		.file 15 "/usr/arm-none-eabi/include/string.h"
+  92              		.file 16 "<built-in>"
+ARM GAS  /tmp/ccrQ1STE.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 extmem_manager.c
+     /tmp/ccrQ1STE.s:26     .text.MX_EXTMEM_MANAGER_Init:00000000 $t
+     /tmp/ccrQ1STE.s:32     .text.MX_EXTMEM_MANAGER_Init:00000000 MX_EXTMEM_MANAGER_Init
+     /tmp/ccrQ1STE.s:71     .text.MX_EXTMEM_MANAGER_Init:00000028 $d
+
+UNDEFINED SYMBOLS
+memset
+HAL_RCCEx_GetPeriphCLKFreq
+EXTMEM_Init
+extmem_list_config
+hxspi2

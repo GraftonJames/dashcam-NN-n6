@@ -34,7 +34,14 @@ build/main.o: Src/main.c Inc/main.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_xspi.h \
  ../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo.h \
  Inc/stm32n6xx_nucleo_conf.h \
- ../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo_errno.h
+ ../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo_errno.h \
+ Inc/extmem_manager.h Inc/stm32_extmem_conf.h \
+ ../Drivers/STM32_ExtMem_Manager/stm32_extmem.h \
+ ../Drivers/STM32_ExtMem_Manager/stm32_extmem_type.h \
+ ../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi_type.h \
+ ../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver_type.h \
+ ../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.h \
+ Inc/stm32_extmem_conf.h
 Inc/main.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal.h:
 Inc/stm32n6xx_hal_conf.h:
@@ -72,3 +79,11 @@ Inc/stm32n6xx_hal_conf.h:
 ../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo.h:
 Inc/stm32n6xx_nucleo_conf.h:
 ../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo_errno.h:
+Inc/extmem_manager.h:
+Inc/stm32_extmem_conf.h:
+../Drivers/STM32_ExtMem_Manager/stm32_extmem.h:
+../Drivers/STM32_ExtMem_Manager/stm32_extmem_type.h:
+../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi_type.h:
+../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver_type.h:
+../Drivers/STM32_ExtMem_Manager/boot/stm32_boot_lrun.h:
+Inc/stm32_extmem_conf.h:

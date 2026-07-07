@@ -1,0 +1,2561 @@
+ARM GAS  /tmp/ccDnukMx.s 			page 1
+
+
+   1              		.arch armv8.1-m.main
+   2              		.fpu fpv5-d16
+   3              		.arch_extension dsp
+   4              		.arch_extension fp
+   5              		.arch_extension fp.dp
+   6              		.arch_extension mve
+   7              		.arch_extension mve.fp
+   8              		.eabi_attribute 5, "cortex-m55"
+   9              		.eabi_attribute 28, 1
+  10              		.eabi_attribute 20, 1
+  11              		.eabi_attribute 21, 1
+  12              		.eabi_attribute 23, 3
+  13              		.eabi_attribute 24, 1
+  14              		.eabi_attribute 25, 1
+  15              		.eabi_attribute 26, 1
+  16              		.eabi_attribute 30, 1
+  17              		.eabi_attribute 34, 1
+  18              		.eabi_attribute 38, 1
+  19              		.eabi_attribute 18, 4
+  20              		.file	"stm32_extmem.c"
+  21              		.text
+  22              	.Ltext0:
+  23              		.cfi_sections	.debug_frame
+  24              		.file 1 "../Drivers/STM32_ExtMem_Manager/stm32_extmem.c"
+  25              		.section	.text.EXTMEM_Init,"ax",%progbits
+  26              		.align	1
+  27              		.global	EXTMEM_Init
+  28              		.syntax unified
+  29              		.thumb
+  30              		.thumb_func
+  32              	EXTMEM_Init:
+  33              	.LVL0:
+  34              	.LFB881:
+   1:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+   2:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   ******************************************************************************
+   3:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @file    stm32_extmem.c
+   4:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @author  MCD Application Team
+   5:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @brief   This file includes a driver for external memory support
+   6:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   ******************************************************************************
+   7:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @attention
+   8:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   *
+   9:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * Copyright (c) 2022 STMicroelectronics.
+  10:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * All rights reserved.
+  11:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   *
+  12:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  13:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * in the root directory of this software component.
+  14:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  15:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   *
+  16:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   ******************************************************************************
+  17:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+  18:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+  19:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @brief Macro to get memory table definition
+  20:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+  21:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #define EXTMEM_C
+  22:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+  23:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /* Includes ------------------------------------------------------------------*/
+  24:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #include "stm32_extmem.h"
+ARM GAS  /tmp/ccDnukMx.s 			page 2
+
+
+  25:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #include "stm32_extmem_conf.h"
+  26:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+  27:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_NOR_SFDP == 1
+  28:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #include "nor_sfdp/stm32_sfdp_driver_api.h"
+  29:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_NOR_SFDP */
+  30:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+  31:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_PSRAM == 1
+  32:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #include "psram/stm32_psram_driver_api.h"
+  33:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_PSRAM */
+  34:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+  35:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_SDCARD == 1
+  36:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #include "sdcard/stm32_sdcard_driver_api.h"
+  37:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_SDCARD */
+  38:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+  39:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_CUSTOM == 1
+  40:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #include "custom/stm32_custom_driver_api.h"
+  41:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_CUSTOM */
+  42:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+  43:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_USER == 1
+  44:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #include "user/stm32_user_driver_api.h"
+  45:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_USER */
+  46:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+  47:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+  48:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @defgroup EXTMEM_DRIVER
+  49:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @{
+  50:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+  51:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+  52:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+  53:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @}
+  54:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****  */
+  55:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+  56:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+  57:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @defgroup EXTMEM_SAL
+  58:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @{
+  59:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+  60:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+  61:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+  62:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @}
+  63:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****  */
+  64:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+  65:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+  66:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @defgroup EXTMEM
+  67:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @{
+  68:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+  69:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+  70:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /* Private Macros ------------------------------------------------------------*/
+  71:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+  72:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   *  @defgroup EXTMEM_Private_Macros External Memory Private Macros
+  73:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @{
+  74:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+  75:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+  76:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @brief EXTMEM debug function
+  77:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+  78:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+  79:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @brief Macro used to trace EXTMEM function calls
+  80:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+  81:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ARM GAS  /tmp/ccDnukMx.s 			page 3
+
+
+  82:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if defined(EXTMEM_DEBUG_LEVEL) && defined(EXTMEM_MACRO_DEBUG)
+  83:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DEBUG_LEVEL > 0
+  84:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #define EXTMEM_DEBUG(_MSG_)  EXTMEM_MACRO_DEBUG(_MSG_)
+  85:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DEBUG_LEVEL > 1
+  86:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #define EXTMEM_FUNC_CALL()  \
+  87:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   do                        \
+  88:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   {                         \
+  89:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     EXTMEM_DEBUG(__func__); \
+  90:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     EXTMEM_DEBUG("\n");     \
+  91:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   } while (0);
+  92:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #else
+  93:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #define EXTMEM_FUNC_CALL()
+  94:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DEBUG_LEVEL > 1 */
+  95:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #else
+  96:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #define EXTMEM_DEBUG(_MSG_)
+  97:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #define EXTMEM_FUNC_CALL()
+  98:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DEBUG_LEVEL > 0 */
+  99:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #else
+ 100:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #define EXTMEM_DEBUG(_MSG_)
+ 101:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #define EXTMEM_FUNC_CALL()
+ 102:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* defined(EXTMEM_DEBUG_LEVEL) && defined(EXTMEM_MACRO_DEBUG) */
+ 103:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 104:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+ 105:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @brief Macro used to trace EXTMEM debug information
+ 106:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+ 107:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #define EXTMEM_DEBUG_ENDL(_STRING_) \
+ 108:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   do                                \
+ 109:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   {                                 \
+ 110:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     EXTMEM_DEBUG(_STRING_);         \
+ 111:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     EXTMEM_DEBUG("\n");             \
+ 112:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   } while (0);
+ 113:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 114:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+ 115:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @}
+ 116:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+ 117:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 118:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /* Private typedefs ---------------------------------------------------------*/
+ 119:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /* Private functions ---------------------------------------------------------*/
+ 120:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /* Exported variables ---------------------------------------------------------*/
+ 121:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 122:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 123:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /** @defgroup EXTMEM_Exported_Functions External Memory Exported Functions
+ 124:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @{
+ 125:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+ 126:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 127:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+ 128:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @brief Initializes the external memory.
+ 129:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param MemId Memory identifier.
+ 130:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param ClockInput Clock input value for the memory.
+ 131:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @retval EXTMEM_StatusTypeDef Status of the operation.
+ 132:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+ 133:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** EXTMEM_StatusTypeDef EXTMEM_Init(uint32_t MemId, uint32_t ClockInput)
+ 134:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** {
+  35              		.loc 1 134 1 view -0
+  36              		.cfi_startproc
+  37              		@ args = 0, pretend = 0, frame = 0
+  38              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccDnukMx.s 			page 4
+
+
+ 135:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+  39              		.loc 1 135 3 view .LVU1
+ 136:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL();
+  40              		.loc 1 136 21 view .LVU2
+ 137:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 138:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   /* Check the memory ID */
+ 139:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   if (MemId < (sizeof(extmem_list_config) / sizeof(EXTMEM_DefinitionTypeDef)))
+  41              		.loc 1 139 3 view .LVU3
+  42              		.loc 1 139 6 is_stmt 0 view .LVU4
+  43 0000 B8B9     		cbnz	r0, .L3
+ 134:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+  44              		.loc 1 134 1 view .LVU5
+  45 0002 08B5     		push	{r3, lr}
+  46              	.LCFI0:
+  47              		.cfi_def_cfa_offset 8
+  48              		.cfi_offset 3, -8
+  49              		.cfi_offset 14, -4
+  50 0004 0A46     		mov	r2, r1
+  51 0006 0346     		mov	r3, r0
+ 140:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   {
+ 141:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     retr = EXTMEM_OK;
+  52              		.loc 1 141 5 is_stmt 1 view .LVU6
+  53              	.LVL1:
+ 142:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 143:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     /* Check type of EXTMEM driver used to access memory */
+ 144:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     switch (extmem_list_config[MemId].MemType)
+  54              		.loc 1 144 5 view .LVU7
+  55              		.loc 1 144 38 is_stmt 0 view .LVU8
+  56 0008 AC21     		movs	r1, #172
+  57              	.LVL2:
+  58              		.loc 1 144 38 view .LVU9
+  59 000a 00FB01F1 		mul	r1, r0, r1
+  60 000e 0D48     		ldr	r0, .L11
+  61              	.LVL3:
+  62              		.loc 1 144 38 view .LVU10
+  63 0010 415C     		ldrb	r1, [r0, r1]	@ zero_extendqisi2
+  64              		.loc 1 144 5 view .LVU11
+  65 0012 89B9     		cbnz	r1, .L4
+ 145:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     {
+ 146:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_NOR_SFDP == 1
+ 147:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_NOR_SFDP:
+ 148:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 149:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Initialize the memory using NOR SFDP driver */
+ 150:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRIVER_NOR_SFDP_OK != EXTMEM_DRIVER_NOR_SFDP_Init(extmem_list_config[MemId].Hand
+  66              		.loc 1 150 9 is_stmt 1 view .LVU12
+  67              		.loc 1 150 42 is_stmt 0 view .LVU13
+  68 0014 AC21     		movs	r1, #172
+  69 0016 01FB03F0 		mul	r0, r1, r3
+  70 001a 00F10801 		add	r1, r0, #8
+  71 001e 094B     		ldr	r3, .L11
+  72              	.LVL4:
+  73              		.loc 1 150 42 view .LVU14
+  74 0020 1944     		add	r1, r1, r3
+  75 0022 1844     		add	r0, r0, r3
+  76 0024 0B1D     		adds	r3, r1, #4
+  77 0026 017A     		ldrb	r1, [r0, #8]	@ zero_extendqisi2
+  78 0028 4068     		ldr	r0, [r0, #4]
+ARM GAS  /tmp/ccDnukMx.s 			page 5
+
+
+  79 002a FFF7FEFF 		bl	EXTMEM_DRIVER_NOR_SFDP_Init
+  80              	.LVL5:
+  81              		.loc 1 150 12 discriminator 1 view .LVU15
+  82 002e 30B9     		cbnz	r0, .L10
+  83              	.L2:
+  84              	.LVL6:
+ 151:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                      extmem_list_config[MemId].Conf
+ 152:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                      ClockInput,
+ 153:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                      &extmem_list_config[MemId].Nor
+ 154:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 155:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 156:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 157:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 158:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 159:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_NOR_SFDP == 1 */
+ 160:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_SDCARD == 1
+ 161:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_SDCARD:
+ 162:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 163:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Initialize the memory using SDCARD driver */
+ 164:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRIVER_SDCARD_OK != EXTMEM_DRIVER_SDCARD_Init(extmem_list_config[MemId].Handle,
+ 165:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                  &extmem_list_config[MemId].SdCardO
+ 166:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 167:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 168:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 169:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 170:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 171:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_SDCARD == 1 */
+ 172:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_PSRAM == 1
+ 173:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_PSRAM :
+ 174:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 175:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Initialize the memory using PSRAM driver */
+ 176:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRIVER_PSRAM_OK != EXTMEM_DRIVER_PSRAM_Init(extmem_list_config[MemId].Handle,
+ 177:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                extmem_list_config[MemId].ConfigType
+ 178:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                ClockInput,
+ 179:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                &extmem_list_config[MemId].PsramObje
+ 180:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 181:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 182:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 183:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 184:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 185:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_PSRAM == 1 */
+ 186:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_CUSTOM == 1
+ 187:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_CUSTOM :
+ 188:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 189:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Initialize the memory using CUSTOM driver */
+ 190:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRV_CUSTOM_OK != EXTMEM_DRIVER_CUSTOM_Init(extmem_list_config[MemId].Handle,
+ 191:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                               ClockInput,
+ 192:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                               &extmem_list_config[MemId].CustomObje
+ 193:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 194:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 195:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 196:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 197:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 198:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_CUSTOM == 1 */
+ 199:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_USER == 1
+ 200:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_USER :
+ 201:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ARM GAS  /tmp/ccDnukMx.s 			page 6
+
+
+ 202:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Initialize the memory using USER driver */
+ 203:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DRIVER_USER_StatusTypeDef status;
+ 204:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         status = EXTMEM_DRIVER_USER_Init(MemId,
+ 205:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                          &extmem_list_config[MemId].UserObject);
+ 206:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         switch (status)
+ 207:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 208:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           case EXTMEM_DRIVER_USER_NOTSUPPORTED:
+ 209:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+ 210:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             retr = EXTMEM_ERROR_NOTSUPPORTED;
+ 211:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 212:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           }
+ 213:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           case EXTMEM_DRIVER_USER_OK:
+ 214:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+ 215:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             /* Nothing to do */
+ 216:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             retr = EXTMEM_OK;
+ 217:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 218:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           }
+ 219:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           default:
+ 220:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+ 221:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             retr = EXTMEM_ERROR_DRIVER;
+ 222:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 223:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           }
+ 224:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 225:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 226:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 227:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_USER == 1 */
+ 228:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       /* Unknown type of EXTMEM driver */
+ 229:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       default:
+ 230:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 231:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DEBUG("\terror : unknown memory type\n");
+ 232:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_UNKNOWNMEMORY;
+ 233:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 234:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 235:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     }
+ 236:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   }
+ 237:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   return retr;
+  85              		.loc 1 237 3 is_stmt 1 view .LVU16
+ 238:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** }
+  86              		.loc 1 238 1 is_stmt 0 view .LVU17
+  87 0030 08BD     		pop	{r3, pc}
+  88              	.LVL7:
+  89              	.L3:
+  90              	.LCFI1:
+  91              		.cfi_def_cfa_offset 0
+  92              		.cfi_restore 3
+  93              		.cfi_restore 14
+ 135:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL();
+  94              		.loc 1 135 24 view .LVU18
+  95 0032 6FF00400 		mvn	r0, #4
+  96              	.LVL8:
+ 237:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** }
+  97              		.loc 1 237 3 is_stmt 1 view .LVU19
+  98              		.loc 1 238 1 is_stmt 0 view .LVU20
+  99 0036 7047     		bx	lr
+ 100              	.LVL9:
+ 101              	.L4:
+ 102              	.LCFI2:
+ARM GAS  /tmp/ccDnukMx.s 			page 7
+
+
+ 103              		.cfi_def_cfa_offset 8
+ 104              		.cfi_offset 3, -8
+ 105              		.cfi_offset 14, -4
+ 232:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 106              		.loc 1 232 14 view .LVU21
+ 107 0038 6FF00100 		mvn	r0, #1
+ 108 003c F8E7     		b	.L2
+ 109              	.LVL10:
+ 110              	.L10:
+ 155:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 111              		.loc 1 155 16 view .LVU22
+ 112 003e 6FF00200 		mvn	r0, #2
+ 113 0042 F5E7     		b	.L2
+ 114              	.L12:
+ 115              		.align	2
+ 116              	.L11:
+ 117 0044 00000000 		.word	extmem_list_config
+ 118              		.cfi_endproc
+ 119              	.LFE881:
+ 121              		.section	.text.EXTMEM_DeInit,"ax",%progbits
+ 122              		.align	1
+ 123              		.global	EXTMEM_DeInit
+ 124              		.syntax unified
+ 125              		.thumb
+ 126              		.thumb_func
+ 128              	EXTMEM_DeInit:
+ 129              	.LVL11:
+ 130              	.LFB882:
+ 239:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 240:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+ 241:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @brief Deinitializes the external memory.
+ 242:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param MemId Memory identifier.
+ 243:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @retval EXTMEM_StatusTypeDef Status of the operation.
+ 244:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+ 245:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** EXTMEM_StatusTypeDef EXTMEM_DeInit(uint32_t MemId)
+ 246:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** {
+ 131              		.loc 1 246 1 is_stmt 1 view -0
+ 132              		.cfi_startproc
+ 133              		@ args = 0, pretend = 0, frame = 0
+ 134              		@ frame_needed = 0, uses_anonymous_args = 0
+ 247:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+ 135              		.loc 1 247 3 view .LVU24
+ 248:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL();
+ 136              		.loc 1 248 21 view .LVU25
+ 249:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 250:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   /* Check the memory ID */
+ 251:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   if (MemId < (sizeof(extmem_list_config) / sizeof(EXTMEM_DefinitionTypeDef)))
+ 137              		.loc 1 251 3 view .LVU26
+ 138              		.loc 1 251 6 is_stmt 0 view .LVU27
+ 139 0000 80B9     		cbnz	r0, .L15
+ 246:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+ 140              		.loc 1 246 1 view .LVU28
+ 141 0002 08B5     		push	{r3, lr}
+ 142              	.LCFI3:
+ 143              		.cfi_def_cfa_offset 8
+ 144              		.cfi_offset 3, -8
+ 145              		.cfi_offset 14, -4
+ARM GAS  /tmp/ccDnukMx.s 			page 8
+
+
+ 252:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   {
+ 253:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     retr = EXTMEM_OK;
+ 146              		.loc 1 253 5 is_stmt 1 view .LVU29
+ 147              	.LVL12:
+ 254:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 255:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     /* Check type of EXTMEM driver used to access memory */
+ 256:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     switch (extmem_list_config[MemId].MemType)
+ 148              		.loc 1 256 5 view .LVU30
+ 149              		.loc 1 256 38 is_stmt 0 view .LVU31
+ 150 0004 AC22     		movs	r2, #172
+ 151 0006 00FB02F2 		mul	r2, r0, r2
+ 152 000a 0949     		ldr	r1, .L21
+ 153 000c 8A5C     		ldrb	r2, [r1, r2]	@ zero_extendqisi2
+ 154              		.loc 1 256 5 view .LVU32
+ 155 000e 62B9     		cbnz	r2, .L16
+ 257:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     {
+ 258:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_NOR_SFDP == 1
+ 259:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_NOR_SFDP:
+ 260:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 261:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Uninitialize the memory using NOR SFDP driver */
+ 262:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Return is always OK no need to test the returned value */
+ 263:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         (void)EXTMEM_DRIVER_NOR_SFDP_DeInit(&extmem_list_config[MemId].NorSfdpObject);
+ 156              		.loc 1 263 9 is_stmt 1 view .LVU33
+ 157              		.loc 1 263 15 is_stmt 0 view .LVU34
+ 158 0010 AC22     		movs	r2, #172
+ 159 0012 02FB00F0 		mul	r0, r2, r0
+ 160              	.LVL13:
+ 161              		.loc 1 263 15 view .LVU35
+ 162 0016 0830     		adds	r0, r0, #8
+ 163 0018 0844     		add	r0, r0, r1
+ 164 001a 0430     		adds	r0, r0, #4
+ 165 001c FFF7FEFF 		bl	EXTMEM_DRIVER_NOR_SFDP_DeInit
+ 166              	.LVL14:
+ 264:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 167              		.loc 1 264 9 is_stmt 1 view .LVU36
+ 253:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 168              		.loc 1 253 10 is_stmt 0 view .LVU37
+ 169 0020 0020     		movs	r0, #0
+ 170              	.L14:
+ 171              	.LVL15:
+ 265:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 266:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_NOR_SFDP == 1 */
+ 267:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_SDCARD == 1
+ 268:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_SDCARD:
+ 269:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 270:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Uninitialize the memory using SDCARD driver */
+ 271:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRIVER_SDCARD_OK != EXTMEM_DRIVER_SDCARD_DeInit(&extmem_list_config[MemId].SdCar
+ 272:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 273:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 274:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 275:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 276:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 277:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_SDCARD == 1 */
+ 278:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_PSRAM == 1
+ 279:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_PSRAM :
+ 280:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 281:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Uninitialize the memory using PSRAM driver */
+ARM GAS  /tmp/ccDnukMx.s 			page 9
+
+
+ 282:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Return is always OK no need to test the returned value */
+ 283:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         (void)EXTMEM_DRIVER_PSRAM_DeInit(&extmem_list_config[MemId].PsramObject);
+ 284:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 285:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 286:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_PSRAM == 1 */
+ 287:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_CUSTOM == 1
+ 288:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_CUSTOM :
+ 289:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 290:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Uninitialize the memory using CUSTOM driver */
+ 291:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRV_CUSTOM_OK != EXTMEM_DRIVER_CUSTOM_DeInit(&extmem_list_config[MemId].CustomOb
+ 292:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 293:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 294:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 295:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 296:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 297:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_CUSTOM == 1 */
+ 298:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_USER == 1
+ 299:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_USER :
+ 300:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 301:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Uninitialize the memory using USER driver */
+ 302:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DRIVER_USER_StatusTypeDef status = EXTMEM_DRIVER_USER_DeInit(&extmem_list_config[Mem
+ 303:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         switch (status)
+ 304:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 305:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           case EXTMEM_DRIVER_USER_NOTSUPPORTED:
+ 306:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             retr = EXTMEM_ERROR_NOTSUPPORTED;
+ 307:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 308:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           case EXTMEM_DRIVER_USER_OK:
+ 309:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             /* Nothing to do, the returned status is already set to EXTMEM_OK */
+ 310:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 311:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           default:
+ 312:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             retr = EXTMEM_ERROR_DRIVER;
+ 313:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 314:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 315:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 316:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 317:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_USER == 1 */
+ 318:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       /* Unknown type of EXTMEM driver */
+ 319:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       default:
+ 320:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 321:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DEBUG("\terror : unknown memory type\n");
+ 322:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_UNKNOWNMEMORY;
+ 323:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 324:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 325:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     }
+ 326:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   }
+ 327:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   return retr;
+ 172              		.loc 1 327 3 is_stmt 1 view .LVU38
+ 328:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** }
+ 173              		.loc 1 328 1 is_stmt 0 view .LVU39
+ 174 0022 08BD     		pop	{r3, pc}
+ 175              	.LVL16:
+ 176              	.L15:
+ 177              	.LCFI4:
+ 178              		.cfi_def_cfa_offset 0
+ 179              		.cfi_restore 3
+ 180              		.cfi_restore 14
+ 247:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL();
+ARM GAS  /tmp/ccDnukMx.s 			page 10
+
+
+ 181              		.loc 1 247 24 view .LVU40
+ 182 0024 6FF00400 		mvn	r0, #4
+ 183              	.LVL17:
+ 327:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** }
+ 184              		.loc 1 327 3 is_stmt 1 view .LVU41
+ 185              		.loc 1 328 1 is_stmt 0 view .LVU42
+ 186 0028 7047     		bx	lr
+ 187              	.LVL18:
+ 188              	.L16:
+ 189              	.LCFI5:
+ 190              		.cfi_def_cfa_offset 8
+ 191              		.cfi_offset 3, -8
+ 192              		.cfi_offset 14, -4
+ 322:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 193              		.loc 1 322 14 view .LVU43
+ 194 002a 6FF00100 		mvn	r0, #1
+ 195              	.LVL19:
+ 322:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 196              		.loc 1 322 14 view .LVU44
+ 197 002e F8E7     		b	.L14
+ 198              	.L22:
+ 199              		.align	2
+ 200              	.L21:
+ 201 0030 00000000 		.word	extmem_list_config
+ 202              		.cfi_endproc
+ 203              	.LFE882:
+ 205              		.section	.text.EXTMEM_Read,"ax",%progbits
+ 206              		.align	1
+ 207              		.global	EXTMEM_Read
+ 208              		.syntax unified
+ 209              		.thumb
+ 210              		.thumb_func
+ 212              	EXTMEM_Read:
+ 213              	.LVL20:
+ 214              	.LFB883:
+ 329:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 330:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+ 331:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @brief Reads data from the external memory.
+ 332:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param MemId Memory identifier.
+ 333:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param Address Address in memory to read from.
+ 334:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param Data Pointer to buffer where read data will be stored.
+ 335:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param Size Number of bytes to read.
+ 336:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @retval EXTMEM_StatusTypeDef Status of the operation.
+ 337:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+ 338:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** EXTMEM_StatusTypeDef EXTMEM_Read(uint32_t MemId, uint32_t Address, uint8_t *Data, uint32_t Size)
+ 339:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** {
+ 215              		.loc 1 339 1 is_stmt 1 view -0
+ 216              		.cfi_startproc
+ 217              		@ args = 0, pretend = 0, frame = 0
+ 218              		@ frame_needed = 0, uses_anonymous_args = 0
+ 340:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+ 219              		.loc 1 340 3 view .LVU46
+ 341:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL()
+ 342:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 343:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   /* Check the memory ID */
+ 344:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   if (MemId < (sizeof(extmem_list_config) / sizeof(EXTMEM_DefinitionTypeDef)))
+ 220              		.loc 1 344 3 view .LVU47
+ARM GAS  /tmp/ccDnukMx.s 			page 11
+
+
+ 221              		.loc 1 344 6 is_stmt 0 view .LVU48
+ 222 0000 98B9     		cbnz	r0, .L25
+ 339:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+ 223              		.loc 1 339 1 view .LVU49
+ 224 0002 08B5     		push	{r3, lr}
+ 225              	.LCFI6:
+ 226              		.cfi_def_cfa_offset 8
+ 227              		.cfi_offset 3, -8
+ 228              		.cfi_offset 14, -4
+ 229 0004 8446     		mov	ip, r0
+ 345:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   {
+ 346:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     retr = EXTMEM_OK;
+ 230              		.loc 1 346 5 is_stmt 1 view .LVU50
+ 231              	.LVL21:
+ 347:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 348:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     /* Check type of EXTMEM driver used to access memory */
+ 349:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     switch (extmem_list_config[MemId].MemType)
+ 232              		.loc 1 349 5 view .LVU51
+ 233              		.loc 1 349 38 is_stmt 0 view .LVU52
+ 234 0006 AC20     		movs	r0, #172
+ 235              	.LVL22:
+ 236              		.loc 1 349 38 view .LVU53
+ 237 0008 00FB0CF0 		mul	r0, r0, ip
+ 238 000c DFF82CE0 		ldr	lr, .L33
+ 239 0010 1EF80000 		ldrb	r0, [lr, r0]	@ zero_extendqisi2
+ 240              		.loc 1 349 5 view .LVU54
+ 241 0014 60B9     		cbnz	r0, .L26
+ 350:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     {
+ 351:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_NOR_SFDP == 1
+ 352:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_NOR_SFDP:
+ 353:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 354:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Read operation using the NOR SFDP driver */
+ 355:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRIVER_NOR_SFDP_OK != EXTMEM_DRIVER_NOR_SFDP_Read(&extmem_list_config[MemId].Nor
+ 242              		.loc 1 355 9 is_stmt 1 view .LVU55
+ 243              		.loc 1 355 42 is_stmt 0 view .LVU56
+ 244 0016 AC20     		movs	r0, #172
+ 245 0018 00FB0CF0 		mul	r0, r0, ip
+ 246 001c 0830     		adds	r0, r0, #8
+ 247 001e 7044     		add	r0, r0, lr
+ 248 0020 0430     		adds	r0, r0, #4
+ 249 0022 FFF7FEFF 		bl	EXTMEM_DRIVER_NOR_SFDP_Read
+ 250              	.LVL23:
+ 251              		.loc 1 355 12 discriminator 1 view .LVU57
+ 252 0026 30B9     		cbnz	r0, .L32
+ 253              	.L24:
+ 254              	.LVL24:
+ 356:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                      Address, Data, Size))
+ 357:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 358:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 359:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 360:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 361:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 362:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_NOR_SFDP == 1 */
+ 363:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_SDCARD == 1
+ 364:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_SDCARD:
+ 365:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 366:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Read operation using the SDCARD driver */
+ARM GAS  /tmp/ccDnukMx.s 			page 12
+
+
+ 367:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRIVER_SDCARD_OK != EXTMEM_DRIVER_SDCARD_Read(&extmem_list_config[MemId].SdCardO
+ 368:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                  Address, Data, Size))
+ 369:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 370:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 371:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 372:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 373:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 374:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_SDCARD == 1 */
+ 375:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_PSRAM == 1
+ 376:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_PSRAM :
+ 377:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 378:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_NOTSUPPORTED;
+ 379:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 380:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 381:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_PSRAM == 1 */
+ 382:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_CUSTOM == 1
+ 383:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_CUSTOM :
+ 384:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 385:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Read operation using the CUSTOM driver */
+ 386:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRV_CUSTOM_OK != EXTMEM_DRIVER_CUSTOM_Read(&extmem_list_config[MemId].CustomObje
+ 387:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                               Address, Data, Size))
+ 388:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 389:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 390:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 391:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 392:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 393:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_CUSTOM == 1 */
+ 394:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_USER == 1
+ 395:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_USER :
+ 396:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 397:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Read operation using the USER driver */
+ 398:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DRIVER_USER_StatusTypeDef status = EXTMEM_DRIVER_USER_Read(&extmem_list_config[MemId
+ 399:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                           Address, Data, Size);
+ 400:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         switch (status)
+ 401:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 402:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           case EXTMEM_DRIVER_USER_NOTSUPPORTED:
+ 403:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             retr = EXTMEM_ERROR_NOTSUPPORTED;
+ 404:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 405:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           case EXTMEM_DRIVER_USER_OK:
+ 406:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             /* Nothing to do, the returned status is already set to EXTMEM_OK */
+ 407:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 408:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           default:
+ 409:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             retr = EXTMEM_ERROR_DRIVER;
+ 410:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 411:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 412:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 413:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 414:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_USER == 1 */
+ 415:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       /* Unknown type of EXTMEM driver */
+ 416:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       default:
+ 417:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 418:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DEBUG("\terror : unknown memory type\n");
+ 419:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_UNKNOWNMEMORY;
+ 420:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 421:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 422:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     }
+ 423:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   }
+ARM GAS  /tmp/ccDnukMx.s 			page 13
+
+
+ 424:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   return retr;
+ 255              		.loc 1 424 3 is_stmt 1 view .LVU58
+ 425:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** }
+ 256              		.loc 1 425 1 is_stmt 0 view .LVU59
+ 257 0028 08BD     		pop	{r3, pc}
+ 258              	.LVL25:
+ 259              	.L25:
+ 260              	.LCFI7:
+ 261              		.cfi_def_cfa_offset 0
+ 262              		.cfi_restore 3
+ 263              		.cfi_restore 14
+ 340:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL()
+ 264              		.loc 1 340 24 view .LVU60
+ 265 002a 6FF00400 		mvn	r0, #4
+ 266              	.LVL26:
+ 424:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** }
+ 267              		.loc 1 424 3 is_stmt 1 view .LVU61
+ 268              		.loc 1 425 1 is_stmt 0 view .LVU62
+ 269 002e 7047     		bx	lr
+ 270              	.LVL27:
+ 271              	.L26:
+ 272              	.LCFI8:
+ 273              		.cfi_def_cfa_offset 8
+ 274              		.cfi_offset 3, -8
+ 275              		.cfi_offset 14, -4
+ 419:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 276              		.loc 1 419 14 view .LVU63
+ 277 0030 6FF00100 		mvn	r0, #1
+ 278 0034 F8E7     		b	.L24
+ 279              	.LVL28:
+ 280              	.L32:
+ 358:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 281              		.loc 1 358 16 view .LVU64
+ 282 0036 6FF00200 		mvn	r0, #2
+ 283 003a F5E7     		b	.L24
+ 284              	.L34:
+ 285              		.align	2
+ 286              	.L33:
+ 287 003c 00000000 		.word	extmem_list_config
+ 288              		.cfi_endproc
+ 289              	.LFE883:
+ 291              		.section	.text.EXTMEM_Write,"ax",%progbits
+ 292              		.align	1
+ 293              		.global	EXTMEM_Write
+ 294              		.syntax unified
+ 295              		.thumb
+ 296              		.thumb_func
+ 298              	EXTMEM_Write:
+ 299              	.LVL29:
+ 300              	.LFB884:
+ 426:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 427:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+ 428:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @brief Writes data to the external memory.
+ 429:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param MemId Memory identifier.
+ 430:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param Address Address in memory to write to.
+ 431:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param Data Pointer to buffer containing data to be written.
+ 432:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param Size Number of bytes to write.
+ARM GAS  /tmp/ccDnukMx.s 			page 14
+
+
+ 433:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @retval EXTMEM_StatusTypeDef Status of the operation.
+ 434:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+ 435:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** EXTMEM_StatusTypeDef EXTMEM_Write(uint32_t MemId, uint32_t Address, const uint8_t *Data, uint32_t S
+ 436:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** {
+ 301              		.loc 1 436 1 is_stmt 1 view -0
+ 302              		.cfi_startproc
+ 303              		@ args = 0, pretend = 0, frame = 0
+ 304              		@ frame_needed = 0, uses_anonymous_args = 0
+ 437:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+ 305              		.loc 1 437 3 view .LVU66
+ 438:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL()
+ 439:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 440:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   /* Check the memory ID */
+ 441:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   if (MemId < (sizeof(extmem_list_config) / sizeof(EXTMEM_DefinitionTypeDef)))
+ 306              		.loc 1 441 3 view .LVU67
+ 307              		.loc 1 441 6 is_stmt 0 view .LVU68
+ 308 0000 98B9     		cbnz	r0, .L37
+ 436:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+ 309              		.loc 1 436 1 view .LVU69
+ 310 0002 08B5     		push	{r3, lr}
+ 311              	.LCFI9:
+ 312              		.cfi_def_cfa_offset 8
+ 313              		.cfi_offset 3, -8
+ 314              		.cfi_offset 14, -4
+ 315 0004 8446     		mov	ip, r0
+ 442:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   {
+ 443:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     retr = EXTMEM_OK;
+ 316              		.loc 1 443 5 is_stmt 1 view .LVU70
+ 317              	.LVL30:
+ 444:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 445:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     /* Check type of EXTMEM driver used to access memory */
+ 446:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     switch (extmem_list_config[MemId].MemType)
+ 318              		.loc 1 446 5 view .LVU71
+ 319              		.loc 1 446 38 is_stmt 0 view .LVU72
+ 320 0006 AC20     		movs	r0, #172
+ 321              	.LVL31:
+ 322              		.loc 1 446 38 view .LVU73
+ 323 0008 00FB0CF0 		mul	r0, r0, ip
+ 324 000c DFF82CE0 		ldr	lr, .L45
+ 325 0010 1EF80000 		ldrb	r0, [lr, r0]	@ zero_extendqisi2
+ 326              		.loc 1 446 5 view .LVU74
+ 327 0014 60B9     		cbnz	r0, .L38
+ 447:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     {
+ 448:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_NOR_SFDP == 1
+ 449:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_NOR_SFDP:
+ 450:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 451:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Write operation using the NOR SFDP driver */
+ 452:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRIVER_NOR_SFDP_OK != EXTMEM_DRIVER_NOR_SFDP_Write(&extmem_list_config[MemId].No
+ 328              		.loc 1 452 9 is_stmt 1 view .LVU75
+ 329              		.loc 1 452 42 is_stmt 0 view .LVU76
+ 330 0016 AC20     		movs	r0, #172
+ 331 0018 00FB0CF0 		mul	r0, r0, ip
+ 332 001c 0830     		adds	r0, r0, #8
+ 333 001e 7044     		add	r0, r0, lr
+ 334 0020 0430     		adds	r0, r0, #4
+ 335 0022 FFF7FEFF 		bl	EXTMEM_DRIVER_NOR_SFDP_Write
+ 336              	.LVL32:
+ARM GAS  /tmp/ccDnukMx.s 			page 15
+
+
+ 337              		.loc 1 452 12 discriminator 1 view .LVU77
+ 338 0026 30B9     		cbnz	r0, .L44
+ 339              	.L36:
+ 340              	.LVL33:
+ 453:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                       Address, Data, Size))
+ 454:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 455:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 456:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 457:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 458:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 459:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_NOR_SFDP == 1 */
+ 460:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_SDCARD == 1
+ 461:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_SDCARD:
+ 462:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 463:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Write operation using the SDCARD driver */
+ 464:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRIVER_SDCARD_OK != EXTMEM_DRIVER_SDCARD_Write(&extmem_list_config[MemId].SdCard
+ 465:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                   Address, Data, Size))
+ 466:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 467:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 468:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 469:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 470:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 471:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_SDCARD == 1 */
+ 472:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_PSRAM == 1
+ 473:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_PSRAM :
+ 474:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 475:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_NOTSUPPORTED;
+ 476:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 477:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 478:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_PSRAM == 1 */
+ 479:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_CUSTOM == 1
+ 480:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_CUSTOM :
+ 481:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 482:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Write operation using the CUSTOM driver */
+ 483:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRV_CUSTOM_OK != EXTMEM_DRIVER_CUSTOM_Write(&extmem_list_config[MemId].CustomObj
+ 484:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                Address, Data, Size))
+ 485:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 486:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 487:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 488:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 489:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 490:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_CUSTOM == 1 */
+ 491:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_USER == 1
+ 492:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_USER :
+ 493:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 494:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Write operation using the USER driver */
+ 495:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DRIVER_USER_StatusTypeDef status = EXTMEM_DRIVER_USER_Write(&extmem_list_config[MemI
+ 496:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                            Address, Data, Size);
+ 497:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         switch (status)
+ 498:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 499:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           case EXTMEM_DRIVER_USER_NOTSUPPORTED:
+ 500:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             retr = EXTMEM_ERROR_NOTSUPPORTED;
+ 501:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 502:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           case EXTMEM_DRIVER_USER_OK:
+ 503:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 504:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           default:
+ 505:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             retr = EXTMEM_ERROR_DRIVER;
+ARM GAS  /tmp/ccDnukMx.s 			page 16
+
+
+ 506:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 507:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 508:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 509:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 510:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_USER == 1 */
+ 511:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       /* Unknown type of EXTMEM driver */
+ 512:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       default:
+ 513:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 514:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DEBUG("\terror : unknown memory type\n");
+ 515:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_UNKNOWNMEMORY;
+ 516:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 517:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 518:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     }
+ 519:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   }
+ 520:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   return retr;
+ 341              		.loc 1 520 3 is_stmt 1 view .LVU78
+ 521:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** }
+ 342              		.loc 1 521 1 is_stmt 0 view .LVU79
+ 343 0028 08BD     		pop	{r3, pc}
+ 344              	.LVL34:
+ 345              	.L37:
+ 346              	.LCFI10:
+ 347              		.cfi_def_cfa_offset 0
+ 348              		.cfi_restore 3
+ 349              		.cfi_restore 14
+ 437:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL()
+ 350              		.loc 1 437 24 view .LVU80
+ 351 002a 6FF00400 		mvn	r0, #4
+ 352              	.LVL35:
+ 520:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** }
+ 353              		.loc 1 520 3 is_stmt 1 view .LVU81
+ 354              		.loc 1 521 1 is_stmt 0 view .LVU82
+ 355 002e 7047     		bx	lr
+ 356              	.LVL36:
+ 357              	.L38:
+ 358              	.LCFI11:
+ 359              		.cfi_def_cfa_offset 8
+ 360              		.cfi_offset 3, -8
+ 361              		.cfi_offset 14, -4
+ 515:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 362              		.loc 1 515 14 view .LVU83
+ 363 0030 6FF00100 		mvn	r0, #1
+ 364 0034 F8E7     		b	.L36
+ 365              	.LVL37:
+ 366              	.L44:
+ 455:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 367              		.loc 1 455 16 view .LVU84
+ 368 0036 6FF00200 		mvn	r0, #2
+ 369 003a F5E7     		b	.L36
+ 370              	.L46:
+ 371              		.align	2
+ 372              	.L45:
+ 373 003c 00000000 		.word	extmem_list_config
+ 374              		.cfi_endproc
+ 375              	.LFE884:
+ 377              		.section	.text.EXTMEM_WriteInMappedMode,"ax",%progbits
+ 378              		.align	1
+ARM GAS  /tmp/ccDnukMx.s 			page 17
+
+
+ 379              		.global	EXTMEM_WriteInMappedMode
+ 380              		.syntax unified
+ 381              		.thumb
+ 382              		.thumb_func
+ 384              	EXTMEM_WriteInMappedMode:
+ 385              	.LVL38:
+ 386              	.LFB885:
+ 522:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 523:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+ 524:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @brief Writes data to the external memory in mapped mode.
+ 525:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param MemId Memory identifier.
+ 526:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param Address Address in memory to write to.
+ 527:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param Data Pointer to buffer (must be 32-bit aligned) containing data to be written.
+ 528:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param Size Number of bytes to write.
+ 529:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @retval EXTMEM_StatusTypeDef Status of the operation.
+ 530:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   *
+ 531:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @note This function performs write operations in mapped mode and requires specific processing d
+ 532:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   *       to write enable management when the memory is mapped. The operation splits the write into
+ 533:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   *       of page size, and for each packet, performs a write before entering mapped mode.
+ 534:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   *
+ 535:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @note To avoid issues during this process, it is mandatory that the targeted memory area has th
+ 536:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   *       characteristics: the write region must be non-bufferable, non-shareable, and non-cacheabl
+ 537:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+ 538:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** EXTMEM_StatusTypeDef EXTMEM_WriteInMappedMode(uint32_t MemId, uint32_t Address, const uint8_t *cons
+ 539:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                               uint32_t Size)
+ 540:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** {
+ 387              		.loc 1 540 1 is_stmt 1 view -0
+ 388              		.cfi_startproc
+ 389              		@ args = 0, pretend = 0, frame = 0
+ 390              		@ frame_needed = 0, uses_anonymous_args = 0
+ 541:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+ 391              		.loc 1 541 3 view .LVU86
+ 542:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL()
+ 543:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 544:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   /* Check the memory ID */
+ 545:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   if (MemId < (sizeof(extmem_list_config) / sizeof(EXTMEM_DefinitionTypeDef)))
+ 392              		.loc 1 545 3 view .LVU87
+ 393              		.loc 1 545 6 is_stmt 0 view .LVU88
+ 394 0000 98B9     		cbnz	r0, .L49
+ 540:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+ 395              		.loc 1 540 1 view .LVU89
+ 396 0002 08B5     		push	{r3, lr}
+ 397              	.LCFI12:
+ 398              		.cfi_def_cfa_offset 8
+ 399              		.cfi_offset 3, -8
+ 400              		.cfi_offset 14, -4
+ 401 0004 8446     		mov	ip, r0
+ 546:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   {
+ 547:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     retr = EXTMEM_OK;
+ 402              		.loc 1 547 5 is_stmt 1 view .LVU90
+ 403              	.LVL39:
+ 548:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 549:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     /* Check type of EXTMEM driver used to access memory */
+ 550:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     switch (extmem_list_config[MemId].MemType)
+ 404              		.loc 1 550 5 view .LVU91
+ 405              		.loc 1 550 38 is_stmt 0 view .LVU92
+ 406 0006 AC20     		movs	r0, #172
+ARM GAS  /tmp/ccDnukMx.s 			page 18
+
+
+ 407              	.LVL40:
+ 408              		.loc 1 550 38 view .LVU93
+ 409 0008 00FB0CF0 		mul	r0, r0, ip
+ 410 000c DFF82CE0 		ldr	lr, .L57
+ 411 0010 1EF80000 		ldrb	r0, [lr, r0]	@ zero_extendqisi2
+ 412              		.loc 1 550 5 view .LVU94
+ 413 0014 60B9     		cbnz	r0, .L50
+ 551:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     {
+ 552:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_NOR_SFDP == 1
+ 553:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       /* Perform the Write in mapped mode operation using the NOR SFDP driver */
+ 554:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_NOR_SFDP:
+ 555:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 556:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRIVER_NOR_SFDP_OK !=
+ 414              		.loc 1 556 9 is_stmt 1 view .LVU95
+ 557:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             EXTMEM_DRIVER_NOR_SFDP_WriteInMappedMode(&extmem_list_config[MemId].NorSfdpObject,
+ 415              		.loc 1 557 13 is_stmt 0 view .LVU96
+ 416 0016 AC20     		movs	r0, #172
+ 417 0018 00FB0CF0 		mul	r0, r0, ip
+ 418 001c 0830     		adds	r0, r0, #8
+ 419 001e 7044     		add	r0, r0, lr
+ 420 0020 0430     		adds	r0, r0, #4
+ 421 0022 FFF7FEFF 		bl	EXTMEM_DRIVER_NOR_SFDP_WriteInMappedMode
+ 422              	.LVL41:
+ 556:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             EXTMEM_DRIVER_NOR_SFDP_WriteInMappedMode(&extmem_list_config[MemId].NorSfdpObject,
+ 423              		.loc 1 556 12 discriminator 1 view .LVU97
+ 424 0026 30B9     		cbnz	r0, .L56
+ 425              	.L48:
+ 426              	.LVL42:
+ 558:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                      Address, Data, Size))
+ 559:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 560:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 561:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 562:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 563:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 564:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_NOR_SFDP == 1 */
+ 565:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_SDCARD == 1
+ 566:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_SDCARD :
+ 567:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Functionality not supported in this driver */
+ 568:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_NOTSUPPORTED;
+ 569:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 570:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_SDCARD == 1 */
+ 571:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_PSRAM == 1
+ 572:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_PSRAM :
+ 573:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Functionality not supported in this driver */
+ 574:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_NOTSUPPORTED;
+ 575:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 576:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_PSRAM == 1 */
+ 577:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_CUSTOM == 1
+ 578:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_CUSTOM :
+ 579:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Functionality not supported in this driver */
+ 580:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_NOTSUPPORTED;
+ 581:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 582:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_CUSTOM == 1 */
+ 583:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_USER == 1
+ 584:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_USER :
+ 585:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Functionality not supported in this driver */
+ 586:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_NOTSUPPORTED;
+ARM GAS  /tmp/ccDnukMx.s 			page 19
+
+
+ 587:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 588:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_USER == 1 */
+ 589:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       /* Unknown type of EXTMEM driver */
+ 590:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       default:
+ 591:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 592:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DEBUG("\terror : unknown memory type\n");
+ 593:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_UNKNOWNMEMORY;
+ 594:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 595:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 596:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     }
+ 597:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   }
+ 598:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   return retr;
+ 427              		.loc 1 598 3 is_stmt 1 view .LVU98
+ 599:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** }
+ 428              		.loc 1 599 1 is_stmt 0 view .LVU99
+ 429 0028 08BD     		pop	{r3, pc}
+ 430              	.LVL43:
+ 431              	.L49:
+ 432              	.LCFI13:
+ 433              		.cfi_def_cfa_offset 0
+ 434              		.cfi_restore 3
+ 435              		.cfi_restore 14
+ 541:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL()
+ 436              		.loc 1 541 24 view .LVU100
+ 437 002a 6FF00400 		mvn	r0, #4
+ 438              	.LVL44:
+ 598:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** }
+ 439              		.loc 1 598 3 is_stmt 1 view .LVU101
+ 440              		.loc 1 599 1 is_stmt 0 view .LVU102
+ 441 002e 7047     		bx	lr
+ 442              	.LVL45:
+ 443              	.L50:
+ 444              	.LCFI14:
+ 445              		.cfi_def_cfa_offset 8
+ 446              		.cfi_offset 3, -8
+ 447              		.cfi_offset 14, -4
+ 593:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 448              		.loc 1 593 14 view .LVU103
+ 449 0030 6FF00100 		mvn	r0, #1
+ 450 0034 F8E7     		b	.L48
+ 451              	.LVL46:
+ 452              	.L56:
+ 560:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 453              		.loc 1 560 16 view .LVU104
+ 454 0036 6FF00200 		mvn	r0, #2
+ 455 003a F5E7     		b	.L48
+ 456              	.L58:
+ 457              		.align	2
+ 458              	.L57:
+ 459 003c 00000000 		.word	extmem_list_config
+ 460              		.cfi_endproc
+ 461              	.LFE885:
+ 463              		.section	.text.EXTMEM_EraseSector,"ax",%progbits
+ 464              		.align	1
+ 465              		.global	EXTMEM_EraseSector
+ 466              		.syntax unified
+ 467              		.thumb
+ARM GAS  /tmp/ccDnukMx.s 			page 20
+
+
+ 468              		.thumb_func
+ 470              	EXTMEM_EraseSector:
+ 471              	.LVL47:
+ 472              	.LFB886:
+ 600:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 601:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+ 602:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @brief Erases a number of sectors in the external memory.
+ 603:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param MemId Memory identifier.
+ 604:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param Address Address in memory to start erase operation.
+ 605:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param Size Number of bytes to erase.
+ 606:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @retval EXTMEM_StatusTypeDef Status of the operation.
+ 607:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+ 608:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** EXTMEM_StatusTypeDef EXTMEM_EraseSector(uint32_t MemId, uint32_t Address, uint32_t Size)
+ 609:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** {
+ 473              		.loc 1 609 1 is_stmt 1 view -0
+ 474              		.cfi_startproc
+ 475              		@ args = 0, pretend = 0, frame = 0
+ 476              		@ frame_needed = 0, uses_anonymous_args = 0
+ 477              		.loc 1 609 1 is_stmt 0 view .LVU106
+ 478 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 479              	.LCFI15:
+ 480              		.cfi_def_cfa_offset 32
+ 481              		.cfi_offset 3, -32
+ 482              		.cfi_offset 4, -28
+ 483              		.cfi_offset 5, -24
+ 484              		.cfi_offset 6, -20
+ 485              		.cfi_offset 7, -16
+ 486              		.cfi_offset 8, -12
+ 487              		.cfi_offset 9, -8
+ 488              		.cfi_offset 14, -4
+ 610:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+ 489              		.loc 1 610 3 is_stmt 1 view .LVU107
+ 490              	.LVL48:
+ 611:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL()
+ 612:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 613:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   /* Check the memory ID */
+ 614:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   if (MemId < (sizeof(extmem_list_config) / sizeof(EXTMEM_DefinitionTypeDef)))
+ 491              		.loc 1 614 3 view .LVU108
+ 492              		.loc 1 614 6 is_stmt 0 view .LVU109
+ 493 0004 0028     		cmp	r0, #0
+ 494 0006 72D1     		bne	.L72
+ 495 0008 0F46     		mov	r7, r1
+ 496 000a 1546     		mov	r5, r2
+ 497 000c 0646     		mov	r6, r0
+ 615:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   {
+ 616:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     retr = EXTMEM_OK;
+ 498              		.loc 1 616 5 is_stmt 1 view .LVU110
+ 499              	.LVL49:
+ 617:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 618:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     /* Check type of EXTMEM driver used to access memory */
+ 619:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     switch (extmem_list_config[MemId].MemType)
+ 500              		.loc 1 619 5 view .LVU111
+ 501              		.loc 1 619 38 is_stmt 0 view .LVU112
+ 502 000e AC23     		movs	r3, #172
+ 503 0010 00FB03F3 		mul	r3, r0, r3
+ 504 0014 3A4A     		ldr	r2, .L79
+ 505              	.LVL50:
+ARM GAS  /tmp/ccDnukMx.s 			page 21
+
+
+ 506              		.loc 1 619 38 view .LVU113
+ 507 0016 12F80390 		ldrb	r9, [r2, r3]	@ zero_extendqisi2
+ 508              		.loc 1 619 5 view .LVU114
+ 509 001a B9F1000F 		cmp	r9, #0
+ 510 001e 6BD1     		bne	.L73
+ 511              	.LBB2:
+ 620:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     {
+ 621:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_NOR_SFDP == 1
+ 622:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_NOR_SFDP:
+ 623:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 624:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Sector Erase operation using the NOR SFDP driver */
+ 625:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         const EXTMEM_DRIVER_NOR_SFDP_ObjectTypeDef *const object = &extmem_list_config[MemId].NorSf
+ 512              		.loc 1 625 9 is_stmt 1 view .LVU115
+ 513              	.LVL51:
+ 626:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DRIVER_NOR_SFDP_SectorTypeTypeDef sector_type = EXTMEM_DRIVER_NOR_SFDP_SECTOR_TYPE1;
+ 514              		.loc 1 626 9 view .LVU116
+ 627:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         uint32_t local_address = Address;
+ 515              		.loc 1 627 9 view .LVU117
+ 628:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         uint32_t local_size = Size;
+ 516              		.loc 1 628 9 view .LVU118
+ 629:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         uint32_t sector_size = (uint32_t)1u << object->sfdp_private.DriverInfo.EraseType4Size;
+ 517              		.loc 1 629 9 view .LVU119
+ 518              		.loc 1 629 79 is_stmt 0 view .LVU120
+ 519 0020 1346     		mov	r3, r2
+ 520 0022 AC22     		movs	r2, #172
+ 521 0024 02FB0033 		mla	r3, r2, r0, r3
+ 522 0028 93F88930 		ldrb	r3, [r3, #137]	@ zero_extendqisi2
+ 523              		.loc 1 629 18 view .LVU121
+ 524 002c 0124     		movs	r4, #1
+ 525 002e 9C40     		lsls	r4, r4, r3
+ 526              	.LVL52:
+ 630:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 631:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         while (local_size != 0u)
+ 527              		.loc 1 631 9 is_stmt 1 view .LVU122
+ 528              	.LBE2:
+ 616:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 529              		.loc 1 616 10 is_stmt 0 view .LVU123
+ 530 0030 C846     		mov	r8, r9
+ 531              	.LBB3:
+ 532              		.loc 1 631 15 view .LVU124
+ 533 0032 12E0     		b	.L61
+ 534              	.LVL53:
+ 535              	.L65:
+ 632:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 633:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           /* if address is a modulo a sector size if sector  */
+ 634:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           if ((object->sfdp_private.DriverInfo.EraseType4Size != 0u)
+ 635:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               && (local_size >= sector_size)
+ 636:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               && ((local_address % sector_size) == 0u))
+ 637:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+ 638:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             sector_type = EXTMEM_DRIVER_NOR_SFDP_SECTOR_TYPE4;
+ 639:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           }
+ 640:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           else
+ 641:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+ 642:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             sector_size = (uint32_t)1u << object->sfdp_private.DriverInfo.EraseType3Size;
+ 643:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             if ((object->sfdp_private.DriverInfo.EraseType3Size != 0u)
+ 644:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 && (local_size >= sector_size)
+ 645:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 && ((local_address % sector_size) == 0u))
+ARM GAS  /tmp/ccDnukMx.s 			page 22
+
+
+ 646:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             {
+ 647:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               sector_type = EXTMEM_DRIVER_NOR_SFDP_SECTOR_TYPE3;
+ 648:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             }
+ 649:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             else
+ 650:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             {
+ 651:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               sector_size = (uint32_t)1u << object->sfdp_private.DriverInfo.EraseType2Size;
+ 652:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               if ((object->sfdp_private.DriverInfo.EraseType2Size != 0u)
+ 653:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                   && (local_size >= sector_size)
+ 654:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                   && ((local_address % sector_size) == 0u))
+ 655:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               {
+ 656:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 sector_type = EXTMEM_DRIVER_NOR_SFDP_SECTOR_TYPE2;
+ 657:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               }
+ 658:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               else
+ 659:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               {
+ 660:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 sector_size = (uint32_t)1u << object->sfdp_private.DriverInfo.EraseType1Size;
+ 536              		.loc 1 660 17 is_stmt 1 view .LVU125
+ 537              		.loc 1 660 78 is_stmt 0 view .LVU126
+ 538 0034 324B     		ldr	r3, .L79
+ 539 0036 AC22     		movs	r2, #172
+ 540 0038 02FB0633 		mla	r3, r2, r6, r3
+ 541 003c 93F88330 		ldrb	r3, [r3, #131]	@ zero_extendqisi2
+ 542              		.loc 1 660 29 view .LVU127
+ 543 0040 0124     		movs	r4, #1
+ 544              	.LVL54:
+ 545              		.loc 1 660 29 view .LVU128
+ 546 0042 9C40     		lsls	r4, r4, r3
+ 547              	.LVL55:
+ 661:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 if ((object->sfdp_private.DriverInfo.EraseType1Size != 0u)
+ 548              		.loc 1 661 17 is_stmt 1 view .LVU129
+ 549              		.loc 1 661 20 is_stmt 0 view .LVU130
+ 550 0044 002B     		cmp	r3, #0
+ 551 0046 38D1     		bne	.L66
+ 552              	.L68:
+ 662:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                     && ((local_address % sector_size) == 0u))
+ 663:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 {
+ 664:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                   sector_type = EXTMEM_DRIVER_NOR_SFDP_SECTOR_TYPE1;
+ 665:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 }
+ 666:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 else
+ 667:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 {
+ 668:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                   retr = EXTMEM_ERROR_SECTOR_SIZE;
+ 553              		.loc 1 668 24 view .LVU131
+ 554 0048 6FF00308 		mvn	r8, #3
+ 555              	.LVL56:
+ 556              	.L67:
+ 669:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 }
+ 670:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               }
+ 671:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             }
+ 672:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           }
+ 673:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 674:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           if (retr == EXTMEM_OK)
+ 675:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+ 676:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             if (EXTMEM_DRIVER_NOR_SFDP_OK !=
+ 677:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 EXTMEM_DRIVER_NOR_SFDP_SectorErase(&extmem_list_config[MemId].NorSfdpObject,
+ 678:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                    local_address, sector_type))
+ 679:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             {
+ 680:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               retr = EXTMEM_ERROR_DRIVER;
+ 681:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             }
+ARM GAS  /tmp/ccDnukMx.s 			page 23
+
+
+ 682:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           }
+ 683:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 684:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           if (retr != EXTMEM_OK)
+ 557              		.loc 1 684 11 is_stmt 1 view .LVU132
+ 558              		.loc 1 684 14 is_stmt 0 view .LVU133
+ 559 004c B8F1000F 		cmp	r8, #0
+ 560 0050 4FD1     		bne	.L60
+ 685:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+ 686:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             local_size = 0u;
+ 687:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           }
+ 688:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           else
+ 689:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+ 690:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             local_address = local_address + sector_size;
+ 561              		.loc 1 690 13 is_stmt 1 view .LVU134
+ 562              		.loc 1 690 27 is_stmt 0 view .LVU135
+ 563 0052 2744     		add	r7, r7, r4
+ 564              	.LVL57:
+ 691:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             if (sector_size > local_size)
+ 565              		.loc 1 691 13 is_stmt 1 view .LVU136
+ 566              		.loc 1 691 16 is_stmt 0 view .LVU137
+ 567 0054 A542     		cmp	r5, r4
+ 568 0056 4CD3     		bcc	.L60
+ 692:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             {
+ 693:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               local_size = 0u;
+ 694:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             }
+ 695:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             else
+ 696:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             {
+ 697:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               local_size = local_size - sector_size;
+ 569              		.loc 1 697 15 is_stmt 1 view .LVU138
+ 570              		.loc 1 697 26 is_stmt 0 view .LVU139
+ 571 0058 2D1B     		subs	r5, r5, r4
+ 572              	.LVL58:
+ 573              	.L61:
+ 631:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 574              		.loc 1 631 27 is_stmt 1 discriminator 1 view .LVU140
+ 575 005a 002D     		cmp	r5, #0
+ 576 005c 49D0     		beq	.L60
+ 634:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               && (local_size >= sector_size)
+ 577              		.loc 1 634 11 view .LVU141
+ 634:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               && (local_size >= sector_size)
+ 578              		.loc 1 634 47 is_stmt 0 view .LVU142
+ 579 005e 284B     		ldr	r3, .L79
+ 580 0060 AC22     		movs	r2, #172
+ 581 0062 02FB0633 		mla	r3, r2, r6, r3
+ 582 0066 93F88930 		ldrb	r3, [r3, #137]	@ zero_extendqisi2
+ 634:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               && (local_size >= sector_size)
+ 583              		.loc 1 634 14 view .LVU143
+ 584 006a 3BB1     		cbz	r3, .L62
+ 635:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               && ((local_address % sector_size) == 0u))
+ 585              		.loc 1 635 15 view .LVU144
+ 586 006c A542     		cmp	r5, r4
+ 587 006e 05D3     		bcc	.L62
+ 636:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+ 588              		.loc 1 636 34 view .LVU145
+ 589 0070 B7FBF4F3 		udiv	r3, r7, r4
+ 590 0074 04FB1373 		mls	r3, r4, r3, r7
+ 636:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+ARM GAS  /tmp/ccDnukMx.s 			page 24
+
+
+ 591              		.loc 1 636 15 view .LVU146
+ 592 0078 002B     		cmp	r3, #0
+ 593 007a 34D0     		beq	.L74
+ 594              	.L62:
+ 642:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             if ((object->sfdp_private.DriverInfo.EraseType3Size != 0u)
+ 595              		.loc 1 642 13 is_stmt 1 view .LVU147
+ 642:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             if ((object->sfdp_private.DriverInfo.EraseType3Size != 0u)
+ 596              		.loc 1 642 74 is_stmt 0 view .LVU148
+ 597 007c 204B     		ldr	r3, .L79
+ 598 007e AC22     		movs	r2, #172
+ 599 0080 02FB0633 		mla	r3, r2, r6, r3
+ 600 0084 93F88730 		ldrb	r3, [r3, #135]	@ zero_extendqisi2
+ 642:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             if ((object->sfdp_private.DriverInfo.EraseType3Size != 0u)
+ 601              		.loc 1 642 25 view .LVU149
+ 602 0088 0124     		movs	r4, #1
+ 603              	.LVL59:
+ 642:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             if ((object->sfdp_private.DriverInfo.EraseType3Size != 0u)
+ 604              		.loc 1 642 25 view .LVU150
+ 605 008a 9C40     		lsls	r4, r4, r3
+ 606              	.LVL60:
+ 643:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 && (local_size >= sector_size)
+ 607              		.loc 1 643 13 is_stmt 1 view .LVU151
+ 643:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 && (local_size >= sector_size)
+ 608              		.loc 1 643 16 is_stmt 0 view .LVU152
+ 609 008c 23B1     		cbz	r3, .L64
+ 644:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 && ((local_address % sector_size) == 0u))
+ 610              		.loc 1 644 17 view .LVU153
+ 611 008e A542     		cmp	r5, r4
+ 612 0090 02D3     		bcc	.L64
+ 645:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             {
+ 613              		.loc 1 645 36 view .LVU154
+ 614 0092 631E     		subs	r3, r4, #1
+ 645:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             {
+ 615              		.loc 1 645 17 view .LVU155
+ 616 0094 3B42     		tst	r3, r7
+ 617 0096 28D0     		beq	.L75
+ 618              	.L64:
+ 651:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               if ((object->sfdp_private.DriverInfo.EraseType2Size != 0u)
+ 619              		.loc 1 651 15 is_stmt 1 view .LVU156
+ 651:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               if ((object->sfdp_private.DriverInfo.EraseType2Size != 0u)
+ 620              		.loc 1 651 76 is_stmt 0 view .LVU157
+ 621 0098 194B     		ldr	r3, .L79
+ 622 009a AC22     		movs	r2, #172
+ 623 009c 02FB0633 		mla	r3, r2, r6, r3
+ 624 00a0 93F88530 		ldrb	r3, [r3, #133]	@ zero_extendqisi2
+ 651:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               if ((object->sfdp_private.DriverInfo.EraseType2Size != 0u)
+ 625              		.loc 1 651 27 view .LVU158
+ 626 00a4 0124     		movs	r4, #1
+ 627              	.LVL61:
+ 651:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               if ((object->sfdp_private.DriverInfo.EraseType2Size != 0u)
+ 628              		.loc 1 651 27 view .LVU159
+ 629 00a6 9C40     		lsls	r4, r4, r3
+ 630              	.LVL62:
+ 652:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                   && (local_size >= sector_size)
+ 631              		.loc 1 652 15 is_stmt 1 view .LVU160
+ 652:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                   && (local_size >= sector_size)
+ 632              		.loc 1 652 18 is_stmt 0 view .LVU161
+ARM GAS  /tmp/ccDnukMx.s 			page 25
+
+
+ 633 00a8 002B     		cmp	r3, #0
+ 634 00aa C3D0     		beq	.L65
+ 653:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                   && ((local_address % sector_size) == 0u))
+ 635              		.loc 1 653 19 view .LVU162
+ 636 00ac A542     		cmp	r5, r4
+ 637 00ae C1D3     		bcc	.L65
+ 654:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               {
+ 638              		.loc 1 654 38 view .LVU163
+ 639 00b0 631E     		subs	r3, r4, #1
+ 654:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               {
+ 640              		.loc 1 654 19 view .LVU164
+ 641 00b2 3B42     		tst	r3, r7
+ 642 00b4 BED1     		bne	.L65
+ 656:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               }
+ 643              		.loc 1 656 29 view .LVU165
+ 644 00b6 0122     		movs	r2, #1
+ 645 00b8 03E0     		b	.L63
+ 646              	.L66:
+ 662:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 {
+ 647              		.loc 1 662 40 view .LVU166
+ 648 00ba 631E     		subs	r3, r4, #1
+ 662:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 {
+ 649              		.loc 1 662 21 view .LVU167
+ 650 00bc 3B42     		tst	r3, r7
+ 651 00be C3D1     		bne	.L68
+ 664:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 }
+ 652              		.loc 1 664 31 view .LVU168
+ 653 00c0 4A46     		mov	r2, r9
+ 654              	.L63:
+ 655              	.LVL63:
+ 674:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+ 656              		.loc 1 674 11 is_stmt 1 view .LVU169
+ 674:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+ 657              		.loc 1 674 14 is_stmt 0 view .LVU170
+ 658 00c2 B8F1000F 		cmp	r8, #0
+ 659 00c6 C1D1     		bne	.L67
+ 676:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 EXTMEM_DRIVER_NOR_SFDP_SectorErase(&extmem_list_config[MemId].NorSfdpObject,
+ 660              		.loc 1 676 13 is_stmt 1 view .LVU171
+ 677:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                    local_address, sector_type))
+ 661              		.loc 1 677 17 is_stmt 0 view .LVU172
+ 662 00c8 AC20     		movs	r0, #172
+ 663 00ca 06FB00F0 		mul	r0, r6, r0
+ 664 00ce 0830     		adds	r0, r0, #8
+ 665 00d0 0B4B     		ldr	r3, .L79
+ 666 00d2 1844     		add	r0, r0, r3
+ 667 00d4 3946     		mov	r1, r7
+ 668 00d6 0430     		adds	r0, r0, #4
+ 669 00d8 FFF7FEFF 		bl	EXTMEM_DRIVER_NOR_SFDP_SectorErase
+ 670              	.LVL64:
+ 676:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                 EXTMEM_DRIVER_NOR_SFDP_SectorErase(&extmem_list_config[MemId].NorSfdpObject,
+ 671              		.loc 1 676 16 discriminator 1 view .LVU173
+ 672 00dc 0028     		cmp	r0, #0
+ 673 00de B5D0     		beq	.L67
+ 680:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             }
+ 674              		.loc 1 680 20 view .LVU174
+ 675 00e0 6FF00208 		mvn	r8, #2
+ 676              	.LVL65:
+ARM GAS  /tmp/ccDnukMx.s 			page 26
+
+
+ 680:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             }
+ 677              		.loc 1 680 20 view .LVU175
+ 678 00e4 B2E7     		b	.L67
+ 679              	.LVL66:
+ 680              	.L74:
+ 638:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           }
+ 681              		.loc 1 638 25 view .LVU176
+ 682 00e6 0322     		movs	r2, #3
+ 683 00e8 EBE7     		b	.L63
+ 684              	.L75:
+ 647:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             }
+ 685              		.loc 1 647 27 view .LVU177
+ 686 00ea 0222     		movs	r2, #2
+ 687 00ec E9E7     		b	.L63
+ 688              	.LVL67:
+ 689              	.L72:
+ 647:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             }
+ 690              		.loc 1 647 27 view .LVU178
+ 691              	.LBE3:
+ 610:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL()
+ 692              		.loc 1 610 24 view .LVU179
+ 693 00ee 6FF00408 		mvn	r8, #4
+ 694              	.LVL68:
+ 695              	.L60:
+ 698:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             }
+ 699:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           }
+ 700:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 701:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 702:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 703:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_NOR_SFDP == 1 */
+ 704:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_SDCARD == 1
+ 705:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_SDCARD:
+ 706:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 707:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Sector Erase operation using the SDCARD driver */
+ 708:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRIVER_SDCARD_OK != EXTMEM_DRIVER_SDCARD_EraseBlock(&extmem_list_config[MemId].S
+ 709:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                        Address, Size))
+ 710:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 711:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 712:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 713:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 714:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 715:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_SDCARD == 1 */
+ 716:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_PSRAM == 1
+ 717:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_PSRAM :
+ 718:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 719:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Functionality not supported in this driver */
+ 720:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_NOTSUPPORTED;
+ 721:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 722:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 723:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_PSRAM == 1 */
+ 724:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_CUSTOM == 1
+ 725:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_CUSTOM :
+ 726:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 727:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Sector Erase operation using the CUSTOM driver */
+ 728:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRV_CUSTOM_OK != EXTMEM_DRIVER_CUSTOM_EraseSector(&extmem_list_config[MemId].Cus
+ 729:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                      Address, Size))
+ 730:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ARM GAS  /tmp/ccDnukMx.s 			page 27
+
+
+ 731:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 732:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 733:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 734:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 735:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_CUSTOM == 1 */
+ 736:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_USER == 1
+ 737:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_USER :
+ 738:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 739:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Sector Erase operation using the USER driver */
+ 740:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DRIVER_USER_StatusTypeDef status = EXTMEM_DRIVER_USER_EraseSector(&extmem_list_confi
+ 741:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                                  Address, Size);
+ 742:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         switch (status)
+ 743:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 744:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           case EXTMEM_DRIVER_USER_NOTSUPPORTED:
+ 745:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             retr = EXTMEM_ERROR_NOTSUPPORTED;
+ 746:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 747:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           case EXTMEM_DRIVER_USER_OK:
+ 748:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 749:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           default:
+ 750:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             retr = EXTMEM_ERROR_DRIVER;
+ 751:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 752:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 753:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 754:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 755:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_USER == 1 */
+ 756:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       /* Unknown type of EXTMEM driver */
+ 757:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       default:
+ 758:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 759:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DEBUG("\terror : unknown memory type\n");
+ 760:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_UNKNOWNMEMORY;
+ 761:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 762:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 763:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     }
+ 764:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   }
+ 765:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   return retr;
+ 696              		.loc 1 765 3 is_stmt 1 view .LVU180
+ 766:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** }
+ 697              		.loc 1 766 1 is_stmt 0 view .LVU181
+ 698 00f2 4046     		mov	r0, r8
+ 699 00f4 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 700              	.LVL69:
+ 701              	.L73:
+ 760:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 702              		.loc 1 760 14 view .LVU182
+ 703 00f8 6FF00108 		mvn	r8, #1
+ 704 00fc F9E7     		b	.L60
+ 705              	.L80:
+ 706 00fe 00BF     		.align	2
+ 707              	.L79:
+ 708 0100 00000000 		.word	extmem_list_config
+ 709              		.cfi_endproc
+ 710              	.LFE886:
+ 712              		.section	.text.EXTMEM_EraseAll,"ax",%progbits
+ 713              		.align	1
+ 714              		.global	EXTMEM_EraseAll
+ 715              		.syntax unified
+ 716              		.thumb
+ARM GAS  /tmp/ccDnukMx.s 			page 28
+
+
+ 717              		.thumb_func
+ 719              	EXTMEM_EraseAll:
+ 720              	.LVL70:
+ 721              	.LFB887:
+ 767:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 768:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+ 769:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @brief Erases all sectors in the external memory.
+ 770:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param MemId Memory identifier.
+ 771:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @retval EXTMEM_StatusTypeDef Status of the operation.
+ 772:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+ 773:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** EXTMEM_StatusTypeDef EXTMEM_EraseAll(uint32_t MemId)
+ 774:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** {
+ 722              		.loc 1 774 1 is_stmt 1 view -0
+ 723              		.cfi_startproc
+ 724              		@ args = 0, pretend = 0, frame = 0
+ 725              		@ frame_needed = 0, uses_anonymous_args = 0
+ 775:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+ 726              		.loc 1 775 3 view .LVU184
+ 776:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL()
+ 777:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 778:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   /* Check the memory ID */
+ 779:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   if (MemId < (sizeof(extmem_list_config) / sizeof(EXTMEM_DefinitionTypeDef)))
+ 727              		.loc 1 779 3 view .LVU185
+ 728              		.loc 1 779 6 is_stmt 0 view .LVU186
+ 729 0000 80B9     		cbnz	r0, .L83
+ 774:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+ 730              		.loc 1 774 1 view .LVU187
+ 731 0002 08B5     		push	{r3, lr}
+ 732              	.LCFI16:
+ 733              		.cfi_def_cfa_offset 8
+ 734              		.cfi_offset 3, -8
+ 735              		.cfi_offset 14, -4
+ 780:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   {
+ 781:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     retr = EXTMEM_OK;
+ 736              		.loc 1 781 5 is_stmt 1 view .LVU188
+ 737              	.LVL71:
+ 782:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 783:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     /* Check type of EXTMEM driver used to access memory */
+ 784:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     switch (extmem_list_config[MemId].MemType)
+ 738              		.loc 1 784 5 view .LVU189
+ 739              		.loc 1 784 38 is_stmt 0 view .LVU190
+ 740 0004 AC22     		movs	r2, #172
+ 741 0006 00FB02F2 		mul	r2, r0, r2
+ 742 000a 0B49     		ldr	r1, .L91
+ 743 000c 8A5C     		ldrb	r2, [r1, r2]	@ zero_extendqisi2
+ 744              		.loc 1 784 5 view .LVU191
+ 745 000e 62B9     		cbnz	r2, .L84
+ 785:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     {
+ 786:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_NOR_SFDP == 1
+ 787:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_NOR_SFDP:
+ 788:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 789:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Mass Erase operation using the NOR SFDP driver */
+ 790:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRIVER_NOR_SFDP_OK != EXTMEM_DRIVER_NOR_SFDP_MassErase(&extmem_list_config[MemId
+ 746              		.loc 1 790 9 is_stmt 1 view .LVU192
+ 747              		.loc 1 790 42 is_stmt 0 view .LVU193
+ 748 0010 AC22     		movs	r2, #172
+ 749 0012 02FB00F0 		mul	r0, r2, r0
+ARM GAS  /tmp/ccDnukMx.s 			page 29
+
+
+ 750              	.LVL72:
+ 751              		.loc 1 790 42 view .LVU194
+ 752 0016 0830     		adds	r0, r0, #8
+ 753 0018 0844     		add	r0, r0, r1
+ 754 001a 0430     		adds	r0, r0, #4
+ 755 001c FFF7FEFF 		bl	EXTMEM_DRIVER_NOR_SFDP_MassErase
+ 756              	.LVL73:
+ 757              		.loc 1 790 12 discriminator 1 view .LVU195
+ 758 0020 30B9     		cbnz	r0, .L90
+ 759              	.L82:
+ 760              	.LVL74:
+ 791:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 792:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 793:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 794:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 795:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 796:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_NOR_SFDP == 1 */
+ 797:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_SDCARD == 1
+ 798:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_SDCARD:
+ 799:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 800:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Mass Erase operation using the SD CARD driver */
+ 801:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRIVER_SDCARD_OK != EXTMEM_DRIVER_SDCARD_Erase(&extmem_list_config[MemId].SdCard
+ 802:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 803:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 804:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 805:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 806:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 807:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_SDCARD == 1 */
+ 808:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_PSRAM == 1
+ 809:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_PSRAM:
+ 810:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 811:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_NOTSUPPORTED;
+ 812:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 813:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 814:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_PSRAM == 1 */
+ 815:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_CUSTOM == 1
+ 816:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_CUSTOM :
+ 817:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 818:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Mass Erase operation using the CUSTOM driver */
+ 819:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRV_CUSTOM_OK != EXTMEM_DRIVER_CUSTOM_MassErase(&extmem_list_config[MemId].Custo
+ 820:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 821:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 822:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 823:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 824:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 825:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_CUSTOM == 1 */
+ 826:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_USER == 1
+ 827:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_USER :
+ 828:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 829:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Mass Erase operation using the USER driver */
+ 830:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DRIVER_USER_StatusTypeDef status = EXTMEM_DRIVER_USER_MassErase(&extmem_list_config[
+ 831:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         switch (status)
+ 832:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 833:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           case EXTMEM_DRIVER_USER_NOTSUPPORTED:
+ 834:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             retr = EXTMEM_ERROR_NOTSUPPORTED;
+ 835:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 836:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           case EXTMEM_DRIVER_USER_OK:
+ARM GAS  /tmp/ccDnukMx.s 			page 30
+
+
+ 837:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 838:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           default:
+ 839:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             retr = EXTMEM_ERROR_DRIVER;
+ 840:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+ 841:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 842:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 843:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 844:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_USER == 1 */
+ 845:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       /* Unknown type of EXTMEM driver */
+ 846:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       default:
+ 847:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 848:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DEBUG("\terror : unknown memory type\n");
+ 849:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_UNKNOWNMEMORY;
+ 850:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 851:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 852:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     }
+ 853:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   }
+ 854:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   return retr;
+ 761              		.loc 1 854 3 is_stmt 1 view .LVU196
+ 855:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** }
+ 762              		.loc 1 855 1 is_stmt 0 view .LVU197
+ 763 0022 08BD     		pop	{r3, pc}
+ 764              	.LVL75:
+ 765              	.L83:
+ 766              	.LCFI17:
+ 767              		.cfi_def_cfa_offset 0
+ 768              		.cfi_restore 3
+ 769              		.cfi_restore 14
+ 775:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL()
+ 770              		.loc 1 775 24 view .LVU198
+ 771 0024 6FF00400 		mvn	r0, #4
+ 772              	.LVL76:
+ 854:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** }
+ 773              		.loc 1 854 3 is_stmt 1 view .LVU199
+ 774              		.loc 1 855 1 is_stmt 0 view .LVU200
+ 775 0028 7047     		bx	lr
+ 776              	.LVL77:
+ 777              	.L84:
+ 778              	.LCFI18:
+ 779              		.cfi_def_cfa_offset 8
+ 780              		.cfi_offset 3, -8
+ 781              		.cfi_offset 14, -4
+ 849:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 782              		.loc 1 849 14 view .LVU201
+ 783 002a 6FF00100 		mvn	r0, #1
+ 784              	.LVL78:
+ 849:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 785              		.loc 1 849 14 view .LVU202
+ 786 002e F8E7     		b	.L82
+ 787              	.L90:
+ 792:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 788              		.loc 1 792 16 view .LVU203
+ 789 0030 6FF00200 		mvn	r0, #2
+ 790 0034 F5E7     		b	.L82
+ 791              	.L92:
+ 792 0036 00BF     		.align	2
+ 793              	.L91:
+ARM GAS  /tmp/ccDnukMx.s 			page 31
+
+
+ 794 0038 00000000 		.word	extmem_list_config
+ 795              		.cfi_endproc
+ 796              	.LFE887:
+ 798              		.section	.text.EXTMEM_GetInfo,"ax",%progbits
+ 799              		.align	1
+ 800              		.global	EXTMEM_GetInfo
+ 801              		.syntax unified
+ 802              		.thumb
+ 803              		.thumb_func
+ 805              	EXTMEM_GetInfo:
+ 806              	.LVL79:
+ 807              	.LFB888:
+ 856:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 857:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+ 858:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @brief Returns information about the external memory.
+ 859:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param MemId Memory identifier.
+ 860:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param Info Pointer to structure to receive memory information.
+ 861:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @retval EXTMEM_StatusTypeDef Status of the operation.
+ 862:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+ 863:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** EXTMEM_StatusTypeDef EXTMEM_GetInfo(uint32_t MemId, void *Info)
+ 864:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** {
+ 808              		.loc 1 864 1 is_stmt 1 view -0
+ 809              		.cfi_startproc
+ 810              		@ args = 0, pretend = 0, frame = 0
+ 811              		@ frame_needed = 0, uses_anonymous_args = 0
+ 865:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+ 812              		.loc 1 865 3 view .LVU205
+ 866:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL()
+ 867:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 868:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   /* Check the memory ID */
+ 869:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   if (MemId < (sizeof(extmem_list_config) / sizeof(EXTMEM_DefinitionTypeDef)))
+ 813              		.loc 1 869 3 view .LVU206
+ 814              		.loc 1 869 6 is_stmt 0 view .LVU207
+ 815 0000 90B9     		cbnz	r0, .L95
+ 864:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+ 816              		.loc 1 864 1 view .LVU208
+ 817 0002 08B5     		push	{r3, lr}
+ 818              	.LCFI19:
+ 819              		.cfi_def_cfa_offset 8
+ 820              		.cfi_offset 3, -8
+ 821              		.cfi_offset 14, -4
+ 822 0004 0346     		mov	r3, r0
+ 870:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   {
+ 871:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     retr = EXTMEM_OK;
+ 823              		.loc 1 871 5 is_stmt 1 view .LVU209
+ 824              	.LVL80:
+ 872:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 873:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     /* Check type of EXTMEM driver used to access memory */
+ 874:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     switch (extmem_list_config[MemId].MemType)
+ 825              		.loc 1 874 5 view .LVU210
+ 826              		.loc 1 874 38 is_stmt 0 view .LVU211
+ 827 0006 AC22     		movs	r2, #172
+ 828 0008 00FB02F2 		mul	r2, r0, r2
+ 829 000c 0948     		ldr	r0, .L101
+ 830              	.LVL81:
+ 831              		.loc 1 874 38 view .LVU212
+ 832 000e 825C     		ldrb	r2, [r0, r2]	@ zero_extendqisi2
+ARM GAS  /tmp/ccDnukMx.s 			page 32
+
+
+ 833              		.loc 1 874 5 view .LVU213
+ 834 0010 6AB9     		cbnz	r2, .L96
+ 875:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     {
+ 876:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_NOR_SFDP == 1
+ 877:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_NOR_SFDP:
+ 878:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 879:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Get Information operation using the NOR SFDP driver */
+ 880:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DRIVER_NOR_SFDP_GetFlashInfo(&extmem_list_config[MemId].NorSfdpObject,
+ 835              		.loc 1 880 9 is_stmt 1 view .LVU214
+ 836 0012 AC22     		movs	r2, #172
+ 837 0014 02FB03F0 		mul	r0, r2, r3
+ 838 0018 0830     		adds	r0, r0, #8
+ 839 001a 064B     		ldr	r3, .L101
+ 840              	.LVL82:
+ 841              		.loc 1 880 9 is_stmt 0 view .LVU215
+ 842 001c 1844     		add	r0, r0, r3
+ 843 001e 0430     		adds	r0, r0, #4
+ 844 0020 FFF7FEFF 		bl	EXTMEM_DRIVER_NOR_SFDP_GetFlashInfo
+ 845              	.LVL83:
+ 881:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                             (EXTMEM_NOR_SFDP_FlashInfoTypeDef *)Info);
+ 882:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 846              		.loc 1 882 9 is_stmt 1 view .LVU216
+ 871:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 847              		.loc 1 871 10 is_stmt 0 view .LVU217
+ 848 0024 0020     		movs	r0, #0
+ 849              	.L94:
+ 850              	.LVL84:
+ 883:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 884:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_NOR_SFDP == 1 */
+ 885:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_SDCARD == 1
+ 886:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_SDCARD :
+ 887:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 888:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Get Information operation using the SDCARD driver */
+ 889:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRIVER_SDCARD_OK != EXTMEM_DRIVER_SDCARD_GetInfo(&extmem_list_config[MemId].SdCa
+ 890:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                     (EXTMEM_DRIVER_SDCARD_InfoTypeD
+ 891:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 892:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 893:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 894:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 895:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 896:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_SDCARD == 1 */
+ 897:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_CUSTOM == 1
+ 898:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_CUSTOM :
+ 899:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 900:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Get Information operation using the CUSTOM driver */
+ 901:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRV_CUSTOM_OK != EXTMEM_DRIVER_CUSTOM_GetInfo(&extmem_list_config[MemId].CustomO
+ 902:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                  (EXTMEM_DRIVER_CUSTOM_MemInfoTypeD
+ 903:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 904:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 905:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 906:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 907:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 908:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_CUSTOM == 1 */
+ 909:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_USER == 1
+ 910:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_USER :
+ 911:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 912:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Get Information operation using the USER driver */
+ARM GAS  /tmp/ccDnukMx.s 			page 33
+
+
+ 913:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRIVER_USER_OK != EXTMEM_DRIVER_USER_GetInfo(&extmem_list_config[MemId].UserObje
+ 914:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                 (EXTMEM_USER_MemInfoTypeDef *)Info)
+ 915:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 916:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 917:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 918:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 919:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 920:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_USER == 1 */
+ 921:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_PSRAM == 1
+ 922:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_PSRAM :
+ 923:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Functionality not supported in this driver */
+ 924:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_NOTSUPPORTED;
+ 925:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 926:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_PSRAM == 1 */
+ 927:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       /* Unknown type of EXTMEM driver */
+ 928:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       default:
+ 929:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 930:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DEBUG("\terror : unknown memory type\n");
+ 931:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_UNKNOWNMEMORY;
+ 932:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 933:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 934:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     }
+ 935:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   }
+ 936:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   return retr;
+ 851              		.loc 1 936 3 is_stmt 1 view .LVU218
+ 937:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** }
+ 852              		.loc 1 937 1 is_stmt 0 view .LVU219
+ 853 0026 08BD     		pop	{r3, pc}
+ 854              	.LVL85:
+ 855              	.L95:
+ 856              	.LCFI20:
+ 857              		.cfi_def_cfa_offset 0
+ 858              		.cfi_restore 3
+ 859              		.cfi_restore 14
+ 865:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL()
+ 860              		.loc 1 865 24 view .LVU220
+ 861 0028 6FF00400 		mvn	r0, #4
+ 862              	.LVL86:
+ 936:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** }
+ 863              		.loc 1 936 3 is_stmt 1 view .LVU221
+ 864              		.loc 1 937 1 is_stmt 0 view .LVU222
+ 865 002c 7047     		bx	lr
+ 866              	.LVL87:
+ 867              	.L96:
+ 868              	.LCFI21:
+ 869              		.cfi_def_cfa_offset 8
+ 870              		.cfi_offset 3, -8
+ 871              		.cfi_offset 14, -4
+ 931:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 872              		.loc 1 931 14 view .LVU223
+ 873 002e 6FF00100 		mvn	r0, #1
+ 874 0032 F8E7     		b	.L94
+ 875              	.L102:
+ 876              		.align	2
+ 877              	.L101:
+ 878 0034 00000000 		.word	extmem_list_config
+ 879              		.cfi_endproc
+ARM GAS  /tmp/ccDnukMx.s 			page 34
+
+
+ 880              	.LFE888:
+ 882              		.section	.text.EXTMEM_MemoryMappedMode,"ax",%progbits
+ 883              		.align	1
+ 884              		.global	EXTMEM_MemoryMappedMode
+ 885              		.syntax unified
+ 886              		.thumb
+ 887              		.thumb_func
+ 889              	EXTMEM_MemoryMappedMode:
+ 890              	.LVL88:
+ 891              	.LFB889:
+ 938:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 939:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+ 940:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @brief Enables or disables the memory mapped mode.
+ 941:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param MemId Memory identifier.
+ 942:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param State Enable or disable state (@ref EXTMEM_StateTypeDef).
+ 943:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @retval EXTMEM_StatusTypeDef Status of the operation.
+ 944:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+ 945:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** EXTMEM_StatusTypeDef EXTMEM_MemoryMappedMode(uint32_t MemId, EXTMEM_StateTypeDef State)
+ 946:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** {
+ 892              		.loc 1 946 1 is_stmt 1 view -0
+ 893              		.cfi_startproc
+ 894              		@ args = 0, pretend = 0, frame = 0
+ 895              		@ frame_needed = 0, uses_anonymous_args = 0
+ 947:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+ 896              		.loc 1 947 3 view .LVU225
+ 948:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL();
+ 897              		.loc 1 948 21 view .LVU226
+ 949:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 950:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   /* Check the memory ID */
+ 951:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   if (MemId < (sizeof(extmem_list_config) / sizeof(EXTMEM_DefinitionTypeDef)))
+ 898              		.loc 1 951 3 view .LVU227
+ 899              		.loc 1 951 6 is_stmt 0 view .LVU228
+ 900 0000 08BB     		cbnz	r0, .L106
+ 946:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+ 901              		.loc 1 946 1 view .LVU229
+ 902 0002 08B5     		push	{r3, lr}
+ 903              	.LCFI22:
+ 904              		.cfi_def_cfa_offset 8
+ 905              		.cfi_offset 3, -8
+ 906              		.cfi_offset 14, -4
+ 907 0004 0346     		mov	r3, r0
+ 952:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   {
+ 953:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     retr = EXTMEM_OK;
+ 908              		.loc 1 953 5 is_stmt 1 view .LVU230
+ 909              	.LVL89:
+ 954:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 955:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     /* Check type of EXTMEM driver used to access memory */
+ 956:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     switch (extmem_list_config[MemId].MemType)
+ 910              		.loc 1 956 5 view .LVU231
+ 911              		.loc 1 956 38 is_stmt 0 view .LVU232
+ 912 0006 AC22     		movs	r2, #172
+ 913 0008 00FB02F2 		mul	r2, r0, r2
+ 914 000c 1248     		ldr	r0, .L115
+ 915              	.LVL90:
+ 916              		.loc 1 956 38 view .LVU233
+ 917 000e 825C     		ldrb	r2, [r0, r2]	@ zero_extendqisi2
+ 918              		.loc 1 956 5 view .LVU234
+ARM GAS  /tmp/ccDnukMx.s 			page 35
+
+
+ 919 0010 E2B9     		cbnz	r2, .L107
+ 957:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     {
+ 958:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_NOR_SFDP == 1
+ 959:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_NOR_SFDP:
+ 960:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 961:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the memory Map operation using the NOR SFDP driver */
+ 962:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_ENABLE == State)
+ 920              		.loc 1 962 9 is_stmt 1 view .LVU235
+ 921              		.loc 1 962 12 is_stmt 0 view .LVU236
+ 922 0012 51B9     		cbnz	r1, .L105
+ 963:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 964:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           /* Start the memory mapped mode */
+ 965:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           if (EXTMEM_DRIVER_NOR_SFDP_OK !=
+ 923              		.loc 1 965 11 is_stmt 1 view .LVU237
+ 966:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               EXTMEM_DRIVER_NOR_SFDP_Enable_MemoryMappedMode(&extmem_list_config[MemId].NorSfdpObje
+ 924              		.loc 1 966 15 is_stmt 0 view .LVU238
+ 925 0014 AC22     		movs	r2, #172
+ 926 0016 02FB03F0 		mul	r0, r2, r3
+ 927 001a 0830     		adds	r0, r0, #8
+ 928 001c 0E4B     		ldr	r3, .L115
+ 929              	.LVL91:
+ 930              		.loc 1 966 15 view .LVU239
+ 931 001e 1844     		add	r0, r0, r3
+ 932 0020 0430     		adds	r0, r0, #4
+ 933 0022 FFF7FEFF 		bl	EXTMEM_DRIVER_NOR_SFDP_Enable_MemoryMappedMode
+ 934              	.LVL92:
+ 965:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               EXTMEM_DRIVER_NOR_SFDP_Enable_MemoryMappedMode(&extmem_list_config[MemId].NorSfdpObje
+ 935              		.loc 1 965 14 discriminator 1 view .LVU240
+ 936 0026 A0B9     		cbnz	r0, .L114
+ 937              	.L104:
+ 938              	.LVL93:
+ 967:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+ 968:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             return EXTMEM_ERROR_DRIVER;
+ 969:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           }
+ 970:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 971:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         else
+ 972:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 973:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           /* Stop the memory mapped mode */
+ 974:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           if (EXTMEM_DRIVER_NOR_SFDP_OK !=
+ 975:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               EXTMEM_DRIVER_NOR_SFDP_Disable_MemoryMappedMode(&extmem_list_config[MemId].NorSfdpObj
+ 976:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+ 977:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             return EXTMEM_ERROR_DRIVER;
+ 978:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           }
+ 979:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 980:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 981:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+ 982:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_NOR_SFDP == 1 */
+ 983:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_PSRAM == 1
+ 984:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_PSRAM :
+ 985:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+ 986:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the memory Map operation using the PSRAM driver */
+ 987:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_ENABLE == State)
+ 988:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 989:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           /* Start the memory mapped mode */
+ 990:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           if (EXTMEM_DRIVER_PSRAM_OK !=
+ 991:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               EXTMEM_DRIVER_PSRAM_Enable_MemoryMappedMode(&extmem_list_config[MemId].PsramObject))
+ 992:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+ARM GAS  /tmp/ccDnukMx.s 			page 36
+
+
+ 993:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             return EXTMEM_ERROR_DRIVER;
+ 994:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           }
+ 995:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 996:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         else
+ 997:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ 998:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           /* Stop the memory mapped mode */
+ 999:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           if (EXTMEM_DRIVER_PSRAM_OK !=
+1000:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               EXTMEM_DRIVER_PSRAM_Disable_MemoryMappedMode(&extmem_list_config[MemId].PsramObject))
+1001:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+1002:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             return EXTMEM_ERROR_DRIVER;
+1003:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           }
+1004:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+1005:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+1006:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+1007:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_PSRAM == 1 */
+1008:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_CUSTOM == 1
+1009:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_CUSTOM :
+1010:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+1011:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the memory Map operation using the CUSTOM driver */
+1012:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_ENABLE == State)
+1013:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+1014:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           /* Start the memory mapped mode */
+1015:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           if (EXTMEM_DRV_CUSTOM_OK !=
+1016:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               EXTMEM_DRIVER_CUSTOM_Enable_MemoryMappedMode(&extmem_list_config[MemId].CustomObject)
+1017:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+1018:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             return EXTMEM_ERROR_DRIVER;
+1019:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           }
+1020:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+1021:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         else
+1022:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+1023:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           /* Stop the memory mapped mode */
+1024:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           if (EXTMEM_DRV_CUSTOM_OK !=
+1025:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               EXTMEM_DRIVER_CUSTOM_Disable_MemoryMappedMode(&extmem_list_config[MemId].CustomObject
+1026:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+1027:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             return EXTMEM_ERROR_DRIVER;
+1028:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           }
+1029:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+1030:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+1031:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+1032:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_CUSTOM == 1 */
+1033:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_USER == 1
+1034:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_USER :
+1035:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+1036:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the memory Map operation using the USER driver */
+1037:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DRIVER_USER_StatusTypeDef status;
+1038:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_ENABLE == State)
+1039:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+1040:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           /* Start the memory mapped mode */
+1041:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           status = EXTMEM_DRIVER_USER_Enable_MemoryMappedMode(&extmem_list_config[MemId].UserObject
+1042:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+1043:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         else
+1044:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+1045:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           /* Stop the memory mapped mode */
+1046:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           status = EXTMEM_DRIVER_USER_Disable_MemoryMappedMode(&extmem_list_config[MemId].UserObjec
+1047:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+1048:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         switch (status)
+1049:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+ARM GAS  /tmp/ccDnukMx.s 			page 37
+
+
+1050:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           case EXTMEM_DRIVER_USER_NOTSUPPORTED:
+1051:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             retr = EXTMEM_ERROR_NOTSUPPORTED;
+1052:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+1053:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           case EXTMEM_DRIVER_USER_OK:
+1054:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+1055:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           default:
+1056:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             retr = EXTMEM_ERROR_DRIVER;
+1057:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+1058:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+1059:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+1060:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+1061:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_USER == 1 */
+1062:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_SDCARD == 1
+1063:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_SDCARD :
+1064:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Functionality not supported in this driver */
+1065:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_NOTSUPPORTED;
+1066:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+1067:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_SDCARD == 1 */
+1068:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       /* Unknown type of EXTMEM driver */
+1069:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       default:
+1070:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+1071:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DEBUG("\terror : unknown memory type\n");
+1072:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_UNKNOWNMEMORY;
+1073:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+1074:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+1075:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     }
+1076:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   }
+1077:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   return retr;
+1078:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** }
+ 939              		.loc 1 1078 1 view .LVU241
+ 940 0028 08BD     		pop	{r3, pc}
+ 941              	.LVL94:
+ 942              	.L105:
+ 974:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               EXTMEM_DRIVER_NOR_SFDP_Disable_MemoryMappedMode(&extmem_list_config[MemId].NorSfdpObj
+ 943              		.loc 1 974 11 is_stmt 1 view .LVU242
+ 975:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+ 944              		.loc 1 975 15 is_stmt 0 view .LVU243
+ 945 002a AC22     		movs	r2, #172
+ 946 002c 02FB03F0 		mul	r0, r2, r3
+ 947 0030 0830     		adds	r0, r0, #8
+ 948 0032 094B     		ldr	r3, .L115
+ 949              	.LVL95:
+ 975:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           {
+ 950              		.loc 1 975 15 view .LVU244
+ 951 0034 1844     		add	r0, r0, r3
+ 952 0036 0430     		adds	r0, r0, #4
+ 953 0038 FFF7FEFF 		bl	EXTMEM_DRIVER_NOR_SFDP_Disable_MemoryMappedMode
+ 954              	.LVL96:
+ 974:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****               EXTMEM_DRIVER_NOR_SFDP_Disable_MemoryMappedMode(&extmem_list_config[MemId].NorSfdpObj
+ 955              		.loc 1 974 14 discriminator 1 view .LVU245
+ 956 003c 0028     		cmp	r0, #0
+ 957 003e F3D0     		beq	.L104
+ 977:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           }
+ 958              		.loc 1 977 20 view .LVU246
+ 959 0040 6FF00200 		mvn	r0, #2
+ 960 0044 F0E7     		b	.L104
+ 961              	.LVL97:
+ARM GAS  /tmp/ccDnukMx.s 			page 38
+
+
+ 962              	.L106:
+ 963              	.LCFI23:
+ 964              		.cfi_def_cfa_offset 0
+ 965              		.cfi_restore 3
+ 966              		.cfi_restore 14
+ 947:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL();
+ 967              		.loc 1 947 24 view .LVU247
+ 968 0046 6FF00400 		mvn	r0, #4
+ 969              	.LVL98:
+ 970              		.loc 1 1078 1 view .LVU248
+ 971 004a 7047     		bx	lr
+ 972              	.LVL99:
+ 973              	.L107:
+ 974              	.LCFI24:
+ 975              		.cfi_def_cfa_offset 8
+ 976              		.cfi_offset 3, -8
+ 977              		.cfi_offset 14, -4
+1072:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ 978              		.loc 1 1072 14 view .LVU249
+ 979 004c 6FF00100 		mvn	r0, #1
+ 980 0050 EAE7     		b	.L104
+ 981              	.LVL100:
+ 982              	.L114:
+ 968:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           }
+ 983              		.loc 1 968 20 view .LVU250
+ 984 0052 6FF00200 		mvn	r0, #2
+ 985 0056 E7E7     		b	.L104
+ 986              	.L116:
+ 987              		.align	2
+ 988              	.L115:
+ 989 0058 00000000 		.word	extmem_list_config
+ 990              		.cfi_endproc
+ 991              	.LFE889:
+ 993              		.section	.text.EXTMEM_GetMapAddress,"ax",%progbits
+ 994              		.align	1
+ 995              		.global	EXTMEM_GetMapAddress
+ 996              		.syntax unified
+ 997              		.thumb
+ 998              		.thumb_func
+ 1000              	EXTMEM_GetMapAddress:
+ 1001              	.LVL101:
+ 1002              	.LFB890:
+1079:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+1080:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** /**
+1081:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @brief Gets the base address of the mapped external memory.
+1082:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param MemId Memory identifier.
+1083:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @param BaseAddress Pointer to variable to receive the base address.
+1084:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   * @retval EXTMEM_StatusTypeDef Status of the operation.
+1085:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   */
+1086:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** EXTMEM_StatusTypeDef EXTMEM_GetMapAddress(uint32_t MemId, uint32_t *BaseAddress)
+1087:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** {
+ 1003              		.loc 1 1087 1 is_stmt 1 view -0
+ 1004              		.cfi_startproc
+ 1005              		@ args = 0, pretend = 0, frame = 0
+ 1006              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1007              		@ link register save eliminated.
+1088:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_StatusTypeDef retr = EXTMEM_ERROR_INVALID_ID;
+ARM GAS  /tmp/ccDnukMx.s 			page 39
+
+
+ 1008              		.loc 1 1088 3 view .LVU252
+1089:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL();
+ 1009              		.loc 1 1089 21 view .LVU253
+1090:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+1091:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   /* Check the memory ID */
+1092:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   if (MemId < (sizeof(extmem_list_config) / sizeof(EXTMEM_DefinitionTypeDef)))
+ 1010              		.loc 1 1092 3 view .LVU254
+ 1011              		.loc 1 1092 6 is_stmt 0 view .LVU255
+ 1012 0000 0246     		mov	r2, r0
+ 1013 0002 18BB     		cbnz	r0, .L123
+1093:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   {
+1094:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     retr = EXTMEM_OK;
+ 1014              		.loc 1 1094 5 is_stmt 1 view .LVU256
+ 1015              	.LVL102:
+1095:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+1096:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     /* Check type of EXTMEM driver used to access memory */
+1097:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     switch (extmem_list_config[MemId].MemType)
+ 1016              		.loc 1 1097 5 view .LVU257
+ 1017              		.loc 1 1097 38 is_stmt 0 view .LVU258
+ 1018 0004 AC23     		movs	r3, #172
+ 1019 0006 00FB03F3 		mul	r3, r0, r3
+ 1020 000a 1548     		ldr	r0, .L128
+ 1021              	.LVL103:
+ 1022              		.loc 1 1097 38 view .LVU259
+ 1023 000c C35C     		ldrb	r3, [r0, r3]	@ zero_extendqisi2
+ 1024              		.loc 1 1097 5 view .LVU260
+ 1025 000e 0BB1     		cbz	r3, .L119
+ 1026 0010 022B     		cmp	r3, #2
+ 1027 0012 1ED1     		bne	.L124
+ 1028              	.L119:
+1098:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     {
+1099:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_NOR_SFDP == 1 || EXTMEM_DRIVER_PSRAM == 1
+1100:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_PSRAM:
+1101:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_NOR_SFDP:
+1102:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+1103:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Define Map address based on Instance used for memory access */
+1104:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if defined(XSPI1)
+1105:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (((XSPI_HandleTypeDef *)extmem_list_config[MemId].Handle)->Instance == XSPI1)
+ 1029              		.loc 1 1105 9 is_stmt 1 view .LVU261
+ 1030              		.loc 1 1105 61 is_stmt 0 view .LVU262
+ 1031 0014 124B     		ldr	r3, .L128
+ 1032 0016 AC20     		movs	r0, #172
+ 1033 0018 00FB0233 		mla	r3, r0, r2, r3
+ 1034 001c 5B68     		ldr	r3, [r3, #4]
+ 1035              		.loc 1 1105 69 view .LVU263
+ 1036 001e 1B68     		ldr	r3, [r3]
+ 1037              		.loc 1 1105 12 view .LVU264
+ 1038 0020 104A     		ldr	r2, .L128+4
+ 1039              	.LVL104:
+ 1040              		.loc 1 1105 12 view .LVU265
+ 1041 0022 9342     		cmp	r3, r2
+ 1042 0024 0AD0     		beq	.L126
+1106:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+1107:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           *BaseAddress = XSPI1_BASE;
+1108:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+1109:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if defined(XSPI2)
+1110:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         else if (((XSPI_HandleTypeDef *)extmem_list_config[MemId].Handle)->Instance == XSPI2)
+ARM GAS  /tmp/ccDnukMx.s 			page 40
+
+
+ 1043              		.loc 1 1110 14 is_stmt 1 view .LVU266
+ 1044              		.loc 1 1110 17 is_stmt 0 view .LVU267
+ 1045 0026 104A     		ldr	r2, .L128+8
+ 1046 0028 9342     		cmp	r3, r2
+ 1047 002a 0BD0     		beq	.L127
+1111:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+1112:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           *BaseAddress = XSPI2_BASE;
+1113:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+1114:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if defined(XSPI3)
+1115:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         else if (((XSPI_HandleTypeDef *)extmem_list_config[MemId].Handle)->Instance == XSPI3)
+ 1048              		.loc 1 1115 14 is_stmt 1 view .LVU268
+ 1049              		.loc 1 1115 17 is_stmt 0 view .LVU269
+ 1050 002c 0F4A     		ldr	r2, .L128+12
+ 1051 002e 9342     		cmp	r3, r2
+ 1052 0030 12D1     		bne	.L125
+1116:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+1117:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           *BaseAddress = XSPI3_BASE;
+ 1053              		.loc 1 1117 11 is_stmt 1 view .LVU270
+ 1054              		.loc 1 1117 24 is_stmt 0 view .LVU271
+ 1055 0032 4FF00043 		mov	r3, #-2147483648
+ 1056 0036 0B60     		str	r3, [r1]
+ 1057              	.L121:
+1094:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+ 1058              		.loc 1 1094 10 view .LVU272
+ 1059 0038 0020     		movs	r0, #0
+ 1060 003a 7047     		bx	lr
+ 1061              	.L126:
+1107:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 1062              		.loc 1 1107 11 is_stmt 1 view .LVU273
+1107:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 1063              		.loc 1 1107 24 is_stmt 0 view .LVU274
+ 1064 003c 4FF01043 		mov	r3, #-1879048192
+ 1065 0040 0B60     		str	r3, [r1]
+ 1066 0042 F9E7     		b	.L121
+ 1067              	.L127:
+1112:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 1068              		.loc 1 1112 11 is_stmt 1 view .LVU275
+1112:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+ 1069              		.loc 1 1112 24 is_stmt 0 view .LVU276
+ 1070 0044 4FF0E043 		mov	r3, #1879048192
+ 1071 0048 0B60     		str	r3, [r1]
+ 1072 004a F5E7     		b	.L121
+ 1073              	.LVL105:
+ 1074              	.L123:
+1088:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL();
+ 1075              		.loc 1 1088 24 view .LVU277
+ 1076 004c 6FF00400 		mvn	r0, #4
+ 1077              	.LVL106:
+1088:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   EXTMEM_FUNC_CALL();
+ 1078              		.loc 1 1088 24 view .LVU278
+ 1079 0050 7047     		bx	lr
+ 1080              	.LVL107:
+ 1081              	.L124:
+1097:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     {
+ 1082              		.loc 1 1097 5 view .LVU279
+ 1083 0052 6FF00100 		mvn	r0, #1
+ 1084 0056 7047     		bx	lr
+ARM GAS  /tmp/ccDnukMx.s 			page 41
+
+
+ 1085              	.LVL108:
+ 1086              	.L125:
+1118:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+1119:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* XSPI3 */
+1120:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* XSPI2 */
+1121:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #else  /* XSPI1 */
+1122:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (((XSPI_HandleTypeDef *)extmem_list_config[MemId].Handle)->Instance == OCTOSPI1)
+1123:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+1124:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           *BaseAddress = OCTOSPI1_BASE;
+1125:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+1126:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif  /* XSPI1 */
+1127:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         else
+1128:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+1129:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+ 1087              		.loc 1 1129 16 view .LVU280
+ 1088 0058 6FF00200 		mvn	r0, #2
+ 1089              	.LVL109:
+1130:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+1131:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** 
+1132:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+1133:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+1134:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_NOR_SFDP == 1 || EXTMEM_DRIVER_PSRAM == 1 */
+1135:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_SDCARD == 1
+1136:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_SDCARD :
+1137:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+1138:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_NOTSUPPORTED;
+1139:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+1140:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+1141:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_SDCARD == 1 */
+1142:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_CUSTOM == 1
+1143:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_CUSTOM:
+1144:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+1145:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Get Map Address operation using the CUSTOM driver */
+1146:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         if (EXTMEM_DRV_CUSTOM_OK != EXTMEM_DRIVER_CUSTOM_GetMapAddress(&extmem_list_config[MemId].C
+1147:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****                                                                        BaseAddress))
+1148:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+1149:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           retr = EXTMEM_ERROR_DRIVER;
+1150:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+1151:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+1152:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+1153:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_CUSTOM == 1 */
+1154:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #if EXTMEM_DRIVER_USER == 1
+1155:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       case EXTMEM_USER:
+1156:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+1157:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         /* Perform the Get Map Address operation using the USER driver */
+1158:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         switch (EXTMEM_DRIVER_USER_GetMapAddress(&extmem_list_config[MemId].UserObject, BaseAddress
+1159:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         {
+1160:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           case EXTMEM_DRIVER_USER_OK:
+1161:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+1162:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           case EXTMEM_DRIVER_USER_NOTSUPPORTED:
+1163:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             retr = EXTMEM_ERROR_NOTSUPPORTED;
+1164:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+1165:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****           default :
+1166:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             retr = EXTMEM_ERROR_DRIVER;
+1167:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****             break;
+1168:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         }
+1169:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+ARM GAS  /tmp/ccDnukMx.s 			page 42
+
+
+1170:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+1171:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** #endif /* EXTMEM_DRIVER_USER == 1 */
+1172:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       /* Unknown type of EXTMEM driver */
+1173:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       default :
+1174:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       {
+1175:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         EXTMEM_DEBUG("\terror : unknown memory type\n");
+1176:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         retr = EXTMEM_ERROR_UNKNOWNMEMORY;
+1177:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****         break;
+1178:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****       }
+1179:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****     }
+1180:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   }
+1181:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c ****   return retr;
+ 1090              		.loc 1 1181 3 is_stmt 1 view .LVU281
+1182:../Drivers/STM32_ExtMem_Manager/stm32_extmem.c **** }
+ 1091              		.loc 1 1182 1 is_stmt 0 view .LVU282
+ 1092 005c 7047     		bx	lr
+ 1093              	.L129:
+ 1094 005e 00BF     		.align	2
+ 1095              	.L128:
+ 1096 0060 00000000 		.word	extmem_list_config
+ 1097 0064 00500258 		.word	1476546560
+ 1098 0068 00A00258 		.word	1476567040
+ 1099 006c 00D00258 		.word	1476579328
+ 1100              		.cfi_endproc
+ 1101              	.LFE890:
+ 1103              		.global	extmem_list_config
+ 1104              		.section	.bss.extmem_list_config,"aw",%nobits
+ 1105              		.align	2
+ 1108              	extmem_list_config:
+ 1109 0000 00000000 		.space	172
+ 1109      00000000 
+ 1109      00000000 
+ 1109      00000000 
+ 1109      00000000 
+ 1110              		.text
+ 1111              	.Letext0:
+ 1112              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 1113              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 1114              		.file 4 "../Drivers/STM32_ExtMem_Manager/stm32_extmem.h"
+ 1115              		.file 5 "../Drivers/CMSIS/Device/ST/STM32N6xx/Include/stm32n657xx.h"
+ 1116              		.file 6 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_def.h"
+ 1117              		.file 7 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dma.h"
+ 1118              		.file 8 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dma_ex.h"
+ 1119              		.file 9 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_xspi.h"
+ 1120              		.file 10 "../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi_type.h"
+ 1121              		.file 11 "../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver_type.h"
+ 1122              		.file 12 "../Drivers/STM32_ExtMem_Manager/stm32_extmem_type.h"
+ 1123              		.file 13 "../Drivers/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver_api.h"
+ 1124              		.file 14 "Inc/stm32_extmem_conf.h"
+ARM GAS  /tmp/ccDnukMx.s 			page 43
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32_extmem.c
+     /tmp/ccDnukMx.s:26     .text.EXTMEM_Init:00000000 $t
+     /tmp/ccDnukMx.s:32     .text.EXTMEM_Init:00000000 EXTMEM_Init
+     /tmp/ccDnukMx.s:117    .text.EXTMEM_Init:00000044 $d
+     /tmp/ccDnukMx.s:1108   .bss.extmem_list_config:00000000 extmem_list_config
+     /tmp/ccDnukMx.s:122    .text.EXTMEM_DeInit:00000000 $t
+     /tmp/ccDnukMx.s:128    .text.EXTMEM_DeInit:00000000 EXTMEM_DeInit
+     /tmp/ccDnukMx.s:201    .text.EXTMEM_DeInit:00000030 $d
+     /tmp/ccDnukMx.s:206    .text.EXTMEM_Read:00000000 $t
+     /tmp/ccDnukMx.s:212    .text.EXTMEM_Read:00000000 EXTMEM_Read
+     /tmp/ccDnukMx.s:287    .text.EXTMEM_Read:0000003c $d
+     /tmp/ccDnukMx.s:292    .text.EXTMEM_Write:00000000 $t
+     /tmp/ccDnukMx.s:298    .text.EXTMEM_Write:00000000 EXTMEM_Write
+     /tmp/ccDnukMx.s:373    .text.EXTMEM_Write:0000003c $d
+     /tmp/ccDnukMx.s:378    .text.EXTMEM_WriteInMappedMode:00000000 $t
+     /tmp/ccDnukMx.s:384    .text.EXTMEM_WriteInMappedMode:00000000 EXTMEM_WriteInMappedMode
+     /tmp/ccDnukMx.s:459    .text.EXTMEM_WriteInMappedMode:0000003c $d
+     /tmp/ccDnukMx.s:464    .text.EXTMEM_EraseSector:00000000 $t
+     /tmp/ccDnukMx.s:470    .text.EXTMEM_EraseSector:00000000 EXTMEM_EraseSector
+     /tmp/ccDnukMx.s:708    .text.EXTMEM_EraseSector:00000100 $d
+     /tmp/ccDnukMx.s:713    .text.EXTMEM_EraseAll:00000000 $t
+     /tmp/ccDnukMx.s:719    .text.EXTMEM_EraseAll:00000000 EXTMEM_EraseAll
+     /tmp/ccDnukMx.s:794    .text.EXTMEM_EraseAll:00000038 $d
+     /tmp/ccDnukMx.s:799    .text.EXTMEM_GetInfo:00000000 $t
+     /tmp/ccDnukMx.s:805    .text.EXTMEM_GetInfo:00000000 EXTMEM_GetInfo
+     /tmp/ccDnukMx.s:878    .text.EXTMEM_GetInfo:00000034 $d
+     /tmp/ccDnukMx.s:883    .text.EXTMEM_MemoryMappedMode:00000000 $t
+     /tmp/ccDnukMx.s:889    .text.EXTMEM_MemoryMappedMode:00000000 EXTMEM_MemoryMappedMode
+     /tmp/ccDnukMx.s:989    .text.EXTMEM_MemoryMappedMode:00000058 $d
+     /tmp/ccDnukMx.s:994    .text.EXTMEM_GetMapAddress:00000000 $t
+     /tmp/ccDnukMx.s:1000   .text.EXTMEM_GetMapAddress:00000000 EXTMEM_GetMapAddress
+     /tmp/ccDnukMx.s:1096   .text.EXTMEM_GetMapAddress:00000060 $d
+     /tmp/ccDnukMx.s:1105   .bss.extmem_list_config:00000000 $d
+
+UNDEFINED SYMBOLS
+EXTMEM_DRIVER_NOR_SFDP_Init
+EXTMEM_DRIVER_NOR_SFDP_DeInit
+EXTMEM_DRIVER_NOR_SFDP_Read
+EXTMEM_DRIVER_NOR_SFDP_Write
+EXTMEM_DRIVER_NOR_SFDP_WriteInMappedMode
+EXTMEM_DRIVER_NOR_SFDP_SectorErase
+EXTMEM_DRIVER_NOR_SFDP_MassErase
+EXTMEM_DRIVER_NOR_SFDP_GetFlashInfo
+EXTMEM_DRIVER_NOR_SFDP_Enable_MemoryMappedMode
+EXTMEM_DRIVER_NOR_SFDP_Disable_MemoryMappedMode
