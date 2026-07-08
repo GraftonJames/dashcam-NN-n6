@@ -2,3 +2,5 @@
 Appli/build/
 FSBL/build/
 *_signed.bin
+.claude/
+.gdb_history
