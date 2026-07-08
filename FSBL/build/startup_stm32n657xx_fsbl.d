@@ -1,1 +1,0 @@
-build/startup_stm32n657xx_fsbl.o: startup_stm32n657xx_fsbl.s
