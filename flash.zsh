@@ -12,6 +12,8 @@ STM_PROG_PATH="/opt/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.
 STM_PROJ_PATH="/home/james/proj/dashcam-NN-n6"
 
 
+/opt/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.linux64_2.2.400.202601091506/tools/bin/STM32_Programmer_CLI \
+ -c port=SWD mode=HOTPLUG -el "$N6_LOADER" -e all
 # Flash FSBL
 sudo "$STM_PROG_PATH" \
   -c port=SWD mode=HOTPLUG reset=SWrst\

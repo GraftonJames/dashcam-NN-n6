@@ -118,10 +118,13 @@ int main(void)
     Error_Handler();
   }
 
+  printf("FSBL: calling BOOT_Application\r\n");
   if (BOOT_OK != BOOT_Application())
   {
+    printf("FSBL: BOOT_Application FAILED\r\n");
     Error_Handler();
   }
+  printf("FSBL: BOOT_Application returned OK (should never print)\r\n");
 	BSP_LED_On(LED_GREEN);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
