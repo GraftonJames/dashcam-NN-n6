@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cch9jK6u.s 			page 1
+ARM GAS  /tmp/ccGQI1lF.s 			page 1
 
 
    1              		.arch armv8.1-m.main
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
   23:Inc/partition_stm32n657xx.h **** * not use this file except in compliance with the License.
   24:Inc/partition_stm32n657xx.h **** * You may obtain a copy of the License at
   25:Inc/partition_stm32n657xx.h **** *
-ARM GAS  /tmp/cch9jK6u.s 			page 2
+ARM GAS  /tmp/ccGQI1lF.s 			page 2
 
 
   26:Inc/partition_stm32n657xx.h **** * http://www.apache.org/licenses/LICENSE-2.0
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
   80:Inc/partition_stm32n657xx.h **** 
   81:Inc/partition_stm32n657xx.h **** /*
   82:Inc/partition_stm32n657xx.h **** //     <o>Start Address <0-0xFFFFFFE0>
-ARM GAS  /tmp/cch9jK6u.s 			page 3
+ARM GAS  /tmp/ccGQI1lF.s 			page 3
 
 
   83:Inc/partition_stm32n657xx.h **** */
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  137:Inc/partition_stm32n657xx.h **** //     <o>End Address <0x1F-0xFFFFFFFF>
  138:Inc/partition_stm32n657xx.h **** */
  139:Inc/partition_stm32n657xx.h **** #define SAU_INIT_END2       0x00000000      /* end address of SAU region 2 */
-ARM GAS  /tmp/cch9jK6u.s 			page 4
+ARM GAS  /tmp/ccGQI1lF.s 			page 4
 
 
  140:Inc/partition_stm32n657xx.h **** 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  194:Inc/partition_stm32n657xx.h **** //     <o>Region is
  195:Inc/partition_stm32n657xx.h **** //         <0=>Non-Secure
  196:Inc/partition_stm32n657xx.h **** //         <1=>Secure, Non-Secure Callable
-ARM GAS  /tmp/cch9jK6u.s 			page 5
+ARM GAS  /tmp/ccGQI1lF.s 			page 5
 
 
  197:Inc/partition_stm32n657xx.h **** */
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  251:Inc/partition_stm32n657xx.h **** /*
  252:Inc/partition_stm32n657xx.h **** //   </e>
  253:Inc/partition_stm32n657xx.h **** */
-ARM GAS  /tmp/cch9jK6u.s 			page 6
+ARM GAS  /tmp/ccGQI1lF.s 			page 6
 
 
  254:Inc/partition_stm32n657xx.h **** 
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  308:Inc/partition_stm32n657xx.h **** //     <1=> Lowered to 0x04-0x07
  309:Inc/partition_stm32n657xx.h **** //   <i> Value for SCB->AIRCR register bit PRIS
  310:Inc/partition_stm32n657xx.h **** */
-ARM GAS  /tmp/cch9jK6u.s 			page 7
+ARM GAS  /tmp/ccGQI1lF.s 			page 7
 
 
  311:Inc/partition_stm32n657xx.h **** #define SCB_AIRCR_PRIS_VAL      0
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  365:Inc/partition_stm32n657xx.h **** /* USER CODE END 1 */
  366:Inc/partition_stm32n657xx.h **** /*
  367:Inc/partition_stm32n657xx.h **** // <h>Setup Interrupt Target
-ARM GAS  /tmp/cch9jK6u.s 			page 8
+ARM GAS  /tmp/ccGQI1lF.s 			page 8
 
 
  368:Inc/partition_stm32n657xx.h **** */
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  422:Inc/partition_stm32n657xx.h **** //   <o.0>  EXTI12_IRQn       <0=> Secure state
  423:Inc/partition_stm32n657xx.h **** //   <o.1>  EXTI13_IRQn       <0=> Secure state
  424:Inc/partition_stm32n657xx.h **** //   <o.2>  EXTI14_IRQn       <0=> Secure state
-ARM GAS  /tmp/cch9jK6u.s 			page 9
+ARM GAS  /tmp/ccGQI1lF.s 			page 9
 
 
  425:Inc/partition_stm32n657xx.h **** //   <o.3>  EXTI15_IRQn       <0=> Secure state
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  479:Inc/partition_stm32n657xx.h **** //   <o.10> HPDMA1_Channel6_IRQn      <0=> Secure state
  480:Inc/partition_stm32n657xx.h **** //   <o.11> HPDMA1_Channel7_IRQn      <0=> Secure state
  481:Inc/partition_stm32n657xx.h **** //   <o.12> HPDMA1_Channel8_IRQn      <0=> Secure state
-ARM GAS  /tmp/cch9jK6u.s 			page 10
+ARM GAS  /tmp/ccGQI1lF.s 			page 10
 
 
  482:Inc/partition_stm32n657xx.h **** //   <o.13> HPDMA1_Channel9_IRQn      <0=> Secure state
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  536:Inc/partition_stm32n657xx.h **** //   <o.21> TIM3_IRQn               <0=> Secure state
  537:Inc/partition_stm32n657xx.h **** //   <o.22> TIM4_IRQn               <0=> Secure state
  538:Inc/partition_stm32n657xx.h **** //   <o.23> TIM5_IRQn               <0=> Secure state
-ARM GAS  /tmp/cch9jK6u.s 			page 11
+ARM GAS  /tmp/ccGQI1lF.s 			page 11
 
 
  539:Inc/partition_stm32n657xx.h **** //   <o.24> TIM6_IRQn               <0=> Secure state
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  593:Inc/partition_stm32n657xx.h **** */
  594:Inc/partition_stm32n657xx.h **** 
  595:Inc/partition_stm32n657xx.h **** #define NVIC_INIT_ITNS4_VAL      0x00000000
-ARM GAS  /tmp/cch9jK6u.s 			page 12
+ARM GAS  /tmp/ccGQI1lF.s 			page 12
 
 
  596:Inc/partition_stm32n657xx.h **** 
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  650:Inc/partition_stm32n657xx.h **** #define NVIC_INIT_ITNS6    1
  651:Inc/partition_stm32n657xx.h **** /*
  652:Inc/partition_stm32n657xx.h **** // Interrupts 192..223
-ARM GAS  /tmp/cch9jK6u.s 			page 13
+ARM GAS  /tmp/ccGQI1lF.s 			page 13
 
 
  653:Inc/partition_stm32n657xx.h **** //   <o.0>  USART2_IRQn         <0=> Secure state
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  702:Inc/partition_stm32n657xx.h **** 
  703:Inc/partition_stm32n657xx.h ****   #if defined (SAU_INIT_REGION3) && (SAU_INIT_REGION3 == 1U)
  704:Inc/partition_stm32n657xx.h ****     SAU_INIT_REGION(3);
-ARM GAS  /tmp/cch9jK6u.s 			page 14
+ARM GAS  /tmp/ccGQI1lF.s 			page 14
 
 
  705:Inc/partition_stm32n657xx.h ****   #endif
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
   47              		.loc 2 750 5 is_stmt 1 view .LVU5
   48              		.loc 2 750 22 is_stmt 0 view .LVU6
   49 000e 02F50072 		add	r2, r2, #512
-ARM GAS  /tmp/cch9jK6u.s 			page 15
+ARM GAS  /tmp/ccGQI1lF.s 			page 15
 
 
   50 0012 536B     		ldr	r3, [r2, #52]
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
   76 0036 C3F89422 		str	r2, [r3, #660]
  778:Inc/partition_stm32n657xx.h ****   #endif
  779:Inc/partition_stm32n657xx.h **** 
-ARM GAS  /tmp/cch9jK6u.s 			page 16
+ARM GAS  /tmp/ccGQI1lF.s 			page 16
 
 
  780:Inc/partition_stm32n657xx.h ****   #if defined (NVIC_INIT_ITNS6) && (NVIC_INIT_ITNS6 == 1U)
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
   30:Src/system_stm32n6xx_s.c ****   *   Then SystemInit() function is called, in "startup_stm32n6xx.s" file, to
   31:Src/system_stm32n6xx_s.c ****   *   configure the system before to branch to main program.
   32:Src/system_stm32n6xx_s.c ****   *
-ARM GAS  /tmp/cch9jK6u.s 			page 17
+ARM GAS  /tmp/ccGQI1lF.s 			page 17
 
 
   33:Src/system_stm32n6xx_s.c ****   ******************************************************************************
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
   87:Src/system_stm32n6xx_s.c **** #if !defined  (HSI_VALUE)
   88:Src/system_stm32n6xx_s.c **** #define HSI_VALUE      64000000UL /*!< Value of the High-Speed Internal oscillator in Hz */
   89:Src/system_stm32n6xx_s.c **** #endif /* HSI_VALUE */
-ARM GAS  /tmp/cch9jK6u.s 			page 18
+ARM GAS  /tmp/ccGQI1lF.s 			page 18
 
 
   90:Src/system_stm32n6xx_s.c **** 
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  144:Src/system_stm32n6xx_s.c **** /**
  145:Src/system_stm32n6xx_s.c ****   * @}
  146:Src/system_stm32n6xx_s.c ****   */
-ARM GAS  /tmp/cch9jK6u.s 			page 19
+ARM GAS  /tmp/ccGQI1lF.s 			page 19
 
 
  147:Src/system_stm32n6xx_s.c **** 
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  114 0008 114B     		ldr	r3, .L6+4
  115 000a 9360     		str	r3, [r2, #8]
  186:Src/system_stm32n6xx_s.c **** #endif  /* USER_VECT_TAB_ADDRESS */
-ARM GAS  /tmp/cch9jK6u.s 			page 20
+ARM GAS  /tmp/ccGQI1lF.s 			page 20
 
 
  187:Src/system_stm32n6xx_s.c **** 
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  150              	.L7:
  151 004a 00BF     		.align	2
  152              	.L6:
-ARM GAS  /tmp/cch9jK6u.s 			page 21
+ARM GAS  /tmp/ccGQI1lF.s 			page 21
 
 
  153 004c 00ED00E0 		.word	-536810240
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  247:Src/system_stm32n6xx_s.c ****   *             User has to ensure that HSE_VALUE is same as the real frequency of the crystal used
  248:Src/system_stm32n6xx_s.c ****   *             Otherwise, this function may have wrong result.
  249:Src/system_stm32n6xx_s.c ****   *
-ARM GAS  /tmp/cch9jK6u.s 			page 22
+ARM GAS  /tmp/ccGQI1lF.s 			page 22
 
 
  250:Src/system_stm32n6xx_s.c ****   *      (****) EXTERNAL_I2S_CLOCK_VALUE default value is 12.288 MHz.
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  277:Src/system_stm32n6xx_s.c **** 
  278:Src/system_stm32n6xx_s.c ****   case RCC_CFGR1_CPUSWS_0:  /* MSI used as system clock source */
  279:Src/system_stm32n6xx_s.c ****     if (READ_BIT(RCC->MSICFGR, RCC_MSICFGR_MSIFREQSEL) == 0UL)
-ARM GAS  /tmp/cch9jK6u.s 			page 23
+ARM GAS  /tmp/ccGQI1lF.s 			page 23
 
 
  196              		.loc 1 279 5 is_stmt 1 view .LVU58
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  229              		.loc 1 298 7 is_stmt 1 view .LVU67
  230              		.loc 1 298 15 is_stmt 0 view .LVU68
  231 0050 734B     		ldr	r3, .L37
-ARM GAS  /tmp/cch9jK6u.s 			page 24
+ARM GAS  /tmp/ccGQI1lF.s 			page 24
 
 
  232 0052 D3F88020 		ldr	r2, [r3, #128]
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  311:Src/system_stm32n6xx_s.c ****     case RCC_IC1CFGR_IC1SEL_0:  /* PLL2 selected at IC1 clock source */
  312:Src/system_stm32n6xx_s.c ****       pllcfgr = READ_REG(RCC->PLL2CFGR1);
  313:Src/system_stm32n6xx_s.c ****       pllsource = pllcfgr & RCC_PLL2CFGR1_PLL2SEL;
-ARM GAS  /tmp/cch9jK6u.s 			page 25
+ARM GAS  /tmp/ccGQI1lF.s 			page 25
 
 
  314:Src/system_stm32n6xx_s.c ****       pllbypass = pllcfgr & RCC_PLL2CFGR1_PLL2BYP;
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  359:Src/system_stm32n6xx_s.c ****     {
  360:Src/system_stm32n6xx_s.c ****     case 0:  /* HSI selected as PLL clock source */
  361:Src/system_stm32n6xx_s.c ****       sysclk = HSI_VALUE >> ((RCC->HSICFGR & RCC_HSICFGR_HSIDIV) >> RCC_HSICFGR_HSIDIV_Pos);
-ARM GAS  /tmp/cch9jK6u.s 			page 26
+ARM GAS  /tmp/ccGQI1lF.s 			page 26
 
 
  362:Src/system_stm32n6xx_s.c ****       break;
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  375:Src/system_stm32n6xx_s.c ****       break;
  376:Src/system_stm32n6xx_s.c ****     case (RCC_PLL1CFGR1_PLL1SEL_1 | RCC_PLL1CFGR1_PLL1SEL_0):  /* I2S_CKIN selected as PLL clock so
  377:Src/system_stm32n6xx_s.c ****       sysclk = EXTERNAL_I2S_CLOCK_VALUE;
-ARM GAS  /tmp/cch9jK6u.s 			page 27
+ARM GAS  /tmp/ccGQI1lF.s 			page 27
 
 
  378:Src/system_stm32n6xx_s.c ****       break;
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  315:Src/system_stm32n6xx_s.c ****       {
  341              		.loc 1 315 10 is_stmt 0 view .LVU109
  342 00c6 12F0006C 		ands	ip, r2, #134217728
-ARM GAS  /tmp/cch9jK6u.s 			page 28
+ARM GAS  /tmp/ccGQI1lF.s 			page 28
 
 
  343              	.LVL17:
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  380 00ee 4C4B     		ldr	r3, .L37
  381 00f0 D3F8A020 		ldr	r2, [r3, #160]
  382              	.LVL25:
-ARM GAS  /tmp/cch9jK6u.s 			page 29
+ARM GAS  /tmp/ccGQI1lF.s 			page 29
 
 
  328:Src/system_stm32n6xx_s.c ****       pllbypass = pllcfgr & RCC_PLL3CFGR1_PLL3BYP;
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  337:Src/system_stm32n6xx_s.c ****       }
  419              		.loc 1 337 15 is_stmt 0 view .LVU145
  420 011a C1F30261 		ubfx	r1, r1, #24, #3
-ARM GAS  /tmp/cch9jK6u.s 			page 30
+ARM GAS  /tmp/ccGQI1lF.s 			page 30
 
 
  421              	.LVL33:
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  350:Src/system_stm32n6xx_s.c ****         pllp1 = (pllcfgr & RCC_PLL4CFGR3_PLL4PDIV1) >>  RCC_PLL4CFGR3_PLL4PDIV1_Pos;
  458              		.loc 1 350 17 is_stmt 0 view .LVU163
  459 0142 D1F8B810 		ldr	r1, [r1, #184]
-ARM GAS  /tmp/cch9jK6u.s 			page 31
+ARM GAS  /tmp/ccGQI1lF.s 			page 31
 
 
  460              	.LVL41:
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  499              	.LVL48:
  500              	.L28:
  267:Src/system_stm32n6xx_s.c ****   uint32_t pllcfgr, pllsource, pllbypass, ic_divider;
-ARM GAS  /tmp/cch9jK6u.s 			page 32
+ARM GAS  /tmp/ccGQI1lF.s 			page 32
 
 
  501              		.loc 1 267 12 view .LVU179
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  542              	.L19:
  385:Src/system_stm32n6xx_s.c ****     {
  543              		.loc 1 385 5 is_stmt 1 view .LVU193
-ARM GAS  /tmp/cch9jK6u.s 			page 33
+ARM GAS  /tmp/ccGQI1lF.s 			page 33
 
 
  385:Src/system_stm32n6xx_s.c ****     {
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  582 01de FCEEE77A 		vcvt.u32.f32	s15, s15
  583 01e2 17EE903A 		vmov	r3, s15	@ int
  584              	.LVL57:
-ARM GAS  /tmp/cch9jK6u.s 			page 34
+ARM GAS  /tmp/ccGQI1lF.s 			page 34
 
 
  585              	.L23:
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  624              		.loc 1 362 7 is_stmt 1 view .LVU227
  625 020a BFE7     		b	.L19
  626              	.LVL65:
-ARM GAS  /tmp/cch9jK6u.s 			page 35
+ARM GAS  /tmp/ccGQI1lF.s 			page 35
 
 
  627              	.L30:
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  675              		.global	__acle_se_SECURE_SystemCoreClockUpdate
  676              		.syntax unified
  677              		.thumb
-ARM GAS  /tmp/cch9jK6u.s 			page 36
+ARM GAS  /tmp/ccGQI1lF.s 			page 36
 
 
  678              		.thumb_func
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  719 0020 00000000 		.word	SystemCoreClock
  720              		.cfi_endproc
  721              	.LFE884:
-ARM GAS  /tmp/cch9jK6u.s 			page 37
+ARM GAS  /tmp/ccGQI1lF.s 			page 37
 
 
  723              		.global	SystemCoreClock
@@ -2174,26 +2174,26 @@ ARM GAS  /tmp/cch9jK6u.s 			page 1
  735              		.file 6 "../Drivers/CMSIS/Device/ST/STM32N6xx/Include/stm32n657xx.h"
  736              		.file 7 "/usr/arm-none-eabi/include/math.h"
  737              		.file 8 "../Drivers/CMSIS/Device/ST/STM32N6xx/Include/system_stm32n6xx.h"
-ARM GAS  /tmp/cch9jK6u.s 			page 38
+ARM GAS  /tmp/ccGQI1lF.s 			page 38
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 system_stm32n6xx_s.c
-     /tmp/cch9jK6u.s:26     .text.TZ_SAU_Setup:00000000 $t
-     /tmp/cch9jK6u.s:31     .text.TZ_SAU_Setup:00000000 TZ_SAU_Setup
-     /tmp/cch9jK6u.s:85     .text.TZ_SAU_Setup:00000040 $d
-     /tmp/cch9jK6u.s:91     .text.SystemInit:00000000 $t
-     /tmp/cch9jK6u.s:97     .text.SystemInit:00000000 SystemInit
-     /tmp/cch9jK6u.s:153    .text.SystemInit:0000004c $d
-     /tmp/cch9jK6u.s:161    .text.SystemCoreClockUpdate:00000000 $t
-     /tmp/cch9jK6u.s:167    .text.SystemCoreClockUpdate:00000000 SystemCoreClockUpdate
-     /tmp/cch9jK6u.s:661    .text.SystemCoreClockUpdate:00000220 $d
-     /tmp/cch9jK6u.s:728    .data.SystemCoreClock:00000000 SystemCoreClock
-     /tmp/cch9jK6u.s:673    .text.SECURE_SystemCoreClockUpdate:00000000 $t
-     /tmp/cch9jK6u.s:684    .text.SECURE_SystemCoreClockUpdate:00000000 SECURE_SystemCoreClockUpdate
-     /tmp/cch9jK6u.s:685    .text.SECURE_SystemCoreClockUpdate:00000000 __acle_se_SECURE_SystemCoreClockUpdate
-     /tmp/cch9jK6u.s:719    .text.SECURE_SystemCoreClockUpdate:00000020 $d
-     /tmp/cch9jK6u.s:725    .data.SystemCoreClock:00000000 $d
+     /tmp/ccGQI1lF.s:26     .text.TZ_SAU_Setup:00000000 $t
+     /tmp/ccGQI1lF.s:31     .text.TZ_SAU_Setup:00000000 TZ_SAU_Setup
+     /tmp/ccGQI1lF.s:85     .text.TZ_SAU_Setup:00000040 $d
+     /tmp/ccGQI1lF.s:91     .text.SystemInit:00000000 $t
+     /tmp/ccGQI1lF.s:97     .text.SystemInit:00000000 SystemInit
+     /tmp/ccGQI1lF.s:153    .text.SystemInit:0000004c $d
+     /tmp/ccGQI1lF.s:161    .text.SystemCoreClockUpdate:00000000 $t
+     /tmp/ccGQI1lF.s:167    .text.SystemCoreClockUpdate:00000000 SystemCoreClockUpdate
+     /tmp/ccGQI1lF.s:661    .text.SystemCoreClockUpdate:00000220 $d
+     /tmp/ccGQI1lF.s:728    .data.SystemCoreClock:00000000 SystemCoreClock
+     /tmp/ccGQI1lF.s:673    .text.SECURE_SystemCoreClockUpdate:00000000 $t
+     /tmp/ccGQI1lF.s:684    .text.SECURE_SystemCoreClockUpdate:00000000 SECURE_SystemCoreClockUpdate
+     /tmp/ccGQI1lF.s:685    .text.SECURE_SystemCoreClockUpdate:00000000 __acle_se_SECURE_SystemCoreClockUpdate
+     /tmp/ccGQI1lF.s:719    .text.SECURE_SystemCoreClockUpdate:00000020 $d
+     /tmp/ccGQI1lF.s:725    .data.SystemCoreClock:00000000 $d
 
 UNDEFINED SYMBOLS
 g_pfnVectors

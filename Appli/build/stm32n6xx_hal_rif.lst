@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccZCUZHE.s 			page 1
+ARM GAS  /tmp/ccsLeOrZ.s 			page 1
 
 
    1              		.arch armv8.1-m.main
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
   23:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   ==============================================================================
   24:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****                 ##### RIF main features #####
   25:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   ==============================================================================
-ARM GAS  /tmp/ccZCUZHE.s 			page 2
+ARM GAS  /tmp/ccsLeOrZ.s 			page 2
 
 
   26:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   [..]
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
   80:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c **** 
   81:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c **** #if defined(GENERATOR_RIF_FEATURE_ENCRYPTION_IMPLEMENTED)
   82:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****     *** Encryption-related functions ***
-ARM GAS  /tmp/ccZCUZHE.s 			page 3
+ARM GAS  /tmp/ccsLeOrZ.s 			page 3
 
 
   83:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****     ============================================================
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  137:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   */
  138:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c **** 
  139:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c **** /** @defgroup RIF RIF
-ARM GAS  /tmp/ccZCUZHE.s 			page 4
+ARM GAS  /tmp/ccsLeOrZ.s 			page 4
 
 
  140:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @brief RIF HAL module driver.
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  189:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   /* Set RIMC Lock bit */
  190:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   RIFSC->RIMC_CR |= RIFSC_RIMC_CR_GLOCK;
   39              		.loc 1 190 3 view .LVU1
-ARM GAS  /tmp/ccZCUZHE.s 			page 5
+ARM GAS  /tmp/ccsLeOrZ.s 			page 5
 
 
   40              		.loc 1 190 8 is_stmt 0 view .LVU2
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
   80 000a 7047     		bx	lr
   81              	.L6:
   82              		.align	2
-ARM GAS  /tmp/ccZCUZHE.s 			page 6
+ARM GAS  /tmp/ccsLeOrZ.s 			page 6
 
 
   83              	.L5:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
    2:../Drivers/CMSIS/Include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
    3:../Drivers/CMSIS/Include/cmsis_gcc.h ****  * @brief    CMSIS compiler GCC header file
    4:../Drivers/CMSIS/Include/cmsis_gcc.h ****  * @version  V6.0.0
-ARM GAS  /tmp/ccZCUZHE.s 			page 7
+ARM GAS  /tmp/ccsLeOrZ.s 			page 7
 
 
    5:../Drivers/CMSIS/Include/cmsis_gcc.h ****  * @date     27. July 2024
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
   59:../Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __WEAK
   60:../Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __WEAK                                 __attribute__((weak))
   61:../Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
-ARM GAS  /tmp/ccZCUZHE.s 			page 8
+ARM GAS  /tmp/ccsLeOrZ.s 			page 8
 
 
   62:../Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  116:../Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ALIAS(x)                             __attribute__ ((alias(x)))
  117:../Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  118:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /tmp/ccZCUZHE.s 			page 9
+ARM GAS  /tmp/ccsLeOrZ.s 			page 9
 
 
  119:../Drivers/CMSIS/Include/cmsis_gcc.h **** /* ##########################  Core Instruction Access  ######################### */
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  173:../Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __ISB(void)
  174:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
  175:../Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("isb 0xF":::"memory");
-ARM GAS  /tmp/ccZCUZHE.s 			page 10
+ARM GAS  /tmp/ccsLeOrZ.s 			page 10
 
 
  176:../Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  230:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Reverses the byte order in a 16-bit value and returns the signed 16-bit result. For exam
  231:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    value  Value to reverse
  232:../Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Reversed value
-ARM GAS  /tmp/ccZCUZHE.s 			page 11
+ARM GAS  /tmp/ccsLeOrZ.s 			page 11
 
 
  233:../Drivers/CMSIS/Include/cmsis_gcc.h ****  */
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  117              	@ 0 "" 2
  118              	.LVL3:
  280:../Drivers/CMSIS/Include/cmsis_gcc.h **** #else
-ARM GAS  /tmp/ccZCUZHE.s 			page 12
+ARM GAS  /tmp/ccsLeOrZ.s 			page 12
 
 
  281:../Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t s = (4U /*sizeof(v)*/ * 8U) - 1U; /* extra shift needed at end */
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  136              	.L8:
  137              		.loc 2 317 10 discriminator 1 view .LVU27
  138              	.LBE21:
-ARM GAS  /tmp/ccZCUZHE.s 			page 13
+ARM GAS  /tmp/ccsLeOrZ.s 			page 13
 
 
  139              	.LBE20:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  243:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @brief  Get the Debugger Access Port ID
  244:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @retval Debugger Access Port ID
  245:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   */
-ARM GAS  /tmp/ccZCUZHE.s 			page 14
+ARM GAS  /tmp/ccsLeOrZ.s 			page 14
 
 
  246:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c **** uint32_t HAL_RIF_RIMC_GetDebugAccessPortCID(void)
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  264:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @param  pConfig Pointer on Master Isolation configuration structure
  265:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @retval None
  266:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   */
-ARM GAS  /tmp/ccZCUZHE.s 			page 15
+ARM GAS  /tmp/ccsLeOrZ.s 			page 15
 
 
  267:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c **** void HAL_RIF_RIMC_ConfigMasterAttributes(uint32_t MasterId, const RIMC_MasterConfig_t *pConfig)
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  259              	.LBE24:
  260              	.LBB26:
  261              	.LBI26:
-ARM GAS  /tmp/ccZCUZHE.s 			page 16
+ARM GAS  /tmp/ccsLeOrZ.s 			page 16
 
 
  302:../Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  307 0030 2022     		movs	r2, #32
  308 0032 ECE7     		b	.L16
  309              	.L20:
-ARM GAS  /tmp/ccZCUZHE.s 			page 17
+ARM GAS  /tmp/ccsLeOrZ.s 			page 17
 
 
  310              		.align	2
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  345              		.loc 1 305 3 is_stmt 1 view .LVU92
  306:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****                       >> RIFSC_RIMC_ATTRx_MSEC_Pos);
  346              		.loc 1 306 23 is_stmt 0 view .LVU93
-ARM GAS  /tmp/ccZCUZHE.s 			page 18
+ARM GAS  /tmp/ccsLeOrZ.s 			page 18
 
 
  347 000a C3F30122 		ubfx	r2, r3, #8, #2
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  330:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @note   Once set, the overall configuration of RIFSC cannot be modified
  331:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *         upon next system reset.
  332:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @note   This API is protected by the Trusted Domain compilation directive.
-ARM GAS  /tmp/ccZCUZHE.s 			page 19
+ARM GAS  /tmp/ccsLeOrZ.s 			page 19
 
 
  333:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @note   This API is protected by the TrustZone Enabled compilation directive.
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  415              		.loc 1 352 3 view .LVU108
  416              		.loc 1 352 23 is_stmt 0 view .LVU109
  417 0000 024B     		ldr	r3, .L28
-ARM GAS  /tmp/ccZCUZHE.s 			page 20
+ARM GAS  /tmp/ccsLeOrZ.s 			page 20
 
 
  418 0002 1868     		ldr	r0, [r3]
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  457              		.loc 1 369 3 is_stmt 1 view .LVU115
  370:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c **** 
  371:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   assert_param(IS_RIF_RISC_PERIPH_INDEX(PeriphId) || IS_RIF_RCC_PERIPH_INDEX(PeriphId));
-ARM GAS  /tmp/ccZCUZHE.s 			page 21
+ARM GAS  /tmp/ccsLeOrZ.s 			page 21
 
 
  458              		.loc 1 371 3 view .LVU116
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  503 0046 0192     		str	r2, [sp, #4]
  381:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   sec_reg_val |= (((SecPriv & RIF_ATTRIBUTE_PRIV) >> 1U) << (PeriphId & RIF_PERIPH_BIT_POSITION));
  504              		.loc 1 381 3 is_stmt 1 view .LVU137
-ARM GAS  /tmp/ccZCUZHE.s 			page 22
+ARM GAS  /tmp/ccsLeOrZ.s 			page 22
 
 
  505              		.loc 1 381 51 is_stmt 0 view .LVU138
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  396:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   const __IO uint32_t *p_sec_reg;
  547              		.loc 1 396 3 view .LVU146
  397:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c **** 
-ARM GAS  /tmp/ccZCUZHE.s 			page 23
+ARM GAS  /tmp/ccsLeOrZ.s 			page 23
 
 
  398:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   assert_param(IS_RIF_RISC_PERIPH_INDEX(PeriphId) || IS_RIF_RCC_PERIPH_INDEX(PeriphId));
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  592              	.L35:
  593 0028 10400254 		.word	1409433616
  594 002c 30400254 		.word	1409433648
-ARM GAS  /tmp/ccZCUZHE.s 			page 24
+ARM GAS  /tmp/ccsLeOrZ.s 			page 24
 
 
  595              		.cfi_endproc
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  631 0014 41F82C30 		str	r3, [r1, ip, lsl #2]
  428:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c **** }
  632              		.loc 1 428 1 view .LVU177
-ARM GAS  /tmp/ccZCUZHE.s 			page 25
+ARM GAS  /tmp/ccsLeOrZ.s 			page 25
 
 
  633 0018 7047     		bx	lr
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  670 0008 00F01F00 		and	r0, r0, #31
  671              	.LVL46:
  672              		.loc 1 447 50 view .LVU188
-ARM GAS  /tmp/ccZCUZHE.s 			page 26
+ARM GAS  /tmp/ccsLeOrZ.s 			page 26
 
 
  673 000c 0122     		movs	r2, #1
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  474:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @note   This API is protected by the Trusted Domain compilation directive.
  475:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @param  RISAFx specifies the RISAF instance.
  476:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *         This parameter is one of the RISAF instances defined in the CMSIS.
-ARM GAS  /tmp/ccZCUZHE.s 			page 27
+ARM GAS  /tmp/ccsLeOrZ.s 			page 27
 
 
  477:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @retval None
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  500:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   lock_status = (RISAFx->CR & RIF_LOCK_ENABLE);
  736              		.loc 1 500 3 view .LVU202
  737              		.loc 1 500 24 is_stmt 0 view .LVU203
-ARM GAS  /tmp/ccZCUZHE.s 			page 28
+ARM GAS  /tmp/ccsLeOrZ.s 			page 28
 
 
  738 0000 0068     		ldr	r0, [r0]
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  536:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @brief  Configure a RISAF Base region.
  537:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @note   If pConfig->Filtering is equal to RISAF_FILTER_DISABLE, this API only disable the filte
  538:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *         its configuration.
-ARM GAS  /tmp/ccZCUZHE.s 			page 29
+ARM GAS  /tmp/ccsLeOrZ.s 			page 29
 
 
  539:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @note   It is not possible to modify the start and end address of the region if the filtering i
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  777              		.loc 1 574 24 view .LVU217
  778 0006 8901     		lsls	r1, r1, #6
  779              	.LVL56:
-ARM GAS  /tmp/ccZCUZHE.s 			page 30
+ARM GAS  /tmp/ccsLeOrZ.s 			page 30
 
 
  780              		.loc 1 574 24 view .LVU218
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  815              	.LVL58:
  816              		.loc 1 592 30 view .LVU236
  817 0028 8B64     		str	r3, [r1, #72]
-ARM GAS  /tmp/ccZCUZHE.s 			page 31
+ARM GAS  /tmp/ccsLeOrZ.s 			page 31
 
 
  593:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c **** 
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  607:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *         This parameter can be one one of the following values:
  608:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *           @arg @ref RISAF_REGION_1
  609:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *           @arg @ref RISAF_REGION_2
-ARM GAS  /tmp/ccZCUZHE.s 			page 32
+ARM GAS  /tmp/ccsLeOrZ.s 			page 32
 
 
  610:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *           @arg @ref RISAF_REGION_3
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  884              	.LVL62:
  885              		.loc 1 638 15 view .LVU261
  886 0014 C16C     		ldr	r1, [r0, #76]
-ARM GAS  /tmp/ccZCUZHE.s 			page 33
+ARM GAS  /tmp/ccsLeOrZ.s 			page 33
 
 
  887              	.LVL63:
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  933              		.syntax unified
  934              		.thumb
  935              		.thumb_func
-ARM GAS  /tmp/ccZCUZHE.s 			page 34
+ARM GAS  /tmp/ccsLeOrZ.s 			page 34
 
 
  937              	HAL_RIF_RISAF_ConfigSubRegionDelegation:
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  952              		.loc 1 686 3 view .LVU288
  687:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   assert_param(IS_RISAF_INSTANCE(RISAFx));
  953              		.loc 1 687 3 view .LVU289
-ARM GAS  /tmp/ccZCUZHE.s 			page 35
+ARM GAS  /tmp/ccsLeOrZ.s 			page 35
 
 
  688:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   assert_param(IS_RISAF_REGION(Region));
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  992              		.loc 2 317 10 discriminator 1 view .LVU307
  993              	.LBE33:
  994              	.LBE32:
-ARM GAS  /tmp/ccZCUZHE.s 			page 36
+ARM GAS  /tmp/ccsLeOrZ.s 			page 36
 
 
  696:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c **** 
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  315:../Drivers/CMSIS/Include/cmsis_gcc.h ****   }
  1032              		.loc 2 315 12 view .LVU323
  1033              	.LBE34:
-ARM GAS  /tmp/ccZCUZHE.s 			page 37
+ARM GAS  /tmp/ccsLeOrZ.s 			page 37
 
 
  1034              	.LBE35:
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  719:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *         This parameter can be one one of the following values:
  720:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *           @arg @ref RISAF_REGION_1
  721:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *           @arg @ref RISAF_REGION_2
-ARM GAS  /tmp/ccZCUZHE.s 			page 38
+ARM GAS  /tmp/ccsLeOrZ.s 			page 38
 
 
  722:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *           @arg @ref RISAF_REGION_3
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  1091 0006 C26D     		ldr	r2, [r0, #92]
  1092              	.LVL82:
  1093              		.loc 1 756 55 view .LVU348
-ARM GAS  /tmp/ccZCUZHE.s 			page 39
+ARM GAS  /tmp/ccsLeOrZ.s 			page 39
 
 
  1094 0008 02F00402 		and	r2, r2, #4
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  1130              		.loc 1 762 9 view .LVU364
  1131 002a C1F30211 		ubfx	r1, r1, #4, #3
  1132 002e F1E7     		b	.L61
-ARM GAS  /tmp/ccZCUZHE.s 			page 40
+ARM GAS  /tmp/ccsLeOrZ.s 			page 40
 
 
  1133              		.cfi_endproc
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  1154              		.cfi_offset 4, -8
  1155              		.cfi_offset 14, -4
  1156 0002 8646     		mov	lr, r0
-ARM GAS  /tmp/ccZCUZHE.s 			page 41
+ARM GAS  /tmp/ccsLeOrZ.s 			page 41
 
 
  802:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   uint32_t cid;
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  313:../Drivers/CMSIS/Include/cmsis_gcc.h ****   {
  1191              		.loc 2 313 6 is_stmt 0 view .LVU384
  1192 000a 80B1     		cbz	r0, .L68
-ARM GAS  /tmp/ccZCUZHE.s 			page 42
+ARM GAS  /tmp/ccsLeOrZ.s 			page 42
 
 
  1193              		.loc 2 317 3 is_stmt 1 view .LVU385
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  833:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c **** 
  834:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****       RISAFx->REG[Region].ASTARTR = pConfig->StartAddress;
  835:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****       RISAFx->REG[Region].AENDR = pConfig->EndAddress;
-ARM GAS  /tmp/ccZCUZHE.s 			page 43
+ARM GAS  /tmp/ccsLeOrZ.s 			page 43
 
 
  836:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****       RISAFx->REG[Region].ACFGR = (pConfig->Filtering  | (pConfig->Lock << RISAF_REGx_zCFGR_RLOCK_P
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  1246              		.loc 1 829 7 view .LVU407
  830:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****       assert_param(IS_RISAF_LIMIT_ADDRESS_SPACE_SIZE(RISAFx, pConfig->EndAddress));
  1247              		.loc 1 830 7 view .LVU408
-ARM GAS  /tmp/ccZCUZHE.s 			page 44
+ARM GAS  /tmp/ccsLeOrZ.s 			page 44
 
 
  831:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****       assert_param(pConfig->StartAddress < pConfig->EndAddress);
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  1284              	.L64:
  843:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****     {
  1285              		.loc 1 843 5 is_stmt 1 view .LVU427
-ARM GAS  /tmp/ccZCUZHE.s 			page 45
+ARM GAS  /tmp/ccsLeOrZ.s 			page 45
 
 
  843:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****     {
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  1321 0076 0EEB8112 		add	r2, lr, r1, lsl #6
  1322 007a 5969     		ldr	r1, [r3, #20]
  1323              	.LVL105:
-ARM GAS  /tmp/ccZCUZHE.s 			page 46
+ARM GAS  /tmp/ccsLeOrZ.s 			page 46
 
 
  859:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****       RISAFx->REG[Region].BENDR = pConfig->EndAddress;
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  869:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @brief  Get the configuration of a RISAF Subregion.
  870:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @param  RISAFx specifies the RISAF instance.
  871:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *         This parameter is one of the RISAF instances defined in the CMSIS.
-ARM GAS  /tmp/ccZCUZHE.s 			page 47
+ARM GAS  /tmp/ccsLeOrZ.s 			page 47
 
 
  872:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @param  Region specifies the RISAF region index
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  911:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****     cfgr_reg = RISAFx->REG[Region].ACFGR;
  1380              		.loc 1 911 5 is_stmt 1 view .LVU471
  1381              		.loc 1 911 14 is_stmt 0 view .LVU472
-ARM GAS  /tmp/ccZCUZHE.s 			page 48
+ARM GAS  /tmp/ccsLeOrZ.s 			page 48
 
 
  1382 0002 00EB8110 		add	r0, r0, r1, lsl #6
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  1421 0026 02F44051 		and	r1, r2, #12288
  1422              		.loc 1 926 22 view .LVU493
  1423 002a D960     		str	r1, [r3, #12]
-ARM GAS  /tmp/ccZCUZHE.s 			page 49
+ARM GAS  /tmp/ccsLeOrZ.s 			page 49
 
 
  927:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   pConfig->Lock = ((cfgr_reg & RISAF_REGx_zCFGR_RLOCK) >> RISAF_REGx_zCFGR_RLOCK_Pos);
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  932:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @brief  Get the error detected by the RISAF control block,
  933:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *         the illegal access data and clear related flags.
  934:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *         Error information can be illegal access or control access type. In case of an illegal a
-ARM GAS  /tmp/ccZCUZHE.s 			page 50
+ARM GAS  /tmp/ccsLeOrZ.s 			page 50
 
 
  935:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *         error information is:
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  1491              		.loc 1 963 5 is_stmt 1 view .LVU521
  1492              		.loc 1 963 36 is_stmt 0 view .LVU522
  1493 0012 0123     		movs	r3, #1
-ARM GAS  /tmp/ccZCUZHE.s 			page 51
+ARM GAS  /tmp/ccsLeOrZ.s 			page 51
 
 
  1494 0014 9340     		lsls	r3, r3, r2
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  1533              	.LVL120:
  1534              	.L73:
  979:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   }
-ARM GAS  /tmp/ccZCUZHE.s 			page 52
+ARM GAS  /tmp/ccsLeOrZ.s 			page 52
 
 
  980:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c **** }
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  1557              		.loc 1 1011 1 is_stmt 1 view -0
  1558              		.cfi_startproc
  1559              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccZCUZHE.s 			page 53
+ARM GAS  /tmp/ccsLeOrZ.s 			page 53
 
 
  1560              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
 1029:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @retval None
 1030:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   */
 1031:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c **** void HAL_RIF_IAC_DisableIT(uint32_t PeriphId)
-ARM GAS  /tmp/ccZCUZHE.s 			page 54
+ARM GAS  /tmp/ccsLeOrZ.s 			page 54
 
 
 1032:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c **** {
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
 1046:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *         This parameter can be one of @ref RIF_PERIPHERAL_INDEX
 1047:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *         bits[31:28] define the register index a peripheral belongs to, value from 0 to 5
 1048:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   *         bits[4:0]   define the bit position within the register, value from 0 to 31
-ARM GAS  /tmp/ccZCUZHE.s 			page 55
+ARM GAS  /tmp/ccsLeOrZ.s 			page 55
 
 
 1049:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****   * @retval Detection flag value
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  1678              		.align	2
  1679              	.L80:
  1680 0018 80500254 		.word	1409437824
-ARM GAS  /tmp/ccZCUZHE.s 			page 56
+ARM GAS  /tmp/ccsLeOrZ.s 			page 56
 
 
  1681              		.cfi_endproc
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  1717              	.L84:
  1718 0012 00BF     		.align	2
  1719              	.L83:
-ARM GAS  /tmp/ccZCUZHE.s 			page 57
+ARM GAS  /tmp/ccsLeOrZ.s 			page 57
 
 
  1720 0014 00510254 		.word	1409437952
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
 1128:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c **** {
  1734              		.loc 1 1128 1 is_stmt 1 view -0
  1735              		.cfi_startproc
-ARM GAS  /tmp/ccZCUZHE.s 			page 58
+ARM GAS  /tmp/ccsLeOrZ.s 			page 58
 
 
  1736              		@ args = 0, pretend = 0, frame = 0
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  1777              	.LVL140:
  1778              	.L89:
 1112:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****     }
-ARM GAS  /tmp/ccZCUZHE.s 			page 59
+ARM GAS  /tmp/ccsLeOrZ.s 			page 59
 
 
  1779              		.loc 1 1112 7 is_stmt 1 view .LVU608
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
 1104:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****     {
  1820              		.loc 1 1104 5 view .LVU622
 1103:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c ****     while ((flag_mask >> position) != 0U)
-ARM GAS  /tmp/ccZCUZHE.s 			page 60
+ARM GAS  /tmp/ccsLeOrZ.s 			page 60
 
 
  1821              		.loc 1 1103 14 is_stmt 0 view .LVU623
@@ -3566,82 +3566,82 @@ ARM GAS  /tmp/ccZCUZHE.s 			page 1
  1841              		.file 4 "/usr/arm-none-eabi/include/sys/_stdint.h"
  1842              		.file 5 "../Drivers/CMSIS/Device/ST/STM32N6xx/Include/stm32n657xx.h"
  1843              		.file 6 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_rif.h"
-ARM GAS  /tmp/ccZCUZHE.s 			page 61
+ARM GAS  /tmp/ccsLeOrZ.s 			page 61
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32n6xx_hal_rif.c
-     /tmp/ccZCUZHE.s:26     .text.HAL_RIF_RIMC_Lock:00000000 $t
-     /tmp/ccZCUZHE.s:32     .text.HAL_RIF_RIMC_Lock:00000000 HAL_RIF_RIMC_Lock
-     /tmp/ccZCUZHE.s:51     .text.HAL_RIF_RIMC_Lock:00000010 $d
-     /tmp/ccZCUZHE.s:56     .text.HAL_RIF_RIMC_GetLock:00000000 $t
-     /tmp/ccZCUZHE.s:62     .text.HAL_RIF_RIMC_GetLock:00000000 HAL_RIF_RIMC_GetLock
-     /tmp/ccZCUZHE.s:84     .text.HAL_RIF_RIMC_GetLock:0000000c $d
-     /tmp/ccZCUZHE.s:89     .text.HAL_RIF_RIMC_SetDebugAccessPortCID:00000000 $t
-     /tmp/ccZCUZHE.s:95     .text.HAL_RIF_RIMC_SetDebugAccessPortCID:00000000 HAL_RIF_RIMC_SetDebugAccessPortCID
-     /tmp/ccZCUZHE.s:170    .text.HAL_RIF_RIMC_SetDebugAccessPortCID:00000024 $d
-     /tmp/ccZCUZHE.s:177    .text.HAL_RIF_RIMC_GetDebugAccessPortCID:00000000 $t
-     /tmp/ccZCUZHE.s:183    .text.HAL_RIF_RIMC_GetDebugAccessPortCID:00000000 HAL_RIF_RIMC_GetDebugAccessPortCID
-     /tmp/ccZCUZHE.s:209    .text.HAL_RIF_RIMC_GetDebugAccessPortCID:00000010 $d
-     /tmp/ccZCUZHE.s:214    .text.HAL_RIF_RIMC_ConfigMasterAttributes:00000000 $t
-     /tmp/ccZCUZHE.s:220    .text.HAL_RIF_RIMC_ConfigMasterAttributes:00000000 HAL_RIF_RIMC_ConfigMasterAttributes
-     /tmp/ccZCUZHE.s:312    .text.HAL_RIF_RIMC_ConfigMasterAttributes:00000034 $d
-     /tmp/ccZCUZHE.s:319    .text.HAL_RIF_RIMC_GetConfigMasterAttributes:00000000 $t
-     /tmp/ccZCUZHE.s:325    .text.HAL_RIF_RIMC_GetConfigMasterAttributes:00000000 HAL_RIF_RIMC_GetConfigMasterAttributes
-     /tmp/ccZCUZHE.s:366    .text.HAL_RIF_RIMC_GetConfigMasterAttributes:00000020 $d
-     /tmp/ccZCUZHE.s:371    .text.HAL_RIF_RISC_Lock:00000000 $t
-     /tmp/ccZCUZHE.s:377    .text.HAL_RIF_RISC_Lock:00000000 HAL_RIF_RISC_Lock
-     /tmp/ccZCUZHE.s:396    .text.HAL_RIF_RISC_Lock:0000000c $d
-     /tmp/ccZCUZHE.s:401    .text.HAL_RIF_RISC_GetLock:00000000 $t
-     /tmp/ccZCUZHE.s:407    .text.HAL_RIF_RISC_GetLock:00000000 HAL_RIF_RISC_GetLock
-     /tmp/ccZCUZHE.s:429    .text.HAL_RIF_RISC_GetLock:0000000c $d
-     /tmp/ccZCUZHE.s:434    .text.HAL_RIF_RISC_SetSlaveSecureAttributes:00000000 $t
-     /tmp/ccZCUZHE.s:440    .text.HAL_RIF_RISC_SetSlaveSecureAttributes:00000000 HAL_RIF_RISC_SetSlaveSecureAttributes
-     /tmp/ccZCUZHE.s:527    .text.HAL_RIF_RISC_SetSlaveSecureAttributes:00000060 $d
-     /tmp/ccZCUZHE.s:532    .text.HAL_RIF_RISC_GetSlaveSecureAttributes:00000000 $t
-     /tmp/ccZCUZHE.s:538    .text.HAL_RIF_RISC_GetSlaveSecureAttributes:00000000 HAL_RIF_RISC_GetSlaveSecureAttributes
-     /tmp/ccZCUZHE.s:593    .text.HAL_RIF_RISC_GetSlaveSecureAttributes:00000028 $d
-     /tmp/ccZCUZHE.s:599    .text.HAL_RIF_RISC_SlaveConfigLock:00000000 $t
-     /tmp/ccZCUZHE.s:605    .text.HAL_RIF_RISC_SlaveConfigLock:00000000 HAL_RIF_RISC_SlaveConfigLock
-     /tmp/ccZCUZHE.s:637    .text.HAL_RIF_RISC_SlaveConfigLock:0000001c $d
-     /tmp/ccZCUZHE.s:642    .text.HAL_RIF_RISC_GetSlaveConfigLock:00000000 $t
-     /tmp/ccZCUZHE.s:648    .text.HAL_RIF_RISC_GetSlaveConfigLock:00000000 HAL_RIF_RISC_GetSlaveConfigLock
-     /tmp/ccZCUZHE.s:689    .text.HAL_RIF_RISC_GetSlaveConfigLock:00000018 $d
-     /tmp/ccZCUZHE.s:694    .text.HAL_RIF_RISAF_Lock:00000000 $t
-     /tmp/ccZCUZHE.s:700    .text.HAL_RIF_RISAF_Lock:00000000 HAL_RIF_RISAF_Lock
-     /tmp/ccZCUZHE.s:721    .text.HAL_RIF_RISAF_GetLock:00000000 $t
-     /tmp/ccZCUZHE.s:727    .text.HAL_RIF_RISAF_GetLock:00000000 HAL_RIF_RISAF_GetLock
-     /tmp/ccZCUZHE.s:750    .text.HAL_RIF_RISAF_ConfigBaseRegion:00000000 $t
-     /tmp/ccZCUZHE.s:756    .text.HAL_RIF_RISAF_ConfigBaseRegion:00000000 HAL_RIF_RISAF_ConfigBaseRegion
-     /tmp/ccZCUZHE.s:850    .text.HAL_RIF_RISAF_GetConfigBaseRegion:00000000 $t
-     /tmp/ccZCUZHE.s:856    .text.HAL_RIF_RISAF_GetConfigBaseRegion:00000000 HAL_RIF_RISAF_GetConfigBaseRegion
-     /tmp/ccZCUZHE.s:931    .text.HAL_RIF_RISAF_ConfigSubRegionDelegation:00000000 $t
-     /tmp/ccZCUZHE.s:937    .text.HAL_RIF_RISAF_ConfigSubRegionDelegation:00000000 HAL_RIF_RISAF_ConfigSubRegionDelegation
-     /tmp/ccZCUZHE.s:1063   .text.HAL_RIF_RISAF_GetConfigSubRegionDelegation:00000000 $t
-     /tmp/ccZCUZHE.s:1069   .text.HAL_RIF_RISAF_GetConfigSubRegionDelegation:00000000 HAL_RIF_RISAF_GetConfigSubRegionDelegation
-     /tmp/ccZCUZHE.s:1137   .text.HAL_RIF_RISAF_ConfigSubRegion:00000000 $t
-     /tmp/ccZCUZHE.s:1143   .text.HAL_RIF_RISAF_ConfigSubRegion:00000000 HAL_RIF_RISAF_ConfigSubRegion
-     /tmp/ccZCUZHE.s:1356   .text.HAL_RIF_RISAF_GetConfigSubRegion:00000000 $t
-     /tmp/ccZCUZHE.s:1362   .text.HAL_RIF_RISAF_GetConfigSubRegion:00000000 HAL_RIF_RISAF_GetConfigSubRegion
-     /tmp/ccZCUZHE.s:1457   .text.HAL_RIF_RISAF_GetIllegalAccess:00000000 $t
-     /tmp/ccZCUZHE.s:1463   .text.HAL_RIF_RISAF_GetIllegalAccess:00000000 HAL_RIF_RISAF_GetIllegalAccess
-     /tmp/ccZCUZHE.s:1548   .text.HAL_RIF_IAC_EnableIT:00000000 $t
-ARM GAS  /tmp/ccZCUZHE.s 			page 62
+     /tmp/ccsLeOrZ.s:26     .text.HAL_RIF_RIMC_Lock:00000000 $t
+     /tmp/ccsLeOrZ.s:32     .text.HAL_RIF_RIMC_Lock:00000000 HAL_RIF_RIMC_Lock
+     /tmp/ccsLeOrZ.s:51     .text.HAL_RIF_RIMC_Lock:00000010 $d
+     /tmp/ccsLeOrZ.s:56     .text.HAL_RIF_RIMC_GetLock:00000000 $t
+     /tmp/ccsLeOrZ.s:62     .text.HAL_RIF_RIMC_GetLock:00000000 HAL_RIF_RIMC_GetLock
+     /tmp/ccsLeOrZ.s:84     .text.HAL_RIF_RIMC_GetLock:0000000c $d
+     /tmp/ccsLeOrZ.s:89     .text.HAL_RIF_RIMC_SetDebugAccessPortCID:00000000 $t
+     /tmp/ccsLeOrZ.s:95     .text.HAL_RIF_RIMC_SetDebugAccessPortCID:00000000 HAL_RIF_RIMC_SetDebugAccessPortCID
+     /tmp/ccsLeOrZ.s:170    .text.HAL_RIF_RIMC_SetDebugAccessPortCID:00000024 $d
+     /tmp/ccsLeOrZ.s:177    .text.HAL_RIF_RIMC_GetDebugAccessPortCID:00000000 $t
+     /tmp/ccsLeOrZ.s:183    .text.HAL_RIF_RIMC_GetDebugAccessPortCID:00000000 HAL_RIF_RIMC_GetDebugAccessPortCID
+     /tmp/ccsLeOrZ.s:209    .text.HAL_RIF_RIMC_GetDebugAccessPortCID:00000010 $d
+     /tmp/ccsLeOrZ.s:214    .text.HAL_RIF_RIMC_ConfigMasterAttributes:00000000 $t
+     /tmp/ccsLeOrZ.s:220    .text.HAL_RIF_RIMC_ConfigMasterAttributes:00000000 HAL_RIF_RIMC_ConfigMasterAttributes
+     /tmp/ccsLeOrZ.s:312    .text.HAL_RIF_RIMC_ConfigMasterAttributes:00000034 $d
+     /tmp/ccsLeOrZ.s:319    .text.HAL_RIF_RIMC_GetConfigMasterAttributes:00000000 $t
+     /tmp/ccsLeOrZ.s:325    .text.HAL_RIF_RIMC_GetConfigMasterAttributes:00000000 HAL_RIF_RIMC_GetConfigMasterAttributes
+     /tmp/ccsLeOrZ.s:366    .text.HAL_RIF_RIMC_GetConfigMasterAttributes:00000020 $d
+     /tmp/ccsLeOrZ.s:371    .text.HAL_RIF_RISC_Lock:00000000 $t
+     /tmp/ccsLeOrZ.s:377    .text.HAL_RIF_RISC_Lock:00000000 HAL_RIF_RISC_Lock
+     /tmp/ccsLeOrZ.s:396    .text.HAL_RIF_RISC_Lock:0000000c $d
+     /tmp/ccsLeOrZ.s:401    .text.HAL_RIF_RISC_GetLock:00000000 $t
+     /tmp/ccsLeOrZ.s:407    .text.HAL_RIF_RISC_GetLock:00000000 HAL_RIF_RISC_GetLock
+     /tmp/ccsLeOrZ.s:429    .text.HAL_RIF_RISC_GetLock:0000000c $d
+     /tmp/ccsLeOrZ.s:434    .text.HAL_RIF_RISC_SetSlaveSecureAttributes:00000000 $t
+     /tmp/ccsLeOrZ.s:440    .text.HAL_RIF_RISC_SetSlaveSecureAttributes:00000000 HAL_RIF_RISC_SetSlaveSecureAttributes
+     /tmp/ccsLeOrZ.s:527    .text.HAL_RIF_RISC_SetSlaveSecureAttributes:00000060 $d
+     /tmp/ccsLeOrZ.s:532    .text.HAL_RIF_RISC_GetSlaveSecureAttributes:00000000 $t
+     /tmp/ccsLeOrZ.s:538    .text.HAL_RIF_RISC_GetSlaveSecureAttributes:00000000 HAL_RIF_RISC_GetSlaveSecureAttributes
+     /tmp/ccsLeOrZ.s:593    .text.HAL_RIF_RISC_GetSlaveSecureAttributes:00000028 $d
+     /tmp/ccsLeOrZ.s:599    .text.HAL_RIF_RISC_SlaveConfigLock:00000000 $t
+     /tmp/ccsLeOrZ.s:605    .text.HAL_RIF_RISC_SlaveConfigLock:00000000 HAL_RIF_RISC_SlaveConfigLock
+     /tmp/ccsLeOrZ.s:637    .text.HAL_RIF_RISC_SlaveConfigLock:0000001c $d
+     /tmp/ccsLeOrZ.s:642    .text.HAL_RIF_RISC_GetSlaveConfigLock:00000000 $t
+     /tmp/ccsLeOrZ.s:648    .text.HAL_RIF_RISC_GetSlaveConfigLock:00000000 HAL_RIF_RISC_GetSlaveConfigLock
+     /tmp/ccsLeOrZ.s:689    .text.HAL_RIF_RISC_GetSlaveConfigLock:00000018 $d
+     /tmp/ccsLeOrZ.s:694    .text.HAL_RIF_RISAF_Lock:00000000 $t
+     /tmp/ccsLeOrZ.s:700    .text.HAL_RIF_RISAF_Lock:00000000 HAL_RIF_RISAF_Lock
+     /tmp/ccsLeOrZ.s:721    .text.HAL_RIF_RISAF_GetLock:00000000 $t
+     /tmp/ccsLeOrZ.s:727    .text.HAL_RIF_RISAF_GetLock:00000000 HAL_RIF_RISAF_GetLock
+     /tmp/ccsLeOrZ.s:750    .text.HAL_RIF_RISAF_ConfigBaseRegion:00000000 $t
+     /tmp/ccsLeOrZ.s:756    .text.HAL_RIF_RISAF_ConfigBaseRegion:00000000 HAL_RIF_RISAF_ConfigBaseRegion
+     /tmp/ccsLeOrZ.s:850    .text.HAL_RIF_RISAF_GetConfigBaseRegion:00000000 $t
+     /tmp/ccsLeOrZ.s:856    .text.HAL_RIF_RISAF_GetConfigBaseRegion:00000000 HAL_RIF_RISAF_GetConfigBaseRegion
+     /tmp/ccsLeOrZ.s:931    .text.HAL_RIF_RISAF_ConfigSubRegionDelegation:00000000 $t
+     /tmp/ccsLeOrZ.s:937    .text.HAL_RIF_RISAF_ConfigSubRegionDelegation:00000000 HAL_RIF_RISAF_ConfigSubRegionDelegation
+     /tmp/ccsLeOrZ.s:1063   .text.HAL_RIF_RISAF_GetConfigSubRegionDelegation:00000000 $t
+     /tmp/ccsLeOrZ.s:1069   .text.HAL_RIF_RISAF_GetConfigSubRegionDelegation:00000000 HAL_RIF_RISAF_GetConfigSubRegionDelegation
+     /tmp/ccsLeOrZ.s:1137   .text.HAL_RIF_RISAF_ConfigSubRegion:00000000 $t
+     /tmp/ccsLeOrZ.s:1143   .text.HAL_RIF_RISAF_ConfigSubRegion:00000000 HAL_RIF_RISAF_ConfigSubRegion
+     /tmp/ccsLeOrZ.s:1356   .text.HAL_RIF_RISAF_GetConfigSubRegion:00000000 $t
+     /tmp/ccsLeOrZ.s:1362   .text.HAL_RIF_RISAF_GetConfigSubRegion:00000000 HAL_RIF_RISAF_GetConfigSubRegion
+     /tmp/ccsLeOrZ.s:1457   .text.HAL_RIF_RISAF_GetIllegalAccess:00000000 $t
+     /tmp/ccsLeOrZ.s:1463   .text.HAL_RIF_RISAF_GetIllegalAccess:00000000 HAL_RIF_RISAF_GetIllegalAccess
+     /tmp/ccsLeOrZ.s:1548   .text.HAL_RIF_IAC_EnableIT:00000000 $t
+ARM GAS  /tmp/ccsLeOrZ.s 			page 62
 
 
-     /tmp/ccZCUZHE.s:1554   .text.HAL_RIF_IAC_EnableIT:00000000 HAL_RIF_IAC_EnableIT
-     /tmp/ccZCUZHE.s:1590   .text.HAL_RIF_IAC_DisableIT:00000000 $t
-     /tmp/ccZCUZHE.s:1596   .text.HAL_RIF_IAC_DisableIT:00000000 HAL_RIF_IAC_DisableIT
-     /tmp/ccZCUZHE.s:1632   .text.HAL_RIF_IAC_GetFlag:00000000 $t
-     /tmp/ccZCUZHE.s:1638   .text.HAL_RIF_IAC_GetFlag:00000000 HAL_RIF_IAC_GetFlag
-     /tmp/ccZCUZHE.s:1680   .text.HAL_RIF_IAC_GetFlag:00000018 $d
-     /tmp/ccZCUZHE.s:1685   .text.HAL_RIF_IAC_ClearFlag:00000000 $t
-     /tmp/ccZCUZHE.s:1691   .text.HAL_RIF_IAC_ClearFlag:00000000 HAL_RIF_IAC_ClearFlag
-     /tmp/ccZCUZHE.s:1720   .text.HAL_RIF_IAC_ClearFlag:00000014 $d
-     /tmp/ccZCUZHE.s:1725   .text.HAL_RIF_ILA_Callback:00000000 $t
-     /tmp/ccZCUZHE.s:1731   .text.HAL_RIF_ILA_Callback:00000000 HAL_RIF_ILA_Callback
-     /tmp/ccZCUZHE.s:1746   .text.HAL_RIF_IRQHandler:00000000 $t
-     /tmp/ccZCUZHE.s:1752   .text.HAL_RIF_IRQHandler:00000000 HAL_RIF_IRQHandler
-     /tmp/ccZCUZHE.s:1834   .text.HAL_RIF_IRQHandler:0000003c $d
+     /tmp/ccsLeOrZ.s:1554   .text.HAL_RIF_IAC_EnableIT:00000000 HAL_RIF_IAC_EnableIT
+     /tmp/ccsLeOrZ.s:1590   .text.HAL_RIF_IAC_DisableIT:00000000 $t
+     /tmp/ccsLeOrZ.s:1596   .text.HAL_RIF_IAC_DisableIT:00000000 HAL_RIF_IAC_DisableIT
+     /tmp/ccsLeOrZ.s:1632   .text.HAL_RIF_IAC_GetFlag:00000000 $t
+     /tmp/ccsLeOrZ.s:1638   .text.HAL_RIF_IAC_GetFlag:00000000 HAL_RIF_IAC_GetFlag
+     /tmp/ccsLeOrZ.s:1680   .text.HAL_RIF_IAC_GetFlag:00000018 $d
+     /tmp/ccsLeOrZ.s:1685   .text.HAL_RIF_IAC_ClearFlag:00000000 $t
+     /tmp/ccsLeOrZ.s:1691   .text.HAL_RIF_IAC_ClearFlag:00000000 HAL_RIF_IAC_ClearFlag
+     /tmp/ccsLeOrZ.s:1720   .text.HAL_RIF_IAC_ClearFlag:00000014 $d
+     /tmp/ccsLeOrZ.s:1725   .text.HAL_RIF_ILA_Callback:00000000 $t
+     /tmp/ccsLeOrZ.s:1731   .text.HAL_RIF_ILA_Callback:00000000 HAL_RIF_ILA_Callback
+     /tmp/ccsLeOrZ.s:1746   .text.HAL_RIF_IRQHandler:00000000 $t
+     /tmp/ccsLeOrZ.s:1752   .text.HAL_RIF_IRQHandler:00000000 HAL_RIF_IRQHandler
+     /tmp/ccsLeOrZ.s:1834   .text.HAL_RIF_IRQHandler:0000003c $d
 
 NO UNDEFINED SYMBOLS

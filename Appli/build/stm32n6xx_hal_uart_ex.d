@@ -27,6 +27,8 @@ build/stm32n6xx_hal_uart_ex.o: \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_cortex.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dcmipp.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_exti.h \
+ ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_i2c.h \
+ ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_i2c_ex.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_pwr.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_pwr_ex.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_ramcfg.h \
@@ -59,6 +61,8 @@ Inc/stm32n6xx_hal_conf.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_cortex.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dcmipp.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_exti.h:
+../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_i2c.h:
+../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_i2c_ex.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_pwr.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_pwr_ex.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_ramcfg.h:

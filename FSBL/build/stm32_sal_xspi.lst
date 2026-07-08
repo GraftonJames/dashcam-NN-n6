@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccuJg0Ev.s 			page 1
+ARM GAS  /tmp/ccWW04WY.s 			page 1
 
 
    1              		.arch armv8.1-m.main
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
   22:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** #if EXTMEM_SAL_XSPI_DEBUG_LEVEL != 0 && defined(EXTMEM_MACRO_DEBUG)
   23:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** #include <stdio.h>
   24:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** #endif /* EXTMEM_SAL_XSPI_DEBUG_LEVEL != 0 && EXTMEM_MACRO_DEBUG */
-ARM GAS  /tmp/ccuJg0Ev.s 			page 2
+ARM GAS  /tmp/ccWW04WY.s 			page 2
 
 
   25:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
   79:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   * @brief Trace data integer macro.
   80:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   */
   81:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** #define DEBUG_PARAM_INT(_INT_)                         \
-ARM GAS  /tmp/ccuJg0Ev.s 			page 3
+ARM GAS  /tmp/ccWW04WY.s 			page 3
 
 
   82:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   {                                                    \
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  136:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** } SAL_XSPI_TRANSFER_STATUS;
  137:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** 
  138:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** /**
-ARM GAS  /tmp/ccuJg0Ev.s 			page 4
+ARM GAS  /tmp/ccWW04WY.s 			page 4
 
 
  139:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   * @brief Variable of the transfer status
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  187:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   if (ClockRequested == 0u)
   41              		.loc 1 187 3 view .LVU3
   42              		.loc 1 187 6 is_stmt 0 view .LVU4
-ARM GAS  /tmp/ccuJg0Ev.s 			page 5
+ARM GAS  /tmp/ccWW04WY.s 			page 5
 
 
   43 0000 D2B1     		cbz	r2, .L6
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
   79              		.loc 1 204 16 view .LVU20
   80 0024 1960     		str	r1, [r3]
  205:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** 
-ARM GAS  /tmp/ccuJg0Ev.s 			page 6
+ARM GAS  /tmp/ccWW04WY.s 			page 6
 
 
  206:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****     DEBUG_PARAM_BEGIN();
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  120              		.global	SAL_XSPI_Init
  121              		.syntax unified
  122              		.thumb
-ARM GAS  /tmp/ccuJg0Ev.s 			page 7
+ARM GAS  /tmp/ccWW04WY.s 			page 7
 
 
  123              		.thumb_func
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  168 002e 0F93     		str	r3, [sp, #60]
  169 0030 0823     		movs	r3, #8
  170 0032 1293     		str	r3, [sp, #72]
-ARM GAS  /tmp/ccuJg0Ev.s 			page 8
+ARM GAS  /tmp/ccWW04WY.s 			page 8
 
 
  229:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   {
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  265:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** }
  189              		.loc 1 265 1 is_stmt 0 view .LVU52
  190 004c 15B0     		add	sp, sp, #84
-ARM GAS  /tmp/ccuJg0Ev.s 			page 9
+ARM GAS  /tmp/ccWW04WY.s 			page 9
 
 
  191              	.LCFI4:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  234 000c 011D     		adds	r1, r0, #4
  235              	.LVL17:
  236              		.loc 1 278 26 view .LVU60
-ARM GAS  /tmp/ccuJg0Ev.s 			page 10
+ARM GAS  /tmp/ccWW04WY.s 			page 10
 
 
  237 000e 01A8     		add	r0, sp, #4
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  277:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   XSPI_RegularCmdTypeDef s_commandbase = SalXspi->Commandbase;
  281              		.loc 1 277 21 is_stmt 0 view .LVU70
  282 0040 0123     		movs	r3, #1
-ARM GAS  /tmp/ccuJg0Ev.s 			page 11
+ARM GAS  /tmp/ccWW04WY.s 			page 11
 
 
  283 0042 1D46     		mov	r5, r3
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  304:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****           s_commandbase.DQSMode = HAL_XSPI_DQS_DISABLE;
  321              		.loc 1 304 11 is_stmt 1 view .LVU90
  322              		.loc 1 304 33 is_stmt 0 view .LVU91
-ARM GAS  /tmp/ccuJg0Ev.s 			page 12
+ARM GAS  /tmp/ccWW04WY.s 			page 12
 
 
  323 006a 1393     		str	r3, [sp, #76]
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  361              		.loc 1 320 33 is_stmt 0 view .LVU112
  362 0092 1393     		str	r3, [sp, #76]
  321:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****           break;
-ARM GAS  /tmp/ccuJg0Ev.s 			page 13
+ARM GAS  /tmp/ccWW04WY.s 			page 13
 
 
  363              		.loc 1 321 11 is_stmt 1 view .LVU113
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  404 00c4 1393     		str	r3, [sp, #76]
  335:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****           break;
  405              		.loc 1 335 11 is_stmt 1 view .LVU134
-ARM GAS  /tmp/ccuJg0Ev.s 			page 14
+ARM GAS  /tmp/ccWW04WY.s 			page 14
 
 
  406 00c6 83E0     		b	.L29
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  446              	.L24:
  350:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****         }
  351:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****         case PHY_LINK_8S8D8D:
-ARM GAS  /tmp/ccuJg0Ev.s 			page 15
+ARM GAS  /tmp/ccWW04WY.s 			page 15
 
 
  352:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****         {
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  364:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****         }
  365:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** 
  366:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****         case PHY_LINK_8D8D8D:
-ARM GAS  /tmp/ccuJg0Ev.s 			page 16
+ARM GAS  /tmp/ccWW04WY.s 			page 16
 
 
  367:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****         {
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  531              	.L22:
  379:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****         }
  380:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****         case PHY_LINK_RAM8:
-ARM GAS  /tmp/ccuJg0Ev.s 			page 17
+ARM GAS  /tmp/ccWW04WY.s 			page 17
 
 
  381:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****         {
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  393:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****           break;
  574              		.loc 1 393 11 is_stmt 1 view .LVU220
  575 018e 1FE0     		b	.L29
-ARM GAS  /tmp/ccuJg0Ev.s 			page 18
+ARM GAS  /tmp/ccWW04WY.s 			page 18
 
 
  576              	.L20:
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  615              		.loc 1 408 11 is_stmt 1 view .LVU241
  616              		.loc 1 408 44 is_stmt 0 view .LVU242
  617 01be 4FF00053 		mov	r3, #536870912
-ARM GAS  /tmp/ccuJg0Ev.s 			page 19
+ARM GAS  /tmp/ccWW04WY.s 			page 19
 
 
  618 01c2 1393     		str	r3, [sp, #76]
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  444:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****       s_commandbase.DummyCycles = valParam;
  445:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****       break;
  446:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****     }
-ARM GAS  /tmp/ccuJg0Ev.s 			page 20
+ARM GAS  /tmp/ccWW04WY.s 			page 20
 
 
  447:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****     default:
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  672              		.loc 1 435 7 view .LVU262
  673 01f2 EBE7     		b	.L31
  674              	.LVL25:
-ARM GAS  /tmp/ccuJg0Ev.s 			page 21
+ARM GAS  /tmp/ccWW04WY.s 			page 21
 
 
  675              	.L18:
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  472:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   s_command.Instruction = XSPI_FormatCommand(SalXspi->CommandExtension, s_command.InstructionWidth,
  473:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****                                              EXTMEM_READ_SFDP_COMMAND);
  474:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** 
-ARM GAS  /tmp/ccuJg0Ev.s 			page 22
+ARM GAS  /tmp/ccWW04WY.s 			page 22
 
 
  475:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   s_command.Address     = Address;
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  529:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** 
  530:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   if (s_command.InstructionMode == HAL_XSPI_INSTRUCTION_1_LINE)
  531:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   {
-ARM GAS  /tmp/ccuJg0Ev.s 			page 23
+ARM GAS  /tmp/ccWW04WY.s 			page 23
 
 
  532:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****     s_command.AddressMode       = HAL_XSPI_ADDRESS_NONE;
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  586:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****     (void)HAL_XSPI_Abort(SalXspi->hxspi);
  587:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   }
  588:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   return retr;
-ARM GAS  /tmp/ccuJg0Ev.s 			page 24
+ARM GAS  /tmp/ccWW04WY.s 			page 24
 
 
  589:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** }
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  643:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   retr = XSPI_Receive(SalXspi, Data);
  644:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** 
  645:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** error:
-ARM GAS  /tmp/ccuJg0Ev.s 			page 25
+ARM GAS  /tmp/ccWW04WY.s 			page 25
 
 
  646:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   if (retr != HAL_OK)
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  700:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   * @param Address Address to write the data
  701:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   * @return @ref HAL_StatusTypeDef
  702:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   **/
-ARM GAS  /tmp/ccuJg0Ev.s 			page 26
+ARM GAS  /tmp/ccWW04WY.s 			page 26
 
 
  703:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** HAL_StatusTypeDef SAL_XSPI_CommandSendAddress(SAL_XSPI_ObjectTypeDef *SalXspi, uint8_t Command,
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  757:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   }
  758:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** 
  759:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   /* Send the command */
-ARM GAS  /tmp/ccuJg0Ev.s 			page 27
+ARM GAS  /tmp/ccWW04WY.s 			page 27
 
 
  760:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   retr = HAL_XSPI_Command(SalXspi->hxspi, &s_command, SAL_XSPI_TIMEOUT_DEFAULT_VALUE);
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  814:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****     (void)HAL_XSPI_Abort(SalXspi->hxspi);
  815:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   }
  816:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   return retr;
-ARM GAS  /tmp/ccuJg0Ev.s 			page 28
+ARM GAS  /tmp/ccWW04WY.s 			page 28
 
 
  817:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** }
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  871:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   }
  872:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   return retr;
  873:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** }
-ARM GAS  /tmp/ccuJg0Ev.s 			page 29
+ARM GAS  /tmp/ccWW04WY.s 			page 29
 
 
  874:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** 
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  928:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** 
  929:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   /* Send the command */
  930:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   retr = HAL_XSPI_Command(SalXspi->hxspi, &s_command, SAL_XSPI_TIMEOUT_DEFAULT_VALUE);
-ARM GAS  /tmp/ccuJg0Ev.s 			page 30
+ARM GAS  /tmp/ccWW04WY.s 			page 30
 
 
  931:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   if (retr == HAL_OK)
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  985:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   **/
  986:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** HAL_StatusTypeDef SAL_XSPI_EnableMapMode(SAL_XSPI_ObjectTypeDef *SalXspi, uint8_t CommandRead, uint
  987:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****                                          uint8_t CommandWrite, uint8_t DummyWrite)
-ARM GAS  /tmp/ccuJg0Ev.s 			page 31
+ARM GAS  /tmp/ccWW04WY.s 			page 31
 
 
  988:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** {
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  712              	.LCFI9:
  713              		.cfi_def_cfa_offset 8
  714              		.cfi_offset 3, -8
-ARM GAS  /tmp/ccuJg0Ev.s 			page 32
+ARM GAS  /tmp/ccWW04WY.s 			page 32
 
 
  715              		.cfi_offset 14, -4
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
   49:../Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   50:../Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __NO_RETURN
   51:../Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __NO_RETURN                            __attribute__((__noreturn__))
-ARM GAS  /tmp/ccuJg0Ev.s 			page 33
+ARM GAS  /tmp/ccWW04WY.s 			page 33
 
 
   52:../Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  106:../Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __RESTRICT
  107:../Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __RESTRICT                             __restrict
  108:../Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
-ARM GAS  /tmp/ccuJg0Ev.s 			page 34
+ARM GAS  /tmp/ccWW04WY.s 			page 34
 
 
  109:../Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __COMPILER_BARRIER
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  163:../Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  164:../Drivers/CMSIS/Include/cmsis_gcc.h **** #define __SEV()         __ASM volatile ("sev")
  165:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /tmp/ccuJg0Ev.s 			page 35
+ARM GAS  /tmp/ccWW04WY.s 			page 35
 
 
  166:../Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
 1039:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** 
 1040:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** /**
 1041:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   * @brief This function updates the memory according the SFDP signature value
-ARM GAS  /tmp/ccuJg0Ev.s 			page 36
+ARM GAS  /tmp/ccWW04WY.s 			page 36
 
 
 1042:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   * @param SalXspi SAL XSPI handle
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  782              	.L43:
 1062:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****       }
  783              		.loc 1 1062 20 view .LVU294
-ARM GAS  /tmp/ccuJg0Ev.s 			page 37
+ARM GAS  /tmp/ccWW04WY.s 			page 37
 
 
  784 001a 0B46     		mov	r3, r1
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  822              		.align	1
  823              		.global	SAL_XSPI_Abort
  824              		.syntax unified
-ARM GAS  /tmp/ccuJg0Ev.s 			page 38
+ARM GAS  /tmp/ccWW04WY.s 			page 38
 
 
  825              		.thumb
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
 1100:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   * @return Formatted command
 1101:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   */
 1102:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** uint16_t XSPI_FormatCommand(uint8_t CommandExtension, uint32_t InstructionWidth, uint8_t Command)
-ARM GAS  /tmp/ccuJg0Ev.s 			page 39
+ARM GAS  /tmp/ccWW04WY.s 			page 39
 
 
 1103:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** {
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  887              		.loc 1 1113 8 is_stmt 0 view .LVU327
  888 000a 0128     		cmp	r0, #1
  889 000c 02D0     		beq	.L51
-ARM GAS  /tmp/ccuJg0Ev.s 			page 40
+ARM GAS  /tmp/ccWW04WY.s 			page 40
 
 
 1119:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****     }
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  937 0006 0E46     		mov	r6, r1
  938 0008 1746     		mov	r7, r2
  939 000a 1D46     		mov	r5, r3
-ARM GAS  /tmp/ccuJg0Ev.s 			page 41
+ARM GAS  /tmp/ccWW04WY.s 			page 41
 
 
  468:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   XSPI_RegularCmdTypeDef s_command = SalXspi->Commandbase;
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  976 002e 089B     		ldr	r3, [sp, #32]
  479:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   {
  977              		.loc 1 479 6 view .LVU355
-ARM GAS  /tmp/ccuJg0Ev.s 			page 42
+ARM GAS  /tmp/ccWW04WY.s 			page 42
 
 
  978 0030 B3F5807F 		cmp	r3, #256
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1017 005c 2068     		ldr	r0, [r4]
  1018 005e FFF7FEFF 		bl	HAL_XSPI_Abort
  1019              	.LVL59:
-ARM GAS  /tmp/ccuJg0Ev.s 			page 43
+ARM GAS  /tmp/ccWW04WY.s 			page 43
 
 
  1020              	.L58:
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1067              	SAL_XSPI_GetId:
  1068              	.LVL64:
  1069              	.LFB885:
-ARM GAS  /tmp/ccuJg0Ev.s 			page 44
+ARM GAS  /tmp/ccWW04WY.s 			page 44
 
 
  520:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   HAL_StatusTypeDef retr;
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  528:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** 
  1112              		.loc 1 528 25 is_stmt 0 view .LVU392
  1113 0022 1095     		str	r5, [sp, #64]
-ARM GAS  /tmp/ccuJg0Ev.s 			page 45
+ARM GAS  /tmp/ccWW04WY.s 			page 45
 
 
  530:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   {
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1150              		.loc 1 573 3 is_stmt 1 view .LVU410
  573:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   if (retr  != HAL_OK)
  1151              		.loc 1 573 10 is_stmt 0 view .LVU411
-ARM GAS  /tmp/ccuJg0Ev.s 			page 46
+ARM GAS  /tmp/ccWW04WY.s 			page 46
 
 
  1152 0048 6422     		movs	r2, #100
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1193 0068 4FF04073 		mov	r3, #50331648
  1194 006c 0F93     		str	r3, [sp, #60]
  1195 006e EBE7     		b	.L64
-ARM GAS  /tmp/ccuJg0Ev.s 			page 47
+ARM GAS  /tmp/ccWW04WY.s 			page 47
 
 
  1196              	.L74:
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1234              		.loc 1 555 45 discriminator 1 view .LVU440
  1235 0096 119B     		ldr	r3, [sp, #68]
  555:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****     {
-ARM GAS  /tmp/ccuJg0Ev.s 			page 48
+ARM GAS  /tmp/ccWW04WY.s 			page 48
 
 
  1236              		.loc 1 555 32 discriminator 1 view .LVU441
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1282              		@ frame_needed = 0, uses_anonymous_args = 0
  705:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   HAL_StatusTypeDef retr;
  1283              		.loc 1 705 1 is_stmt 0 view .LVU452
-ARM GAS  /tmp/ccuJg0Ev.s 			page 49
+ARM GAS  /tmp/ccWW04WY.s 			page 49
 
 
  1284 0000 70B5     		push	{r4, r5, r6, lr}
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1326              	.L79:
  717:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   s_command.DummyCycles       = 0U;
  1327              		.loc 1 717 3 is_stmt 1 view .LVU465
-ARM GAS  /tmp/ccuJg0Ev.s 			page 50
+ARM GAS  /tmp/ccWW04WY.s 			page 50
 
 
  717:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   s_command.DummyCycles       = 0U;
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  714:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   }
  1368              		.loc 1 714 5 is_stmt 1 view .LVU480
  714:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   }
-ARM GAS  /tmp/ccuJg0Ev.s 			page 51
+ARM GAS  /tmp/ccWW04WY.s 			page 51
 
 
  1369              		.loc 1 714 27 is_stmt 0 view .LVU481
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1418 000c 4C22     		movs	r2, #76
  1419              	.LVL92:
  743:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   HAL_StatusTypeDef retr;
-ARM GAS  /tmp/ccuJg0Ev.s 			page 52
+ARM GAS  /tmp/ccWW04WY.s 			page 52
 
 
  1420              		.loc 1 743 28 view .LVU489
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1456              		.loc 1 756 32 is_stmt 0 view .LVU507
  1457 0030 0F95     		str	r5, [sp, #60]
  1458              	.L85:
-ARM GAS  /tmp/ccuJg0Ev.s 			page 53
+ARM GAS  /tmp/ccWW04WY.s 			page 53
 
 
  760:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** 
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1500              		.loc 1 764 5 is_stmt 1 view .LVU520
  764:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   }
  1501              		.loc 1 764 12 is_stmt 0 view .LVU521
-ARM GAS  /tmp/ccuJg0Ev.s 			page 54
+ARM GAS  /tmp/ccWW04WY.s 			page 54
 
 
  1502 0050 6422     		movs	r2, #100
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1551 000e 011D     		adds	r1, r0, #4
  1552              	.LVL108:
  786:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   HAL_StatusTypeDef retr;
-ARM GAS  /tmp/ccuJg0Ev.s 			page 55
+ARM GAS  /tmp/ccWW04WY.s 			page 55
 
 
  1553              		.loc 1 786 28 view .LVU529
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1589              		.loc 1 803 3 is_stmt 1 view .LVU547
  803:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** 
  1590              		.loc 1 803 10 is_stmt 0 view .LVU548
-ARM GAS  /tmp/ccuJg0Ev.s 			page 56
+ARM GAS  /tmp/ccWW04WY.s 			page 56
 
 
  1591 0032 6422     		movs	r2, #100
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1633 0052 3946     		mov	r1, r7
  1634 0054 2068     		ldr	r0, [r4]
  1635              	.LVL118:
-ARM GAS  /tmp/ccuJg0Ev.s 			page 57
+ARM GAS  /tmp/ccWW04WY.s 			page 57
 
 
  808:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   }
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  833:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   HAL_StatusTypeDef retr;
  1685              		.loc 1 833 28 view .LVU568
  1686 0016 01A8     		add	r0, sp, #4
-ARM GAS  /tmp/ccuJg0Ev.s 			page 58
+ARM GAS  /tmp/ccWW04WY.s 			page 58
 
 
  1687              	.LVL124:
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  855:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   }
  1724              		.loc 1 855 32 is_stmt 0 view .LVU586
  1725 0040 0023     		movs	r3, #0
-ARM GAS  /tmp/ccuJg0Ev.s 			page 59
+ARM GAS  /tmp/ccWW04WY.s 			page 59
 
 
  1726 0042 1393     		str	r3, [sp, #76]
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1767              		@ sp needed
  1768 006a BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
  1769              	.LVL132:
-ARM GAS  /tmp/ccuJg0Ev.s 			page 60
+ARM GAS  /tmp/ccWW04WY.s 			page 60
 
 
  1770              	.L105:
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1814              		.loc 1 889 1 is_stmt 0 view .LVU611
  1815 0000 F0B5     		push	{r4, r5, r6, r7, lr}
  1816              	.LCFI35:
-ARM GAS  /tmp/ccuJg0Ev.s 			page 61
+ARM GAS  /tmp/ccWW04WY.s 			page 61
 
 
  1817              		.cfi_def_cfa_offset 20
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1860 002e 0999     		ldr	r1, [sp, #36]
  1861 0030 94F85000 		ldrb	r0, [r4, #80]	@ zero_extendqisi2
  1862 0034 FFF7FEFF 		bl	XSPI_FormatCommand
-ARM GAS  /tmp/ccuJg0Ev.s 			page 62
+ARM GAS  /tmp/ccWW04WY.s 			page 62
 
 
  1863              	.LVL139:
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1900 005c 209A     		ldr	r2, [sp, #128]
  1901 005e 6946     		mov	r1, sp
  1902 0060 2068     		ldr	r0, [r4]
-ARM GAS  /tmp/ccuJg0Ev.s 			page 63
+ARM GAS  /tmp/ccWW04WY.s 			page 63
 
 
  1903              	.LVL141:
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  919:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****     {
  1944              		.loc 1 919 5 is_stmt 1 view .LVU653
  919:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****     {
-ARM GAS  /tmp/ccuJg0Ev.s 			page 64
+ARM GAS  /tmp/ccWW04WY.s 			page 64
 
 
  1945              		.loc 1 919 8 is_stmt 0 view .LVU654
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  1989              	.LFB893:
  953:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   HAL_StatusTypeDef retr;
  1990              		.loc 1 953 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccuJg0Ev.s 			page 65
+ARM GAS  /tmp/ccWW04WY.s 			page 65
 
 
  1991              		.cfi_startproc
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  2034              	.LVL151:
  959:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   s_command.DummyCycles = WrapDummy;
  2035              		.loc 1 959 25 discriminator 1 view .LVU679
-ARM GAS  /tmp/ccuJg0Ev.s 			page 66
+ARM GAS  /tmp/ccWW04WY.s 			page 66
 
 
  2036 0026 0390     		str	r0, [sp, #12]
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  2077              	.LFE893:
  2079              		.section	.text.SAL_XSPI_EnableMapMode,"ax",%progbits
  2080              		.align	1
-ARM GAS  /tmp/ccuJg0Ev.s 			page 67
+ARM GAS  /tmp/ccWW04WY.s 			page 67
 
 
  2081              		.global	SAL_XSPI_EnableMapMode
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  2126              		.loc 1 991 28 is_stmt 0 view .LVU702
  2127 001a 0020     		movs	r0, #0
  2128 001c 0190     		str	r0, [sp, #4]
-ARM GAS  /tmp/ccuJg0Ev.s 			page 68
+ARM GAS  /tmp/ccWW04WY.s 			page 68
 
 
  2129 001e 0290     		str	r0, [sp, #8]
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  2168              		.loc 1 1027 1 is_stmt 0 view .LVU717
  2169 004c 2846     		mov	r0, r5
  2170 004e 18B0     		add	sp, sp, #96
-ARM GAS  /tmp/ccuJg0Ev.s 			page 69
+ARM GAS  /tmp/ccWW04WY.s 			page 69
 
 
  2171              	.LCFI45:
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
 1016:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   sMemMappedCfg.TimeoutPeriodClock = 0x50;
  2212              		.loc 1 1016 36 is_stmt 0 view .LVU731
  2213 007c 0190     		str	r0, [sp, #4]
-ARM GAS  /tmp/ccuJg0Ev.s 			page 70
+ARM GAS  /tmp/ccWW04WY.s 			page 70
 
 
 1017:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   retr = HAL_XSPI_MemoryMapped(SalXspi->hxspi, &sMemMappedCfg);
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  2253              		.cfi_def_cfa_offset 8
  2254              		.cfi_offset 3, -8
  2255              		.cfi_offset 14, -4
-ARM GAS  /tmp/ccuJg0Ev.s 			page 71
+ARM GAS  /tmp/ccWW04WY.s 			page 71
 
 
 1139:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   HAL_StatusTypeDef retr;
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  2280              	.LFB887:
  665:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   HAL_StatusTypeDef retr;
  2281              		.loc 1 665 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccuJg0Ev.s 			page 72
+ARM GAS  /tmp/ccWW04WY.s 			page 72
 
 
  2282              		.cfi_startproc
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  672:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   s_command.DataLength        = DataSize;
  2326              		.loc 1 672 3 is_stmt 1 view .LVU758
  672:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   s_command.DataLength        = DataSize;
-ARM GAS  /tmp/ccuJg0Ev.s 			page 73
+ARM GAS  /tmp/ccWW04WY.s 			page 73
 
 
  2327              		.loc 1 672 31 is_stmt 0 view .LVU759
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  2367 004c BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
  2368              	.LVL184:
  2369              	.L132:
-ARM GAS  /tmp/ccuJg0Ev.s 			page 74
+ARM GAS  /tmp/ccWW04WY.s 			page 74
 
 
  2370              	.LCFI51:
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  2410              		.loc 1 1181 3 is_stmt 1 view .LVU781
 1182:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** 
 1183:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** #if defined (USE_HAL_XSPI_REGISTER_CALLBACKS) && (USE_HAL_XSPI_REGISTER_CALLBACKS == 1U)
-ARM GAS  /tmp/ccuJg0Ev.s 			page 75
+ARM GAS  /tmp/ccWW04WY.s 			page 75
 
 
 1184:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   if (SalXspi->hxspi->hdmarx == NULL)
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  2438              		@ frame_needed = 0, uses_anonymous_args = 0
  602:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   HAL_StatusTypeDef retr;
  2439              		.loc 1 602 1 is_stmt 0 view .LVU788
-ARM GAS  /tmp/ccuJg0Ev.s 			page 76
+ARM GAS  /tmp/ccWW04WY.s 			page 76
 
 
  2440 0000 F0B5     		push	{r4, r5, r6, r7, lr}
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  610:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** 
  2482              		.loc 1 610 31 is_stmt 0 view .LVU801
  2483 0026 1A9B     		ldr	r3, [sp, #104]
-ARM GAS  /tmp/ccuJg0Ev.s 			page 77
+ARM GAS  /tmp/ccWW04WY.s 			page 77
 
 
  2484 0028 1093     		str	r3, [sp, #64]
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  2522 005a FFF7FEFF 		bl	HAL_XSPI_Command
  2523              	.LVL196:
  637:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c ****   {
-ARM GAS  /tmp/ccuJg0Ev.s 			page 78
+ARM GAS  /tmp/ccWW04WY.s 			page 78
 
 
  2524              		.loc 1 637 3 is_stmt 1 view .LVU818
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  2565 007c 3946     		mov	r1, r7
  2566 007e 2046     		mov	r0, r4
  2567              	.LVL202:
-ARM GAS  /tmp/ccuJg0Ev.s 			page 79
+ARM GAS  /tmp/ccWW04WY.s 			page 79
 
 
  643:../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c **** 
@@ -4707,55 +4707,55 @@ ARM GAS  /tmp/ccuJg0Ev.s 			page 1
  2589              		.file 9 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_xspi.h"
  2590              		.file 10 "../Drivers/STM32_ExtMem_Manager/sal/stm32_sal_xspi_type.h"
  2591              		.file 11 "<built-in>"
-ARM GAS  /tmp/ccuJg0Ev.s 			page 80
+ARM GAS  /tmp/ccWW04WY.s 			page 80
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32_sal_xspi.c
-     /tmp/ccuJg0Ev.s:26     .text.SAL_XSPI_SetClock:00000000 $t
-     /tmp/ccuJg0Ev.s:32     .text.SAL_XSPI_SetClock:00000000 SAL_XSPI_SetClock
-     /tmp/ccuJg0Ev.s:119    .text.SAL_XSPI_Init:00000000 $t
-     /tmp/ccuJg0Ev.s:125    .text.SAL_XSPI_Init:00000000 SAL_XSPI_Init
-     /tmp/ccuJg0Ev.s:200    .text.SAL_XSPI_MemoryConfig:00000000 $t
-     /tmp/ccuJg0Ev.s:206    .text.SAL_XSPI_MemoryConfig:00000000 SAL_XSPI_MemoryConfig
-     /tmp/ccuJg0Ev.s:247    .text.SAL_XSPI_MemoryConfig:0000001c $d
-     /tmp/ccuJg0Ev.s:252    .text.SAL_XSPI_MemoryConfig:00000026 $t
-     /tmp/ccuJg0Ev.s:267    .text.SAL_XSPI_MemoryConfig:00000034 $d
-     /tmp/ccuJg0Ev.s:279    .text.SAL_XSPI_MemoryConfig:00000040 $t
-     /tmp/ccuJg0Ev.s:697    .text.SAL_XSPI_DisableMapMode:00000000 $t
-     /tmp/ccuJg0Ev.s:703    .text.SAL_XSPI_DisableMapMode:00000000 SAL_XSPI_DisableMapMode
-     /tmp/ccuJg0Ev.s:744    .text.SAL_XSPI_UpdateMemoryType:00000000 $t
-     /tmp/ccuJg0Ev.s:750    .text.SAL_XSPI_UpdateMemoryType:00000000 SAL_XSPI_UpdateMemoryType
-     /tmp/ccuJg0Ev.s:822    .text.SAL_XSPI_Abort:00000000 $t
-     /tmp/ccuJg0Ev.s:828    .text.SAL_XSPI_Abort:00000000 SAL_XSPI_Abort
-     /tmp/ccuJg0Ev.s:854    .text.XSPI_FormatCommand:00000000 $t
-     /tmp/ccuJg0Ev.s:860    .text.XSPI_FormatCommand:00000000 XSPI_FormatCommand
-     /tmp/ccuJg0Ev.s:911    .text.SAL_XSPI_GetSFDP:00000000 $t
-     /tmp/ccuJg0Ev.s:917    .text.SAL_XSPI_GetSFDP:00000000 SAL_XSPI_GetSFDP
-     /tmp/ccuJg0Ev.s:1061   .text.SAL_XSPI_GetId:00000000 $t
-     /tmp/ccuJg0Ev.s:1067   .text.SAL_XSPI_GetId:00000000 SAL_XSPI_GetId
-     /tmp/ccuJg0Ev.s:1270   .text.SAL_XSPI_CommandSendAddress:00000000 $t
-     /tmp/ccuJg0Ev.s:1276   .text.SAL_XSPI_CommandSendAddress:00000000 SAL_XSPI_CommandSendAddress
-     /tmp/ccuJg0Ev.s:1387   .text.SAL_XSPI_CommandSendData:00000000 $t
-     /tmp/ccuJg0Ev.s:1393   .text.SAL_XSPI_CommandSendData:00000000 SAL_XSPI_CommandSendData
-     /tmp/ccuJg0Ev.s:1517   .text.SAL_XSPI_SendReadCommand:00000000 $t
-     /tmp/ccuJg0Ev.s:1523   .text.SAL_XSPI_SendReadCommand:00000000 SAL_XSPI_SendReadCommand
-     /tmp/ccuJg0Ev.s:1647   .text.SAL_XSPI_CommandSendReadAddress:00000000 $t
-     /tmp/ccuJg0Ev.s:1653   .text.SAL_XSPI_CommandSendReadAddress:00000000 SAL_XSPI_CommandSendReadAddress
-     /tmp/ccuJg0Ev.s:1801   .text.SAL_XSPI_CheckStatusRegister:00000000 $t
-     /tmp/ccuJg0Ev.s:1807   .text.SAL_XSPI_CheckStatusRegister:00000000 SAL_XSPI_CheckStatusRegister
-     /tmp/ccuJg0Ev.s:1981   .text.SAL_XSPI_ConfigureWrappMode:00000000 $t
-     /tmp/ccuJg0Ev.s:1987   .text.SAL_XSPI_ConfigureWrappMode:00000000 SAL_XSPI_ConfigureWrappMode
-     /tmp/ccuJg0Ev.s:2080   .text.SAL_XSPI_EnableMapMode:00000000 $t
-     /tmp/ccuJg0Ev.s:2086   .text.SAL_XSPI_EnableMapMode:00000000 SAL_XSPI_EnableMapMode
-     /tmp/ccuJg0Ev.s:2237   .text.XSPI_Transmit:00000000 $t
-     /tmp/ccuJg0Ev.s:2243   .text.XSPI_Transmit:00000000 XSPI_Transmit
-     /tmp/ccuJg0Ev.s:2272   .text.SAL_XSPI_Write:00000000 $t
-     /tmp/ccuJg0Ev.s:2278   .text.SAL_XSPI_Write:00000000 SAL_XSPI_Write
-     /tmp/ccuJg0Ev.s:2391   .text.XSPI_Receive:00000000 $t
-     /tmp/ccuJg0Ev.s:2397   .text.XSPI_Receive:00000000 XSPI_Receive
-     /tmp/ccuJg0Ev.s:2426   .text.SAL_XSPI_Read:00000000 $t
-     /tmp/ccuJg0Ev.s:2432   .text.SAL_XSPI_Read:00000000 SAL_XSPI_Read
+     /tmp/ccWW04WY.s:26     .text.SAL_XSPI_SetClock:00000000 $t
+     /tmp/ccWW04WY.s:32     .text.SAL_XSPI_SetClock:00000000 SAL_XSPI_SetClock
+     /tmp/ccWW04WY.s:119    .text.SAL_XSPI_Init:00000000 $t
+     /tmp/ccWW04WY.s:125    .text.SAL_XSPI_Init:00000000 SAL_XSPI_Init
+     /tmp/ccWW04WY.s:200    .text.SAL_XSPI_MemoryConfig:00000000 $t
+     /tmp/ccWW04WY.s:206    .text.SAL_XSPI_MemoryConfig:00000000 SAL_XSPI_MemoryConfig
+     /tmp/ccWW04WY.s:247    .text.SAL_XSPI_MemoryConfig:0000001c $d
+     /tmp/ccWW04WY.s:252    .text.SAL_XSPI_MemoryConfig:00000026 $t
+     /tmp/ccWW04WY.s:267    .text.SAL_XSPI_MemoryConfig:00000034 $d
+     /tmp/ccWW04WY.s:279    .text.SAL_XSPI_MemoryConfig:00000040 $t
+     /tmp/ccWW04WY.s:697    .text.SAL_XSPI_DisableMapMode:00000000 $t
+     /tmp/ccWW04WY.s:703    .text.SAL_XSPI_DisableMapMode:00000000 SAL_XSPI_DisableMapMode
+     /tmp/ccWW04WY.s:744    .text.SAL_XSPI_UpdateMemoryType:00000000 $t
+     /tmp/ccWW04WY.s:750    .text.SAL_XSPI_UpdateMemoryType:00000000 SAL_XSPI_UpdateMemoryType
+     /tmp/ccWW04WY.s:822    .text.SAL_XSPI_Abort:00000000 $t
+     /tmp/ccWW04WY.s:828    .text.SAL_XSPI_Abort:00000000 SAL_XSPI_Abort
+     /tmp/ccWW04WY.s:854    .text.XSPI_FormatCommand:00000000 $t
+     /tmp/ccWW04WY.s:860    .text.XSPI_FormatCommand:00000000 XSPI_FormatCommand
+     /tmp/ccWW04WY.s:911    .text.SAL_XSPI_GetSFDP:00000000 $t
+     /tmp/ccWW04WY.s:917    .text.SAL_XSPI_GetSFDP:00000000 SAL_XSPI_GetSFDP
+     /tmp/ccWW04WY.s:1061   .text.SAL_XSPI_GetId:00000000 $t
+     /tmp/ccWW04WY.s:1067   .text.SAL_XSPI_GetId:00000000 SAL_XSPI_GetId
+     /tmp/ccWW04WY.s:1270   .text.SAL_XSPI_CommandSendAddress:00000000 $t
+     /tmp/ccWW04WY.s:1276   .text.SAL_XSPI_CommandSendAddress:00000000 SAL_XSPI_CommandSendAddress
+     /tmp/ccWW04WY.s:1387   .text.SAL_XSPI_CommandSendData:00000000 $t
+     /tmp/ccWW04WY.s:1393   .text.SAL_XSPI_CommandSendData:00000000 SAL_XSPI_CommandSendData
+     /tmp/ccWW04WY.s:1517   .text.SAL_XSPI_SendReadCommand:00000000 $t
+     /tmp/ccWW04WY.s:1523   .text.SAL_XSPI_SendReadCommand:00000000 SAL_XSPI_SendReadCommand
+     /tmp/ccWW04WY.s:1647   .text.SAL_XSPI_CommandSendReadAddress:00000000 $t
+     /tmp/ccWW04WY.s:1653   .text.SAL_XSPI_CommandSendReadAddress:00000000 SAL_XSPI_CommandSendReadAddress
+     /tmp/ccWW04WY.s:1801   .text.SAL_XSPI_CheckStatusRegister:00000000 $t
+     /tmp/ccWW04WY.s:1807   .text.SAL_XSPI_CheckStatusRegister:00000000 SAL_XSPI_CheckStatusRegister
+     /tmp/ccWW04WY.s:1981   .text.SAL_XSPI_ConfigureWrappMode:00000000 $t
+     /tmp/ccWW04WY.s:1987   .text.SAL_XSPI_ConfigureWrappMode:00000000 SAL_XSPI_ConfigureWrappMode
+     /tmp/ccWW04WY.s:2080   .text.SAL_XSPI_EnableMapMode:00000000 $t
+     /tmp/ccWW04WY.s:2086   .text.SAL_XSPI_EnableMapMode:00000000 SAL_XSPI_EnableMapMode
+     /tmp/ccWW04WY.s:2237   .text.XSPI_Transmit:00000000 $t
+     /tmp/ccWW04WY.s:2243   .text.XSPI_Transmit:00000000 XSPI_Transmit
+     /tmp/ccWW04WY.s:2272   .text.SAL_XSPI_Write:00000000 $t
+     /tmp/ccWW04WY.s:2278   .text.SAL_XSPI_Write:00000000 SAL_XSPI_Write
+     /tmp/ccWW04WY.s:2391   .text.XSPI_Receive:00000000 $t
+     /tmp/ccWW04WY.s:2397   .text.XSPI_Receive:00000000 XSPI_Receive
+     /tmp/ccWW04WY.s:2426   .text.SAL_XSPI_Read:00000000 $t
+     /tmp/ccWW04WY.s:2432   .text.SAL_XSPI_Read:00000000 SAL_XSPI_Read
 
 UNDEFINED SYMBOLS
 memset

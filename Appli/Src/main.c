@@ -19,6 +19,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
+#include "camera.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -44,8 +46,6 @@
 COM_InitTypeDef BspCOMInit;
 CACHEAXI_HandleTypeDef hcacheaxi;
 
-DCMIPP_HandleTypeDef hdcmipp;
-
 UART_HandleTypeDef hlpuart1;
 
 RAMCFG_HandleTypeDef hramcfg_SRAM3;
@@ -60,7 +60,6 @@ RAMCFG_HandleTypeDef hramcfg_SRAM6;
 /* Private function prototypes -----------------------------------------------*/
 static void MX_GPIO_Init(void);
 static void MX_CACHEAXI_Init(void);
-static void MX_DCMIPP_Init(void);
 static void MX_LPUART1_UART_Init(void);
 static void MX_RAMCFG_Init(void);
 static void SystemIsolation_Config(void);
@@ -98,7 +97,6 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_CACHEAXI_Init();
-  MX_DCMIPP_Init();
   MX_LPUART1_UART_Init();
   MX_RAMCFG_Init();
   SystemIsolation_Config();
@@ -115,7 +113,12 @@ int main(void)
     Error_Handler();
   }
 
-	  printf("COM OPEN\r\n");
+	  printf("COM OPEN \n \r");
+
+  if (CAMERA_init() != HAL_OK)
+  {
+    Error_Handler();
+  }
   /* USER CODE END 2 */
 
   BSP_LED_Toggle(LED_GREEN);
@@ -125,7 +128,7 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
-	  printf("COM OPEN\r\n");
+	  printf("COM OPEN \n \r");
 	 BSP_LED_Toggle(LED_RED);
 	 HAL_Delay(200);
     /* USER CODE BEGIN 3 */
@@ -160,65 +163,31 @@ static void MX_CACHEAXI_Init(void)
 }
 
 /**
-  * @brief DCMIPP Initialization Function
-  * @param None
-  * @retval None
+  * @brief DCMIPP Clock Configuration Function, called by CMW_CAMERA_Init()
+  * @param hdcmipp DCMIPP handle
+  * @retval HAL status
   */
-static void MX_DCMIPP_Init(void)
+HAL_StatusTypeDef MX_DCMIPP_ClockConfig(DCMIPP_HandleTypeDef *hdcmipp)
 {
+  RCC_PeriphCLKInitTypeDef RCC_PeriphCLKInitStruct = {0};
+  HAL_StatusTypeDef ret;
 
-  /* USER CODE BEGIN DCMIPP_Init 0 */
+  UNUSED(hdcmipp);
 
-  /* USER CODE END DCMIPP_Init 0 */
-
-  DCMIPP_ParallelConfTypeDef pParallelConfig = {0};
-  DCMIPP_PipeConfTypeDef pPipeConfig = {0};
-
-  /* USER CODE BEGIN DCMIPP_Init 1 */
-
-  /* USER CODE END DCMIPP_Init 1 */
-  hdcmipp.Instance = DCMIPP;
-  if (HAL_DCMIPP_Init(&hdcmipp) != HAL_OK)
+  RCC_PeriphCLKInitStruct.PeriphClockSelection = RCC_PERIPHCLK_DCMIPP;
+  RCC_PeriphCLKInitStruct.DcmippClockSelection = RCC_DCMIPPCLKSOURCE_IC17;
+  RCC_PeriphCLKInitStruct.ICSelection[RCC_IC17].ClockSelection = RCC_ICCLKSOURCE_PLL2;
+  RCC_PeriphCLKInitStruct.ICSelection[RCC_IC17].ClockDivider = 3;
+  ret = HAL_RCCEx_PeriphCLKConfig(&RCC_PeriphCLKInitStruct);
+  if (ret != HAL_OK)
   {
-    Error_Handler();
+    return ret;
   }
 
-  /** Parallel Config
-  */
-  pParallelConfig.SynchroCodes.FrameEndCode = 0;
-  pParallelConfig.SynchroCodes.FrameStartCode = 0;
-  pParallelConfig.SynchroCodes.LineEndCode = 0;
-  pParallelConfig.SynchroCodes.LineStartCode = 0;
-  pParallelConfig.PCKPolarity = DCMIPP_PCKPOLARITY_FALLING;
-  pParallelConfig.HSPolarity = DCMIPP_HSPOLARITY_LOW ;
-  pParallelConfig.VSPolarity = DCMIPP_VSPOLARITY_LOW;
-  pParallelConfig.ExtendedDataMode = DCMIPP_INTERFACE_8BITS;
-  pParallelConfig.Format = DCMIPP_FORMAT_MONOCHROME_8B;
-  pParallelConfig.SwapBits = DCMIPP_SWAPBITS_DISABLE;
-  pParallelConfig.SwapCycles = DCMIPP_SWAPCYCLES_DISABLE;
-  pParallelConfig.SynchroMode = DCMIPP_SYNCHRO_EMBEDDED;
-  HAL_DCMIPP_PARALLEL_SetConfig(&hdcmipp, &pParallelConfig);
-
-  /** Pipe 0 Config
-  */
-  pPipeConfig.FrameRate = DCMIPP_FRAME_RATE_ALL;
-  pPipeConfig.PixelPipePitch = 10;
-  pPipeConfig.PixelPackerFormat = DCMIPP_PIXEL_PACKER_FORMAT_RGB888_YUV444_1;
-  if (HAL_DCMIPP_PIPE_SetConfig(&hdcmipp, DCMIPP_PIPE0, &pPipeConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Pipe 1 Config
-  */
-  if (HAL_DCMIPP_PIPE_SetConfig(&hdcmipp, DCMIPP_PIPE1, &pPipeConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN DCMIPP_Init 2 */
-
-  /* USER CODE END DCMIPP_Init 2 */
-
+  RCC_PeriphCLKInitStruct.PeriphClockSelection = RCC_PERIPHCLK_CSI;
+  RCC_PeriphCLKInitStruct.ICSelection[RCC_IC18].ClockSelection = RCC_ICCLKSOURCE_PLL1;
+  RCC_PeriphCLKInitStruct.ICSelection[RCC_IC18].ClockDivider = 40;
+  return HAL_RCCEx_PeriphCLKConfig(&RCC_PeriphCLKInitStruct);
 }
 
 /**

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccyoyAlK.s 			page 1
+ARM GAS  /tmp/ccbmuWYg.s 			page 1
 
 
    1              		.arch armv8.1-m.main
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
   22:../Drivers/ISP/isp/Src/isp_awb_algo.c **** 
   23:../Drivers/ISP/isp/Src/isp_awb_algo.c **** /* Private types -------------------------------------------------------------*/
   24:../Drivers/ISP/isp/Src/isp_awb_algo.c **** /* Private constants ---------------------------------------------------------*/
-ARM GAS  /tmp/ccyoyAlK.s 			page 2
+ARM GAS  /tmp/ccbmuWYg.s 			page 2
 
 
   25:../Drivers/ISP/isp/Src/isp_awb_algo.c **** /* Debug logs control */
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
   59:../Drivers/ISP/isp/Src/isp_awb_algo.c **** 
   60:../Drivers/ISP/isp/Src/isp_awb_algo.c ****   /* Reset internal variables */
   61:../Drivers/ISP/isp/Src/isp_awb_algo.c ****   memset(&ISP_AWB_CurrStats, 0, sizeof(ISP_AWB_CurrStats));
-ARM GAS  /tmp/ccyoyAlK.s 			page 3
+ARM GAS  /tmp/ccbmuWYg.s 			page 3
 
 
   55              		.loc 1 61 3 is_stmt 1 view .LVU6
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
   99              		.loc 1 71 45 is_stmt 0 view .LVU21
  100 0048 03EB4301 		add	r1, r3, r3, lsl #1
  101 004c 174A     		ldr	r2, .L12
-ARM GAS  /tmp/ccyoyAlK.s 			page 4
+ARM GAS  /tmp/ccbmuWYg.s 			page 4
 
 
  102 004e 0A44     		add	r2, r2, r1
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
  141              	.LVL7:
  142              		.loc 1 82 15 is_stmt 0 view .LVU36
  143 008a 0022     		movs	r2, #0
-ARM GAS  /tmp/ccyoyAlK.s 			page 5
+ARM GAS  /tmp/ccbmuWYg.s 			page 5
 
 
  144              	.LVL8:
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
  187              	.LFE884:
  189              		.section	.text.ISP_AWB_GetConfig,"ax",%progbits
  190              		.align	1
-ARM GAS  /tmp/ccyoyAlK.s 			page 6
+ARM GAS  /tmp/ccbmuWYg.s 			page 6
 
 
  191              		.global	ISP_AWB_GetConfig
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
  108:../Drivers/ISP/isp/Src/isp_awb_algo.c ****   int64_t i64;
  230              		.loc 1 108 3 view .LVU53
  109:../Drivers/ISP/isp/Src/isp_awb_algo.c ****   int i, j;
-ARM GAS  /tmp/ccyoyAlK.s 			page 7
+ARM GAS  /tmp/ccbmuWYg.s 			page 7
 
 
  231              		.loc 1 109 3 view .LVU54
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
  277              		.loc 1 116 48 view .LVU74
  278 0040 B54B     		ldr	r3, .L45+24
  279 0042 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
-ARM GAS  /tmp/ccyoyAlK.s 			page 8
+ARM GAS  /tmp/ccbmuWYg.s 			page 8
 
 
  280              		.loc 1 116 29 view .LVU75
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
  318 006c AC4A     		ldr	r2, .L45+32
  319 006e 52F82420 		ldr	r2, [r2, r4, lsl #2]
  320              		.loc 1 131 8 view .LVU88
-ARM GAS  /tmp/ccyoyAlK.s 			page 9
+ARM GAS  /tmp/ccbmuWYg.s 			page 9
 
 
  321 0072 B242     		cmp	r2, r6
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
  362 009e CBF80030 		str	r3, [fp]
  124:../Drivers/ISP/isp/Src/isp_awb_algo.c ****   }
  363              		.loc 1 124 5 is_stmt 1 view .LVU102
-ARM GAS  /tmp/ccyoyAlK.s 			page 10
+ARM GAS  /tmp/ccbmuWYg.s 			page 10
 
 
  124:../Drivers/ISP/isp/Src/isp_awb_algo.c ****   }
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
  397 00c4 06EE903A 		vmov	s13, r3	@ int
  398 00c8 B8EE666B 		vcvt.f64.u32	d6, s13
  399              		.loc 1 151 19 view .LVU119
-ARM GAS  /tmp/ccyoyAlK.s 			page 11
+ARM GAS  /tmp/ccbmuWYg.s 			page 11
 
 
  400 00cc 87EE068B 		vdiv.f64	d8, d7, d6
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
  165:../Drivers/ISP/isp/Src/isp_awb_algo.c **** #ifdef ALGO_AWB_DBG_LOGS
  166:../Drivers/ISP/isp/Src/isp_awb_algo.c ****       printf("R/B=%4"PRIu32"  -  Forcing up profile (ratio=%"PRIu16"%%)\r\n", rb_ratio, (int)(100 *
  167:../Drivers/ISP/isp/Src/isp_awb_algo.c **** #endif
-ARM GAS  /tmp/ccyoyAlK.s 			page 12
+ARM GAS  /tmp/ccbmuWYg.s 			page 12
 
 
  168:../Drivers/ISP/isp/Src/isp_awb_algo.c ****       exactProfId = (int)upProfId;
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
  192:../Drivers/ISP/isp/Src/isp_awb_algo.c ****     /* Compute the interpolated configurations */
  193:../Drivers/ISP/isp/Src/isp_awb_algo.c ****     for (i = 0; i < 3; i++)
  463              		.loc 1 193 12 view .LVU144
-ARM GAS  /tmp/ccyoyAlK.s 			page 13
+ARM GAS  /tmp/ccbmuWYg.s 			page 13
 
 
  464 0116 4FF00008 		mov	r8, #0
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
  182:../Drivers/ISP/isp/Src/isp_awb_algo.c ****     pISPGainConfig->ispGainB = ISP_AWB_Config.ispGainB[exactProfId];
  509              		.loc 1 182 55 is_stmt 0 view .LVU154
  510 0162 01F13202 		add	r2, r1, #50
-ARM GAS  /tmp/ccyoyAlK.s 			page 14
+ARM GAS  /tmp/ccbmuWYg.s 			page 14
 
 
  511 0166 03EB8202 		add	r2, r3, r2, lsl #2
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
  197:../Drivers/ISP/isp/Src/isp_awb_algo.c ****              (ISP_AWB_Config.coeff[upProfId][i][j] - ISP_AWB_Config.coeff[downProfId][i][j]));
  552              		.loc 1 197 79 view .LVU167
  553 01b2 07EE903A 		vmov	s15, r3	@ int
-ARM GAS  /tmp/ccyoyAlK.s 			page 15
+ARM GAS  /tmp/ccbmuWYg.s 			page 15
 
 
  554 01b6 B8EEE77B 		vcvt.f64.s32	d7, s15
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
  595              		.loc 1 204 12 view .LVU180
  596 01fc 0026     		movs	r6, #0
  597              		.loc 1 204 55 view .LVU181
-ARM GAS  /tmp/ccyoyAlK.s 			page 16
+ARM GAS  /tmp/ccbmuWYg.s 			page 16
 
 
  598 01fe B0EB0800 		subs	r0, r0, r8
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
  208:../Drivers/ISP/isp/Src/isp_awb_algo.c ****     pISPGainConfig->ispGainG = (uint32_t)i64;
  642              		.loc 1 208 5 is_stmt 1 view .LVU195
  643              		.loc 1 208 30 is_stmt 0 view .LVU196
-ARM GAS  /tmp/ccyoyAlK.s 			page 17
+ARM GAS  /tmp/ccbmuWYg.s 			page 17
 
 
  644 0260 C9F80800 		str	r0, [r9, #8]
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
  688              		.loc 1 214 64 view .LVU213
  689 02b0 D21A     		subs	r2, r2, r3
  213:../Drivers/ISP/isp/Src/isp_awb_algo.c ****                   (ISP_AWB_Config.referenceColorTemp[upProfId] - ISP_AWB_Config.referenceColorTemp[
-ARM GAS  /tmp/ccyoyAlK.s 			page 18
+ARM GAS  /tmp/ccbmuWYg.s 			page 18
 
 
  690              		.loc 1 213 92 view .LVU214
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
  226:../Drivers/ISP/isp/Src/isp_awb_algo.c **** }
  730              		.loc 1 226 1 is_stmt 0 view .LVU228
  731 02f2 0020     		movs	r0, #0
-ARM GAS  /tmp/ccyoyAlK.s 			page 19
+ARM GAS  /tmp/ccbmuWYg.s 			page 19
 
 
  732 02f4 BDEC028B 		vldm	sp!, {d8}
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
  784              		.align	2
  787              	ISP_AWB_NbProfiles:
  788 0000 00000000 		.space	4
-ARM GAS  /tmp/ccyoyAlK.s 			page 20
+ARM GAS  /tmp/ccbmuWYg.s 			page 20
 
 
  789              		.section	.bss.ISP_AWB_rbRatio,"aw",%nobits
@@ -1164,31 +1164,31 @@ ARM GAS  /tmp/ccyoyAlK.s 			page 1
  805              		.file 4 "../Drivers/ISP/isp/Inc/isp_core.h"
  806              		.file 5 "/usr/arm-none-eabi/include/string.h"
  807              		.file 6 "<built-in>"
-ARM GAS  /tmp/ccyoyAlK.s 			page 21
+ARM GAS  /tmp/ccbmuWYg.s 			page 21
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 isp_awb_algo.c
-     /tmp/ccyoyAlK.s:26     .text.ISP_AWB_Init:00000000 $t
-     /tmp/ccyoyAlK.s:32     .text.ISP_AWB_Init:00000000 ISP_AWB_Init
-     /tmp/ccyoyAlK.s:179    .text.ISP_AWB_Init:000000ac $d
-     /tmp/ccyoyAlK.s:799    .bss.ISP_AWB_Config:00000000 ISP_AWB_Config
-     /tmp/ccyoyAlK.s:781    .bss.ISP_AWB_CurrStats:00000000 ISP_AWB_CurrStats
-     /tmp/ccyoyAlK.s:793    .bss.ISP_AWB_rbRatio:00000000 ISP_AWB_rbRatio
-     /tmp/ccyoyAlK.s:775    .bss.ISP_AWB_CurrTemp:00000000 ISP_AWB_CurrTemp
-     /tmp/ccyoyAlK.s:769    .bss.ISP_AWB_CurrColorConv:00000000 ISP_AWB_CurrColorConv
-     /tmp/ccyoyAlK.s:763    .bss.ISP_AWB_CurrISPGain:00000000 ISP_AWB_CurrISPGain
-     /tmp/ccyoyAlK.s:787    .bss.ISP_AWB_NbProfiles:00000000 ISP_AWB_NbProfiles
-     /tmp/ccyoyAlK.s:190    .text.ISP_AWB_GetConfig:00000000 $t
-     /tmp/ccyoyAlK.s:196    .text.ISP_AWB_GetConfig:00000000 ISP_AWB_GetConfig
-     /tmp/ccyoyAlK.s:743    .text.ISP_AWB_GetConfig:00000300 $d
-     /tmp/ccyoyAlK.s:760    .bss.ISP_AWB_CurrISPGain:00000000 $d
-     /tmp/ccyoyAlK.s:766    .bss.ISP_AWB_CurrColorConv:00000000 $d
-     /tmp/ccyoyAlK.s:772    .bss.ISP_AWB_CurrTemp:00000000 $d
-     /tmp/ccyoyAlK.s:778    .bss.ISP_AWB_CurrStats:00000000 $d
-     /tmp/ccyoyAlK.s:784    .bss.ISP_AWB_NbProfiles:00000000 $d
-     /tmp/ccyoyAlK.s:790    .bss.ISP_AWB_rbRatio:00000000 $d
-     /tmp/ccyoyAlK.s:796    .bss.ISP_AWB_Config:00000000 $d
+     /tmp/ccbmuWYg.s:26     .text.ISP_AWB_Init:00000000 $t
+     /tmp/ccbmuWYg.s:32     .text.ISP_AWB_Init:00000000 ISP_AWB_Init
+     /tmp/ccbmuWYg.s:179    .text.ISP_AWB_Init:000000ac $d
+     /tmp/ccbmuWYg.s:799    .bss.ISP_AWB_Config:00000000 ISP_AWB_Config
+     /tmp/ccbmuWYg.s:781    .bss.ISP_AWB_CurrStats:00000000 ISP_AWB_CurrStats
+     /tmp/ccbmuWYg.s:793    .bss.ISP_AWB_rbRatio:00000000 ISP_AWB_rbRatio
+     /tmp/ccbmuWYg.s:775    .bss.ISP_AWB_CurrTemp:00000000 ISP_AWB_CurrTemp
+     /tmp/ccbmuWYg.s:769    .bss.ISP_AWB_CurrColorConv:00000000 ISP_AWB_CurrColorConv
+     /tmp/ccbmuWYg.s:763    .bss.ISP_AWB_CurrISPGain:00000000 ISP_AWB_CurrISPGain
+     /tmp/ccbmuWYg.s:787    .bss.ISP_AWB_NbProfiles:00000000 ISP_AWB_NbProfiles
+     /tmp/ccbmuWYg.s:190    .text.ISP_AWB_GetConfig:00000000 $t
+     /tmp/ccbmuWYg.s:196    .text.ISP_AWB_GetConfig:00000000 ISP_AWB_GetConfig
+     /tmp/ccbmuWYg.s:743    .text.ISP_AWB_GetConfig:00000300 $d
+     /tmp/ccbmuWYg.s:760    .bss.ISP_AWB_CurrISPGain:00000000 $d
+     /tmp/ccbmuWYg.s:766    .bss.ISP_AWB_CurrColorConv:00000000 $d
+     /tmp/ccbmuWYg.s:772    .bss.ISP_AWB_CurrTemp:00000000 $d
+     /tmp/ccbmuWYg.s:778    .bss.ISP_AWB_CurrStats:00000000 $d
+     /tmp/ccbmuWYg.s:784    .bss.ISP_AWB_NbProfiles:00000000 $d
+     /tmp/ccbmuWYg.s:790    .bss.ISP_AWB_rbRatio:00000000 $d
+     /tmp/ccbmuWYg.s:796    .bss.ISP_AWB_Config:00000000 $d
 
 UNDEFINED SYMBOLS
 memcpy

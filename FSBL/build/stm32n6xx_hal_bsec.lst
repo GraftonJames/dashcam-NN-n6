@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cccKVtVF.s 			page 1
+ARM GAS  /tmp/ccXbbKRG.s 			page 1
 
 
    1              		.arch armv8.1-m.main
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
   22:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   @verbatim
   23:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   ==============================================================================
   24:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****                         ##### How to use this driver #####
-ARM GAS  /tmp/cccKVtVF.s 			page 2
+ARM GAS  /tmp/ccXbbKRG.s 			page 2
 
 
   25:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   ==============================================================================
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
   79:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     ============================================================
   80:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     [..]
   81:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
-ARM GAS  /tmp/cccKVtVF.s 			page 3
+ARM GAS  /tmp/ccXbbKRG.s 			page 3
 
 
   82:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****       (+) Call the function HAL_BSEC_GetDeviceLifeCycleState() to get the
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  136:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
  137:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****       (+) Call the function HAL_BSEC_LockDebug() to lock the debug.
  138:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
-ARM GAS  /tmp/cccKVtVF.s 			page 4
+ARM GAS  /tmp/ccXbbKRG.s 			page 4
 
 
  139:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****       (+) Call the function HAL_BSEC_UnlockDebug() to unlock the debug.
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  193:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** #define BSEC_SHADOW_REG_WRITE_LIMIT  9U
  194:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** #define BSEC_TIMEOUT                 1000U
  195:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** /**
-ARM GAS  /tmp/cccKVtVF.s 			page 5
+ARM GAS  /tmp/ccXbbKRG.s 			page 5
 
 
  196:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   * @}
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
   41              		.loc 1 243 6 is_stmt 0 view .LVU2
   42 0000 0346     		mov	r3, r0
   43 0002 30B1     		cbz	r0, .L6
-ARM GAS  /tmp/cccKVtVF.s 			page 6
+ARM GAS  /tmp/ccXbbKRG.s 			page 6
 
 
  244:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   {
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
   82 0024 00900056 		.word	1442877440
   83              		.cfi_endproc
   84              	.LFE881:
-ARM GAS  /tmp/cccKVtVF.s 			page 7
+ARM GAS  /tmp/ccXbbKRG.s 			page 7
 
 
   86              		.section	.text.HAL_BSEC_GlobalLock,"ax",%progbits
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  119              	.LVL4:
  272:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   }
  120              		.loc 1 272 12 view .LVU29
-ARM GAS  /tmp/cccKVtVF.s 			page 8
+ARM GAS  /tmp/ccXbbKRG.s 			page 8
 
 
  121 0010 7047     		bx	lr
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  157              		.loc 1 299 6 is_stmt 0 view .LVU36
  158 0000 0346     		mov	r3, r0
  159 0002 30B1     		cbz	r0, .L21
-ARM GAS  /tmp/cccKVtVF.s 			page 9
+ARM GAS  /tmp/ccXbbKRG.s 			page 9
 
 
  300:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   {
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  197              	.L22:
  198 0024 00900056 		.word	1442877440
  199              		.cfi_endproc
-ARM GAS  /tmp/cccKVtVF.s 			page 10
+ARM GAS  /tmp/ccXbbKRG.s 			page 10
 
 
  200              	.LFE883:
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  229              		.loc 1 342 10 is_stmt 0 view .LVU62
  230 0008 0020     		movs	r0, #0
  231              	.LVL11:
-ARM GAS  /tmp/cccKVtVF.s 			page 11
+ARM GAS  /tmp/ccXbbKRG.s 			page 11
 
 
  343:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** }
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  366:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   * @param  hbsec     BSEC handle
  367:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   * @param  FuseId     Fuse to be read, this parameter value is between 0 and BSEC_NB_FUSES-1
  368:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   * @param  pFuseData  Returned value of fuse. The returned value is between 0 and 0xFFFFFFFFU
-ARM GAS  /tmp/cccKVtVF.s 			page 12
+ARM GAS  /tmp/ccXbbKRG.s 			page 12
 
 
  369:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   *
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  423:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   uint32_t status_reg;
  424:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   uint32_t status_bit;
  425:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   uint32_t read_data;
-ARM GAS  /tmp/cccKVtVF.s 			page 13
+ARM GAS  /tmp/ccXbbKRG.s 			page 13
 
 
  426:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   uint32_t tick_start = HAL_GetTick();
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  480:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****         if (read_data != FuseData)
  481:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****         {
  482:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****           hbsec->ErrorCode = HAL_BSEC_ERROR_PROGFAIL;
-ARM GAS  /tmp/cccKVtVF.s 			page 14
+ARM GAS  /tmp/ccXbbKRG.s 			page 14
 
 
  483:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****           return HAL_ERROR;
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  277              		.loc 1 519 25 is_stmt 0 view .LVU74
  278 0006 FFF7FEFF 		bl	HAL_GetTick
  279              	.LVL15:
-ARM GAS  /tmp/cccKVtVF.s 			page 15
+ARM GAS  /tmp/ccXbbKRG.s 			page 15
 
 
  520:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  552:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****       }
  553:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
  554:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****       if ((hbsec->Instance->OTPSR & BSEC_OTPSR_RELOAD_ERRORS) != 0U)
-ARM GAS  /tmp/cccKVtVF.s 			page 16
+ARM GAS  /tmp/ccXbbKRG.s 			page 16
 
 
  555:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****       {
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  324              		.loc 1 539 8 view .LVU94
  325 0036 0A42     		tst	r2, r1
  326 0038 24D1     		bne	.L36
-ARM GAS  /tmp/cccKVtVF.s 			page 17
+ARM GAS  /tmp/ccXbbKRG.s 			page 17
 
 
  542:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  364              		.loc 1 554 10 view .LVU111
  365 006e 12F48C0F 		tst	r2, #4587520
  366 0072 01D1     		bne	.L42
-ARM GAS  /tmp/cccKVtVF.s 			page 18
+ARM GAS  /tmp/ccXbbKRG.s 			page 18
 
 
  574:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** }
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  407              		.align	1
  408              		.global	HAL_BSEC_OTP_Read
  409              		.syntax unified
-ARM GAS  /tmp/cccKVtVF.s 			page 19
+ARM GAS  /tmp/ccXbbKRG.s 			page 19
 
 
  410              		.thumb
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  453              	.L47:
  409:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
  454              		.loc 1 409 1 view .LVU139
-ARM GAS  /tmp/cccKVtVF.s 			page 20
+ARM GAS  /tmp/ccXbbKRG.s 			page 20
 
 
  455 0018 70BD     		pop	{r4, r5, r6, pc}
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  494              		.cfi_restore 6
  495              		.cfi_restore 14
  377:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   }
-ARM GAS  /tmp/cccKVtVF.s 			page 21
+ARM GAS  /tmp/ccXbbKRG.s 			page 21
 
 
  496              		.loc 1 377 12 view .LVU155
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  544 000e FFF7FEFF 		bl	HAL_GetTick
  545              	.LVL32:
  429:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   {
-ARM GAS  /tmp/cccKVtVF.s 			page 22
+ARM GAS  /tmp/ccXbbKRG.s 			page 22
 
 
  546              		.loc 1 429 3 is_stmt 1 view .LVU164
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  448:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
  586              		.loc 1 448 5 is_stmt 1 view .LVU179
  448:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
-ARM GAS  /tmp/cccKVtVF.s 			page 23
+ARM GAS  /tmp/ccXbbKRG.s 			page 23
 
 
  587              		.loc 1 448 44 is_stmt 0 view .LVU180
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  627              		.loc 1 462 9 is_stmt 1 view .LVU194
  462:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****         {
  628              		.loc 1 462 14 is_stmt 0 view .LVU195
-ARM GAS  /tmp/cccKVtVF.s 			page 24
+ARM GAS  /tmp/ccXbbKRG.s 			page 24
 
 
  629 0072 FFF7FEFF 		bl	HAL_GetTick
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  667 00a2 BED1     		bne	.L63
  480:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****         {
  668              		.loc 1 480 9 is_stmt 1 view .LVU212
-ARM GAS  /tmp/cccKVtVF.s 			page 25
+ARM GAS  /tmp/ccXbbKRG.s 			page 25
 
 
  480:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****         {
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  710              		.thumb
  711              		.thumb_func
  713              	HAL_BSEC_OTP_Lock:
-ARM GAS  /tmp/cccKVtVF.s 			page 26
+ARM GAS  /tmp/ccXbbKRG.s 			page 26
 
 
  714              	.LVL43:
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  604:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     return HAL_ERROR;
  740              		.loc 1 604 5 is_stmt 1 view .LVU238
  741              	.LVL46:
-ARM GAS  /tmp/cccKVtVF.s 			page 27
+ARM GAS  /tmp/ccXbbKRG.s 			page 27
 
 
  742              	.L77:
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  755 001c 10B5     		push	{r4, lr}
  756              	.LCFI7:
  757              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/cccKVtVF.s 			page 28
+ARM GAS  /tmp/ccXbbKRG.s 			page 28
 
 
  758              		.cfi_offset 4, -8
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  799              	.L82:
  639:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** }
  800              		.loc 1 639 10 view .LVU258
-ARM GAS  /tmp/cccKVtVF.s 			page 29
+ARM GAS  /tmp/ccXbbKRG.s 			page 29
 
 
  801 0062 0020     		movs	r0, #0
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  641:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
  642:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** /**
  643:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   * @brief  Get the sticky lock status (programming, writing shadowed register
-ARM GAS  /tmp/cccKVtVF.s 			page 30
+ARM GAS  /tmp/ccXbbKRG.s 			page 30
 
 
  644:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   *         or reload), the permanent lock status, the shadow configuration,
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  878 000e 1AB1     		cbz	r2, .L92
  879              		.loc 1 667 32 discriminator 1 view .LVU278
  880 0010 0368     		ldr	r3, [r0]
-ARM GAS  /tmp/cccKVtVF.s 			page 31
+ARM GAS  /tmp/ccXbbKRG.s 			page 31
 
 
  881              		.loc 1 667 23 discriminator 1 view .LVU279
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  704:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****         otpsr_reg = hbsec->Instance->OTPSR;
  705:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
  706:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****         if ((otpsr_reg & BSEC_OTPSR_PPLF) != 0u)
-ARM GAS  /tmp/cccKVtVF.s 			page 32
+ARM GAS  /tmp/ccXbbKRG.s 			page 32
 
 
  707:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****         {
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  675:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     status_bit = (uint32_t)(1UL << (FuseId % 32U));
  907              		.loc 1 675 16 is_stmt 0 view .LVU289
  908 0028 4809     		lsrs	r0, r1, #5
-ARM GAS  /tmp/cccKVtVF.s 			page 33
+ARM GAS  /tmp/ccXbbKRG.s 			page 33
 
 
  909              	.LVL61:
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  948              	.LVL66:
  949              	.L97:
  694:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     {
-ARM GAS  /tmp/cccKVtVF.s 			page 34
+ARM GAS  /tmp/ccXbbKRG.s 			page 34
 
 
  950              		.loc 1 694 5 is_stmt 1 view .LVU305
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  988              		.loc 1 734 7 is_stmt 1 view .LVU321
  734:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     }
  989              		.loc 1 734 13 is_stmt 0 view .LVU322
-ARM GAS  /tmp/cccKVtVF.s 			page 35
+ARM GAS  /tmp/ccXbbKRG.s 			page 35
 
 
  990 0094 47F40073 		orr	r3, r7, #512
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  1028              		.loc 1 704 19 view .LVU338
  1029 00ba D3F8443E 		ldr	r3, [r3, #3652]
  1030              	.LVL75:
-ARM GAS  /tmp/cccKVtVF.s 			page 36
+ARM GAS  /tmp/ccXbbKRG.s 			page 36
 
 
  706:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****         {
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  1068              	.LVL81:
  1069              	.L110:
  1070              	.LCFI10:
-ARM GAS  /tmp/cccKVtVF.s 			page 37
+ARM GAS  /tmp/ccXbbKRG.s 			page 37
 
 
  1071              		.cfi_def_cfa_offset 0
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  773:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   * @param  RegId     Shadow register to be read, this parameter value is between 0 and BSEC_NB_FUS
  774:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   * @param  pRegData  Returned value of register data. The returned value is between 0 and 0xFFFFFF
  775:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   *
-ARM GAS  /tmp/cccKVtVF.s 			page 38
+ARM GAS  /tmp/ccXbbKRG.s 			page 38
 
 
  776:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   * @retval HAL_StatusTypeDef HAL Status
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  797:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   {
  798:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     status_reg = RegId / 32U;
  799:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     status_bit = (uint32_t)(1UL << (RegId % 32U));
-ARM GAS  /tmp/cccKVtVF.s 			page 39
+ARM GAS  /tmp/ccXbbKRG.s 			page 39
 
 
  800:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  1158 0030 0CF5147C 		add	ip, ip, #592
  1159 0034 50F82CC0 		ldr	ip, [r0, ip, lsl #2]
  801:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     {
-ARM GAS  /tmp/cccKVtVF.s 			page 40
+ARM GAS  /tmp/ccXbbKRG.s 			page 40
 
 
  1160              		.loc 1 801 8 view .LVU382
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  816:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   }
  1200              		.loc 1 816 12 is_stmt 0 view .LVU398
  1201 0054 DEE7     		b	.L122
-ARM GAS  /tmp/cccKVtVF.s 			page 41
+ARM GAS  /tmp/ccXbbKRG.s 			page 41
 
 
  1202              	.L126:
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  842:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   /* Check the instance */
  843:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****  if (hbsec->Instance != BSEC)
  1236              		.loc 1 843 2 is_stmt 1 view .LVU405
-ARM GAS  /tmp/cccKVtVF.s 			page 42
+ARM GAS  /tmp/ccXbbKRG.s 			page 42
 
 
  1237              		.loc 1 843 11 is_stmt 0 view .LVU406
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  879:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     return HAL_ERROR;
  880:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   }
  881:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
-ARM GAS  /tmp/cccKVtVF.s 			page 43
+ARM GAS  /tmp/ccXbbKRG.s 			page 43
 
 
  882:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   return HAL_OK;
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  1292 0044 1EEA000F 		tst	lr, r0
  1293 0048 03D1     		bne	.L134
  860:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****       }
-ARM GAS  /tmp/cccKVtVF.s 			page 44
+ARM GAS  /tmp/ccXbbKRG.s 			page 44
 
 
  1294              		.loc 1 860 9 is_stmt 1 view .LVU429
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  1332              	.LCFI14:
  1333              		.cfi_def_cfa_offset 0
  1334              		.cfi_restore 4
-ARM GAS  /tmp/cccKVtVF.s 			page 45
+ARM GAS  /tmp/ccXbbKRG.s 			page 45
 
 
  1335              		.cfi_restore 14
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  906:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****  if ((pValidity == NULL) || (hbsec->Instance != BSEC))
  1368              		.loc 1 906 2 is_stmt 1 view .LVU453
  1369              		.loc 1 906 5 is_stmt 0 view .LVU454
-ARM GAS  /tmp/cccKVtVF.s 			page 46
+ARM GAS  /tmp/ccXbbKRG.s 			page 46
 
 
  1370 0004 22B1     		cbz	r2, .L144
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  940:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
  941:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   return HAL_OK;
  942:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** }
-ARM GAS  /tmp/cccKVtVF.s 			page 47
+ARM GAS  /tmp/ccXbbKRG.s 			page 47
 
 
  1390              		.loc 1 942 1 view .LVU462
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  1429              		.loc 1 919 10 view .LVU477
  1430 0046 0B42     		tst	r3, r1
  1431 0048 03D0     		beq	.L149
-ARM GAS  /tmp/cccKVtVF.s 			page 48
+ARM GAS  /tmp/ccXbbKRG.s 			page 48
 
 
  921:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****       }
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  1472              		.loc 1 938 5 is_stmt 1 view .LVU492
  938:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   }
  1473              		.loc 1 938 12 is_stmt 0 view .LVU493
-ARM GAS  /tmp/cccKVtVF.s 			page 49
+ARM GAS  /tmp/ccXbbKRG.s 			page 49
 
 
  1474 0064 D6E7     		b	.L152
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  975:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   /* Check the handle pointer */
  976:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   if (hbsec == NULL)
  1498              		.loc 1 976 3 view .LVU496
-ARM GAS  /tmp/cccKVtVF.s 			page 50
+ARM GAS  /tmp/ccXbbKRG.s 			page 50
 
 
  1499              		.loc 1 976 6 is_stmt 0 view .LVU497
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  1537              		.loc 1 991 7 discriminator 2 view .LVU513
  1538 002a B2F1E05F 		cmp	r2, #469762048
  1539 002e 05D0     		beq	.L163
-ARM GAS  /tmp/cccKVtVF.s 			page 51
+ARM GAS  /tmp/ccXbbKRG.s 			page 51
 
 
  1540              		.loc 1 991 7 discriminator 3 view .LVU514
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1005:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   *
 1006:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   * @param  hbsec        BSEC handle
 1007:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   * @param  CounterId     Identifier of the epoch counter to be read, this parameter can be @ref BS
-ARM GAS  /tmp/cccKVtVF.s 			page 52
+ARM GAS  /tmp/ccXbbKRG.s 			page 52
 
 
 1008:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   * @param  pCounterData  Returned value of epoch counter data. The returned value is between 0 and
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1028:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   if (CounterId < BSEC_NB_EPOCH_COUNTER)
  1612              		.loc 1 1028 3 is_stmt 1 view .LVU537
  1613              		.loc 1 1028 6 is_stmt 0 view .LVU538
-ARM GAS  /tmp/cccKVtVF.s 			page 53
+ARM GAS  /tmp/ccXbbKRG.s 			page 53
 
 
  1614 0018 0129     		cmp	r1, #1
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  1653              		.thumb_func
  1655              	HAL_BSEC_SelectEpochCounter:
  1656              	.LVL138:
-ARM GAS  /tmp/cccKVtVF.s 			page 54
+ARM GAS  /tmp/ccXbbKRG.s 			page 54
 
 
  1657              	.LFB895:
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1064:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   /* Check the epoch counter selection */
 1065:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   assert_param(IS_BSEC_EPOCHSEL(SelectedCounter));
  1686              		.loc 1 1065 3 is_stmt 1 view .LVU562
-ARM GAS  /tmp/cccKVtVF.s 			page 55
+ARM GAS  /tmp/ccXbbKRG.s 			page 55
 
 
 1066:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  1724 0002 30B1     		cbz	r0, .L188
 1085:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   {
 1086:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     return HAL_ERROR;
-ARM GAS  /tmp/cccKVtVF.s 			page 56
+ARM GAS  /tmp/ccXbbKRG.s 			page 56
 
 
 1087:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   }
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  1764              		.cfi_endproc
  1765              	.LFE896:
  1767              		.section	.text.HAL_BSEC_GetHDPLValue,"ax",%progbits
-ARM GAS  /tmp/cccKVtVF.s 			page 57
+ARM GAS  /tmp/ccXbbKRG.s 			page 57
 
 
  1768              		.align	1
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1137:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   }
 1138:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
 1139:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   /* Check the address of returned value and instance */
-ARM GAS  /tmp/cccKVtVF.s 			page 58
+ARM GAS  /tmp/ccXbbKRG.s 			page 58
 
 
 1140:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   if ((pHDPL == NULL) || (hbsec->Instance != BSEC))
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1152:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     return HAL_OK;
 1153:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   }
 1154:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   else
-ARM GAS  /tmp/cccKVtVF.s 			page 59
+ARM GAS  /tmp/ccXbbKRG.s 			page 59
 
 
 1155:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   {
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  1865              		.cfi_startproc
  1866              		@ args = 0, pretend = 0, frame = 0
  1867              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/cccKVtVF.s 			page 60
+ARM GAS  /tmp/ccXbbKRG.s 			page 60
 
 
  1868              		@ link register save eliminated.
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  1902              	.L207:
  1903              		.align	2
  1904              	.L206:
-ARM GAS  /tmp/cccKVtVF.s 			page 61
+ARM GAS  /tmp/ccXbbKRG.s 			page 61
 
 
  1905 001c 00900056 		.word	1442877440
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  1940 000c 0123     		movs	r3, #1
  1941 000e 5360     		str	r3, [r2, #4]
 1209:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     return HAL_ERROR;
-ARM GAS  /tmp/cccKVtVF.s 			page 62
+ARM GAS  /tmp/ccXbbKRG.s 			page 62
 
 
  1942              		.loc 1 1209 5 is_stmt 1 view .LVU643
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1229:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** HAL_StatusTypeDef HAL_BSEC_GetSAESHDPLIncrementValue(BSEC_HandleTypeDef * hbsec, uint32_t *pIncreme
 1230:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** {
  1978              		.loc 1 1230 1 is_stmt 1 view -0
-ARM GAS  /tmp/cccKVtVF.s 			page 63
+ARM GAS  /tmp/ccXbbKRG.s 			page 63
 
 
  1979              		.cfi_startproc
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1246:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
 1247:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   return HAL_OK;
  2017              		.loc 1 1247 3 is_stmt 1 view .LVU667
-ARM GAS  /tmp/cccKVtVF.s 			page 64
+ARM GAS  /tmp/ccXbbKRG.s 			page 64
 
 
  2018              		.loc 1 1247 10 is_stmt 0 view .LVU668
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  2042              		@ frame_needed = 0, uses_anonymous_args = 0
  2043              		@ link register save eliminated.
 1280:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   /* Check the handle pointer */
-ARM GAS  /tmp/cccKVtVF.s 			page 65
+ARM GAS  /tmp/ccXbbKRG.s 			page 65
 
 
 1281:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   if (hbsec == NULL)
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1308:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   }
 1309:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   else
 1310:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   {
-ARM GAS  /tmp/cccKVtVF.s 			page 66
+ARM GAS  /tmp/ccXbbKRG.s 			page 66
 
 
 1311:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     if (pRegAddr->RegNumber < BSEC_NB_WOSCR_REG)
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  2100              		.loc 1 1305 7 is_stmt 1 view .LVU693
 1305:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****       return HAL_ERROR;
  2101              		.loc 1 1305 24 is_stmt 0 view .LVU694
-ARM GAS  /tmp/cccKVtVF.s 			page 67
+ARM GAS  /tmp/ccXbbKRG.s 			page 67
 
 
  2102 0030 0122     		movs	r2, #1
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  2143 004e F1E7     		b	.L228
  2144              	.L237:
  2145              		.align	2
-ARM GAS  /tmp/cccKVtVF.s 			page 68
+ARM GAS  /tmp/ccXbbKRG.s 			page 68
 
 
  2146              	.L236:
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  2182              	.L241:
 1344:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   {
 1345:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     hbsec->ErrorCode = HAL_BSEC_ERROR_INVALID_PARAM;
-ARM GAS  /tmp/cccKVtVF.s 			page 69
+ARM GAS  /tmp/ccXbbKRG.s 			page 69
 
 
  2183              		.loc 1 1345 5 is_stmt 1 view .LVU717
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  2201              		.cfi_def_cfa_offset 4
  2202              		.cfi_offset 4, -4
 1350:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
-ARM GAS  /tmp/cccKVtVF.s 			page 70
+ARM GAS  /tmp/ccXbbKRG.s 			page 70
 
 
  2203              		.loc 1 1350 3 is_stmt 1 view .LVU724
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  2243              		.cfi_remember_state
  2244              		.cfi_restore 4
  2245              		.cfi_def_cfa_offset 0
-ARM GAS  /tmp/cccKVtVF.s 			page 71
+ARM GAS  /tmp/ccXbbKRG.s 			page 71
 
 
  2246 003c 7047     		bx	lr
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  2291              	HAL_BSEC_GetDebugRequest:
  2292              	.LVL184:
  2293              	.LFB903:
-ARM GAS  /tmp/cccKVtVF.s 			page 72
+ARM GAS  /tmp/ccXbbKRG.s 			page 72
 
 
 1380:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  2310              	.LVL185:
  2311              		.loc 1 1417 25 discriminator 1 view .LVU758
  2312 000a 8242     		cmp	r2, r0
-ARM GAS  /tmp/cccKVtVF.s 			page 73
+ARM GAS  /tmp/ccXbbKRG.s 			page 73
 
 
  2313 000c 03D0     		beq	.L257
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1431:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   *
 1432:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   * @param  hbsec  BSEC handle
 1433:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   * @param  Data    Data to be sent via JTAG, this parameter can be a value between 0 and 0xFFFFFFF
-ARM GAS  /tmp/cccKVtVF.s 			page 74
+ARM GAS  /tmp/ccXbbKRG.s 			page 74
 
 
 1434:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   *
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  2386              		.loc 1 1455 3 is_stmt 1 view .LVU783
  2387              		.loc 1 1455 10 is_stmt 0 view .LVU784
  2388 0018 0020     		movs	r0, #0
-ARM GAS  /tmp/cccKVtVF.s 			page 75
+ARM GAS  /tmp/ccXbbKRG.s 			page 75
 
 
 1456:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** }
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  2425              		.loc 1 1475 23 discriminator 1 view .LVU793
  2426 000a 8242     		cmp	r2, r0
  2427 000c 03D0     		beq	.L272
-ARM GAS  /tmp/cccKVtVF.s 			page 76
+ARM GAS  /tmp/ccXbbKRG.s 			page 76
 
 
  2428              	.L271:
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1492:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   * @param  pCfg    Configuration of debug
 1493:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   *
 1494:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   * @retval HAL_StatusTypeDef HAL Status
-ARM GAS  /tmp/cccKVtVF.s 			page 77
+ARM GAS  /tmp/ccXbbKRG.s 			page 77
 
 
 1495:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   */
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1515:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   assert_param(IS_BSEC_SECDBGAUTH(pCfg->Sec_Dbg_Auth));
  2500              		.loc 1 1515 3 view .LVU818
 1516:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   assert_param(IS_BSEC_NSDBGAUTH(pCfg->NonSec_Dbg_Auth));
-ARM GAS  /tmp/cccKVtVF.s 			page 78
+ARM GAS  /tmp/ccXbbKRG.s 			page 78
 
 
  2501              		.loc 1 1516 3 view .LVU819
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1526:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
 1527:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** /**
 1528:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   * @brief  Get the HDPL, secure and non-secure authorization of debug.
-ARM GAS  /tmp/cccKVtVF.s 			page 79
+ARM GAS  /tmp/ccXbbKRG.s 			page 79
 
 
 1529:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   *
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1550:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   }
 1551:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
 1552:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   /* Get the debug configuration */
-ARM GAS  /tmp/cccKVtVF.s 			page 80
+ARM GAS  /tmp/ccXbbKRG.s 			page 80
 
 
 1553:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   cfg_reg = hbsec->Instance->DBGCR;
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1567:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   */
 1568:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** HAL_StatusTypeDef HAL_BSEC_LockDebug(BSEC_HandleTypeDef *hbsec)
 1569:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** {
-ARM GAS  /tmp/cccKVtVF.s 			page 81
+ARM GAS  /tmp/ccXbbKRG.s 			page 81
 
 
  2621              		.loc 1 1569 1 is_stmt 1 view -0
@@ -4858,7 +4858,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  2656              	.LVL204:
 1587:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** }
  2657              		.loc 1 1587 1 view .LVU875
-ARM GAS  /tmp/cccKVtVF.s 			page 82
+ARM GAS  /tmp/ccXbbKRG.s 			page 82
 
 
  2658 0020 7047     		bx	lr
@@ -4918,7 +4918,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  2694 000c 4360     		str	r3, [r0, #4]
 1608:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     return HAL_ERROR;
  2695              		.loc 1 1608 5 is_stmt 1 view .LVU884
-ARM GAS  /tmp/cccKVtVF.s 			page 83
+ARM GAS  /tmp/ccXbbKRG.s 			page 83
 
 
  2696              	.L303:
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  2732              		.loc 1 1626 1 is_stmt 1 view -0
  2733              		.cfi_startproc
  2734              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/cccKVtVF.s 			page 84
+ARM GAS  /tmp/ccXbbKRG.s 			page 84
 
 
  2735              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  2771              		.loc 1 1643 3 is_stmt 1 view .LVU907
  2772              		.loc 1 1643 10 is_stmt 0 view .LVU908
  2773 001e 0020     		movs	r0, #0
-ARM GAS  /tmp/cccKVtVF.s 			page 85
+ARM GAS  /tmp/ccXbbKRG.s 			page 85
 
 
 1644:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** }
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1676:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   if (hbsec == NULL)
  2798              		.loc 1 1676 3 view .LVU911
  2799              		.loc 1 1676 6 is_stmt 0 view .LVU912
-ARM GAS  /tmp/cccKVtVF.s 			page 86
+ARM GAS  /tmp/ccXbbKRG.s 			page 86
 
 
  2800 0000 0346     		mov	r3, r0
@@ -5158,7 +5158,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  2837              	.L321:
  2838              		.align	2
  2839              	.L320:
-ARM GAS  /tmp/cccKVtVF.s 			page 87
+ARM GAS  /tmp/ccXbbKRG.s 			page 87
 
 
  2840 0024 00900056 		.word	1442877440
@@ -5218,7 +5218,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1706:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   }
  2875              		.loc 1 1706 12 is_stmt 0 view .LVU938
  2876 000e 0120     		movs	r0, #1
-ARM GAS  /tmp/cccKVtVF.s 			page 88
+ARM GAS  /tmp/ccXbbKRG.s 			page 88
 
 
  2877              	.LVL216:
@@ -5278,7 +5278,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1732:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   /* Check the handle pointer */
 1733:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   if (hbsec == NULL)
  2914              		.loc 1 1733 3 view .LVU945
-ARM GAS  /tmp/cccKVtVF.s 			page 89
+ARM GAS  /tmp/ccXbbKRG.s 			page 89
 
 
  2915              		.loc 1 1733 6 is_stmt 0 view .LVU946
@@ -5338,7 +5338,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  2952 0022 7047     		bx	lr
  2953              	.L336:
  2954              		.align	2
-ARM GAS  /tmp/cccKVtVF.s 			page 90
+ARM GAS  /tmp/ccXbbKRG.s 			page 90
 
 
  2955              	.L335:
@@ -5398,7 +5398,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1782:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   {
 1783:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     return HAL_ERROR;
 1784:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   }
-ARM GAS  /tmp/cccKVtVF.s 			page 91
+ARM GAS  /tmp/ccXbbKRG.s 			page 91
 
 
 1785:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
@@ -5458,7 +5458,7 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
 1803:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****     *pResetNumber = hbsec->Instance->WRCR;
 1804:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   }
 1805:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c **** 
-ARM GAS  /tmp/cccKVtVF.s 			page 92
+ARM GAS  /tmp/ccXbbKRG.s 			page 92
 
 
 1806:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_bsec.c ****   return HAL_OK;
@@ -5493,115 +5493,115 @@ ARM GAS  /tmp/cccKVtVF.s 			page 1
  3039              		.file 5 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_def.h"
  3040              		.file 6 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_bsec.h"
  3041              		.file 7 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal.h"
-ARM GAS  /tmp/cccKVtVF.s 			page 93
+ARM GAS  /tmp/ccXbbKRG.s 			page 93
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32n6xx_hal_bsec.c
-     /tmp/cccKVtVF.s:26     .text.HAL_BSEC_GetStatus:00000000 $t
-     /tmp/cccKVtVF.s:32     .text.HAL_BSEC_GetStatus:00000000 HAL_BSEC_GetStatus
-     /tmp/cccKVtVF.s:82     .text.HAL_BSEC_GetStatus:00000024 $d
-     /tmp/cccKVtVF.s:87     .text.HAL_BSEC_GlobalLock:00000000 $t
-     /tmp/cccKVtVF.s:93     .text.HAL_BSEC_GlobalLock:00000000 HAL_BSEC_GlobalLock
-     /tmp/cccKVtVF.s:137    .text.HAL_BSEC_GlobalLock:00000024 $d
-     /tmp/cccKVtVF.s:142    .text.HAL_BSEC_GetGlobalLockStatus:00000000 $t
-     /tmp/cccKVtVF.s:148    .text.HAL_BSEC_GetGlobalLockStatus:00000000 HAL_BSEC_GetGlobalLockStatus
-     /tmp/cccKVtVF.s:198    .text.HAL_BSEC_GetGlobalLockStatus:00000024 $d
-     /tmp/cccKVtVF.s:203    .text.HAL_BSEC_GetErrorCode:00000000 $t
-     /tmp/cccKVtVF.s:209    .text.HAL_BSEC_GetErrorCode:00000000 HAL_BSEC_GetErrorCode
-     /tmp/cccKVtVF.s:251    .text.HAL_BSEC_OTP_Reload:00000000 $t
-     /tmp/cccKVtVF.s:257    .text.HAL_BSEC_OTP_Reload:00000000 HAL_BSEC_OTP_Reload
-     /tmp/cccKVtVF.s:402    .text.HAL_BSEC_OTP_Reload:00000090 $d
-     /tmp/cccKVtVF.s:407    .text.HAL_BSEC_OTP_Read:00000000 $t
-     /tmp/cccKVtVF.s:413    .text.HAL_BSEC_OTP_Read:00000000 HAL_BSEC_OTP_Read
-     /tmp/cccKVtVF.s:504    .text.HAL_BSEC_OTP_Read:00000040 $d
-     /tmp/cccKVtVF.s:509    .text.HAL_BSEC_OTP_Program:00000000 $t
-     /tmp/cccKVtVF.s:515    .text.HAL_BSEC_OTP_Program:00000000 HAL_BSEC_OTP_Program
-     /tmp/cccKVtVF.s:702    .text.HAL_BSEC_OTP_Program:000000c0 $d
-     /tmp/cccKVtVF.s:707    .text.HAL_BSEC_OTP_Lock:00000000 $t
-     /tmp/cccKVtVF.s:713    .text.HAL_BSEC_OTP_Lock:00000000 HAL_BSEC_OTP_Lock
-     /tmp/cccKVtVF.s:835    .text.HAL_BSEC_OTP_Lock:00000080 $d
-     /tmp/cccKVtVF.s:840    .text.HAL_BSEC_OTP_GetState:00000000 $t
-     /tmp/cccKVtVF.s:846    .text.HAL_BSEC_OTP_GetState:00000000 HAL_BSEC_OTP_GetState
-     /tmp/cccKVtVF.s:1088   .text.HAL_BSEC_OTP_GetState:000000e4 $d
-     /tmp/cccKVtVF.s:1093   .text.HAL_BSEC_OTP_ReadShadow:00000000 $t
-     /tmp/cccKVtVF.s:1099   .text.HAL_BSEC_OTP_ReadShadow:00000000 HAL_BSEC_OTP_ReadShadow
-     /tmp/cccKVtVF.s:1205   .text.HAL_BSEC_OTP_ReadShadow:00000058 $d
-     /tmp/cccKVtVF.s:1210   .text.HAL_BSEC_OTP_WriteShadow:00000000 $t
-     /tmp/cccKVtVF.s:1216   .text.HAL_BSEC_OTP_WriteShadow:00000000 HAL_BSEC_OTP_WriteShadow
-     /tmp/cccKVtVF.s:1344   .text.HAL_BSEC_OTP_WriteShadow:00000070 $d
-     /tmp/cccKVtVF.s:1349   .text.HAL_BSEC_OTP_GetShadowState:00000000 $t
-     /tmp/cccKVtVF.s:1355   .text.HAL_BSEC_OTP_GetShadowState:00000000 HAL_BSEC_OTP_GetShadowState
-     /tmp/cccKVtVF.s:1478   .text.HAL_BSEC_OTP_GetShadowState:00000068 $d
-     /tmp/cccKVtVF.s:1483   .text.HAL_BSEC_GetDeviceLifeCycleState:00000000 $t
-     /tmp/cccKVtVF.s:1489   .text.HAL_BSEC_GetDeviceLifeCycleState:00000000 HAL_BSEC_GetDeviceLifeCycleState
-     /tmp/cccKVtVF.s:1565   .text.HAL_BSEC_GetDeviceLifeCycleState:00000044 $d
-     /tmp/cccKVtVF.s:1570   .text.HAL_BSEC_ReadEpochCounter:00000000 $t
-     /tmp/cccKVtVF.s:1576   .text.HAL_BSEC_ReadEpochCounter:00000000 HAL_BSEC_ReadEpochCounter
-     /tmp/cccKVtVF.s:1644   .text.HAL_BSEC_ReadEpochCounter:00000030 $d
-     /tmp/cccKVtVF.s:1649   .text.HAL_BSEC_SelectEpochCounter:00000000 $t
-     /tmp/cccKVtVF.s:1655   .text.HAL_BSEC_SelectEpochCounter:00000000 HAL_BSEC_SelectEpochCounter
-     /tmp/cccKVtVF.s:1702   .text.HAL_BSEC_SelectEpochCounter:00000028 $d
-     /tmp/cccKVtVF.s:1707   .text.HAL_BSEC_GetEpochCounterSelection:00000000 $t
-     /tmp/cccKVtVF.s:1713   .text.HAL_BSEC_GetEpochCounterSelection:00000000 HAL_BSEC_GetEpochCounterSelection
-     /tmp/cccKVtVF.s:1763   .text.HAL_BSEC_GetEpochCounterSelection:00000024 $d
-     /tmp/cccKVtVF.s:1768   .text.HAL_BSEC_GetHDPLValue:00000000 $t
-     /tmp/cccKVtVF.s:1774   .text.HAL_BSEC_GetHDPLValue:00000000 HAL_BSEC_GetHDPLValue
-     /tmp/cccKVtVF.s:1850   .text.HAL_BSEC_GetHDPLValue:00000038 $d
-     /tmp/cccKVtVF.s:1855   .text.HAL_BSEC_IncrementHDPLValue:00000000 $t
-     /tmp/cccKVtVF.s:1861   .text.HAL_BSEC_IncrementHDPLValue:00000000 HAL_BSEC_IncrementHDPLValue
-     /tmp/cccKVtVF.s:1905   .text.HAL_BSEC_IncrementHDPLValue:0000001c $d
-     /tmp/cccKVtVF.s:1911   .text.HAL_BSEC_ConfigSAESHDPLIncrementValue:00000000 $t
-     /tmp/cccKVtVF.s:1917   .text.HAL_BSEC_ConfigSAESHDPLIncrementValue:00000000 HAL_BSEC_ConfigSAESHDPLIncrementValue
-ARM GAS  /tmp/cccKVtVF.s 			page 94
+     /tmp/ccXbbKRG.s:26     .text.HAL_BSEC_GetStatus:00000000 $t
+     /tmp/ccXbbKRG.s:32     .text.HAL_BSEC_GetStatus:00000000 HAL_BSEC_GetStatus
+     /tmp/ccXbbKRG.s:82     .text.HAL_BSEC_GetStatus:00000024 $d
+     /tmp/ccXbbKRG.s:87     .text.HAL_BSEC_GlobalLock:00000000 $t
+     /tmp/ccXbbKRG.s:93     .text.HAL_BSEC_GlobalLock:00000000 HAL_BSEC_GlobalLock
+     /tmp/ccXbbKRG.s:137    .text.HAL_BSEC_GlobalLock:00000024 $d
+     /tmp/ccXbbKRG.s:142    .text.HAL_BSEC_GetGlobalLockStatus:00000000 $t
+     /tmp/ccXbbKRG.s:148    .text.HAL_BSEC_GetGlobalLockStatus:00000000 HAL_BSEC_GetGlobalLockStatus
+     /tmp/ccXbbKRG.s:198    .text.HAL_BSEC_GetGlobalLockStatus:00000024 $d
+     /tmp/ccXbbKRG.s:203    .text.HAL_BSEC_GetErrorCode:00000000 $t
+     /tmp/ccXbbKRG.s:209    .text.HAL_BSEC_GetErrorCode:00000000 HAL_BSEC_GetErrorCode
+     /tmp/ccXbbKRG.s:251    .text.HAL_BSEC_OTP_Reload:00000000 $t
+     /tmp/ccXbbKRG.s:257    .text.HAL_BSEC_OTP_Reload:00000000 HAL_BSEC_OTP_Reload
+     /tmp/ccXbbKRG.s:402    .text.HAL_BSEC_OTP_Reload:00000090 $d
+     /tmp/ccXbbKRG.s:407    .text.HAL_BSEC_OTP_Read:00000000 $t
+     /tmp/ccXbbKRG.s:413    .text.HAL_BSEC_OTP_Read:00000000 HAL_BSEC_OTP_Read
+     /tmp/ccXbbKRG.s:504    .text.HAL_BSEC_OTP_Read:00000040 $d
+     /tmp/ccXbbKRG.s:509    .text.HAL_BSEC_OTP_Program:00000000 $t
+     /tmp/ccXbbKRG.s:515    .text.HAL_BSEC_OTP_Program:00000000 HAL_BSEC_OTP_Program
+     /tmp/ccXbbKRG.s:702    .text.HAL_BSEC_OTP_Program:000000c0 $d
+     /tmp/ccXbbKRG.s:707    .text.HAL_BSEC_OTP_Lock:00000000 $t
+     /tmp/ccXbbKRG.s:713    .text.HAL_BSEC_OTP_Lock:00000000 HAL_BSEC_OTP_Lock
+     /tmp/ccXbbKRG.s:835    .text.HAL_BSEC_OTP_Lock:00000080 $d
+     /tmp/ccXbbKRG.s:840    .text.HAL_BSEC_OTP_GetState:00000000 $t
+     /tmp/ccXbbKRG.s:846    .text.HAL_BSEC_OTP_GetState:00000000 HAL_BSEC_OTP_GetState
+     /tmp/ccXbbKRG.s:1088   .text.HAL_BSEC_OTP_GetState:000000e4 $d
+     /tmp/ccXbbKRG.s:1093   .text.HAL_BSEC_OTP_ReadShadow:00000000 $t
+     /tmp/ccXbbKRG.s:1099   .text.HAL_BSEC_OTP_ReadShadow:00000000 HAL_BSEC_OTP_ReadShadow
+     /tmp/ccXbbKRG.s:1205   .text.HAL_BSEC_OTP_ReadShadow:00000058 $d
+     /tmp/ccXbbKRG.s:1210   .text.HAL_BSEC_OTP_WriteShadow:00000000 $t
+     /tmp/ccXbbKRG.s:1216   .text.HAL_BSEC_OTP_WriteShadow:00000000 HAL_BSEC_OTP_WriteShadow
+     /tmp/ccXbbKRG.s:1344   .text.HAL_BSEC_OTP_WriteShadow:00000070 $d
+     /tmp/ccXbbKRG.s:1349   .text.HAL_BSEC_OTP_GetShadowState:00000000 $t
+     /tmp/ccXbbKRG.s:1355   .text.HAL_BSEC_OTP_GetShadowState:00000000 HAL_BSEC_OTP_GetShadowState
+     /tmp/ccXbbKRG.s:1478   .text.HAL_BSEC_OTP_GetShadowState:00000068 $d
+     /tmp/ccXbbKRG.s:1483   .text.HAL_BSEC_GetDeviceLifeCycleState:00000000 $t
+     /tmp/ccXbbKRG.s:1489   .text.HAL_BSEC_GetDeviceLifeCycleState:00000000 HAL_BSEC_GetDeviceLifeCycleState
+     /tmp/ccXbbKRG.s:1565   .text.HAL_BSEC_GetDeviceLifeCycleState:00000044 $d
+     /tmp/ccXbbKRG.s:1570   .text.HAL_BSEC_ReadEpochCounter:00000000 $t
+     /tmp/ccXbbKRG.s:1576   .text.HAL_BSEC_ReadEpochCounter:00000000 HAL_BSEC_ReadEpochCounter
+     /tmp/ccXbbKRG.s:1644   .text.HAL_BSEC_ReadEpochCounter:00000030 $d
+     /tmp/ccXbbKRG.s:1649   .text.HAL_BSEC_SelectEpochCounter:00000000 $t
+     /tmp/ccXbbKRG.s:1655   .text.HAL_BSEC_SelectEpochCounter:00000000 HAL_BSEC_SelectEpochCounter
+     /tmp/ccXbbKRG.s:1702   .text.HAL_BSEC_SelectEpochCounter:00000028 $d
+     /tmp/ccXbbKRG.s:1707   .text.HAL_BSEC_GetEpochCounterSelection:00000000 $t
+     /tmp/ccXbbKRG.s:1713   .text.HAL_BSEC_GetEpochCounterSelection:00000000 HAL_BSEC_GetEpochCounterSelection
+     /tmp/ccXbbKRG.s:1763   .text.HAL_BSEC_GetEpochCounterSelection:00000024 $d
+     /tmp/ccXbbKRG.s:1768   .text.HAL_BSEC_GetHDPLValue:00000000 $t
+     /tmp/ccXbbKRG.s:1774   .text.HAL_BSEC_GetHDPLValue:00000000 HAL_BSEC_GetHDPLValue
+     /tmp/ccXbbKRG.s:1850   .text.HAL_BSEC_GetHDPLValue:00000038 $d
+     /tmp/ccXbbKRG.s:1855   .text.HAL_BSEC_IncrementHDPLValue:00000000 $t
+     /tmp/ccXbbKRG.s:1861   .text.HAL_BSEC_IncrementHDPLValue:00000000 HAL_BSEC_IncrementHDPLValue
+     /tmp/ccXbbKRG.s:1905   .text.HAL_BSEC_IncrementHDPLValue:0000001c $d
+     /tmp/ccXbbKRG.s:1911   .text.HAL_BSEC_ConfigSAESHDPLIncrementValue:00000000 $t
+     /tmp/ccXbbKRG.s:1917   .text.HAL_BSEC_ConfigSAESHDPLIncrementValue:00000000 HAL_BSEC_ConfigSAESHDPLIncrementValue
+ARM GAS  /tmp/ccXbbKRG.s 			page 94
 
 
-     /tmp/cccKVtVF.s:1964   .text.HAL_BSEC_ConfigSAESHDPLIncrementValue:00000028 $d
-     /tmp/cccKVtVF.s:1969   .text.HAL_BSEC_GetSAESHDPLIncrementValue:00000000 $t
-     /tmp/cccKVtVF.s:1975   .text.HAL_BSEC_GetSAESHDPLIncrementValue:00000000 HAL_BSEC_GetSAESHDPLIncrementValue
-     /tmp/cccKVtVF.s:2025   .text.HAL_BSEC_GetSAESHDPLIncrementValue:00000024 $d
-     /tmp/cccKVtVF.s:2030   .text.HAL_BSEC_WriteScratchValue:00000000 $t
-     /tmp/cccKVtVF.s:2036   .text.HAL_BSEC_WriteScratchValue:00000000 HAL_BSEC_WriteScratchValue
-     /tmp/cccKVtVF.s:2147   .text.HAL_BSEC_WriteScratchValue:00000050 $d
-     /tmp/cccKVtVF.s:2152   .text.HAL_BSEC_ReadScratchValue:00000000 $t
-     /tmp/cccKVtVF.s:2158   .text.HAL_BSEC_ReadScratchValue:00000000 HAL_BSEC_ReadScratchValue
-     /tmp/cccKVtVF.s:2280   .text.HAL_BSEC_ReadScratchValue:00000058 $d
-     /tmp/cccKVtVF.s:2285   .text.HAL_BSEC_GetDebugRequest:00000000 $t
-     /tmp/cccKVtVF.s:2291   .text.HAL_BSEC_GetDebugRequest:00000000 HAL_BSEC_GetDebugRequest
-     /tmp/cccKVtVF.s:2341   .text.HAL_BSEC_GetDebugRequest:00000024 $d
-     /tmp/cccKVtVF.s:2346   .text.HAL_BSEC_SendJTAGData:00000000 $t
-     /tmp/cccKVtVF.s:2352   .text.HAL_BSEC_SendJTAGData:00000000 HAL_BSEC_SendJTAGData
-     /tmp/cccKVtVF.s:2394   .text.HAL_BSEC_SendJTAGData:0000001c $d
-     /tmp/cccKVtVF.s:2399   .text.HAL_BSEC_ReceiveJTAGData:00000000 $t
-     /tmp/cccKVtVF.s:2405   .text.HAL_BSEC_ReceiveJTAGData:00000000 HAL_BSEC_ReceiveJTAGData
-     /tmp/cccKVtVF.s:2453   .text.HAL_BSEC_ReceiveJTAGData:00000020 $d
-     /tmp/cccKVtVF.s:2458   .text.HAL_BSEC_ConfigDebug:00000000 $t
-     /tmp/cccKVtVF.s:2464   .text.HAL_BSEC_ConfigDebug:00000000 HAL_BSEC_ConfigDebug
-     /tmp/cccKVtVF.s:2533   .text.HAL_BSEC_ConfigDebug:00000034 $d
-     /tmp/cccKVtVF.s:2538   .text.HAL_BSEC_GetDebugConfig:00000000 $t
-     /tmp/cccKVtVF.s:2544   .text.HAL_BSEC_GetDebugConfig:00000000 HAL_BSEC_GetDebugConfig
-     /tmp/cccKVtVF.s:2607   .text.HAL_BSEC_GetDebugConfig:00000030 $d
-     /tmp/cccKVtVF.s:2612   .text.HAL_BSEC_LockDebug:00000000 $t
-     /tmp/cccKVtVF.s:2618   .text.HAL_BSEC_LockDebug:00000000 HAL_BSEC_LockDebug
-     /tmp/cccKVtVF.s:2662   .text.HAL_BSEC_LockDebug:00000024 $d
-     /tmp/cccKVtVF.s:2667   .text.HAL_BSEC_UnlockDebug:00000000 $t
-     /tmp/cccKVtVF.s:2673   .text.HAL_BSEC_UnlockDebug:00000000 HAL_BSEC_UnlockDebug
-     /tmp/cccKVtVF.s:2718   .text.HAL_BSEC_UnlockDebug:00000028 $d
-     /tmp/cccKVtVF.s:2723   .text.HAL_BSEC_GetDebugLockState:00000000 $t
-     /tmp/cccKVtVF.s:2729   .text.HAL_BSEC_GetDebugLockState:00000000 HAL_BSEC_GetDebugLockState
-     /tmp/cccKVtVF.s:2779   .text.HAL_BSEC_GetDebugLockState:00000024 $d
-     /tmp/cccKVtVF.s:2784   .text.HAL_BSEC_GetDHUKValidity:00000000 $t
-     /tmp/cccKVtVF.s:2790   .text.HAL_BSEC_GetDHUKValidity:00000000 HAL_BSEC_GetDHUKValidity
-     /tmp/cccKVtVF.s:2840   .text.HAL_BSEC_GetDHUKValidity:00000024 $d
-     /tmp/cccKVtVF.s:2845   .text.HAL_BSEC_LockDHUKUse:00000000 $t
-     /tmp/cccKVtVF.s:2851   .text.HAL_BSEC_LockDHUKUse:00000000 HAL_BSEC_LockDHUKUse
-     /tmp/cccKVtVF.s:2895   .text.HAL_BSEC_LockDHUKUse:00000024 $d
-     /tmp/cccKVtVF.s:2900   .text.HAL_BSEC_GetDHUKLockStatus:00000000 $t
-     /tmp/cccKVtVF.s:2906   .text.HAL_BSEC_GetDHUKLockStatus:00000000 HAL_BSEC_GetDHUKLockStatus
-     /tmp/cccKVtVF.s:2956   .text.HAL_BSEC_GetDHUKLockStatus:00000024 $d
-     /tmp/cccKVtVF.s:2961   .text.HAL_BSEC_GetNumberOfResets:00000000 $t
-     /tmp/cccKVtVF.s:2967   .text.HAL_BSEC_GetNumberOfResets:00000000 HAL_BSEC_GetNumberOfResets
-     /tmp/cccKVtVF.s:3030   .text.HAL_BSEC_GetNumberOfResets:0000002c $d
+     /tmp/ccXbbKRG.s:1964   .text.HAL_BSEC_ConfigSAESHDPLIncrementValue:00000028 $d
+     /tmp/ccXbbKRG.s:1969   .text.HAL_BSEC_GetSAESHDPLIncrementValue:00000000 $t
+     /tmp/ccXbbKRG.s:1975   .text.HAL_BSEC_GetSAESHDPLIncrementValue:00000000 HAL_BSEC_GetSAESHDPLIncrementValue
+     /tmp/ccXbbKRG.s:2025   .text.HAL_BSEC_GetSAESHDPLIncrementValue:00000024 $d
+     /tmp/ccXbbKRG.s:2030   .text.HAL_BSEC_WriteScratchValue:00000000 $t
+     /tmp/ccXbbKRG.s:2036   .text.HAL_BSEC_WriteScratchValue:00000000 HAL_BSEC_WriteScratchValue
+     /tmp/ccXbbKRG.s:2147   .text.HAL_BSEC_WriteScratchValue:00000050 $d
+     /tmp/ccXbbKRG.s:2152   .text.HAL_BSEC_ReadScratchValue:00000000 $t
+     /tmp/ccXbbKRG.s:2158   .text.HAL_BSEC_ReadScratchValue:00000000 HAL_BSEC_ReadScratchValue
+     /tmp/ccXbbKRG.s:2280   .text.HAL_BSEC_ReadScratchValue:00000058 $d
+     /tmp/ccXbbKRG.s:2285   .text.HAL_BSEC_GetDebugRequest:00000000 $t
+     /tmp/ccXbbKRG.s:2291   .text.HAL_BSEC_GetDebugRequest:00000000 HAL_BSEC_GetDebugRequest
+     /tmp/ccXbbKRG.s:2341   .text.HAL_BSEC_GetDebugRequest:00000024 $d
+     /tmp/ccXbbKRG.s:2346   .text.HAL_BSEC_SendJTAGData:00000000 $t
+     /tmp/ccXbbKRG.s:2352   .text.HAL_BSEC_SendJTAGData:00000000 HAL_BSEC_SendJTAGData
+     /tmp/ccXbbKRG.s:2394   .text.HAL_BSEC_SendJTAGData:0000001c $d
+     /tmp/ccXbbKRG.s:2399   .text.HAL_BSEC_ReceiveJTAGData:00000000 $t
+     /tmp/ccXbbKRG.s:2405   .text.HAL_BSEC_ReceiveJTAGData:00000000 HAL_BSEC_ReceiveJTAGData
+     /tmp/ccXbbKRG.s:2453   .text.HAL_BSEC_ReceiveJTAGData:00000020 $d
+     /tmp/ccXbbKRG.s:2458   .text.HAL_BSEC_ConfigDebug:00000000 $t
+     /tmp/ccXbbKRG.s:2464   .text.HAL_BSEC_ConfigDebug:00000000 HAL_BSEC_ConfigDebug
+     /tmp/ccXbbKRG.s:2533   .text.HAL_BSEC_ConfigDebug:00000034 $d
+     /tmp/ccXbbKRG.s:2538   .text.HAL_BSEC_GetDebugConfig:00000000 $t
+     /tmp/ccXbbKRG.s:2544   .text.HAL_BSEC_GetDebugConfig:00000000 HAL_BSEC_GetDebugConfig
+     /tmp/ccXbbKRG.s:2607   .text.HAL_BSEC_GetDebugConfig:00000030 $d
+     /tmp/ccXbbKRG.s:2612   .text.HAL_BSEC_LockDebug:00000000 $t
+     /tmp/ccXbbKRG.s:2618   .text.HAL_BSEC_LockDebug:00000000 HAL_BSEC_LockDebug
+     /tmp/ccXbbKRG.s:2662   .text.HAL_BSEC_LockDebug:00000024 $d
+     /tmp/ccXbbKRG.s:2667   .text.HAL_BSEC_UnlockDebug:00000000 $t
+     /tmp/ccXbbKRG.s:2673   .text.HAL_BSEC_UnlockDebug:00000000 HAL_BSEC_UnlockDebug
+     /tmp/ccXbbKRG.s:2718   .text.HAL_BSEC_UnlockDebug:00000028 $d
+     /tmp/ccXbbKRG.s:2723   .text.HAL_BSEC_GetDebugLockState:00000000 $t
+     /tmp/ccXbbKRG.s:2729   .text.HAL_BSEC_GetDebugLockState:00000000 HAL_BSEC_GetDebugLockState
+     /tmp/ccXbbKRG.s:2779   .text.HAL_BSEC_GetDebugLockState:00000024 $d
+     /tmp/ccXbbKRG.s:2784   .text.HAL_BSEC_GetDHUKValidity:00000000 $t
+     /tmp/ccXbbKRG.s:2790   .text.HAL_BSEC_GetDHUKValidity:00000000 HAL_BSEC_GetDHUKValidity
+     /tmp/ccXbbKRG.s:2840   .text.HAL_BSEC_GetDHUKValidity:00000024 $d
+     /tmp/ccXbbKRG.s:2845   .text.HAL_BSEC_LockDHUKUse:00000000 $t
+     /tmp/ccXbbKRG.s:2851   .text.HAL_BSEC_LockDHUKUse:00000000 HAL_BSEC_LockDHUKUse
+     /tmp/ccXbbKRG.s:2895   .text.HAL_BSEC_LockDHUKUse:00000024 $d
+     /tmp/ccXbbKRG.s:2900   .text.HAL_BSEC_GetDHUKLockStatus:00000000 $t
+     /tmp/ccXbbKRG.s:2906   .text.HAL_BSEC_GetDHUKLockStatus:00000000 HAL_BSEC_GetDHUKLockStatus
+     /tmp/ccXbbKRG.s:2956   .text.HAL_BSEC_GetDHUKLockStatus:00000024 $d
+     /tmp/ccXbbKRG.s:2961   .text.HAL_BSEC_GetNumberOfResets:00000000 $t
+     /tmp/ccXbbKRG.s:2967   .text.HAL_BSEC_GetNumberOfResets:00000000 HAL_BSEC_GetNumberOfResets
+     /tmp/ccXbbKRG.s:3030   .text.HAL_BSEC_GetNumberOfResets:0000002c $d
 
 UNDEFINED SYMBOLS
 HAL_GetTick

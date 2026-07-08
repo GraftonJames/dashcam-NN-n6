@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccvdUNht.s 			page 1
+ARM GAS  /tmp/ccDBVtix.s 			page 1
 
 
    1              		.arch armv8.1-m.main
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
   23:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****     [..]
   24:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****     The common HAL driver contains a set of generic and common APIs that can be
   25:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****     used by the PPP peripheral drivers and the user to start using the HAL.
-ARM GAS  /tmp/ccvdUNht.s 			page 2
+ARM GAS  /tmp/ccDBVtix.s 			page 2
 
 
   26:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****     [..]
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
   80:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @{
   81:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   */
   82:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
-ARM GAS  /tmp/ccvdUNht.s 			page 3
+ARM GAS  /tmp/ccDBVtix.s 			page 3
 
 
   83:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** /** @defgroup HAL_Exported_Functions_Group1 Initialization and de-initialization Functions
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  137:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   /* Ensure time base clock coherency in SystemCoreClock global variable */
  138:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   SystemCoreClockUpdate();
  139:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
-ARM GAS  /tmp/ccvdUNht.s 			page 4
+ARM GAS  /tmp/ccDBVtix.s 			page 4
 
 
  140:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   /* Initialize 1ms tick time base (default SysTick based on HSI clock after Reset) */
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  194:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   return HAL_OK;
  195:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** }
  196:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
-ARM GAS  /tmp/ccvdUNht.s 			page 5
+ARM GAS  /tmp/ccDBVtix.s 			page 5
 
 
  197:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** /**
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
   71              	.LFB882:
  161:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   /* Reset of all peripherals */
   72              		.loc 1 161 1 view -0
-ARM GAS  /tmp/ccvdUNht.s 			page 6
+ARM GAS  /tmp/ccDBVtix.s 			page 6
 
 
   73              		.cfi_startproc
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  111              		.loc 1 170 3 view .LVU20
  112 0030 C3F8344A 		str	r4, [r3, #2612]
  170:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
-ARM GAS  /tmp/ccvdUNht.s 			page 7
+ARM GAS  /tmp/ccDBVtix.s 			page 7
 
 
  113              		.loc 1 170 3 view .LVU21
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  191:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
  150              		.loc 1 191 3 view .LVU39
  151 0078 FFF7FEFF 		bl	HAL_MspDeInit
-ARM GAS  /tmp/ccvdUNht.s 			page 8
+ARM GAS  /tmp/ccDBVtix.s 			page 8
 
 
  152              	.LVL0:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  185              		.loc 1 238 28 is_stmt 0 view .LVU44
  186 0000 0F4B     		ldr	r3, .L15
  187 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
-ARM GAS  /tmp/ccvdUNht.s 			page 9
+ARM GAS  /tmp/ccDBVtix.s 			page 9
 
 
  188              		.loc 1 238 6 view .LVU45
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  213 001a B0FBF3F0 		udiv	r0, r0, r3
  214 001e FFF7FEFF 		bl	HAL_SYSTICK_Config
  215              	.LVL5:
-ARM GAS  /tmp/ccvdUNht.s 			page 10
+ARM GAS  /tmp/ccDBVtix.s 			page 10
 
 
  244:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   {
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  262              		.loc 1 133 1 is_stmt 1 view -0
  263              		.cfi_startproc
  264              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccvdUNht.s 			page 11
+ARM GAS  /tmp/ccDBVtix.s 			page 11
 
 
  265              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  311              	.LFB886:
  263:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
  264:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** /**
-ARM GAS  /tmp/ccvdUNht.s 			page 12
+ARM GAS  /tmp/ccDBVtix.s 			page 12
 
 
  265:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @}
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  327 000c 7047     		bx	lr
  328              	.L24:
  329 000e 00BF     		.align	2
-ARM GAS  /tmp/ccvdUNht.s 			page 13
+ARM GAS  /tmp/ccDBVtix.s 			page 13
 
 
  330              	.L23:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  321:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** {
  371              		.loc 1 321 1 is_stmt 1 view -0
  372              		.cfi_startproc
-ARM GAS  /tmp/ccvdUNht.s 			page 14
+ARM GAS  /tmp/ccDBVtix.s 			page 14
 
 
  373              		@ args = 0, pretend = 0, frame = 0
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  413              		.loc 1 337 18 is_stmt 0 view .LVU91
  414 0002 084B     		ldr	r3, .L38
  415 0004 1C78     		ldrb	r4, [r3]	@ zero_extendqisi2
-ARM GAS  /tmp/ccvdUNht.s 			page 15
+ARM GAS  /tmp/ccDBVtix.s 			page 15
 
 
  416              		.loc 1 337 6 view .LVU92
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  443 001a F7D0     		beq	.L32
  350:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****     }
  444              		.loc 1 350 7 is_stmt 1 view .LVU104
-ARM GAS  /tmp/ccvdUNht.s 			page 16
+ARM GAS  /tmp/ccDBVtix.s 			page 16
 
 
  350:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****     }
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  492              	.LFB891:
  366:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
  367:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** /**
-ARM GAS  /tmp/ccvdUNht.s 			page 17
+ARM GAS  /tmp/ccDBVtix.s 			page 17
 
 
  368:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @brief This function provides minimum delay (in milliseconds) based
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  389:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   while ((HAL_GetTick() - tickstart) < wait)
  390:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   {
  391:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   }
-ARM GAS  /tmp/ccvdUNht.s 			page 18
+ARM GAS  /tmp/ccDBVtix.s 			page 18
 
 
  526              		.loc 1 391 3 is_stmt 1 view .LVU120
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  562              		.loc 1 407 10 is_stmt 0 view .LVU129
  563 0000 4FF0E022 		mov	r2, #-536813568
  564 0004 1369     		ldr	r3, [r2, #16]
-ARM GAS  /tmp/ccvdUNht.s 			page 19
+ARM GAS  /tmp/ccDBVtix.s 			page 19
 
 
  565              		.loc 1 407 17 view .LVU130
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  606              	HAL_GetHalVersion:
  607              	.LFB894:
  425:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
-ARM GAS  /tmp/ccvdUNht.s 			page 20
+ARM GAS  /tmp/ccDBVtix.s 			page 20
 
 
  426:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** /**
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  643              	.L56:
  644 0006 00BF     		.align	2
  645              	.L55:
-ARM GAS  /tmp/ccvdUNht.s 			page 21
+ARM GAS  /tmp/ccDBVtix.s 			page 21
 
 
  646 0008 00100018 		.word	402657280
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  666 0000 4FF0FF30 		mov	r0, #-1
  667 0004 7047     		bx	lr
  668              		.cfi_endproc
-ARM GAS  /tmp/ccvdUNht.s 			page 22
+ARM GAS  /tmp/ccDBVtix.s 			page 22
 
 
  669              	.LFE896:
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  708              		@ args = 0, pretend = 0, frame = 0
  709              		@ frame_needed = 0, uses_anonymous_args = 0
  710              		@ link register save eliminated.
-ARM GAS  /tmp/ccvdUNht.s 			page 23
+ARM GAS  /tmp/ccDBVtix.s 			page 23
 
 
  502:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   return (READ_REG(*((uint32_t *)(UID_BASE + 4U))));
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  757              	.LFB900:
  514:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
  515:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** /**
-ARM GAS  /tmp/ccvdUNht.s 			page 24
+ARM GAS  /tmp/ccDBVtix.s 			page 24
 
 
  516:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @}
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  544:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** /**
  545:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @brief  Disable the Debug Module during Sleep mode.
  546:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @retval None
-ARM GAS  /tmp/ccvdUNht.s 			page 25
+ARM GAS  /tmp/ccDBVtix.s 			page 25
 
 
  547:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   */
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  828              	.L74:
  829 000c 00100054 		.word	1409290240
  830              		.cfi_endproc
-ARM GAS  /tmp/ccvdUNht.s 			page 26
+ARM GAS  /tmp/ccDBVtix.s 			page 26
 
 
  831              	.LFE902:
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  873              		@ frame_needed = 0, uses_anonymous_args = 0
  874              		@ link register save eliminated.
  577:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   SET_BIT(DBGMCU->CR, DBGMCU_CR_DBG_STANDBY);
-ARM GAS  /tmp/ccvdUNht.s 			page 27
+ARM GAS  /tmp/ccDBVtix.s 			page 27
 
 
  875              		.loc 1 577 3 view .LVU168
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  922              		.thumb_func
  924              	HAL_SYSCFG_EnablePullDown:
  925              	.LVL24:
-ARM GAS  /tmp/ccvdUNht.s 			page 28
+ARM GAS  /tmp/ccDBVtix.s 			page 28
 
 
  926              	.LFB906:
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  641:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @param  BootId Specifies the boot pins.
  642:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   *         This parameter can one of the following values:
  643:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   *            @arg SYSCFG_BOOT_0 boot 0 pin
-ARM GAS  /tmp/ccvdUNht.s 			page 29
+ARM GAS  /tmp/ccDBVtix.s 			page 29
 
 
  644:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   *            @arg SYSCFG_BOOT_1 boot 1 pin
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  665:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   /* Check the parameters */
  666:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   assert_param(IS_SYSCFG_BOOT_ID(BootId));
  962              		.loc 1 666 3 view .LVU178
-ARM GAS  /tmp/ccvdUNht.s 			page 30
+ARM GAS  /tmp/ccDBVtix.s 			page 30
 
 
  667:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  1001              	.L93:
  1002 000e 00BF     		.align	2
  1003              	.L92:
-ARM GAS  /tmp/ccvdUNht.s 			page 31
+ARM GAS  /tmp/ccDBVtix.s 			page 31
 
 
  1004 0010 00800056 		.word	1442873344
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  697:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   }
  1041              		.loc 1 697 12 view .LVU194
  1042 0010 0120     		movs	r0, #1
-ARM GAS  /tmp/ccvdUNht.s 			page 32
+ARM GAS  /tmp/ccDBVtix.s 			page 32
 
 
  1043              	.LVL30:
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  1074 0008 0843     		orrs	r0, r0, r1
  1075              	.LVL32:
  1076              		.loc 1 728 3 is_stmt 0 view .LVU200
-ARM GAS  /tmp/ccvdUNht.s 			page 33
+ARM GAS  /tmp/ccDBVtix.s 			page 33
 
 
  1077 000a 0343     		orrs	r3, r3, r0
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  752:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   }
  753:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
  754:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   values = READ_REG(SYSCFG->CM55TCMCR);
-ARM GAS  /tmp/ccvdUNht.s 			page 34
+ARM GAS  /tmp/ccDBVtix.s 			page 34
 
 
  1110              		.loc 1 754 3 is_stmt 1 view .LVU207
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  763:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @note   Lock(s) cleared only at system reset
  764:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @param  Item Item(s) to set lock on.
  765:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   *         This parameter can be a combination of @ref SYSCFG_WRITE_access
-ARM GAS  /tmp/ccvdUNht.s 			page 35
+ARM GAS  /tmp/ccDBVtix.s 			page 35
 
 
  766:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @retval None
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  1192              		.loc 1 785 3 view .LVU225
  1193              		.loc 1 785 6 is_stmt 0 view .LVU226
  1194 0000 30B1     		cbz	r0, .L113
-ARM GAS  /tmp/ccvdUNht.s 			page 36
+ARM GAS  /tmp/ccDBVtix.s 			page 36
 
 
  786:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   {
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  1234              		@ frame_needed = 0, uses_anonymous_args = 0
  1235              		@ link register save eliminated.
  802:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   SET_BIT(SYSCFG->CM55TCMCR, SYSCFG_CM55TCMCR_ITCMWSDISABLE);
-ARM GAS  /tmp/ccvdUNht.s 			page 37
+ARM GAS  /tmp/ccDBVtix.s 			page 37
 
 
  1236              		.loc 1 802 3 view .LVU236
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  1283              		.thumb_func
  1285              	HAL_SYSCFG_EnableDTCMWaiteState:
  1286              	.LFB916:
-ARM GAS  /tmp/ccvdUNht.s 			page 38
+ARM GAS  /tmp/ccDBVtix.s 			page 38
 
 
  813:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  1325              		.loc 1 830 1 is_stmt 0 view .LVU246
  1326 000a 7047     		bx	lr
  1327              	.L127:
-ARM GAS  /tmp/ccvdUNht.s 			page 39
+ARM GAS  /tmp/ccDBVtix.s 			page 39
 
 
  1328              		.align	2
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  846:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** {
  1371              		.loc 1 846 1 is_stmt 1 view -0
  1372              		.cfi_startproc
-ARM GAS  /tmp/ccvdUNht.s 			page 40
+ARM GAS  /tmp/ccDBVtix.s 			page 40
 
 
  1373              		@ args = 0, pretend = 0, frame = 0
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  1415              		.align	2
  1416              	.L135:
  1417 0010 00800056 		.word	1442873344
-ARM GAS  /tmp/ccvdUNht.s 			page 41
+ARM GAS  /tmp/ccDBVtix.s 			page 41
 
 
  1418              		.cfi_endproc
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  1455              		.loc 1 872 12 view .LVU267
  1456 0010 0120     		movs	r0, #1
  1457              	.LVL48:
-ARM GAS  /tmp/ccvdUNht.s 			page 42
+ARM GAS  /tmp/ccDBVtix.s 			page 42
 
 
  879:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** }
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  1498              		.section	.text.HAL_SYSCFG_GetTCMBiasingLevel,"ax",%progbits
  1499              		.align	1
  1500              		.global	HAL_SYSCFG_GetTCMBiasingLevel
-ARM GAS  /tmp/ccvdUNht.s 			page 43
+ARM GAS  /tmp/ccDBVtix.s 			page 43
 
 
  1501              		.syntax unified
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  917:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** }
  1534              		.loc 1 917 1 view .LVU283
  1535 0012 7047     		bx	lr
-ARM GAS  /tmp/ccvdUNht.s 			page 44
+ARM GAS  /tmp/ccDBVtix.s 			page 44
 
 
  1536              	.L149:
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  932:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** void HAL_SYSCFG_DisableCacheExternalMargin(void)
  933:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** {
  1580              		.loc 1 933 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccvdUNht.s 			page 45
+ARM GAS  /tmp/ccDBVtix.s 			page 45
 
 
  1581              		.cfi_startproc
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  1623              	.L158:
  1624              		.align	2
  1625              	.L157:
-ARM GAS  /tmp/ccvdUNht.s 			page 46
+ARM GAS  /tmp/ccDBVtix.s 			page 46
 
 
  1626 0010 00800056 		.word	1442873344
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  959:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   }
  1664              		.loc 1 959 12 view .LVU304
  1665 0010 0120     		movs	r0, #1
-ARM GAS  /tmp/ccvdUNht.s 			page 47
+ARM GAS  /tmp/ccDBVtix.s 			page 47
 
 
  1666              	.LVL58:
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  1705              	.LFE928:
  1707              		.section	.text.HAL_SYSCFG_GetCacheBiasingLevel,"ax",%progbits
  1708              		.align	1
-ARM GAS  /tmp/ccvdUNht.s 			page 48
+ARM GAS  /tmp/ccDBVtix.s 			page 48
 
 
  1709              		.global	HAL_SYSCFG_GetCacheBiasingLevel
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  1742              	.LVL63:
 1004:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** }
  1743              		.loc 1 1004 1 view .LVU320
-ARM GAS  /tmp/ccvdUNht.s 			page 49
+ARM GAS  /tmp/ccDBVtix.s 			page 49
 
 
  1744 0012 7047     		bx	lr
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  1788              	.LVL65:
  1789              	.LFB931:
 1019:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
-ARM GAS  /tmp/ccvdUNht.s 			page 50
+ARM GAS  /tmp/ccDBVtix.s 			page 50
 
 
 1020:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** /**
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  1826              		.global	HAL_SYSCFG_SetNSVTORAddress
  1827              		.syntax unified
  1828              		.thumb
-ARM GAS  /tmp/ccvdUNht.s 			page 51
+ARM GAS  /tmp/ccDBVtix.s 			page 51
 
 
  1829              		.thumb_func
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  1865              		@ frame_needed = 0, uses_anonymous_args = 0
  1866              		@ link register save eliminated.
 1059:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   /* Check null pointer */
-ARM GAS  /tmp/ccvdUNht.s 			page 52
+ARM GAS  /tmp/ccDBVtix.s 			page 52
 
 
 1060:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   if (pAddress == NULL)
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
 1077:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** {
  1905              		.loc 1 1077 1 is_stmt 1 view -0
  1906              		.cfi_startproc
-ARM GAS  /tmp/ccvdUNht.s 			page 53
+ARM GAS  /tmp/ccDBVtix.s 			page 53
 
 
  1907              		@ args = 0, pretend = 0, frame = 0
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  1952              		.section	.text.HAL_SYSCFG_EnableLockupWarmResetonRCC,"ax",%progbits
  1953              		.align	1
  1954              		.global	HAL_SYSCFG_EnableLockupWarmResetonRCC
-ARM GAS  /tmp/ccvdUNht.s 			page 54
+ARM GAS  /tmp/ccDBVtix.s 			page 54
 
 
  1955              		.syntax unified
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
 1108:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   CLEAR_BIT(SYSCFG->CM55RSTCR, SYSCFG_CM55RSTCR_LOCKUP_RST_EN);
  1994              		.loc 1 1108 3 view .LVU361
  1995 0000 024A     		ldr	r2, .L198
-ARM GAS  /tmp/ccvdUNht.s 			page 55
+ARM GAS  /tmp/ccDBVtix.s 			page 55
 
 
  1996 0002 9369     		ldr	r3, [r2, #24]
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2043              	HAL_SYSCFG_DisableLockupGenerateNMI:
  2044              	.LFB939:
 1120:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
-ARM GAS  /tmp/ccvdUNht.s 			page 56
+ARM GAS  /tmp/ccDBVtix.s 			page 56
 
 
 1121:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** /**
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2078              		.loc 1 1143 3 view .LVU370
  2079 0000 054B     		ldr	r3, .L207
  2080 0002 DA69     		ldr	r2, [r3, #28]
-ARM GAS  /tmp/ccvdUNht.s 			page 57
+ARM GAS  /tmp/ccDBVtix.s 			page 57
 
 
  2081 0004 42F00102 		orr	r2, r2, #1
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2122 000c 00800056 		.word	1442873344
  2123              		.cfi_endproc
  2124              	.LFE941:
-ARM GAS  /tmp/ccvdUNht.s 			page 58
+ARM GAS  /tmp/ccDBVtix.s 			page 58
 
 
  2126              		.section	.text.HAL_SYSCFG_DisableVENCRAMReserved,"ax",%progbits
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2165              		@ args = 0, pretend = 0, frame = 0
  2166              		@ frame_needed = 0, uses_anonymous_args = 0
  2167              		@ link register save eliminated.
-ARM GAS  /tmp/ccvdUNht.s 			page 59
+ARM GAS  /tmp/ccDBVtix.s 			page 59
 
 
 1177:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   CLEAR_BIT(SYSCFG->POTTAMPRSTCR, SYSCFG_POTTAMPRSTCR_POTTAMPERSETMASK);
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2214              		.thumb
  2215              		.thumb_func
  2217              	HAL_SYSCFG_SetWriteQosNP1:
-ARM GAS  /tmp/ccvdUNht.s 			page 60
+ARM GAS  /tmp/ccDBVtix.s 			page 60
 
 
  2218              	.LVL74:
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2251              		.loc 1 1210 1 is_stmt 1 view -0
  2252              		.cfi_startproc
  2253              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccvdUNht.s 			page 61
+ARM GAS  /tmp/ccDBVtix.s 			page 61
 
 
  2254              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
 1223:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** /**
 1224:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @brief  Set read QoS information for master port from NP1 NPUNIC
 1225:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @param  QosValue Read QoS value (0 to 15)
-ARM GAS  /tmp/ccvdUNht.s 			page 62
+ARM GAS  /tmp/ccDBVtix.s 			page 62
 
 
 1226:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @retval None
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2334              		.loc 1 1244 6 is_stmt 0 view .LVU408
  2335 0000 30B1     		cbz	r0, .L234
 1245:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   {
-ARM GAS  /tmp/ccvdUNht.s 			page 63
+ARM GAS  /tmp/ccDBVtix.s 			page 63
 
 
 1246:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****     return HAL_ERROR;
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2375              		@ args = 0, pretend = 0, frame = 0
  2376              		@ frame_needed = 0, uses_anonymous_args = 0
  2377              		@ link register save eliminated.
-ARM GAS  /tmp/ccvdUNht.s 			page 64
+ARM GAS  /tmp/ccDBVtix.s 			page 64
 
 
 1262:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   /* Check the parameters */
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2413              		.loc 1 1282 17 is_stmt 0 view .LVU425
  2414 0002 044B     		ldr	r3, .L243
  2415 0004 9B6A     		ldr	r3, [r3, #40]
-ARM GAS  /tmp/ccvdUNht.s 			page 65
+ARM GAS  /tmp/ccDBVtix.s 			page 65
 
 
  2416              		.loc 1 1282 79 view .LVU426
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2456              		.loc 1 1297 3 view .LVU435
  2457 0000 034A     		ldr	r2, .L246
  2458 0002 936A     		ldr	r3, [r2, #40]
-ARM GAS  /tmp/ccvdUNht.s 			page 66
+ARM GAS  /tmp/ccDBVtix.s 			page 66
 
 
  2459 0004 23F47063 		bic	r3, r3, #3840
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
 1316:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   return HAL_OK;
  2497              		.loc 1 1316 3 is_stmt 1 view .LVU444
  2498              		.loc 1 1316 10 is_stmt 0 view .LVU445
-ARM GAS  /tmp/ccvdUNht.s 			page 67
+ARM GAS  /tmp/ccDBVtix.s 			page 67
 
 
  2499 000c 0020     		movs	r0, #0
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2540 000e 7047     		bx	lr
  2541              	.L255:
  2542              		.align	2
-ARM GAS  /tmp/ccvdUNht.s 			page 68
+ARM GAS  /tmp/ccDBVtix.s 			page 68
 
 
  2543              	.L254:
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2581              	.L258:
 1342:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   }
  2582              		.loc 1 1342 12 view .LVU463
-ARM GAS  /tmp/ccvdUNht.s 			page 69
+ARM GAS  /tmp/ccDBVtix.s 			page 69
 
 
  2583 0010 0120     		movs	r0, #1
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2626              		.align	1
  2627              		.global	HAL_SYSCFG_GetReadQosCPUSS
  2628              		.syntax unified
-ARM GAS  /tmp/ccvdUNht.s 			page 70
+ARM GAS  /tmp/ccDBVtix.s 			page 70
 
 
  2629              		.thumb
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2664              	.L268:
  2665              		.align	2
  2666              	.L267:
-ARM GAS  /tmp/ccvdUNht.s 			page 71
+ARM GAS  /tmp/ccDBVtix.s 			page 71
 
 
  2667 0014 00800056 		.word	1442873344
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2710              	.LFB958:
 1397:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
 1398:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** /**
-ARM GAS  /tmp/ccvdUNht.s 			page 72
+ARM GAS  /tmp/ccDBVtix.s 			page 72
 
 
 1399:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @brief  Disable SDMMC early-write response.
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
 1420:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   /* Check the parameters */
 1421:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   assert_param(IS_SYSCFG_USB(Usb));
  2746              		.loc 1 1421 3 view .LVU490
-ARM GAS  /tmp/ccvdUNht.s 			page 73
+ARM GAS  /tmp/ccDBVtix.s 			page 73
 
 
 1422:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2786              	.L279:
  2787 000c 00800056 		.word	1442873344
  2788              		.cfi_endproc
-ARM GAS  /tmp/ccvdUNht.s 			page 74
+ARM GAS  /tmp/ccDBVtix.s 			page 74
 
 
  2789              	.LFE960:
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
 1455:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @brief  Disable xPU clock gating.
 1456:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @param  Xpu Selected CPU(s).
 1457:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   *             This parameter can be a one of @ref SYSCFG_XPUId
-ARM GAS  /tmp/ccvdUNht.s 			page 75
+ARM GAS  /tmp/ccDBVtix.s 			page 75
 
 
 1458:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @retval None
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2868 0004 43F48073 		orr	r3, r3, #256
  2869 0008 5365     		str	r3, [r2, #84]
 1477:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** }
-ARM GAS  /tmp/ccvdUNht.s 			page 76
+ARM GAS  /tmp/ccDBVtix.s 			page 76
 
 
  2870              		.loc 1 1477 1 is_stmt 0 view .LVU507
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
 1490:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @note   This function is deprecated, please refer to Errata Sheet ES0620.
 1491:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   *         I/O compensation cells must remain disabled.
 1492:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @retval None
-ARM GAS  /tmp/ccvdUNht.s 			page 77
+ARM GAS  /tmp/ccDBVtix.s 			page 77
 
 
 1493:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   */
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  2958              	.L297:
  2959 000c 00800056 		.word	1442873344
  2960              		.cfi_endproc
-ARM GAS  /tmp/ccvdUNht.s 			page 78
+ARM GAS  /tmp/ccDBVtix.s 			page 78
 
 
  2961              	.LFE966:
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3001              		.cfi_startproc
  3002              		@ args = 0, pretend = 0, frame = 0
  3003              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccvdUNht.s 			page 79
+ARM GAS  /tmp/ccDBVtix.s 			page 79
 
 
  3004              		@ link register save eliminated.
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3048              		.align	1
  3049              		.global	HAL_SYSCFG_DisableVDDIO5CompensationCell
  3050              		.syntax unified
-ARM GAS  /tmp/ccvdUNht.s 			page 80
+ARM GAS  /tmp/ccDBVtix.s 			page 80
 
 
  3051              		.thumb
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
 1561:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   *                   to apply in range 0 to 15 else this parameter is not used
 1562:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @param  PmosValue In case SYSCFG_IO_REGISTER_CODE is selected, it  provides the Pmos value
 1563:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   *                   to apply in range 0 to 15 else this parameter is not used
-ARM GAS  /tmp/ccvdUNht.s 			page 81
+ARM GAS  /tmp/ccDBVtix.s 			page 81
 
 
 1564:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @retval HAL status
@@ -4858,7 +4858,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
 1606:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****         {
 1607:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****           MODIFY_REG(SYSCFG->VDDIO5CCCR, 0x2FFU, ((NmosValue | (PmosValue << (4U))) | SYSCFG_VDDIO5
 1608:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****           break;
-ARM GAS  /tmp/ccvdUNht.s 			page 82
+ARM GAS  /tmp/ccDBVtix.s 			page 82
 
 
 1609:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****         }
@@ -4918,7 +4918,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3131 0024 2748     		ldr	r0, .L329
  3132              	.LVL113:
 1592:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****           break;
-ARM GAS  /tmp/ccvdUNht.s 			page 83
+ARM GAS  /tmp/ccDBVtix.s 			page 83
 
 
  3133              		.loc 1 1592 11 is_stmt 0 view .LVU543
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3177              		.loc 1 1603 11 is_stmt 1 view .LVU553
  3178 0070 11E0     		b	.L320
  3179              	.LVL121:
-ARM GAS  /tmp/ccvdUNht.s 			page 84
+ARM GAS  /tmp/ccDBVtix.s 			page 84
 
 
  3180              	.L314:
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3219 00a2 D365     		str	r3, [r2, #92]
 1632:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****         break;
  3220              		.loc 1 1632 9 is_stmt 1 view .LVU564
-ARM GAS  /tmp/ccvdUNht.s 			page 85
+ARM GAS  /tmp/ccDBVtix.s 			page 85
 
 
  3221 00a4 F7E7     		b	.L320
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3253 00c2 00BF     		.align	2
  3254              	.L329:
  3255 00c4 00800056 		.word	1442873344
-ARM GAS  /tmp/ccvdUNht.s 			page 86
+ARM GAS  /tmp/ccDBVtix.s 			page 86
 
 
  3256              		.cfi_endproc
@@ -5158,7 +5158,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3284 0004 43B1     		cbz	r3, .L334
 1682:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   {
 1683:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****     status = HAL_OK;
-ARM GAS  /tmp/ccvdUNht.s 			page 87
+ARM GAS  /tmp/ccDBVtix.s 			page 87
 
 
  3285              		.loc 1 1683 5 is_stmt 1 view .LVU583
@@ -5218,7 +5218,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3303              	.LVL138:
  3304              		.p2align 1
  3305              	.L334:
-ARM GAS  /tmp/ccvdUNht.s 			page 88
+ARM GAS  /tmp/ccDBVtix.s 			page 88
 
 
 1674:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   uint32_t values = 0;
@@ -5278,7 +5278,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
 1696:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****           break;
  3348              		.loc 1 1696 20 is_stmt 0 view .LVU600
  3349 0038 1449     		ldr	r1, .L351
-ARM GAS  /tmp/ccvdUNht.s 			page 89
+ARM GAS  /tmp/ccDBVtix.s 			page 89
 
 
  3350 003a C96D     		ldr	r1, [r1, #92]
@@ -5338,7 +5338,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3388              		.loc 1 1707 11 view .LVU616
  3389 0054 03E0     		b	.L342
  3390              	.LVL154:
-ARM GAS  /tmp/ccvdUNht.s 			page 90
+ARM GAS  /tmp/ccDBVtix.s 			page 90
 
 
  3391              	.L347:
@@ -5398,7 +5398,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3413              		.loc 1 1750 17 view .LVU627
  3414 0068 1960     		str	r1, [r3]
 1751:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   }
-ARM GAS  /tmp/ccvdUNht.s 			page 91
+ARM GAS  /tmp/ccDBVtix.s 			page 91
 
 
 1752:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   return status;
@@ -5458,7 +5458,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3453 0082 096D     		ldr	r1, [r1, #80]
 1738:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****           break;
  3454              		.loc 1 1738 18 view .LVU644
-ARM GAS  /tmp/ccvdUNht.s 			page 92
+ARM GAS  /tmp/ccDBVtix.s 			page 92
 
 
  3455 0084 C9B2     		uxtb	r1, r1
@@ -5518,7 +5518,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3500              		.global	HAL_SYSCFG_GetCompVDDIO3CellReadyStatus
  3501              		.syntax unified
  3502              		.thumb
-ARM GAS  /tmp/ccvdUNht.s 			page 93
+ARM GAS  /tmp/ccDBVtix.s 			page 93
 
 
  3503              		.thumb_func
@@ -5578,7 +5578,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3543 0002 986C     		ldr	r0, [r3, #72]
 1780:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** }
  3544              		.loc 1 1780 1 view .LVU659
-ARM GAS  /tmp/ccvdUNht.s 			page 94
+ARM GAS  /tmp/ccDBVtix.s 			page 94
 
 
  3545 0004 00F48070 		and	r0, r0, #256
@@ -5638,7 +5638,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
 1792:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @brief  Configure the code selection for the compensation cell of VDD
 1793:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @param  Code code selection to be applied for the I/O compensation cell
 1794:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   *         This parameter can be one of the following values:
-ARM GAS  /tmp/ccvdUNht.s 			page 95
+ARM GAS  /tmp/ccDBVtix.s 			page 95
 
 
 1795:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   *            @arg SYSCFG_IO_CELL_CODE  Code from the cell (available in the SYSCFG_VDDIOxCCSR)
@@ -5698,7 +5698,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
 1827:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** }
  3614              		.loc 1 1827 1 is_stmt 0 view .LVU673
  3615 000e 0020     		movs	r0, #0
-ARM GAS  /tmp/ccvdUNht.s 			page 96
+ARM GAS  /tmp/ccDBVtix.s 			page 96
 
 
  3616 0010 7047     		bx	lr
@@ -5758,7 +5758,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3656              		@ frame_needed = 0, uses_anonymous_args = 0
  3657              		@ link register save eliminated.
 1837:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   SET_BIT(SYSCFG->VDDCCCR, SYSCFG_VDDCCCR_EN);
-ARM GAS  /tmp/ccvdUNht.s 			page 97
+ARM GAS  /tmp/ccDBVtix.s 			page 97
 
 
  3658              		.loc 1 1837 3 view .LVU682
@@ -5818,7 +5818,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3705              		.thumb_func
  3707              	HAL_SYSCFG_GetVDDCompensationCell:
  3708              	.LVL174:
-ARM GAS  /tmp/ccvdUNht.s 			page 98
+ARM GAS  /tmp/ccDBVtix.s 			page 98
 
 
  3709              	.LFB980:
@@ -5878,7 +5878,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3734              	.L382:
  3735              	.LVL175:
 1877:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****     }
-ARM GAS  /tmp/ccvdUNht.s 			page 99
+ARM GAS  /tmp/ccDBVtix.s 			page 99
 
 
 1878:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
@@ -5938,7 +5938,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3776              	.L384:
  3777 002c 00800056 		.word	1442873344
  3778              		.cfi_endproc
-ARM GAS  /tmp/ccvdUNht.s 			page 100
+ARM GAS  /tmp/ccDBVtix.s 			page 100
 
 
  3779              	.LFE980:
@@ -5998,7 +5998,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
 1904:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   *                @arg SYSCFG_CBR_BREAK_LOCK_CM55_CACHE CM55 cache double ECC error
 1905:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   *                @arg SYSCFG_CBR_BREAK_LOCK_CM55_TCM   DTCM double ECC error
 1906:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @retval None
-ARM GAS  /tmp/ccvdUNht.s 			page 101
+ARM GAS  /tmp/ccDBVtix.s 			page 101
 
 
 1907:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   */
@@ -6058,7 +6058,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
 1929:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   return (SYSCFG->CBR & SYSCFG_CBR_BREAK_LOCK_ALL);
  3853              		.loc 1 1929 3 view .LVU724
  3854              		.loc 1 1929 17 is_stmt 0 view .LVU725
-ARM GAS  /tmp/ccvdUNht.s 			page 102
+ARM GAS  /tmp/ccDBVtix.s 			page 102
 
 
  3855 0000 034B     		ldr	r3, .L393
@@ -6118,7 +6118,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3894 000e 00BF     		.align	2
  3895              	.L396:
  3896 0010 00800056 		.word	1442873344
-ARM GAS  /tmp/ccvdUNht.s 			page 103
+ARM GAS  /tmp/ccDBVtix.s 			page 103
 
 
  3897              		.cfi_endproc
@@ -6178,7 +6178,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
 1964:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @param  Cid in range 0 to 7
 1965:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   * @retval None
 1966:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   */
-ARM GAS  /tmp/ccvdUNht.s 			page 104
+ARM GAS  /tmp/ccDBVtix.s 			page 104
 
 
 1967:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** void HAL_SYSCFG_SetPerceivedPrivCID(uint32_t Cid)
@@ -6238,7 +6238,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  3981              	.L405:
  3982 000c 00800056 		.word	1442873344
  3983              		.cfi_endproc
-ARM GAS  /tmp/ccvdUNht.s 			page 105
+ARM GAS  /tmp/ccDBVtix.s 			page 105
 
 
  3984              	.LFE987:
@@ -6298,7 +6298,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  4026              		@ frame_needed = 0, uses_anonymous_args = 0
  4027              		@ link register save eliminated.
 1996:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   CLEAR_BIT(SYSCFG->FMC_RETIMECR, SYSCFG_FMC_RETIMECR_CFG_RETIME_RX);
-ARM GAS  /tmp/ccvdUNht.s 			page 106
+ARM GAS  /tmp/ccDBVtix.s 			page 106
 
 
  4028              		.loc 1 1996 3 view .LVU746
@@ -6358,7 +6358,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  4075              		.thumb_func
  4077              	HAL_SYSCFG_DisableReTimingTXpath:
  4078              	.LFB991:
-ARM GAS  /tmp/ccvdUNht.s 			page 107
+ARM GAS  /tmp/ccDBVtix.s 			page 107
 
 
 2007:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
@@ -6418,7 +6418,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
 2028:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** 
 2029:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c ****   MODIFY_REG(SYSCFG->FMC_RETIMECR, SYSCFG_FMC_RETIMECR_SDFBCLK_180, Delay);
  4114              		.loc 1 2029 3 view .LVU756
-ARM GAS  /tmp/ccvdUNht.s 			page 108
+ARM GAS  /tmp/ccDBVtix.s 			page 108
 
 
  4115 0000 034A     		ldr	r2, .L420
@@ -6478,7 +6478,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  4160              		.syntax unified
  4161              		.thumb
  4162              		.thumb_func
-ARM GAS  /tmp/ccvdUNht.s 			page 109
+ARM GAS  /tmp/ccDBVtix.s 			page 109
 
 
  4164              	HAL_SYSCFG_EnableInterleavingCpuRam:
@@ -6538,7 +6538,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  4202 0004 23F00103 		bic	r3, r3, #1
  4203 0008 9367     		str	r3, [r2, #120]
 2060:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c **** }
-ARM GAS  /tmp/ccvdUNht.s 			page 110
+ARM GAS  /tmp/ccDBVtix.s 			page 110
 
 
  4204              		.loc 1 2060 1 is_stmt 0 view .LVU767
@@ -6598,7 +6598,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  4240              		.loc 1 2080 3 is_stmt 1 view .LVU775
  4241              		.loc 1 2080 6 is_stmt 0 view .LVU776
  4242 000a 012A     		cmp	r2, #1
-ARM GAS  /tmp/ccvdUNht.s 			page 111
+ARM GAS  /tmp/ccDBVtix.s 			page 111
 
 
  4243 000c 00D0     		beq	.L431
@@ -6658,7 +6658,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  4282              	.LFE997:
  4284              		.section	.text.HAL_FMC_SetBankSwapConfig,"ax",%progbits
  4285              		.align	1
-ARM GAS  /tmp/ccvdUNht.s 			page 112
+ARM GAS  /tmp/ccDBVtix.s 			page 112
 
 
  4286              		.global	HAL_FMC_SetBankSwapConfig
@@ -6718,7 +6718,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  4301 0000 034A     		ldr	r2, .L439
  4302 0002 136A     		ldr	r3, [r2, #32]
  4303 0004 23F04073 		bic	r3, r3, #50331648
-ARM GAS  /tmp/ccvdUNht.s 			page 113
+ARM GAS  /tmp/ccDBVtix.s 			page 113
 
 
  4304 0008 0343     		orrs	r3, r3, r0
@@ -6778,7 +6778,7 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  4350              		.section	.data.uwTickPrio,"aw"
  4351              		.align	2
  4354              	uwTickPrio:
-ARM GAS  /tmp/ccvdUNht.s 			page 114
+ARM GAS  /tmp/ccDBVtix.s 			page 114
 
 
  4355 0000 10000000 		.word	16
@@ -6797,393 +6797,393 @@ ARM GAS  /tmp/ccvdUNht.s 			page 1
  4370              		.file 7 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal.h"
  4371              		.file 8 "../Drivers/CMSIS/Device/ST/STM32N6xx/Include/system_stm32n6xx.h"
  4372              		.file 9 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_cortex.h"
-ARM GAS  /tmp/ccvdUNht.s 			page 115
+ARM GAS  /tmp/ccDBVtix.s 			page 115
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32n6xx_hal.c
-     /tmp/ccvdUNht.s:26     .text.HAL_MspInit:00000000 $t
-     /tmp/ccvdUNht.s:32     .text.HAL_MspInit:00000000 HAL_MspInit
-     /tmp/ccvdUNht.s:45     .text.HAL_MspDeInit:00000000 $t
-     /tmp/ccvdUNht.s:51     .text.HAL_MspDeInit:00000000 HAL_MspDeInit
-     /tmp/ccvdUNht.s:64     .text.HAL_DeInit:00000000 $t
-     /tmp/ccvdUNht.s:70     .text.HAL_DeInit:00000000 HAL_DeInit
-     /tmp/ccvdUNht.s:160    .text.HAL_DeInit:00000080 $d
-     /tmp/ccvdUNht.s:171    .text.HAL_InitTick:00000000 $t
-     /tmp/ccvdUNht.s:177    .text.HAL_InitTick:00000000 HAL_InitTick
-     /tmp/ccvdUNht.s:247    .text.HAL_InitTick:00000040 $d
-     /tmp/ccvdUNht.s:4347   .data.uwTickFreq:00000000 uwTickFreq
-     /tmp/ccvdUNht.s:4354   .data.uwTickPrio:00000000 uwTickPrio
-     /tmp/ccvdUNht.s:254    .text.HAL_Init:00000000 $t
-     /tmp/ccvdUNht.s:260    .text.HAL_Init:00000000 HAL_Init
-     /tmp/ccvdUNht.s:304    .text.HAL_IncTick:00000000 $t
-     /tmp/ccvdUNht.s:310    .text.HAL_IncTick:00000000 HAL_IncTick
-     /tmp/ccvdUNht.s:331    .text.HAL_IncTick:00000010 $d
-     /tmp/ccvdUNht.s:4361   .bss.uwTick:00000000 uwTick
-     /tmp/ccvdUNht.s:337    .text.HAL_GetTick:00000000 $t
-     /tmp/ccvdUNht.s:343    .text.HAL_GetTick:00000000 HAL_GetTick
-     /tmp/ccvdUNht.s:358    .text.HAL_GetTick:00000008 $d
-     /tmp/ccvdUNht.s:363    .text.HAL_GetTickPrio:00000000 $t
-     /tmp/ccvdUNht.s:369    .text.HAL_GetTickPrio:00000000 HAL_GetTickPrio
-     /tmp/ccvdUNht.s:384    .text.HAL_GetTickPrio:00000008 $d
-     /tmp/ccvdUNht.s:389    .text.HAL_SetTickFreq:00000000 $t
-     /tmp/ccvdUNht.s:395    .text.HAL_SetTickFreq:00000000 HAL_SetTickFreq
-     /tmp/ccvdUNht.s:452    .text.HAL_SetTickFreq:00000024 $d
-     /tmp/ccvdUNht.s:458    .text.HAL_GetTickFreq:00000000 $t
-     /tmp/ccvdUNht.s:464    .text.HAL_GetTickFreq:00000000 HAL_GetTickFreq
-     /tmp/ccvdUNht.s:479    .text.HAL_GetTickFreq:00000008 $d
-     /tmp/ccvdUNht.s:484    .text.HAL_Delay:00000000 $t
-     /tmp/ccvdUNht.s:490    .text.HAL_Delay:00000000 HAL_Delay
-     /tmp/ccvdUNht.s:543    .text.HAL_Delay:00000024 $d
-     /tmp/ccvdUNht.s:548    .text.HAL_SuspendTick:00000000 $t
-     /tmp/ccvdUNht.s:554    .text.HAL_SuspendTick:00000000 HAL_SuspendTick
-     /tmp/ccvdUNht.s:574    .text.HAL_ResumeTick:00000000 $t
-     /tmp/ccvdUNht.s:580    .text.HAL_ResumeTick:00000000 HAL_ResumeTick
-     /tmp/ccvdUNht.s:600    .text.HAL_GetHalVersion:00000000 $t
-     /tmp/ccvdUNht.s:606    .text.HAL_GetHalVersion:00000000 HAL_GetHalVersion
-     /tmp/ccvdUNht.s:620    .text.HAL_GetHalVersion:00000004 $d
-     /tmp/ccvdUNht.s:625    .text.HAL_GetREVID:00000000 $t
-     /tmp/ccvdUNht.s:631    .text.HAL_GetREVID:00000000 HAL_GetREVID
-     /tmp/ccvdUNht.s:646    .text.HAL_GetREVID:00000008 $d
-     /tmp/ccvdUNht.s:651    .text.HAL_GetDEVID:00000000 $t
-     /tmp/ccvdUNht.s:657    .text.HAL_GetDEVID:00000000 HAL_GetDEVID
-     /tmp/ccvdUNht.s:672    .text.HAL_GetUIDw0:00000000 $t
-     /tmp/ccvdUNht.s:678    .text.HAL_GetUIDw0:00000000 HAL_GetUIDw0
-     /tmp/ccvdUNht.s:693    .text.HAL_GetUIDw0:00000008 $d
-     /tmp/ccvdUNht.s:698    .text.HAL_GetUIDw1:00000000 $t
-     /tmp/ccvdUNht.s:704    .text.HAL_GetUIDw1:00000000 HAL_GetUIDw1
-     /tmp/ccvdUNht.s:719    .text.HAL_GetUIDw1:00000008 $d
-     /tmp/ccvdUNht.s:724    .text.HAL_GetUIDw2:00000000 $t
-     /tmp/ccvdUNht.s:730    .text.HAL_GetUIDw2:00000000 HAL_GetUIDw2
-     /tmp/ccvdUNht.s:745    .text.HAL_GetUIDw2:00000008 $d
-     /tmp/ccvdUNht.s:750    .text.HAL_DBGMCU_EnableDBGSleepMode:00000000 $t
-ARM GAS  /tmp/ccvdUNht.s 			page 116
+     /tmp/ccDBVtix.s:26     .text.HAL_MspInit:00000000 $t
+     /tmp/ccDBVtix.s:32     .text.HAL_MspInit:00000000 HAL_MspInit
+     /tmp/ccDBVtix.s:45     .text.HAL_MspDeInit:00000000 $t
+     /tmp/ccDBVtix.s:51     .text.HAL_MspDeInit:00000000 HAL_MspDeInit
+     /tmp/ccDBVtix.s:64     .text.HAL_DeInit:00000000 $t
+     /tmp/ccDBVtix.s:70     .text.HAL_DeInit:00000000 HAL_DeInit
+     /tmp/ccDBVtix.s:160    .text.HAL_DeInit:00000080 $d
+     /tmp/ccDBVtix.s:171    .text.HAL_InitTick:00000000 $t
+     /tmp/ccDBVtix.s:177    .text.HAL_InitTick:00000000 HAL_InitTick
+     /tmp/ccDBVtix.s:247    .text.HAL_InitTick:00000040 $d
+     /tmp/ccDBVtix.s:4347   .data.uwTickFreq:00000000 uwTickFreq
+     /tmp/ccDBVtix.s:4354   .data.uwTickPrio:00000000 uwTickPrio
+     /tmp/ccDBVtix.s:254    .text.HAL_Init:00000000 $t
+     /tmp/ccDBVtix.s:260    .text.HAL_Init:00000000 HAL_Init
+     /tmp/ccDBVtix.s:304    .text.HAL_IncTick:00000000 $t
+     /tmp/ccDBVtix.s:310    .text.HAL_IncTick:00000000 HAL_IncTick
+     /tmp/ccDBVtix.s:331    .text.HAL_IncTick:00000010 $d
+     /tmp/ccDBVtix.s:4361   .bss.uwTick:00000000 uwTick
+     /tmp/ccDBVtix.s:337    .text.HAL_GetTick:00000000 $t
+     /tmp/ccDBVtix.s:343    .text.HAL_GetTick:00000000 HAL_GetTick
+     /tmp/ccDBVtix.s:358    .text.HAL_GetTick:00000008 $d
+     /tmp/ccDBVtix.s:363    .text.HAL_GetTickPrio:00000000 $t
+     /tmp/ccDBVtix.s:369    .text.HAL_GetTickPrio:00000000 HAL_GetTickPrio
+     /tmp/ccDBVtix.s:384    .text.HAL_GetTickPrio:00000008 $d
+     /tmp/ccDBVtix.s:389    .text.HAL_SetTickFreq:00000000 $t
+     /tmp/ccDBVtix.s:395    .text.HAL_SetTickFreq:00000000 HAL_SetTickFreq
+     /tmp/ccDBVtix.s:452    .text.HAL_SetTickFreq:00000024 $d
+     /tmp/ccDBVtix.s:458    .text.HAL_GetTickFreq:00000000 $t
+     /tmp/ccDBVtix.s:464    .text.HAL_GetTickFreq:00000000 HAL_GetTickFreq
+     /tmp/ccDBVtix.s:479    .text.HAL_GetTickFreq:00000008 $d
+     /tmp/ccDBVtix.s:484    .text.HAL_Delay:00000000 $t
+     /tmp/ccDBVtix.s:490    .text.HAL_Delay:00000000 HAL_Delay
+     /tmp/ccDBVtix.s:543    .text.HAL_Delay:00000024 $d
+     /tmp/ccDBVtix.s:548    .text.HAL_SuspendTick:00000000 $t
+     /tmp/ccDBVtix.s:554    .text.HAL_SuspendTick:00000000 HAL_SuspendTick
+     /tmp/ccDBVtix.s:574    .text.HAL_ResumeTick:00000000 $t
+     /tmp/ccDBVtix.s:580    .text.HAL_ResumeTick:00000000 HAL_ResumeTick
+     /tmp/ccDBVtix.s:600    .text.HAL_GetHalVersion:00000000 $t
+     /tmp/ccDBVtix.s:606    .text.HAL_GetHalVersion:00000000 HAL_GetHalVersion
+     /tmp/ccDBVtix.s:620    .text.HAL_GetHalVersion:00000004 $d
+     /tmp/ccDBVtix.s:625    .text.HAL_GetREVID:00000000 $t
+     /tmp/ccDBVtix.s:631    .text.HAL_GetREVID:00000000 HAL_GetREVID
+     /tmp/ccDBVtix.s:646    .text.HAL_GetREVID:00000008 $d
+     /tmp/ccDBVtix.s:651    .text.HAL_GetDEVID:00000000 $t
+     /tmp/ccDBVtix.s:657    .text.HAL_GetDEVID:00000000 HAL_GetDEVID
+     /tmp/ccDBVtix.s:672    .text.HAL_GetUIDw0:00000000 $t
+     /tmp/ccDBVtix.s:678    .text.HAL_GetUIDw0:00000000 HAL_GetUIDw0
+     /tmp/ccDBVtix.s:693    .text.HAL_GetUIDw0:00000008 $d
+     /tmp/ccDBVtix.s:698    .text.HAL_GetUIDw1:00000000 $t
+     /tmp/ccDBVtix.s:704    .text.HAL_GetUIDw1:00000000 HAL_GetUIDw1
+     /tmp/ccDBVtix.s:719    .text.HAL_GetUIDw1:00000008 $d
+     /tmp/ccDBVtix.s:724    .text.HAL_GetUIDw2:00000000 $t
+     /tmp/ccDBVtix.s:730    .text.HAL_GetUIDw2:00000000 HAL_GetUIDw2
+     /tmp/ccDBVtix.s:745    .text.HAL_GetUIDw2:00000008 $d
+     /tmp/ccDBVtix.s:750    .text.HAL_DBGMCU_EnableDBGSleepMode:00000000 $t
+ARM GAS  /tmp/ccDBVtix.s 			page 116
 
 
-     /tmp/ccvdUNht.s:756    .text.HAL_DBGMCU_EnableDBGSleepMode:00000000 HAL_DBGMCU_EnableDBGSleepMode
-     /tmp/ccvdUNht.s:773    .text.HAL_DBGMCU_EnableDBGSleepMode:0000000c $d
-     /tmp/ccvdUNht.s:778    .text.HAL_DBGMCU_DisableDBGSleepMode:00000000 $t
-     /tmp/ccvdUNht.s:784    .text.HAL_DBGMCU_DisableDBGSleepMode:00000000 HAL_DBGMCU_DisableDBGSleepMode
-     /tmp/ccvdUNht.s:801    .text.HAL_DBGMCU_DisableDBGSleepMode:0000000c $d
-     /tmp/ccvdUNht.s:806    .text.HAL_DBGMCU_EnableDBGStopMode:00000000 $t
-     /tmp/ccvdUNht.s:812    .text.HAL_DBGMCU_EnableDBGStopMode:00000000 HAL_DBGMCU_EnableDBGStopMode
-     /tmp/ccvdUNht.s:829    .text.HAL_DBGMCU_EnableDBGStopMode:0000000c $d
-     /tmp/ccvdUNht.s:834    .text.HAL_DBGMCU_DisableDBGStopMode:00000000 $t
-     /tmp/ccvdUNht.s:840    .text.HAL_DBGMCU_DisableDBGStopMode:00000000 HAL_DBGMCU_DisableDBGStopMode
-     /tmp/ccvdUNht.s:857    .text.HAL_DBGMCU_DisableDBGStopMode:0000000c $d
-     /tmp/ccvdUNht.s:862    .text.HAL_DBGMCU_EnableDBGStandbyMode:00000000 $t
-     /tmp/ccvdUNht.s:868    .text.HAL_DBGMCU_EnableDBGStandbyMode:00000000 HAL_DBGMCU_EnableDBGStandbyMode
-     /tmp/ccvdUNht.s:885    .text.HAL_DBGMCU_EnableDBGStandbyMode:0000000c $d
-     /tmp/ccvdUNht.s:890    .text.HAL_DBGMCU_DisableDBGStandbyMode:00000000 $t
-     /tmp/ccvdUNht.s:896    .text.HAL_DBGMCU_DisableDBGStandbyMode:00000000 HAL_DBGMCU_DisableDBGStandbyMode
-     /tmp/ccvdUNht.s:913    .text.HAL_DBGMCU_DisableDBGStandbyMode:0000000c $d
-     /tmp/ccvdUNht.s:918    .text.HAL_SYSCFG_EnablePullDown:00000000 $t
-     /tmp/ccvdUNht.s:924    .text.HAL_SYSCFG_EnablePullDown:00000000 HAL_SYSCFG_EnablePullDown
-     /tmp/ccvdUNht.s:943    .text.HAL_SYSCFG_EnablePullDown:0000000c $d
-     /tmp/ccvdUNht.s:948    .text.HAL_SYSCFG_DisablePullDown:00000000 $t
-     /tmp/ccvdUNht.s:954    .text.HAL_SYSCFG_DisablePullDown:00000000 HAL_SYSCFG_DisablePullDown
-     /tmp/ccvdUNht.s:973    .text.HAL_SYSCFG_DisablePullDown:0000000c $d
-     /tmp/ccvdUNht.s:978    .text.HAL_SYSCFG_Lock:00000000 $t
-     /tmp/ccvdUNht.s:984    .text.HAL_SYSCFG_Lock:00000000 HAL_SYSCFG_Lock
-     /tmp/ccvdUNht.s:1004   .text.HAL_SYSCFG_Lock:00000010 $d
-     /tmp/ccvdUNht.s:1009   .text.HAL_SYSCFG_GetLock:00000000 $t
-     /tmp/ccvdUNht.s:1015   .text.HAL_SYSCFG_GetLock:00000000 HAL_SYSCFG_GetLock
-     /tmp/ccvdUNht.s:1049   .text.HAL_SYSCFG_GetLock:00000014 $d
-     /tmp/ccvdUNht.s:1054   .text.HAL_SYSCFG_SetTCMSize:00000000 $t
-     /tmp/ccvdUNht.s:1060   .text.HAL_SYSCFG_SetTCMSize:00000000 HAL_SYSCFG_SetTCMSize
-     /tmp/ccvdUNht.s:1084   .text.HAL_SYSCFG_SetTCMSize:00000010 $d
-     /tmp/ccvdUNht.s:1089   .text.HAL_SYSCFG_GetTCMSize:00000000 $t
-     /tmp/ccvdUNht.s:1095   .text.HAL_SYSCFG_GetTCMSize:00000000 HAL_SYSCFG_GetTCMSize
-     /tmp/ccvdUNht.s:1142   .text.HAL_SYSCFG_GetTCMSize:00000020 $d
-     /tmp/ccvdUNht.s:1147   .text.HAL_SYSCFG_LockWriteAccess:00000000 $t
-     /tmp/ccvdUNht.s:1153   .text.HAL_SYSCFG_LockWriteAccess:00000000 HAL_SYSCFG_LockWriteAccess
-     /tmp/ccvdUNht.s:1173   .text.HAL_SYSCFG_LockWriteAccess:00000010 $d
-     /tmp/ccvdUNht.s:1178   .text.HAL_SYSCFG_GetLockWriteAccess:00000000 $t
-     /tmp/ccvdUNht.s:1184   .text.HAL_SYSCFG_GetLockWriteAccess:00000000 HAL_SYSCFG_GetLockWriteAccess
-     /tmp/ccvdUNht.s:1218   .text.HAL_SYSCFG_GetLockWriteAccess:00000014 $d
-     /tmp/ccvdUNht.s:1223   .text.HAL_SYSCFG_EnableITCMWaiteState:00000000 $t
-     /tmp/ccvdUNht.s:1229   .text.HAL_SYSCFG_EnableITCMWaiteState:00000000 HAL_SYSCFG_EnableITCMWaiteState
-     /tmp/ccvdUNht.s:1246   .text.HAL_SYSCFG_EnableITCMWaiteState:0000000c $d
-     /tmp/ccvdUNht.s:1251   .text.HAL_SYSCFG_DisableITCMWaiteState:00000000 $t
-     /tmp/ccvdUNht.s:1257   .text.HAL_SYSCFG_DisableITCMWaiteState:00000000 HAL_SYSCFG_DisableITCMWaiteState
-     /tmp/ccvdUNht.s:1274   .text.HAL_SYSCFG_DisableITCMWaiteState:0000000c $d
-     /tmp/ccvdUNht.s:1279   .text.HAL_SYSCFG_EnableDTCMWaiteState:00000000 $t
-     /tmp/ccvdUNht.s:1285   .text.HAL_SYSCFG_EnableDTCMWaiteState:00000000 HAL_SYSCFG_EnableDTCMWaiteState
-     /tmp/ccvdUNht.s:1302   .text.HAL_SYSCFG_EnableDTCMWaiteState:0000000c $d
-     /tmp/ccvdUNht.s:1307   .text.HAL_SYSCFG_DisableDTCMWaiteState:00000000 $t
-     /tmp/ccvdUNht.s:1313   .text.HAL_SYSCFG_DisableDTCMWaiteState:00000000 HAL_SYSCFG_DisableDTCMWaiteState
-     /tmp/ccvdUNht.s:1330   .text.HAL_SYSCFG_DisableDTCMWaiteState:0000000c $d
-     /tmp/ccvdUNht.s:1335   .text.HAL_SYSCFG_EnableTCMExternalMargin:00000000 $t
-     /tmp/ccvdUNht.s:1341   .text.HAL_SYSCFG_EnableTCMExternalMargin:00000000 HAL_SYSCFG_EnableTCMExternalMargin
-     /tmp/ccvdUNht.s:1358   .text.HAL_SYSCFG_EnableTCMExternalMargin:0000000c $d
-     /tmp/ccvdUNht.s:1363   .text.HAL_SYSCFG_DisableTCMExternalMargin:00000000 $t
-ARM GAS  /tmp/ccvdUNht.s 			page 117
+     /tmp/ccDBVtix.s:756    .text.HAL_DBGMCU_EnableDBGSleepMode:00000000 HAL_DBGMCU_EnableDBGSleepMode
+     /tmp/ccDBVtix.s:773    .text.HAL_DBGMCU_EnableDBGSleepMode:0000000c $d
+     /tmp/ccDBVtix.s:778    .text.HAL_DBGMCU_DisableDBGSleepMode:00000000 $t
+     /tmp/ccDBVtix.s:784    .text.HAL_DBGMCU_DisableDBGSleepMode:00000000 HAL_DBGMCU_DisableDBGSleepMode
+     /tmp/ccDBVtix.s:801    .text.HAL_DBGMCU_DisableDBGSleepMode:0000000c $d
+     /tmp/ccDBVtix.s:806    .text.HAL_DBGMCU_EnableDBGStopMode:00000000 $t
+     /tmp/ccDBVtix.s:812    .text.HAL_DBGMCU_EnableDBGStopMode:00000000 HAL_DBGMCU_EnableDBGStopMode
+     /tmp/ccDBVtix.s:829    .text.HAL_DBGMCU_EnableDBGStopMode:0000000c $d
+     /tmp/ccDBVtix.s:834    .text.HAL_DBGMCU_DisableDBGStopMode:00000000 $t
+     /tmp/ccDBVtix.s:840    .text.HAL_DBGMCU_DisableDBGStopMode:00000000 HAL_DBGMCU_DisableDBGStopMode
+     /tmp/ccDBVtix.s:857    .text.HAL_DBGMCU_DisableDBGStopMode:0000000c $d
+     /tmp/ccDBVtix.s:862    .text.HAL_DBGMCU_EnableDBGStandbyMode:00000000 $t
+     /tmp/ccDBVtix.s:868    .text.HAL_DBGMCU_EnableDBGStandbyMode:00000000 HAL_DBGMCU_EnableDBGStandbyMode
+     /tmp/ccDBVtix.s:885    .text.HAL_DBGMCU_EnableDBGStandbyMode:0000000c $d
+     /tmp/ccDBVtix.s:890    .text.HAL_DBGMCU_DisableDBGStandbyMode:00000000 $t
+     /tmp/ccDBVtix.s:896    .text.HAL_DBGMCU_DisableDBGStandbyMode:00000000 HAL_DBGMCU_DisableDBGStandbyMode
+     /tmp/ccDBVtix.s:913    .text.HAL_DBGMCU_DisableDBGStandbyMode:0000000c $d
+     /tmp/ccDBVtix.s:918    .text.HAL_SYSCFG_EnablePullDown:00000000 $t
+     /tmp/ccDBVtix.s:924    .text.HAL_SYSCFG_EnablePullDown:00000000 HAL_SYSCFG_EnablePullDown
+     /tmp/ccDBVtix.s:943    .text.HAL_SYSCFG_EnablePullDown:0000000c $d
+     /tmp/ccDBVtix.s:948    .text.HAL_SYSCFG_DisablePullDown:00000000 $t
+     /tmp/ccDBVtix.s:954    .text.HAL_SYSCFG_DisablePullDown:00000000 HAL_SYSCFG_DisablePullDown
+     /tmp/ccDBVtix.s:973    .text.HAL_SYSCFG_DisablePullDown:0000000c $d
+     /tmp/ccDBVtix.s:978    .text.HAL_SYSCFG_Lock:00000000 $t
+     /tmp/ccDBVtix.s:984    .text.HAL_SYSCFG_Lock:00000000 HAL_SYSCFG_Lock
+     /tmp/ccDBVtix.s:1004   .text.HAL_SYSCFG_Lock:00000010 $d
+     /tmp/ccDBVtix.s:1009   .text.HAL_SYSCFG_GetLock:00000000 $t
+     /tmp/ccDBVtix.s:1015   .text.HAL_SYSCFG_GetLock:00000000 HAL_SYSCFG_GetLock
+     /tmp/ccDBVtix.s:1049   .text.HAL_SYSCFG_GetLock:00000014 $d
+     /tmp/ccDBVtix.s:1054   .text.HAL_SYSCFG_SetTCMSize:00000000 $t
+     /tmp/ccDBVtix.s:1060   .text.HAL_SYSCFG_SetTCMSize:00000000 HAL_SYSCFG_SetTCMSize
+     /tmp/ccDBVtix.s:1084   .text.HAL_SYSCFG_SetTCMSize:00000010 $d
+     /tmp/ccDBVtix.s:1089   .text.HAL_SYSCFG_GetTCMSize:00000000 $t
+     /tmp/ccDBVtix.s:1095   .text.HAL_SYSCFG_GetTCMSize:00000000 HAL_SYSCFG_GetTCMSize
+     /tmp/ccDBVtix.s:1142   .text.HAL_SYSCFG_GetTCMSize:00000020 $d
+     /tmp/ccDBVtix.s:1147   .text.HAL_SYSCFG_LockWriteAccess:00000000 $t
+     /tmp/ccDBVtix.s:1153   .text.HAL_SYSCFG_LockWriteAccess:00000000 HAL_SYSCFG_LockWriteAccess
+     /tmp/ccDBVtix.s:1173   .text.HAL_SYSCFG_LockWriteAccess:00000010 $d
+     /tmp/ccDBVtix.s:1178   .text.HAL_SYSCFG_GetLockWriteAccess:00000000 $t
+     /tmp/ccDBVtix.s:1184   .text.HAL_SYSCFG_GetLockWriteAccess:00000000 HAL_SYSCFG_GetLockWriteAccess
+     /tmp/ccDBVtix.s:1218   .text.HAL_SYSCFG_GetLockWriteAccess:00000014 $d
+     /tmp/ccDBVtix.s:1223   .text.HAL_SYSCFG_EnableITCMWaiteState:00000000 $t
+     /tmp/ccDBVtix.s:1229   .text.HAL_SYSCFG_EnableITCMWaiteState:00000000 HAL_SYSCFG_EnableITCMWaiteState
+     /tmp/ccDBVtix.s:1246   .text.HAL_SYSCFG_EnableITCMWaiteState:0000000c $d
+     /tmp/ccDBVtix.s:1251   .text.HAL_SYSCFG_DisableITCMWaiteState:00000000 $t
+     /tmp/ccDBVtix.s:1257   .text.HAL_SYSCFG_DisableITCMWaiteState:00000000 HAL_SYSCFG_DisableITCMWaiteState
+     /tmp/ccDBVtix.s:1274   .text.HAL_SYSCFG_DisableITCMWaiteState:0000000c $d
+     /tmp/ccDBVtix.s:1279   .text.HAL_SYSCFG_EnableDTCMWaiteState:00000000 $t
+     /tmp/ccDBVtix.s:1285   .text.HAL_SYSCFG_EnableDTCMWaiteState:00000000 HAL_SYSCFG_EnableDTCMWaiteState
+     /tmp/ccDBVtix.s:1302   .text.HAL_SYSCFG_EnableDTCMWaiteState:0000000c $d
+     /tmp/ccDBVtix.s:1307   .text.HAL_SYSCFG_DisableDTCMWaiteState:00000000 $t
+     /tmp/ccDBVtix.s:1313   .text.HAL_SYSCFG_DisableDTCMWaiteState:00000000 HAL_SYSCFG_DisableDTCMWaiteState
+     /tmp/ccDBVtix.s:1330   .text.HAL_SYSCFG_DisableDTCMWaiteState:0000000c $d
+     /tmp/ccDBVtix.s:1335   .text.HAL_SYSCFG_EnableTCMExternalMargin:00000000 $t
+     /tmp/ccDBVtix.s:1341   .text.HAL_SYSCFG_EnableTCMExternalMargin:00000000 HAL_SYSCFG_EnableTCMExternalMargin
+     /tmp/ccDBVtix.s:1358   .text.HAL_SYSCFG_EnableTCMExternalMargin:0000000c $d
+     /tmp/ccDBVtix.s:1363   .text.HAL_SYSCFG_DisableTCMExternalMargin:00000000 $t
+ARM GAS  /tmp/ccDBVtix.s 			page 117
 
 
-     /tmp/ccvdUNht.s:1369   .text.HAL_SYSCFG_DisableTCMExternalMargin:00000000 HAL_SYSCFG_DisableTCMExternalMargin
-     /tmp/ccvdUNht.s:1386   .text.HAL_SYSCFG_DisableTCMExternalMargin:0000000c $d
-     /tmp/ccvdUNht.s:1391   .text.HAL_SYSCFG_SetTCMRWMarginInput:00000000 $t
-     /tmp/ccvdUNht.s:1397   .text.HAL_SYSCFG_SetTCMRWMarginInput:00000000 HAL_SYSCFG_SetTCMRWMarginInput
-     /tmp/ccvdUNht.s:1417   .text.HAL_SYSCFG_SetTCMRWMarginInput:00000010 $d
-     /tmp/ccvdUNht.s:1422   .text.HAL_SYSCFG_GetTCMRWMarginInput:00000000 $t
-     /tmp/ccvdUNht.s:1428   .text.HAL_SYSCFG_GetTCMRWMarginInput:00000000 HAL_SYSCFG_GetTCMRWMarginInput
-     /tmp/ccvdUNht.s:1463   .text.HAL_SYSCFG_GetTCMRWMarginInput:00000014 $d
-     /tmp/ccvdUNht.s:1468   .text.HAL_SYSCFG_SetTCMBiasingLevel:00000000 $t
-     /tmp/ccvdUNht.s:1474   .text.HAL_SYSCFG_SetTCMBiasingLevel:00000000 HAL_SYSCFG_SetTCMBiasingLevel
-     /tmp/ccvdUNht.s:1494   .text.HAL_SYSCFG_SetTCMBiasingLevel:00000010 $d
-     /tmp/ccvdUNht.s:1499   .text.HAL_SYSCFG_GetTCMBiasingLevel:00000000 $t
-     /tmp/ccvdUNht.s:1505   .text.HAL_SYSCFG_GetTCMBiasingLevel:00000000 HAL_SYSCFG_GetTCMBiasingLevel
-     /tmp/ccvdUNht.s:1539   .text.HAL_SYSCFG_GetTCMBiasingLevel:00000014 $d
-     /tmp/ccvdUNht.s:1544   .text.HAL_SYSCFG_EnableCacheExternalMargin:00000000 $t
-     /tmp/ccvdUNht.s:1550   .text.HAL_SYSCFG_EnableCacheExternalMargin:00000000 HAL_SYSCFG_EnableCacheExternalMargin
-     /tmp/ccvdUNht.s:1567   .text.HAL_SYSCFG_EnableCacheExternalMargin:0000000c $d
-     /tmp/ccvdUNht.s:1572   .text.HAL_SYSCFG_DisableCacheExternalMargin:00000000 $t
-     /tmp/ccvdUNht.s:1578   .text.HAL_SYSCFG_DisableCacheExternalMargin:00000000 HAL_SYSCFG_DisableCacheExternalMargin
-     /tmp/ccvdUNht.s:1595   .text.HAL_SYSCFG_DisableCacheExternalMargin:0000000c $d
-     /tmp/ccvdUNht.s:1600   .text.HAL_SYSCFG_SetCacheRWMarginInput:00000000 $t
-     /tmp/ccvdUNht.s:1606   .text.HAL_SYSCFG_SetCacheRWMarginInput:00000000 HAL_SYSCFG_SetCacheRWMarginInput
-     /tmp/ccvdUNht.s:1626   .text.HAL_SYSCFG_SetCacheRWMarginInput:00000010 $d
-     /tmp/ccvdUNht.s:1631   .text.HAL_SYSCFG_GetCacheRWMarginInput:00000000 $t
-     /tmp/ccvdUNht.s:1637   .text.HAL_SYSCFG_GetCacheRWMarginInput:00000000 HAL_SYSCFG_GetCacheRWMarginInput
-     /tmp/ccvdUNht.s:1672   .text.HAL_SYSCFG_GetCacheRWMarginInput:00000014 $d
-     /tmp/ccvdUNht.s:1677   .text.HAL_SYSCFG_SetCacheBiasingLevel:00000000 $t
-     /tmp/ccvdUNht.s:1683   .text.HAL_SYSCFG_SetCacheBiasingLevel:00000000 HAL_SYSCFG_SetCacheBiasingLevel
-     /tmp/ccvdUNht.s:1703   .text.HAL_SYSCFG_SetCacheBiasingLevel:00000010 $d
-     /tmp/ccvdUNht.s:1708   .text.HAL_SYSCFG_GetCacheBiasingLevel:00000000 $t
-     /tmp/ccvdUNht.s:1714   .text.HAL_SYSCFG_GetCacheBiasingLevel:00000000 HAL_SYSCFG_GetCacheBiasingLevel
-     /tmp/ccvdUNht.s:1748   .text.HAL_SYSCFG_GetCacheBiasingLevel:00000014 $d
-     /tmp/ccvdUNht.s:1753   .text.HAL_SYSCFG_SetSVTORAddress:00000000 $t
-     /tmp/ccvdUNht.s:1759   .text.HAL_SYSCFG_SetSVTORAddress:00000000 HAL_SYSCFG_SetSVTORAddress
-     /tmp/ccvdUNht.s:1776   .text.HAL_SYSCFG_SetSVTORAddress:00000008 $d
-     /tmp/ccvdUNht.s:1781   .text.HAL_SYSCFG_GetSVTORAddress:00000000 $t
-     /tmp/ccvdUNht.s:1787   .text.HAL_SYSCFG_GetSVTORAddress:00000000 HAL_SYSCFG_GetSVTORAddress
-     /tmp/ccvdUNht.s:1820   .text.HAL_SYSCFG_GetSVTORAddress:00000010 $d
-     /tmp/ccvdUNht.s:1825   .text.HAL_SYSCFG_SetNSVTORAddress:00000000 $t
-     /tmp/ccvdUNht.s:1831   .text.HAL_SYSCFG_SetNSVTORAddress:00000000 HAL_SYSCFG_SetNSVTORAddress
-     /tmp/ccvdUNht.s:1848   .text.HAL_SYSCFG_SetNSVTORAddress:00000008 $d
-     /tmp/ccvdUNht.s:1853   .text.HAL_SYSCFG_GetNSVTORAddress:00000000 $t
-     /tmp/ccvdUNht.s:1859   .text.HAL_SYSCFG_GetNSVTORAddress:00000000 HAL_SYSCFG_GetNSVTORAddress
-     /tmp/ccvdUNht.s:1892   .text.HAL_SYSCFG_GetNSVTORAddress:00000010 $d
-     /tmp/ccvdUNht.s:1897   .text.HAL_SYSCFG_EnablePowerOnReset:00000000 $t
-     /tmp/ccvdUNht.s:1903   .text.HAL_SYSCFG_EnablePowerOnReset:00000000 HAL_SYSCFG_EnablePowerOnReset
-     /tmp/ccvdUNht.s:1920   .text.HAL_SYSCFG_EnablePowerOnReset:0000000c $d
-     /tmp/ccvdUNht.s:1925   .text.HAL_SYSCFG_DisablePowerOnReset:00000000 $t
-     /tmp/ccvdUNht.s:1931   .text.HAL_SYSCFG_DisablePowerOnReset:00000000 HAL_SYSCFG_DisablePowerOnReset
-     /tmp/ccvdUNht.s:1948   .text.HAL_SYSCFG_DisablePowerOnReset:0000000c $d
-     /tmp/ccvdUNht.s:1953   .text.HAL_SYSCFG_EnableLockupWarmResetonRCC:00000000 $t
-     /tmp/ccvdUNht.s:1959   .text.HAL_SYSCFG_EnableLockupWarmResetonRCC:00000000 HAL_SYSCFG_EnableLockupWarmResetonRCC
-     /tmp/ccvdUNht.s:1976   .text.HAL_SYSCFG_EnableLockupWarmResetonRCC:0000000c $d
-     /tmp/ccvdUNht.s:1981   .text.HAL_SYSCFG_DisableLockupWarmResetonRCC:00000000 $t
-     /tmp/ccvdUNht.s:1987   .text.HAL_SYSCFG_DisableLockupWarmResetonRCC:00000000 HAL_SYSCFG_DisableLockupWarmResetonRCC
-     /tmp/ccvdUNht.s:2004   .text.HAL_SYSCFG_DisableLockupWarmResetonRCC:0000000c $d
-     /tmp/ccvdUNht.s:2009   .text.HAL_SYSCFG_EnableLockupGenerateNMI:00000000 $t
-ARM GAS  /tmp/ccvdUNht.s 			page 118
+     /tmp/ccDBVtix.s:1369   .text.HAL_SYSCFG_DisableTCMExternalMargin:00000000 HAL_SYSCFG_DisableTCMExternalMargin
+     /tmp/ccDBVtix.s:1386   .text.HAL_SYSCFG_DisableTCMExternalMargin:0000000c $d
+     /tmp/ccDBVtix.s:1391   .text.HAL_SYSCFG_SetTCMRWMarginInput:00000000 $t
+     /tmp/ccDBVtix.s:1397   .text.HAL_SYSCFG_SetTCMRWMarginInput:00000000 HAL_SYSCFG_SetTCMRWMarginInput
+     /tmp/ccDBVtix.s:1417   .text.HAL_SYSCFG_SetTCMRWMarginInput:00000010 $d
+     /tmp/ccDBVtix.s:1422   .text.HAL_SYSCFG_GetTCMRWMarginInput:00000000 $t
+     /tmp/ccDBVtix.s:1428   .text.HAL_SYSCFG_GetTCMRWMarginInput:00000000 HAL_SYSCFG_GetTCMRWMarginInput
+     /tmp/ccDBVtix.s:1463   .text.HAL_SYSCFG_GetTCMRWMarginInput:00000014 $d
+     /tmp/ccDBVtix.s:1468   .text.HAL_SYSCFG_SetTCMBiasingLevel:00000000 $t
+     /tmp/ccDBVtix.s:1474   .text.HAL_SYSCFG_SetTCMBiasingLevel:00000000 HAL_SYSCFG_SetTCMBiasingLevel
+     /tmp/ccDBVtix.s:1494   .text.HAL_SYSCFG_SetTCMBiasingLevel:00000010 $d
+     /tmp/ccDBVtix.s:1499   .text.HAL_SYSCFG_GetTCMBiasingLevel:00000000 $t
+     /tmp/ccDBVtix.s:1505   .text.HAL_SYSCFG_GetTCMBiasingLevel:00000000 HAL_SYSCFG_GetTCMBiasingLevel
+     /tmp/ccDBVtix.s:1539   .text.HAL_SYSCFG_GetTCMBiasingLevel:00000014 $d
+     /tmp/ccDBVtix.s:1544   .text.HAL_SYSCFG_EnableCacheExternalMargin:00000000 $t
+     /tmp/ccDBVtix.s:1550   .text.HAL_SYSCFG_EnableCacheExternalMargin:00000000 HAL_SYSCFG_EnableCacheExternalMargin
+     /tmp/ccDBVtix.s:1567   .text.HAL_SYSCFG_EnableCacheExternalMargin:0000000c $d
+     /tmp/ccDBVtix.s:1572   .text.HAL_SYSCFG_DisableCacheExternalMargin:00000000 $t
+     /tmp/ccDBVtix.s:1578   .text.HAL_SYSCFG_DisableCacheExternalMargin:00000000 HAL_SYSCFG_DisableCacheExternalMargin
+     /tmp/ccDBVtix.s:1595   .text.HAL_SYSCFG_DisableCacheExternalMargin:0000000c $d
+     /tmp/ccDBVtix.s:1600   .text.HAL_SYSCFG_SetCacheRWMarginInput:00000000 $t
+     /tmp/ccDBVtix.s:1606   .text.HAL_SYSCFG_SetCacheRWMarginInput:00000000 HAL_SYSCFG_SetCacheRWMarginInput
+     /tmp/ccDBVtix.s:1626   .text.HAL_SYSCFG_SetCacheRWMarginInput:00000010 $d
+     /tmp/ccDBVtix.s:1631   .text.HAL_SYSCFG_GetCacheRWMarginInput:00000000 $t
+     /tmp/ccDBVtix.s:1637   .text.HAL_SYSCFG_GetCacheRWMarginInput:00000000 HAL_SYSCFG_GetCacheRWMarginInput
+     /tmp/ccDBVtix.s:1672   .text.HAL_SYSCFG_GetCacheRWMarginInput:00000014 $d
+     /tmp/ccDBVtix.s:1677   .text.HAL_SYSCFG_SetCacheBiasingLevel:00000000 $t
+     /tmp/ccDBVtix.s:1683   .text.HAL_SYSCFG_SetCacheBiasingLevel:00000000 HAL_SYSCFG_SetCacheBiasingLevel
+     /tmp/ccDBVtix.s:1703   .text.HAL_SYSCFG_SetCacheBiasingLevel:00000010 $d
+     /tmp/ccDBVtix.s:1708   .text.HAL_SYSCFG_GetCacheBiasingLevel:00000000 $t
+     /tmp/ccDBVtix.s:1714   .text.HAL_SYSCFG_GetCacheBiasingLevel:00000000 HAL_SYSCFG_GetCacheBiasingLevel
+     /tmp/ccDBVtix.s:1748   .text.HAL_SYSCFG_GetCacheBiasingLevel:00000014 $d
+     /tmp/ccDBVtix.s:1753   .text.HAL_SYSCFG_SetSVTORAddress:00000000 $t
+     /tmp/ccDBVtix.s:1759   .text.HAL_SYSCFG_SetSVTORAddress:00000000 HAL_SYSCFG_SetSVTORAddress
+     /tmp/ccDBVtix.s:1776   .text.HAL_SYSCFG_SetSVTORAddress:00000008 $d
+     /tmp/ccDBVtix.s:1781   .text.HAL_SYSCFG_GetSVTORAddress:00000000 $t
+     /tmp/ccDBVtix.s:1787   .text.HAL_SYSCFG_GetSVTORAddress:00000000 HAL_SYSCFG_GetSVTORAddress
+     /tmp/ccDBVtix.s:1820   .text.HAL_SYSCFG_GetSVTORAddress:00000010 $d
+     /tmp/ccDBVtix.s:1825   .text.HAL_SYSCFG_SetNSVTORAddress:00000000 $t
+     /tmp/ccDBVtix.s:1831   .text.HAL_SYSCFG_SetNSVTORAddress:00000000 HAL_SYSCFG_SetNSVTORAddress
+     /tmp/ccDBVtix.s:1848   .text.HAL_SYSCFG_SetNSVTORAddress:00000008 $d
+     /tmp/ccDBVtix.s:1853   .text.HAL_SYSCFG_GetNSVTORAddress:00000000 $t
+     /tmp/ccDBVtix.s:1859   .text.HAL_SYSCFG_GetNSVTORAddress:00000000 HAL_SYSCFG_GetNSVTORAddress
+     /tmp/ccDBVtix.s:1892   .text.HAL_SYSCFG_GetNSVTORAddress:00000010 $d
+     /tmp/ccDBVtix.s:1897   .text.HAL_SYSCFG_EnablePowerOnReset:00000000 $t
+     /tmp/ccDBVtix.s:1903   .text.HAL_SYSCFG_EnablePowerOnReset:00000000 HAL_SYSCFG_EnablePowerOnReset
+     /tmp/ccDBVtix.s:1920   .text.HAL_SYSCFG_EnablePowerOnReset:0000000c $d
+     /tmp/ccDBVtix.s:1925   .text.HAL_SYSCFG_DisablePowerOnReset:00000000 $t
+     /tmp/ccDBVtix.s:1931   .text.HAL_SYSCFG_DisablePowerOnReset:00000000 HAL_SYSCFG_DisablePowerOnReset
+     /tmp/ccDBVtix.s:1948   .text.HAL_SYSCFG_DisablePowerOnReset:0000000c $d
+     /tmp/ccDBVtix.s:1953   .text.HAL_SYSCFG_EnableLockupWarmResetonRCC:00000000 $t
+     /tmp/ccDBVtix.s:1959   .text.HAL_SYSCFG_EnableLockupWarmResetonRCC:00000000 HAL_SYSCFG_EnableLockupWarmResetonRCC
+     /tmp/ccDBVtix.s:1976   .text.HAL_SYSCFG_EnableLockupWarmResetonRCC:0000000c $d
+     /tmp/ccDBVtix.s:1981   .text.HAL_SYSCFG_DisableLockupWarmResetonRCC:00000000 $t
+     /tmp/ccDBVtix.s:1987   .text.HAL_SYSCFG_DisableLockupWarmResetonRCC:00000000 HAL_SYSCFG_DisableLockupWarmResetonRCC
+     /tmp/ccDBVtix.s:2004   .text.HAL_SYSCFG_DisableLockupWarmResetonRCC:0000000c $d
+     /tmp/ccDBVtix.s:2009   .text.HAL_SYSCFG_EnableLockupGenerateNMI:00000000 $t
+ARM GAS  /tmp/ccDBVtix.s 			page 118
 
 
-     /tmp/ccvdUNht.s:2015   .text.HAL_SYSCFG_EnableLockupGenerateNMI:00000000 HAL_SYSCFG_EnableLockupGenerateNMI
-     /tmp/ccvdUNht.s:2032   .text.HAL_SYSCFG_EnableLockupGenerateNMI:0000000c $d
-     /tmp/ccvdUNht.s:2037   .text.HAL_SYSCFG_DisableLockupGenerateNMI:00000000 $t
-     /tmp/ccvdUNht.s:2043   .text.HAL_SYSCFG_DisableLockupGenerateNMI:00000000 HAL_SYSCFG_DisableLockupGenerateNMI
-     /tmp/ccvdUNht.s:2060   .text.HAL_SYSCFG_DisableLockupGenerateNMI:0000000c $d
-     /tmp/ccvdUNht.s:2065   .text.HAL_SYSCFG_ReEnableWritePostingErrorCapture:00000000 $t
-     /tmp/ccvdUNht.s:2071   .text.HAL_SYSCFG_ReEnableWritePostingErrorCapture:00000000 HAL_SYSCFG_ReEnableWritePostingErrorCapture
-     /tmp/ccvdUNht.s:2094   .text.HAL_SYSCFG_ReEnableWritePostingErrorCapture:00000018 $d
-     /tmp/ccvdUNht.s:2099   .text.HAL_SYSCFG_EnableVENCRAMReserved:00000000 $t
-     /tmp/ccvdUNht.s:2105   .text.HAL_SYSCFG_EnableVENCRAMReserved:00000000 HAL_SYSCFG_EnableVENCRAMReserved
-     /tmp/ccvdUNht.s:2122   .text.HAL_SYSCFG_EnableVENCRAMReserved:0000000c $d
-     /tmp/ccvdUNht.s:2127   .text.HAL_SYSCFG_DisableVENCRAMReserved:00000000 $t
-     /tmp/ccvdUNht.s:2133   .text.HAL_SYSCFG_DisableVENCRAMReserved:00000000 HAL_SYSCFG_DisableVENCRAMReserved
-     /tmp/ccvdUNht.s:2150   .text.HAL_SYSCFG_DisableVENCRAMReserved:0000000c $d
-     /tmp/ccvdUNht.s:2155   .text.HAL_SYSCFG_EnableCRYPPotentialTamper:00000000 $t
-     /tmp/ccvdUNht.s:2161   .text.HAL_SYSCFG_EnableCRYPPotentialTamper:00000000 HAL_SYSCFG_EnableCRYPPotentialTamper
-     /tmp/ccvdUNht.s:2178   .text.HAL_SYSCFG_EnableCRYPPotentialTamper:0000000c $d
-     /tmp/ccvdUNht.s:2183   .text.HAL_SYSCFG_DisableCRYPPotentialTamper:00000000 $t
-     /tmp/ccvdUNht.s:2189   .text.HAL_SYSCFG_DisableCRYPPotentialTamper:00000000 HAL_SYSCFG_DisableCRYPPotentialTamper
-     /tmp/ccvdUNht.s:2206   .text.HAL_SYSCFG_DisableCRYPPotentialTamper:0000000c $d
-     /tmp/ccvdUNht.s:2211   .text.HAL_SYSCFG_SetWriteQosNP1:00000000 $t
-     /tmp/ccvdUNht.s:2217   .text.HAL_SYSCFG_SetWriteQosNP1:00000000 HAL_SYSCFG_SetWriteQosNP1
-     /tmp/ccvdUNht.s:2237   .text.HAL_SYSCFG_SetWriteQosNP1:00000010 $d
-     /tmp/ccvdUNht.s:2242   .text.HAL_SYSCFG_GetWriteQosNP1:00000000 $t
-     /tmp/ccvdUNht.s:2248   .text.HAL_SYSCFG_GetWriteQosNP1:00000000 HAL_SYSCFG_GetWriteQosNP1
-     /tmp/ccvdUNht.s:2283   .text.HAL_SYSCFG_GetWriteQosNP1:00000014 $d
-     /tmp/ccvdUNht.s:2288   .text.HAL_SYSCFG_SetReadQosNP1:00000000 $t
-     /tmp/ccvdUNht.s:2294   .text.HAL_SYSCFG_SetReadQosNP1:00000000 HAL_SYSCFG_SetReadQosNP1
-     /tmp/ccvdUNht.s:2314   .text.HAL_SYSCFG_SetReadQosNP1:00000010 $d
-     /tmp/ccvdUNht.s:2319   .text.HAL_SYSCFG_GetReadQosNP1:00000000 $t
-     /tmp/ccvdUNht.s:2325   .text.HAL_SYSCFG_GetReadQosNP1:00000000 HAL_SYSCFG_GetReadQosNP1
-     /tmp/ccvdUNht.s:2359   .text.HAL_SYSCFG_GetReadQosNP1:00000014 $d
-     /tmp/ccvdUNht.s:2364   .text.HAL_SYSCFG_SetWriteQosNP2:00000000 $t
-     /tmp/ccvdUNht.s:2370   .text.HAL_SYSCFG_SetWriteQosNP2:00000000 HAL_SYSCFG_SetWriteQosNP2
-     /tmp/ccvdUNht.s:2390   .text.HAL_SYSCFG_SetWriteQosNP2:00000010 $d
-     /tmp/ccvdUNht.s:2395   .text.HAL_SYSCFG_GetWriteQosNP2:00000000 $t
-     /tmp/ccvdUNht.s:2401   .text.HAL_SYSCFG_GetWriteQosNP2:00000000 HAL_SYSCFG_GetWriteQosNP2
-     /tmp/ccvdUNht.s:2436   .text.HAL_SYSCFG_GetWriteQosNP2:00000014 $d
-     /tmp/ccvdUNht.s:2441   .text.HAL_SYSCFG_SetReadQosNP2:00000000 $t
-     /tmp/ccvdUNht.s:2447   .text.HAL_SYSCFG_SetReadQosNP2:00000000 HAL_SYSCFG_SetReadQosNP2
-     /tmp/ccvdUNht.s:2467   .text.HAL_SYSCFG_SetReadQosNP2:00000010 $d
-     /tmp/ccvdUNht.s:2472   .text.HAL_SYSCFG_GetReadQosNP2:00000000 $t
-     /tmp/ccvdUNht.s:2478   .text.HAL_SYSCFG_GetReadQosNP2:00000000 HAL_SYSCFG_GetReadQosNP2
-     /tmp/ccvdUNht.s:2513   .text.HAL_SYSCFG_GetReadQosNP2:00000014 $d
-     /tmp/ccvdUNht.s:2518   .text.HAL_SYSCFG_SetWriteQosCPUSS:00000000 $t
-     /tmp/ccvdUNht.s:2524   .text.HAL_SYSCFG_SetWriteQosCPUSS:00000000 HAL_SYSCFG_SetWriteQosCPUSS
-     /tmp/ccvdUNht.s:2544   .text.HAL_SYSCFG_SetWriteQosCPUSS:00000010 $d
-     /tmp/ccvdUNht.s:2549   .text.HAL_SYSCFG_GetwriteQosCPUSS:00000000 $t
-     /tmp/ccvdUNht.s:2555   .text.HAL_SYSCFG_GetwriteQosCPUSS:00000000 HAL_SYSCFG_GetwriteQosCPUSS
-     /tmp/ccvdUNht.s:2590   .text.HAL_SYSCFG_GetwriteQosCPUSS:00000014 $d
-     /tmp/ccvdUNht.s:2595   .text.HAL_SYSCFG_SetReadQosCPUSS:00000000 $t
-     /tmp/ccvdUNht.s:2601   .text.HAL_SYSCFG_SetReadQosCPUSS:00000000 HAL_SYSCFG_SetReadQosCPUSS
-     /tmp/ccvdUNht.s:2621   .text.HAL_SYSCFG_SetReadQosCPUSS:00000010 $d
-     /tmp/ccvdUNht.s:2626   .text.HAL_SYSCFG_GetReadQosCPUSS:00000000 $t
-     /tmp/ccvdUNht.s:2632   .text.HAL_SYSCFG_GetReadQosCPUSS:00000000 HAL_SYSCFG_GetReadQosCPUSS
-     /tmp/ccvdUNht.s:2667   .text.HAL_SYSCFG_GetReadQosCPUSS:00000014 $d
-     /tmp/ccvdUNht.s:2672   .text.HAL_SYSCFG_EnableSDMMCEarlyWRRESP:00000000 $t
-ARM GAS  /tmp/ccvdUNht.s 			page 119
+     /tmp/ccDBVtix.s:2015   .text.HAL_SYSCFG_EnableLockupGenerateNMI:00000000 HAL_SYSCFG_EnableLockupGenerateNMI
+     /tmp/ccDBVtix.s:2032   .text.HAL_SYSCFG_EnableLockupGenerateNMI:0000000c $d
+     /tmp/ccDBVtix.s:2037   .text.HAL_SYSCFG_DisableLockupGenerateNMI:00000000 $t
+     /tmp/ccDBVtix.s:2043   .text.HAL_SYSCFG_DisableLockupGenerateNMI:00000000 HAL_SYSCFG_DisableLockupGenerateNMI
+     /tmp/ccDBVtix.s:2060   .text.HAL_SYSCFG_DisableLockupGenerateNMI:0000000c $d
+     /tmp/ccDBVtix.s:2065   .text.HAL_SYSCFG_ReEnableWritePostingErrorCapture:00000000 $t
+     /tmp/ccDBVtix.s:2071   .text.HAL_SYSCFG_ReEnableWritePostingErrorCapture:00000000 HAL_SYSCFG_ReEnableWritePostingErrorCapture
+     /tmp/ccDBVtix.s:2094   .text.HAL_SYSCFG_ReEnableWritePostingErrorCapture:00000018 $d
+     /tmp/ccDBVtix.s:2099   .text.HAL_SYSCFG_EnableVENCRAMReserved:00000000 $t
+     /tmp/ccDBVtix.s:2105   .text.HAL_SYSCFG_EnableVENCRAMReserved:00000000 HAL_SYSCFG_EnableVENCRAMReserved
+     /tmp/ccDBVtix.s:2122   .text.HAL_SYSCFG_EnableVENCRAMReserved:0000000c $d
+     /tmp/ccDBVtix.s:2127   .text.HAL_SYSCFG_DisableVENCRAMReserved:00000000 $t
+     /tmp/ccDBVtix.s:2133   .text.HAL_SYSCFG_DisableVENCRAMReserved:00000000 HAL_SYSCFG_DisableVENCRAMReserved
+     /tmp/ccDBVtix.s:2150   .text.HAL_SYSCFG_DisableVENCRAMReserved:0000000c $d
+     /tmp/ccDBVtix.s:2155   .text.HAL_SYSCFG_EnableCRYPPotentialTamper:00000000 $t
+     /tmp/ccDBVtix.s:2161   .text.HAL_SYSCFG_EnableCRYPPotentialTamper:00000000 HAL_SYSCFG_EnableCRYPPotentialTamper
+     /tmp/ccDBVtix.s:2178   .text.HAL_SYSCFG_EnableCRYPPotentialTamper:0000000c $d
+     /tmp/ccDBVtix.s:2183   .text.HAL_SYSCFG_DisableCRYPPotentialTamper:00000000 $t
+     /tmp/ccDBVtix.s:2189   .text.HAL_SYSCFG_DisableCRYPPotentialTamper:00000000 HAL_SYSCFG_DisableCRYPPotentialTamper
+     /tmp/ccDBVtix.s:2206   .text.HAL_SYSCFG_DisableCRYPPotentialTamper:0000000c $d
+     /tmp/ccDBVtix.s:2211   .text.HAL_SYSCFG_SetWriteQosNP1:00000000 $t
+     /tmp/ccDBVtix.s:2217   .text.HAL_SYSCFG_SetWriteQosNP1:00000000 HAL_SYSCFG_SetWriteQosNP1
+     /tmp/ccDBVtix.s:2237   .text.HAL_SYSCFG_SetWriteQosNP1:00000010 $d
+     /tmp/ccDBVtix.s:2242   .text.HAL_SYSCFG_GetWriteQosNP1:00000000 $t
+     /tmp/ccDBVtix.s:2248   .text.HAL_SYSCFG_GetWriteQosNP1:00000000 HAL_SYSCFG_GetWriteQosNP1
+     /tmp/ccDBVtix.s:2283   .text.HAL_SYSCFG_GetWriteQosNP1:00000014 $d
+     /tmp/ccDBVtix.s:2288   .text.HAL_SYSCFG_SetReadQosNP1:00000000 $t
+     /tmp/ccDBVtix.s:2294   .text.HAL_SYSCFG_SetReadQosNP1:00000000 HAL_SYSCFG_SetReadQosNP1
+     /tmp/ccDBVtix.s:2314   .text.HAL_SYSCFG_SetReadQosNP1:00000010 $d
+     /tmp/ccDBVtix.s:2319   .text.HAL_SYSCFG_GetReadQosNP1:00000000 $t
+     /tmp/ccDBVtix.s:2325   .text.HAL_SYSCFG_GetReadQosNP1:00000000 HAL_SYSCFG_GetReadQosNP1
+     /tmp/ccDBVtix.s:2359   .text.HAL_SYSCFG_GetReadQosNP1:00000014 $d
+     /tmp/ccDBVtix.s:2364   .text.HAL_SYSCFG_SetWriteQosNP2:00000000 $t
+     /tmp/ccDBVtix.s:2370   .text.HAL_SYSCFG_SetWriteQosNP2:00000000 HAL_SYSCFG_SetWriteQosNP2
+     /tmp/ccDBVtix.s:2390   .text.HAL_SYSCFG_SetWriteQosNP2:00000010 $d
+     /tmp/ccDBVtix.s:2395   .text.HAL_SYSCFG_GetWriteQosNP2:00000000 $t
+     /tmp/ccDBVtix.s:2401   .text.HAL_SYSCFG_GetWriteQosNP2:00000000 HAL_SYSCFG_GetWriteQosNP2
+     /tmp/ccDBVtix.s:2436   .text.HAL_SYSCFG_GetWriteQosNP2:00000014 $d
+     /tmp/ccDBVtix.s:2441   .text.HAL_SYSCFG_SetReadQosNP2:00000000 $t
+     /tmp/ccDBVtix.s:2447   .text.HAL_SYSCFG_SetReadQosNP2:00000000 HAL_SYSCFG_SetReadQosNP2
+     /tmp/ccDBVtix.s:2467   .text.HAL_SYSCFG_SetReadQosNP2:00000010 $d
+     /tmp/ccDBVtix.s:2472   .text.HAL_SYSCFG_GetReadQosNP2:00000000 $t
+     /tmp/ccDBVtix.s:2478   .text.HAL_SYSCFG_GetReadQosNP2:00000000 HAL_SYSCFG_GetReadQosNP2
+     /tmp/ccDBVtix.s:2513   .text.HAL_SYSCFG_GetReadQosNP2:00000014 $d
+     /tmp/ccDBVtix.s:2518   .text.HAL_SYSCFG_SetWriteQosCPUSS:00000000 $t
+     /tmp/ccDBVtix.s:2524   .text.HAL_SYSCFG_SetWriteQosCPUSS:00000000 HAL_SYSCFG_SetWriteQosCPUSS
+     /tmp/ccDBVtix.s:2544   .text.HAL_SYSCFG_SetWriteQosCPUSS:00000010 $d
+     /tmp/ccDBVtix.s:2549   .text.HAL_SYSCFG_GetwriteQosCPUSS:00000000 $t
+     /tmp/ccDBVtix.s:2555   .text.HAL_SYSCFG_GetwriteQosCPUSS:00000000 HAL_SYSCFG_GetwriteQosCPUSS
+     /tmp/ccDBVtix.s:2590   .text.HAL_SYSCFG_GetwriteQosCPUSS:00000014 $d
+     /tmp/ccDBVtix.s:2595   .text.HAL_SYSCFG_SetReadQosCPUSS:00000000 $t
+     /tmp/ccDBVtix.s:2601   .text.HAL_SYSCFG_SetReadQosCPUSS:00000000 HAL_SYSCFG_SetReadQosCPUSS
+     /tmp/ccDBVtix.s:2621   .text.HAL_SYSCFG_SetReadQosCPUSS:00000010 $d
+     /tmp/ccDBVtix.s:2626   .text.HAL_SYSCFG_GetReadQosCPUSS:00000000 $t
+     /tmp/ccDBVtix.s:2632   .text.HAL_SYSCFG_GetReadQosCPUSS:00000000 HAL_SYSCFG_GetReadQosCPUSS
+     /tmp/ccDBVtix.s:2667   .text.HAL_SYSCFG_GetReadQosCPUSS:00000014 $d
+     /tmp/ccDBVtix.s:2672   .text.HAL_SYSCFG_EnableSDMMCEarlyWRRESP:00000000 $t
+ARM GAS  /tmp/ccDBVtix.s 			page 119
 
 
-     /tmp/ccvdUNht.s:2678   .text.HAL_SYSCFG_EnableSDMMCEarlyWRRESP:00000000 HAL_SYSCFG_EnableSDMMCEarlyWRRESP
-     /tmp/ccvdUNht.s:2697   .text.HAL_SYSCFG_EnableSDMMCEarlyWRRESP:0000000c $d
-     /tmp/ccvdUNht.s:2702   .text.HAL_SYSCFG_DisableSDMMCEarlyWRRSP:00000000 $t
-     /tmp/ccvdUNht.s:2708   .text.HAL_SYSCFG_DisableSDMMCEarlyWRRSP:00000000 HAL_SYSCFG_DisableSDMMCEarlyWRRSP
-     /tmp/ccvdUNht.s:2727   .text.HAL_SYSCFG_DisableSDMMCEarlyWRRSP:0000000c $d
-     /tmp/ccvdUNht.s:2732   .text.HAL_SYSCFG_EnableUSBEarlyEarlyWRRESP:00000000 $t
-     /tmp/ccvdUNht.s:2738   .text.HAL_SYSCFG_EnableUSBEarlyEarlyWRRESP:00000000 HAL_SYSCFG_EnableUSBEarlyEarlyWRRESP
-     /tmp/ccvdUNht.s:2757   .text.HAL_SYSCFG_EnableUSBEarlyEarlyWRRESP:0000000c $d
-     /tmp/ccvdUNht.s:2762   .text.HAL_SYSCFG_DisableUSBEarlyEarlyWRRESP:00000000 $t
-     /tmp/ccvdUNht.s:2768   .text.HAL_SYSCFG_DisableUSBEarlyEarlyWRRESP:00000000 HAL_SYSCFG_DisableUSBEarlyEarlyWRRESP
-     /tmp/ccvdUNht.s:2787   .text.HAL_SYSCFG_DisableUSBEarlyEarlyWRRESP:0000000c $d
-     /tmp/ccvdUNht.s:2792   .text.HAL_SYSCFG_EnablexPUClockGating:00000000 $t
-     /tmp/ccvdUNht.s:2798   .text.HAL_SYSCFG_EnablexPUClockGating:00000000 HAL_SYSCFG_EnablexPUClockGating
-     /tmp/ccvdUNht.s:2817   .text.HAL_SYSCFG_EnablexPUClockGating:0000000c $d
-     /tmp/ccvdUNht.s:2822   .text.HAL_SYSCFG_DisablexPUClockGating:00000000 $t
-     /tmp/ccvdUNht.s:2828   .text.HAL_SYSCFG_DisablexPUClockGating:00000000 HAL_SYSCFG_DisablexPUClockGating
-     /tmp/ccvdUNht.s:2847   .text.HAL_SYSCFG_DisablexPUClockGating:0000000c $d
-     /tmp/ccvdUNht.s:2852   .text.HAL_SYSCFG_EnableVDDIO2CompensationCell:00000000 $t
-     /tmp/ccvdUNht.s:2858   .text.HAL_SYSCFG_EnableVDDIO2CompensationCell:00000000 HAL_SYSCFG_EnableVDDIO2CompensationCell
-     /tmp/ccvdUNht.s:2875   .text.HAL_SYSCFG_EnableVDDIO2CompensationCell:0000000c $d
-     /tmp/ccvdUNht.s:2880   .text.HAL_SYSCFG_DisableVDDIO2CompensationCell:00000000 $t
-     /tmp/ccvdUNht.s:2886   .text.HAL_SYSCFG_DisableVDDIO2CompensationCell:00000000 HAL_SYSCFG_DisableVDDIO2CompensationCell
-     /tmp/ccvdUNht.s:2903   .text.HAL_SYSCFG_DisableVDDIO2CompensationCell:0000000c $d
-     /tmp/ccvdUNht.s:2908   .text.HAL_SYSCFG_EnableVDDIO3CompensationCell:00000000 $t
-     /tmp/ccvdUNht.s:2914   .text.HAL_SYSCFG_EnableVDDIO3CompensationCell:00000000 HAL_SYSCFG_EnableVDDIO3CompensationCell
-     /tmp/ccvdUNht.s:2931   .text.HAL_SYSCFG_EnableVDDIO3CompensationCell:0000000c $d
-     /tmp/ccvdUNht.s:2936   .text.HAL_SYSCFG_DisableVDDIO3CompensationCell:00000000 $t
-     /tmp/ccvdUNht.s:2942   .text.HAL_SYSCFG_DisableVDDIO3CompensationCell:00000000 HAL_SYSCFG_DisableVDDIO3CompensationCell
-     /tmp/ccvdUNht.s:2959   .text.HAL_SYSCFG_DisableVDDIO3CompensationCell:0000000c $d
-     /tmp/ccvdUNht.s:2964   .text.HAL_SYSCFG_EnableVDDIO4CompensationCell:00000000 $t
-     /tmp/ccvdUNht.s:2970   .text.HAL_SYSCFG_EnableVDDIO4CompensationCell:00000000 HAL_SYSCFG_EnableVDDIO4CompensationCell
-     /tmp/ccvdUNht.s:2987   .text.HAL_SYSCFG_EnableVDDIO4CompensationCell:0000000c $d
-     /tmp/ccvdUNht.s:2992   .text.HAL_SYSCFG_DisableVDDIO4CompensationCell:00000000 $t
-     /tmp/ccvdUNht.s:2998   .text.HAL_SYSCFG_DisableVDDIO4CompensationCell:00000000 HAL_SYSCFG_DisableVDDIO4CompensationCell
-     /tmp/ccvdUNht.s:3015   .text.HAL_SYSCFG_DisableVDDIO4CompensationCell:0000000c $d
-     /tmp/ccvdUNht.s:3020   .text.HAL_SYSCFG_EnableVDDIO5CompensationCell:00000000 $t
-     /tmp/ccvdUNht.s:3026   .text.HAL_SYSCFG_EnableVDDIO5CompensationCell:00000000 HAL_SYSCFG_EnableVDDIO5CompensationCell
-     /tmp/ccvdUNht.s:3043   .text.HAL_SYSCFG_EnableVDDIO5CompensationCell:0000000c $d
-     /tmp/ccvdUNht.s:3048   .text.HAL_SYSCFG_DisableVDDIO5CompensationCell:00000000 $t
-     /tmp/ccvdUNht.s:3054   .text.HAL_SYSCFG_DisableVDDIO5CompensationCell:00000000 HAL_SYSCFG_DisableVDDIO5CompensationCell
-     /tmp/ccvdUNht.s:3071   .text.HAL_SYSCFG_DisableVDDIO5CompensationCell:0000000c $d
-     /tmp/ccvdUNht.s:3076   .text.HAL_SYSCFG_ConfigVDDIOCompensationCell:00000000 $t
-     /tmp/ccvdUNht.s:3082   .text.HAL_SYSCFG_ConfigVDDIOCompensationCell:00000000 HAL_SYSCFG_ConfigVDDIOCompensationCell
-     /tmp/ccvdUNht.s:3103   .text.HAL_SYSCFG_ConfigVDDIOCompensationCell:0000000c $d
-     /tmp/ccvdUNht.s:3107   .text.HAL_SYSCFG_ConfigVDDIOCompensationCell:00000010 $t
-     /tmp/ccvdUNht.s:3124   .text.HAL_SYSCFG_ConfigVDDIOCompensationCell:00000020 $d
-     /tmp/ccvdUNht.s:3128   .text.HAL_SYSCFG_ConfigVDDIOCompensationCell:00000024 $t
-     /tmp/ccvdUNht.s:3255   .text.HAL_SYSCFG_ConfigVDDIOCompensationCell:000000c4 $d
-     /tmp/ccvdUNht.s:3260   .text.HAL_SYSCFG_GetVDDIOCompensationCell:00000000 $t
-     /tmp/ccvdUNht.s:3266   .text.HAL_SYSCFG_GetVDDIOCompensationCell:00000000 HAL_SYSCFG_GetVDDIOCompensationCell
-     /tmp/ccvdUNht.s:3299   .text.HAL_SYSCFG_GetVDDIOCompensationCell:00000014 $d
-     /tmp/ccvdUNht.s:3304   .text.HAL_SYSCFG_GetVDDIOCompensationCell:00000018 $t
-     /tmp/ccvdUNht.s:3318   .text.HAL_SYSCFG_GetVDDIOCompensationCell:00000024 $d
-     /tmp/ccvdUNht.s:3322   .text.HAL_SYSCFG_GetVDDIOCompensationCell:00000028 $t
-     /tmp/ccvdUNht.s:3466   .text.HAL_SYSCFG_GetVDDIOCompensationCell:0000008c $d
-     /tmp/ccvdUNht.s:3471   .text.HAL_SYSCFG_GetCompVDDIO2CellReadyStatus:00000000 $t
-     /tmp/ccvdUNht.s:3477   .text.HAL_SYSCFG_GetCompVDDIO2CellReadyStatus:00000000 HAL_SYSCFG_GetCompVDDIO2CellReadyStatus
-ARM GAS  /tmp/ccvdUNht.s 			page 120
+     /tmp/ccDBVtix.s:2678   .text.HAL_SYSCFG_EnableSDMMCEarlyWRRESP:00000000 HAL_SYSCFG_EnableSDMMCEarlyWRRESP
+     /tmp/ccDBVtix.s:2697   .text.HAL_SYSCFG_EnableSDMMCEarlyWRRESP:0000000c $d
+     /tmp/ccDBVtix.s:2702   .text.HAL_SYSCFG_DisableSDMMCEarlyWRRSP:00000000 $t
+     /tmp/ccDBVtix.s:2708   .text.HAL_SYSCFG_DisableSDMMCEarlyWRRSP:00000000 HAL_SYSCFG_DisableSDMMCEarlyWRRSP
+     /tmp/ccDBVtix.s:2727   .text.HAL_SYSCFG_DisableSDMMCEarlyWRRSP:0000000c $d
+     /tmp/ccDBVtix.s:2732   .text.HAL_SYSCFG_EnableUSBEarlyEarlyWRRESP:00000000 $t
+     /tmp/ccDBVtix.s:2738   .text.HAL_SYSCFG_EnableUSBEarlyEarlyWRRESP:00000000 HAL_SYSCFG_EnableUSBEarlyEarlyWRRESP
+     /tmp/ccDBVtix.s:2757   .text.HAL_SYSCFG_EnableUSBEarlyEarlyWRRESP:0000000c $d
+     /tmp/ccDBVtix.s:2762   .text.HAL_SYSCFG_DisableUSBEarlyEarlyWRRESP:00000000 $t
+     /tmp/ccDBVtix.s:2768   .text.HAL_SYSCFG_DisableUSBEarlyEarlyWRRESP:00000000 HAL_SYSCFG_DisableUSBEarlyEarlyWRRESP
+     /tmp/ccDBVtix.s:2787   .text.HAL_SYSCFG_DisableUSBEarlyEarlyWRRESP:0000000c $d
+     /tmp/ccDBVtix.s:2792   .text.HAL_SYSCFG_EnablexPUClockGating:00000000 $t
+     /tmp/ccDBVtix.s:2798   .text.HAL_SYSCFG_EnablexPUClockGating:00000000 HAL_SYSCFG_EnablexPUClockGating
+     /tmp/ccDBVtix.s:2817   .text.HAL_SYSCFG_EnablexPUClockGating:0000000c $d
+     /tmp/ccDBVtix.s:2822   .text.HAL_SYSCFG_DisablexPUClockGating:00000000 $t
+     /tmp/ccDBVtix.s:2828   .text.HAL_SYSCFG_DisablexPUClockGating:00000000 HAL_SYSCFG_DisablexPUClockGating
+     /tmp/ccDBVtix.s:2847   .text.HAL_SYSCFG_DisablexPUClockGating:0000000c $d
+     /tmp/ccDBVtix.s:2852   .text.HAL_SYSCFG_EnableVDDIO2CompensationCell:00000000 $t
+     /tmp/ccDBVtix.s:2858   .text.HAL_SYSCFG_EnableVDDIO2CompensationCell:00000000 HAL_SYSCFG_EnableVDDIO2CompensationCell
+     /tmp/ccDBVtix.s:2875   .text.HAL_SYSCFG_EnableVDDIO2CompensationCell:0000000c $d
+     /tmp/ccDBVtix.s:2880   .text.HAL_SYSCFG_DisableVDDIO2CompensationCell:00000000 $t
+     /tmp/ccDBVtix.s:2886   .text.HAL_SYSCFG_DisableVDDIO2CompensationCell:00000000 HAL_SYSCFG_DisableVDDIO2CompensationCell
+     /tmp/ccDBVtix.s:2903   .text.HAL_SYSCFG_DisableVDDIO2CompensationCell:0000000c $d
+     /tmp/ccDBVtix.s:2908   .text.HAL_SYSCFG_EnableVDDIO3CompensationCell:00000000 $t
+     /tmp/ccDBVtix.s:2914   .text.HAL_SYSCFG_EnableVDDIO3CompensationCell:00000000 HAL_SYSCFG_EnableVDDIO3CompensationCell
+     /tmp/ccDBVtix.s:2931   .text.HAL_SYSCFG_EnableVDDIO3CompensationCell:0000000c $d
+     /tmp/ccDBVtix.s:2936   .text.HAL_SYSCFG_DisableVDDIO3CompensationCell:00000000 $t
+     /tmp/ccDBVtix.s:2942   .text.HAL_SYSCFG_DisableVDDIO3CompensationCell:00000000 HAL_SYSCFG_DisableVDDIO3CompensationCell
+     /tmp/ccDBVtix.s:2959   .text.HAL_SYSCFG_DisableVDDIO3CompensationCell:0000000c $d
+     /tmp/ccDBVtix.s:2964   .text.HAL_SYSCFG_EnableVDDIO4CompensationCell:00000000 $t
+     /tmp/ccDBVtix.s:2970   .text.HAL_SYSCFG_EnableVDDIO4CompensationCell:00000000 HAL_SYSCFG_EnableVDDIO4CompensationCell
+     /tmp/ccDBVtix.s:2987   .text.HAL_SYSCFG_EnableVDDIO4CompensationCell:0000000c $d
+     /tmp/ccDBVtix.s:2992   .text.HAL_SYSCFG_DisableVDDIO4CompensationCell:00000000 $t
+     /tmp/ccDBVtix.s:2998   .text.HAL_SYSCFG_DisableVDDIO4CompensationCell:00000000 HAL_SYSCFG_DisableVDDIO4CompensationCell
+     /tmp/ccDBVtix.s:3015   .text.HAL_SYSCFG_DisableVDDIO4CompensationCell:0000000c $d
+     /tmp/ccDBVtix.s:3020   .text.HAL_SYSCFG_EnableVDDIO5CompensationCell:00000000 $t
+     /tmp/ccDBVtix.s:3026   .text.HAL_SYSCFG_EnableVDDIO5CompensationCell:00000000 HAL_SYSCFG_EnableVDDIO5CompensationCell
+     /tmp/ccDBVtix.s:3043   .text.HAL_SYSCFG_EnableVDDIO5CompensationCell:0000000c $d
+     /tmp/ccDBVtix.s:3048   .text.HAL_SYSCFG_DisableVDDIO5CompensationCell:00000000 $t
+     /tmp/ccDBVtix.s:3054   .text.HAL_SYSCFG_DisableVDDIO5CompensationCell:00000000 HAL_SYSCFG_DisableVDDIO5CompensationCell
+     /tmp/ccDBVtix.s:3071   .text.HAL_SYSCFG_DisableVDDIO5CompensationCell:0000000c $d
+     /tmp/ccDBVtix.s:3076   .text.HAL_SYSCFG_ConfigVDDIOCompensationCell:00000000 $t
+     /tmp/ccDBVtix.s:3082   .text.HAL_SYSCFG_ConfigVDDIOCompensationCell:00000000 HAL_SYSCFG_ConfigVDDIOCompensationCell
+     /tmp/ccDBVtix.s:3103   .text.HAL_SYSCFG_ConfigVDDIOCompensationCell:0000000c $d
+     /tmp/ccDBVtix.s:3107   .text.HAL_SYSCFG_ConfigVDDIOCompensationCell:00000010 $t
+     /tmp/ccDBVtix.s:3124   .text.HAL_SYSCFG_ConfigVDDIOCompensationCell:00000020 $d
+     /tmp/ccDBVtix.s:3128   .text.HAL_SYSCFG_ConfigVDDIOCompensationCell:00000024 $t
+     /tmp/ccDBVtix.s:3255   .text.HAL_SYSCFG_ConfigVDDIOCompensationCell:000000c4 $d
+     /tmp/ccDBVtix.s:3260   .text.HAL_SYSCFG_GetVDDIOCompensationCell:00000000 $t
+     /tmp/ccDBVtix.s:3266   .text.HAL_SYSCFG_GetVDDIOCompensationCell:00000000 HAL_SYSCFG_GetVDDIOCompensationCell
+     /tmp/ccDBVtix.s:3299   .text.HAL_SYSCFG_GetVDDIOCompensationCell:00000014 $d
+     /tmp/ccDBVtix.s:3304   .text.HAL_SYSCFG_GetVDDIOCompensationCell:00000018 $t
+     /tmp/ccDBVtix.s:3318   .text.HAL_SYSCFG_GetVDDIOCompensationCell:00000024 $d
+     /tmp/ccDBVtix.s:3322   .text.HAL_SYSCFG_GetVDDIOCompensationCell:00000028 $t
+     /tmp/ccDBVtix.s:3466   .text.HAL_SYSCFG_GetVDDIOCompensationCell:0000008c $d
+     /tmp/ccDBVtix.s:3471   .text.HAL_SYSCFG_GetCompVDDIO2CellReadyStatus:00000000 $t
+     /tmp/ccDBVtix.s:3477   .text.HAL_SYSCFG_GetCompVDDIO2CellReadyStatus:00000000 HAL_SYSCFG_GetCompVDDIO2CellReadyStatus
+ARM GAS  /tmp/ccDBVtix.s 			page 120
 
 
-     /tmp/ccvdUNht.s:3494   .text.HAL_SYSCFG_GetCompVDDIO2CellReadyStatus:0000000c $d
-     /tmp/ccvdUNht.s:3499   .text.HAL_SYSCFG_GetCompVDDIO3CellReadyStatus:00000000 $t
-     /tmp/ccvdUNht.s:3505   .text.HAL_SYSCFG_GetCompVDDIO3CellReadyStatus:00000000 HAL_SYSCFG_GetCompVDDIO3CellReadyStatus
-     /tmp/ccvdUNht.s:3522   .text.HAL_SYSCFG_GetCompVDDIO3CellReadyStatus:0000000c $d
-     /tmp/ccvdUNht.s:3527   .text.HAL_SYSCFG_GetCompVDDIO4CellReadyStatus:00000000 $t
-     /tmp/ccvdUNht.s:3533   .text.HAL_SYSCFG_GetCompVDDIO4CellReadyStatus:00000000 HAL_SYSCFG_GetCompVDDIO4CellReadyStatus
-     /tmp/ccvdUNht.s:3550   .text.HAL_SYSCFG_GetCompVDDIO4CellReadyStatus:0000000c $d
-     /tmp/ccvdUNht.s:3555   .text.HAL_SYSCFG_GetCompVDDIO5CellReadyStatus:00000000 $t
-     /tmp/ccvdUNht.s:3561   .text.HAL_SYSCFG_GetCompVDDIO5CellReadyStatus:00000000 HAL_SYSCFG_GetCompVDDIO5CellReadyStatus
-     /tmp/ccvdUNht.s:3578   .text.HAL_SYSCFG_GetCompVDDIO5CellReadyStatus:0000000c $d
-     /tmp/ccvdUNht.s:3583   .text.HAL_SYSCFG_ConfigVDDCompensationCell:00000000 $t
-     /tmp/ccvdUNht.s:3589   .text.HAL_SYSCFG_ConfigVDDCompensationCell:00000000 HAL_SYSCFG_ConfigVDDCompensationCell
-     /tmp/ccvdUNht.s:3640   .text.HAL_SYSCFG_ConfigVDDCompensationCell:00000028 $d
-     /tmp/ccvdUNht.s:3645   .text.HAL_SYSCFG_EnableVDDCompensationCell:00000000 $t
-     /tmp/ccvdUNht.s:3651   .text.HAL_SYSCFG_EnableVDDCompensationCell:00000000 HAL_SYSCFG_EnableVDDCompensationCell
-     /tmp/ccvdUNht.s:3668   .text.HAL_SYSCFG_EnableVDDCompensationCell:0000000c $d
-     /tmp/ccvdUNht.s:3673   .text.HAL_SYSCFG_DisableVDDCompensationCell:00000000 $t
-     /tmp/ccvdUNht.s:3679   .text.HAL_SYSCFG_DisableVDDCompensationCell:00000000 HAL_SYSCFG_DisableVDDCompensationCell
-     /tmp/ccvdUNht.s:3696   .text.HAL_SYSCFG_DisableVDDCompensationCell:0000000c $d
-     /tmp/ccvdUNht.s:3701   .text.HAL_SYSCFG_GetVDDCompensationCell:00000000 $t
-     /tmp/ccvdUNht.s:3707   .text.HAL_SYSCFG_GetVDDCompensationCell:00000000 HAL_SYSCFG_GetVDDCompensationCell
-     /tmp/ccvdUNht.s:3777   .text.HAL_SYSCFG_GetVDDCompensationCell:0000002c $d
-     /tmp/ccvdUNht.s:3782   .text.HAL_SYSCFG_GetCompensationVDDCellReadyStatus:00000000 $t
-     /tmp/ccvdUNht.s:3788   .text.HAL_SYSCFG_GetCompensationVDDCellReadyStatus:00000000 HAL_SYSCFG_GetCompensationVDDCellReadyStatus
-     /tmp/ccvdUNht.s:3805   .text.HAL_SYSCFG_GetCompensationVDDCellReadyStatus:0000000c $d
-     /tmp/ccvdUNht.s:3810   .text.HAL_SYSCFG_ConfigTimerBreakInput:00000000 $t
-     /tmp/ccvdUNht.s:3816   .text.HAL_SYSCFG_ConfigTimerBreakInput:00000000 HAL_SYSCFG_ConfigTimerBreakInput
-     /tmp/ccvdUNht.s:3835   .text.HAL_SYSCFG_ConfigTimerBreakInput:0000000c $d
-     /tmp/ccvdUNht.s:3840   .text.HAL_SYSCFG_GetTimerBreakInputConfig:00000000 $t
-     /tmp/ccvdUNht.s:3846   .text.HAL_SYSCFG_GetTimerBreakInputConfig:00000000 HAL_SYSCFG_GetTimerBreakInputConfig
-     /tmp/ccvdUNht.s:3865   .text.HAL_SYSCFG_GetTimerBreakInputConfig:00000010 $d
-     /tmp/ccvdUNht.s:3870   .text.HAL_SYSCFG_SetPerceivedCID:00000000 $t
-     /tmp/ccvdUNht.s:3876   .text.HAL_SYSCFG_SetPerceivedCID:00000000 HAL_SYSCFG_SetPerceivedCID
-     /tmp/ccvdUNht.s:3896   .text.HAL_SYSCFG_SetPerceivedCID:00000010 $d
-     /tmp/ccvdUNht.s:3901   .text.HAL_SYSCFG_GetPerceivedCID:00000000 $t
-     /tmp/ccvdUNht.s:3907   .text.HAL_SYSCFG_GetPerceivedCID:00000000 HAL_SYSCFG_GetPerceivedCID
-     /tmp/ccvdUNht.s:3924   .text.HAL_SYSCFG_GetPerceivedCID:0000000c $d
-     /tmp/ccvdUNht.s:3929   .text.HAL_SYSCFG_SetPerceivedPrivCID:00000000 $t
-     /tmp/ccvdUNht.s:3935   .text.HAL_SYSCFG_SetPerceivedPrivCID:00000000 HAL_SYSCFG_SetPerceivedPrivCID
-     /tmp/ccvdUNht.s:3954   .text.HAL_SYSCFG_SetPerceivedPrivCID:00000014 $d
-     /tmp/ccvdUNht.s:3959   .text.HAL_SYSCFG_GetPerceivedPrivCID:00000000 $t
-     /tmp/ccvdUNht.s:3965   .text.HAL_SYSCFG_GetPerceivedPrivCID:00000000 HAL_SYSCFG_GetPerceivedPrivCID
-     /tmp/ccvdUNht.s:3982   .text.HAL_SYSCFG_GetPerceivedPrivCID:0000000c $d
-     /tmp/ccvdUNht.s:3987   .text.HAL_SYSCFG_EnableReTimingRXpath:00000000 $t
-     /tmp/ccvdUNht.s:3993   .text.HAL_SYSCFG_EnableReTimingRXpath:00000000 HAL_SYSCFG_EnableReTimingRXpath
-     /tmp/ccvdUNht.s:4010   .text.HAL_SYSCFG_EnableReTimingRXpath:0000000c $d
-     /tmp/ccvdUNht.s:4015   .text.HAL_SYSCFG_DisableReTimingRXpath:00000000 $t
-     /tmp/ccvdUNht.s:4021   .text.HAL_SYSCFG_DisableReTimingRXpath:00000000 HAL_SYSCFG_DisableReTimingRXpath
-     /tmp/ccvdUNht.s:4038   .text.HAL_SYSCFG_DisableReTimingRXpath:0000000c $d
-     /tmp/ccvdUNht.s:4043   .text.HAL_SYSCFG_EnableReTimingTXpath:00000000 $t
-     /tmp/ccvdUNht.s:4049   .text.HAL_SYSCFG_EnableReTimingTXpath:00000000 HAL_SYSCFG_EnableReTimingTXpath
-     /tmp/ccvdUNht.s:4066   .text.HAL_SYSCFG_EnableReTimingTXpath:0000000c $d
-     /tmp/ccvdUNht.s:4071   .text.HAL_SYSCFG_DisableReTimingTXpath:00000000 $t
-     /tmp/ccvdUNht.s:4077   .text.HAL_SYSCFG_DisableReTimingTXpath:00000000 HAL_SYSCFG_DisableReTimingTXpath
-     /tmp/ccvdUNht.s:4094   .text.HAL_SYSCFG_DisableReTimingTXpath:0000000c $d
-     /tmp/ccvdUNht.s:4099   .text.HAL_SYSCFG_SetDelayOnFeedbackClock:00000000 $t
-     /tmp/ccvdUNht.s:4105   .text.HAL_SYSCFG_SetDelayOnFeedbackClock:00000000 HAL_SYSCFG_SetDelayOnFeedbackClock
-ARM GAS  /tmp/ccvdUNht.s 			page 121
+     /tmp/ccDBVtix.s:3494   .text.HAL_SYSCFG_GetCompVDDIO2CellReadyStatus:0000000c $d
+     /tmp/ccDBVtix.s:3499   .text.HAL_SYSCFG_GetCompVDDIO3CellReadyStatus:00000000 $t
+     /tmp/ccDBVtix.s:3505   .text.HAL_SYSCFG_GetCompVDDIO3CellReadyStatus:00000000 HAL_SYSCFG_GetCompVDDIO3CellReadyStatus
+     /tmp/ccDBVtix.s:3522   .text.HAL_SYSCFG_GetCompVDDIO3CellReadyStatus:0000000c $d
+     /tmp/ccDBVtix.s:3527   .text.HAL_SYSCFG_GetCompVDDIO4CellReadyStatus:00000000 $t
+     /tmp/ccDBVtix.s:3533   .text.HAL_SYSCFG_GetCompVDDIO4CellReadyStatus:00000000 HAL_SYSCFG_GetCompVDDIO4CellReadyStatus
+     /tmp/ccDBVtix.s:3550   .text.HAL_SYSCFG_GetCompVDDIO4CellReadyStatus:0000000c $d
+     /tmp/ccDBVtix.s:3555   .text.HAL_SYSCFG_GetCompVDDIO5CellReadyStatus:00000000 $t
+     /tmp/ccDBVtix.s:3561   .text.HAL_SYSCFG_GetCompVDDIO5CellReadyStatus:00000000 HAL_SYSCFG_GetCompVDDIO5CellReadyStatus
+     /tmp/ccDBVtix.s:3578   .text.HAL_SYSCFG_GetCompVDDIO5CellReadyStatus:0000000c $d
+     /tmp/ccDBVtix.s:3583   .text.HAL_SYSCFG_ConfigVDDCompensationCell:00000000 $t
+     /tmp/ccDBVtix.s:3589   .text.HAL_SYSCFG_ConfigVDDCompensationCell:00000000 HAL_SYSCFG_ConfigVDDCompensationCell
+     /tmp/ccDBVtix.s:3640   .text.HAL_SYSCFG_ConfigVDDCompensationCell:00000028 $d
+     /tmp/ccDBVtix.s:3645   .text.HAL_SYSCFG_EnableVDDCompensationCell:00000000 $t
+     /tmp/ccDBVtix.s:3651   .text.HAL_SYSCFG_EnableVDDCompensationCell:00000000 HAL_SYSCFG_EnableVDDCompensationCell
+     /tmp/ccDBVtix.s:3668   .text.HAL_SYSCFG_EnableVDDCompensationCell:0000000c $d
+     /tmp/ccDBVtix.s:3673   .text.HAL_SYSCFG_DisableVDDCompensationCell:00000000 $t
+     /tmp/ccDBVtix.s:3679   .text.HAL_SYSCFG_DisableVDDCompensationCell:00000000 HAL_SYSCFG_DisableVDDCompensationCell
+     /tmp/ccDBVtix.s:3696   .text.HAL_SYSCFG_DisableVDDCompensationCell:0000000c $d
+     /tmp/ccDBVtix.s:3701   .text.HAL_SYSCFG_GetVDDCompensationCell:00000000 $t
+     /tmp/ccDBVtix.s:3707   .text.HAL_SYSCFG_GetVDDCompensationCell:00000000 HAL_SYSCFG_GetVDDCompensationCell
+     /tmp/ccDBVtix.s:3777   .text.HAL_SYSCFG_GetVDDCompensationCell:0000002c $d
+     /tmp/ccDBVtix.s:3782   .text.HAL_SYSCFG_GetCompensationVDDCellReadyStatus:00000000 $t
+     /tmp/ccDBVtix.s:3788   .text.HAL_SYSCFG_GetCompensationVDDCellReadyStatus:00000000 HAL_SYSCFG_GetCompensationVDDCellReadyStatus
+     /tmp/ccDBVtix.s:3805   .text.HAL_SYSCFG_GetCompensationVDDCellReadyStatus:0000000c $d
+     /tmp/ccDBVtix.s:3810   .text.HAL_SYSCFG_ConfigTimerBreakInput:00000000 $t
+     /tmp/ccDBVtix.s:3816   .text.HAL_SYSCFG_ConfigTimerBreakInput:00000000 HAL_SYSCFG_ConfigTimerBreakInput
+     /tmp/ccDBVtix.s:3835   .text.HAL_SYSCFG_ConfigTimerBreakInput:0000000c $d
+     /tmp/ccDBVtix.s:3840   .text.HAL_SYSCFG_GetTimerBreakInputConfig:00000000 $t
+     /tmp/ccDBVtix.s:3846   .text.HAL_SYSCFG_GetTimerBreakInputConfig:00000000 HAL_SYSCFG_GetTimerBreakInputConfig
+     /tmp/ccDBVtix.s:3865   .text.HAL_SYSCFG_GetTimerBreakInputConfig:00000010 $d
+     /tmp/ccDBVtix.s:3870   .text.HAL_SYSCFG_SetPerceivedCID:00000000 $t
+     /tmp/ccDBVtix.s:3876   .text.HAL_SYSCFG_SetPerceivedCID:00000000 HAL_SYSCFG_SetPerceivedCID
+     /tmp/ccDBVtix.s:3896   .text.HAL_SYSCFG_SetPerceivedCID:00000010 $d
+     /tmp/ccDBVtix.s:3901   .text.HAL_SYSCFG_GetPerceivedCID:00000000 $t
+     /tmp/ccDBVtix.s:3907   .text.HAL_SYSCFG_GetPerceivedCID:00000000 HAL_SYSCFG_GetPerceivedCID
+     /tmp/ccDBVtix.s:3924   .text.HAL_SYSCFG_GetPerceivedCID:0000000c $d
+     /tmp/ccDBVtix.s:3929   .text.HAL_SYSCFG_SetPerceivedPrivCID:00000000 $t
+     /tmp/ccDBVtix.s:3935   .text.HAL_SYSCFG_SetPerceivedPrivCID:00000000 HAL_SYSCFG_SetPerceivedPrivCID
+     /tmp/ccDBVtix.s:3954   .text.HAL_SYSCFG_SetPerceivedPrivCID:00000014 $d
+     /tmp/ccDBVtix.s:3959   .text.HAL_SYSCFG_GetPerceivedPrivCID:00000000 $t
+     /tmp/ccDBVtix.s:3965   .text.HAL_SYSCFG_GetPerceivedPrivCID:00000000 HAL_SYSCFG_GetPerceivedPrivCID
+     /tmp/ccDBVtix.s:3982   .text.HAL_SYSCFG_GetPerceivedPrivCID:0000000c $d
+     /tmp/ccDBVtix.s:3987   .text.HAL_SYSCFG_EnableReTimingRXpath:00000000 $t
+     /tmp/ccDBVtix.s:3993   .text.HAL_SYSCFG_EnableReTimingRXpath:00000000 HAL_SYSCFG_EnableReTimingRXpath
+     /tmp/ccDBVtix.s:4010   .text.HAL_SYSCFG_EnableReTimingRXpath:0000000c $d
+     /tmp/ccDBVtix.s:4015   .text.HAL_SYSCFG_DisableReTimingRXpath:00000000 $t
+     /tmp/ccDBVtix.s:4021   .text.HAL_SYSCFG_DisableReTimingRXpath:00000000 HAL_SYSCFG_DisableReTimingRXpath
+     /tmp/ccDBVtix.s:4038   .text.HAL_SYSCFG_DisableReTimingRXpath:0000000c $d
+     /tmp/ccDBVtix.s:4043   .text.HAL_SYSCFG_EnableReTimingTXpath:00000000 $t
+     /tmp/ccDBVtix.s:4049   .text.HAL_SYSCFG_EnableReTimingTXpath:00000000 HAL_SYSCFG_EnableReTimingTXpath
+     /tmp/ccDBVtix.s:4066   .text.HAL_SYSCFG_EnableReTimingTXpath:0000000c $d
+     /tmp/ccDBVtix.s:4071   .text.HAL_SYSCFG_DisableReTimingTXpath:00000000 $t
+     /tmp/ccDBVtix.s:4077   .text.HAL_SYSCFG_DisableReTimingTXpath:00000000 HAL_SYSCFG_DisableReTimingTXpath
+     /tmp/ccDBVtix.s:4094   .text.HAL_SYSCFG_DisableReTimingTXpath:0000000c $d
+     /tmp/ccDBVtix.s:4099   .text.HAL_SYSCFG_SetDelayOnFeedbackClock:00000000 $t
+     /tmp/ccDBVtix.s:4105   .text.HAL_SYSCFG_SetDelayOnFeedbackClock:00000000 HAL_SYSCFG_SetDelayOnFeedbackClock
+ARM GAS  /tmp/ccDBVtix.s 			page 121
 
 
-     /tmp/ccvdUNht.s:4125   .text.HAL_SYSCFG_SetDelayOnFeedbackClock:00000010 $d
-     /tmp/ccvdUNht.s:4130   .text.HAL_SYSCFG_GetDelayOnFeedbackClock:00000000 $t
-     /tmp/ccvdUNht.s:4136   .text.HAL_SYSCFG_GetDelayOnFeedbackClock:00000000 HAL_SYSCFG_GetDelayOnFeedbackClock
-     /tmp/ccvdUNht.s:4153   .text.HAL_SYSCFG_GetDelayOnFeedbackClock:0000000c $d
-     /tmp/ccvdUNht.s:4158   .text.HAL_SYSCFG_EnableInterleavingCpuRam:00000000 $t
-     /tmp/ccvdUNht.s:4164   .text.HAL_SYSCFG_EnableInterleavingCpuRam:00000000 HAL_SYSCFG_EnableInterleavingCpuRam
-     /tmp/ccvdUNht.s:4181   .text.HAL_SYSCFG_EnableInterleavingCpuRam:0000000c $d
-     /tmp/ccvdUNht.s:4186   .text.HAL_SYSCFG_DisableInterleavingCpuRam:00000000 $t
-     /tmp/ccvdUNht.s:4192   .text.HAL_SYSCFG_DisableInterleavingCpuRam:00000000 HAL_SYSCFG_DisableInterleavingCpuRam
-     /tmp/ccvdUNht.s:4209   .text.HAL_SYSCFG_DisableInterleavingCpuRam:0000000c $d
-     /tmp/ccvdUNht.s:4214   .text.HAL_SYSCFG_GetBootPinConnection:00000000 $t
-     /tmp/ccvdUNht.s:4220   .text.HAL_SYSCFG_GetBootPinConnection:00000000 HAL_SYSCFG_GetBootPinConnection
-     /tmp/ccvdUNht.s:4254   .text.HAL_SYSCFG_GetBootPinConnection:00000014 $d
-     /tmp/ccvdUNht.s:4259   .text.HAL_SYSCFG_GetAddressWritePostingBuffer:00000000 $t
-     /tmp/ccvdUNht.s:4265   .text.HAL_SYSCFG_GetAddressWritePostingBuffer:00000000 HAL_SYSCFG_GetAddressWritePostingBuffer
-     /tmp/ccvdUNht.s:4280   .text.HAL_SYSCFG_GetAddressWritePostingBuffer:00000008 $d
-     /tmp/ccvdUNht.s:4285   .text.HAL_FMC_SetBankSwapConfig:00000000 $t
-     /tmp/ccvdUNht.s:4291   .text.HAL_FMC_SetBankSwapConfig:00000000 HAL_FMC_SetBankSwapConfig
-     /tmp/ccvdUNht.s:4311   .text.HAL_FMC_SetBankSwapConfig:00000010 $d
-     /tmp/ccvdUNht.s:4316   .text.HAL_FMC_GetBankSwapConfig:00000000 $t
-     /tmp/ccvdUNht.s:4322   .text.HAL_FMC_GetBankSwapConfig:00000000 HAL_FMC_GetBankSwapConfig
-     /tmp/ccvdUNht.s:4339   .text.HAL_FMC_GetBankSwapConfig:0000000c $d
-     /tmp/ccvdUNht.s:4351   .data.uwTickPrio:00000000 $d
-     /tmp/ccvdUNht.s:4358   .bss.uwTick:00000000 $d
+     /tmp/ccDBVtix.s:4125   .text.HAL_SYSCFG_SetDelayOnFeedbackClock:00000010 $d
+     /tmp/ccDBVtix.s:4130   .text.HAL_SYSCFG_GetDelayOnFeedbackClock:00000000 $t
+     /tmp/ccDBVtix.s:4136   .text.HAL_SYSCFG_GetDelayOnFeedbackClock:00000000 HAL_SYSCFG_GetDelayOnFeedbackClock
+     /tmp/ccDBVtix.s:4153   .text.HAL_SYSCFG_GetDelayOnFeedbackClock:0000000c $d
+     /tmp/ccDBVtix.s:4158   .text.HAL_SYSCFG_EnableInterleavingCpuRam:00000000 $t
+     /tmp/ccDBVtix.s:4164   .text.HAL_SYSCFG_EnableInterleavingCpuRam:00000000 HAL_SYSCFG_EnableInterleavingCpuRam
+     /tmp/ccDBVtix.s:4181   .text.HAL_SYSCFG_EnableInterleavingCpuRam:0000000c $d
+     /tmp/ccDBVtix.s:4186   .text.HAL_SYSCFG_DisableInterleavingCpuRam:00000000 $t
+     /tmp/ccDBVtix.s:4192   .text.HAL_SYSCFG_DisableInterleavingCpuRam:00000000 HAL_SYSCFG_DisableInterleavingCpuRam
+     /tmp/ccDBVtix.s:4209   .text.HAL_SYSCFG_DisableInterleavingCpuRam:0000000c $d
+     /tmp/ccDBVtix.s:4214   .text.HAL_SYSCFG_GetBootPinConnection:00000000 $t
+     /tmp/ccDBVtix.s:4220   .text.HAL_SYSCFG_GetBootPinConnection:00000000 HAL_SYSCFG_GetBootPinConnection
+     /tmp/ccDBVtix.s:4254   .text.HAL_SYSCFG_GetBootPinConnection:00000014 $d
+     /tmp/ccDBVtix.s:4259   .text.HAL_SYSCFG_GetAddressWritePostingBuffer:00000000 $t
+     /tmp/ccDBVtix.s:4265   .text.HAL_SYSCFG_GetAddressWritePostingBuffer:00000000 HAL_SYSCFG_GetAddressWritePostingBuffer
+     /tmp/ccDBVtix.s:4280   .text.HAL_SYSCFG_GetAddressWritePostingBuffer:00000008 $d
+     /tmp/ccDBVtix.s:4285   .text.HAL_FMC_SetBankSwapConfig:00000000 $t
+     /tmp/ccDBVtix.s:4291   .text.HAL_FMC_SetBankSwapConfig:00000000 HAL_FMC_SetBankSwapConfig
+     /tmp/ccDBVtix.s:4311   .text.HAL_FMC_SetBankSwapConfig:00000010 $d
+     /tmp/ccDBVtix.s:4316   .text.HAL_FMC_GetBankSwapConfig:00000000 $t
+     /tmp/ccDBVtix.s:4322   .text.HAL_FMC_GetBankSwapConfig:00000000 HAL_FMC_GetBankSwapConfig
+     /tmp/ccDBVtix.s:4339   .text.HAL_FMC_GetBankSwapConfig:0000000c $d
+     /tmp/ccDBVtix.s:4351   .data.uwTickPrio:00000000 $d
+     /tmp/ccDBVtix.s:4358   .bss.uwTick:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_SYSTICK_Config

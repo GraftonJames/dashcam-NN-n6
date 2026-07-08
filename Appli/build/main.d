@@ -26,6 +26,8 @@ build/main.o: Src/main.c Inc/main.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_cortex.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dcmipp.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_exti.h \
+ ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_i2c.h \
+ ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_i2c_ex.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_pwr.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_pwr_ex.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_ramcfg.h \
@@ -33,7 +35,13 @@ build/main.o: Src/main.c Inc/main.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_uart_ex.h \
  ../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo.h \
  Inc/stm32n6xx_nucleo_conf.h \
- ../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo_errno.h
+ ../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo_errno.h Inc/camera.h \
+ Inc/app_conf.h ../Drivers/cmw_camera/cmw_camera.h \
+ ../Drivers/cmw_camera/cmw_errno.h Inc/cmw_camera_conf.h \
+ ../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo_bus.h \
+ ../Drivers/cmw_camera/sensors/cmw_sensors_if.h \
+ ../Drivers/ISP/isp/Inc/isp_core.h Inc/isp_conf.h \
+ ../Drivers/ISP/isp/Inc/isp_platform.h
 Inc/main.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal.h:
 Inc/stm32n6xx_hal_conf.h:
@@ -62,6 +70,8 @@ Inc/stm32n6xx_hal_conf.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_cortex.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dcmipp.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_exti.h:
+../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_i2c.h:
+../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_i2c_ex.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_pwr.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_pwr_ex.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_ramcfg.h:
@@ -70,3 +80,13 @@ Inc/stm32n6xx_hal_conf.h:
 ../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo.h:
 Inc/stm32n6xx_nucleo_conf.h:
 ../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo_errno.h:
+Inc/camera.h:
+Inc/app_conf.h:
+../Drivers/cmw_camera/cmw_camera.h:
+../Drivers/cmw_camera/cmw_errno.h:
+Inc/cmw_camera_conf.h:
+../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo_bus.h:
+../Drivers/cmw_camera/sensors/cmw_sensors_if.h:
+../Drivers/ISP/isp/Inc/isp_core.h:
+Inc/isp_conf.h:
+../Drivers/ISP/isp/Inc/isp_platform.h:

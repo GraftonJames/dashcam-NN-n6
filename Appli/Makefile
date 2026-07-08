@@ -38,11 +38,13 @@ HAL_C_SOURCE_PREF =	../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal
 # C sources
 C_SOURCES =  \
 Src/main.c \
+Src/camera.c \
 Src/stm32n6xx_it.c \
 Src/stm32n6xx_hal_msp.c \
 Src/secure_nsc.c \
 Src/system_stm32n6xx_s.c \
 ../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo.c \
+../Drivers/stm32n6xx_nucleo_bus.c \
 Src/sysmem.c \
 Src/syscalls.c \
 $(HAL_C_SOURCE_PREF).c \
@@ -57,7 +59,19 @@ $(HAL_C_SOURCE_PREF)_rif.c \
 $(HAL_C_SOURCE_PREF)_ramcfg.c \
 $(HAL_C_SOURCE_PREF)_cacheaxi.c \
 $(HAL_C_SOURCE_PREF)_uart_ex.c \
-$(HAL_C_SOURCE_PREF)_cortex.c 
+$(HAL_C_SOURCE_PREF)_cortex.c \
+$(HAL_C_SOURCE_PREF)_i2c.c \
+$(HAL_C_SOURCE_PREF)_i2c_ex.c \
+../Drivers/cmw_camera/cmw_camera.c \
+../Drivers/cmw_camera/cmw_utils.c \
+../Drivers/ISP/isp/Src/isp_core.c \
+../Drivers/ISP/isp/Src/isp_services.c \
+../Drivers/ISP/isp/Src/isp_algo.c \
+../Drivers/ISP/isp/Src/isp_ae_algo.c \
+../Drivers/ISP/isp/Src/isp_awb_algo.c \
+../Drivers/cmw_camera/sensors/cmw_imx335.c \
+../Drivers/cmw_camera/sensors/imx335/imx335.c \
+../Drivers/cmw_camera/sensors/imx335/imx335_reg.c
 
 # ASM sources
 ASM_SOURCES =  \
@@ -125,7 +139,11 @@ C_INCLUDES =  \
 -I../Drivers/STM32N6xx_HAL_Driver/Inc \
 -I../Drivers/CMSIS/Device/ST/STM32N6xx/Include \
 -I../Drivers/STM32N6xx_HAL_Driver/Inc/Legacy \
--I../Drivers/CMSIS/Include
+-I../Drivers/CMSIS/Include \
+-I../Drivers/cmw_camera \
+-I../Drivers/cmw_camera/sensors \
+-I../Drivers/cmw_camera/sensors/imx335 \
+-I../Drivers/ISP/isp/Inc
 
 
 # compile gcc flags

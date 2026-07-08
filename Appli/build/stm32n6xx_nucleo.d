@@ -1,7 +1,5 @@
-build/stm32n6xx_nucleo.o: \
- ../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo.c \
- ../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo.h \
- Inc/stm32n6xx_nucleo_conf.h \
+build/stm32n6xx_nucleo.o: ../Drivers/stm32n6xx_nucleo.c \
+ ../Drivers/stm32n6xx_nucleo.h Inc/stm32n6xx_nucleo_conf.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal.h \
  Inc/stm32n6xx_hal_conf.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_rcc.h \
@@ -29,13 +27,15 @@ build/stm32n6xx_nucleo.o: \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_cortex.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dcmipp.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_exti.h \
+ ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_i2c.h \
+ ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_i2c_ex.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_pwr.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_pwr_ex.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_ramcfg.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_uart.h \
  ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_uart_ex.h \
- ../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo_errno.h
-../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo.h:
+ ../Drivers/stm32n6xx_nucleo_errno.h
+../Drivers/stm32n6xx_nucleo.h:
 Inc/stm32n6xx_nucleo_conf.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal.h:
 Inc/stm32n6xx_hal_conf.h:
@@ -64,9 +64,11 @@ Inc/stm32n6xx_hal_conf.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_cortex.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dcmipp.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_exti.h:
+../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_i2c.h:
+../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_i2c_ex.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_pwr.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_pwr_ex.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_ramcfg.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_uart.h:
 ../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_uart_ex.h:
-../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo_errno.h:
+../Drivers/stm32n6xx_nucleo_errno.h:

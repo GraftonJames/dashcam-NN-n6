@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc37MnKf.s 			page 1
+ARM GAS  /tmp/ccRTxeLm.s 			page 1
 
 
    1              		.arch armv8.1-m.main
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
   23:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   @verbatim
   24:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   =================================================================================================
   25:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****                        ##### How to use this driver #####
-ARM GAS  /tmp/cc37MnKf.s 			page 2
+ARM GAS  /tmp/ccRTxeLm.s 			page 2
 
 
   26:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   =================================================================================================
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
   80:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
   81:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****           (+) Direction             : Specifies the transfer direction for DMA channel
   82:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****               (++) can be a value of DMA_Transfer_Direction
-ARM GAS  /tmp/cc37MnKf.s 			page 3
+ARM GAS  /tmp/ccRTxeLm.s 			page 3
 
 
   83:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  137:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****           (+) Configure the DMA interrupt priority using HAL_NVIC_SetPriority()
  138:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
  139:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****           (+) Enable the DMA IRQ handler using HAL_NVIC_EnableIRQ()
-ARM GAS  /tmp/cc37MnKf.s 			page 4
+ARM GAS  /tmp/ccRTxeLm.s 			page 4
 
 
  140:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  194:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       Below the list of most used macros in DMA HAL driver.
  195:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
  196:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****           (+) __HAL_DMA_ENABLE        : Enable the specified DMA Channel.
-ARM GAS  /tmp/cc37MnKf.s 			page 5
+ARM GAS  /tmp/ccRTxeLm.s 			page 5
 
 
  197:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****           (+) __HAL_DMA_DISABLE       : Disable the specified DMA Channel.
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  251:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** @verbatim
  252:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   =================================================================================================
  253:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****                        ##### Initialization and de-initialization functions #####
-ARM GAS  /tmp/cc37MnKf.s 			page 6
+ARM GAS  /tmp/ccRTxeLm.s 			page 6
 
 
  254:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   =================================================================================================
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  308:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     assert_param(IS_DMA_BURST_LENGTH(hdma->Init.SrcBurstLength));
  309:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     assert_param(IS_DMA_BURST_LENGTH(hdma->Init.DestBurstLength));
  310:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     assert_param(IS_DMA_TRANSFER_ALLOCATED_PORT(hdma->Init.TransferAllocatedPort));
-ARM GAS  /tmp/cc37MnKf.s 			page 7
+ARM GAS  /tmp/ccRTxeLm.s 			page 7
 
 
  311:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   }
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  365:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   DMA_Init(hdma);
  366:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
  367:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   /* Update DMA channel operation mode */
-ARM GAS  /tmp/cc37MnKf.s 			page 8
+ARM GAS  /tmp/ccRTxeLm.s 			page 8
 
 
  368:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   hdma->Mode = hdma->Init.Mode;
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  422:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   hdma->Instance->CTR2  = 0U;
  423:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   hdma->Instance->CBR1  = 0U;
  424:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   hdma->Instance->CSAR  = 0U;
-ARM GAS  /tmp/cc37MnKf.s 			page 9
+ARM GAS  /tmp/ccRTxeLm.s 			page 9
 
 
  425:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   hdma->Instance->CDAR  = 0U;
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  479:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     [..]
  480:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       This section provides functions allowing to :
  481:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       (+) Configure the source, destination address and data size and Start DMA transfer in normal 
-ARM GAS  /tmp/cc37MnKf.s 			page 10
+ARM GAS  /tmp/ccRTxeLm.s 			page 10
 
 
  482:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       (+) Abort DMA transfer
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  536:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     hdma->ErrorCode = HAL_DMA_ERROR_NONE;
  537:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
  538:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     /* Configure the source address, destination address, the data size and clear flags */
-ARM GAS  /tmp/cc37MnKf.s 			page 11
+ARM GAS  /tmp/ccRTxeLm.s 			page 11
 
 
  539:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     DMA_SetConfig(hdma, SrcAddress, DstAddress, SrcDataSize);
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  593:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     /* Configure the source address, destination address, the data size and clear flags */
  594:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     DMA_SetConfig(hdma, SrcAddress, DstAddress, SrcDataSize);
  595:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
-ARM GAS  /tmp/cc37MnKf.s 			page 12
+ARM GAS  /tmp/ccRTxeLm.s 			page 12
 
 
  596:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     /* Enable common interrupts: Transfer Complete and Transfer Errors ITs */
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  650:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   /* Check DMA channel state */
  651:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   if (hdma->State != HAL_DMA_STATE_BUSY)
  652:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   {
-ARM GAS  /tmp/cc37MnKf.s 			page 13
+ARM GAS  /tmp/ccRTxeLm.s 			page 13
 
 
  653:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     /* Update the DMA channel error code */
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  707:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
  708:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     /* Check DMA channel transfer mode */
  709:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     if ((hdma->Mode & DMA_LINKEDLIST) == DMA_LINKEDLIST)
-ARM GAS  /tmp/cc37MnKf.s 			page 14
+ARM GAS  /tmp/ccRTxeLm.s 			page 14
 
 
  710:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     {
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  764:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   * @param  Timeout       : Timeout duration.
  765:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   * @retval HAL status
  766:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   */
-ARM GAS  /tmp/cc37MnKf.s 			page 15
+ARM GAS  /tmp/ccRTxeLm.s 			page 15
 
 
  767:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** HAL_StatusTypeDef HAL_DMA_PollForTransfer(DMA_HandleTypeDef *const hdma,
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  821:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
  822:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****         /*
  823:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****           If timeout, abort the current transfer.
-ARM GAS  /tmp/cc37MnKf.s 			page 16
+ARM GAS  /tmp/ccRTxeLm.s 			page 16
 
 
  824:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****           Note that the Abort function will
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  878:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       /* Clear the error flag */
  879:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       __HAL_DMA_CLEAR_FLAG(hdma, DMA_FLAG_USE);
  880:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     }
-ARM GAS  /tmp/cc37MnKf.s 			page 17
+ARM GAS  /tmp/ccRTxeLm.s 			page 17
 
 
  881:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  935:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   * @param  hdma : Pointer to a DMA_HandleTypeDef structure that contains the configuration informa
  936:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   *                specified DMA Channel.
  937:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   * @retval None.
-ARM GAS  /tmp/cc37MnKf.s 			page 18
+ARM GAS  /tmp/ccRTxeLm.s 			page 18
 
 
  938:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   */
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  992:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       /* Clear the user setting error flag */
  993:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       __HAL_DMA_CLEAR_FLAG(hdma, DMA_FLAG_USE);
  994:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
-ARM GAS  /tmp/cc37MnKf.s 			page 19
+ARM GAS  /tmp/ccRTxeLm.s 			page 19
 
 
  995:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       /* Update the DMA channel error code */
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1049:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
 1050:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****         /* Update the DMA channel state */
 1051:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****         hdma->State = HAL_DMA_STATE_READY;
-ARM GAS  /tmp/cc37MnKf.s 			page 20
+ARM GAS  /tmp/ccRTxeLm.s 			page 20
 
 
 1052:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1106:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
 1107:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****             /* Update the linked-list queue state */
 1108:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****             hdma->LinkedListQueue->State = HAL_DMA_QUEUE_STATE_READY;
-ARM GAS  /tmp/cc37MnKf.s 			page 21
+ARM GAS  /tmp/ccRTxeLm.s 			page 21
 
 
 1109:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****           }
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1163:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** }
 1164:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
 1165:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** /**
-ARM GAS  /tmp/cc37MnKf.s 			page 22
+ARM GAS  /tmp/ccRTxeLm.s 			page 22
 
 
 1166:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   * @brief  Register callback according to specified ID.
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1220:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
 1221:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       case HAL_DMA_XFER_SUSPEND_CB_ID:
 1222:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       {
-ARM GAS  /tmp/cc37MnKf.s 			page 23
+ARM GAS  /tmp/ccRTxeLm.s 			page 23
 
 
 1223:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****         /* Register suspend callback */
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1277:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
 1278:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       case HAL_DMA_XFER_HALFCPLT_CB_ID:
 1279:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       {
-ARM GAS  /tmp/cc37MnKf.s 			page 24
+ARM GAS  /tmp/ccRTxeLm.s 			page 24
 
 
 1280:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****         /* UnRegister half transfer callback */
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1334:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   * @}
 1335:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   */
 1336:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
-ARM GAS  /tmp/cc37MnKf.s 			page 25
+ARM GAS  /tmp/ccRTxeLm.s 			page 25
 
 
 1337:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** /** @addtogroup DMA_Exported_Functions_Group3
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1391:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       (+) Configure DMA channel secure and privilege attributes.
 1392:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       (+) Get DMA channel secure and privilege attributes.
 1393:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       (+) Lock DMA channel secure and privilege attributes configuration.
-ARM GAS  /tmp/cc37MnKf.s 			page 26
+ARM GAS  /tmp/ccRTxeLm.s 			page 26
 
 
 1394:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       (+) Check whether DMA channel secure and privilege attributes configuration is locked or not.
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1448:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       p_dma_instance->PRIVCFGR &= (~channel_idx);
 1449:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     }
 1450:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   }
-ARM GAS  /tmp/cc37MnKf.s 			page 27
+ARM GAS  /tmp/ccRTxeLm.s 			page 27
 
 
 1451:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1505:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   */
 1506:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** HAL_StatusTypeDef HAL_DMA_GetConfigChannelAttributes(DMA_HandleTypeDef const *const hdma,
 1507:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****                                                      uint32_t *const pChannelAttributes)
-ARM GAS  /tmp/cc37MnKf.s 			page 28
+ARM GAS  /tmp/ccRTxeLm.s 			page 28
 
 
 1508:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** {
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1562:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   /* Check the parameters */
 1563:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   assert_param(IS_HPDMA_INSTANCE(hdma->Instance));
 1564:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   assert_param(IS_DMA_ISOLATION_MODE(pConfig->CidFiltering));
-ARM GAS  /tmp/cc37MnKf.s 			page 29
+ARM GAS  /tmp/ccRTxeLm.s 			page 29
 
 
 1565:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   assert_param(IS_DMA_ISOLATION_STATIC_CID(pConfig->StaticCid));
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1619:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
 1620:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** #if defined (CPU_IN_SECURE_STATE)
 1621:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** /**
-ARM GAS  /tmp/cc37MnKf.s 			page 30
+ARM GAS  /tmp/ccRTxeLm.s 			page 30
 
 
 1622:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   * @brief  Lock the DMA channel security and privilege attribute(s).
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1676:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   /* Get channel lock attribute state */
 1677:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   *pLockState = ((p_dma_instance->RCFGLOCKR & channel_idx) == 0U) ? DMA_CHANNEL_ATTRIBUTE_UNLOCKED 
 1678:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****                 DMA_CHANNEL_ATTRIBUTE_LOCKED;
-ARM GAS  /tmp/cc37MnKf.s 			page 31
+ARM GAS  /tmp/ccRTxeLm.s 			page 31
 
 
 1679:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1714:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   /* Clear all interrupt flags */
 1715:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   __HAL_DMA_CLEAR_FLAG(hdma, DMA_FLAG_TC | DMA_FLAG_HT | DMA_FLAG_DTE | DMA_FLAG_ULE | DMA_FLAG_USE
   53              		.loc 1 1715 3 is_stmt 1 view .LVU4
-ARM GAS  /tmp/cc37MnKf.s 			page 32
+ARM GAS  /tmp/ccRTxeLm.s 			page 32
 
 
   54 0018 4FF4FE43 		mov	r3, #32512
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1734:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
 1735:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   /* Prepare DMA Channel Control Register (CCR) value *********************************************
 1736:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   tmpreg = hdma->Init.Priority;
-ARM GAS  /tmp/cc37MnKf.s 			page 33
+ARM GAS  /tmp/ccRTxeLm.s 			page 33
 
 
   92              		.loc 1 1736 3 view .LVU15
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  137              		.loc 1 1745 8 discriminator 4 view .LVU31
  138 0048 02F18052 		add	r2, r2, #268435456
  139 004c 8032     		adds	r2, r2, #128
-ARM GAS  /tmp/cc37MnKf.s 			page 34
+ARM GAS  /tmp/ccRTxeLm.s 			page 34
 
 
  140 004e 9142     		cmp	r1, r2
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  194 00d2 9142     		cmp	r1, r2
  195 00d4 00F0E580 		beq	.L4
  196              		.loc 1 1745 8 discriminator 17 view .LVU44
-ARM GAS  /tmp/cc37MnKf.s 			page 35
+ARM GAS  /tmp/ccRTxeLm.s 			page 35
 
 
  197 00d8 02F17042 		add	r2, r2, #-268435456
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  251 015c 02F17042 		add	r2, r2, #-268435456
  252 0160 9142     		cmp	r1, r2
  253 0162 00F09E80 		beq	.L4
-ARM GAS  /tmp/cc37MnKf.s 			page 36
+ARM GAS  /tmp/ccRTxeLm.s 			page 36
 
 
  254              		.loc 1 1745 8 discriminator 30 view .LVU57
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  308              		.loc 1 1745 53 discriminator 45 view .LVU69
  309 01dc 02F18052 		add	r2, r2, #268435456
  310 01e0 8032     		adds	r2, r2, #128
-ARM GAS  /tmp/cc37MnKf.s 			page 37
+ARM GAS  /tmp/ccRTxeLm.s 			page 37
 
 
  311 01e2 9142     		cmp	r1, r2
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  365 024e 9142     		cmp	r1, r2
  366 0250 27D0     		beq	.L4
  367              		.loc 1 1745 53 discriminator 58 view .LVU82
-ARM GAS  /tmp/cc37MnKf.s 			page 38
+ARM GAS  /tmp/ccRTxeLm.s 			page 38
 
 
  368 0252 02F17042 		add	r2, r2, #-268435456
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  418 02ac C46A     		ldr	r4, [r0, #44]
  419 02ae 44EA020C 		orr	ip, r4, r2
 1749:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****                (((hdma->Init.SrcBurstLength - 1U) << DMA_CTR1_SBL_1_Pos) & DMA_CTR1_SBL_1));
-ARM GAS  /tmp/cc37MnKf.s 			page 39
+ARM GAS  /tmp/ccRTxeLm.s 			page 39
 
 
  420              		.loc 1 1749 29 view .LVU97
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1763:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       tmpreg |= DMA_CTR2_DREQ;
 1764:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     }
 1765:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   }
-ARM GAS  /tmp/cc37MnKf.s 			page 40
+ARM GAS  /tmp/ccRTxeLm.s 			page 40
 
 
 1766:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   /* Memory to Memory Transfer */
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  489 0308 0368     		ldr	r3, [r0]
  490 030a 074A     		ldr	r2, .L16+4
  491 030c 9342     		cmp	r3, r2
-ARM GAS  /tmp/cc37MnKf.s 			page 41
+ARM GAS  /tmp/ccRTxeLm.s 			page 41
 
 
  492 030e 48D0     		beq	.L11
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  546 0376 02F17042 		add	r2, r2, #-268435456
  547 037a 9342     		cmp	r3, r2
  548 037c 11D0     		beq	.L11
-ARM GAS  /tmp/cc37MnKf.s 			page 42
+ARM GAS  /tmp/ccRTxeLm.s 			page 42
 
 
  549              		.loc 1 1789 7 discriminator 12 view .LVU136
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1761:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     {
  591              		.loc 1 1761 10 is_stmt 0 view .LVU145
  592 03b4 0268     		ldr	r2, [r0]
-ARM GAS  /tmp/cc37MnKf.s 			page 43
+ARM GAS  /tmp/ccRTxeLm.s 			page 43
 
 
  593 03b6 A449     		ldr	r1, .L19
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  637 0420 01F18051 		add	r1, r1, #268435456
  638 0424 8031     		adds	r1, r1, #128
  639 0426 8A42     		cmp	r2, r1
-ARM GAS  /tmp/cc37MnKf.s 			page 44
+ARM GAS  /tmp/ccRTxeLm.s 			page 44
 
 
  640 0428 00F00781 		beq	.L7
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  684 0494 8A42     		cmp	r2, r1
  685 0496 00F0D080 		beq	.L7
 1761:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     {
-ARM GAS  /tmp/cc37MnKf.s 			page 45
+ARM GAS  /tmp/ccRTxeLm.s 			page 45
 
 
  686              		.loc 1 1761 10 discriminator 21 view .LVU166
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1761:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     {
  731              		.loc 1 1761 10 discriminator 31 view .LVU176
  732 0508 01F17041 		add	r1, r1, #-268435456
-ARM GAS  /tmp/cc37MnKf.s 			page 46
+ARM GAS  /tmp/ccRTxeLm.s 			page 46
 
 
  733 050c 8A42     		cmp	r2, r1
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  777 056a 01F17041 		add	r1, r1, #-268435456
  778 056e 8A42     		cmp	r2, r1
  779 0570 63D0     		beq	.L7
-ARM GAS  /tmp/cc37MnKf.s 			page 47
+ARM GAS  /tmp/ccRTxeLm.s 			page 47
 
 
 1761:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     {
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  824 05ca 36D0     		beq	.L7
 1761:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     {
  825              		.loc 1 1761 55 discriminator 55 view .LVU197
-ARM GAS  /tmp/cc37MnKf.s 			page 48
+ARM GAS  /tmp/ccRTxeLm.s 			page 48
 
 
  826 05cc 01F18051 		add	r1, r1, #268435456
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  870              		.loc 1 1761 55 discriminator 65 view .LVU207
  871 0626 01F18051 		add	r1, r1, #268435456
  872 062a 8031     		adds	r1, r1, #128
-ARM GAS  /tmp/cc37MnKf.s 			page 49
+ARM GAS  /tmp/ccRTxeLm.s 			page 49
 
 
  873 062c 8A42     		cmp	r2, r1
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  920              		.cfi_offset 5, -8
  921              		.cfi_offset 14, -4
  922 0002 0446     		mov	r4, r0
-ARM GAS  /tmp/cc37MnKf.s 			page 50
+ARM GAS  /tmp/ccRTxeLm.s 			page 50
 
 
  278:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  314:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   {
  953              		.loc 1 314 7 is_stmt 0 view .LVU241
  954 0012 664A     		ldr	r2, .L33
-ARM GAS  /tmp/cc37MnKf.s 			page 51
+ARM GAS  /tmp/ccRTxeLm.s 			page 51
 
 
  955 0014 9342     		cmp	r3, r2
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  999 0072 8032     		adds	r2, r2, #128
  1000 0074 9342     		cmp	r3, r2
  1001 0076 5DD0     		beq	.L24
-ARM GAS  /tmp/cc37MnKf.s 			page 52
+ARM GAS  /tmp/ccRTxeLm.s 			page 52
 
 
  314:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   {
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  1046 00d0 30D0     		beq	.L24
  314:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   {
  1047              		.loc 1 314 7 discriminator 21 view .LVU262
-ARM GAS  /tmp/cc37MnKf.s 			page 53
+ARM GAS  /tmp/ccRTxeLm.s 			page 53
 
 
  1048 00d2 02F17042 		add	r2, r2, #-268435456
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  1092              		.loc 1 314 7 discriminator 31 view .LVU272
  1093 012c 02F17042 		add	r2, r2, #-268435456
  1094 0130 9342     		cmp	r3, r2
-ARM GAS  /tmp/cc37MnKf.s 			page 54
+ARM GAS  /tmp/ccRTxeLm.s 			page 54
 
 
  1095 0132 0CD1     		bne	.L25
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  336:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     hdma->XferErrorCallback    = NULL;
  1132              		.loc 1 336 5 is_stmt 1 view .LVU290
  336:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     hdma->XferErrorCallback    = NULL;
-ARM GAS  /tmp/cc37MnKf.s 			page 55
+ARM GAS  /tmp/ccRTxeLm.s 			page 55
 
 
  1133              		.loc 1 336 32 is_stmt 0 view .LVU291
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  352:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     {
  1170              		.loc 1 352 8 discriminator 1 view .LVU309
  1171 0182 052B     		cmp	r3, #5
-ARM GAS  /tmp/cc37MnKf.s 			page 56
+ARM GAS  /tmp/ccRTxeLm.s 			page 56
 
 
  1172 0184 F5D9     		bls	.L29
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  1209              		.loc 1 376 10 is_stmt 0 view .LVU326
  1210 01a8 F3E7     		b	.L23
  1211              	.L34:
-ARM GAS  /tmp/cc37MnKf.s 			page 57
+ARM GAS  /tmp/ccRTxeLm.s 			page 57
 
 
  1212 01aa 00BF     		.align	2
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  1258              		.loc 1 401 45 discriminator 1 view .LVU336
  401:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   {
  1259              		.loc 1 401 15 is_stmt 0 discriminator 1 view .LVU337
-ARM GAS  /tmp/cc37MnKf.s 			page 58
+ARM GAS  /tmp/ccRTxeLm.s 			page 58
 
 
  1260 0016 2368     		ldr	r3, [r4]
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  418:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   /* As secure, privilege and CID configuration, bit field DSEC and SSEC are managed in   */
  1298              		.loc 1 418 7 is_stmt 0 view .LVU354
  1299 003c 2368     		ldr	r3, [r4]
-ARM GAS  /tmp/cc37MnKf.s 			page 59
+ARM GAS  /tmp/ccRTxeLm.s 			page 59
 
 
  418:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   /* As secure, privilege and CID configuration, bit field DSEC and SSEC are managed in   */
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  426:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
  1334              		.loc 1 426 25 view .LVU375
  1335 005c DA67     		str	r2, [r3, #124]
-ARM GAS  /tmp/cc37MnKf.s 			page 60
+ARM GAS  /tmp/ccRTxeLm.s 			page 60
 
 
  429:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   {
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  1379 00b0 02F17042 		add	r2, r2, #-268435456
  1380 00b4 9342     		cmp	r3, r2
  1381 00b6 1AD0     		beq	.L41
-ARM GAS  /tmp/cc37MnKf.s 			page 61
+ARM GAS  /tmp/ccRTxeLm.s 			page 61
 
 
  429:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   {
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  440:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   hdma->XferHalfCpltCallback = NULL;
  1424              		.loc 1 440 3 view .LVU399
  440:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   hdma->XferHalfCpltCallback = NULL;
-ARM GAS  /tmp/cc37MnKf.s 			page 62
+ARM GAS  /tmp/ccRTxeLm.s 			page 62
 
 
  1425              		.loc 1 440 30 is_stmt 0 view .LVU400
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  462:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
  1460              		.loc 1 462 3 is_stmt 1 view .LVU420
  462:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
-ARM GAS  /tmp/cc37MnKf.s 			page 63
+ARM GAS  /tmp/ccRTxeLm.s 			page 63
 
 
  1461              		.loc 1 462 15 is_stmt 0 view .LVU421
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  1505              	.LVL28:
  527:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
  1506              		.loc 1 527 3 is_stmt 0 view .LVU434
-ARM GAS  /tmp/cc37MnKf.s 			page 64
+ARM GAS  /tmp/ccRTxeLm.s 			page 64
 
 
  1507 000a 0128     		cmp	r0, #1
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  536:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
  1544              		.loc 1 536 21 is_stmt 0 view .LVU452
  1545 0030 0020     		movs	r0, #0
-ARM GAS  /tmp/cc37MnKf.s 			page 65
+ARM GAS  /tmp/ccRTxeLm.s 			page 65
 
 
  1546 0032 A065     		str	r0, [r4, #88]
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  1593              		.loc 1 573 3 view .LVU461
  573:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   {
  1594              		.loc 1 573 6 is_stmt 0 view .LVU462
-ARM GAS  /tmp/cc37MnKf.s 			page 66
+ARM GAS  /tmp/ccRTxeLm.s 			page 66
 
 
  1595 0000 0028     		cmp	r0, #0
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  624:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   }
  1633              		.loc 1 624 5 view .LVU479
  575:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   }
-ARM GAS  /tmp/cc37MnKf.s 			page 67
+ARM GAS  /tmp/ccRTxeLm.s 			page 67
 
 
  1634              		.loc 1 575 12 is_stmt 0 view .LVU480
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  1674 0056 23B1     		cbz	r3, .L63
  610:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     }
  1675              		.loc 1 610 7 is_stmt 1 view .LVU495
-ARM GAS  /tmp/cc37MnKf.s 			page 68
+ARM GAS  /tmp/ccRTxeLm.s 			page 68
 
 
  1676 0058 2268     		ldr	r2, [r4]
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  1724 0000 38B5     		push	{r3, r4, r5, lr}
  1725              	.LCFI10:
  1726              		.cfi_def_cfa_offset 16
-ARM GAS  /tmp/cc37MnKf.s 			page 69
+ARM GAS  /tmp/ccRTxeLm.s 			page 69
 
 
  1727              		.cfi_offset 3, -16
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  1765              		.loc 1 664 5 is_stmt 1 view .LVU519
  664:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
  1766              		.loc 1 664 9 is_stmt 0 view .LVU520
-ARM GAS  /tmp/cc37MnKf.s 			page 70
+ARM GAS  /tmp/ccRTxeLm.s 			page 70
 
 
  1767 0022 2268     		ldr	r2, [r4]
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  679:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
  1804              		.loc 1 679 21 is_stmt 0 view .LVU538
  1805 004e 0323     		movs	r3, #3
-ARM GAS  /tmp/cc37MnKf.s 			page 71
+ARM GAS  /tmp/ccRTxeLm.s 			page 71
 
 
  1806 0050 84F85430 		strb	r3, [r4, #84]
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  706:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
  1843              		.loc 1 706 5 view .LVU556
  706:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
-ARM GAS  /tmp/cc37MnKf.s 			page 72
+ARM GAS  /tmp/ccRTxeLm.s 			page 72
 
 
  1844              		.loc 1 706 17 is_stmt 0 view .LVU557
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  1886              	.LFB886:
  732:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   /* Check the DMA peripheral handle parameter */
  1887              		.loc 1 732 1 is_stmt 1 view -0
-ARM GAS  /tmp/cc37MnKf.s 			page 73
+ARM GAS  /tmp/ccRTxeLm.s 			page 73
 
 
  1888              		.cfi_startproc
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  1926 0024 5361     		str	r3, [r2, #20]
  756:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** }
  1927              		.loc 1 756 3 is_stmt 1 view .LVU589
-ARM GAS  /tmp/cc37MnKf.s 			page 74
+ARM GAS  /tmp/ccRTxeLm.s 			page 74
 
 
  756:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** }
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  1973              		.loc 1 783 3 is_stmt 1 view .LVU600
  786:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   {
  1974              		.loc 1 786 3 view .LVU601
-ARM GAS  /tmp/cc37MnKf.s 			page 75
+ARM GAS  /tmp/ccRTxeLm.s 			page 75
 
 
  786:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   {
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  2012 0038 0127     		movs	r7, #1
  2013              	.L92:
  2014              	.LVL59:
-ARM GAS  /tmp/cc37MnKf.s 			page 76
+ARM GAS  /tmp/ccRTxeLm.s 			page 76
 
 
  810:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  817:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       {
  2053              		.loc 1 817 7 is_stmt 1 view .LVU635
  817:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       {
-ARM GAS  /tmp/cc37MnKf.s 			page 77
+ARM GAS  /tmp/ccRTxeLm.s 			page 77
 
 
  2054              		.loc 1 817 13 is_stmt 0 view .LVU636
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  2092              		.loc 1 846 5 is_stmt 1 view .LVU652
  2093 0088 2268     		ldr	r2, [r4]
  2094 008a 4FF48041 		mov	r1, #16384
-ARM GAS  /tmp/cc37MnKf.s 			page 78
+ARM GAS  /tmp/ccRTxeLm.s 			page 78
 
 
  2095 008e D160     		str	r1, [r2, #12]
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  923:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   }
  2133              		.loc 1 923 5 is_stmt 1 view .LVU669
  923:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   }
-ARM GAS  /tmp/cc37MnKf.s 			page 79
+ARM GAS  /tmp/ccRTxeLm.s 			page 79
 
 
  2134              		.loc 1 923 5 view .LVU670
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  2173              		.loc 1 873 5 view .LVU685
  873:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     {
  2174              		.loc 1 873 8 is_stmt 0 view .LVU686
-ARM GAS  /tmp/cc37MnKf.s 			page 80
+ARM GAS  /tmp/ccRTxeLm.s 			page 80
 
 
  2175 00f2 13F4805F 		tst	r3, #4096
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  2213              	.L102:
  896:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
  2214              		.loc 1 896 5 is_stmt 1 view .LVU703
-ARM GAS  /tmp/cc37MnKf.s 			page 81
+ARM GAS  /tmp/ccRTxeLm.s 			page 81
 
 
  896:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
@@ -4858,7 +4858,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  2260 000a 20F00F00 		bic	r0, r0, #15
  2261              	.LVL72:
  942:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   uint32_t global_active_flag_ns = IS_DMA_GLOBAL_ACTIVE_FLAG_NS(p_dma_instance, global_it_flag);
-ARM GAS  /tmp/cc37MnKf.s 			page 82
+ARM GAS  /tmp/ccRTxeLm.s 			page 82
 
 
  2262              		.loc 1 942 3 is_stmt 1 view .LVU715
@@ -4918,7 +4918,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  962:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     {
  2300              		.loc 1 962 8 view .LVU732
  2301 0038 13F4806F 		tst	r3, #1024
-ARM GAS  /tmp/cc37MnKf.s 			page 83
+ARM GAS  /tmp/ccRTxeLm.s 			page 83
 
 
  2302 003c 06D0     		beq	.L114
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  2340 006e 1A69     		ldr	r2, [r3, #16]
  987:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   {
  2341              		.loc 1 987 6 view .LVU749
-ARM GAS  /tmp/cc37MnKf.s 			page 84
+ARM GAS  /tmp/ccRTxeLm.s 			page 84
 
 
  2342 0070 12F4805F 		tst	r2, #4096
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  2379              		.loc 1 1010 23 view .LVU766
  2380 00a6 43F00803 		orr	r3, r3, #8
  2381 00aa A365     		str	r3, [r4, #88]
-ARM GAS  /tmp/cc37MnKf.s 			page 85
+ARM GAS  /tmp/ccRTxeLm.s 			page 85
 
 
  2382              	.L117:
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  2419              		.loc 1 1036 9 is_stmt 0 view .LVU783
  2420 00d6 5A69     		ldr	r2, [r3, #20]
 1036:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     {
-ARM GAS  /tmp/cc37MnKf.s 			page 86
+ARM GAS  /tmp/ccRTxeLm.s 			page 86
 
 
  2421              		.loc 1 1036 8 view .LVU784
@@ -5158,7 +5158,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  2459 010a 3CD0     		beq	.L122
 1097:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       {
  2460              		.loc 1 1097 7 is_stmt 1 view .LVU801
-ARM GAS  /tmp/cc37MnKf.s 			page 87
+ARM GAS  /tmp/ccRTxeLm.s 			page 87
 
 
 1097:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       {
@@ -5218,7 +5218,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  2497 0134 5369     		ldr	r3, [r2, #20]
 1048:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
  2498              		.loc 1 1048 29 view .LVU820
-ARM GAS  /tmp/cc37MnKf.s 			page 88
+ARM GAS  /tmp/ccRTxeLm.s 			page 88
 
 
  2499 0136 43F00203 		orr	r3, r3, #2
@@ -5278,7 +5278,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  2534 015c E36E     		ldr	r3, [r4, #108]
 1067:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****         {
  2535              		.loc 1 1067 12 view .LVU840
-ARM GAS  /tmp/cc37MnKf.s 			page 89
+ARM GAS  /tmp/ccRTxeLm.s 			page 89
 
 
  2536 015e 53B3     		cbz	r3, .L111
@@ -5338,7 +5338,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1138:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   {
  2574              		.loc 1 1138 11 is_stmt 0 view .LVU857
  2575 0186 A36D     		ldr	r3, [r4, #88]
-ARM GAS  /tmp/cc37MnKf.s 			page 90
+ARM GAS  /tmp/ccRTxeLm.s 			page 90
 
 
 1138:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   {
@@ -5398,7 +5398,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1157:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     {
  2611              		.loc 1 1157 13 is_stmt 0 view .LVU877
  2612 01ae A36E     		ldr	r3, [r4, #104]
-ARM GAS  /tmp/cc37MnKf.s 			page 91
+ARM GAS  /tmp/ccRTxeLm.s 			page 91
 
 
 1157:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     {
@@ -5458,7 +5458,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  2657              	.LVL86:
 1243:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
  2658              		.loc 1 1243 1 view .LVU890
-ARM GAS  /tmp/cc37MnKf.s 			page 92
+ARM GAS  /tmp/ccRTxeLm.s 			page 92
 
 
  2659 000e 7047     		bx	lr
@@ -5518,7 +5518,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1217:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****         break;
  2699              		.loc 1 1217 33 is_stmt 0 view .LVU905
  2700 002e DA66     		str	r2, [r3, #108]
-ARM GAS  /tmp/cc37MnKf.s 			page 93
+ARM GAS  /tmp/ccRTxeLm.s 			page 93
 
 
 1218:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****       }
@@ -5578,7 +5578,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  2744              		.loc 1 1332 1 view .LVU918
  2745 000e 7047     		bx	lr
  2746              	.LVL91:
-ARM GAS  /tmp/cc37MnKf.s 			page 94
+ARM GAS  /tmp/ccRTxeLm.s 			page 94
 
 
  2747              	.L152:
@@ -5638,7 +5638,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1295:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****         break;
  2788              		.loc 1 1295 9 view .LVU932
 1295:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****         break;
-ARM GAS  /tmp/cc37MnKf.s 			page 95
+ARM GAS  /tmp/ccRTxeLm.s 			page 95
 
 
  2789              		.loc 1 1295 33 is_stmt 0 view .LVU933
@@ -5698,7 +5698,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  2830              	HAL_DMA_GetState:
  2831              	.LVL92:
  2832              	.LFB891:
-ARM GAS  /tmp/cc37MnKf.s 			page 96
+ARM GAS  /tmp/ccRTxeLm.s 			page 96
 
 
 1363:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   /* Return the DMA channel state */
@@ -5758,7 +5758,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  2882              		.cfi_startproc
  2883              		@ args = 0, pretend = 0, frame = 0
  2884              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/cc37MnKf.s 			page 97
+ARM GAS  /tmp/ccRTxeLm.s 			page 97
 
 
  2885              		@ link register save eliminated.
@@ -5818,7 +5818,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1448:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     }
  2922              		.loc 1 1448 7 is_stmt 1 view .LVU975
 1448:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     }
-ARM GAS  /tmp/cc37MnKf.s 			page 98
+ARM GAS  /tmp/ccRTxeLm.s 			page 98
 
 
  2923              		.loc 1 1448 21 is_stmt 0 view .LVU976
@@ -5878,7 +5878,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  2960              		.loc 1 1477 21 view .LVU993
  2961 005c 136C     		ldr	r3, [r2, #64]
 1477:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     }
-ARM GAS  /tmp/cc37MnKf.s 			page 99
+ARM GAS  /tmp/ccRTxeLm.s 			page 99
 
 
  2962              		.loc 1 1477 28 view .LVU994
@@ -5938,7 +5938,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  3001              		.loc 1 1459 7 is_stmt 1 view .LVU1009
 1459:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****     }
  3002              		.loc 1 1459 21 is_stmt 0 view .LVU1010
-ARM GAS  /tmp/cc37MnKf.s 			page 100
+ARM GAS  /tmp/ccRTxeLm.s 			page 100
 
 
  3003 008a 0368     		ldr	r3, [r0]
@@ -5998,7 +5998,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  3048              	.LVL108:
  3049              	.LFB894:
 1508:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   const DMA_TypeDef *p_dma_instance;
-ARM GAS  /tmp/cc37MnKf.s 			page 101
+ARM GAS  /tmp/ccRTxeLm.s 			page 101
 
 
  3050              		.loc 1 1508 1 is_stmt 1 view -0
@@ -6058,7 +6058,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  3087              		.loc 1 1526 14 discriminator 1 view .LVU1039
  3088 0026 1020     		movs	r0, #16
  3089              	.L174:
-ARM GAS  /tmp/cc37MnKf.s 			page 102
+ARM GAS  /tmp/ccRTxeLm.s 			page 102
 
 
  3090              	.LVL112:
@@ -6118,7 +6118,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
 1538:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
  3129              		.loc 1 1538 3 is_stmt 1 view .LVU1055
 1538:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
-ARM GAS  /tmp/cc37MnKf.s 			page 103
+ARM GAS  /tmp/ccRTxeLm.s 			page 103
 
 
  3130              		.loc 1 1538 23 is_stmt 0 view .LVU1056
@@ -6178,7 +6178,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  3176              	HAL_DMA_SetIsolationAttributes:
  3177              	.LVL125:
  3178              	.LFB895:
-ARM GAS  /tmp/cc37MnKf.s 			page 104
+ARM GAS  /tmp/ccRTxeLm.s 			page 104
 
 
 1555:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c ****   /* Check the DMA peripheral handle parameter */
@@ -6238,7 +6238,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  3216              		.loc 1 1559 12 view .LVU1083
  3217 0016 7047     		bx	lr
  3218              	.LVL130:
-ARM GAS  /tmp/cc37MnKf.s 			page 105
+ARM GAS  /tmp/ccRTxeLm.s 			page 105
 
 
  3219              	.L188:
@@ -6298,7 +6298,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  3261 0006 5B68     		ldr	r3, [r3, #4]
  3262              	.LVL133:
 1605:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
-ARM GAS  /tmp/cc37MnKf.s 			page 106
+ARM GAS  /tmp/ccRTxeLm.s 			page 106
 
 
  3263              		.loc 1 1605 3 is_stmt 1 view .LVU1098
@@ -6358,7 +6358,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  3304              		.global	HAL_DMA_LockChannelAttributes
  3305              		.syntax unified
  3306              		.thumb
-ARM GAS  /tmp/cc37MnKf.s 			page 107
+ARM GAS  /tmp/ccRTxeLm.s 			page 107
 
 
  3307              		.thumb_func
@@ -6418,7 +6418,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  3346 0020 0020     		movs	r0, #0
  3347              	.LVL142:
 1647:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** }
-ARM GAS  /tmp/cc37MnKf.s 			page 108
+ARM GAS  /tmp/ccRTxeLm.s 			page 108
 
 
  3348              		.loc 1 1647 10 view .LVU1129
@@ -6478,7 +6478,7 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  3391              		.loc 1 1674 25 is_stmt 0 view .LVU1142
  3392 000e C3F30B03 		ubfx	r3, r3, #0, #12
  3393 0012 503B     		subs	r3, r3, #80
-ARM GAS  /tmp/cc37MnKf.s 			page 109
+ARM GAS  /tmp/ccRTxeLm.s 			page 109
 
 
 1674:../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c **** 
@@ -6536,61 +6536,61 @@ ARM GAS  /tmp/cc37MnKf.s 			page 1
  3435              		.file 6 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dma.h"
  3436              		.file 7 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal_dma_ex.h"
  3437              		.file 8 "../Drivers/STM32N6xx_HAL_Driver/Inc/stm32n6xx_hal.h"
-ARM GAS  /tmp/cc37MnKf.s 			page 110
+ARM GAS  /tmp/ccRTxeLm.s 			page 110
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32n6xx_hal_dma.c
-     /tmp/cc37MnKf.s:26     .text.DMA_SetConfig:00000000 $t
-     /tmp/cc37MnKf.s:31     .text.DMA_SetConfig:00000000 DMA_SetConfig
-     /tmp/cc37MnKf.s:73     .text.DMA_Init:00000000 $t
-     /tmp/cc37MnKf.s:78     .text.DMA_Init:00000000 DMA_Init
-     /tmp/cc37MnKf.s:506    .text.DMA_Init:00000324 $d
-     /tmp/cc37MnKf.s:510    .text.DMA_Init:0000032c $t
-     /tmp/cc37MnKf.s:896    .text.DMA_Init:00000648 $d
-     /tmp/cc37MnKf.s:901    .text.HAL_DMA_Init:00000000 $t
-     /tmp/cc37MnKf.s:907    .text.HAL_DMA_Init:00000000 HAL_DMA_Init
-     /tmp/cc37MnKf.s:1214   .text.HAL_DMA_Init:000001ac $d
-     /tmp/cc37MnKf.s:1219   .text.HAL_DMA_DeInit:00000000 $t
-     /tmp/cc37MnKf.s:1225   .text.HAL_DMA_DeInit:00000000 HAL_DMA_DeInit
-     /tmp/cc37MnKf.s:1473   .text.HAL_DMA_DeInit:00000124 $d
-     /tmp/cc37MnKf.s:1478   .text.HAL_DMA_Start:00000000 $t
-     /tmp/cc37MnKf.s:1484   .text.HAL_DMA_Start:00000000 HAL_DMA_Start
-     /tmp/cc37MnKf.s:1580   .text.HAL_DMA_Start_IT:00000000 $t
-     /tmp/cc37MnKf.s:1586   .text.HAL_DMA_Start_IT:00000000 HAL_DMA_Start_IT
-     /tmp/cc37MnKf.s:1710   .text.HAL_DMA_Abort:00000000 $t
-     /tmp/cc37MnKf.s:1716   .text.HAL_DMA_Abort:00000000 HAL_DMA_Abort
-     /tmp/cc37MnKf.s:1878   .text.HAL_DMA_Abort_IT:00000000 $t
-     /tmp/cc37MnKf.s:1884   .text.HAL_DMA_Abort_IT:00000000 HAL_DMA_Abort_IT
-     /tmp/cc37MnKf.s:1937   .text.HAL_DMA_PollForTransfer:00000000 $t
-     /tmp/cc37MnKf.s:1943   .text.HAL_DMA_PollForTransfer:00000000 HAL_DMA_PollForTransfer
-     /tmp/cc37MnKf.s:2234   .text.HAL_DMA_IRQHandler:00000000 $t
-     /tmp/cc37MnKf.s:2240   .text.HAL_DMA_IRQHandler:00000000 HAL_DMA_IRQHandler
-     /tmp/cc37MnKf.s:2627   .text.HAL_DMA_RegisterCallback:00000000 $t
-     /tmp/cc37MnKf.s:2633   .text.HAL_DMA_RegisterCallback:00000000 HAL_DMA_RegisterCallback
-     /tmp/cc37MnKf.s:2667   .text.HAL_DMA_RegisterCallback:00000018 $d
-     /tmp/cc37MnKf.s:2713   .text.HAL_DMA_UnRegisterCallback:00000000 $t
-     /tmp/cc37MnKf.s:2719   .text.HAL_DMA_UnRegisterCallback:00000000 HAL_DMA_UnRegisterCallback
-     /tmp/cc37MnKf.s:2753   .text.HAL_DMA_UnRegisterCallback:00000018 $d
-     /tmp/cc37MnKf.s:2759   .text.HAL_DMA_UnRegisterCallback:0000001e $t
-     /tmp/cc37MnKf.s:2824   .text.HAL_DMA_GetState:00000000 $t
-     /tmp/cc37MnKf.s:2830   .text.HAL_DMA_GetState:00000000 HAL_DMA_GetState
-     /tmp/cc37MnKf.s:2848   .text.HAL_DMA_GetError:00000000 $t
-     /tmp/cc37MnKf.s:2854   .text.HAL_DMA_GetError:00000000 HAL_DMA_GetError
-     /tmp/cc37MnKf.s:2872   .text.HAL_DMA_ConfigChannelAttributes:00000000 $t
-     /tmp/cc37MnKf.s:2878   .text.HAL_DMA_ConfigChannelAttributes:00000000 HAL_DMA_ConfigChannelAttributes
-     /tmp/cc37MnKf.s:3041   .text.HAL_DMA_GetConfigChannelAttributes:00000000 $t
-     /tmp/cc37MnKf.s:3047   .text.HAL_DMA_GetConfigChannelAttributes:00000000 HAL_DMA_GetConfigChannelAttributes
-     /tmp/cc37MnKf.s:3170   .text.HAL_DMA_SetIsolationAttributes:00000000 $t
-     /tmp/cc37MnKf.s:3176   .text.HAL_DMA_SetIsolationAttributes:00000000 HAL_DMA_SetIsolationAttributes
-     /tmp/cc37MnKf.s:3237   .text.HAL_DMA_GetIsolationAttributes:00000000 $t
-     /tmp/cc37MnKf.s:3243   .text.HAL_DMA_GetIsolationAttributes:00000000 HAL_DMA_GetIsolationAttributes
-     /tmp/cc37MnKf.s:3303   .text.HAL_DMA_LockChannelAttributes:00000000 $t
-     /tmp/cc37MnKf.s:3309   .text.HAL_DMA_LockChannelAttributes:00000000 HAL_DMA_LockChannelAttributes
-     /tmp/cc37MnKf.s:3361   .text.HAL_DMA_GetLockChannelAttributes:00000000 $t
-     /tmp/cc37MnKf.s:3367   .text.HAL_DMA_GetLockChannelAttributes:00000000 HAL_DMA_GetLockChannelAttributes
-     /tmp/cc37MnKf.s:2672   .text.HAL_DMA_RegisterCallback:0000001d $d
-     /tmp/cc37MnKf.s:2672   .text.HAL_DMA_RegisterCallback:0000001e $t
+     /tmp/ccRTxeLm.s:26     .text.DMA_SetConfig:00000000 $t
+     /tmp/ccRTxeLm.s:31     .text.DMA_SetConfig:00000000 DMA_SetConfig
+     /tmp/ccRTxeLm.s:73     .text.DMA_Init:00000000 $t
+     /tmp/ccRTxeLm.s:78     .text.DMA_Init:00000000 DMA_Init
+     /tmp/ccRTxeLm.s:506    .text.DMA_Init:00000324 $d
+     /tmp/ccRTxeLm.s:510    .text.DMA_Init:0000032c $t
+     /tmp/ccRTxeLm.s:896    .text.DMA_Init:00000648 $d
+     /tmp/ccRTxeLm.s:901    .text.HAL_DMA_Init:00000000 $t
+     /tmp/ccRTxeLm.s:907    .text.HAL_DMA_Init:00000000 HAL_DMA_Init
+     /tmp/ccRTxeLm.s:1214   .text.HAL_DMA_Init:000001ac $d
+     /tmp/ccRTxeLm.s:1219   .text.HAL_DMA_DeInit:00000000 $t
+     /tmp/ccRTxeLm.s:1225   .text.HAL_DMA_DeInit:00000000 HAL_DMA_DeInit
+     /tmp/ccRTxeLm.s:1473   .text.HAL_DMA_DeInit:00000124 $d
+     /tmp/ccRTxeLm.s:1478   .text.HAL_DMA_Start:00000000 $t
+     /tmp/ccRTxeLm.s:1484   .text.HAL_DMA_Start:00000000 HAL_DMA_Start
+     /tmp/ccRTxeLm.s:1580   .text.HAL_DMA_Start_IT:00000000 $t
+     /tmp/ccRTxeLm.s:1586   .text.HAL_DMA_Start_IT:00000000 HAL_DMA_Start_IT
+     /tmp/ccRTxeLm.s:1710   .text.HAL_DMA_Abort:00000000 $t
+     /tmp/ccRTxeLm.s:1716   .text.HAL_DMA_Abort:00000000 HAL_DMA_Abort
+     /tmp/ccRTxeLm.s:1878   .text.HAL_DMA_Abort_IT:00000000 $t
+     /tmp/ccRTxeLm.s:1884   .text.HAL_DMA_Abort_IT:00000000 HAL_DMA_Abort_IT
+     /tmp/ccRTxeLm.s:1937   .text.HAL_DMA_PollForTransfer:00000000 $t
+     /tmp/ccRTxeLm.s:1943   .text.HAL_DMA_PollForTransfer:00000000 HAL_DMA_PollForTransfer
+     /tmp/ccRTxeLm.s:2234   .text.HAL_DMA_IRQHandler:00000000 $t
+     /tmp/ccRTxeLm.s:2240   .text.HAL_DMA_IRQHandler:00000000 HAL_DMA_IRQHandler
+     /tmp/ccRTxeLm.s:2627   .text.HAL_DMA_RegisterCallback:00000000 $t
+     /tmp/ccRTxeLm.s:2633   .text.HAL_DMA_RegisterCallback:00000000 HAL_DMA_RegisterCallback
+     /tmp/ccRTxeLm.s:2667   .text.HAL_DMA_RegisterCallback:00000018 $d
+     /tmp/ccRTxeLm.s:2713   .text.HAL_DMA_UnRegisterCallback:00000000 $t
+     /tmp/ccRTxeLm.s:2719   .text.HAL_DMA_UnRegisterCallback:00000000 HAL_DMA_UnRegisterCallback
+     /tmp/ccRTxeLm.s:2753   .text.HAL_DMA_UnRegisterCallback:00000018 $d
+     /tmp/ccRTxeLm.s:2759   .text.HAL_DMA_UnRegisterCallback:0000001e $t
+     /tmp/ccRTxeLm.s:2824   .text.HAL_DMA_GetState:00000000 $t
+     /tmp/ccRTxeLm.s:2830   .text.HAL_DMA_GetState:00000000 HAL_DMA_GetState
+     /tmp/ccRTxeLm.s:2848   .text.HAL_DMA_GetError:00000000 $t
+     /tmp/ccRTxeLm.s:2854   .text.HAL_DMA_GetError:00000000 HAL_DMA_GetError
+     /tmp/ccRTxeLm.s:2872   .text.HAL_DMA_ConfigChannelAttributes:00000000 $t
+     /tmp/ccRTxeLm.s:2878   .text.HAL_DMA_ConfigChannelAttributes:00000000 HAL_DMA_ConfigChannelAttributes
+     /tmp/ccRTxeLm.s:3041   .text.HAL_DMA_GetConfigChannelAttributes:00000000 $t
+     /tmp/ccRTxeLm.s:3047   .text.HAL_DMA_GetConfigChannelAttributes:00000000 HAL_DMA_GetConfigChannelAttributes
+     /tmp/ccRTxeLm.s:3170   .text.HAL_DMA_SetIsolationAttributes:00000000 $t
+     /tmp/ccRTxeLm.s:3176   .text.HAL_DMA_SetIsolationAttributes:00000000 HAL_DMA_SetIsolationAttributes
+     /tmp/ccRTxeLm.s:3237   .text.HAL_DMA_GetIsolationAttributes:00000000 $t
+     /tmp/ccRTxeLm.s:3243   .text.HAL_DMA_GetIsolationAttributes:00000000 HAL_DMA_GetIsolationAttributes
+     /tmp/ccRTxeLm.s:3303   .text.HAL_DMA_LockChannelAttributes:00000000 $t
+     /tmp/ccRTxeLm.s:3309   .text.HAL_DMA_LockChannelAttributes:00000000 HAL_DMA_LockChannelAttributes
+     /tmp/ccRTxeLm.s:3361   .text.HAL_DMA_GetLockChannelAttributes:00000000 $t
+     /tmp/ccRTxeLm.s:3367   .text.HAL_DMA_GetLockChannelAttributes:00000000 HAL_DMA_GetLockChannelAttributes
+     /tmp/ccRTxeLm.s:2672   .text.HAL_DMA_RegisterCallback:0000001d $d
+     /tmp/ccRTxeLm.s:2672   .text.HAL_DMA_RegisterCallback:0000001e $t
 
 UNDEFINED SYMBOLS
 HAL_GetTick
