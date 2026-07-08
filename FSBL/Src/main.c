@@ -118,6 +118,15 @@ int main(void)
     Error_Handler();
   }
 
+  printf("FSBL: press USER button to continue boot (waiting)...\r\n");
+  while (BSP_PB_GetState(BUTTON_USER) != BUTTON_PRESSED)
+  {
+    BSP_LED_Toggle(LED_GREEN);
+    HAL_Delay(200);
+  }
+  BSP_LED_Off(LED_GREEN);
+  printf("FSBL: button pressed, continuing boot\r\n");
+
   printf("FSBL: calling BOOT_Application\r\n");
   if (BOOT_OK != BOOT_Application())
   {

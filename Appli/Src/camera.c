@@ -1,10 +1,11 @@
 #include "camera.h"
 // HAL INCLDUES
+#include <stdio.h>
 
 // MIDDLEWARE INCLUDES
 #include "cmw_camera.h"
 
-// APP INCLUDES 
+// APP INCLUDES
 
 
 HAL_StatusTypeDef DCMIPP_initNN() {
@@ -62,11 +63,16 @@ HAL_StatusTypeDef CAMERA_init() {
 	adv_conf.selected_sensor = CMW_IMX335_Sensor;
 	adv_conf.config_sensor.imx335_config = imx_conf;
 
+	printf("CAMERA_init: calling CMW_CAMERA_Init\r\n");
 	int cmw_ret = CMW_CAMERA_Init(&cam_conf, &adv_conf);
+	printf("CAMERA_init: CMW_CAMERA_Init returned %d\r\n", cmw_ret);
 	// maybe add error checking here later
 
+	printf("CAMERA_init: calling DCMIPP_initDisplay\r\n");
 	HAL_TRY(DCMIPP_initDisplay());
+	printf("CAMERA_init: calling DCMIPP_initNN\r\n");
 	HAL_TRY(DCMIPP_initNN());
+	printf("CAMERA_init: done\r\n");
 
 	return HAL_OK;
 }
