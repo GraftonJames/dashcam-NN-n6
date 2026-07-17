@@ -75,6 +75,15 @@ int main(void)
 
   /* USER CODE END 1 */
 
+  /* Enable CPU caches, exactly as ST's Template_FSBL_LRUN does first thing.
+   * With caches OFF every instruction fetch is an AXI fabric transaction -
+   * our project never enabled them anywhere, the single structural difference
+   * from ST's binary that runs stable on this board. Coherency at the Appli
+   * handoff is safe: the vendor boot code (stm32_boot_lrun.c) disables both
+   * caches itself before copying and jumping. */
+  SCB_EnableICache();
+  SCB_EnableDCache();
+
   /* MCU Configuration--------------------------------------------------------*/
   HAL_Init();
 
@@ -97,15 +106,11 @@ int main(void)
   MX_XSPI2_Init();
   MX_EXTMEM_MANAGER_Init();
   /* USER CODE BEGIN 2 */
-	BSP_LED_Init(LED_BLUE);
-	BSP_LED_Init(LED_RED);
-	BSP_LED_Init(LED_GREEN);
-	BSP_LED_On(LED_BLUE);
+  /* LED init/usage removed: Appli now owns GPIOG-based LED diagnostics, and
+   * FSBL touching the same LEDs made it unclear which stage's activity was
+   * being observed on the board. */
   /* USER CODE END 2 */
 
-
-  /* Initialize USER push-button, will be used to trigger an interrupt each time it's pressed.*/
-  BSP_PB_Init(BUTTON_USER, BUTTON_MODE_EXTI);
 
   /* Initialize COM1 port (115200, 8 bits (7-bit data + 1 stop bit), no parity */
   BspCOMInit.BaudRate   = 115200;
@@ -118,14 +123,12 @@ int main(void)
     Error_Handler();
   }
 
-  printf("FSBL: press USER button to continue boot (waiting)...\r\n");
-  while (BSP_PB_GetState(BUTTON_USER) != BUTTON_PRESSED)
-  {
-    BSP_LED_Toggle(LED_GREEN);
-    HAL_Delay(200);
-  }
-  BSP_LED_Off(LED_GREEN);
-  printf("FSBL: button pressed, continuing boot\r\n");
+  /* Button gate removed entirely: boot is now fully hands-off (capture UART by
+   * holding RESET, starting the capture, then releasing). This also removes the
+   * last difference from how the stable ST template runs - every previously
+   * observed hang happened moments after a physical button press, an
+   * interaction the untouched template never experiences. */
+  printf("FSBL: booting (no button gate)\r\n");
 
   printf("FSBL: calling BOOT_Application\r\n");
   if (BOOT_OK != BOOT_Application())
@@ -134,7 +137,6 @@ int main(void)
     Error_Handler();
   }
   printf("FSBL: BOOT_Application returned OK (should never print)\r\n");
-	BSP_LED_On(LED_GREEN);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -167,7 +169,11 @@ void SystemClock_Config(void)
 
   /** Configure the main internal regulator output voltage
   */
-  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE0) != HAL_OK)
+  /* SCALE1 (nominal 0.81V), matching ST's Template_FSBL_LRUN which is the one
+   * binary proven stable on this board for minutes. Our previous SCALE0
+   * (overdrive 0.89V) + 800MHz operating point produced random fault-less
+   * hangs even in pure-CPU loops - classic marginal-core-voltage behavior. */
+  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
   {
     Error_Handler();
   }
@@ -209,8 +215,8 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_NONE;
   RCC_OscInitStruct.PLL1.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL1.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL1.PLLM = 2;
-  RCC_OscInitStruct.PLL1.PLLN = 25;
+  RCC_OscInitStruct.PLL1.PLLM = 4;   /* template values: VCO = 64/4*75 = 1200MHz */
+  RCC_OscInitStruct.PLL1.PLLN = 75;
   RCC_OscInitStruct.PLL1.PLLFractional = 0;
   RCC_OscInitStruct.PLL1.PLLP1 = 1;
   RCC_OscInitStruct.PLL1.PLLP2 = 1;
@@ -243,17 +249,21 @@ void SystemClock_Config(void)
                               |RCC_CLOCKTYPE_PCLK4;
   RCC_ClkInitStruct.CPUCLKSource = RCC_CPUCLKSOURCE_IC1;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_IC2_IC6_IC11;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_HCLK_DIV4;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_HCLK_DIV2;  /* template value */
   RCC_ClkInitStruct.APB1CLKDivider = RCC_APB1_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_APB2_DIV1;
   RCC_ClkInitStruct.APB4CLKDivider = RCC_APB4_DIV1;
   RCC_ClkInitStruct.APB5CLKDivider = RCC_APB5_DIV1;
+  /* IC dividers exactly as ST's Template_FSBL_LRUN (proven stable on this
+   * board): CPU = 1200/2 = 600MHz at SCALE1 nominal voltage, SYSCLK trio all
+   * from PLL1. PLL2/PLL4 stay ON above purely for Appli's peripheral kernels
+   * (IC17/DCMIPP uses PLL2). */
   RCC_ClkInitStruct.IC1Selection.ClockSelection = RCC_ICCLKSOURCE_PLL1;
-  RCC_ClkInitStruct.IC1Selection.ClockDivider = 1;
+  RCC_ClkInitStruct.IC1Selection.ClockDivider = 2;
   RCC_ClkInitStruct.IC2Selection.ClockSelection = RCC_ICCLKSOURCE_PLL1;
-  RCC_ClkInitStruct.IC2Selection.ClockDivider = 2;
-  RCC_ClkInitStruct.IC6Selection.ClockSelection = RCC_ICCLKSOURCE_PLL2;
-  RCC_ClkInitStruct.IC6Selection.ClockDivider = 1;
+  RCC_ClkInitStruct.IC2Selection.ClockDivider = 3;
+  RCC_ClkInitStruct.IC6Selection.ClockSelection = RCC_ICCLKSOURCE_PLL1;
+  RCC_ClkInitStruct.IC6Selection.ClockDivider = 4;
   RCC_ClkInitStruct.IC11Selection.ClockSelection = RCC_ICCLKSOURCE_PLL1;
   RCC_ClkInitStruct.IC11Selection.ClockDivider = 3;
 
@@ -356,7 +366,11 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(EXT_SMPS_MODE_GPIO_Port, EXT_SMPS_MODE_Pin, GPIO_PIN_SET);
+  /* PB12 (EXT_SMPS_MODE) LOW = external SMPS at nominal 0.81V, matching the
+   * SCALE1 operating point now used in SystemClock_Config (ST's stable
+   * template config). HIGH (0.89V overdrive) was paired with the old
+   * SCALE0/800MHz point that hung randomly on this board. */
+  HAL_GPIO_WritePin(EXT_SMPS_MODE_GPIO_Port, EXT_SMPS_MODE_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : I2C1_SDA_Pin */
   GPIO_InitStruct.Pin = I2C1_SDA_Pin;

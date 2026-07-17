@@ -6,25 +6,19 @@
 
 #define CMW_ASPECT_RATIO CMW_Aspect_ratio_crop
 // Camera Conf
-
-#define CAMERA_WIDTH 100
-#define CAMERA_HEIGHT 100
+#define CAMERA_WIDTH 2592
+#define CAMERA_HEIGHT 1944
 #define CAMERA_FLIP 1
-
-// Pipe1 LCD DCMIPP Init
-
-#define LCD_HEIGHT 100
-#define LCD_WIDTH 100
 #define CAMERA_FPS 30
+
+// Pipe1 LCD/record DCMIPP Init
+#define LCD_HEIGHT 480
+#define LCD_WIDTH 640
 
 // Pipe2 NN DCMIPP Init
-
-#define NN_HEIGHT 100
-#define NN_WIDTH 100
-#define NN_BPP 2
-#define NN_PITCH 1
-#define COLOR_MODE 
-#define CAMERA_FPS 30
+#define NN_HEIGHT 240
+#define NN_WIDTH 320
+#define NN_BPP 2 
 
 // HAL TRY
 #ifndef NDEBUG

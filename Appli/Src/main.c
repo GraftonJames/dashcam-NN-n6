@@ -81,12 +81,34 @@ int main(void)
 
   /* USER CODE BEGIN 1 */
 
+  /* Clock tree is inherited from FSBL; recompute SystemCoreClock from the
+   * registers (matches ST's Template_FSBL_LRUN Appli). */
+  SystemCoreClockUpdate();
+
+  /* Enable CPU caches, as ST's template Appli does first thing (it also sets
+   * an MPU non-cacheable region over the linker's .noncacheable section - ours
+   * is currently EMPTY so that region is skipped here; it MUST be added when
+   * camera/DMA frame buffers are placed in .noncacheable, or D-cache will
+   * serve stale data for DMA-written memory). */
+  SCB_EnableICache();
+  SCB_EnableDCache();
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
   HAL_Init();
 
   /* USER CODE BEGIN Init */
+
+  /* By default a Cortex-M55 lockup state (fault escalation failing, e.g. a fault
+   * while already in a same/higher-priority fault handler) is completely silent on
+   * this chip: no reset, no NMI, core just stops. Route it to NMI so it becomes
+   * observable instead of indistinguishable from any other silent hang.
+   * SystemInit() disables the SYSCFG clock again after using it, so re-enable it
+   * before touching any SYSCFG register - otherwise this write hangs the bus. */
+  __HAL_RCC_SYSCFG_CLK_ENABLE();
+  (void) RCC->APB4ENR2; /* delay: ensure the clock enable has taken effect */
+  SYSCFG->CM55RSTCR |= SYSCFG_CM55RSTCR_LOCKUP_NMI_EN;
 
   /* USER CODE END Init */
 
@@ -113,24 +135,40 @@ int main(void)
     Error_Handler();
   }
 
-	  printf("COM OPEN \n \r");
+  /* Force stdout fully UNBUFFERED. By default newlib(-nano) fully buffers stdout
+   * (~1KB), so a hang leaves up to ~1KB of already-"printed" trace stuck in the
+   * buffer, making the last visible line ~1KB BEHIND the real point of failure.
+   * Unbuffered => the last byte you see is the last byte the CPU actually ran. */
+  setvbuf(stdout, NULL, _IONBF, 0);
+
+  /* LED boot signals:
+   *   LD6 GREEN on  = Appli reached main() and basic init succeeded
+   *   LD7 BLUE  on  = camera initialized successfully (set after CAMERA_init)
+   *   LD5 RED  blink = main loop alive; solid/blinking from a fault handler = fault trap
+   * (BSP_LED_Init also configures the GPIOG pin modes that the raw fault-handler
+   * LED writes in stm32n6xx_it.c rely on.) */
+  BSP_LED_Init(LED_GREEN);
+  BSP_LED_Init(LED_RED);
+  BSP_LED_Init(LED_BLUE);
+  BSP_LED_On(LED_GREEN);
+
+  printf("Appli: booting, SystemCoreClock=%lu\r\n", (unsigned long) SystemCoreClock);
 
   if (CAMERA_init() != HAL_OK)
   {
     Error_Handler();
   }
+  BSP_LED_On(LED_BLUE);  /* boot signal: camera initialized */
   /* USER CODE END 2 */
 
-  BSP_LED_Toggle(LED_GREEN);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
 
-	  printf("COM OPEN \n \r");
-	 BSP_LED_Toggle(LED_RED);
-	 HAL_Delay(200);
+    BSP_LED_Toggle(LED_RED);
+    HAL_Delay(200);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -174,20 +212,25 @@ HAL_StatusTypeDef MX_DCMIPP_ClockConfig(DCMIPP_HandleTypeDef *hdcmipp)
 
   UNUSED(hdcmipp);
 
+  printf("TRACE: MX_DCMIPP_ClockConfig: configuring IC17/DCMIPP from PLL2\r\n");
   RCC_PeriphCLKInitStruct.PeriphClockSelection = RCC_PERIPHCLK_DCMIPP;
   RCC_PeriphCLKInitStruct.DcmippClockSelection = RCC_DCMIPPCLKSOURCE_IC17;
   RCC_PeriphCLKInitStruct.ICSelection[RCC_IC17].ClockSelection = RCC_ICCLKSOURCE_PLL2;
   RCC_PeriphCLKInitStruct.ICSelection[RCC_IC17].ClockDivider = 3;
   ret = HAL_RCCEx_PeriphCLKConfig(&RCC_PeriphCLKInitStruct);
+  printf("TRACE: IC17/DCMIPP config returned %d\r\n", (int) ret);
   if (ret != HAL_OK)
   {
     return ret;
   }
 
+  printf("TRACE: MX_DCMIPP_ClockConfig: configuring IC18/CSI from PLL1\r\n");
   RCC_PeriphCLKInitStruct.PeriphClockSelection = RCC_PERIPHCLK_CSI;
   RCC_PeriphCLKInitStruct.ICSelection[RCC_IC18].ClockSelection = RCC_ICCLKSOURCE_PLL1;
-  RCC_PeriphCLKInitStruct.ICSelection[RCC_IC18].ClockDivider = 40;
-  return HAL_RCCEx_PeriphCLKConfig(&RCC_PeriphCLKInitStruct);
+  RCC_PeriphCLKInitStruct.ICSelection[RCC_IC18].ClockDivider = 60;  /* PLL1 VCO is now 1200MHz (was 800): keep CSI kernel at 20MHz */
+  ret = HAL_RCCEx_PeriphCLKConfig(&RCC_PeriphCLKInitStruct);
+  printf("TRACE: IC18/CSI config returned %d\r\n", (int) ret);
+  return ret;
 }
 
 /**
@@ -318,6 +361,9 @@ static void MX_RAMCFG_Init(void)
   /* RIF-Aware IPs Config */
 
   /* set up GPIO configuration */
+  __HAL_RCC_GPIOO_CLK_ENABLE();  /* needed for NRST_CAM SECCFGR access below; GPIOA already enabled by MX_GPIO_Init */
+  HAL_GPIO_ConfigPinAttributes(GPIOA,GPIO_PIN_0,GPIO_PIN_SEC|GPIO_PIN_NPRIV);  /* EN_CAM (camera enable pin) */
+  HAL_GPIO_ConfigPinAttributes(GPIOO,GPIO_PIN_5,GPIO_PIN_SEC|GPIO_PIN_NPRIV);  /* NRST_CAM (camera reset pin) */
   HAL_GPIO_ConfigPinAttributes(GPIOA,GPIO_PIN_9,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
   HAL_GPIO_ConfigPinAttributes(GPIOA,GPIO_PIN_10,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
   HAL_GPIO_ConfigPinAttributes(GPIOA,GPIO_PIN_11,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
