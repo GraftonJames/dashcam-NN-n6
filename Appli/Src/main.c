@@ -1,20 +1,20 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2026 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2026 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -43,7 +43,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 
-COM_InitTypeDef BspCOMInit;
+COM_InitTypeDef        BspCOMInit;
 CACHEAXI_HandleTypeDef hcacheaxi;
 
 UART_HandleTypeDef hlpuart1;
@@ -73,9 +73,9 @@ static void SystemIsolation_Config(void);
 /* USER CODE END 0 */
 
 /**
-  * @brief  The application entry point.
-  * @retval int
-  */
+ * @brief  The application entry point.
+ * @retval int
+ */
 int main(void)
 {
 
@@ -107,7 +107,7 @@ int main(void)
    * SystemInit() disables the SYSCFG clock again after using it, so re-enable it
    * before touching any SYSCFG register - otherwise this write hangs the bus. */
   __HAL_RCC_SYSCFG_CLK_ENABLE();
-  (void) RCC->APB4ENR2; /* delay: ensure the clock enable has taken effect */
+  (void)RCC->APB4ENR2; /* delay: ensure the clock enable has taken effect */
   SYSCFG->CM55RSTCR |= SYSCFG_CM55RSTCR_LOCKUP_NMI_EN;
 
   /* USER CODE END Init */
@@ -135,33 +135,19 @@ int main(void)
     Error_Handler();
   }
 
-  /* Force stdout fully UNBUFFERED. By default newlib(-nano) fully buffers stdout
-   * (~1KB), so a hang leaves up to ~1KB of already-"printed" trace stuck in the
-   * buffer, making the last visible line ~1KB BEHIND the real point of failure.
-   * Unbuffered => the last byte you see is the last byte the CPU actually ran. */
-  setvbuf(stdout, NULL, _IONBF, 0);
-
-  /* LED boot signals:
-   *   LD6 GREEN on  = Appli reached main() and basic init succeeded
-   *   LD7 BLUE  on  = camera initialized successfully (set after CAMERA_init)
-   *   LD5 RED  blink = main loop alive; solid/blinking from a fault handler = fault trap
-   * (BSP_LED_Init also configures the GPIOG pin modes that the raw fault-handler
-   * LED writes in stm32n6xx_it.c rely on.) */
   BSP_LED_Init(LED_GREEN);
   BSP_LED_Init(LED_RED);
   BSP_LED_Init(LED_BLUE);
   BSP_LED_On(LED_GREEN);
 
-  printf("Appli: booting, SystemCoreClock=%lu\r\n", (unsigned long) SystemCoreClock);
+  printf("Appli: booting, SystemCoreClock=%lu\r\n", (unsigned long)SystemCoreClock);
 
   if (CAMERA_init() != HAL_OK)
   {
     Error_Handler();
   }
-  BSP_LED_On(LED_BLUE);  /* boot signal: camera initialized */
-  /* USER CODE END 2 */
+  BSP_LED_On(LED_BLUE); /* camera initialized */
 
-  /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
@@ -175,10 +161,10 @@ int main(void)
 }
 
 /**
-  * @brief CACHEAXI Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief CACHEAXI Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_CACHEAXI_Init(void)
 {
 
@@ -197,47 +183,46 @@ static void MX_CACHEAXI_Init(void)
   /* USER CODE BEGIN CACHEAXI_Init 2 */
 
   /* USER CODE END CACHEAXI_Init 2 */
-
 }
 
 /**
-  * @brief DCMIPP Clock Configuration Function, called by CMW_CAMERA_Init()
-  * @param hdcmipp DCMIPP handle
-  * @retval HAL status
-  */
+ * @brief DCMIPP Clock Configuration Function, called by CMW_CAMERA_Init()
+ * @param hdcmipp DCMIPP handle
+ * @retval HAL status
+ */
 HAL_StatusTypeDef MX_DCMIPP_ClockConfig(DCMIPP_HandleTypeDef *hdcmipp)
 {
   RCC_PeriphCLKInitTypeDef RCC_PeriphCLKInitStruct = {0};
-  HAL_StatusTypeDef ret;
+  HAL_StatusTypeDef        ret;
 
   UNUSED(hdcmipp);
 
   printf("TRACE: MX_DCMIPP_ClockConfig: configuring IC17/DCMIPP from PLL2\r\n");
-  RCC_PeriphCLKInitStruct.PeriphClockSelection = RCC_PERIPHCLK_DCMIPP;
-  RCC_PeriphCLKInitStruct.DcmippClockSelection = RCC_DCMIPPCLKSOURCE_IC17;
+  RCC_PeriphCLKInitStruct.PeriphClockSelection                 = RCC_PERIPHCLK_DCMIPP;
+  RCC_PeriphCLKInitStruct.DcmippClockSelection                 = RCC_DCMIPPCLKSOURCE_IC17;
   RCC_PeriphCLKInitStruct.ICSelection[RCC_IC17].ClockSelection = RCC_ICCLKSOURCE_PLL2;
-  RCC_PeriphCLKInitStruct.ICSelection[RCC_IC17].ClockDivider = 3;
-  ret = HAL_RCCEx_PeriphCLKConfig(&RCC_PeriphCLKInitStruct);
-  printf("TRACE: IC17/DCMIPP config returned %d\r\n", (int) ret);
+  RCC_PeriphCLKInitStruct.ICSelection[RCC_IC17].ClockDivider   = 3;
+  ret                                                          = HAL_RCCEx_PeriphCLKConfig(&RCC_PeriphCLKInitStruct);
+  printf("TRACE: IC17/DCMIPP config returned %d\r\n", (int)ret);
   if (ret != HAL_OK)
   {
     return ret;
   }
 
   printf("TRACE: MX_DCMIPP_ClockConfig: configuring IC18/CSI from PLL1\r\n");
-  RCC_PeriphCLKInitStruct.PeriphClockSelection = RCC_PERIPHCLK_CSI;
+  RCC_PeriphCLKInitStruct.PeriphClockSelection                 = RCC_PERIPHCLK_CSI;
   RCC_PeriphCLKInitStruct.ICSelection[RCC_IC18].ClockSelection = RCC_ICCLKSOURCE_PLL1;
-  RCC_PeriphCLKInitStruct.ICSelection[RCC_IC18].ClockDivider = 60;  /* PLL1 VCO is now 1200MHz (was 800): keep CSI kernel at 20MHz */
-  ret = HAL_RCCEx_PeriphCLKConfig(&RCC_PeriphCLKInitStruct);
-  printf("TRACE: IC18/CSI config returned %d\r\n", (int) ret);
+  RCC_PeriphCLKInitStruct.ICSelection[RCC_IC18].ClockDivider   = 60; /* PLL1 VCO is now 1200MHz (was 800): keep CSI kernel at 20MHz */
+  ret                                                          = HAL_RCCEx_PeriphCLKConfig(&RCC_PeriphCLKInitStruct);
+  printf("TRACE: IC18/CSI config returned %d\r\n", (int)ret);
   return ret;
 }
 
 /**
-  * @brief LPUART1 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief LPUART1 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_LPUART1_UART_Init(void)
 {
 
@@ -248,17 +233,17 @@ static void MX_LPUART1_UART_Init(void)
   /* USER CODE BEGIN LPUART1_Init 1 */
 
   /* USER CODE END LPUART1_Init 1 */
-  hlpuart1.Instance = LPUART1;
-  hlpuart1.Init.BaudRate = 209700;
-  hlpuart1.Init.WordLength = UART_WORDLENGTH_8B;
-  hlpuart1.Init.StopBits = UART_STOPBITS_1;
-  hlpuart1.Init.Parity = UART_PARITY_NONE;
-  hlpuart1.Init.Mode = UART_MODE_TX_RX;
-  hlpuart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  hlpuart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-  hlpuart1.Init.ClockPrescaler = UART_PRESCALER_DIV1;
+  hlpuart1.Instance                    = LPUART1;
+  hlpuart1.Init.BaudRate               = 209700;
+  hlpuart1.Init.WordLength             = UART_WORDLENGTH_8B;
+  hlpuart1.Init.StopBits               = UART_STOPBITS_1;
+  hlpuart1.Init.Parity                 = UART_PARITY_NONE;
+  hlpuart1.Init.Mode                   = UART_MODE_TX_RX;
+  hlpuart1.Init.HwFlowCtl              = UART_HWCONTROL_NONE;
+  hlpuart1.Init.OneBitSampling         = UART_ONE_BIT_SAMPLE_DISABLE;
+  hlpuart1.Init.ClockPrescaler         = UART_PRESCALER_DIV1;
   hlpuart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
-  hlpuart1.FifoMode = UART_FIFOMODE_DISABLE;
+  hlpuart1.FifoMode                    = UART_FIFOMODE_DISABLE;
   if (HAL_UART_Init(&hlpuart1) != HAL_OK)
   {
     Error_Handler();
@@ -278,14 +263,13 @@ static void MX_LPUART1_UART_Init(void)
   /* USER CODE BEGIN LPUART1_Init 2 */
 
   /* USER CODE END LPUART1_Init 2 */
-
 }
 
 /**
-  * @brief RAMCFG Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief RAMCFG Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_RAMCFG_Init(void)
 {
 
@@ -298,7 +282,7 @@ static void MX_RAMCFG_Init(void)
   /* USER CODE END RAMCFG_Init 1 */
 
   /** Initialize RAMCFG SRAM3
-  */
+   */
   hramcfg_SRAM3.Instance = RAMCFG_SRAM3_AXI;
   if (HAL_RAMCFG_Init(&hramcfg_SRAM3) != HAL_OK)
   {
@@ -306,7 +290,7 @@ static void MX_RAMCFG_Init(void)
   }
 
   /** Initialize RAMCFG SRAM4
-  */
+   */
   hramcfg_SRAM4.Instance = RAMCFG_SRAM4_AXI;
   if (HAL_RAMCFG_Init(&hramcfg_SRAM4) != HAL_OK)
   {
@@ -314,7 +298,7 @@ static void MX_RAMCFG_Init(void)
   }
 
   /** Initialize RAMCFG SRAM5
-  */
+   */
   hramcfg_SRAM5.Instance = RAMCFG_SRAM5_AXI;
   if (HAL_RAMCFG_Init(&hramcfg_SRAM5) != HAL_OK)
   {
@@ -322,7 +306,7 @@ static void MX_RAMCFG_Init(void)
   }
 
   /** Initialize RAMCFG SRAM6
-  */
+   */
   hramcfg_SRAM6.Instance = RAMCFG_SRAM6_AXI;
   if (HAL_RAMCFG_Init(&hramcfg_SRAM6) != HAL_OK)
   {
@@ -331,15 +315,14 @@ static void MX_RAMCFG_Init(void)
   /* USER CODE BEGIN RAMCFG_Init 2 */
 
   /* USER CODE END RAMCFG_Init 2 */
-
 }
 
 /**
-  * @brief RIF Initialization Function
-  * @param None
-  * @retval None
-  */
-  static void SystemIsolation_Config(void)
+ * @brief RIF Initialization Function
+ * @param None
+ * @retval None
+ */
+static void SystemIsolation_Config(void)
 {
 
   /* USER CODE BEGIN RIF_Init 0 */
@@ -351,8 +334,8 @@ static void MX_RAMCFG_Init(void)
 
   /*RIMC configuration*/
   RIMC_MasterConfig_t RIMC_master = {0};
-  RIMC_master.MasterCID = RIF_CID_1;
-  RIMC_master.SecPriv = RIF_ATTRIBUTE_SEC | RIF_ATTRIBUTE_NPRIV;
+  RIMC_master.MasterCID           = RIF_CID_1;
+  RIMC_master.SecPriv             = RIF_ATTRIBUTE_SEC | RIF_ATTRIBUTE_NPRIV;
   HAL_RIF_RIMC_ConfigMasterAttributes(RIF_MASTER_INDEX_DCMIPP, &RIMC_master);
 
   RIMC_master.MasterCID = RIF_CID_0;
@@ -361,27 +344,27 @@ static void MX_RAMCFG_Init(void)
   /* RIF-Aware IPs Config */
 
   /* set up GPIO configuration */
-  __HAL_RCC_GPIOO_CLK_ENABLE();  /* needed for NRST_CAM SECCFGR access below; GPIOA already enabled by MX_GPIO_Init */
-  HAL_GPIO_ConfigPinAttributes(GPIOA,GPIO_PIN_0,GPIO_PIN_SEC|GPIO_PIN_NPRIV);  /* EN_CAM (camera enable pin) */
-  HAL_GPIO_ConfigPinAttributes(GPIOO,GPIO_PIN_5,GPIO_PIN_SEC|GPIO_PIN_NPRIV);  /* NRST_CAM (camera reset pin) */
-  HAL_GPIO_ConfigPinAttributes(GPIOA,GPIO_PIN_9,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
-  HAL_GPIO_ConfigPinAttributes(GPIOA,GPIO_PIN_10,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
-  HAL_GPIO_ConfigPinAttributes(GPIOA,GPIO_PIN_11,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
-  HAL_GPIO_ConfigPinAttributes(GPIOB,GPIO_PIN_0,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
-  HAL_GPIO_ConfigPinAttributes(GPIOB,GPIO_PIN_3,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
-  HAL_GPIO_ConfigPinAttributes(GPIOB,GPIO_PIN_6,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
-  HAL_GPIO_ConfigPinAttributes(GPIOB,GPIO_PIN_7,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
-  HAL_GPIO_ConfigPinAttributes(GPIOB,GPIO_PIN_12,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
-  HAL_GPIO_ConfigPinAttributes(GPIOC,GPIO_PIN_5,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
-  HAL_GPIO_ConfigPinAttributes(GPIOC,GPIO_PIN_6,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
-  HAL_GPIO_ConfigPinAttributes(GPIOD,GPIO_PIN_5,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
-  HAL_GPIO_ConfigPinAttributes(GPIOD,GPIO_PIN_7,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
-  HAL_GPIO_ConfigPinAttributes(GPIOE,GPIO_PIN_3,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
-  HAL_GPIO_ConfigPinAttributes(GPIOE,GPIO_PIN_4,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
-  HAL_GPIO_ConfigPinAttributes(GPIOE,GPIO_PIN_8,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
-  HAL_GPIO_ConfigPinAttributes(GPIOE,GPIO_PIN_10,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
-  HAL_GPIO_ConfigPinAttributes(GPIOF,GPIO_PIN_1,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
-  HAL_GPIO_ConfigPinAttributes(GPIOF,GPIO_PIN_5,GPIO_PIN_SEC|GPIO_PIN_NPRIV);
+  __HAL_RCC_GPIOO_CLK_ENABLE();                                                   /* needed for NRST_CAM SECCFGR access below; GPIOA already enabled by MX_GPIO_Init */
+  HAL_GPIO_ConfigPinAttributes(GPIOA, GPIO_PIN_0, GPIO_PIN_SEC | GPIO_PIN_NPRIV); /* EN_CAM (camera enable pin) */
+  HAL_GPIO_ConfigPinAttributes(GPIOO, GPIO_PIN_5, GPIO_PIN_SEC | GPIO_PIN_NPRIV); /* NRST_CAM (camera reset pin) */
+  HAL_GPIO_ConfigPinAttributes(GPIOA, GPIO_PIN_9, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
+  HAL_GPIO_ConfigPinAttributes(GPIOA, GPIO_PIN_10, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
+  HAL_GPIO_ConfigPinAttributes(GPIOA, GPIO_PIN_11, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
+  HAL_GPIO_ConfigPinAttributes(GPIOB, GPIO_PIN_0, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
+  HAL_GPIO_ConfigPinAttributes(GPIOB, GPIO_PIN_3, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
+  HAL_GPIO_ConfigPinAttributes(GPIOB, GPIO_PIN_6, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
+  HAL_GPIO_ConfigPinAttributes(GPIOB, GPIO_PIN_7, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
+  HAL_GPIO_ConfigPinAttributes(GPIOB, GPIO_PIN_12, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
+  HAL_GPIO_ConfigPinAttributes(GPIOC, GPIO_PIN_5, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
+  HAL_GPIO_ConfigPinAttributes(GPIOC, GPIO_PIN_6, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
+  HAL_GPIO_ConfigPinAttributes(GPIOD, GPIO_PIN_5, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
+  HAL_GPIO_ConfigPinAttributes(GPIOD, GPIO_PIN_7, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
+  HAL_GPIO_ConfigPinAttributes(GPIOE, GPIO_PIN_3, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
+  HAL_GPIO_ConfigPinAttributes(GPIOE, GPIO_PIN_4, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
+  HAL_GPIO_ConfigPinAttributes(GPIOE, GPIO_PIN_8, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
+  HAL_GPIO_ConfigPinAttributes(GPIOE, GPIO_PIN_10, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
+  HAL_GPIO_ConfigPinAttributes(GPIOF, GPIO_PIN_1, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
+  HAL_GPIO_ConfigPinAttributes(GPIOF, GPIO_PIN_5, GPIO_PIN_SEC | GPIO_PIN_NPRIV);
 
   /* USER CODE BEGIN RIF_Init 1 */
 
@@ -389,14 +372,13 @@ static void MX_RAMCFG_Init(void)
   /* USER CODE BEGIN RIF_Init 2 */
 
   /* USER CODE END RIF_Init 2 */
-
 }
 
 /**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief GPIO Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_GPIO_Init(void)
 {
   /* USER CODE BEGIN MX_GPIO_Init_1 */
@@ -415,13 +397,15 @@ static void MX_GPIO_Init(void)
   /* USER CODE END MX_GPIO_Init_2 */
 }
 
-/* USER CODE BEGIN 4 */
-/* USER CODE END 4 */
+void tx_application_define(void *first_unused_memory)
+{
+  void *memory_ptr = first_unused_memory;
+}
 
 /**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
+ * @brief  This function is executed in case of error occurrence.
+ * @retval None
+ */
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
@@ -434,17 +418,15 @@ void Error_Handler(void)
 }
 #ifdef USE_FULL_ASSERT
 /**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
+ * @brief  Reports the name of the source file and the source line number
+ *         where the assert_param error has occurred.
+ * @param  file: pointer to the source file name
+ * @param  line: assert_param error line source number
+ * @retval None
+ */
 void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */

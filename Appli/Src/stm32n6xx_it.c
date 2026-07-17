@@ -1,25 +1,25 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file    stm32n6xx_it.c
-  * @brief   Interrupt Service Routines.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2026 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file    stm32n6xx_it.c
+ * @brief   Interrupt Service Routines.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2026 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
 #include "stm32n6xx_it.h"
+#include "main.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
@@ -64,237 +64,167 @@ static void TRACE_FaultSafe(const char *handlerName);
 /*           Cortex Processor Interruption and Exception Handlers          */
 /******************************************************************************/
 /**
-  * @brief This function handles Non maskable interrupt.
-  */
+ * @brief This function handles Non maskable interrupt.
+ */
 void NMI_Handler(void)
 {
-  /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
-  /* Reached only if SYSCFG_CM55RSTCR.LOCKUP_NMI_EN routed a core lockup here. */
-  TRACE_FaultSafe("NMI_Handler (possible lockup)");
-  /* USER CODE END NonMaskableInt_IRQn 0 */
-  /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
-  while (1)
-  {
-    GPIOG->ODR ^= GPIO_PIN_10;
-    for (volatile uint32_t d = 0; d < 2000000U; d++)
-    {
-    }
-  }
-  /* USER CODE END NonMaskableInt_IRQn 1 */
+	/* USER CODE BEGIN NonMaskableInt_IRQn 0 */
+	/* Reached only if SYSCFG_CM55RSTCR.LOCKUP_NMI_EN routed a core lockup here. */
+	TRACE_FaultSafe("NMI_Handler (possible lockup)");
+	/* USER CODE END NonMaskableInt_IRQn 0 */
+	/* USER CODE BEGIN NonMaskableInt_IRQn 1 */
+	while (1)
+	{
+		GPIOG->ODR ^= GPIO_PIN_10;
+		for (volatile uint32_t d = 0; d < 2000000U; d++)
+		{
+		}
+	}
+	/* USER CODE END NonMaskableInt_IRQn 1 */
 }
 
 /**
-  * @brief  Blocking, bounded, register-only UART byte send. No HAL, no tick
-  *         dependency: every wait is instruction-count bounded so this can never
-  *         hang forever, unlike HAL_UART_Transmit()'s HAL_GetTick()-based timeout,
-  *         which never expires if called from a handler priority SysTick can't
-  *         preempt (i.e. every fault handler here) and the flag never sets.
-  */
+ * @brief  Blocking, bounded, register-only UART byte send. No HAL, no tick
+ *         dependency: every wait is instruction-count bounded so this can never
+ *         hang forever, unlike HAL_UART_Transmit()'s HAL_GetTick()-based timeout,
+ *         which never expires if called from a handler priority SysTick can't
+ *         preempt (i.e. every fault handler here) and the flag never sets.
+ */
 static void TRACE_RawPutChar(char c)
 {
-  uint32_t guard = 1000000U;
-  while (((USART1->ISR & USART_ISR_TXE_TXFNF) == 0U) && (--guard != 0U))
-  {
-  }
-  USART1->TDR = (uint32_t) c;
+	uint32_t guard = 1000000U;
+	while (((USART1->ISR & USART_ISR_TXE_TXFNF) == 0U) && (--guard != 0U))
+	{
+	}
+	USART1->TDR = (uint32_t)c;
 }
 
 static void TRACE_RawPutString(const char *s)
 {
-  while (*s != '\0')
-  {
-    TRACE_RawPutChar(*s++);
-  }
+	while (*s != '\0')
+	{
+		TRACE_RawPutChar(*s++);
+	}
 }
 
 static void TRACE_RawPutHex32(uint32_t v)
 {
-  static const char hexdigits[16] = "0123456789ABCDEF";
-  for (int shift = 28; shift >= 0; shift -= 4)
-  {
-    TRACE_RawPutChar(hexdigits[(v >> shift) & 0xFU]);
-  }
+	static const char hexdigits[16] = "0123456789ABCDEF";
+	for (int shift = 28; shift >= 0; shift -= 4)
+	{
+		TRACE_RawPutChar(hexdigits[(v >> shift) & 0xFU]);
+	}
 }
 
 /**
-  * @brief  Fault-safe indicator: lights LED_RED first (visible even if UART
-  *         itself is wedged), then dumps fault status/address registers plus
-  *         ICSR (active exception number) over UART using only raw, bounded
-  *         register polling.
-  */
+ * @brief  Fault-safe indicator: lights LED_RED first (visible even if UART
+ *         itself is wedged), then dumps fault status/address registers plus
+ *         ICSR (active exception number) over UART using only raw, bounded
+ *         register polling.
+ */
 static void TRACE_FaultSafe(const char *handlerName)
 {
-  __HAL_RCC_GPIOG_CLK_ENABLE();
-  GPIOG->BSRR = GPIO_PIN_10; /* LED_RED on */
+	__HAL_RCC_GPIOG_CLK_ENABLE();
+	GPIOG->BSRR = GPIO_PIN_10; /* LED_RED on */
 
-  uint32_t cfsr  = *(volatile uint32_t *)0xE000ED28U;
-  uint32_t hfsr  = *(volatile uint32_t *)0xE000ED2CU;
-  uint32_t shcsr = *(volatile uint32_t *)0xE000ED24U;
-  uint32_t mmfar = *(volatile uint32_t *)0xE000ED34U;
-  uint32_t bfar  = *(volatile uint32_t *)0xE000ED38U;
-  uint32_t sfsr  = *(volatile uint32_t *)0xE000EDE4U;
-  uint32_t sfar  = *(volatile uint32_t *)0xE000EDE8U;
-  uint32_t icsr  = SCB->ICSR;
+	uint32_t cfsr  = *(volatile uint32_t *)0xE000ED28U;
+	uint32_t hfsr  = *(volatile uint32_t *)0xE000ED2CU;
+	uint32_t shcsr = *(volatile uint32_t *)0xE000ED24U;
+	uint32_t mmfar = *(volatile uint32_t *)0xE000ED34U;
+	uint32_t bfar  = *(volatile uint32_t *)0xE000ED38U;
+	uint32_t sfsr  = *(volatile uint32_t *)0xE000EDE4U;
+	uint32_t sfar  = *(volatile uint32_t *)0xE000EDE8U;
+	uint32_t icsr  = SCB->ICSR;
 
-  TRACE_RawPutString("\r\nRAWFAULT: ");
-  TRACE_RawPutString(handlerName);
-  TRACE_RawPutString(" CFSR=");  TRACE_RawPutHex32(cfsr);
-  TRACE_RawPutString(" HFSR=");  TRACE_RawPutHex32(hfsr);
-  TRACE_RawPutString(" SHCSR="); TRACE_RawPutHex32(shcsr);
-  TRACE_RawPutString(" MMFAR="); TRACE_RawPutHex32(mmfar);
-  TRACE_RawPutString(" BFAR=");  TRACE_RawPutHex32(bfar);
-  TRACE_RawPutString(" SFSR=");  TRACE_RawPutHex32(sfsr);
-  TRACE_RawPutString(" SFAR=");  TRACE_RawPutHex32(sfar);
-  TRACE_RawPutString(" ICSR=");  TRACE_RawPutHex32(icsr);
-  TRACE_RawPutString("\r\n");
+	TRACE_RawPutString("\r\nRAWFAULT: ");
+	TRACE_RawPutString(handlerName);
+	TRACE_RawPutString(" CFSR=");
+	TRACE_RawPutHex32(cfsr);
+	TRACE_RawPutString(" HFSR=");
+	TRACE_RawPutHex32(hfsr);
+	TRACE_RawPutString(" SHCSR=");
+	TRACE_RawPutHex32(shcsr);
+	TRACE_RawPutString(" MMFAR=");
+	TRACE_RawPutHex32(mmfar);
+	TRACE_RawPutString(" BFAR=");
+	TRACE_RawPutHex32(bfar);
+	TRACE_RawPutString(" SFSR=");
+	TRACE_RawPutHex32(sfsr);
+	TRACE_RawPutString(" SFAR=");
+	TRACE_RawPutHex32(sfar);
+	TRACE_RawPutString(" ICSR=");
+	TRACE_RawPutHex32(icsr);
+	TRACE_RawPutString("\r\n");
 }
 
 /**
-  * @brief This function handles Hard fault interrupt.
-  */
-void HardFault_Handler(void)
-{
-  /* USER CODE BEGIN HardFault_IRQn 0 */
-  TRACE_FaultSafe("HardFault_Handler");
-  /* USER CODE END HardFault_IRQn 0 */
-  while (1)
-  {
-    /* USER CODE BEGIN W1_HardFault_IRQn 0 */
-    GPIOG->ODR ^= GPIO_PIN_10;
-    for (volatile uint32_t d = 0; d < 2000000U; d++)
-    {
-    }
-    /* USER CODE END W1_HardFault_IRQn 0 */
-  }
-}
-
-/**
-  * @brief This function handles Memory management fault.
-  */
+ * @brief This function handles Memory management fault.
+ */
 void MemManage_Handler(void)
 {
-  /* USER CODE BEGIN MemoryManagement_IRQn 0 */
-  TRACE_FaultSafe("MemManage_Handler");
-  /* USER CODE END MemoryManagement_IRQn 0 */
-  while (1)
-  {
-    /* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */
-    GPIOG->ODR ^= GPIO_PIN_10;
-    for (volatile uint32_t d = 0; d < 2000000U; d++)
-    {
-    }
-    /* USER CODE END W1_MemoryManagement_IRQn 0 */
-  }
+	/* USER CODE BEGIN MemoryManagement_IRQn 0 */
+	TRACE_FaultSafe("MemManage_Handler");
+	/* USER CODE END MemoryManagement_IRQn 0 */
+	while (1)
+	{
+		/* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */
+		GPIOG->ODR ^= GPIO_PIN_10;
+		for (volatile uint32_t d = 0; d < 2000000U; d++)
+		{
+		}
+		/* USER CODE END W1_MemoryManagement_IRQn 0 */
+	}
 }
 
 /**
-  * @brief This function handles Prefetch fault, memory access fault.
-  */
+ * @brief This function handles Prefetch fault, memory access fault.
+ */
 void BusFault_Handler(void)
 {
-  /* USER CODE BEGIN BusFault_IRQn 0 */
-  TRACE_FaultSafe("BusFault_Handler");
-  /* USER CODE END BusFault_IRQn 0 */
-  while (1)
-  {
-    /* USER CODE BEGIN W1_BusFault_IRQn 0 */
-    GPIOG->ODR ^= GPIO_PIN_10;
-    for (volatile uint32_t d = 0; d < 2000000U; d++)
-    {
-    }
-    /* USER CODE END W1_BusFault_IRQn 0 */
-  }
+	/* USER CODE BEGIN BusFault_IRQn 0 */
+	TRACE_FaultSafe("BusFault_Handler");
+	/* USER CODE END BusFault_IRQn 0 */
+	while (1)
+	{
+		/* USER CODE BEGIN W1_BusFault_IRQn 0 */
+		GPIOG->ODR ^= GPIO_PIN_10;
+		for (volatile uint32_t d = 0; d < 2000000U; d++)
+		{
+		}
+		/* USER CODE END W1_BusFault_IRQn 0 */
+	}
 }
 
 /**
-  * @brief This function handles Undefined instruction or illegal state.
-  */
-void UsageFault_Handler(void)
-{
-  /* USER CODE BEGIN UsageFault_IRQn 0 */
-  TRACE_FaultSafe("UsageFault_Handler");
-  /* USER CODE END UsageFault_IRQn 0 */
-  while (1)
-  {
-    /* USER CODE BEGIN W1_UsageFault_IRQn 0 */
-    GPIOG->ODR ^= GPIO_PIN_10;
-    for (volatile uint32_t d = 0; d < 2000000U; d++)
-    {
-    }
-    /* USER CODE END W1_UsageFault_IRQn 0 */
-  }
-}
-
-/**
-  * @brief This function handles Secure fault.
-  */
+ * @brief This function handles Secure fault.
+ */
 void SecureFault_Handler(void)
 {
-  /* USER CODE BEGIN SecureFault_IRQn 0 */
-  TRACE_FaultSafe("SecureFault_Handler");
-  /* USER CODE END SecureFault_IRQn 0 */
-  while (1)
-  {
-    /* USER CODE BEGIN W1_SecureFault_IRQn 0 */
-    GPIOG->ODR ^= GPIO_PIN_10;
-    for (volatile uint32_t d = 0; d < 2000000U; d++)
-    {
-    }
-    /* USER CODE END W1_SecureFault_IRQn 0 */
-  }
+	/* USER CODE BEGIN SecureFault_IRQn 0 */
+	TRACE_FaultSafe("SecureFault_Handler");
+	/* USER CODE END SecureFault_IRQn 0 */
+	while (1)
+	{
+		/* USER CODE BEGIN W1_SecureFault_IRQn 0 */
+		GPIOG->ODR ^= GPIO_PIN_10;
+		for (volatile uint32_t d = 0; d < 2000000U; d++)
+		{
+		}
+		/* USER CODE END W1_SecureFault_IRQn 0 */
+	}
 }
 
 /**
-  * @brief This function handles System service call via SWI instruction.
-  */
-void SVC_Handler(void)
-{
-  /* USER CODE BEGIN SVCall_IRQn 0 */
-
-  /* USER CODE END SVCall_IRQn 0 */
-  /* USER CODE BEGIN SVCall_IRQn 1 */
-
-  /* USER CODE END SVCall_IRQn 1 */
-}
-
-/**
-  * @brief This function handles Debug monitor.
-  */
+ * @brief This function handles Debug monitor.
+ */
 void DebugMon_Handler(void)
 {
-  /* USER CODE BEGIN DebugMonitor_IRQn 0 */
+	/* USER CODE BEGIN DebugMonitor_IRQn 0 */
 
-  /* USER CODE END DebugMonitor_IRQn 0 */
-  /* USER CODE BEGIN DebugMonitor_IRQn 1 */
+	/* USER CODE END DebugMonitor_IRQn 0 */
+	/* USER CODE BEGIN DebugMonitor_IRQn 1 */
 
-  /* USER CODE END DebugMonitor_IRQn 1 */
-}
-
-/**
-  * @brief This function handles Pendable request for system service.
-  */
-void PendSV_Handler(void)
-{
-  /* USER CODE BEGIN PendSV_IRQn 0 */
-
-  /* USER CODE END PendSV_IRQn 0 */
-  /* USER CODE BEGIN PendSV_IRQn 1 */
-
-  /* USER CODE END PendSV_IRQn 1 */
-}
-
-/**
-  * @brief This function handles System tick timer.
-  */
-void SysTick_Handler(void)
-{
-  /* USER CODE BEGIN SysTick_IRQn 0 */
-
-  /* USER CODE END SysTick_IRQn 0 */
-  HAL_IncTick();
-  /* USER CODE BEGIN SysTick_IRQn 1 */
-
-  /* USER CODE END SysTick_IRQn 1 */
+	/* USER CODE END DebugMonitor_IRQn 1 */
 }
 
 /******************************************************************************/
