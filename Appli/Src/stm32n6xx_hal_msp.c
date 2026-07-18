@@ -1,21 +1,21 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file         stm32n6xx_hal_msp.c
-  * @brief        This file provides code for the MSP Initialization
-  *               and de-Initialization codes.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2026 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file         stm32n6xx_hal_msp.c
+ * @brief        This file provides code for the MSP Initialization
+ *               and de-Initialization codes.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2026 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -57,190 +57,182 @@
 
 /* USER CODE END 0 */
 /**
-  * Initializes the Global MSP.
-  */
+ * Initializes the Global MSP.
+ */
 void HAL_MspInit(void)
 {
 
-  /* USER CODE BEGIN MspInit 0 */
+	/* USER CODE BEGIN MspInit 0 */
 
-  /* USER CODE END MspInit 0 */
+	/* USER CODE END MspInit 0 */
 
-  /* System interrupt init*/
+	/* System interrupt init*/
 
-  HAL_PWREx_EnableVddIO2();
+	HAL_PWREx_EnableVddIO2();
 
-  HAL_PWREx_EnableVddIO3();
+	HAL_PWREx_EnableVddIO3();
 
-  HAL_PWREx_EnableVddIO4();
+	HAL_PWREx_EnableVddIO4();
 
-  HAL_PWREx_EnableVddIO5();
+	HAL_PWREx_EnableVddIO5();
 
-  /* USER CODE BEGIN MspInit 1 */
+	/* USER CODE BEGIN MspInit 1 */
 
-  /* USER CODE END MspInit 1 */
+	/* USER CODE END MspInit 1 */
 }
 
 /**
-  * @brief CACHEAXI MSP Initialization
-  * This function configures the hardware resources used in this example
-  * @param hcacheaxi: CACHEAXI handle pointer
-  * @retval None
-  */
-void HAL_CACHEAXI_MspInit(CACHEAXI_HandleTypeDef* hcacheaxi)
+ * @brief CACHEAXI MSP Initialization
+ * This function configures the hardware resources used in this example
+ * @param hcacheaxi: CACHEAXI handle pointer
+ * @retval None
+ */
+void HAL_CACHEAXI_MspInit(CACHEAXI_HandleTypeDef *hcacheaxi)
 {
-  if(hcacheaxi->Instance==CACHEAXI)
-  {
-    /* USER CODE BEGIN CACHEAXI_MspInit 0 */
+	if (hcacheaxi->Instance == CACHEAXI)
+	{
+		/* USER CODE BEGIN CACHEAXI_MspInit 0 */
 
-    /* USER CODE END CACHEAXI_MspInit 0 */
-    /* Peripheral clock enable */
-    __HAL_RCC_CACHEAXI_CLK_ENABLE();
-    /* USER CODE BEGIN CACHEAXI_MspInit 1 */
+		/* USER CODE END CACHEAXI_MspInit 0 */
+		/* Peripheral clock enable */
+		__HAL_RCC_CACHEAXI_CLK_ENABLE();
+		/* USER CODE BEGIN CACHEAXI_MspInit 1 */
 
-    /* USER CODE END CACHEAXI_MspInit 1 */
-
-  }
-
+		/* USER CODE END CACHEAXI_MspInit 1 */
+	}
 }
 
 /**
-  * @brief CACHEAXI MSP De-Initialization
-  * This function freeze the hardware resources used in this example
-  * @param hcacheaxi: CACHEAXI handle pointer
-  * @retval None
-  */
-void HAL_CACHEAXI_MspDeInit(CACHEAXI_HandleTypeDef* hcacheaxi)
+ * @brief CACHEAXI MSP De-Initialization
+ * This function freeze the hardware resources used in this example
+ * @param hcacheaxi: CACHEAXI handle pointer
+ * @retval None
+ */
+void HAL_CACHEAXI_MspDeInit(CACHEAXI_HandleTypeDef *hcacheaxi)
 {
-  if(hcacheaxi->Instance==CACHEAXI)
-  {
-    /* USER CODE BEGIN CACHEAXI_MspDeInit 0 */
+	if (hcacheaxi->Instance == CACHEAXI)
+	{
+		/* USER CODE BEGIN CACHEAXI_MspDeInit 0 */
 
-    /* USER CODE END CACHEAXI_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_CACHEAXI_CLK_DISABLE();
-    /* USER CODE BEGIN CACHEAXI_MspDeInit 1 */
+		/* USER CODE END CACHEAXI_MspDeInit 0 */
+		/* Peripheral clock disable */
+		__HAL_RCC_CACHEAXI_CLK_DISABLE();
+		/* USER CODE BEGIN CACHEAXI_MspDeInit 1 */
 
-    /* USER CODE END CACHEAXI_MspDeInit 1 */
-  }
-
+		/* USER CODE END CACHEAXI_MspDeInit 1 */
+	}
 }
 
 /**
-  * @brief UART MSP Initialization
-  * This function configures the hardware resources used in this example
-  * @param huart: UART handle pointer
-  * @retval None
-  */
-void HAL_UART_MspInit(UART_HandleTypeDef* huart)
+ * @brief UART MSP Initialization
+ * This function configures the hardware resources used in this example
+ * @param huart: UART handle pointer
+ * @retval None
+ */
+void HAL_UART_MspInit(UART_HandleTypeDef *huart)
 {
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-  RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
-  if(huart->Instance==LPUART1)
-  {
-    /* USER CODE BEGIN LPUART1_MspInit 0 */
+	GPIO_InitTypeDef	 GPIO_InitStruct     = {0};
+	RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
+	if (huart->Instance == LPUART1)
+	{
+		/* USER CODE BEGIN LPUART1_MspInit 0 */
 
-    /* USER CODE END LPUART1_MspInit 0 */
+		/* USER CODE END LPUART1_MspInit 0 */
 
-  /** Initializes the peripherals clock
-  */
-    PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_LPUART1;
-    PeriphClkInitStruct.Lpuart1ClockSelection = RCC_LPUART1CLKSOURCE_PCLK4;
-    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
-    {
-      Error_Handler();
-    }
+		/** Initializes the peripherals clock
+		 */
+		PeriphClkInitStruct.PeriphClockSelection  = RCC_PERIPHCLK_LPUART1;
+		PeriphClkInitStruct.Lpuart1ClockSelection = RCC_LPUART1CLKSOURCE_PCLK4;
+		if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
+		{
+			Error_Handler();
+		}
 
-    /* Peripheral clock enable */
-    __HAL_RCC_LPUART1_CLK_ENABLE();
+		/* Peripheral clock enable */
+		__HAL_RCC_LPUART1_CLK_ENABLE();
 
-    __HAL_RCC_GPIOA_CLK_ENABLE();
-    /**LPUART1 GPIO Configuration
-    PA9     ------> LPUART1_TX
-    PA10     ------> LPUART1_RX
-    PA11     ------> LPUART1_CTS
-    */
-    GPIO_InitStruct.Pin = GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF3_LPUART1;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+		__HAL_RCC_GPIOA_CLK_ENABLE();
+		/**LPUART1 GPIO Configuration
+		PA9     ------> LPUART1_TX
+		PA10     ------> LPUART1_RX
+		PA11     ------> LPUART1_CTS
+		*/
+		GPIO_InitStruct.Pin	  = GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11;
+		GPIO_InitStruct.Mode	  = GPIO_MODE_AF_PP;
+		GPIO_InitStruct.Pull	  = GPIO_NOPULL;
+		GPIO_InitStruct.Speed	  = GPIO_SPEED_FREQ_LOW;
+		GPIO_InitStruct.Alternate = GPIO_AF3_LPUART1;
+		HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-    /* USER CODE BEGIN LPUART1_MspInit 1 */
+		/* USER CODE BEGIN LPUART1_MspInit 1 */
 
-    /* USER CODE END LPUART1_MspInit 1 */
-
-  }
-
+		/* USER CODE END LPUART1_MspInit 1 */
+	}
 }
 
 /**
-  * @brief UART MSP De-Initialization
-  * This function freeze the hardware resources used in this example
-  * @param huart: UART handle pointer
-  * @retval None
-  */
-void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
+ * @brief UART MSP De-Initialization
+ * This function freeze the hardware resources used in this example
+ * @param huart: UART handle pointer
+ * @retval None
+ */
+void HAL_UART_MspDeInit(UART_HandleTypeDef *huart)
 {
-  if(huart->Instance==LPUART1)
-  {
-    /* USER CODE BEGIN LPUART1_MspDeInit 0 */
+	if (huart->Instance == LPUART1)
+	{
+		/* USER CODE BEGIN LPUART1_MspDeInit 0 */
 
-    /* USER CODE END LPUART1_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_LPUART1_CLK_DISABLE();
+		/* USER CODE END LPUART1_MspDeInit 0 */
+		/* Peripheral clock disable */
+		__HAL_RCC_LPUART1_CLK_DISABLE();
 
-    /**LPUART1 GPIO Configuration
-    PA9     ------> LPUART1_TX
-    PA10     ------> LPUART1_RX
-    PA11     ------> LPUART1_CTS
-    */
-    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11);
+		/**LPUART1 GPIO Configuration
+		PA9     ------> LPUART1_TX
+		PA10     ------> LPUART1_RX
+		PA11     ------> LPUART1_CTS
+		*/
+		HAL_GPIO_DeInit(GPIOA, GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11);
 
-    /* USER CODE BEGIN LPUART1_MspDeInit 1 */
+		/* USER CODE BEGIN LPUART1_MspDeInit 1 */
 
-    /* USER CODE END LPUART1_MspDeInit 1 */
-  }
-
+		/* USER CODE END LPUART1_MspDeInit 1 */
+	}
 }
 
 /**
-  * @brief RAMCFG MSP Initialization
-  * This function configures the hardware resources used in this example
-  * @param hramcfg: RAMCFG handle pointer
-  * @retval None
-  */
-void HAL_RAMCFG_MspInit(RAMCFG_HandleTypeDef* hramcfg)
+ * @brief RAMCFG MSP Initialization
+ * This function configures the hardware resources used in this example
+ * @param hramcfg: RAMCFG handle pointer
+ * @retval None
+ */
+void HAL_RAMCFG_MspInit(RAMCFG_HandleTypeDef *hramcfg)
 {
-    /* USER CODE BEGIN RAMCFG_MspInit 0 */
+	/* USER CODE BEGIN RAMCFG_MspInit 0 */
 
-    /* USER CODE END RAMCFG_MspInit 0 */
-    /* Peripheral clock enable */
-    __HAL_RCC_RAMCFG_CLK_ENABLE();
-    /* USER CODE BEGIN RAMCFG_MspInit 1 */
+	/* USER CODE END RAMCFG_MspInit 0 */
+	/* Peripheral clock enable */
+	__HAL_RCC_RAMCFG_CLK_ENABLE();
+	/* USER CODE BEGIN RAMCFG_MspInit 1 */
 
-    /* USER CODE END RAMCFG_MspInit 1 */
-
+	/* USER CODE END RAMCFG_MspInit 1 */
 }
 
 /**
-  * @brief RAMCFG MSP De-Initialization
-  * This function freeze the hardware resources used in this example
-  * @param hramcfg: RAMCFG handle pointer
-  * @retval None
-  */
-void HAL_RAMCFG_MspDeInit(RAMCFG_HandleTypeDef* hramcfg)
+ * @brief RAMCFG MSP De-Initialization
+ * This function freeze the hardware resources used in this example
+ * @param hramcfg: RAMCFG handle pointer
+ * @retval None
+ */
+void HAL_RAMCFG_MspDeInit(RAMCFG_HandleTypeDef *hramcfg)
 {
-    /* USER CODE BEGIN RAMCFG_MspDeInit 0 */
+	/* USER CODE BEGIN RAMCFG_MspDeInit 0 */
 
-    /* USER CODE END RAMCFG_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_RAMCFG_CLK_DISABLE();
-    /* USER CODE BEGIN RAMCFG_MspDeInit 1 */
+	/* USER CODE END RAMCFG_MspDeInit 0 */
+	/* Peripheral clock disable */
+	__HAL_RCC_RAMCFG_CLK_DISABLE();
+	/* USER CODE BEGIN RAMCFG_MspDeInit 1 */
 
-    /* USER CODE END RAMCFG_MspDeInit 1 */
-
+	/* USER CODE END RAMCFG_MspDeInit 1 */
 }
 
 /* USER CODE BEGIN 1 */

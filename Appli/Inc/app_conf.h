@@ -18,13 +18,14 @@
 // Pipe2 NN DCMIPP Init
 #define NN_HEIGHT 240
 #define NN_WIDTH 320
-#define NN_BPP 2 
+#define NN_BPP 2
 
 // HAL TRY
 #ifndef NDEBUG
-#define HAL_TRY(FUNC) \
-	ret = FUNC; \
-	if (ret != HAL_OK) return ret
+#define HAL_TRY(FUNC)      \
+	ret = FUNC;        \
+	if (ret != HAL_OK) \
+	return ret
 #else
 #define HAL_TRY(FUNC) FUNC
 #endif

@@ -1,20 +1,20 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2026 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2026 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -51,7 +51,7 @@ XSPI_HandleTypeDef hxspi2;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
-void SystemClock_Config(void);
+void	    SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_BSEC_Init(void);
 static void MX_XSPI2_Init(void);
@@ -65,347 +65,341 @@ static void MX_XSPI2_Init(void);
 /* USER CODE END 0 */
 
 /**
-  * @brief  The application entry point.
-  * @retval int
-  */
+ * @brief  The application entry point.
+ * @retval int
+ */
 int main(void)
 {
 
-  /* USER CODE BEGIN 1 */
+	/* USER CODE BEGIN 1 */
 
-  /* USER CODE END 1 */
+	/* USER CODE END 1 */
 
-  /* Enable CPU caches, exactly as ST's Template_FSBL_LRUN does first thing.
-   * With caches OFF every instruction fetch is an AXI fabric transaction -
-   * our project never enabled them anywhere, the single structural difference
-   * from ST's binary that runs stable on this board. Coherency at the Appli
-   * handoff is safe: the vendor boot code (stm32_boot_lrun.c) disables both
-   * caches itself before copying and jumping. */
-  SCB_EnableICache();
-  SCB_EnableDCache();
+	/* Enable CPU caches, exactly as ST's Template_FSBL_LRUN does first thing.
+	 * With caches OFF every instruction fetch is an AXI fabric transaction -
+	 * our project never enabled them anywhere, the single structural difference
+	 * from ST's binary that runs stable on this board. Coherency at the Appli
+	 * handoff is safe: the vendor boot code (stm32_boot_lrun.c) disables both
+	 * caches itself before copying and jumping. */
+	SCB_EnableICache();
+	SCB_EnableDCache();
 
-  /* MCU Configuration--------------------------------------------------------*/
-  HAL_Init();
+	/* MCU Configuration--------------------------------------------------------*/
+	HAL_Init();
 
-  /* USER CODE BEGIN Init */
+	/* USER CODE BEGIN Init */
 
-  MX_GPIO_Init();
-  HAL_Delay(1);
-  /* USER CODE END Init */
+	MX_GPIO_Init();
+	HAL_Delay(1);
+	/* USER CODE END Init */
 
-  /* Configure the system clock */
-  SystemClock_Config();
+	/* Configure the system clock */
+	SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */
+	/* USER CODE BEGIN SysInit */
 
-  /* USER CODE END SysInit */
+	/* USER CODE END SysInit */
 
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_BSEC_Init();
-  MX_XSPI2_Init();
-  MX_EXTMEM_MANAGER_Init();
-  /* USER CODE BEGIN 2 */
-  /* LED init/usage removed: Appli now owns GPIOG-based LED diagnostics, and
-   * FSBL touching the same LEDs made it unclear which stage's activity was
-   * being observed on the board. */
-  /* USER CODE END 2 */
+	/* Initialize all configured peripherals */
+	MX_GPIO_Init();
+	MX_BSEC_Init();
+	MX_XSPI2_Init();
+	MX_EXTMEM_MANAGER_Init();
+	/* USER CODE BEGIN 2 */
+	/* LED init/usage removed: Appli now owns GPIOG-based LED diagnostics, and
+	 * FSBL touching the same LEDs made it unclear which stage's activity was
+	 * being observed on the board. */
+	/* USER CODE END 2 */
 
+	/* Initialize COM1 port (115200, 8 bits (7-bit data + 1 stop bit), no parity */
+	BspCOMInit.BaudRate   = 115200;
+	BspCOMInit.WordLength = COM_WORDLENGTH_8B;
+	BspCOMInit.StopBits   = COM_STOPBITS_1;
+	BspCOMInit.Parity     = COM_PARITY_NONE;
+	BspCOMInit.HwFlowCtl  = COM_HWCONTROL_NONE;
+	if (BSP_COM_Init(COM1, &BspCOMInit) != BSP_ERROR_NONE)
+	{
+		Error_Handler();
+	}
 
-  /* Initialize COM1 port (115200, 8 bits (7-bit data + 1 stop bit), no parity */
-  BspCOMInit.BaudRate   = 115200;
-  BspCOMInit.WordLength = COM_WORDLENGTH_8B;
-  BspCOMInit.StopBits   = COM_STOPBITS_1;
-  BspCOMInit.Parity     = COM_PARITY_NONE;
-  BspCOMInit.HwFlowCtl  = COM_HWCONTROL_NONE;
-  if (BSP_COM_Init(COM1, &BspCOMInit) != BSP_ERROR_NONE)
-  {
-    Error_Handler();
-  }
+	/* Button gate removed entirely: boot is now fully hands-off (capture UART by
+	 * holding RESET, starting the capture, then releasing). This also removes the
+	 * last difference from how the stable ST template runs - every previously
+	 * observed hang happened moments after a physical button press, an
+	 * interaction the untouched template never experiences. */
+	printf("FSBL: booting (no button gate)\r\n");
 
-  /* Button gate removed entirely: boot is now fully hands-off (capture UART by
-   * holding RESET, starting the capture, then releasing). This also removes the
-   * last difference from how the stable ST template runs - every previously
-   * observed hang happened moments after a physical button press, an
-   * interaction the untouched template never experiences. */
-  printf("FSBL: booting (no button gate)\r\n");
+	printf("FSBL: calling BOOT_Application\r\n");
+	if (BOOT_OK != BOOT_Application())
+	{
+		printf("FSBL: BOOT_Application FAILED\r\n");
+		Error_Handler();
+	}
+	printf("FSBL: BOOT_Application returned OK (should never print)\r\n");
+	/* Infinite loop */
+	/* USER CODE BEGIN WHILE */
+	while (1)
+	{
 
-  printf("FSBL: calling BOOT_Application\r\n");
-  if (BOOT_OK != BOOT_Application())
-  {
-    printf("FSBL: BOOT_Application FAILED\r\n");
-    Error_Handler();
-  }
-  printf("FSBL: BOOT_Application returned OK (should never print)\r\n");
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+		/* USER CODE END WHILE */
 
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
-  }
-  /* USER CODE END 3 */
+		/* USER CODE BEGIN 3 */
+	}
+	/* USER CODE END 3 */
 }
 /* USER CODE BEGIN CLK 1 */
 /* USER CODE END CLK 1 */
 
 /**
-  * @brief System Clock Configuration
-  * @retval None
-  */
+ * @brief System Clock Configuration
+ * @retval None
+ */
 void SystemClock_Config(void)
 {
-  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+	RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+	RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-  /** Configure the System Power Supply
-  */
-  if (HAL_PWREx_ConfigSupply(PWR_EXTERNAL_SOURCE_SUPPLY) != HAL_OK)
-  {
-    Error_Handler();
-  }
+	/** Configure the System Power Supply
+	 */
+	if (HAL_PWREx_ConfigSupply(PWR_EXTERNAL_SOURCE_SUPPLY) != HAL_OK)
+	{
+		Error_Handler();
+	}
 
-  /** Configure the main internal regulator output voltage
-  */
-  /* SCALE1 (nominal 0.81V), matching ST's Template_FSBL_LRUN which is the one
-   * binary proven stable on this board for minutes. Our previous SCALE0
-   * (overdrive 0.89V) + 800MHz operating point produced random fault-less
-   * hangs even in pure-CPU loops - classic marginal-core-voltage behavior. */
-  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
-  {
-    Error_Handler();
-  }
+	/** Configure the main internal regulator output voltage
+	 */
+	/* SCALE1 (nominal 0.81V), matching ST's Template_FSBL_LRUN which is the one
+	 * binary proven stable on this board for minutes. Our previous SCALE0
+	 * (overdrive 0.89V) + 800MHz operating point produced random fault-less
+	 * hangs even in pure-CPU loops - classic marginal-core-voltage behavior. */
+	if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
+	{
+		Error_Handler();
+	}
 
-  /* Enable HSI */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSIDiv = RCC_HSI_DIV1;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-  RCC_OscInitStruct.PLL1.PLLState = RCC_PLL_NONE;
-  RCC_OscInitStruct.PLL2.PLLState = RCC_PLL_NONE;
-  RCC_OscInitStruct.PLL3.PLLState = RCC_PLL_NONE;
-  RCC_OscInitStruct.PLL4.PLLState = RCC_PLL_NONE;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    Error_Handler();
-  }
+	/* Enable HSI */
+	RCC_OscInitStruct.OscillatorType      = RCC_OSCILLATORTYPE_HSI;
+	RCC_OscInitStruct.HSIState	      = RCC_HSI_ON;
+	RCC_OscInitStruct.HSIDiv	      = RCC_HSI_DIV1;
+	RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+	RCC_OscInitStruct.PLL1.PLLState	      = RCC_PLL_NONE;
+	RCC_OscInitStruct.PLL2.PLLState	      = RCC_PLL_NONE;
+	RCC_OscInitStruct.PLL3.PLLState	      = RCC_PLL_NONE;
+	RCC_OscInitStruct.PLL4.PLLState	      = RCC_PLL_NONE;
+	if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+	{
+		Error_Handler();
+	}
 
-  /** Get current CPU/System buses clocks configuration and if necessary switch
- to intermediate HSI clock to ensure target clock can be set
-  */
-  HAL_RCC_GetClockConfig(&RCC_ClkInitStruct);
-  if ((RCC_ClkInitStruct.CPUCLKSource == RCC_CPUCLKSOURCE_IC1) ||
-     (RCC_ClkInitStruct.SYSCLKSource == RCC_SYSCLKSOURCE_IC2_IC6_IC11))
-  {
-    RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_CPUCLK | RCC_CLOCKTYPE_SYSCLK);
-    RCC_ClkInitStruct.CPUCLKSource = RCC_CPUCLKSOURCE_HSI;
-    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
-    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct) != HAL_OK)
-    {
-      /* Initialization Error */
-      Error_Handler();
-    }
-  }
+	/** Get current CPU/System buses clocks configuration and if necessary switch
+       to intermediate HSI clock to ensure target clock can be set
+	*/
+	HAL_RCC_GetClockConfig(&RCC_ClkInitStruct);
+	if ((RCC_ClkInitStruct.CPUCLKSource == RCC_CPUCLKSOURCE_IC1) ||
+	    (RCC_ClkInitStruct.SYSCLKSource == RCC_SYSCLKSOURCE_IC2_IC6_IC11))
+	{
+		RCC_ClkInitStruct.ClockType    = (RCC_CLOCKTYPE_CPUCLK | RCC_CLOCKTYPE_SYSCLK);
+		RCC_ClkInitStruct.CPUCLKSource = RCC_CPUCLKSOURCE_HSI;
+		RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+		if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct) != HAL_OK)
+		{
+			/* Initialization Error */
+			Error_Handler();
+		}
+	}
 
-  /** Initializes the RCC Oscillators according to the specified parameters
-  * in the RCC_OscInitTypeDef structure.
-  */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_NONE;
-  RCC_OscInitStruct.PLL1.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL1.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL1.PLLM = 4;   /* template values: VCO = 64/4*75 = 1200MHz */
-  RCC_OscInitStruct.PLL1.PLLN = 75;
-  RCC_OscInitStruct.PLL1.PLLFractional = 0;
-  RCC_OscInitStruct.PLL1.PLLP1 = 1;
-  RCC_OscInitStruct.PLL1.PLLP2 = 1;
-  RCC_OscInitStruct.PLL2.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL2.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL2.PLLM = 8;
-  RCC_OscInitStruct.PLL2.PLLN = 125;
-  RCC_OscInitStruct.PLL2.PLLFractional = 0;
-  RCC_OscInitStruct.PLL2.PLLP1 = 1;
-  RCC_OscInitStruct.PLL2.PLLP2 = 1;
-  RCC_OscInitStruct.PLL3.PLLState = RCC_PLL_NONE;
-  RCC_OscInitStruct.PLL4.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL4.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL4.PLLM = 8;
-  RCC_OscInitStruct.PLL4.PLLN = 225;
-  RCC_OscInitStruct.PLL4.PLLFractional = 0;
-  RCC_OscInitStruct.PLL4.PLLP1 = 6;
-  RCC_OscInitStruct.PLL4.PLLP2 = 6;
+	/** Initializes the RCC Oscillators according to the specified parameters
+	 * in the RCC_OscInitTypeDef structure.
+	 */
+	RCC_OscInitStruct.OscillatorType     = RCC_OSCILLATORTYPE_NONE;
+	RCC_OscInitStruct.PLL1.PLLState	     = RCC_PLL_ON;
+	RCC_OscInitStruct.PLL1.PLLSource     = RCC_PLLSOURCE_HSI;
+	RCC_OscInitStruct.PLL1.PLLM	     = 4; /* template values: VCO = 64/4*75 = 1200MHz */
+	RCC_OscInitStruct.PLL1.PLLN	     = 75;
+	RCC_OscInitStruct.PLL1.PLLFractional = 0;
+	RCC_OscInitStruct.PLL1.PLLP1	     = 1;
+	RCC_OscInitStruct.PLL1.PLLP2	     = 1;
+	RCC_OscInitStruct.PLL2.PLLState	     = RCC_PLL_ON;
+	RCC_OscInitStruct.PLL2.PLLSource     = RCC_PLLSOURCE_HSI;
+	RCC_OscInitStruct.PLL2.PLLM	     = 8;
+	RCC_OscInitStruct.PLL2.PLLN	     = 125;
+	RCC_OscInitStruct.PLL2.PLLFractional = 0;
+	RCC_OscInitStruct.PLL2.PLLP1	     = 1;
+	RCC_OscInitStruct.PLL2.PLLP2	     = 1;
+	RCC_OscInitStruct.PLL3.PLLState	     = RCC_PLL_NONE;
+	RCC_OscInitStruct.PLL4.PLLState	     = RCC_PLL_ON;
+	RCC_OscInitStruct.PLL4.PLLSource     = RCC_PLLSOURCE_HSI;
+	RCC_OscInitStruct.PLL4.PLLM	     = 8;
+	RCC_OscInitStruct.PLL4.PLLN	     = 225;
+	RCC_OscInitStruct.PLL4.PLLFractional = 0;
+	RCC_OscInitStruct.PLL4.PLLP1	     = 6;
+	RCC_OscInitStruct.PLL4.PLLP2	     = 6;
 
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    Error_Handler();
-  }
+	if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+	{
+		Error_Handler();
+	}
 
-  /** Initializes the CPU, AHB and APB buses clocks
-  */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_CPUCLK|RCC_CLOCKTYPE_HCLK
-                              |RCC_CLOCKTYPE_SYSCLK|RCC_CLOCKTYPE_PCLK1
-                              |RCC_CLOCKTYPE_PCLK2|RCC_CLOCKTYPE_PCLK5
-                              |RCC_CLOCKTYPE_PCLK4;
-  RCC_ClkInitStruct.CPUCLKSource = RCC_CPUCLKSOURCE_IC1;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_IC2_IC6_IC11;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_HCLK_DIV2;  /* template value */
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_APB1_DIV1;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_APB2_DIV1;
-  RCC_ClkInitStruct.APB4CLKDivider = RCC_APB4_DIV1;
-  RCC_ClkInitStruct.APB5CLKDivider = RCC_APB5_DIV1;
-  /* IC dividers exactly as ST's Template_FSBL_LRUN (proven stable on this
-   * board): CPU = 1200/2 = 600MHz at SCALE1 nominal voltage, SYSCLK trio all
-   * from PLL1. PLL2/PLL4 stay ON above purely for Appli's peripheral kernels
-   * (IC17/DCMIPP uses PLL2). */
-  RCC_ClkInitStruct.IC1Selection.ClockSelection = RCC_ICCLKSOURCE_PLL1;
-  RCC_ClkInitStruct.IC1Selection.ClockDivider = 2;
-  RCC_ClkInitStruct.IC2Selection.ClockSelection = RCC_ICCLKSOURCE_PLL1;
-  RCC_ClkInitStruct.IC2Selection.ClockDivider = 3;
-  RCC_ClkInitStruct.IC6Selection.ClockSelection = RCC_ICCLKSOURCE_PLL1;
-  RCC_ClkInitStruct.IC6Selection.ClockDivider = 4;
-  RCC_ClkInitStruct.IC11Selection.ClockSelection = RCC_ICCLKSOURCE_PLL1;
-  RCC_ClkInitStruct.IC11Selection.ClockDivider = 3;
+	/** Initializes the CPU, AHB and APB buses clocks
+	 */
+	RCC_ClkInitStruct.ClockType	 = RCC_CLOCKTYPE_CPUCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2 | RCC_CLOCKTYPE_PCLK5 | RCC_CLOCKTYPE_PCLK4;
+	RCC_ClkInitStruct.CPUCLKSource	 = RCC_CPUCLKSOURCE_IC1;
+	RCC_ClkInitStruct.SYSCLKSource	 = RCC_SYSCLKSOURCE_IC2_IC6_IC11;
+	RCC_ClkInitStruct.AHBCLKDivider	 = RCC_HCLK_DIV2; /* template value */
+	RCC_ClkInitStruct.APB1CLKDivider = RCC_APB1_DIV1;
+	RCC_ClkInitStruct.APB2CLKDivider = RCC_APB2_DIV1;
+	RCC_ClkInitStruct.APB4CLKDivider = RCC_APB4_DIV1;
+	RCC_ClkInitStruct.APB5CLKDivider = RCC_APB5_DIV1;
+	/* IC dividers exactly as ST's Template_FSBL_LRUN (proven stable on this
+	 * board): CPU = 1200/2 = 600MHz at SCALE1 nominal voltage, SYSCLK trio all
+	 * from PLL1. PLL2/PLL4 stay ON above purely for Appli's peripheral kernels
+	 * (IC17/DCMIPP uses PLL2). */
+	RCC_ClkInitStruct.IC1Selection.ClockSelection  = RCC_ICCLKSOURCE_PLL1;
+	RCC_ClkInitStruct.IC1Selection.ClockDivider    = 2;
+	RCC_ClkInitStruct.IC2Selection.ClockSelection  = RCC_ICCLKSOURCE_PLL1;
+	RCC_ClkInitStruct.IC2Selection.ClockDivider    = 3;
+	RCC_ClkInitStruct.IC6Selection.ClockSelection  = RCC_ICCLKSOURCE_PLL1;
+	RCC_ClkInitStruct.IC6Selection.ClockDivider    = 4;
+	RCC_ClkInitStruct.IC11Selection.ClockSelection = RCC_ICCLKSOURCE_PLL1;
+	RCC_ClkInitStruct.IC11Selection.ClockDivider   = 3;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct) != HAL_OK)
-  {
-    Error_Handler();
-  }
+	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct) != HAL_OK)
+	{
+		Error_Handler();
+	}
 }
 
 /**
-  * @brief BSEC Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief BSEC Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_BSEC_Init(void)
 {
 
-  /* USER CODE BEGIN BSEC_Init 0 */
+	/* USER CODE BEGIN BSEC_Init 0 */
 
-  /* USER CODE END BSEC_Init 0 */
+	/* USER CODE END BSEC_Init 0 */
 
-  /* USER CODE BEGIN BSEC_Init 1 */
+	/* USER CODE BEGIN BSEC_Init 1 */
 
-  /* USER CODE END BSEC_Init 1 */
-  /* USER CODE BEGIN BSEC_Init 2 */
+	/* USER CODE END BSEC_Init 1 */
+	/* USER CODE BEGIN BSEC_Init 2 */
 
-  /* USER CODE END BSEC_Init 2 */
-
+	/* USER CODE END BSEC_Init 2 */
 }
 
 /**
-  * @brief XSPI2 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief XSPI2 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_XSPI2_Init(void)
 {
 
-  /* USER CODE BEGIN XSPI2_Init 0 */
+	/* USER CODE BEGIN XSPI2_Init 0 */
 
-  /* USER CODE END XSPI2_Init 0 */
+	/* USER CODE END XSPI2_Init 0 */
 
-  XSPIM_CfgTypeDef sXspiManagerCfg = {0};
+	XSPIM_CfgTypeDef sXspiManagerCfg = {0};
 
-  /* USER CODE BEGIN XSPI2_Init 1 */
+	/* USER CODE BEGIN XSPI2_Init 1 */
 
-  /* USER CODE END XSPI2_Init 1 */
-  /* XSPI2 parameter configuration*/
-  hxspi2.Instance = XSPI2;
-  hxspi2.Init.FifoThresholdByte = 4;
-  hxspi2.Init.MemoryMode = HAL_XSPI_SINGLE_MEM;
-  hxspi2.Init.MemoryType = HAL_XSPI_MEMTYPE_MACRONIX;
-  hxspi2.Init.MemorySize = HAL_XSPI_SIZE_32GB;
-  hxspi2.Init.ChipSelectHighTimeCycle = 2;
-  hxspi2.Init.FreeRunningClock = HAL_XSPI_FREERUNCLK_DISABLE;
-  hxspi2.Init.ClockMode = HAL_XSPI_CLOCK_MODE_0;
-  hxspi2.Init.WrapSize = HAL_XSPI_WRAP_NOT_SUPPORTED;
-  hxspi2.Init.ClockPrescaler = 0;
-  hxspi2.Init.SampleShifting = HAL_XSPI_SAMPLE_SHIFT_NONE;
-  hxspi2.Init.DelayHoldQuarterCycle = HAL_XSPI_DHQC_ENABLE;
-  hxspi2.Init.ChipSelectBoundary = HAL_XSPI_BONDARYOF_NONE;
-  hxspi2.Init.MaxTran = 0;
-  hxspi2.Init.Refresh = 0;
-  hxspi2.Init.MemorySelect = HAL_XSPI_CSSEL_NCS1;
-  if (HAL_XSPI_Init(&hxspi2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sXspiManagerCfg.nCSOverride = HAL_XSPI_CSSEL_OVR_NCS1;
-  sXspiManagerCfg.IOPort = HAL_XSPIM_IOPORT_2;
-  sXspiManagerCfg.Req2AckTime = 1;
-  if (HAL_XSPIM_Config(&hxspi2, &sXspiManagerCfg, HAL_XSPI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN XSPI2_Init 2 */
+	/* USER CODE END XSPI2_Init 1 */
+	/* XSPI2 parameter configuration*/
+	hxspi2.Instance			    = XSPI2;
+	hxspi2.Init.FifoThresholdByte	    = 4;
+	hxspi2.Init.MemoryMode		    = HAL_XSPI_SINGLE_MEM;
+	hxspi2.Init.MemoryType		    = HAL_XSPI_MEMTYPE_MACRONIX;
+	hxspi2.Init.MemorySize		    = HAL_XSPI_SIZE_32GB;
+	hxspi2.Init.ChipSelectHighTimeCycle = 2;
+	hxspi2.Init.FreeRunningClock	    = HAL_XSPI_FREERUNCLK_DISABLE;
+	hxspi2.Init.ClockMode		    = HAL_XSPI_CLOCK_MODE_0;
+	hxspi2.Init.WrapSize		    = HAL_XSPI_WRAP_NOT_SUPPORTED;
+	hxspi2.Init.ClockPrescaler	    = 0;
+	hxspi2.Init.SampleShifting	    = HAL_XSPI_SAMPLE_SHIFT_NONE;
+	hxspi2.Init.DelayHoldQuarterCycle   = HAL_XSPI_DHQC_ENABLE;
+	hxspi2.Init.ChipSelectBoundary	    = HAL_XSPI_BONDARYOF_NONE;
+	hxspi2.Init.MaxTran		    = 0;
+	hxspi2.Init.Refresh		    = 0;
+	hxspi2.Init.MemorySelect	    = HAL_XSPI_CSSEL_NCS1;
+	if (HAL_XSPI_Init(&hxspi2) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	sXspiManagerCfg.nCSOverride = HAL_XSPI_CSSEL_OVR_NCS1;
+	sXspiManagerCfg.IOPort	    = HAL_XSPIM_IOPORT_2;
+	sXspiManagerCfg.Req2AckTime = 1;
+	if (HAL_XSPIM_Config(&hxspi2, &sXspiManagerCfg, HAL_XSPI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	/* USER CODE BEGIN XSPI2_Init 2 */
 
-  /* USER CODE END XSPI2_Init 2 */
-
+	/* USER CODE END XSPI2_Init 2 */
 }
 
 /**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief GPIO Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_GPIO_Init(void)
 {
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-  /* USER CODE BEGIN MX_GPIO_Init_1 */
+	GPIO_InitTypeDef GPIO_InitStruct = {0};
+	/* USER CODE BEGIN MX_GPIO_Init_1 */
 
-  /* USER CODE END MX_GPIO_Init_1 */
+	/* USER CODE END MX_GPIO_Init_1 */
 
-  /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOC_CLK_ENABLE();
-  __HAL_RCC_GPIOH_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
-  __HAL_RCC_GPIOE_CLK_ENABLE();
-  __HAL_RCC_GPION_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
+	/* GPIO Ports Clock Enable */
+	__HAL_RCC_GPIOC_CLK_ENABLE();
+	__HAL_RCC_GPIOH_CLK_ENABLE();
+	__HAL_RCC_GPIOB_CLK_ENABLE();
+	__HAL_RCC_GPIOE_CLK_ENABLE();
+	__HAL_RCC_GPION_CLK_ENABLE();
+	__HAL_RCC_GPIOA_CLK_ENABLE();
 
-  /*Configure GPIO pin Output Level */
-  /* PB12 (EXT_SMPS_MODE) LOW = external SMPS at nominal 0.81V, matching the
-   * SCALE1 operating point now used in SystemClock_Config (ST's stable
-   * template config). HIGH (0.89V overdrive) was paired with the old
-   * SCALE0/800MHz point that hung randomly on this board. */
-  HAL_GPIO_WritePin(EXT_SMPS_MODE_GPIO_Port, EXT_SMPS_MODE_Pin, GPIO_PIN_RESET);
+	/*Configure GPIO pin Output Level */
+	/* PB12 (EXT_SMPS_MODE) LOW = external SMPS at nominal 0.81V, matching the
+	 * SCALE1 operating point now used in SystemClock_Config (ST's stable
+	 * template config). HIGH (0.89V overdrive) was paired with the old
+	 * SCALE0/800MHz point that hung randomly on this board. */
+	HAL_GPIO_WritePin(EXT_SMPS_MODE_GPIO_Port, EXT_SMPS_MODE_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : I2C1_SDA_Pin */
-  GPIO_InitStruct.Pin = I2C1_SDA_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF4_I2C1;
-  HAL_GPIO_Init(I2C1_SDA_GPIO_Port, &GPIO_InitStruct);
+	/*Configure GPIO pin : I2C1_SDA_Pin */
+	GPIO_InitStruct.Pin	  = I2C1_SDA_Pin;
+	GPIO_InitStruct.Mode	  = GPIO_MODE_AF_OD;
+	GPIO_InitStruct.Pull	  = GPIO_NOPULL;
+	GPIO_InitStruct.Speed	  = GPIO_SPEED_FREQ_LOW;
+	GPIO_InitStruct.Alternate = GPIO_AF4_I2C1;
+	HAL_GPIO_Init(I2C1_SDA_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : I2CA_SCL_Pin */
-  GPIO_InitStruct.Pin = I2CA_SCL_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF4_I2C1;
-  HAL_GPIO_Init(I2CA_SCL_GPIO_Port, &GPIO_InitStruct);
+	/*Configure GPIO pin : I2CA_SCL_Pin */
+	GPIO_InitStruct.Pin	  = I2CA_SCL_Pin;
+	GPIO_InitStruct.Mode	  = GPIO_MODE_AF_OD;
+	GPIO_InitStruct.Pull	  = GPIO_NOPULL;
+	GPIO_InitStruct.Speed	  = GPIO_SPEED_FREQ_LOW;
+	GPIO_InitStruct.Alternate = GPIO_AF4_I2C1;
+	HAL_GPIO_Init(I2CA_SCL_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : I2C2_SDA_Pin I2C2_SCL_Pin */
-  GPIO_InitStruct.Pin = I2C2_SDA_Pin|I2C2_SCL_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF4_I2C2;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+	/*Configure GPIO pins : I2C2_SDA_Pin I2C2_SCL_Pin */
+	GPIO_InitStruct.Pin	  = I2C2_SDA_Pin | I2C2_SCL_Pin;
+	GPIO_InitStruct.Mode	  = GPIO_MODE_AF_OD;
+	GPIO_InitStruct.Pull	  = GPIO_NOPULL;
+	GPIO_InitStruct.Speed	  = GPIO_SPEED_FREQ_LOW;
+	GPIO_InitStruct.Alternate = GPIO_AF4_I2C2;
+	HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : EXT_SMPS_MODE_Pin */
-  GPIO_InitStruct.Pin = EXT_SMPS_MODE_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(EXT_SMPS_MODE_GPIO_Port, &GPIO_InitStruct);
+	/*Configure GPIO pin : EXT_SMPS_MODE_Pin */
+	GPIO_InitStruct.Pin   = EXT_SMPS_MODE_Pin;
+	GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull  = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(EXT_SMPS_MODE_GPIO_Port, &GPIO_InitStruct);
 
-  /* USER CODE BEGIN MX_GPIO_Init_2 */
+	/* USER CODE BEGIN MX_GPIO_Init_2 */
 
-  /* USER CODE END MX_GPIO_Init_2 */
+	/* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
@@ -413,32 +407,31 @@ static void MX_GPIO_Init(void)
 /* USER CODE END 4 */
 
 /**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
+ * @brief  This function is executed in case of error occurrence.
+ * @retval None
+ */
 void Error_Handler(void)
 {
-  /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
-  while (1)
-  {
-  }
-  /* USER CODE END Error_Handler_Debug */
+	/* USER CODE BEGIN Error_Handler_Debug */
+	/* User can add his own implementation to report the HAL error return state */
+	__disable_irq();
+	while (1)
+	{
+	}
+	/* USER CODE END Error_Handler_Debug */
 }
 #ifdef USE_FULL_ASSERT
 /**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
+ * @brief  Reports the name of the source file and the source line number
+ *         where the assert_param error has occurred.
+ * @param  file: pointer to the source file name
+ * @param  line: assert_param error line source number
+ * @retval None
+ */
 void assert_failed(uint8_t *file, uint32_t line)
 {
-  /* USER CODE BEGIN 6 */
-  /* User can add his own implementation to report the file name and line number,
-  /* USER CODE END 6 */
+	/* USER CODE BEGIN 6 */
+	/* User can add his own implementation to report the file name and line number,
+	/* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
-

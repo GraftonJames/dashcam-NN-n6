@@ -27,6 +27,8 @@ extern "C"
 {
 #endif
 
+#define DUMMY_THREAD_STACK_SIZE 1024
+
 #if defined(__ICCARM__)
 #define CMSE_NS_CALL __cmse_nonsecure_call
 #define CMSE_NS_ENTRY __cmse_nonsecure_entry
@@ -37,17 +39,9 @@ extern "C"
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32n6xx_hal.h"
-
 #include "stm32n6xx_nucleo.h"
 #include <stdio.h>
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
-
-/* Exported types ------------------------------------------------------------*/
-/* Function pointer declaration in non-secure*/
 #if defined(__ICCARM__)
 	typedef void(CMSE_NS_CALL *funcptr)(void);
 #else
