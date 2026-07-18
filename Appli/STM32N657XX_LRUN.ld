@@ -240,6 +240,11 @@ SECTIONS
     . = ALIGN(8);
   } >RAM
 
+  /* ThreadX's GNU port (tx_initialize_low_level.S) expects these exact names;
+   * alias them to our existing equivalents rather than renaming our own. */
+  PROVIDE(_vectors = g_pfnVectors);
+  PROVIDE(__RAM_segment_used_end__ = _end);
+
   /* Remove information from the compiler libraries */
   /DISCARD/ :
   {

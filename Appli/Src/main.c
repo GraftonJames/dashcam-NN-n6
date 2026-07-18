@@ -20,6 +20,7 @@
 #include "main.h"
 
 #include "camera.h"
+#include "tx_api.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -68,7 +69,7 @@ static TX_THREAD dummy_thread;
 static uint8_t	 dummy_thread_stack[DUMMY_THREAD_STACK_SIZE];
 
 // tx threads
-static void dummy_thread_entry(uint32_t initial_input)
+static void dummy_thread_entry(ULONG initial_input)
 {
 	uint32_t counter = 0;
 	(void)initial_input;
@@ -78,6 +79,13 @@ static void dummy_thread_entry(uint32_t initial_input)
 		printf("dummy_thread: alive, counter=%lu\r\n", (unsigned long)counter++);
 		tx_thread_sleep(20);
 	}
+}
+void tx_application_define(void *first_unused_memory)
+{
+	(void)first_unused_memory;
+	tx_thread_create(&dummy_thread, "dummy_thread", dummy_thread_entry, 0,
+			 dummy_thread_stack, DUMMY_THREAD_STACK_SIZE,
+			 16, 16, TX_NO_TIME_SLICE, TX_AUTO_START);
 }
 /**
  * @brief  The application entry point.
@@ -142,6 +150,12 @@ int main(void)
 		Error_Handler();
 	}
 
+	/* Force stdout fully UNBUFFERED. By default newlib(-nano) fully buffers stdout
+	 * (~1KB), so a hang leaves up to ~1KB of already-"printed" trace stuck in the
+	 * buffer, making the last visible line ~1KB BEHIND the real point of failure.
+	 * Unbuffered => the last byte you see is the last byte the CPU actually ran. */
+	setvbuf(stdout, NULL, _IONBF, 0);
+
 	BSP_LED_Init(LED_GREEN);
 	BSP_LED_Init(LED_RED);
 	BSP_LED_Init(LED_BLUE);
@@ -149,15 +163,13 @@ int main(void)
 
 	printf("Appli: booting, SystemCoreClock=%lu\r\n", (unsigned long)SystemCoreClock);
 
+	BSP_LED_On(LED_RED); /* DIAG checkpoint: reached here => printf call returned */
+
 	if (CAMERA_init() != HAL_OK)
 	{
 		Error_Handler();
 	}
 	BSP_LED_On(LED_BLUE); /* camera initialized */
-	(void)first_unused_memory;
-	tx_thread_create(&dummy_thread, "dummy_thread", dummy_thread_entry, 0,
-			 dummy_thread_stack, DUMMY_THREAD_STACK_SIZE,
-			 16, 16, TX_NO_TIME_SLICE, TX_AUTO_START);
 
 	tx_kernel_enter();
 }
@@ -399,9 +411,20 @@ static void MX_GPIO_Init(void)
 	/* USER CODE END MX_GPIO_Init_2 */
 }
 
-void tx_application_define(void *first_unused_memory)
+/**
+ * @brief  Period elapsed callback in non blocking mode
+ * @note   This function is called when TIM6 interrupt takes place, inside
+ *         HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to
+ *         increment a global variable "uwTick" used as application time base.
+ * @param  htim : TIM handle
+ * @retval None
+ */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	void *memory_ptr = first_unused_memory;
+	if (htim->Instance == TIM6)
+	{
+		HAL_IncTick();
+	}
 }
 
 /**

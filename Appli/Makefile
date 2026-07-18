@@ -62,6 +62,9 @@ $(HAL_C_SOURCE_PREF)_uart_ex.c \
 $(HAL_C_SOURCE_PREF)_cortex.c \
 $(HAL_C_SOURCE_PREF)_i2c.c \
 $(HAL_C_SOURCE_PREF)_i2c_ex.c \
+$(HAL_C_SOURCE_PREF)_tim.c \
+$(HAL_C_SOURCE_PREF)_tim_ex.c \
+Src/stm32n6xx_hal_timebase_tim.c \
 ../Drivers/cmw_camera/cmw_camera.c \
 ../Drivers/cmw_camera/cmw_utils.c \
 ../Drivers/ISP/isp/Src/isp_core.c \
@@ -73,12 +76,17 @@ $(HAL_C_SOURCE_PREF)_i2c_ex.c \
 ../Drivers/cmw_camera/sensors/imx335/imx335.c \
 ../Drivers/cmw_camera/sensors/imx335/imx335_reg.c
 
+# ThreadX sources (Phase 1: RTOS coexistence)
+THREADX_DIR = ../Drivers/threadx
+C_SOURCES += $(wildcard $(THREADX_DIR)/common/src/*.c)
+C_SOURCES += $(wildcard $(THREADX_DIR)/ports/cortex_m55/gnu/src/*.c)
+
 # ASM sources
 ASM_SOURCES =  \
 startup_stm32n657xx.s
 
 # ASMM sources
-ASMM_SOURCES = 
+ASMM_SOURCES = $(wildcard $(THREADX_DIR)/ports/cortex_m55/gnu/src/*.S)
 
 
 
@@ -125,7 +133,8 @@ AS_DEFS =
 C_DEFS =  \
 -DUSE_HAL_DRIVER \
 -DSTM32N657xx \
--DUSE_FULL_LL_DRIVER
+-DUSE_FULL_LL_DRIVER \
+-DTX_INCLUDE_USER_DEFINE_FILE
 
 
 # AS includes
@@ -143,7 +152,9 @@ C_INCLUDES =  \
 -I../Drivers/cmw_camera \
 -I../Drivers/cmw_camera/sensors \
 -I../Drivers/cmw_camera/sensors/imx335 \
--I../Drivers/ISP/isp/Inc
+-I../Drivers/ISP/isp/Inc \
+-I../Drivers/threadx/common/inc \
+-I../Drivers/threadx/ports/cortex_m55/gnu/inc
 
 
 # compile gcc flags

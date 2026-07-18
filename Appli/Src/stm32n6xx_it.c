@@ -47,6 +47,7 @@
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN PFP */
 static void TRACE_FaultSafe(const char *handlerName);
+extern TIM_HandleTypeDef htim6;
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -235,5 +236,14 @@ void DebugMon_Handler(void)
 /******************************************************************************/
 
 /* USER CODE BEGIN 1 */
+
+/**
+ * @brief This function handles TIM6 global interrupt (HAL timebase tick,
+ *        used instead of SysTick since ThreadX owns SysTick).
+ */
+void TIM6_IRQHandler(void)
+{
+	HAL_TIM_IRQHandler(&htim6);
+}
 
 /* USER CODE END 1 */
