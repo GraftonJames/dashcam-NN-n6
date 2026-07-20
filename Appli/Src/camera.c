@@ -19,7 +19,36 @@ HAL_StatusTypeDef DCMIPP_initNN()
 	dcmipp_conf.mode	  = CMW_ASPECT_RATIO;
 
 	uint32_t pitch; /* out-param: filled in by CMW_CAMERA_SetPipeConfig */
-	HAL_TRY(CMW_CAMERA_SetPipeConfig(DCMIPP_PIPE1, &dcmipp_conf, &pitch));
+	/* PIPE2 (Ancillary): was incorrectly PIPE1 (colliding with Display) before
+	 * Phase 3. Fixed, but this function is not currently called - NN stays
+	 * disabled while VENC is being brought up, to isolate risk (Phase 3 plan). */
+	HAL_TRY(CMW_CAMERA_SetPipeConfig(DCMIPP_PIPE2, &dcmipp_conf, &pitch));
+
+	return HAL_OK;
+}
+
+HAL_StatusTypeDef DCMIPP_initVenc()
+{
+	HAL_StatusTypeDef ret;
+	CMW_DCMIPP_Conf_t dcmipp_conf = {0};
+
+	dcmipp_conf.output_width  = VENC_WIDTH;
+	dcmipp_conf.output_height = VENC_HEIGHT;
+	dcmipp_conf.output_format = DCMIPP_PIXEL_PACKER_FORMAT_YUV422_1;
+	dcmipp_conf.output_bpp	  = 2;
+	dcmipp_conf.mode	  = CMW_ASPECT_RATIO;
+
+	uint32_t pitch;
+	/* PIPE0 (Dump): third DCMIPP pipe, free now that NN is disabled for this
+	 * phase. VENC (Frame mode, not the HW-handshake/Slice mode) just reads
+	 * complete captured frames, so this is the same SetPipeConfig path
+	 * Display/NN already use successfully - no raw HAL_DCMIPP_* calls needed. */
+	HAL_TRY(CMW_CAMERA_SetPipeConfig(DCMIPP_PIPE0, &dcmipp_conf, &pitch));
+
+#ifndef NDEBUG
+	if (VENC_WIDTH * dcmipp_conf.output_bpp != pitch)
+		return HAL_ERROR;
+#endif
 
 	return HAL_OK;
 }
@@ -81,8 +110,10 @@ HAL_StatusTypeDef CAMERA_init()
 
 	printf("CAMERA_init: calling DCMIPP_initDisplay\r\n");
 	HAL_TRY(DCMIPP_initDisplay());
-	printf("CAMERA_init: calling DCMIPP_initNN\r\n");
-	HAL_TRY(DCMIPP_initNN());
+	/* DCMIPP_initNN() deliberately not called: NN stays disabled while VENC is
+	 * brought up on Phase 3's third pipe, to isolate risk (Phase 3 plan). */
+	printf("CAMERA_init: calling DCMIPP_initVenc\r\n");
+	HAL_TRY(DCMIPP_initVenc());
 	printf("CAMERA_init: done\r\n");
 
 	return HAL_OK;

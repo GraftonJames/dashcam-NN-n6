@@ -44,6 +44,7 @@ Src/stm32n6xx_hal_msp.c \
 Src/secure_nsc.c \
 Src/system_stm32n6xx_s.c \
 ../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo.c \
+../Drivers/BSP/STM32N6xx_Nucleo/stm32n6xx_nucleo_usbpd_pwr.c \
 ../Drivers/stm32n6xx_nucleo_bus.c \
 Src/sysmem.c \
 Src/syscalls.c \
@@ -64,6 +65,8 @@ $(HAL_C_SOURCE_PREF)_i2c.c \
 $(HAL_C_SOURCE_PREF)_i2c_ex.c \
 $(HAL_C_SOURCE_PREF)_tim.c \
 $(HAL_C_SOURCE_PREF)_tim_ex.c \
+$(HAL_C_SOURCE_PREF)_adc.c \
+$(HAL_C_SOURCE_PREF)_adc_ex.c \
 Src/stm32n6xx_hal_timebase_tim.c \
 ../Drivers/cmw_camera/cmw_camera.c \
 ../Drivers/cmw_camera/cmw_utils.c \
@@ -81,12 +84,38 @@ THREADX_DIR = ../Drivers/threadx
 C_SOURCES += $(wildcard $(THREADX_DIR)/common/src/*.c)
 C_SOURCES += $(wildcard $(THREADX_DIR)/ports/cortex_m55/gnu/src/*.c)
 
+# USBPD sources (Phase 2: PD negotiation half)
+USBPD_LIB_DIR = ../Drivers/STM32_USBPD_Library
+C_SOURCES += $(wildcard $(USBPD_LIB_DIR)/Devices/STM32N6XX/src/*.c)
+C_SOURCES += $(wildcard USBPD/App/*.c)
+C_SOURCES += $(wildcard USBPD/Target/*.c)
+C_SOURCES += ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_ll_dma.c
+C_SOURCES += ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_ll_ucpd.c
+C_SOURCES += ../Drivers/STM32_USBPD_Library/Core/src/usbpd_trace.c
+C_SOURCES += ../Drivers/BSP/Components/tcpp0203/tcpp0203.c
+C_SOURCES += ../Drivers/BSP/Components/tcpp0203/tcpp0203_reg.c
+
+# VENC H264 encoder sources (Phase 3: DCMIPP capture + VENC encode)
+C_SOURCES += Src/venc_h264_config.c
+C_SOURCES += Src/venc_app.c
+C_SOURCES += ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_ll_venc.c
+C_SOURCES += ../Drivers/VideoEncoder_EWL/ewl_impl.c
+VENC_LIB_SOURCES := $(wildcard ../Drivers/VideoEncoder/source/h264/*.c) $(wildcard ../Drivers/VideoEncoder/source/common/*.c)
+C_SOURCES += $(VENC_LIB_SOURCES)
+
 # ASM sources
 ASM_SOURCES =  \
 startup_stm32n657xx.s
 
 # ASMM sources
-ASMM_SOURCES = $(wildcard $(THREADX_DIR)/ports/cortex_m55/gnu/src/*.S)
+# tx_initialize_low_level.S is excluded from the vendored wildcard: we use our
+# own board-adapted copy in Src/ instead (wrong hardcoded clock + vector symbol
+# name in the vendored original - see Src/tx_initialize_low_level_appli.S for
+# why). It's renamed (not just re-pathed) because vpath resolves bare filenames
+# by flat directory search, so a same-named file still sitting in the vendored
+# directory would shadow ours regardless of what's in this source list.
+ASMM_SOURCES = $(filter-out %/tx_initialize_low_level.S,$(wildcard $(THREADX_DIR)/ports/cortex_m55/gnu/src/*.S))
+ASMM_SOURCES += Src/tx_initialize_low_level_appli.S
 
 
 
@@ -134,7 +163,19 @@ C_DEFS =  \
 -DUSE_HAL_DRIVER \
 -DSTM32N657xx \
 -DUSE_FULL_LL_DRIVER \
--DTX_INCLUDE_USER_DEFINE_FILE
+-DTX_INCLUDE_USER_DEFINE_FILE \
+-DTX_SINGLE_MODE_SECURE \
+-DUSBPD_PORT_COUNT=1 \
+-DTCPP0203_SUPPORT \
+-D_SNK \
+-DUSBPD_THREADX \
+-DUSBPDCORE_LIB_PD3_FULL \
+-DUSBPD_TRUE=1U \
+-DUSBPD_FALSE=0U
+# stm32n6xx_nucleo_usbpd_pwr.c (vendored, can't edit) only reaches these via an
+# #if defined(_TRACE) include chain. Deliberately NOT defining _TRACE: ST's own
+# TRACER_EMB utility claims USART1 as its own dedicated trace channel, which is
+# the exact peripheral our COM1 printf/TRACE_RawPutChar already depend on.
 
 
 # AS includes
@@ -154,13 +195,26 @@ C_INCLUDES =  \
 -I../Drivers/cmw_camera/sensors/imx335 \
 -I../Drivers/ISP/isp/Inc \
 -I../Drivers/threadx/common/inc \
--I../Drivers/threadx/ports/cortex_m55/gnu/inc
+-I../Drivers/threadx/ports/cortex_m55/gnu/inc \
+-I../Drivers/STM32_USBPD_Library/Core/inc \
+-I../Drivers/STM32_USBPD_Library/Devices/STM32N6XX/inc \
+-IUSBPD/App \
+-IUSBPD/Target \
+-I../Drivers/BSP/Components/tcpp0203 \
+-I../Drivers/VideoEncoder/inc \
+-I../Drivers/VideoEncoder/source/common \
+-I../Drivers/VideoEncoder/source/h264 \
+-I../Drivers/VideoEncoder_EWL
 
 
 # compile gcc flags
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 
-CFLAGS += $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
+# -std=gnu17: this GCC (16.x) defaults to C23, where bool/true/false are
+# reserved keywords. VideoEncoder/inc/basetype.h (vendored, Phase 3) defines
+# its own `typedef enum {false, true} bool;` predating that change - pin back
+# to gnu17 project-wide rather than edit the vendor header.
+CFLAGS += $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -std=gnu17 -Wall -fdata-sections -ffunction-sections
 
 ifeq ($(DEBUG), 1)
 CFLAGS += -g -gdwarf-2
@@ -178,8 +232,10 @@ CFLAGS += -mcmse -MMD -MP -MF"$(@:%.o=%.d)"
 LDSCRIPT = STM32N657XX_LRUN.ld
 
 # libraries
-LIBS = -lc -lm -lnosys 
-LIBDIR = 
+# USBPDCORE_PD3_FULL_CM55_wc32.a: precompiled PD protocol core (ST doesn't ship
+# this as source) - matches TX_SINGLE_MODE_SECURE + the SNK/full-PD3 defines above.
+LIBS = -lc -lm -lnosys ../Drivers/STM32_USBPD_Library/Core/lib/USBPDCORE_PD3_FULL_CM55_wc32.a
+LIBDIR =
 LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections -Wl,--cmse-implib -Wl,--out-implib=./build/secure_nsclib.o
 
 # default action: build all
@@ -198,7 +254,27 @@ vpath %.s $(sort $(dir $(ASM_SOURCES)))
 OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(ASMM_SOURCES:.S=.o)))
 vpath %.S $(sort $(dir $(ASMM_SOURCES)))
 
-$(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR) 
+# venc_app.c reaches both camera.h's ISP chain (isp_core.h unconditionally
+# includes <stdbool.h>) and VideoEncoder's basetype.h (defines its own
+# `typedef enum {false=0,true=1} bool;`) in one translation unit. Since
+# stdbool.h is hit first, its bool/true/false macros get substituted into
+# basetype.h's typedef, producing invalid syntax. Pre-defining stdbool.h's
+# include guard suppresses that; safe here because nothing in the ISP/camera
+# headers venc_app.c pulls in actually uses `bool` as a type (isp_services.h
+# does, but it's never included via this path).
+$(BUILD_DIR)/venc_app.o: CFLAGS += -D_STDBOOL_H
+
+# The vendored H264 encoder library assumes int32_t == int (true on the
+# toolchain it was built/tested against). On this target (arm-none-eabi
+# newlib), int32_t is `long int` - a distinct type from `int` despite being
+# the same width/representation - so its own internal mixing of plain `int`
+# arrays with `i32` (=int32_t) pointers trips GCC 14+'s default-to-error
+# incompatible-pointer-types check. Demote back to a warning, scoped to just
+# these vendored files: the values are correct at runtime, only the nominal
+# typing differs.
+$(addprefix $(BUILD_DIR)/,$(notdir $(VENC_LIB_SOURCES:.c=.o))): CFLAGS += -Wno-error=incompatible-pointer-types
+
+$(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR)
 	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
 
 $(BUILD_DIR)/%.o: %.s Makefile | $(BUILD_DIR)

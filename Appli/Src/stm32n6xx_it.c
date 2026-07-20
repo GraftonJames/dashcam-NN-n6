@@ -22,6 +22,8 @@
 #include "main.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "usbpd_hw_if.h"
+#include "stm32n6xx_nucleo_usbpd_pwr.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -245,5 +247,33 @@ void TIM6_IRQHandler(void)
 {
 	HAL_TIM_IRQHandler(&htim6);
 }
+
+/**
+ * @brief This function handles UCPD1 global interrupt.
+ * @note  Without this, UCPD1_IRQn (armed by MX_UCPD1_Init()) falls through to
+ *        the default weak handler - a silent infinite loop - the moment a
+ *        real Type-C CC event fires. Same failure class as the July 2026
+ *        unhandled-EXTI hang.
+ */
+void UCPD1_IRQHandler(void)
+{
+	USBPD_PORT0_IRQHandler();
+}
+
+#if defined(TCPP0203_SUPPORT)
+/**
+ * @brief This function handles the TCPP0203's FLG/alert line (PD2 -> EXTI2
+ *        on this board; TCPP0203_PORT0_FLG_EXTI_IRQHANDLER expands to
+ *        EXTI2_IRQHandler via stm32n6xx_nucleo_usbpd_pwr.h).
+ */
+void TCPP0203_PORT0_FLG_EXTI_IRQHANDLER(void)
+{
+	if (TCPP0203_PORT0_FLG_EXTI_IS_ACTIVE_FLAG() != RESET)
+	{
+		BSP_USBPD_PWR_EventCallback(USBPD_PWR_TYPE_C_PORT_1);
+		TCPP0203_PORT0_FLG_EXTI_CLEAR_FLAG();
+	}
+}
+#endif /* TCPP0203_SUPPORT */
 
 /* USER CODE END 1 */

@@ -7,5 +7,6 @@
 #include "stm32n6xx_hal.h"
 
 HAL_StatusTypeDef CAMERA_init(void);
+HAL_StatusTypeDef DCMIPP_initVenc(void);
 
 #endif

@@ -39,7 +39,10 @@ ENTRY(Reset_Handler)
 MEMORY
 {
   ROM    (xrw)    : ORIGIN = 0x34000400,   LENGTH = 511K
-  RAM    (xrw)    : ORIGIN = 0x34080000,   LENGTH = 1536K
+  /* Grown from 1536K into SRAM3-6 (448K x4 = 1792K) for Phase 3's noncacheable
+   * DCMIPP/VENC buffers. SRAM3-6 was unused headroom before this - already
+   * RAMCFG-initialized by MX_RAMCFG_Init() in main.c, just never mapped here. */
+  RAM    (xrw)    : ORIGIN = 0x34080000,   LENGTH = 3328K
 }
 /* Highest address of the user mode stack */
 _estack = ORIGIN(RAM) + LENGTH(RAM); /* end of "RAM" Ram type memory */
@@ -180,7 +183,7 @@ SECTIONS
   PROVIDE( __data_source_size = __data_source_end - __data_source );
 
 
-  .noncacheable :
+  .noncacheable (NOLOAD) :
   {
     . = ALIGN(8);
     __snoncacheable = .;/* create symbol for start of section */
@@ -240,9 +243,9 @@ SECTIONS
     . = ALIGN(8);
   } >RAM
 
-  /* ThreadX's GNU port (tx_initialize_low_level.S) expects these exact names;
-   * alias them to our existing equivalents rather than renaming our own. */
-  PROVIDE(_vectors = g_pfnVectors);
+  /* Our own Appli/Src/tx_initialize_low_level.S (adapted from ThreadX's vendored
+   * GNU port) uses g_pfnVectors directly, so no _vectors alias is needed. It
+   * still expects __RAM_segment_used_end__; alias it to our existing symbol. */
   PROVIDE(__RAM_segment_used_end__ = _end);
 
   /* Remove information from the compiler libraries */

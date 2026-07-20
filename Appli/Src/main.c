@@ -21,6 +21,12 @@
 
 #include "camera.h"
 #include "tx_api.h"
+#include "usbpd.h"
+#include "stm32n6xx_ll_bus.h"
+#include "stm32n6xx_ll_dma.h"
+#include "stm32n6xx_ll_venc.h"
+
+void VENC_APP_ThreadCreate(void); /* venc_app.c */
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -34,6 +40,8 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
+#define USBPD_DEVICE_APP_MEM_POOL_SIZE 5000
 
 /* USER CODE END PD */
 
@@ -63,29 +71,49 @@ static void MX_GPIO_Init(void);
 static void MX_CACHEAXI_Init(void);
 static void MX_LPUART1_UART_Init(void);
 static void MX_RAMCFG_Init(void);
+static void MX_UCPD1_Init(void);
 static void SystemIsolation_Config(void);
+static void MPU_Config(void);
 
-static TX_THREAD dummy_thread;
-static uint8_t	 dummy_thread_stack[DUMMY_THREAD_STACK_SIZE];
+static TX_BYTE_POOL usbpd_app_byte_pool;
+static UCHAR	    usbpd_byte_pool_buffer[USBPD_DEVICE_APP_MEM_POOL_SIZE];
 
-// tx threads
-static void dummy_thread_entry(ULONG initial_input)
+static TX_THREAD heartbeat_thread;
+static uint8_t	 heartbeat_thread_stack[HEARTBEAT_THREAD_STACK_SIZE];
+
+static void heartbeat_thread_entry(ULONG initial_input)
 {
-	uint32_t counter = 0;
 	(void)initial_input;
 	while (1)
 	{
 		BSP_LED_Toggle(LED_RED);
-		printf("dummy_thread: alive, counter=%lu\r\n", (unsigned long)counter++);
 		tx_thread_sleep(20);
 	}
 }
+
 void tx_application_define(void *first_unused_memory)
 {
 	(void)first_unused_memory;
-	tx_thread_create(&dummy_thread, "dummy_thread", dummy_thread_entry, 0,
-			 dummy_thread_stack, DUMMY_THREAD_STACK_SIZE,
+	printf("DIAG: tx_application_define() STARTED\r\n");
+	tx_thread_create(&heartbeat_thread, "heartbeat_thread", heartbeat_thread_entry, 0,
+			 heartbeat_thread_stack, HEARTBEAT_THREAD_STACK_SIZE,
 			 16, 16, TX_NO_TIME_SLICE, TX_AUTO_START);
+
+	if (tx_byte_pool_create(&usbpd_app_byte_pool, "USBPD App memory pool",
+				 usbpd_byte_pool_buffer, USBPD_DEVICE_APP_MEM_POOL_SIZE) != TX_SUCCESS)
+	{
+		Error_Handler();
+	}
+	printf("DIAG: usbpd_app_byte_pool created, calling MX_USBPD_Init()\r\n");
+	if (MX_USBPD_Init(&usbpd_app_byte_pool) != USBPD_OK)
+	{
+		printf("DIAG: MX_USBPD_Init() FAILED\r\n");
+		Error_Handler();
+	}
+	printf("DIAG: MX_USBPD_Init() OK\r\n");
+
+	VENC_APP_ThreadCreate();
+	printf("DIAG: VENC_APP_ThreadCreate() done, tx_application_define() returning\r\n");
 }
 /**
  * @brief  The application entry point.
@@ -100,11 +128,15 @@ int main(void)
 	 * registers (matches ST's Template_FSBL_LRUN Appli). */
 	SystemCoreClockUpdate();
 
-	/* Enable CPU caches, as ST's template Appli does first thing (it also sets
-	 * an MPU non-cacheable region over the linker's .noncacheable section - ours
-	 * is currently EMPTY so that region is skipped here; it MUST be added when
-	 * camera/DMA frame buffers are placed in .noncacheable, or D-cache will
-	 * serve stale data for DMA-written memory). */
+	/* MPU non-cacheable region over the linker's .noncacheable section, BEFORE
+	 * enabling caches. Phase 3 places DCMIPP capture buffers and VENC's
+	 * encoder pool there (see camera.c / venc_h264_config.c) - without this,
+	 * D-cache would silently serve stale data for DMA-written memory instead
+	 * of a crash, which looks exactly like a video/encoder bug, not a cache
+	 * bug (flagged as the single highest-severity item in the Phase 3 plan). */
+	MPU_Config();
+
+	/* Enable CPU caches, as ST's template Appli does first thing. */
 	SCB_EnableICache();
 	SCB_EnableDCache();
 
@@ -136,6 +168,7 @@ int main(void)
 	MX_CACHEAXI_Init();
 	MX_LPUART1_UART_Init();
 	MX_RAMCFG_Init();
+	MX_UCPD1_Init();
 	SystemIsolation_Config();
 	/* USER CODE BEGIN 2 */
 
@@ -170,6 +203,20 @@ int main(void)
 		Error_Handler();
 	}
 	BSP_LED_On(LED_BLUE); /* camera initialized */
+
+	/* VENC peripheral clock/VENCRAM bring-up (Phase 3). Self-contained, no
+	 * separate clock-enable call needed. */
+	LL_VENC_Init();
+
+	/* USBPD HW global init + DPM core init - must run before the scheduler
+	 * starts, same as ST's own USBPD_SNK reference. */
+	printf("DIAG: about to call USBPD_PreInitOs()\r\n");
+	if (USBPD_PreInitOs() != USBPD_OK)
+	{
+		printf("DIAG: USBPD_PreInitOs() FAILED\r\n");
+		Error_Handler();
+	}
+	printf("DIAG: USBPD_PreInitOs() OK\r\n");
 
 	tx_kernel_enter();
 }
@@ -332,6 +379,121 @@ static void MX_RAMCFG_Init(void)
 }
 
 /**
+ * @brief  Configure the MPU non-cacheable region over the linker's
+ *         .noncacheable section (Phase 3: DCMIPP capture buffers + VENC's
+ *         encoder pool live there). Uses __snoncacheable/__enoncacheable,
+ *         our own linker-defined symbols - not VENC_USB's reference
+ *         __NON_CACHEABLE_SECTION_BEGIN/END, which don't resolve under our
+ *         GNU toolchain (they appear to be an ARMCLANG scatter-file symbol).
+ */
+static void MPU_Config(void)
+{
+	extern uint32_t __snoncacheable;
+	extern uint32_t __enoncacheable;
+
+	MPU_Region_InitTypeDef	    region_config = {0};
+	MPU_Attributes_InitTypeDef attr_config   = {0};
+	uint32_t		    primask_bit	  = __get_PRIMASK();
+
+	__disable_irq();
+
+	HAL_MPU_Disable();
+
+	attr_config.Attributes = INNER_OUTER(MPU_NOT_CACHEABLE);
+	attr_config.Number	= MPU_ATTRIBUTES_NUMBER0;
+	HAL_MPU_ConfigMemoryAttributes(&attr_config);
+
+	region_config.Enable		= MPU_REGION_ENABLE;
+	region_config.Number		= MPU_REGION_NUMBER0;
+	region_config.BaseAddress	= (uint32_t)&__snoncacheable;
+	region_config.LimitAddress	= (uint32_t)&__enoncacheable;
+	region_config.DisableExec	= MPU_INSTRUCTION_ACCESS_ENABLE;
+	region_config.AccessPermission = MPU_REGION_ALL_RW;
+	region_config.IsShareable	= MPU_ACCESS_NOT_SHAREABLE;
+	region_config.AttributesIndex	= MPU_ATTRIBUTES_NUMBER0;
+	HAL_MPU_ConfigRegion(&region_config);
+
+	HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
+
+	__set_PRIMASK(primask_bit);
+}
+
+/**
+ * @brief UCPD1 Initialization Function
+ * @param None
+ * @retval None
+ * @note   No GPIO pin config here: UCPD1's CC1/CC2 lines are dedicated analog
+ *         pins, not part of the normal GPIO AF mux. Just clock, the two
+ *         GPDMA1 channels UCPD1 uses for byte-level PD message TX/RX, and
+ *         the IRQ.
+ */
+static void MX_UCPD1_Init(void)
+{
+	LL_DMA_InitTypeDef DMA_InitStruct = {0};
+
+	/* Peripheral clock enable */
+	LL_APB1_GRP2_EnableClock(LL_APB1_GRP2_PERIPH_UCPD1);
+
+	/* GPDMA1_REQUEST_UCPD1_RX Init */
+	DMA_InitStruct.SrcAddress	    = 0x00000000U;
+	DMA_InitStruct.DestAddress	    = 0x00000000U;
+	DMA_InitStruct.Direction	    = LL_DMA_DIRECTION_PERIPH_TO_MEMORY;
+	DMA_InitStruct.BlkHWRequest	    = LL_DMA_HWREQUEST_SINGLEBURST;
+	DMA_InitStruct.DataAlignment	    = LL_DMA_DATA_ALIGN_ZEROPADD;
+	DMA_InitStruct.SrcBurstLength	    = 1;
+	DMA_InitStruct.DestBurstLength	    = 1;
+	DMA_InitStruct.SrcDataWidth	    = LL_DMA_SRC_DATAWIDTH_BYTE;
+	DMA_InitStruct.DestDataWidth	    = LL_DMA_DEST_DATAWIDTH_BYTE;
+	DMA_InitStruct.SrcIncMode	    = LL_DMA_SRC_FIXED;
+	DMA_InitStruct.DestIncMode	    = LL_DMA_DEST_INCREMENT;
+	DMA_InitStruct.Priority	    = LL_DMA_LOW_PRIORITY_LOW_WEIGHT;
+	DMA_InitStruct.BlkDataLength	    = 0x00000000U;
+	DMA_InitStruct.TriggerMode	    = LL_DMA_TRIGM_BLK_TRANSFER;
+	DMA_InitStruct.TriggerPolarity	    = LL_DMA_TRIG_POLARITY_MASKED;
+	DMA_InitStruct.TriggerSelection    = 0x00000000U;
+	DMA_InitStruct.Request		    = LL_GPDMA1_REQUEST_UCPD1_RX;
+	DMA_InitStruct.TransferEventMode   = LL_DMA_TCEM_BLK_TRANSFER;
+	DMA_InitStruct.SrcAllocatedPort    = LL_DMA_SRC_ALLOCATED_PORT0;
+	DMA_InitStruct.DestAllocatedPort   = LL_DMA_DEST_ALLOCATED_PORT0;
+	DMA_InitStruct.LinkAllocatedPort   = LL_DMA_LINK_ALLOCATED_PORT1;
+	DMA_InitStruct.LinkStepMode	    = LL_DMA_LSM_FULL_EXECUTION;
+	DMA_InitStruct.LinkedListBaseAddr  = 0x00000000U;
+	DMA_InitStruct.LinkedListAddrOffset = 0x00000000U;
+	LL_DMA_Init(GPDMA1, LL_DMA_CHANNEL_3, &DMA_InitStruct);
+
+	/* GPDMA1_REQUEST_UCPD1_TX Init */
+	DMA_InitStruct.SrcAddress	  = 0x00000000U;
+	DMA_InitStruct.DestAddress	  = 0x00000000U;
+	DMA_InitStruct.Direction	  = LL_DMA_DIRECTION_MEMORY_TO_PERIPH;
+	DMA_InitStruct.BlkHWRequest	  = LL_DMA_HWREQUEST_SINGLEBURST;
+	DMA_InitStruct.DataAlignment	  = LL_DMA_DATA_ALIGN_ZEROPADD;
+	DMA_InitStruct.SrcBurstLength	  = 1;
+	DMA_InitStruct.DestBurstLength	  = 1;
+	DMA_InitStruct.SrcDataWidth	  = LL_DMA_SRC_DATAWIDTH_BYTE;
+	DMA_InitStruct.DestDataWidth	  = LL_DMA_DEST_DATAWIDTH_BYTE;
+	DMA_InitStruct.SrcIncMode	  = LL_DMA_SRC_INCREMENT;
+	DMA_InitStruct.DestIncMode	  = LL_DMA_DEST_FIXED;
+	DMA_InitStruct.Priority	  = LL_DMA_LOW_PRIORITY_LOW_WEIGHT;
+	DMA_InitStruct.BlkDataLength	  = 0x00000000U;
+	DMA_InitStruct.TriggerMode	  = LL_DMA_TRIGM_BLK_TRANSFER;
+	DMA_InitStruct.TriggerPolarity	  = LL_DMA_TRIG_POLARITY_MASKED;
+	DMA_InitStruct.TriggerSelection  = 0x00000000U;
+	DMA_InitStruct.Request		  = LL_GPDMA1_REQUEST_UCPD1_TX;
+	DMA_InitStruct.TransferEventMode = LL_DMA_TCEM_BLK_TRANSFER;
+	DMA_InitStruct.SrcAllocatedPort  = LL_DMA_SRC_ALLOCATED_PORT0;
+	DMA_InitStruct.DestAllocatedPort = LL_DMA_DEST_ALLOCATED_PORT0;
+	DMA_InitStruct.LinkAllocatedPort = LL_DMA_LINK_ALLOCATED_PORT1;
+	DMA_InitStruct.LinkStepMode	  = LL_DMA_LSM_FULL_EXECUTION;
+	DMA_InitStruct.LinkedListBaseAddr   = 0x00000000U;
+	DMA_InitStruct.LinkedListAddrOffset = 0x00000000U;
+	LL_DMA_Init(GPDMA1, LL_DMA_CHANNEL_2, &DMA_InitStruct);
+
+	/* UCPD1 interrupt Init */
+	NVIC_SetPriority(UCPD1_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
+	NVIC_EnableIRQ(UCPD1_IRQn);
+}
+
+/**
  * @brief RIF Initialization Function
  * @param None
  * @retval None
@@ -354,6 +516,11 @@ static void SystemIsolation_Config(void)
 
 	RIMC_master.MasterCID = RIF_CID_0;
 	HAL_RIF_RIMC_ConfigMasterAttributes(RIF_MASTER_INDEX_ETH1, &RIMC_master);
+
+	/* Phase 3: VENC master, same CID as DCMIPP since they're both part of the
+	 * camera->encode pipeline. */
+	RIMC_master.MasterCID = RIF_CID_1;
+	HAL_RIF_RIMC_ConfigMasterAttributes(RIF_MASTER_INDEX_VENC, &RIMC_master);
 
 	/* RIF-Aware IPs Config */
 

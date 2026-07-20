@@ -20,6 +20,13 @@
 #define NN_WIDTH 320
 #define NN_BPP 2
 
+// Pipe0 VENC H264 capture DCMIPP Init (Phase 3: 480p Frame mode, matching
+// venc_h264_config_480p_Frame.h - lower risk than VENC's 1080p default for
+// initial hardware bring-up)
+#define VENC_WIDTH  640
+#define VENC_HEIGHT 480
+#define VENC_FRAMERATE 10
+
 // HAL TRY
 #ifndef NDEBUG
 #define HAL_TRY(FUNC)      \

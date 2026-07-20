@@ -76,7 +76,10 @@ extern "C"
 
 #define EXTMEM_LRUN_SOURCE EXTMEMORY_1
 #define EXTMEM_LRUN_SOURCE_ADDRESS 0x00100000u
-#define EXTMEM_LRUN_SOURCE_SIZE 0x00014000u
+/* Phase 3 (VENC H264 encoder): Appli.bin grew to 220252 bytes (ThreadX +
+ * USBPD + VideoEncoder library), exceeding the prior 0x30000 (192KB) budget -
+ * recomputed from the actual .bin size, not ST's reference value. */
+#define EXTMEM_LRUN_SOURCE_SIZE 0x00040000u
 #define EXTMEM_LRUN_DESTINATION_INTERNAL 1
 #define EXTMEM_LRUN_DESTINATION_ADDRESS 0x34000000u
 

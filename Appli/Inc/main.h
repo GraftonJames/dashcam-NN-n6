@@ -27,7 +27,7 @@ extern "C"
 {
 #endif
 
-#define DUMMY_THREAD_STACK_SIZE 1024
+#define HEARTBEAT_THREAD_STACK_SIZE 1024
 
 #if defined(__ICCARM__)
 #define CMSE_NS_CALL __cmse_nonsecure_call
