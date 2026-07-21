@@ -80,8 +80,10 @@ static void venc_thread_entry(ULONG initial_input)
 	}
 
 	/* Frame mode: capture straight into input_frame, continuously. No HW
-	 * handshake with the encoder - DCMIPP just keeps input_frame current. */
-	if (CMW_CAMERA_Start(DCMIPP_PIPE0, GetInputFrame(NULL), CMW_MODE_CONTINUOUS) != CMW_ERROR_NONE)
+	 * handshake with the encoder - DCMIPP just keeps input_frame current.
+	 * PIPE1 (Main), matching DCMIPP_initVenc() in camera.c - the only pipe
+	 * that supports YUV422 conversion in hardware, see the comment there. */
+	if (CMW_CAMERA_Start(DCMIPP_PIPE1, GetInputFrame(NULL), CMW_MODE_CONTINUOUS) != CMW_ERROR_NONE)
 	{
 		printf("VENC: CMW_CAMERA_Start FAILED, venc_thread exiting\r\n");
 		return;
@@ -117,9 +119,11 @@ static void venc_thread_entry(ULONG initial_input)
 		ret = H264EncStrmEncode(venc_encoder, &venc_enc_in, &venc_enc_out, NULL, NULL, NULL);
 		if (ret == H264ENC_FRAME_READY)
 		{
-			printf("VENC: frame=%lu size=%lu bytes, first=%02X %02X %02X %02X\r\n",
+			extern volatile uint32_t g_dcmipp_pipe_error_count; /* camera.c */
+			printf("VENC: frame=%lu size=%lu bytes, first=%02X %02X %02X %02X, pipe_errs=%lu\r\n",
 			       (unsigned long)frame_nb, (unsigned long)venc_enc_out.streamSize,
-			       venc_output_buf[0], venc_output_buf[1], venc_output_buf[2], venc_output_buf[3]);
+			       venc_output_buf[0], venc_output_buf[1], venc_output_buf[2], venc_output_buf[3],
+			       (unsigned long)g_dcmipp_pipe_error_count);
 			frame_nb++;
 		}
 		else

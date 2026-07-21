@@ -59,6 +59,52 @@ Reset_Handler:
   msr   MSPLIM, r0
   ldr   r0, =_estack
   mov   sp, r0          /* set stack pointer */
+
+/* AXISRAM3-6 are in hardware SHUTDOWN mode at reset (RM0486 10.4), not just
+ * unclocked - a distinct, separate gate from the RCC clock enable. _estack
+ * now sits at the very top of the RAM region, which Phase 3 grew into
+ * SRAM3-6 to fit the .noncacheable H264/DCMIPP buffers, so the stack itself
+ * lives there. The FIRST stack write of the whole program is the `push` in
+ * SystemInit()'s own compiled prologue, one instruction below - while in
+ * shutdown, "writing has no effect, reading returns 0" (RM0486), which is
+ * why an earlier attempt that only enabled the RCC clock changed nothing:
+ * confirmed via ST-LINK memory read/write directly against 0x34210000
+ * (write reported success, read back 0) - not guessed.
+ * Documented exit sequence (RM0486 10.4) is SRAMSD-clear THEN RCC-enable,
+ * in that order - must be raw asm using only registers (no stack) since
+ * this runs before SP is usable.
+ * RAMCFG_AXISRAM{3,4,5,6}_AXI_S->CR (bases 0x52023100/180/200/280), bit 20
+ * = SRAMSD (1=shutdown). Clear it per-bank, then enable RCC_S->MEMENSR
+ * (0x56028000 + 0xA4C) bits 0-3 = AXISRAM3ENS..AXISRAM6ENS. */
+  ldr   r0, =0x52023100   /* RAMCFG_SRAM3_AXI_S->CR */
+  ldr   r2, [r0]
+  bic   r2, r2, #0x00100000
+  str   r2, [r0]
+  ldr   r2, [r0]          /* read-back per RM0486 exit-sequence step b) */
+
+  ldr   r0, =0x52023180   /* RAMCFG_SRAM4_AXI_S->CR */
+  ldr   r2, [r0]
+  bic   r2, r2, #0x00100000
+  str   r2, [r0]
+  ldr   r2, [r0]
+
+  ldr   r0, =0x52023200   /* RAMCFG_SRAM5_AXI_S->CR */
+  ldr   r2, [r0]
+  bic   r2, r2, #0x00100000
+  str   r2, [r0]
+  ldr   r2, [r0]
+
+  ldr   r0, =0x52023280   /* RAMCFG_SRAM6_AXI_S->CR */
+  ldr   r2, [r0]
+  bic   r2, r2, #0x00100000
+  str   r2, [r0]
+  ldr   r2, [r0]
+
+  ldr   r0, =0x56028000
+  movs  r1, #15
+  str   r1, [r0, #0xA4C]
+  ldr   r1, [r0, #0x24C] /* dummy read RCC_S->MEMENR: ensure the enable has taken effect */
+
 /* Call the clock system initialization function.*/
   bl  SystemInit
 

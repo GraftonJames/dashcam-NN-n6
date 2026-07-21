@@ -712,3 +712,8 @@ Reading symbols from /home/james/proj/dashcam-NN-n6/Appli/build/Appli.elf...
 #6  0x34015200 in _tx_thread_shell_entry () at ../Drivers/threadx/common/src/tx_thread_shell_entry.c:114
 #7  <signal handler called>
 ❌️ Remote connection closed
+❌️ .gdbinit:53: Error in sourced command file:
+could not connect: Connection timed out.
+Already logging to gdb.txt.
+❌️ .gdbinit:53: Error in sourced command file:
+could not connect: Connection timed out.

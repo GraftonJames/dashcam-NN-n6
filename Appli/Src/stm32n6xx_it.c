@@ -260,6 +260,36 @@ void UCPD1_IRQHandler(void)
 	USBPD_PORT0_IRQHandler();
 }
 
+extern DCMIPP_HandleTypeDef hcamera_dcmipp; /* Drivers/cmw_camera/cmw_camera.c */
+
+/**
+ * @brief This function handles CSI global interrupt.
+ * @note  Same failure class as UCPD1/the July 2026 unhandled-EXTI hang:
+ *        CSI_IRQn is never explicitly "armed" by our own code, but the
+ *        DCMIPP/CSI receiver hardware starts generating it the moment real
+ *        capture begins (Phase 3's VENC pipe) - without a real handler here
+ *        it falls through to Default_Handler (silent while(1)) the instant
+ *        the first interrupt fires, which is exactly what happened: capture
+ *        started, VENC's H264EncInit succeeded, and the very next CSI event
+ *        froze the board with no fault, no further UART output. ST's own
+ *        HAL_DCMIPP_CSI_IRQHandler() doc comment says it must be called from
+ *        here.
+ */
+void CSI_IRQHandler(void)
+{
+	HAL_DCMIPP_CSI_IRQHandler(&hcamera_dcmipp);
+}
+
+/**
+ * @brief This function handles DCMIPP global interrupt (frame-complete etc.)
+ * @note  Same reasoning as CSI_IRQHandler above - also unhandled, also armed
+ *        implicitly by starting real capture.
+ */
+void DCMIPP_IRQHandler(void)
+{
+	HAL_DCMIPP_IRQHandler(&hcamera_dcmipp);
+}
+
 #if defined(TCPP0203_SUPPORT)
 /**
  * @brief This function handles the TCPP0203's FLG/alert line (PD2 -> EXTI2

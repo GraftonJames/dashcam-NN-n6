@@ -31,6 +31,7 @@
 #if defined(_LOW_POWER)
 #include "usbpd_lowpower.h"
 #endif /* _LOW_POWER */
+#include "usbpd_pwr_user.h" /* DIAG: BSP_USBPD_PWR_GetPowerMode/VBUSIsOn for CAD investigation */
 
 /* OS management */
 #include "usbpd_os_port_mx.h"
@@ -312,6 +313,18 @@ DEF_TASK_FUNCTION(USBPD_PE_Task)
 
   for (;;)
   {
+    /* DIAG: bounded (first 20 iterations) - is the PE thread ever resumed
+     * after attach, and does it survive the PE_IsConnected gate below? */
+    {
+      static uint32_t pe_diag_count = 0;
+      if (pe_diag_count < 20)
+      {
+        pe_diag_count++;
+        printf("DIAG: PE loop #%lu port=%u connected=%d\r\n", (unsigned long)pe_diag_count,
+               (unsigned)_port, (int)DPM_Params[_port].PE_IsConnected);
+      }
+    }
+
     if (DPM_Params[_port].PE_IsConnected == USBPD_FALSE)
     {
       /* if the port is no more connected, suspend the PE thread */
@@ -341,6 +354,26 @@ DEF_TASK_FUNCTION(USBPD_CAD_Task)
   {
     _timing = USBPD_CAD_Process();
     printf("DIAG: CAD loop, timing=%lu\r\n", (unsigned long)_timing);
+
+    /* DIAG: investigating CAD never detecting a firmly-plugged-in PD source.
+     * TCPP0203 power mode (should have left Hibernate for LOWPOWER via
+     * usbpd_cad_hw_if.c's init, if TCPP0203_SUPPORT+_SNK are both defined -
+     * confirmed they are), an actual measured VBUS voltage (VBUSIsOn() checks
+     * the PROVIDER/source-side gate driver ack, which is always "open" on
+     * this sink-only build regardless of real VBUS state - misleading, not
+     * used here), and UCPD1's own CC-line voltage-state register, decoded. */
+    {
+      USBPD_PWR_PowerModeTypeDef diag_pwr_mode    = 0xFF;
+      uint32_t			  diag_vbus_mv     = 0xFFFFFFFF;
+      uint32_t			  diag_sr	     = UCPD1->SR;
+      (void)BSP_USBPD_PWR_GetPowerMode(USBPD_PWR_TYPE_C_PORT_1, &diag_pwr_mode);
+      (void)BSP_USBPD_PWR_VBUSGetVoltage(USBPD_PWR_TYPE_C_PORT_1, &diag_vbus_mv);
+      printf("DIAG: TCPP0203 PwrMode=%d VBUS=%lumV, UCPD1->CR=0x%08lX SR=0x%08lX (VSTATE_CC1=%lu CC2=%lu)\r\n",
+	     (int)diag_pwr_mode, (unsigned long)diag_vbus_mv, (unsigned long)UCPD1->CR, (unsigned long)diag_sr,
+	     (unsigned long)((diag_sr & UCPD_SR_TYPEC_VSTATE_CC1_Msk) >> UCPD_SR_TYPEC_VSTATE_CC1_Pos),
+	     (unsigned long)((diag_sr & UCPD_SR_TYPEC_VSTATE_CC2_Msk) >> UCPD_SR_TYPEC_VSTATE_CC2_Pos));
+    }
+
     OS_GETMESSAGE_QUEUE(CADQueueId, _timing);
   }
 }
@@ -424,6 +457,8 @@ static void DPM_StartPETask(uint8_t PortNum)
     case USBPD_PORT_0:
     case USBPD_PORT_1:
     {
+      printf("DIAG: DPM_StartPETask resuming PE (port %u, connected=%d)\r\n",
+             PortNum, (int)DPM_Params[PortNum].PE_IsConnected);
       OS_TASK_RESUME(DPM_PEThreadId_Table[PortNum]);
       break;
     }

@@ -116,6 +116,24 @@ void tx_application_define(void *first_unused_memory)
 	printf("DIAG: VENC_APP_ThreadCreate() done, tx_application_define() returning\r\n");
 }
 /**
+ * @brief DIAG: encode a checkpoint number 1-7 as a 3-bit LED pattern
+ *        (GREEN=4, RED=2, BLUE=1), so we can see how far boot got even if it
+ *        hangs before UART is initialized. TEMPORARY - remove once the Phase
+ *        2/3 boot hang is root-caused. BSP_LED_Init()/On()/Off() each handle
+ *        their own GPIOG clock enable, so this is safe to call before
+ *        MX_GPIO_Init() has run.
+ */
+static void DIAG_LedCode(int code)
+{
+	BSP_LED_Init(LED_GREEN);
+	BSP_LED_Init(LED_RED);
+	BSP_LED_Init(LED_BLUE);
+	(code & 4) ? BSP_LED_On(LED_GREEN) : BSP_LED_Off(LED_GREEN);
+	(code & 2) ? BSP_LED_On(LED_RED) : BSP_LED_Off(LED_RED);
+	(code & 1) ? BSP_LED_On(LED_BLUE) : BSP_LED_Off(LED_BLUE);
+}
+
+/**
  * @brief  The application entry point.
  * @retval int
  */
@@ -127,6 +145,7 @@ int main(void)
 	/* Clock tree is inherited from FSBL; recompute SystemCoreClock from the
 	 * registers (matches ST's Template_FSBL_LRUN Appli). */
 	SystemCoreClockUpdate();
+	DIAG_LedCode(1); /* checkpoint 1: reached after SystemCoreClockUpdate() */
 
 	/* MPU non-cacheable region over the linker's .noncacheable section, BEFORE
 	 * enabling caches. Phase 3 places DCMIPP capture buffers and VENC's
@@ -135,17 +154,59 @@ int main(void)
 	 * of a crash, which looks exactly like a video/encoder bug, not a cache
 	 * bug (flagged as the single highest-severity item in the Phase 3 plan). */
 	MPU_Config();
+	DIAG_LedCode(2); /* checkpoint 2: reached after MPU_Config() */
 
 	/* Enable CPU caches, as ST's template Appli does first thing. */
 	SCB_EnableICache();
 	SCB_EnableDCache();
+	DIAG_LedCode(3); /* checkpoint 3: reached after cache enable */
 
 	/* USER CODE END 1 */
 
 	/* MCU Configuration--------------------------------------------------------*/
 	HAL_Init();
+	DIAG_LedCode(4); /* checkpoint 4: reached after HAL_Init() */
 
 	/* USER CODE BEGIN Init */
+
+	/* VDDA (analog supply) - HAL's own comment on this function says it's
+	 * "mandatory to use the analog to digital converters", and UCPD1's CC-line
+	 * Type-C voltage detection is fundamentally an analog comparator function
+	 * (RM0486 75.4.7), very likely on the same VDDA rail. Never called
+	 * anywhere in this project before. Confirmed via ST's own NUCLEO-N657X0-Q
+	 * USBPD_SNK reference (same board, same UCPD1 peripheral), which enables
+	 * this early in main() - ours never did. Root-caused via direct register
+	 * read: UCPD1->CR showed ANAMODE=1 (Sink, correct) and CCENABLE=3 (both
+	 * lines enabled, correct) but UCPD1->SR read 0x00000000 - both CC lines
+	 * reporting vRa/nothing - with a real PD-capable source firmly plugged
+	 * into CN8. Digitally configured correctly, but the analog front end
+	 * reporting a "nothing attached" default suggests it was never powered. */
+	HAL_PWREx_EnableVddA();
+
+	/* VDD33USB domain unlock - THE root cause of USBPD CAD never detecting a
+	 * plugged-in PD source (found 2026-07-22 via differential test against
+	 * ST's unmodified USBPD_SNK reference on this same board/cable/source):
+	 * UCPD1's CC-line analog front end lives in the VDD33USB power domain,
+	 * which stays ISOLATED out of reset until USB33SV is set (RM0486: "Set
+	 * USB33SV in PWR_SVMCR3 to remove the VDD33USB power isolation"). With it
+	 * isolated, every UCPD digital register reads/configures fine (ANAMODE,
+	 * CCENABLE, UCPDEN all looked correct) but TYPEC_VSTATE_CC1/CC2 read 0
+	 * forever - the PHY is electrically disconnected from the pins. Confirmed
+	 * by SVMCR3 register dump: ours read USB33SV=0/USB33VMEN=0 where the
+	 * working reference sets both. Sequence per RM0486 + ST's reference
+	 * main(): enable the 3.3V monitor, wait for USB33RDY, remove isolation.
+	 * Guard-counter bounded (not tick-based - HAL tick isn't running yet at
+	 * this point) so a broken rail degrades to "USBPD doesn't work" instead
+	 * of "board hangs before any output". */
+	HAL_PWREx_EnableVddUSBVMEN();
+	for (uint32_t guard = 0; guard < 1000000U; guard++)
+	{
+		if (__HAL_PWR_GET_FLAG(PWR_FLAG_USB33RDY))
+		{
+			break;
+		}
+	}
+	HAL_PWREx_EnableVddUSB();
 
 	/* By default a Cortex-M55 lockup state (fault escalation failing, e.g. a fault
 	 * while already in a same/higher-priority fault handler) is completely silent on
@@ -156,6 +217,7 @@ int main(void)
 	__HAL_RCC_SYSCFG_CLK_ENABLE();
 	(void)RCC->APB4ENR2; /* delay: ensure the clock enable has taken effect */
 	SYSCFG->CM55RSTCR |= SYSCFG_CM55RSTCR_LOCKUP_NMI_EN;
+	DIAG_LedCode(5); /* checkpoint 5: reached after SYSCFG lockup-NMI setup */
 
 	/* USER CODE END Init */
 
@@ -169,7 +231,9 @@ int main(void)
 	MX_LPUART1_UART_Init();
 	MX_RAMCFG_Init();
 	MX_UCPD1_Init();
+	DIAG_LedCode(6); /* checkpoint 6: reached after all MX_*_Init() calls, before SystemIsolation_Config() */
 	SystemIsolation_Config();
+	DIAG_LedCode(7); /* checkpoint 7: reached after SystemIsolation_Config() (RIF/VENC/DCMIPP master config) */
 	/* USER CODE BEGIN 2 */
 
 	/* Initialize COM1 port (115200, 8 bits (7-bit data + 1 stop bit), no parity */

@@ -50,28 +50,55 @@ sudo "$STM_PROG_PATH" \
   -w "$STM_PROJ_PATH/Appli_signed.bin" 0x70100000 \
   -v
 
-# Full-range checksum, independent of -v above: compares a checksum of the exact
-# bytes on device against a checksum of the local signed file. -v only checks
-# during the write itself; this re-reads after the fact, over the whole image
-# range, which is what actually caught corruption via the CubeProgrammer GUI
-# (its "Full Flash memory checksum" option) that a plain write+verify missed.
+# Full-range readback verification, independent of -v above: -v only checks
+# during the write itself; this re-reads the ENTIRE image after the fact and
+# compares it byte-for-byte against the local signed file - what actually
+# caught corruption via the CubeProgrammer GUI's "Full Flash memory checksum"
+# option that a plain write+verify missed, historically. Originally done here
+# via the device-side "-checksum" command, but this external NOR loader
+# (MX25UM51245G_STM32N6570-NUCLEO.stldr) doesn't implement that optional API
+# ("CheckSum function is not implemented in this Flashloader") - every run
+# has been silently failing at this exact step and exiting non-zero, though
+# the write+verify above (which relies on the same loader's more basic
+# memory-read primitive, proven working) had already succeeded by that point.
+# Fixed by reading the flash back with -upload instead and comparing the
+# bytes directly with cmp - stronger than a checksum (exact byte compare, no
+# hash-collision risk) and doesn't depend on the loader's optional API at all.
 FSBL_SIZE=$(stat -c%s "$STM_PROJ_PATH/FSBL_signed.bin")
 APPLI_SIZE=$(stat -c%s "$STM_PROJ_PATH/Appli_signed.bin")
 
-FSBL_FILE_SUM=$("$STM_PROG_PATH" -fchecksum "$STM_PROJ_PATH/FSBL_signed.bin" | tee /dev/stderr | grep "Segments total checksum" | grep -oE '0x[0-9A-Fa-f]+')
-FSBL_DEV_SUM=$(sudo "$STM_PROG_PATH" -c port=SWD mode=HOTPLUG -el "$N6_LOADER" -checksum 0x70000000 "$FSBL_SIZE" | tee /dev/stderr | grep "Segments total checksum" | grep -oE '0x[0-9A-Fa-f]+')
-if [[ "$FSBL_FILE_SUM" != "$FSBL_DEV_SUM" ]]; then
-  echo "flash.zsh: FSBL CHECKSUM MISMATCH - file=$FSBL_FILE_SUM device=$FSBL_DEV_SUM" >&2
+# Deliberately NOT pre-created via mktemp: STM32_Programmer_CLI refuses to
+# overwrite a file it doesn't already own, even when it (and the file) are
+# both under sudo/root - "Unable to create the file", 0 bytes written. Clear
+# any stale path instead and let the tool create it fresh (as root:root,
+# mode 644 - readable back by this non-root shell for the cmp below).
+# Cleanup must be "sudo rm", not plain "rm": /tmp's sticky bit means only the
+# owner (root, since the file's created via sudo) or root can delete it - a
+# plain "rm -f" here fails with "Operation not permitted" and (set -e) would
+# abort the very next run at this exact line, confirmed by testing directly.
+FSBL_READBACK="/tmp/dashcam-fsbl-readback.bin"
+APPLI_READBACK="/tmp/dashcam-appli-readback.bin"
+sudo rm -f "$FSBL_READBACK" "$APPLI_READBACK"
+trap 'sudo rm -f "$FSBL_READBACK" "$APPLI_READBACK"' EXIT
+
+sudo "$STM_PROG_PATH" \
+  -c port=SWD mode=HOTPLUG -el "$N6_LOADER" \
+  -u 0x70000000 "$FSBL_SIZE" "$FSBL_READBACK"
+if ! cmp -s "$STM_PROJ_PATH/FSBL_signed.bin" "$FSBL_READBACK"; then
+  echo "flash.zsh: FSBL READBACK MISMATCH - device content does not match FSBL_signed.bin" >&2
+  cmp "$STM_PROJ_PATH/FSBL_signed.bin" "$FSBL_READBACK" || true
   exit 1
 fi
-echo "flash.zsh: FSBL full-range checksum OK ($FSBL_FILE_SUM)"
+echo "flash.zsh: FSBL full-range readback OK ($FSBL_SIZE bytes match exactly)"
 
-APPLI_FILE_SUM=$("$STM_PROG_PATH" -fchecksum "$STM_PROJ_PATH/Appli_signed.bin" | tee /dev/stderr | grep "Segments total checksum" | grep -oE '0x[0-9A-Fa-f]+')
-APPLI_DEV_SUM=$(sudo "$STM_PROG_PATH" -c port=SWD mode=HOTPLUG -el "$N6_LOADER" -checksum 0x70100000 "$APPLI_SIZE" | tee /dev/stderr | grep "Segments total checksum" | grep -oE '0x[0-9A-Fa-f]+')
-if [[ "$APPLI_FILE_SUM" != "$APPLI_DEV_SUM" ]]; then
-  echo "flash.zsh: APPLI CHECKSUM MISMATCH - file=$APPLI_FILE_SUM device=$APPLI_DEV_SUM" >&2
+sudo "$STM_PROG_PATH" \
+  -c port=SWD mode=HOTPLUG -el "$N6_LOADER" \
+  -u 0x70100000 "$APPLI_SIZE" "$APPLI_READBACK"
+if ! cmp -s "$STM_PROJ_PATH/Appli_signed.bin" "$APPLI_READBACK"; then
+  echo "flash.zsh: APPLI READBACK MISMATCH - device content does not match Appli_signed.bin" >&2
+  cmp "$STM_PROJ_PATH/Appli_signed.bin" "$APPLI_READBACK" || true
   exit 1
 fi
-echo "flash.zsh: Appli full-range checksum OK ($APPLI_FILE_SUM)"
+echo "flash.zsh: Appli full-range readback OK ($APPLI_SIZE bytes match exactly)"
 
-echo "flash.zsh: SUCCESS - signed, flashed, verified, and checksummed both images"
+echo "flash.zsh: SUCCESS - signed, flashed, verified, and full-range readback-compared both images"

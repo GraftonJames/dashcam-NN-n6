@@ -174,6 +174,14 @@ extern void *g_pfnVectors;
 
 void SystemInit(void)
 {
+	/* AXISRAM3-6 clock enable (needed since Phase 3 grew the RAM region/stack
+	 * into SRAM3-6) happens in startup_stm32n657xx.s's Reset_Handler, BEFORE
+	 * this function is even called - the stack pointer itself lives in that
+	 * region now, so it has to be done in raw asm before SP is first used
+	 * (this function's own compiled prologue is the first stack write in the
+	 * whole program). See the comment there for the full story.
+	 */
+
 	/* SAU/IDAU, FPU and Interrupts secure/non-secure allocation settings */
 	TZ_SAU_Setup();
 
