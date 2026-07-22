@@ -64,7 +64,7 @@ extern "C"
 /*#define HAL_MMC_MODULE_ENABLED   */
 /*#define HAL_NAND_MODULE_ENABLED   */
 /*#define HAL_NOR_MODULE_ENABLED   */
-/*#define HAL_PCD_MODULE_ENABLED   */
+#define HAL_PCD_MODULE_ENABLED
 /*#define HAL_PKA_MODULE_ENABLED   */
 /*#define HAL_PSSI_MODULE_ENABLED   */
 #define HAL_RAMCFG_MODULE_ENABLED
@@ -102,7 +102,10 @@ extern "C"
  *        (when HSE is used as system clock source, directly or through the PLL).
  */
 #if !defined(HSE_VALUE)
-#define HSE_VALUE 24000000UL /*!< Value of the External oscillator in Hz */
+/* Nucleo's X3 crystal is 48MHz (UM3417 7.7.2), not the 24MHz this template
+ * default assumed - didn't matter while the CPU clock was purely HSI-derived
+ * (Phase 3 and earlier), but Phase 4's USB_OTG_HS PHY clocks off HSE. */
+#define HSE_VALUE 48000000UL /*!< Value of the External oscillator in Hz */
 #endif			     /* HSE_VALUE */
 
 #if !defined(HSE_STARTUP_TIMEOUT)

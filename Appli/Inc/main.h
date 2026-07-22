@@ -69,7 +69,7 @@ typedef void CMSE_NS_CALL (*funcptr)(void);
 	void Error_Handler(void);
 
 	/* USER CODE BEGIN EFP */
-
+	void MX_USB1_OTG_HS_PCD_Init(void); /* Phase 4: called from USBX/App/app_usbx_device.c */
 	/* USER CODE END EFP */
 
 	/* Private defines -----------------------------------------------------------*/

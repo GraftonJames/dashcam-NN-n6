@@ -238,4 +238,113 @@ void HAL_RAMCFG_MspDeInit(RAMCFG_HandleTypeDef *hramcfg)
 
 /* USER CODE BEGIN 1 */
 
+/**
+ * @brief PCD MSP Initialization (USB1_OTG_HS device controller)
+ * @param hpcd: PCD handle pointer
+ * @retval None
+ * @note   Nucleo's X3 crystal is 48MHz (UM3417 7.7.2, R72/R67 ON by default) -
+ *         same HSE frequency VENC_USB's DK reference uses for its USB PHY
+ *         clock, so RCC_USBPHY1CLKSOURCE_HSE_DIRECT is directly applicable
+ *         here too, not just copied blind. HSE was never turned on before
+ *         this (the whole clock tree up to now is HSI-derived, see FSBL's
+ *         SystemClock_Config) - enabled here, scoped to just this peripheral,
+ *         rather than touching FSBL's proven clock bring-up.
+ * @note   2026-07-22 (Phase 4 first hardware test): board attached and got a
+ *         USB address from the host but every GET_DESCRIPTOR read failed
+ *         (dmesg: "device descriptor read/64, error -71", "Device not
+ *         responding to setup address") - a bit-level PHY timing fault, not
+ *         a descriptor-table bug. Root cause: this function was missing the
+ *         embedded HS PHY's reset + reference-clock-select sequence that
+ *         ST's VENC_USB reference (stm32n6xx_hal_msp.c) performs - in
+ *         particular USB1_HS_PHYC->USBPHYC_CR's FSEL bits[6:4], which select
+ *         the PHY-internal PLL's input reference divider. Left at its
+ *         power-on-reset default, the PHY's internal bit clock doesn't match
+ *         our real 48MHz HSE, so chirp/attach (coarse timing) still works
+ *         but real 480Mbps HS transfers don't - exactly this symptom. Added
+ *         the full force-reset -> HSEDiv2 select -> clock enable -> FSEL
+ *         program -> phy-reset-release -> delay -> core-reset-release
+ *         sequence below, matching the reference exactly (same 48MHz HSE).
+ */
+void HAL_PCD_MspInit(PCD_HandleTypeDef *hpcd)
+{
+	RCC_OscInitTypeDef	 RCC_OscInitStruct    = {0};
+	RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
+
+	if (hpcd->Instance == USB1_OTG_HS)
+	{
+		RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+		RCC_OscInitStruct.HSEState	  = RCC_HSE_ON;
+		RCC_OscInitStruct.PLL1.PLLState  = RCC_PLL_NONE;
+		if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+		{
+			Error_Handler();
+		}
+
+		PeriphClkInitStruct.PeriphClockSelection    = RCC_PERIPHCLK_USBOTGHS1;
+		PeriphClkInitStruct.UsbOtgHs1ClockSelection = RCC_USBOTGHS1CLKSOURCE_HSE_DIRECT;
+		if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
+		{
+			Error_Handler();
+		}
+
+		PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_USBPHY1;
+		PeriphClkInitStruct.UsbPhy1ClockSelection = RCC_USBPHY1CLKSOURCE_HSE_DIRECT;
+		if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
+		{
+			Error_Handler();
+		}
+
+		__HAL_RCC_PWR_CLK_ENABLE();
+		HAL_PWREx_EnableVddUSBVMEN();
+		{
+			uint32_t guard = 1000000U;
+			while ((__HAL_PWR_GET_FLAG(PWR_FLAG_USB33RDY) == 0U) && (--guard != 0U))
+			{
+			}
+		}
+		HAL_PWREx_EnableVddUSB();
+
+		__HAL_RCC_GPIOA_CLK_ENABLE();
+
+		/* Hold OTG core + PHY in reset while the PHY reference clock is
+		 * (re)selected - programming USBPHYC_CR live, without this, leaves
+		 * the PHY briefly running on a stale/undefined reference. */
+		__HAL_RCC_USB1_OTG_HS_FORCE_RESET();
+		__HAL_RCC_USB1_OTG_HS_PHY_FORCE_RESET();
+
+		LL_RCC_HSE_SelectHSEDiv2AsDiv2Clock();
+
+		__HAL_RCC_USB1_OTG_HS_CLK_ENABLE();
+
+		/* USBPHYC_CR FSEL[2:0] (bits 6:4) = 0x2: PHY-internal PLL reference
+		 * divider matching a 48MHz HSE input (RM0486) - the actual fix. */
+		USB1_HS_PHYC->USBPHYC_CR &= ~(0x7UL << 4);
+		USB1_HS_PHYC->USBPHYC_CR |= (0x2UL << 4);
+
+		__HAL_RCC_USB1_OTG_HS_PHY_RELEASE_RESET();
+		HAL_Delay(1);
+		__HAL_RCC_USB1_OTG_HS_RELEASE_RESET();
+
+		__HAL_RCC_USB1_OTG_HS_PHY_CLK_ENABLE();
+
+		HAL_NVIC_SetPriority(USB1_OTG_HS_IRQn, 10, 0);
+		HAL_NVIC_EnableIRQ(USB1_OTG_HS_IRQn);
+	}
+}
+
+/**
+ * @brief PCD MSP De-Initialization
+ * @param hpcd: PCD handle pointer
+ * @retval None
+ */
+void HAL_PCD_MspDeInit(PCD_HandleTypeDef *hpcd)
+{
+	if (hpcd->Instance == USB1_OTG_HS)
+	{
+		HAL_NVIC_DisableIRQ(USB1_OTG_HS_IRQn);
+		__HAL_RCC_USB1_OTG_HS_PHY_CLK_DISABLE();
+		__HAL_RCC_USB1_OTG_HS_CLK_DISABLE();
+	}
+}
+
 /* USER CODE END 1 */

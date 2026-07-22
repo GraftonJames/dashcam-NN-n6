@@ -103,6 +103,16 @@ C_SOURCES += ../Drivers/VideoEncoder_EWL/ewl_impl.c
 VENC_LIB_SOURCES := $(wildcard ../Drivers/VideoEncoder/source/h264/*.c) $(wildcard ../Drivers/VideoEncoder/source/common/*.c)
 C_SOURCES += $(VENC_LIB_SOURCES)
 
+# USBX sources (Phase 4: UVC class over USBX device stack)
+USBX_DIR = ../Drivers/usbx
+C_SOURCES += $(wildcard $(USBX_DIR)/common/core/src/*.c)
+C_SOURCES += $(wildcard $(USBX_DIR)/common/usbx_device_classes/src/*.c)
+C_SOURCES += $(wildcard $(USBX_DIR)/common/usbx_stm32_device_controllers/*.c)
+C_SOURCES += $(wildcard USBX/App/*.c)
+C_SOURCES += $(HAL_C_SOURCE_PREF)_pcd.c
+C_SOURCES += $(HAL_C_SOURCE_PREF)_pcd_ex.c
+C_SOURCES += ../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_ll_usb.c
+
 # ASM sources
 ASM_SOURCES =  \
 startup_stm32n657xx.s
@@ -164,6 +174,7 @@ C_DEFS =  \
 -DSTM32N657xx \
 -DUSE_FULL_LL_DRIVER \
 -DTX_INCLUDE_USER_DEFINE_FILE \
+-DUX_INCLUDE_USER_DEFINE_FILE \
 -DTX_SINGLE_MODE_SECURE \
 -DUSBPD_PORT_COUNT=1 \
 -DTCPP0203_SUPPORT \
@@ -204,7 +215,13 @@ C_INCLUDES =  \
 -I../Drivers/VideoEncoder/inc \
 -I../Drivers/VideoEncoder/source/common \
 -I../Drivers/VideoEncoder/source/h264 \
--I../Drivers/VideoEncoder_EWL
+-I../Drivers/VideoEncoder_EWL \
+-I../Drivers/usbx/common/core/inc \
+-I../Drivers/usbx/ports/generic/inc \
+-I../Drivers/usbx/common/usbx_device_classes/inc \
+-I../Drivers/usbx/common/usbx_stm32_device_controllers \
+-IUSBX/App \
+-IUSBX/Target
 
 
 # compile gcc flags

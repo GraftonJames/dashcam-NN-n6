@@ -37,6 +37,7 @@
 #endif /* _TRACE */
 /* USER CODE BEGIN Includes */
 #include "usbpd_user_services.h"
+#include "usbpd_usb_if.h" /* Phase 4: USBSTACK_START/STOP -> USBX PCD start/stop */
 /* USER CODE END Includes */
 
 /** @addtogroup STM32_USBPD_APPLICATION
@@ -236,6 +237,16 @@ void USBPD_DPM_Notification(uint8_t PortNum, USBPD_NotifyEventValue_TypeDef Even
       break;
     case USBPD_NOTIFY_HARDRESET_TX:
       printf("USBPD: hard reset TX (port %u)\r\n", PortNum);
+      break;
+    case USBPD_NOTIFY_USBSTACK_START:
+      /* SNK-only port: always UFP, never DFP/host - just start the USBX
+       * device stack (Phase 4). */
+      printf("USBPD: USBSTACK_START (port %u), starting USBX device\r\n", PortNum);
+      USBPD_USBIF_DeviceStart(PortNum);
+      break;
+    case USBPD_NOTIFY_USBSTACK_STOP:
+      printf("USBPD: USBSTACK_STOP (port %u), stopping USBX device\r\n", PortNum);
+      USBPD_USBIF_DeviceStop(PortNum);
       break;
     default:
       printf("USBPD: notification event=%d (port %u)\r\n", (int)EventVal, PortNum);

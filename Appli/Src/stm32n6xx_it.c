@@ -290,6 +290,93 @@ void DCMIPP_IRQHandler(void)
 	HAL_DCMIPP_IRQHandler(&hcamera_dcmipp);
 }
 
+extern PCD_HandleTypeDef hpcd_USB1_OTG_HS;
+
+/**
+ * @brief This function handles USB1 OTG HS global interrupt.
+ * @note  Same reasoning as UCPD1_IRQHandler above: USB1_OTG_HS_IRQn gets
+ *        armed by HAL_PCD_MspInit() (Phase 4) the moment enumeration starts -
+ *        without a real handler it falls through to Default_Handler.
+ * @note  DIAG (2026-07-22, enumeration debug): edge-triggered (only logs when
+ *        GINTSTS.[RXFLVL|USBRST|ENUMDNE|IEPINT|OEPINT] changes from the last
+ *        logged value, masking off the free-running SOF/FNSOF noise), bounded
+ *        (first 200 distinct states) ISR-safe raw trace - printf() is
+ *        unsafe/unreliable here (not ISR-safe, and observed dropping lines
+ *        under concurrent CAD/PE thread access elsewhere this session), so
+ *        this reuses the same raw/bounded UART primitives TRACE_FaultSafe()
+ *        uses. A prior plain "first 60 raw entries" version exhausted its cap
+ *        within ~7ms of pure SOF ticks (RXFLVL was 0 in every one) and never
+ *        observed the actual SETUP exchange, which happens later.
+ */
+void USB1_OTG_HS_IRQHandler(void)
+{
+	static volatile uint32_t otg_irq_count = 0;
+	static uint32_t	  last_masked	   = 0xFFFFFFFFU;
+	uint32_t	  gintsts	   = USB1_OTG_HS->GINTSTS;
+	uint32_t	  masked =
+		gintsts & (USB_OTG_GINTSTS_RXFLVL | USB_OTG_GINTSTS_USBRST | USB_OTG_GINTSTS_ENUMDNE |
+			   USB_OTG_GINTSTS_IEPINT | USB_OTG_GINTSTS_OEPINT);
+
+	uint8_t should_log = ((masked != last_masked) && (otg_irq_count < 200U)) ? 1U : 0U;
+	uint8_t had_oepint = ((masked & USB_OTG_GINTSTS_OEPINT) != 0U) ? 1U : 0U;
+	uint8_t had_iepint = ((masked & USB_OTG_GINTSTS_IEPINT) != 0U) ? 1U : 0U;
+
+	/* DIAG: raw per-endpoint interrupt/size registers, read BEFORE
+	 * HAL_PCD_IRQHandler processes+clears them - GINTSTS.OEPINT/IEPINT are
+	 * just aggregates ("some OUT/IN endpoint has *a* pending condition");
+	 * DOEPINT0/DIEPINT0 say exactly which one (XFRC/STUP/AHBErr/NAK/...),
+	 * and DOEPTSIZ0's STUPCNT/XFRSIZ fields say how many SETUP packets and
+	 * bytes the core itself thinks are outstanding. A prior version of this
+	 * diagnostic read hpcd->Setup AFTER the HAL call and always saw zero -
+	 * traced USB_EP0_OutStart() (stm32n6xx_ll_usb.c) and confirmed it never
+	 * writes the buffer's contents (only DOEPDMA/DOEPCTL registers), so that
+	 * emptiness needs an explanation from the endpoint's own interrupt/size
+	 * state, not assumed to be a rearm side-effect. */
+	USB_OTG_OUTEndpointTypeDef *otg_out0 =
+		(USB_OTG_OUTEndpointTypeDef *)((uint32_t)USB1_OTG_HS + USB_OTG_OUT_ENDPOINT_BASE);
+	uint32_t doepint0  = otg_out0->DOEPINT;
+	uint32_t doeptsiz0 = otg_out0->DOEPTSIZ;
+
+	if (should_log != 0U)
+	{
+		USB_OTG_DeviceTypeDef *otg_dev =
+			(USB_OTG_DeviceTypeDef *)((uint32_t)USB1_OTG_HS + USB_OTG_DEVICE_BASE);
+
+		last_masked = masked;
+		otg_irq_count++;
+		TRACE_RawPutString("OTGIRQ #");
+		TRACE_RawPutHex32(otg_irq_count);
+		TRACE_RawPutString(" GINTSTS=");
+		TRACE_RawPutHex32(gintsts);
+		TRACE_RawPutString(" DSTS=");
+		TRACE_RawPutHex32(otg_dev->DSTS);
+		if (had_oepint != 0U)
+		{
+			TRACE_RawPutString(" DOEPINT0=");
+			TRACE_RawPutHex32(doepint0);
+			TRACE_RawPutString(" DOEPTSIZ0=");
+			TRACE_RawPutHex32(doeptsiz0);
+		}
+		TRACE_RawPutString("\r\n");
+	}
+
+	HAL_PCD_IRQHandler(&hpcd_USB1_OTG_HS);
+
+	/* DIAG: HAL_PCD_IRQHandler's RXFLVL popping only just filled
+	 * hpcd->Setup, so this has to be read AFTER the call - dump it whenever
+	 * this entry had OEPINT pending, to see exactly which SETUP request
+	 * (bmRequestType/bRequest/wValue/wIndex/wLength) our device is being
+	 * asked for right before enumeration goes silent. */
+	if ((should_log != 0U) && ((had_oepint != 0U) || (had_iepint != 0U)))
+	{
+		TRACE_RawPutString("  SETUP=");
+		TRACE_RawPutHex32(hpcd_USB1_OTG_HS.Setup[0]);
+		TRACE_RawPutString(" ");
+		TRACE_RawPutHex32(hpcd_USB1_OTG_HS.Setup[1]);
+		TRACE_RawPutString("\r\n");
+	}
+}
+
 #if defined(TCPP0203_SUPPORT)
 /**
  * @brief This function handles the TCPP0203's FLG/alert line (PD2 -> EXTI2

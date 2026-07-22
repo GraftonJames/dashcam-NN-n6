@@ -25,6 +25,7 @@
 #include "stm32n6xx_ll_bus.h"
 #include "stm32n6xx_ll_dma.h"
 #include "stm32n6xx_ll_venc.h"
+#include "app_usbx_device.h"
 
 void VENC_APP_ThreadCreate(void); /* venc_app.c */
 
@@ -42,6 +43,11 @@ void VENC_APP_ThreadCreate(void); /* venc_app.c */
 /* USER CODE BEGIN PD */
 
 #define USBPD_DEVICE_APP_MEM_POOL_SIZE 5000
+
+/* Phase 4: matches VENC_USB reference's UX_DEVICE_APP_MEM_POOL_SIZE - big
+ * enough for USBX_DEVICE_MEMORY_STACK_SIZE (30KB) + the device app thread
+ * stack (8KB) + the small start/stop queue, plus byte-pool overhead. */
+#define UX_DEVICE_APP_MEM_POOL_SIZE (40 * 1024)
 
 /* USER CODE END PD */
 
@@ -62,6 +68,22 @@ RAMCFG_HandleTypeDef hramcfg_SRAM4;
 RAMCFG_HandleTypeDef hramcfg_SRAM5;
 RAMCFG_HandleTypeDef hramcfg_SRAM6;
 
+/* 2026-07-22 (Phase 4 enumeration debug): USB_OTG_HS runs its own AHB DMA
+ * (Init.dma_enable=1) straight into hpcd->Setup (the 8-byte SETUP packet
+ * buffer inside this handle) and into whatever USBX carves out of the byte
+ * pool below - both were plain .bss until now, outside the .noncacheable
+ * region that VENC/DCMIPP already prove is both cache-coherent AND
+ * RIF-accessible to a CID_1 DMA master (SystemIsolation_Config() tags OTG1
+ * with the same RIF_CID_1 as DCMIPP/VENC). Symptom matched exactly: host
+ * negotiated HS speed fine (DSTS ENUMSPD=00 confirmed via a live OTG
+ * register trace), then every SETUP transaction silently failed to complete
+ * - GINTSTS.OEPINT latched permanently with no other bits changing, which
+ * happens when a DOEPINT AHB/cache-coherency-class error on EP0 is never
+ * cleared (HAL's OUT-endpoint interrupt handler has no path that clears it).
+ * Moving both buffers into the already-proven-working .noncacheable region
+ * rules out (and fixes, if present) either failure mode in one change. */
+PCD_HandleTypeDef hpcd_USB1_OTG_HS __attribute__((section(".noncacheable")));
+
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -74,9 +96,19 @@ static void MX_RAMCFG_Init(void);
 static void MX_UCPD1_Init(void);
 static void SystemIsolation_Config(void);
 static void MPU_Config(void);
+/* MX_USB1_OTG_HS_PCD_Init() prototype is in main.h (non-static: called from
+ * USBX/App/app_usbx_device.c). */
 
 static TX_BYTE_POOL usbpd_app_byte_pool;
 static UCHAR	    usbpd_byte_pool_buffer[USBPD_DEVICE_APP_MEM_POOL_SIZE];
+
+/* .noncacheable: everything USBX allocates (device/string descriptor
+ * tables, EP transfer buffers) is carved from this pool at runtime, so
+ * placing the pool itself here covers all of it - see hpcd_USB1_OTG_HS's
+ * comment above for why. */
+static TX_BYTE_POOL usbx_device_app_byte_pool;
+static UCHAR	    usbx_device_byte_pool_buffer[UX_DEVICE_APP_MEM_POOL_SIZE]
+	__attribute__((section(".noncacheable")));
 
 static TX_THREAD heartbeat_thread;
 static uint8_t	 heartbeat_thread_stack[HEARTBEAT_THREAD_STACK_SIZE];
@@ -111,6 +143,19 @@ void tx_application_define(void *first_unused_memory)
 		Error_Handler();
 	}
 	printf("DIAG: MX_USBPD_Init() OK\r\n");
+
+	if (tx_byte_pool_create(&usbx_device_app_byte_pool, "Ux App memory pool", usbx_device_byte_pool_buffer,
+				 UX_DEVICE_APP_MEM_POOL_SIZE) != TX_SUCCESS)
+	{
+		Error_Handler();
+	}
+	printf("DIAG: usbx_device_app_byte_pool created, calling MX_USBX_Device_Init()\r\n");
+	if (MX_USBX_Device_Init(&usbx_device_app_byte_pool) != UX_SUCCESS)
+	{
+		printf("DIAG: MX_USBX_Device_Init() FAILED\r\n");
+		Error_Handler();
+	}
+	printf("DIAG: MX_USBX_Device_Init() OK\r\n");
 
 	VENC_APP_ThreadCreate();
 	printf("DIAG: VENC_APP_ThreadCreate() done, tx_application_define() returning\r\n");
@@ -558,6 +603,41 @@ static void MX_UCPD1_Init(void)
 }
 
 /**
+ * @brief USB1 OTG HS PCD (device controller) Initialization Function
+ * @param None
+ * @retval None
+ * @note   Clock source (HSE, PA11-free / dedicated PHY pins - no GPIO AF
+ *         config needed, same reasoning as UCPD1's CC lines) and NVIC
+ *         priority are configured in HAL_PCD_MspInit() (stm32n6xx_hal_msp.c),
+ *         matching the project's existing MX_*_Init()/HAL_*_MspInit() split.
+ */
+void MX_USB1_OTG_HS_PCD_Init(void)
+{
+	hpcd_USB1_OTG_HS.Instance		    = USB1_OTG_HS;
+	hpcd_USB1_OTG_HS.Init.dev_endpoints	    = 9;
+	hpcd_USB1_OTG_HS.Init.speed		    = PCD_SPEED_HIGH;
+	/* DIAG (2026-07-22, enumeration debug): temporarily DISABLE, testing
+	 * whether the OTG core's SETUP handling is a DMA-mode-specific quirk.
+	 * Repeated live register traces (DOEPINT0 across many capture attempts)
+	 * show STPKTRX (bit15, "setup bytes received") firing but STUP (bit3,
+	 * "setup phase done") NEVER firing - and HAL_PCD_SetupStageCallback()
+	 * (the only path that ever populates hpcd->Setup for USBX) is gated
+	 * exclusively behind STUP in HAL's OUT-endpoint interrupt dispatcher
+	 * (stm32n6xx_hal_pcd.c's PCD_EP_OutSetupPacket_int() caller). Slave mode
+	 * pops SETUP packets via a completely different path (RXFLVL/GRXSTSP +
+	 * USB_ReadPacket(), same file, ~line 1080) that doesn't depend on
+	 * STUP/STPKTRX at all - if enumeration completes with DMA off, this
+	 * confirms the bug is confined to DMA-mode control-transfer handling. */
+	hpcd_USB1_OTG_HS.Init.dma_enable	    = DISABLE;
+	hpcd_USB1_OTG_HS.Init.phy_itface	    = USB_OTG_HS_EMBEDDED_PHY;
+	hpcd_USB1_OTG_HS.Init.vbus_sensing_enable  = DISABLE;
+	if (HAL_PCD_Init(&hpcd_USB1_OTG_HS) != HAL_OK)
+	{
+		Error_Handler();
+	}
+}
+
+/**
  * @brief RIF Initialization Function
  * @param None
  * @retval None
@@ -585,6 +665,10 @@ static void SystemIsolation_Config(void)
 	 * camera->encode pipeline. */
 	RIMC_master.MasterCID = RIF_CID_1;
 	HAL_RIF_RIMC_ConfigMasterAttributes(RIF_MASTER_INDEX_VENC, &RIMC_master);
+
+	/* Phase 4: USB1 OTG HS master. */
+	RIMC_master.MasterCID = RIF_CID_1;
+	HAL_RIF_RIMC_ConfigMasterAttributes(RIF_MASTER_INDEX_OTG1, &RIMC_master);
 
 	/* RIF-Aware IPs Config */
 
