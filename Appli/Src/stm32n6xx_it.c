@@ -93,7 +93,7 @@ void NMI_Handler(void)
  *         which never expires if called from a handler priority SysTick can't
  *         preempt (i.e. every fault handler here) and the flag never sets.
  */
-static void TRACE_RawPutChar(char c)
+void TRACE_RawPutChar(char c)
 {
 	uint32_t guard = 1000000U;
 	while (((USART1->ISR & USART_ISR_TXE_TXFNF) == 0U) && (--guard != 0U))
@@ -102,7 +102,7 @@ static void TRACE_RawPutChar(char c)
 	USART1->TDR = (uint32_t)c;
 }
 
-static void TRACE_RawPutString(const char *s)
+void TRACE_RawPutString(const char *s)
 {
 	while (*s != '\0')
 	{
@@ -110,7 +110,7 @@ static void TRACE_RawPutString(const char *s)
 	}
 }
 
-static void TRACE_RawPutHex32(uint32_t v)
+void TRACE_RawPutHex32(uint32_t v)
 {
 	static const char hexdigits[16] = "0123456789ABCDEF";
 	for (int shift = 28; shift >= 0; shift -= 4)
@@ -337,6 +337,20 @@ void USB1_OTG_HS_IRQHandler(void)
 	uint32_t doepint0  = otg_out0->DOEPINT;
 	uint32_t doeptsiz0 = otg_out0->DOEPTSIZ;
 
+	/* DIAG (2026-07-22, streaming-stall debug): SETUP/enumeration is fixed
+	 * (DMA disabled - see MX_USB1_OTG_HS_PCD_Init() in main.c); now chasing
+	 * why the video IN endpoint (EP1) stops after ~5 payloads (one fragmented
+	 * keyframe) - video_write_payload()'s own counter (ux_device_video.c)
+	 * confirms USBX stops calling us, but not whether the OTG hardware ever
+	 * raises a 6th IN-complete at all. DIEPINT1 says definitively whether
+	 * this is a HW-level stall (no further IN interrupt ever) or a
+	 * USBX-class-layer issue (HW completes fine, class layer just doesn't
+	 * relay it to our StreamPayloadDone callback). */
+	USB_OTG_INEndpointTypeDef *otg_in1 =
+		(USB_OTG_INEndpointTypeDef *)((uint32_t)USB1_OTG_HS + USB_OTG_IN_ENDPOINT_BASE + USB_OTG_EP_REG_SIZE);
+	uint32_t diepint1  = otg_in1->DIEPINT;
+	uint32_t dieptsiz1 = otg_in1->DIEPTSIZ;
+
 	if (should_log != 0U)
 	{
 		USB_OTG_DeviceTypeDef *otg_dev =
@@ -357,24 +371,17 @@ void USB1_OTG_HS_IRQHandler(void)
 			TRACE_RawPutString(" DOEPTSIZ0=");
 			TRACE_RawPutHex32(doeptsiz0);
 		}
+		if (had_iepint != 0U)
+		{
+			TRACE_RawPutString(" DIEPINT1=");
+			TRACE_RawPutHex32(diepint1);
+			TRACE_RawPutString(" DIEPTSIZ1=");
+			TRACE_RawPutHex32(dieptsiz1);
+		}
 		TRACE_RawPutString("\r\n");
 	}
 
 	HAL_PCD_IRQHandler(&hpcd_USB1_OTG_HS);
-
-	/* DIAG: HAL_PCD_IRQHandler's RXFLVL popping only just filled
-	 * hpcd->Setup, so this has to be read AFTER the call - dump it whenever
-	 * this entry had OEPINT pending, to see exactly which SETUP request
-	 * (bmRequestType/bRequest/wValue/wIndex/wLength) our device is being
-	 * asked for right before enumeration goes silent. */
-	if ((should_log != 0U) && ((had_oepint != 0U) || (had_iepint != 0U)))
-	{
-		TRACE_RawPutString("  SETUP=");
-		TRACE_RawPutHex32(hpcd_USB1_OTG_HS.Setup[0]);
-		TRACE_RawPutString(" ");
-		TRACE_RawPutHex32(hpcd_USB1_OTG_HS.Setup[1]);
-		TRACE_RawPutString("\r\n");
-	}
 }
 
 #if defined(TCPP0203_SUPPORT)

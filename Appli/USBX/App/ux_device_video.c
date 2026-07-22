@@ -13,6 +13,16 @@
 #include "ux_device_video.h"
 #include "venc_app.h"
 
+/* DIAG (2026-07-22, streaming-stall debug): printf() from this thread was
+ * observed to be silently dropped entirely - a whole capture with a
+ * confirmed-reached STREAMON never showed a single line from these
+ * diagnostics, despite CAD/PE loop printf output looking fine, matching the
+ * concurrent-printf-collision issue found earlier this session. These reuse
+ * the same ISR-safe raw/bounded UART primitives stm32n6xx_it.c's
+ * TRACE_FaultSafe() uses (now exposed non-static there) instead. */
+extern void TRACE_RawPutString(const char *s);
+extern void TRACE_RawPutHex32(uint32_t v);
+
 #define UVC_PLAY_STATUS_STOP	   0x00U
 #define UVC_PLAY_STATUS_READY	   0x01U
 #define UVC_PLAY_STATUS_STREAMING 0x02U
@@ -95,6 +105,8 @@ VOID USBD_VIDEO_Activate(VOID *video_instance)
 
 	ux_device_class_video_stream_get(video, 0, &stream_write);
 
+	TRACE_RawPutString("DIAG: USBD_VIDEO_Activate\r\n");
+
 	return;
 }
 
@@ -124,6 +136,10 @@ VOID USBD_VIDEO_Deactivate(VOID *video_instance)
  */
 VOID USBD_VIDEO_StreamChange(UX_DEVICE_CLASS_VIDEO_STREAM *video_stream, ULONG alternate_setting)
 {
+	TRACE_RawPutString("DIAG: USBD_VIDEO_StreamChange alt=");
+	TRACE_RawPutHex32(alternate_setting);
+	TRACE_RawPutString("\r\n");
+
 	if (alternate_setting == 0U)
 	{
 		uvc_state = UVC_PLAY_STATUS_STOP;
@@ -298,6 +314,17 @@ VOID video_write_payload(UX_DEVICE_CLASS_VIDEO_STREAM *stream)
 	static ULONG	length;
 	ULONG		timestamp = 100000;
 	static uint8_t *Pcktdata  = NULL;
+	static uint32_t diag_count = 0;
+
+	if (diag_count < 20U)
+	{
+		diag_count++;
+		TRACE_RawPutString("DIAG: video_write_payload #");
+		TRACE_RawPutHex32(diag_count);
+		TRACE_RawPutString(" uvc_state=");
+		TRACE_RawPutHex32((uint32_t)uvc_state);
+		TRACE_RawPutString("\r\n");
+	}
 
 	switch (uvc_state)
 	{
@@ -305,9 +332,27 @@ VOID video_write_payload(UX_DEVICE_CLASS_VIDEO_STREAM *stream)
 		if ((new_frame_requested == 1) || (Pcktdata == NULL))
 		{
 			new_frame_requested = 0;
+			/* 2026-07-22 (streaming-stall root cause): this thread
+			 * (ux_device_class_video_write_thread_entry) and venc_thread
+			 * both run at UX_THREAD_PRIORITY_CLASS/priority 20 with
+			 * TX_NO_TIME_SLICE - ThreadX only switches between
+			 * equal-priority threads on a voluntary yield, never
+			 * automatically. usb_video_data_read() (VENC_APP_GetData())
+			 * polls a queue with TX_NO_WAIT and returns immediately when
+			 * empty, so without a yield here this loop spins forever at
+			 * full priority the instant it outruns the encoder, starving
+			 * venc_thread of the CPU time it needs to ever produce the
+			 * next frame - a permanent deadlock, not a USB/hardware
+			 * issue (confirmed via UART trace: streaming worked for
+			 * exactly as many frames as were already queued before
+			 * playback started, then went silent forever waiting here). */
 			do
 			{
 				usb_video_data_read(&Pcktdata, &length);
+				if (Pcktdata == NULL)
+				{
+					tx_thread_sleep(1);
+				}
 			} while (Pcktdata == NULL);
 		}
 		usb_sender_session_h264_send(stream, Pcktdata, length, timestamp, UX_TRUE);
@@ -341,6 +386,27 @@ UINT usb_sender_session_h264_send(UX_DEVICE_CLASS_VIDEO_STREAM *stream, UCHAR *f
 		nal_unit_start = frame_data;
 	}
 	ux_device_class_video_write_payload_get(stream, &buffer, &buffer_length);
+
+	{
+		static uint32_t diag_send_count = 0;
+		if (diag_send_count < 20U)
+		{
+			diag_send_count++;
+			TRACE_RawPutString("DIAG: h264_send #");
+			TRACE_RawPutHex32(diag_send_count);
+			TRACE_RawPutString(" nal_unit_size=");
+			TRACE_RawPutHex32((uint32_t)nal_unit_size);
+			TRACE_RawPutString(" mps=");
+			TRACE_RawPutHex32((uint32_t)usbd_video_ep_mps);
+			TRACE_RawPutString(" buffer=");
+			TRACE_RawPutHex32((uint32_t)buffer);
+			TRACE_RawPutString(" buffer_length=");
+			TRACE_RawPutHex32((uint32_t)buffer_length);
+			TRACE_RawPutString(" final=");
+			TRACE_RawPutHex32((uint32_t)(nal_unit_size <= (usbd_video_ep_mps - PAYLOAD_HEADER_SIZE)));
+			TRACE_RawPutString("\r\n");
+		}
+	}
 
 	if (nal_unit_size > (usbd_video_ep_mps - PAYLOAD_HEADER_SIZE))
 	{
